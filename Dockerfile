@@ -38,7 +38,7 @@ COPY docker/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 COPY docker/settings.php /app/settings.php
 
 # Copy the demo codebase to /app/web/demo
-COPY web /app/web/demo
+COPY . /app/web/demo
 
 # Install dependcies, set ownership and delete the sync dir under /app/web/blog
 RUN cd /app/web/demo && \
