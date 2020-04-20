@@ -1,0 +1,10 @@
+uuid: 01dd96d9-6906-4cc5-8259-9883d497b5d6
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 2icjJt_fBT91zyN_wxDrehg356k2C5lfLXKvTrZxmI0
+name: Categories
+vid: categories
+description: 'This taxonomy holds categories for the UMD Terp Article content.'
+weight: 0

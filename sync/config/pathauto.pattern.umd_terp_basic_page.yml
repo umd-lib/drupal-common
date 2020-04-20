@@ -1,0 +1,24 @@
+uuid: 81f72803-8668-4db0-805f-5a8cc08439a3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: gDIa07WwUG05TSQZ3rPzPNA17us4eqFV-wGZidYpTb4
+id: umd_terp_basic_page
+label: 'UMD Terp Basic Page'
+type: 'canonical_entities:node'
+pattern: '/umd-library-demo/web/[node:menu-link:parents:join-path]/[node:title]'
+selection_criteria:
+  8581c2a1-f023-4829-ada6-c2621f0da8ba:
+    id: node_type
+    bundles:
+      umd_terp_basic_page: umd_terp_basic_page
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 8581c2a1-f023-4829-ada6-c2621f0da8ba
+selection_logic: and
+weight: -5
+relationships: {  }

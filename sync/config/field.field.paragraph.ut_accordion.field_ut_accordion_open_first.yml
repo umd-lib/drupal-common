@@ -1,0 +1,25 @@
+uuid: 284e3ce0-5d3e-4ff0-aa2c-2e64ad0678c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_accordion_open_first
+    - paragraphs.paragraphs_type.ut_accordion
+_core:
+  default_config_hash: aEIJmPjwiBwKyRiaSybxEJV5mVmJ5j56hwNlPg9ydtw
+id: paragraph.ut_accordion.field_ut_accordion_open_first
+field_name: field_ut_accordion_open_first
+entity_type: paragraph
+bundle: ut_accordion
+label: 'Open First'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

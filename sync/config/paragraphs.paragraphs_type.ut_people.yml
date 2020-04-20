@@ -1,0 +1,12 @@
+uuid: 35c5d990-545f-4e4e-8d98-30469c5ffc82
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: C7zLkklH42yRg6c1Bat055EyQDmjB7sYdcZ5t4BITa8
+id: ut_people
+label: People
+icon_uuid: null
+icon_default: null
+description: 'Provides a paragraphs bundle for embedding a group of people as a Kitchen Sink Widget.'
+behavior_plugins: {  }

@@ -1,0 +1,21 @@
+uuid: a8cac9e2-a08d-469b-9af4-abee1b0d05a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_umdt_ct_article_subtitle
+    - node.type.umd_terp_article
+_core:
+  default_config_hash: kEgzU2qHqSHLL6Df2dDobAQPfH95zURUkPV37rahT0A
+id: node.umd_terp_article.field_umdt_ct_article_subtitle
+field_name: field_umdt_ct_article_subtitle
+entity_type: node
+bundle: umd_terp_article
+label: Subtitle
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

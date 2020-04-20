@@ -1,0 +1,24 @@
+uuid: 8ca080c3-3f6b-4ad6-abe2-0e426bc495f5
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: mjWwbkMRHGjK3oAwgcexHxDDU6sjx4p1tzD2wIunsDQ
+id: umd_terp_person
+label: 'UMD Terp Person'
+type: 'canonical_entities:node'
+pattern: '/umd-library-demo/web/directory/[node:title]'
+selection_criteria:
+  f139ecf0-9492-4d58-a7c2-f51155d70e29:
+    id: node_type
+    bundles:
+      umd_terp_person: umd_terp_person
+    negate: false
+    context_mapping:
+      node: node
+    uuid: f139ecf0-9492-4d58-a7c2-f51155d70e29
+selection_logic: and
+weight: -5
+relationships: {  }

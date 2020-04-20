@@ -1,0 +1,12 @@
+uuid: e800cc4a-5843-4cd8-a992-b85578bcb6e1
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: jhXbqMbUu_gUZWw8S7P0xJY4eqF1DMKXyvSKHICLhWE
+id: ut_tabs_item
+label: 'Tabs Item'
+icon_uuid: null
+icon_default: null
+description: 'Provides a paragraphs bundle for embedding individual tabs into the group.'
+behavior_plugins: {  }

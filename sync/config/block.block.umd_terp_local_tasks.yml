@@ -1,0 +1,22 @@
+uuid: b229edb3-65d7-48e7-9500-4abdf93b2155
+langcode: en
+status: true
+dependencies:
+  theme:
+    - umd_terp
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: umd_terp_local_tasks
+theme: umd_terp
+region: content
+weight: -40
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

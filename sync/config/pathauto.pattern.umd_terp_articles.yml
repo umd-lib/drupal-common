@@ -1,0 +1,24 @@
+uuid: 2b263f32-db4f-46ad-b06c-07a2de6d16ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: PMOb3MtuIWcQnD-Bi6PzzmtyUVxXov_SpR8O17vBiLQ
+id: umd_terp_articles
+label: 'UMD Terp Articles'
+type: 'canonical_entities:node'
+pattern: '/umd-library-demo/web/articles/[node:title]'
+selection_criteria:
+  0ac838db-8ffb-4a9e-bfdb-5d1470fcd634:
+    id: node_type
+    bundles:
+      umd_terp_article: umd_terp_article
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 0ac838db-8ffb-4a9e-bfdb-5d1470fcd634
+selection_logic: and
+weight: -5
+relationships: {  }

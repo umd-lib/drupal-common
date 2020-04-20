@@ -1,0 +1,12 @@
+uuid: 40e64a6b-a63e-4fee-a1fe-fa5a9fe8c98a
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: bWgdVS3mcnU10SROhcODrjEqzzUOjEgUVStJmXU4WH4
+id: ut_image
+label: Image
+icon_uuid: null
+icon_default: null
+description: 'Provides a paragraphs bundle for embedding an image as a Kitchen Sink Widget.'
+behavior_plugins: {  }

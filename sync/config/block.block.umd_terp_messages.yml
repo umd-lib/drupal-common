@@ -1,0 +1,22 @@
+uuid: 62c58d6d-a858-47aa-9e54-149d80304158
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - umd_terp
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: umd_terp_messages
+theme: umd_terp
+region: main_menu
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

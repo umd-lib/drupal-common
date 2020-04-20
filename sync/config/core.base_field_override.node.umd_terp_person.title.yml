@@ -1,0 +1,20 @@
+uuid: 237f1ceb-3bec-40c1-a32a-85a7d48bd4dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.umd_terp_person
+_core:
+  default_config_hash: tknObxdOoAWXAcdn0onoI2rOdV_P3ON5cgyfWzbEJwY
+id: node.umd_terp_person.title
+field_name: title
+entity_type: node
+bundle: umd_terp_person
+label: 'Display Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

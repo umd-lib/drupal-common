@@ -1,0 +1,23 @@
+uuid: 25515c36-5286-451f-9807-250bee39cabf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_feature_text
+    - paragraphs.paragraphs_type.ut_feature
+  module:
+    - text
+_core:
+  default_config_hash: tIR2Cz6YDoFdcs1vJQUSrS_COqurrIZwohgp10JsfUM
+id: paragraph.ut_feature.field_ut_feature_text
+field_name: field_ut_feature_text
+entity_type: paragraph
+bundle: ut_feature
+label: Text
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

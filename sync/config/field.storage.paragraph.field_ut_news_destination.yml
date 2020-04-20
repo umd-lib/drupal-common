@@ -1,0 +1,26 @@
+uuid: d6e8b61b-f58b-44ec-9ef7-d0a201082fae
+langcode: en
+status: true
+dependencies:
+  module:
+    - external_data_source
+    - paragraphs
+_core:
+  default_config_hash: Y3dGNoHyzxVvHF9_et76TW88DpsPBmP7kl6PfrlzTns
+id: paragraph.field_ut_news_destination
+field_name: field_ut_news_destination
+entity_type: paragraph
+type: external_data_source
+settings:
+  ws: destination
+  count: '100'
+  max_length: '255'
+  is_ascii: false
+  case_sensitive: false
+module: external_data_source
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

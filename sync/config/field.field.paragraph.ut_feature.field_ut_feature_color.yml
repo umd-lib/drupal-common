@@ -1,0 +1,25 @@
+uuid: cc4bab67-08ff-454d-8b32-3b2f53c92fcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_feature_color
+    - paragraphs.paragraphs_type.ut_feature
+  module:
+    - options
+_core:
+  default_config_hash: T5LcY7YTTCKOmQiRT3XJYoavlWBYAJiU1Sle5Et3afo
+id: paragraph.ut_feature.field_ut_feature_color
+field_name: field_ut_feature_color
+entity_type: paragraph
+bundle: ut_feature
+label: Color
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: bg-white
+default_value_callback: ''
+settings: {  }
+field_type: list_string

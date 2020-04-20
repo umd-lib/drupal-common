@@ -1,0 +1,22 @@
+uuid: 4016d3a6-4ba2-422b-8c59-1f5eb0c4ea53
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: core_articles
+label: 'Core Articles'
+type: 'canonical_entities:node'
+pattern: '/umd-library-demo/web/articles/[node:title]'
+selection_criteria:
+  7877635a-f909-4871-a536-4a13036b794b:
+    id: node_type
+    bundles:
+      article: article
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 7877635a-f909-4871-a536-4a13036b794b
+selection_logic: and
+weight: -5
+relationships: {  }
