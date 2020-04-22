@@ -30,6 +30,7 @@ module:
   image: 0
   link: 0
   link_attributes: 0
+  mailsystem: 0
   media: 0
   media_library: 0
   menu_ui: 0
@@ -44,6 +45,7 @@ module:
   search_api: 0
   search_api_db: 0
   shortcut: 0
+  swiftmailer: 0
   system: 0
   tablefield: 0
   tablefield_required: 0
