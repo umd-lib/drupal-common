@@ -21,6 +21,7 @@
         "drupal/core-recommended": "^8.8",
         "drupal/devel": "^2.1",
         "drupal/honeypot": "^1.30",
+        "drupal/swiftmailer": "^1.0@beta",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^2.5",
         "drush/drush": "^10.2",
