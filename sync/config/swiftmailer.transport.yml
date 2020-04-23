@@ -1,5 +1,5 @@
 transport: smtp
-smtp_host: aspmx.l.google.com
+smtp_host: libsmtp.umd.edu
 smtp_port: 25
 smtp_encryption: '0'
 smtp_credential_provider: swiftmailer

@@ -9,6 +9,12 @@ RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
 	vim \
 	wget \
 	gettext-base \
+	pngcrush \
+	advancecomp \
+	libjpeg-progs \
+	optipng \
+	jpegoptim \
+	pngquant \
 	postgresql-client-10 && \
 	rm -rf /usr/share/man/man*
 

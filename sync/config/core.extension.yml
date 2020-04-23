@@ -28,6 +28,8 @@ module:
   history: 0
   honeypot: 0
   image: 0
+  imageapi_optimize: 0
+  imageapi_optimize_binaries: 0
   link: 0
   link_attributes: 0
   mailsystem: 0
@@ -42,6 +44,7 @@ module:
   path_alias: 0
   quickedit: 0
   rdf: 0
+  responsive_image: 0
   search_api: 0
   search_api_db: 0
   shortcut: 0

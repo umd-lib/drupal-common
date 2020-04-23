@@ -21,6 +21,8 @@
         "drupal/core-recommended": "^8.8",
         "drupal/devel": "^2.1",
         "drupal/honeypot": "^1.30",
+        "drupal/imageapi_optimize": "^2.0@beta",
+        "drupal/imageapi_optimize_binaries": "^1.0@alpha",
         "drupal/swiftmailer": "^1.0@beta",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^2.5",
