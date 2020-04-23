@@ -9,16 +9,17 @@ _core:
 id: umd_terp_articles
 label: 'UMD Terp Articles'
 type: 'canonical_entities:node'
-pattern: '/umd-library-demo/web/articles/[node:title]'
+pattern: 'articles/[node:title]'
 selection_criteria:
-  0ac838db-8ffb-4a9e-bfdb-5d1470fcd634:
+  af9fb0aa-dce8-4d5f-9a70-8d8fc453a1f8:
     id: node_type
     bundles:
       umd_terp_article: umd_terp_article
     negate: false
     context_mapping:
       node: node
-    uuid: 0ac838db-8ffb-4a9e-bfdb-5d1470fcd634
+    uuid: af9fb0aa-dce8-4d5f-9a70-8d8fc453a1f8
 selection_logic: and
 weight: -5
 relationships: {  }
+

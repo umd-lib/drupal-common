@@ -7,16 +7,18 @@ dependencies:
 id: core_articles
 label: 'Core Articles'
 type: 'canonical_entities:node'
-pattern: '/umd-library-demo/web/articles/[node:title]'
+pattern: '[node:title]'
 selection_criteria:
-  7877635a-f909-4871-a536-4a13036b794b:
+  19e0823f-acfe-4f61-af64-b3773a492b11:
     id: node_type
     bundles:
       article: article
+      page: page
     negate: false
     context_mapping:
       node: node
-    uuid: 7877635a-f909-4871-a536-4a13036b794b
+    uuid: 19e0823f-acfe-4f61-af64-b3773a492b11
 selection_logic: and
 weight: -5
 relationships: {  }
+

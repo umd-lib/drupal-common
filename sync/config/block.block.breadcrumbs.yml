@@ -1,0 +1,21 @@
+uuid: de1c7379-c0d6-48d9-bf62-664279177857
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - umd_terp
+id: breadcrumbs
+theme: umd_terp
+region: breadcrumbs
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: visible
+visibility: {  }
+

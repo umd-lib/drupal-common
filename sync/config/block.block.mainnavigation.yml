@@ -1,0 +1,26 @@
+uuid: 34389aad-049d-48b9-b37a-19506169b29e
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - umd_terp
+id: mainnavigation
+theme: umd_terp
+region: sidebar
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: visible
+  level: 2
+  depth: 0
+  expand_all_items: false
+visibility: {  }
+
