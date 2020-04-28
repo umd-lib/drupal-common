@@ -28,7 +28,7 @@ $settings['entity_update_backup'] = TRUE;
 // Database
 $databases['default']['default'] = [
     'driver' => 'pgsql',
-    'database' => 'umdpact',
+    'database' => 'drupaldb',
     'username' => 'drupaluser',
     'password' => '$DB_PASSWORD',
     'host' => 'db',
