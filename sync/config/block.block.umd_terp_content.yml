@@ -1,0 +1,22 @@
+uuid: 19619db3-4cc8-4aa3-adf6-80d559eb2bbc
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - umd_terp
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: umd_terp_content
+theme: umd_terp
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

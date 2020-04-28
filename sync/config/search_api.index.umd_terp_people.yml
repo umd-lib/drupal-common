@@ -1,0 +1,36 @@
+uuid: 9c332039-7e5b-4759-bb80-ba239ebd7a3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.server.local_database
+  module:
+    - search_api
+    - node
+_core:
+  default_config_hash: BMgwIx7p5e77QbITzp7JCa7MOWok81GOsN0ft-SmVTU
+id: umd_terp_people
+name: 'UMD Terp People Index'
+description: ''
+read_only: false
+field_settings: {  }
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - umd_terp_article
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: local_database

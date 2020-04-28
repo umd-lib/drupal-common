@@ -1,0 +1,12 @@
+uuid: 3eb6733b-1e94-403c-aa76-f7daab9f91f7
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: aPP04UWbC2ahLco8F2Ave2hQCnAo17PUw5zrx1dB2yc
+id: ut_link
+label: Link
+icon_uuid: null
+icon_default: null
+description: 'Provides a paragraphs bundle for embedding individual links within a group.'
+behavior_plugins: {  }

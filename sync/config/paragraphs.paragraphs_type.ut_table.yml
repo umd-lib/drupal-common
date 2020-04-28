@@ -1,0 +1,12 @@
+uuid: e03e61ed-1cee-4be1-9ae1-af1d028a739f
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: PErgGglDXN378bQtp7teSY1QhBnWaz_pE4AMBRpVn9s
+id: ut_table
+label: Table
+icon_uuid: null
+icon_default: null
+description: 'Provides a paragraphs bundle for embedding a responsive table as a Kitchen Sink Widget.'
+behavior_plugins: {  }

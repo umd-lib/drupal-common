@@ -1,0 +1,25 @@
+uuid: f0a3a9bf-3947-4de1-b3ba-5429c7cbb113
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_divider_size
+    - paragraphs.paragraphs_type.ut_divider
+  module:
+    - options
+_core:
+  default_config_hash: besWC5o6TylS4O13Ic4RV15AKj00F_Rlqoh_pVa-Q7g
+id: paragraph.ut_divider.field_ut_divider_size
+field_name: field_ut_divider_size
+entity_type: paragraph
+bundle: ut_divider
+label: Size
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

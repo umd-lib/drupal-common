@@ -1,0 +1,12 @@
+uuid: bd35b114-b12b-4c4d-bd6a-dcf5c2a3c41f
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: OEaXXHd8z0BtIyqr0LNYS472YCgxApUdbUMRlwbjg1M
+id: ut_carousel_item
+label: 'Carousel Item'
+icon_uuid: null
+icon_default: null
+description: 'Provides a paragraphs bundle for embedding an individual carousel item to a group.'
+behavior_plugins: {  }

@@ -1,0 +1,20 @@
+uuid: 9d8f234e-fe12-467b-bc36-c4866f613b21
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.umd_terp_article
+_core:
+  default_config_hash: ZlJ6GykDBIClamWGOLZ18iASBMte9mD7GB4usrUfHUM
+id: node.umd_terp_article.title
+field_name: title
+entity_type: node
+bundle: umd_terp_article
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

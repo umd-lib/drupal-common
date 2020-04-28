@@ -1,0 +1,35 @@
+uuid: 54917728-9704-4433-a14f-73a964d697ea
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+_core:
+  default_config_hash: QWkCvHF2FEOjzZ8pMcVJztw2RX3ffZeltGZaa-L6wPs
+id: paragraph.field_ut_divider_size
+field_name: field_ut_divider_size
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: default
+      label: 'Default (1px)'
+    -
+      value: medium
+      label: 'Medium (3px)'
+    -
+      value: large
+      label: 'Large (5px)'
+    -
+      value: xlarge
+      label: 'XLarge (8px)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,12 @@
+uuid: 2b058e91-c04b-4338-a4f8-f36ccf24d8d9
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 7A0pLXFipI3bd39zcgPhShKW7dOAq0dilVcFo4Gw3Jo
+id: ut_slideshow
+label: Slideshow
+icon_uuid: null
+icon_default: null
+description: 'Provides a paragraphs bundle for embedding a slideshow as a Kitchen Sink Widget.'
+behavior_plugins: {  }

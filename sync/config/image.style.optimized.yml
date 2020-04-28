@@ -1,0 +1,16 @@
+uuid: 738c3551-b305-4a82-87d7-8881d3fc9380
+langcode: en
+status: true
+dependencies: {  }
+name: optimized
+label: optimized
+effects:
+  3d6b3b73-912e-414c-a161-e474d74bc61a:
+    uuid: 3d6b3b73-912e-414c-a161-e474d74bc61a
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 800
+      height: 600
+      anchor: center-center
+pipeline: local_binaries

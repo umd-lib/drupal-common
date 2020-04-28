@@ -1,0 +1,12 @@
+uuid: 95b49e63-cb75-4387-84f6-74187164985b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: CRI9K_aCx90VnLJ3UUBZG7VLTZ2Hm6rJpUunoLrNreM
+id: ut_slideshow_item
+label: 'Slideshow Item'
+icon_uuid: null
+icon_default: null
+description: 'Provides a paragraphs bundle for embedding an individual slideshow item into a group.'
+behavior_plugins: {  }
