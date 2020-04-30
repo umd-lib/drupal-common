@@ -1,0 +1,15 @@
+core: 8.x
+type: theme
+name: UMD Libraries
+description: 'UMD Libraries (umd_libraries), is a drupal 8 child theme suitable for all UMD projects.'
+package: UMD.EDU
+
+libraries:
+  - umd_terp/global
+regions:
+   main_menu: 'Main Menu'
+   help: 'Help'
+   breadcrumbs: 'Breadcrumbs'
+   sidebar: 'Sidebar'
+   content: 'Content'
+   footer_menu: 'Footer Menu'
