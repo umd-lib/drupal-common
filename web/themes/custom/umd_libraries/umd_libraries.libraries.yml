@@ -2,7 +2,6 @@ global:
   version: VERSION
   css:
     base:
-     static/build/css/index.css: {}
-     static/build/css/print.css: { media: print }
+     static/build/css/overrides.css: {}
   js:
-    static/build/js/index.js: {}
+    static/build/js/overrides.js: {}
