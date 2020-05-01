@@ -1,0 +1,4 @@
+# Templates go here
+Copy in from umd_terp templates (if available) and if not copy in from relevant module/theme and modify.
+
+Never modify parent templates or module templates directly.
