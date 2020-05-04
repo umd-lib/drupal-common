@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.2",
+        "drupal/cas": "^1.6",
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
@@ -23,6 +24,7 @@
         "drupal/honeypot": "^1.30",
         "drupal/imageapi_optimize": "^2.0@beta",
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
+        "drupal/ldap": "^3.0@beta",
         "drupal/swiftmailer": "^1.0@beta",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^2.5",
