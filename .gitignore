@@ -42,3 +42,7 @@ web/sites/simpletest
 
 # Ignore SimpleTest multi-site environment.
 # simpletest
+
+# Docker local development
+.docker-sync/
+postgres-init/*.sql
