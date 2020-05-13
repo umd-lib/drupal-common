@@ -68,7 +68,7 @@ services:
       POSTGRES_USER: $DB_USER
     volumes:
       - ./postgres-init:/docker-entrypoint-initdb.d # Place init file(s) here.
-      - /apps/postgres/data:/var/lib/postgresql/data # Use bind mount
+      - /apps/postgres/pact:/var/lib/postgresql/data # Use bind mount
 
 #  apache:
 #    image: wodby/apache:$APACHE_TAG
