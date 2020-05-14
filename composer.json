@@ -25,6 +25,7 @@
         "drupal/imageapi_optimize": "^2.0@beta",
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
         "drupal/ldap": "^3.0@beta",
+        "drupal/search_api_solr": "^3.9",
         "drupal/swiftmailer": "^1.0@beta",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^2.5",
