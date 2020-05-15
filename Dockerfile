@@ -43,12 +43,12 @@ COPY docker/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
 COPY docker/settings.php /app/settings.php
 
-# Copy the demo codebase to /app/web/demo
-COPY . /app/web/demo
+# Copy the staff-blog codebase to /app/web/staff-blog
+COPY . /app/web/staff-blog
 
 # Install dependcies, set ownership and delete the sync dir under /app/web/blog
-RUN cd /app/web/demo && \
+RUN cd /app/web/staff-blog && \
 	composer install --no-dev && \
-	chown -R www-data:www-data /app/web/demo
+	chown -R www-data:www-data /app/web/staff-blog
 
-WORKDIR /app/web/demo
+WORKDIR /app/web/staff-blog

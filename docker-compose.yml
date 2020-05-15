@@ -53,7 +53,7 @@ services:
       POSTGRES_USER: $DB_USER
     volumes:
       - ./postgres-init:/docker-entrypoint-initdb.d # Place init file(s) here.
-      - /apps/postgres/data:/var/lib/postgresql/data # Use bind mount
+      - $DB_DATA_DIR:/var/lib/postgresql/data # Use bind mount
 
   solr:
     image: wodby/solr:$SOLR_TAG
@@ -63,6 +63,8 @@ services:
       SOLR_HEAP: 1024m
     labels:
       - "traefik.http.routers.${PROJECT_NAME}_solr.rule=Host(`solr.${PROJECT_BASE_URL}`)"
+    volumes:
+      - $SOLR_DATA_DIR:/opt/solr/server/solr
 
 #  apache:
 #    image: wodby/apache:$APACHE_TAG
