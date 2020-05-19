@@ -1,0 +1,6 @@
+message_digest_admin.history:
+  title: 'Message Digest Admin'
+  route_name: message_digest_admin.history
+  description: 'Message Digest Admin'
+  parent: message.main_settings
+  weight: 99

@@ -1,0 +1,22 @@
+message_digest_admin.history:
+  route_name: message_digest_admin.history
+  title: 'History' 
+  base_route: message_digest_admin.history
+
+message_digest_admin.purge:
+  route_name: message_digest_admin.purge
+  title: 'Purge' 
+  base_route: message_digest_admin.history
+  weight: 2
+
+message_digest_admin.test:
+  route_name: message_digest_admin.test
+  title: 'Test' 
+  base_route: message_digest_admin.history
+  weight: 3
+
+message_digest_admin.send:
+  route_name: message_digest_admin.send
+  title: 'Send' 
+  base_route: message_digest_admin.history
+  weight: 4

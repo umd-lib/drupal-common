@@ -1,0 +1,36 @@
+message_digest_admin.history:
+  path: '/admin/config/message-digest-admin/history'
+  defaults: 
+    _form: '\Drupal\message_digest_admin\Form\MessageDigestAdminHistory'
+    _title: 'Digest History'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+message_digest_admin.purge:
+  path: '/admin/config/message-digest-admin/purge'
+  defaults: 
+    _form: '\Drupal\message_digest_admin\Form\MessageDigestAdminPurge'
+    _title: 'Purge Sent Messages'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+message_digest_admin.test:
+  path: '/admin/config/message-digest-admin/test'
+  defaults: 
+    _form: '\Drupal\message_digest_admin\Form\MessageDigestAdminTest'
+    _title: 'Send Test Digest'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+message_digest_admin.send:
+  path: '/admin/config/message-digest-admin/send'
+  defaults: 
+    _form: '\Drupal\message_digest_admin\Form\MessageDigestAdminSend'
+    _title: 'Send Digest'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

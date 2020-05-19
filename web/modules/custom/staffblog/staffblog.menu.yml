@@ -1,0 +1,6 @@
+staffblog.admin_settings_form:  
+  title: 'Staff Blog configuration'  
+  route_name: staffblog.admin_settings_form  
+  description: 'Staff Blog admin'  
+  parent: system.admin_config_system  
+  weight: 99

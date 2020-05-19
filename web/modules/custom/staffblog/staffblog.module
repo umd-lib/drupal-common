@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * @file
+ * Staff Blog Settings module.
+ */
+
+use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\node\Entity\Node;
+use Drupal\comment\Entity\Comment;
+use Drupal\user\Entity\User;
+use Drupal\message\Entity\Message;

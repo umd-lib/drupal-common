@@ -1,0 +1,6 @@
+services:
+  message_notify_staff.commands:
+    class: \Drupal\message_notify_staff\Commands\MessageNotifyStaffCommands
+    arguments: ['@account_switcher']
+    tags:
+      - { name: drush.command } 

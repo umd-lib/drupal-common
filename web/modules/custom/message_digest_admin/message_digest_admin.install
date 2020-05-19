@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file
+ * Install and update hooks for the Message Digest module.
+ */
+
+use Drupal\Core\Config\Entity\ConfigEntityType;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_schema().
+ *
+ * Add the message_digest_admin table.
+ */
+function message_digest_admin_schema() {
+  $schema['message_digest_admin'] = [
+    'description' => 'History of digests sent',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Numeric history ID.',
+      ],
+      'timestamp' => [
+        'description' => 'Date of sent digest.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => 0,
+      ],
+      'email' => [
+        'description' => 'Email address to whom digest was sent',
+        'type' => 'varchar',
+        'length' => '100',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'title' => [
+        'description' => 'Digest title.',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'type' => [
+        'description' => 'Whether a test or release.',
+        'type' => 'varchar',
+        'length' => 25,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'content' => [
+        'description' => 'Serialized message data.',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}
+

@@ -1,0 +1,6 @@
+name: Message Digest Admin
+type: module
+description: Message Digest Admin Description 
+package: Message
+version: 8.x
+core: 8.x

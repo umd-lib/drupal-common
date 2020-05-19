@@ -1,0 +1,143 @@
+<?php
+
+/**
+ * @file
+ * Message notify staff module.
+ */
+
+use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\node\Entity\Node;
+use Drupal\comment\Entity\Comment;
+use Drupal\user\Entity\User;
+use Drupal\message\Entity\Message;
+use Drupal\Core\Site\Settings;
+use Psr\Log\LoggerInterface;
+use Drupal\user\UserInterface;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for node entities.
+ */
+function message_notify_staff_node_insert(Node $node) {
+  if ($node->bundle() == "article") {
+    $skip = $node->get('field_skip_digest')->getString();
+    if ($skip) {
+      return;	// without adding to digest.
+    }
+    $uid = Settings::get('digest_user');
+    $digest_key = Settings::get('digest_key', 'message_digest:ten_minutes'); 
+    $notifier = \Drupal::service('message_notify.sender');
+    $message = Message::create(['template' => 'new_content', 'uid' => $uid]);
+    $message->set('field_node_reference', $node);
+    $message->set('field_published', $node->isPublished());
+    $message->save();
+    $notifier->send($message, [], $digest_key);
+  }
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function message_notify_staff_mail_alter(&$message) {
+  if ($message['id'] == 'message_digest_digest') {
+    $message['subject'] = message_notify_staff_gettitle();
+    $replyTo = Settings::get('digest_reply_to');
+    $message['reply-to'] = $replyTo;
+  }
+}
+
+/**
+ * Get digest title
+ */
+function message_notify_staff_gettitle() {
+  $title = \Drupal::config('system.site')->get('name');
+  $date = new DateTime('NOW');
+  return t('UMD Libraries Staff Bulletin - from @title for @date', ['@title' => $title, '@date' => $date->format('l, F jS')]);
+}
+
+/**
+ * Implements hook_message_digest_view_mode_alter().
+ */
+function message_notify_staff_message_digest_view_mode_alter(&$context, $notifier, $account) {
+
+  // If the account is blocked, deliver anyway.
+  // Note: this overrides the default module behavior.
+  if ($account->isBlocked()) {
+    $context['deliver'] = TRUE;
+    \Drupal::logger('message_notify_staff')->warning('Overriding default account blocked behavior for digest.');
+  }
+
+}
+
+/**
+ * Implements hook_message_digest_aggregate_alter().
+ */
+function message_notify_staff_message_digest_aggregate_alter(&$context, $account, $notifier) {
+  $messages = $context['messages'];
+  $updated_messages = message_notify_staff_term_reorder($messages, 'tags');
+  if ($updated_messages && count($updated_messages) > 0) {
+    unset($context['messages']);
+    $context['messages'] = $updated_messages;
+  }
+}
+
+/**
+ * Take an array of messages and rearrange them based on a given taxonomy.
+ *
+ * @args
+ *   $messages: An array of messages ordered by message_digest default
+ *   $vid: Vocabulary ID
+ * @return
+ *   array of messages rearranged by taxonomy term.
+ */
+function message_notify_staff_term_reorder($messages, $vid) {
+  $tags =\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
+  $categories = [];
+  foreach ($tags as $tag) {
+    $categories[$tag->name] = array();
+  }
+  $categories['None'] = array();
+
+  foreach ($messages as $key => $message) {
+    $term = message_notify_get_category($message); 
+    if ($term && isset($categories[$term])) {
+      $categories[$term][$key] = $message; 
+    }
+    elseif ($term) {
+      $categories['None'][$key] = $message;
+    }
+  }
+
+  $reorder = [];
+  foreach ($categories as $category => $raw) {
+    foreach ($raw as $key => $value) {
+      $reorder[$key] = $value; 
+    }
+  }
+
+  return $reorder;
+}
+
+/**
+ * @args
+ *   $message: A single message object.
+ * @return
+ *   Term for a given message. Note: Assumes single value.
+ */
+function message_notify_get_category($message) {
+    $nid = $message->get('field_node_reference')->getString();
+    $node = \Drupal\node\Entity\Node::load($nid);
+    $tid = $node->get('field_tags')->getString();
+
+    // Handle edge case if Node is updated to exclude in digest.
+    $skip = $node->get('field_skip_digest')->getString();
+    if ($skip) {
+      return FALSE;
+    }
+
+    if ($tid != null) {
+      $term = Term::load($tid);
+      return trim($term->getName());
+    }
+    return TRUE;
+}

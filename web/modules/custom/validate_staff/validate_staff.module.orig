@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Validate staff module.
+ */
+
+use Drupal\user\Entity\User;
+use Drupal\message\Entity\Message;
+use Drupal\user\UserInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Field\FieldItemListInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for user entities.
+ *
+ * This method captures the CAS username and runs an LDAP query to ensure ou=LIBR-*.
+ *
+ * In the event that an authenticated user is creating this user via the user-creation form,
+ * handling is different and doesn't redirect to home.
+ */
+function validate_staff_user_presave (UserInterface $account) {
+
+  // Check if any of this LIBR-* checking is necessary for this account
+  $skipLDAP = $account->get('field_skip_ldap')->getString();
+  if (!$skipLDAP) {
+    $messenger = \Drupal::messenger();
+
+    $name = $account->getAccountName();
+
+    $factory = \Drupal::service('ldap.servers');
+    $server = $factory->getServerByIdEnabled('umd');
+    $filter = "(&(uid=" . $name . ")(ou=LIBR-*))";
+    $result = $server->search(NULL, $filter);
+
+    // If no results, assume ou != LIBR-*
+    if ($result['count'] < 1) {
+      $message = t('This blog is available only to UMD Library Staff and Faculty');
+      $currentUser = \Drupal::currentUser();
+      if ($currentUser->isAuthenticated()) {
+        // In this event, the user is being created manually via form
+        $message = t('User does not have LDAP ou=LIBR-*');
+        $response = new RedirectResponse(\Drupal::request()->getRequestUri());
+      } else {
+        // In this event, the process is automated likely via CAS
+        $response = new RedirectResponse(\Drupal::url('<front>'));
+        $tokens = ['%drupal_username' => $name];
+        \Drupal::logger('validate_staff')
+          ->error('Drupal account %drupal_username is blocked because not found LIBR-*.', $tokens);
+      }
+      $response->send();
+      $messenger->addMessage($message, $messenger::TYPE_WARNING);
+      exit;
+    }
+    else {
+      $account->addRole('library_staff');
+    }
+  }
+
+}
+<<<<<<< HEAD
+=======
+
+/**
+ * Implements hook_form_alter().
+ */
+function validate_staff_form_alter(&$form, &$form_state, $form_id) {
+  if($form_id=='user_form') {
+    $currentUser = \Drupal::currentUser();
+    $isAdmin = $currentUser->hasPermission('access administration pages');  
+    if($isAdmin == 1) {
+      $form['field_skip_ldap']['#access']= TRUE;
+    }
+    else{
+      $form['field_skip_ldap']['#access']= FALSE;
+    }
+  }
+}
+>>>>>>> release/8.8.4-0

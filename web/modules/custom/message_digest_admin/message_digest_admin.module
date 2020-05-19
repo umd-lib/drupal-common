@@ -1,0 +1,236 @@
+<?php
+
+/**
+ * @file
+ * Contains message_digest_admin module.
+ */
+
+use Drupal\Core\Session\UserSession;
+use Drupal\Core\Site\Settings;
+use Psr\Log\LoggerInterface;
+
+/**
+ * Implements hook_cron().
+ *
+ * Aggregate, format and and queue digests for sending.
+ */
+function message_digest_admin_cron() {
+
+  $account_switcher = \Drupal::service('account_switcher');
+  $account_switcher->switchTo(new UserSession(['uid' => 1]));
+
+  $pre_count = message_digest_admin_setnotifier();
+  $uid = message_digest_admin_digestuser();
+
+  if ($uid < 1) {
+    return t('Invalid uid');
+  }
+
+  $user_count = message_digest_admin_setdigestuser($uid);
+  $raw = message_digest_admin_rawunsent($uid);	// For history storage
+
+  if (count($raw) > 0) {
+    message_digest_admin_processdigest($uid);
+
+    $account_switcher->switchBack();
+
+    $post_count = message_digest_admin_setnotifier('message_digest:never', '1');
+    \Drupal::logger('message_digest_admin')->info('Message Digest emailed to @user. Message count: @pre_count. Notifier count: @post_count.',
+      ['@user' => $uid, '@pre_count' => $pre_count, '@post_count' => $post_count]);
+
+    $title = message_notify_staff_gettitle();
+    $history = message_digest_admin_recordhistory($title, 'cron', $uid, serialize($raw));
+  } 
+}
+
+/**
+ * Get digest_user id
+ */
+function message_digest_admin_digestuser() {
+  return Settings::get('digest_user');
+}
+
+/**
+ * Store history into message_digest_admin table.
+ */
+function message_digest_admin_recordhistory($title, $type, $uid, $content) {
+  $database = \Drupal::database();
+  $result = $database->insert('message_digest_admin')
+    ->fields([
+      'timestamp' => REQUEST_TIME,
+      'title' => $title,
+      'type' => $type,
+      'email' => message_digest_admin_checkuid($uid), 
+      'content' => $content,
+    ])
+  ->execute();
+}
+
+/**
+ * Get current message_digest entries
+ */
+function message_digest_admin_qmessage_digest($state = NULL) {
+  $database = \Drupal::database();
+  $query = $database->select('message_digest', 'md');
+  $query->join('message__field_node_reference', 'mfnr', 'md.mid = mfnr.entity_id');
+  $query->join('node_field_data', 'nfd', 'mfnr.field_node_reference_target_id = nfd.nid');
+  $query->fields('md', array('mid', 'notifier'));
+  $query->fields('mfnr', array('entity_id', 'field_node_reference_target_id'));
+  $query->fields('nfd', array('title'));
+  if ($state == 'SENT') {
+    $query->condition('md.sent', '1', '=');
+  }
+  if ($state == 'UNSENT') {
+    $query->condition('md.sent', '0', '=');
+  }
+  return $query->execute();
+}
+
+/**
+ * Get raw message_digest unsent content
+ */
+function message_digest_admin_rawunsent($uid, $notifier = 'message_digest:ten_minutes') {
+  $database = \Drupal::database();
+  $query = $database->select('message_digest', 'md');
+  $query->condition('md.sent', '0', '=');
+  $query->condition('md.notifier', $notifier, '=');
+  $query->condition('md.receiver', $uid, '=');
+  $query->fields('md');
+  $results = $query->execute();
+  return $results->fetchAll();
+}
+
+/**
+ * Get history.
+ */
+function message_digest_admin_history($limit = 10) {
+  $database = \Drupal::database();
+  $query = $database->select('message_digest_admin', 'mda');
+  $query->fields('mda', array('timestamp', 'email', 'title', 'type'));
+  $query->range(0, $limit);
+  $query->orderBy('timestamp', 'DESC');
+  return $query->execute();
+}
+
+/**
+ * Prep message_digest table for test email
+ */
+function message_digest_admin_setdigestuser($uid, $state = '0') {
+  $database = \Drupal::database();
+  $number = $database->update('message_digest')
+    ->fields([
+      'receiver' => $uid,
+    ])
+    ->condition('sent', $state, '=')
+    ->execute();
+  return $number;
+}
+
+/**
+ * Reset sent to 0
+ */
+function message_digest_admin_resetsent($uid, $state = '0') {
+  if (!is_numeric($uid) || $uid < 1) {
+    return t('Not a valid UID'); 
+  }
+  $database = \Drupal::database();
+  $number = $database->update('message_digest')
+    ->fields([
+      'sent' => $state,
+    ])
+    ->condition('receiver', $uid, '=')
+    ->condition('notifier', 'message_digest:never', '<>')
+    ->execute();
+  return $number;
+}
+
+/**
+ * Ensure a user exists
+ */
+function message_digest_admin_checkuid($uid) {
+  $account = \Drupal\user\Entity\User::load($uid); 
+  if (!$account || !$account->getEmail()) {
+    return t('User does not exist or missing email address.');
+  }
+  return $account->getEmail();
+}
+
+/**
+ * Get UID from email address
+ */
+function message_digest_admin_getuid($email) {
+  $account = user_load_by_mail($email);
+  return $account ? $account->id() : FALSE;
+}
+
+/**
+ * Set message_digest notifier
+ */
+function message_digest_admin_setnotifier($notifier = 'message_digest:ten_minutes', $state = '0') {
+  $database = \Drupal::database();
+  $number = $database->update('message_digest')
+    ->fields([
+      'notifier' => $notifier,
+    ])
+    ->condition('sent', $state, '=')
+    ->execute();
+  return $number;
+}
+
+/**
+ * Delete sent messages
+ */
+function message_digest_admin_purge() {
+  $database = \Drupal::database();
+  $number = $database->delete('message_digest')->condition('sent', '1')->condition('notifier', 'message_digest:never')->execute();
+  return $number;
+}
+
+/**
+ * Check for sent messages
+ */
+function message_digest_admin_testpurge() {
+  $sent = message_digest_admin_sentquery('1');
+  $unsent = message_digest_admin_sentquery('0');
+  return $sent > 0 && $unsent > 0 ? TRUE : FALSE;
+}
+
+function message_digest_admin_sentquery($state) {
+  $database = \Drupal::database();
+  $query = $database->select('message_digest', 'md');
+  $query->condition('md.sent', $state, '=');
+  $query->condition('notifier', 'message_digest:never', '<>');
+  $count = $query->countQuery()->execute()->fetchField();
+  return $count;
+}
+
+/**
+ * Generate path based on nid and path
+ */
+function message_digest_admin_genpath($nid, $title_raw) {
+  $title = \Drupal\Core\Render\Markup::create($title_raw);
+  $link = \Drupal\Core\Link::createFromRoute($title, 'entity.node.canonical', ['node' => $nid]);
+  return $link->toString();
+}
+
+/**
+ * Generate edit based on nid and path
+ */
+function message_digest_admin_editpath($nid) {
+  $title = \Drupal\Core\Render\Markup::create('Edit');
+  $link = \Drupal\Core\Link::createFromRoute($title, 'entity.node.edit_form', ['node' => $nid]);
+  return $link->toString();
+}
+
+/**
+ * Process messages
+ * This short-circuits the message_digest functionality.
+ */
+function message_digest_admin_processdigest($uid, $notifier = 'message_digest:ten_minutes') {
+  /** @var \Drupal\message_digest\DigestManagerInterface $digest_manager */
+  $digest_manager = \Drupal::service('message_digest.manager');
+
+  $end_time = \Drupal::time()->getCurrentTime();
+
+  $digest_manager->processSingleUserDigest($uid, $notifier, $end_time);
+}
