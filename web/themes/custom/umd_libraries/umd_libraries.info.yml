@@ -7,6 +7,7 @@ base theme: umd_terp
 
 libraries:
   - umd_libraries/global-styling
+  - umd_libraries/color
 regions:
    main_menu: 'Main Menu'
    help: 'Help'
