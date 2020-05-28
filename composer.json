@@ -34,6 +34,7 @@
         "drupal/ldap": "^3.0@beta",
         "drupal/message_digest": "^1.0@RC",
         "drupal/node_view_permissions": "^1.2",
+        "drupal/queue_ui": "^2.1",
         "drupal/redirect": "^1.6",
         "drupal/schema_metatag": "^1.4",
         "drupal/search_api_solr": "^4.0",
