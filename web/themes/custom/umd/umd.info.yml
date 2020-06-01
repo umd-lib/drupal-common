@@ -1,0 +1,18 @@
+name: UMD
+type: theme
+description: 'Adapted from the UMD Lib website'
+core: 8.x
+base theme: bootstrap 
+logo: images/libi-logo.png
+
+regions:
+  header: Header
+  content: Content
+  sidebar_first: 'Sidebar first'
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'
+  footer_fourth: 'Footer fourth'
+
+libraries:
+  - umd/global-styling

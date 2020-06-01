@@ -1,0 +1,41 @@
+{% extends "block.html.twig" %}
+{#
+/**
+ * @file
+ * Theme override for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ */
+#}
+{% block content %}
+<div class="navbar-header">
+  {% if site_logo %}
+    <a href="https://libi.lib.umd.edu/" title="{{ 'Home'|t }}" rel="home">
+      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" class="site-logo" />
+    </a>
+  {% endif %}
+  {% if site_name %}
+    <div class="site-name">
+      <a href="https://libi.lib.umd.edu/" title="{{ 'Home'|t }}" rel="home"><span class="brand">{{ site_name }}</span></a>
+    </div>
+  {% endif %}
+  {{ site_slogan }}
+  <div class="search-bar container">
+    <div class="font-sm col-lg-9 col-md-9 col-sm-12 col-xs-12 margin-bottom-5"></div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="lib-margin-top">
+        <form action="https://libi.lib.umd.edu/docs/search" method="get">
+          <div class="input-group"><input class="form-control" name="query" placeholder="Search Libi Documents ..." type="text" /> <span class="input-group-btn"><button class="btn btn-danger btn-sm" type="submit">Search</button> </span></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://libi.lib.umd.edu/" title="{{ 'Home'|t }}" rel="home">Libi Home</a> / <a href="/blog/" title="Staff Blog Home">Staff Blog</a>
+{% endblock %}

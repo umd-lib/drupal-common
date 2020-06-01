@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+/* CSS Document - Print */
+
+#umh-cont,
+#topcontrol,
+.subsite-left,
+.footer,
+.mega-menu,
+.lib-btn-group,
+.lib-banner-sub,
+#custgooglesearch {
+    display: none !important;
+}
+
+.navbar {
+    display: block !important;
+    margin-top: -70px !important;
+}
+
+#logo-header {
+    display: block !important;
+}
+
+img {
+    max-height: 400px !important;
+    width: inherit !important;
+}
+
+a[href]:after {
+    content: none !important;
+}
+
+table {
+    width: 100%;
+}
+
+.footer-socials {
+    text-align: right;
+    color: #eeeeee;
+    margin: 20px;
+}

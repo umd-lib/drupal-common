@@ -1,0 +1,98 @@
+ul.inline li {
+    display: inline;
+    bullet: none;
+    margin-right: 15px;
+}
+
+#header .container {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.navbar-header .brand {
+    color: black;
+    padding: 15px 20px;
+    font-size: 34px;
+    vertical-align: middle;
+}
+
+.navbar-header .site-name {
+    float: right;
+    display: none;
+}
+
+img.site-logo {
+    height: 54px;
+}
+
+.notice .Warning,
+.notice .Warning ul li {
+    padding: 5px;
+    border: 1px solid #ff5b4d;
+    background-color: #ffc4bf;
+    color: #660800;
+    margin: 5px;
+}
+
+.notice .Status,
+.notice .Status ul li {
+    background-color: #4287f5;
+    border: 1px solid #023d9c;
+    color: white;
+    margin: 5px;
+    padding: 5px;
+}
+
+article footer {
+    font-size: 12px;
+}
+
+#block-umd-local-tasks ul {
+    padding: 0px;
+}
+
+#block-umd-local-tasks ul li {
+    display: inline;
+    bullet: none;
+    margin-right: 15px;
+}
+
+#block-umd-local-tasks ul a.is-active {
+    border-bottom: 1px solid #32a852;
+    background: #bdffcf;
+    padding: 3px 5px 3px 5px;
+    color: black;
+}
+
+div.search-bar {
+    background-color: #990000;
+    padding: 8px 0;
+    margin: 8px 0;
+}
+
+.field--name-field-tags ul.links li {
+    display: inline;
+    padding-right: 10px;
+}
+
+.field--name-field-tags h3 {
+    font-size: 14px;
+}
+
+.content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+ul.links {
+    padding-left: 0px;
+    border-top: 1px solid #e0e0eb;
+    border-bottom: 1px solid #e0e0eb;
+}
+
+.copyright {
+    background: #222;
+    border-top: none;
+    padding: 10px 0 5px;
+}

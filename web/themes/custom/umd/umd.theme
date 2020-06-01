@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the umd theme.
+ */
+
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements template_preprocess_message().
+ */
+function umd_preprocess_message(&$variables) {
+}

@@ -27,3 +27,7 @@ To create a local Solr core with through docker-compose, do the following:
 docker exec -ti -e COLUMNS=80 -e LINES=24 staff-blog_solr sh
 
 /opt/solr/bin/solr create_core -c default -d /opt/solr/server/solr/configsets/search_api_solr_8.x-3.9/conf/
+
+# Access Database
+
+docker exec -ti -e COLUMNS=80 -e LINES=24 staff-blog_db sh
