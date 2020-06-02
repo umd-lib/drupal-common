@@ -46,6 +46,8 @@ COPY docker/settings.php /app/settings.php
 # Copy the staff-blog codebase to /app/web/staff-blog
 COPY . /app/web/staff-blog
 
+RUN ln -sd /app/web/staff-blog/web /app/web/staff-blog/blog
+
 # Install dependcies, set ownership and delete the sync dir under /app/web/blog
 RUN cd /app/web/staff-blog && \
 	composer install --no-dev && \
