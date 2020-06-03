@@ -36,7 +36,7 @@ $databases['default']['default'] = [
 ];
 
 // Config and Content Directories
-$config_directories['sync'] = '/app/web/staff-blog/web/config';
+$config_directories['sync'] = '/app/web/staff-blog/sync/config';
 
 // Hash Salt
 $settings['hash_salt'] = '$HASH_SALT';
