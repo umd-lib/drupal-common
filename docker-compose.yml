@@ -38,6 +38,7 @@ services:
       NGINX_DRUPAL_FILE_PROXY_URL: http://example.com
     volumes:
       - ./:/var/www/html:cached
+      - $CONFIG_SYNC:/var/www/html/sync/config
 ## Alternative for macOS users: docker-sync https://wodby.com/docs/stacks/drupal/local#docker-for-mac
 #      - docker-sync:/var/www/html
     labels:

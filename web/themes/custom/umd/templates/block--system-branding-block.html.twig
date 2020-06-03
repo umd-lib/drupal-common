@@ -30,9 +30,16 @@
     <div class="font-sm col-lg-9 col-md-9 col-sm-12 col-xs-12 margin-bottom-5"></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
       <div class="lib-margin-top">
-        <form action="https://libi.lib.umd.edu/docs/search" method="get">
-          <div class="input-group"><input class="form-control" name="query" placeholder="Search Libi Documents ..." type="text" /> <span class="input-group-btn"><button class="btn btn-danger btn-sm" type="submit">Search</button> </span></div>
-        </form>
+
+	<form action="/search" method="get" accept-charset="UTF-8">
+          <div class="input-group">
+	    <input data-drupal-selector="edit-keys" class="form-text form-control" type="text" id="edit-keys" name="keys" placeholder="Search Staff Blog..."/>
+            <span class="input-group-btn">
+	      <button data-drupal-selector="edit-submit-solr-search-content" class="btn btn-danger btn-sm" type="submit" id="edit-submit-solr-search-content" value="Search" name=""><span class="icon glyphicon glyphicon-search" aria-hidden="true"></span>
+Search</button>
+            </span>
+          </div>
+	</form>
       </div>
     </div>
   </div>
