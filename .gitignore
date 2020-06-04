@@ -46,3 +46,5 @@ web/sites/simpletest
 # Docker local development
 .docker-sync/
 postgres-init/*.sql
+
+sync/config
