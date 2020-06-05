@@ -1,0 +1,6 @@
+mirador_viewer.admin_settings_form:
+  title: 'Mirador Configuration'
+  route_name: mirador_viewer.admin_settings_form
+  description: 'Define IIIF server, etc'
+  parent: system.admin_config_system
+  weight: 99

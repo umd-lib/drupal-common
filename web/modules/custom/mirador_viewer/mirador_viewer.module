@@ -1,0 +1,21 @@
+<?php
+
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_theme().
+ */
+function mirador_viewer_theme() {
+  return [
+    'mirador_viewer' => [
+      'variables' => [
+        'title' => '',
+        'iiif_server' => '',
+        'object_id' => '',
+        'error_message' => '',
+        'attributes' => [],
+      ],
+    ],
+  ];
+}
+

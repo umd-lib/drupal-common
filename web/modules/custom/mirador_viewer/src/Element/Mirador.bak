@@ -1,0 +1,67 @@
+<?php
+
+namespace Drupal\mirador_viewer\Element;
+
+use Drupal\Core\Render\Element\RenderElement;
+
+/**
+ * Provides a Mirador render element
+ *
+ * @code
+ * $build['obj'] = [
+ *   '#type' => 'mirador',
+ *   '#title' => 'My mirador object',
+ *   '#iiif_server' => 'https://iiif.url.to',
+ *   '#object_id' => '12345-12345',
+ * ]; 
+ * @endcode
+ * @see mirador_viewer_theme()
+ *
+ * @RenderElement("mirador")
+ */
+class MiradorViewer extends RenderElement {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getInfo() {
+
+    return [
+      '#theme' => 'mirador_viewer',
+      // Define a default #pre_render method. We will use this to handle
+      // additional processing for the custom attributes we add below.
+      '#pre_render' => [
+        [self::class, 'preRenderMirador'],
+      ],
+      // This is a custom property for our element type. We set it to blank by
+      // default. The expectation is that a user will add the content that they
+      // would like to see inside the marquee tag. This custom property is
+      // accounted for in the associated template file.
+      '#title' => '',
+      '#iiif_server' => '',
+      '#object_id' => '',
+      '#attributes' => [
+        'scrolling' => 'false',
+        'allowfullscreen' => 'true',
+        'error_message' => 'Javascript required',
+      ],
+    ];
+  }
+
+  /**
+   * Pre-render callback; Process custom attribute options.
+   *
+   * @param array $element
+   *   The renderable array representing the element with '#type' => 'marquee'
+   *   property set.
+   *
+   * @return array
+   *   The passed in element with changes made to attributes depending on
+   *   context.
+   */
+  public static function preRenderMirador(array $element) {
+    return $element;
+  }
+  
+}
+

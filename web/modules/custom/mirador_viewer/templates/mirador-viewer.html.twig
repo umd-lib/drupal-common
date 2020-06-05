@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Basic viewer for Mirador
+ *
+ * Variables:
+ * - title
+ * - object_id
+ * - iiif_server
+ * - error_message
+ */
+#}
+<iframe class="mirador-viewer"
+	style="width: 100%; height: 700px;"
+	title="Zendensen de tatakaou"
+	src="{{ iiif_server }}/viewer/1.2.0/mirador.html?manifest=fcrepo:pcdm::{{ object_id }}&iiifURLPrefix={{ iiif_server }}/manifests/"
+	scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
+		{{ error_message }}
+</iframe>
