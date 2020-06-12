@@ -52,6 +52,12 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('fcrepo_server'),
       '#description' => $this->t('E.g., https://fcrepodev.lib.umd.edu/fcrepo/rest/ with trailing slash.'),
     ];
+    $form['mirador_index'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Mirador Index'),
+      '#default_value' => $config->get('mirador_index'),
+      '#description' => $this->t('The index to query for Mirador objects. This is the Search API index name, which may be different from the Solr core name.'),
+    ];
     $form['error_message'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Error Message'),
@@ -77,6 +83,10 @@ class SettingsForm extends ConfigFormBase {
 
     $this->config('mirador_viewer.adminsettings')  
       ->set('fcrepo_server', $form_state->getValue('fcrepo_server'))  
+      ->save();
+
+    $this->config('mirador_viewer.adminsettings')  
+      ->set('mirador_index', $form_state->getValue('mirador_index'))  
       ->save();
 
     $this->config('mirador_viewer.adminsettings')

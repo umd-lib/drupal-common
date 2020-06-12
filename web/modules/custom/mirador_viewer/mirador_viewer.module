@@ -9,8 +9,9 @@ function mirador_viewer_theme() {
   return [
     'mirador_viewer' => [
       'variables' => [
-        'title' => '',
+        'object_title' => '',
         'iiif_server' => '',
+        'iiif_viewer' => '',
         'object_id' => '',
         'error_message' => '',
         'attributes' => [],

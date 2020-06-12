@@ -1,7 +1,7 @@
 mirador_viewer.ViewObject:
-  path: '/results/id/{object_id}'
+  path: '/result/id/{object_id}'
   defaults:
-    _controller: '\Drupal\mirador_viewer\Controller\DisplayMiradorController::ViewObject'
+    _controller: '\Drupal\mirador_viewer\Controller\DisplayMiradorController::viewObject'
     _title: 'ViewObject'
   requirements:
     _permission: 'access content'
