@@ -2,20 +2,15 @@
  
 /**
  * @file
- * Definition of Drupal\d8views\Plugin\views\field\FcrepoIdHash
+ * Definition of Drupal\mirador_viewer\Plugin\views\field\MiradorViewer
  */
  
 namespace Drupal\mirador_viewer\Plugin\views\field;
  
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\TypedData\ComplexDataInterface;
-use Drupal\search_api\Plugin\views\query\SearchApiQuery;
-use Drupal\search_api\SearchApiException;
-use Drupal\views\Plugin\views\display\DisplayPluginBase;
+use Drupal\node\Entity\NodeType;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
-use Drupal\views\ViewExecutable;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\mirador_viewer\Controller\DisplayMiradorController;
  
 /**
@@ -23,9 +18,9 @@ use Drupal\mirador_viewer\Controller\DisplayMiradorController;
  *
  * @ingroup views_field_handlers
  *
- * @ViewsField("fcrepo_id_hash")
+ * @ViewsField("mirador_viewer")
  */
-class FcrepoIdHash extends FieldPluginBase {
+class MiradorViewer extends FieldPluginBase {
  
   /**
    * @{inheritdoc}
@@ -64,9 +59,9 @@ class FcrepoIdHash extends FieldPluginBase {
     $entity = $values->_item;
     $id = $entity->getId();
     $c = new DisplayMiradorController();
-    $short_id = $c->getFedoraItemHash($id);
-    if (!empty($short_id)) {
-      return $short_id;
+    $render = $c->viewObject($id);
+    if (!empty($render)) {
+      return $render;
     }
   }
 }

@@ -13,7 +13,11 @@ class DisplayMiradorController extends ControllerBase implements TrustedCallback
     $this->config = \Drupal::config('mirador_viewer.adminsettings');
   }
 
-  public function viewObject($object_id) {
+  public function viewObject($object_id, $derive = true) {
+    $object_id = $derive ? $this->getFedoraItemHash($object_id) : $object_id;
+    if (empty($object_id)) {
+      return NULL;
+    } 
     $object_title = $this->querySolr($object_id);
     return [
       '#theme' => 'mirador_viewer',
@@ -23,6 +27,15 @@ class DisplayMiradorController extends ControllerBase implements TrustedCallback
       '#error_message' => $this->config->get('error_message'),
       '#object_id' => $object_id,
     ];
+  }
+
+  /**
+   * Take a SearchAPI Solr ID and return item hash
+   */
+  public function getFedoraItemHash($id) {
+    $parts = explode('/', $id);
+    // TODO: test the hash before returning
+    return count($parts) > 0 ? end($parts) : NULL;
   }
 
   /**
