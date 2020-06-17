@@ -1,7 +1,5 @@
 <?php
 
-use Drupal\Core\Render\Element;
-
 /**
  * Implements hook_theme().
  */
@@ -9,7 +7,6 @@ function mirador_viewer_theme() {
   return [
     'mirador_viewer' => [
       'variables' => [
-        'object_title' => '',
         'iiif_server' => '',
         'iiif_viewer' => '',
         'object_id' => '',
