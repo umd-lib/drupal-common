@@ -1,5 +1,5 @@
 mirador_viewer.ViewObject:
-  path: '/result/id/{object_id}'
+  path: '/demo/id/{object_id}'
   defaults:
     _controller: '\Drupal\mirador_viewer\Controller\DisplayMiradorController::viewObject'
     _title: 'ViewObject'

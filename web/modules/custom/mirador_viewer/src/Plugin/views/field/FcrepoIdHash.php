@@ -2,7 +2,7 @@
  
 /**
  * @file
- * Definition of Drupal\d8views\Plugin\views\field\FcrepoIdHash
+ * Definition of Drupal\mirador_viewer\Plugin\views\field\FcrepoIdHash
  */
  
 namespace Drupal\mirador_viewer\Plugin\views\field;
@@ -16,7 +16,7 @@ use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\mirador_viewer\Controller\DisplayMiradorController;
+use Drupal\mirador_viewer\Utility\FedoraUtility;
  
 /**
  * Field handler to flag the node type.
@@ -26,6 +26,12 @@ use Drupal\mirador_viewer\Controller\DisplayMiradorController;
  * @ViewsField("fcrepo_id_hash")
  */
 class FcrepoIdHash extends FieldPluginBase {
+
+  protected $fc;
+
+  public function __construct() {
+    $this->fc = new FedoraUtility();
+  }
  
   /**
    * @{inheritdoc}
@@ -63,8 +69,7 @@ class FcrepoIdHash extends FieldPluginBase {
   public function render(ResultRow $values) {
     $entity = $values->_item;
     $id = $entity->getId();
-    $c = new DisplayMiradorController();
-    $short_id = $c->getFedoraItemHash($id);
+    $short_id = $this->fc->getFedoraItemHash($id);
     if (!empty($short_id)) {
       return $short_id;
     }

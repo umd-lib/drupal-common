@@ -4,88 +4,38 @@ namespace Drupal\mirador_viewer\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Security\TrustedCallbackInterface;
+use Drupal\mirador_viewer\Utility\FedoraUtility;
 
 class DisplayMiradorController extends ControllerBase implements TrustedCallbackInterface {
 
-  private $config;
+  private $fc;
 
   public function __construct() {
-    $this->config = \Drupal::config('mirador_viewer.adminsettings');
+    $this->fc = new FedoraUtility();
   }
 
   public function viewObject($object_id, $derive = true) {
-    $object_id = $derive ? $this->getFedoraItemHash($object_id) : $object_id;
+    $object_id = $derive ? $this->fc->getFedoraItemHash($object_id) : $object_id;
     if (empty($object_id)) {
       return NULL;
     } 
-    $object_title = $this->querySolr($object_id);
     return [
       '#theme' => 'mirador_viewer',
-      '#title' => $object_title ? $object_title : $this->t('Object Display'),
-      '#iiif_server' => $this->config->get('iiif_server'),
-      '#iiif_viewer' => $this->config->get('iiif_viewer'),
-      '#error_message' => $this->config->get('error_message'),
+      '#iiif_server' => $this->fc->getIIIFServer(),
+      '#iiif_viewer' => $this->fc->getIIIFViewer(),
+      '#error_message' => $this->fc->getIIIFError(),
       '#object_id' => $object_id,
     ];
   }
 
   /**
-   * Take a SearchAPI Solr ID and return item hash
-   */
-  public function getFedoraItemHash($id) {
-    $parts = explode('/', $id);
-    // TODO: test the hash before returning
-    return count($parts) > 0 ? end($parts) : NULL;
-  }
-
-  /**
-   * Returns a pair tree prefixed hash id.
-   *
-   * @param hashId
-   *          a fedora object hash id (example:
-   *          6bdc4c4e-f937-4c37-92cc-daf42a5cd4c5)
-   * @return prefixedHashId a pair tree prefixed hash id (example:
-   *         6b/dc/4c/4e/6bdc4c4e-f937-4c37-92cc-daf42a5cd4c5)
-   */
-  public function addPairTreePrefix($hash) {
-    $hash_split = explode('-', $hash);
-    $tree_length = 2;
-    $prefix_split = str_split($hash_split[0], $tree_length);
-    return implode("/", $prefix_split) . '/' . $hash;
-  }
-
-  /*
-   * Generate new Document ID if the document belongs to Fedora Database
-   *
-   * @param HstRequestContext
-   *
-   * @param Properties
-   *
-   * @param String
-   *
-   * @return String
-   */
-  public function generateFedoraDatabaseDocumentID($id) {
-    $fc_base = $this->config->get('fcrepo_server');
-    $pcdm_prefix = "pcdm/";
-
-    if ($fc_base == NULL) {
-      // throw exception
-    }
-
-    $pcdm_path = $pcdm_prefix . $this->addPairTreePrefix($id);    
-
-    return $fc_base . $pcdm_path;
-  }
-
-  /**
-   * Search by ID
+   * Reference method for querying Solr by ID
    */
   public function querySolr($id) {
     $index = \Drupal\search_api\Entity\Index::load($this->config->get('mirador_index'));
     $query = $index->query();
     $query->setSearchId($id);
-    $query->addCondition('id', $this->generateFedoraDatabaseDocumentID($id));
+    $query->addCondition('id', $this->fc->generateFedoraDatabaseDocumentID($id));
     $results =  $query->execute();
     $items = $results->getResultItems();
 
@@ -103,7 +53,7 @@ class DisplayMiradorController extends ControllerBase implements TrustedCallback
    * {@inheritDoc}
    */
   public static function trustedCallbacks() {
-    return ['generateFedoraDatabaseDocumentID', 'addPairTreePrefix', 'viewObject'];
+    return ['querySolr', 'viewObject'];
   }
 
 }
