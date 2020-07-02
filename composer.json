@@ -37,6 +37,7 @@
         "drupal/purge": "^3.0",
         "drupal/queue_ui": "^2.1",
         "drupal/redirect": "^1.6",
+        "drupal/redis": "^1.4",
         "drupal/schema_metatag": "^1.4",
         "drupal/search_api_solr": "^4.0",
         "drupal/simple_sitemap": "^3.6",
@@ -47,6 +48,7 @@
         "drupal/upgrade_status": "^2.9",
         "drupal/varnish_purge": "^2.0",
         "drush/drush": "^10.2",
+        "predis/predis": "^1.1",
         "symfony/event-dispatcher": "4.3.11 as 3.4.41",
         "umd_digital/umd_terp": "^8.1",
         "umd_digital/umd_terp_base": "^8.1"
