@@ -28,7 +28,7 @@ $settings['entity_update_backup'] = TRUE;
 // Database
 $databases['default']['default'] = [
     'driver' => 'pgsql',
-    'database' => 'umdsandbox',
+    'database' => 'drupaldb',
     'username' => 'drupaluser',
     'password' => '$DB_PASSWORD',
     'host' => 'db',
@@ -36,7 +36,7 @@ $databases['default']['default'] = [
 ];
 
 // Config and Content Directories
-$config_directories['sync'] = '/app/web/demo/sync/config';
+$config_directories['sync'] = '/app/web/app/sync/config';
 
 // Hash Salt
 $settings['hash_salt'] = '$HASH_SALT';
