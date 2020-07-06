@@ -41,3 +41,8 @@ $config_directories['sync'] = '/app/web/app/sync/config';
 // Hash Salt
 $settings['hash_salt'] = '$HASH_SALT';
 
+// Redis support
+$settings['redis.connection']['interface'] = 'Predis';
+$settings['redis.connection']['host']      = 'redis';  // Your Redis instance hostname.
+$settings['cache']['default'] = 'cache.backend.redis';
+$settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';

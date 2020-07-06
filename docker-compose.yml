@@ -53,7 +53,7 @@ services:
       POSTGRES_USER: $DB_USER
     volumes:
       - ./postgres-init:/docker-entrypoint-initdb.d # Place init file(s) here.
-      # - /apps/postgres/whca:/var/lib/postgresql/data # Use bind mount
+      - /apps/postgres/whca:/var/lib/postgresql/data # Use bind mount
 
   solr:
     image: wodby/solr:$SOLR_TAG
@@ -63,6 +63,25 @@ services:
       SOLR_HEAP: 1024m
     labels:
       - "traefik.http.routers.${PROJECT_NAME}_solr.rule=Host(`solr.${PROJECT_BASE_URL}`)"
+
+  varnish:
+    image: wodby/varnish:$VARNISH_TAG
+    container_name: "${PROJECT_NAME}_varnish"
+    depends_on:
+      - nginx
+    environment:
+      VARNISH_SECRET: secret
+      VARNISH_BACKEND_HOST: nginx
+      VARNISH_BACKEND_PORT: 80
+      VARNISH_CONFIG_PRESET: drupal
+      VARNISH_ALLOW_UNRESTRICTED_PURGE: 1
+    labels:
+      - "traefik.http.services.${PROJECT_NAME}_varnish.loadbalancer.server.port=6081"
+      - "traefik.http.routers.${PROJECT_NAME}_varnish.rule=Host(`varnish.${PROJECT_BASE_URL}`)"
+
+  redis:
+    container_name: "${PROJECT_NAME}_redis"
+    image: wodby/redis:$REDIS_TAG
 
 #  apache:
 #    image: wodby/apache:$APACHE_TAG
@@ -81,24 +100,9 @@ services:
 #    labels:
 #      - "traefik.http.routers.${PROJECT_NAME}_apache.rule=Host(`${PROJECT_BASE_URL}`)"
 
-#  varnish:
-#    image: wodby/varnish:$VARNISH_TAG
-#    container_name: "${PROJECT_NAME}_varnish"
-#    depends_on:
-#      - nginx
-#    environment:
-#      VARNISH_SECRET: secret
-#      VARNISH_BACKEND_HOST: nginx
-#      VARNISH_BACKEND_PORT: 80
-#      VARNISH_CONFIG_PRESET: drupal
-#      VARNISH_ALLOW_UNRESTRICTED_PURGE: 1
-#    labels:
-#      - "traefik.http.services.${PROJECT_NAME}_varnish.loadbalancer.server.port=6081"
-#      - "traefik.http.routers.${PROJECT_NAME}_varnish.rule=Host(`varnish.${PROJECT_BASE_URL}`)"
-
-#  redis:
-#    container_name: "${PROJECT_NAME}_redis"
-#    image: wodby/redis:$REDIS_TAG
+  redis:
+    container_name: "${PROJECT_NAME}_redis"
+    image: wodby/redis:$REDIS_TAG
 
 #  adminer:
 #    container_name: "${PROJECT_NAME}_adminer"
