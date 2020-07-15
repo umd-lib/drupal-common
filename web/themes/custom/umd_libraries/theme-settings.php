@@ -12,6 +12,12 @@ use Drupal\Core\Form\FormStateInterface;
  */
 function umd_libraries_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
 
+  $form['umd_terp_social_settings']['hide_social_icons'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Hide Social Icons'),
+    '#default_value' => theme_get_setting('hide_social_icons'),
+  ];
+
   // Header.
   $form['umd_libraries_header_settings'] = [
     '#type' => 'details',

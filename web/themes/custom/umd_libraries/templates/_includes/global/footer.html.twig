@@ -18,9 +18,11 @@
           <span aria-hidden="true">&nbsp;·&nbsp;</span><a href="tel:+{{ umd_terp_phone|preg_replace('/[^0-9]/', '') }}">{{ umd_terp_phone }}</a>
           <span aria-hidden="true">&nbsp;·&nbsp;</span><a href="mailto:{{ umd_terp_email }}">{{ umd_terp_email }}</a>
         </div>
+        {% if hide_social_icons != TRUE %}
         <div class="site-footer-social">
           {% include directory ~ '/templates/partials/social-links.html.twig' %}
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
