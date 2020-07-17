@@ -43,14 +43,14 @@ COPY docker/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
 COPY docker/settings.php /app/settings.php
 
-# Copy the pact codebase to /app/web/pact
-COPY . /app/web/pact
+# Copy the Drupal codebase to /app/web/app
+COPY . /app/web/app
 
 # Install dependcies, set ownership and delete the sync dir under /app/web/blog
-RUN cd /app/web/pact && \
+RUN cd /app/web/app && \
 	composer install --no-dev && \
-	chown -R www-data:www-data /app/web/pact
+	chown -R www-data:www-data /app/web/app
 
-RUN echo 'php_value upload_max_filesize 15M' >> '/app/web/pact/web/.htaccess'
+RUN echo 'php_value upload_max_filesize 15M' >> '/app/web/app/web/.htaccess'
 
 WORKDIR /app/web/pact
