@@ -1,4 +1,4 @@
-# UMD Drupal Sandbox
+# UMD PACT 
 
 To deploy locally, clone into your htroot.
 
