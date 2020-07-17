@@ -51,4 +51,6 @@ RUN cd /app/web/pact && \
 	composer install --no-dev && \
 	chown -R www-data:www-data /app/web/pact
 
+RUN echo 'php_value upload_max_filesize 15M' >> '/app/web/pact/web/.htaccess'
+
 WORKDIR /app/web/pact
