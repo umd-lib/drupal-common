@@ -1,4 +1,4 @@
-# UMD WHCA
+# UMD Drupal Common
 
 To deploy locally, clone into your htroot.
 

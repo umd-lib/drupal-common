@@ -51,4 +51,6 @@ RUN cd /app/web/app && \
 	composer install --no-dev && \
 	chown -R www-data:www-data /app/web/app
 
+RUN echo 'php_value upload_max_filesize 15M' >> '/app/web/app/web/.htaccess'
+
 WORKDIR /app/web/app
