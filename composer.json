@@ -38,6 +38,7 @@
         "drupal/queue_ui": "^2.1",
         "drupal/redirect": "^1.6",
         "drupal/redis": "^1.4",
+        "drupal/samlauth": "^3.0",
         "drupal/schema_metatag": "^1.4",
         "drupal/search_api_solr": "^4.0",
         "drupal/simple_sitemap": "^3.6",
