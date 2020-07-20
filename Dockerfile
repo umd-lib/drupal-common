@@ -43,7 +43,7 @@ COPY docker/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
 COPY docker/settings.php /app/settings.php
 
-# Copy the Drupal codebase to /app/web/app
+# Copy the codebase to /app/web/app
 COPY . /app/web/app
 
 # Install dependcies, set ownership and delete the sync dir under /app/web/blog
@@ -53,4 +53,4 @@ RUN cd /app/web/app && \
 
 RUN echo 'php_value upload_max_filesize 15M' >> '/app/web/app/web/.htaccess'
 
-WORKDIR /app/web/pact
+WORKDIR /app/web/app
