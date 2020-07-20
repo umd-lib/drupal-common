@@ -48,3 +48,4 @@ web/sites/simpletest
 postgres-init/*.sql
 
 sync/config
+.env
