@@ -51,3 +51,4 @@ postgres-init/*.sql
 
 sync/config
 .env
+certs/
