@@ -49,5 +49,6 @@ web/sites/simpletest
 .docker-sync/
 postgres-init/*.sql
 
-sync/config
+sync/
 .env
+web/themes/custom/umd_libraries
