@@ -38,7 +38,6 @@ class FcrepoHashReverse extends SearchApiStandard {
     $id = reset($this->value);
     $fc = new FedoraUtility();
     $fcid = $fc->generateFedoraDatabaseDocumentID($id);
-dsm($fcid);
     $this->query->addCondition($this->realField, $fcid, '=');
   }
 

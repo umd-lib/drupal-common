@@ -28,10 +28,6 @@ use Drupal\mirador_viewer\Utility\FedoraUtility;
 class FcrepoIdHash extends FieldPluginBase {
 
   protected $fc;
-
-  public function __construct() {
-    $this->fc = new FedoraUtility();
-  }
  
   /**
    * @{inheritdoc}
@@ -67,6 +63,7 @@ class FcrepoIdHash extends FieldPluginBase {
    * @{inheritdoc}
    */
   public function render(ResultRow $values) {
+    $this->fc = new FedoraUtility();
     $entity = $values->_item;
     $id = $entity->getId();
     $short_id = $this->fc->getFedoraItemHash($id);
