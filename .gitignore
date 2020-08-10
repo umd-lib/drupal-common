@@ -52,3 +52,4 @@ postgres-init/*.sql
 sync/
 .env
 web/themes/custom/umd_libraries
+certs/
