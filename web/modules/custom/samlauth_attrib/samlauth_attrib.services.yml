@@ -1,0 +1,9 @@
+services:
+  samlauth_attrib.event_subscriber.user_groups_sync:
+    class: Drupal\samlauth_attrib\EventSubscriber\UserGroupsSyncEventSubscriber
+    decorates: samlauth.event_subscriber.user_sync
+    decoration_priority: 9
+    public: false
+    arguments: ['@samlauth_attrib.event_subscriber.user_groups_sync.inner']
+    tags:
+      - { name: event_subscriber }
