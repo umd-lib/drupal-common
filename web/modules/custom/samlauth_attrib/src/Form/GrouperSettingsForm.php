@@ -49,8 +49,15 @@ class GrouperSettingsForm extends ConfigFormBase {
     $form['grouper_map'] = [
       '#type' => 'textarea',
       '#title' => t('Grouper Mappings'),
-      '#description' => t('One mapping per line with the format <strong>Grouper Group|Drupal Role</strong>. Note that the Grouper groups will be changed to lowercase.'),
+      '#description' => t('One mapping per line with the format <strong>Grouper Group|Drupal Role</strong>. Note, upon submission the Grouper groups will be converted to lowercase.'),
       '#default_value' => $this->allowedValuesString($grouperMap),
+    ];
+
+    $form['grouper_attrib'] = [
+      '#type' => 'textfield',
+      '#title' => t('Grouper Attribute'),
+      '#default_value' => $config->get('grouper_attrib'),
+      '#description' => t('This should not be the FriendlyName but the Name.'),
     ];
 
     return parent::buildForm($form, $form_state);
@@ -66,12 +73,11 @@ class GrouperSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-
     $grouperMap = $this->extractAllowedValues($form_state->getValue('grouper_map'));
-
+    $grouperAttrib = $form_state->getValue('grouper_attrib');
     $this->configFactory->getEditable(static::SETTINGS)->set('grouper_map', $grouperMap)->save();
+    $this->configFactory->getEditable(static::SETTINGS)->set('grouper_attrib', $grouperAttrib)->save();
     parent::submitForm($form, $form_state);
-
   }
 
   /**
