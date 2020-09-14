@@ -3,9 +3,9 @@
 namespace Drupal\samlauth_attrib\EventSubscriber;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\samlauth\Event\SamlauthEvents;
 use Drupal\samlauth\Event\SamlauthUserSyncEvent;
+use Drupal\samlauth\EventSubscriber\UserSyncEventSubscriber;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -48,7 +48,7 @@ class UserGroupsSyncEventSubscriber implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
-    $events[static::SETTINGS][] = ['onUserGroupsSync'];
+    $events[static::EVENT][] = ['onUserGroupsSync'];
     return $events;
   }
 
@@ -89,8 +89,11 @@ class UserGroupsSyncEventSubscriber implements EventSubscriberInterface {
           $account->addRole($updated_role);
         }
       } else {
-        $this->logger->notice('User has no roles');
+        $this->logger->notice('User @user has no roles', [
+          '@user' => $account->getAccountName(),
+        ]);
         $this->resetRoles($account);
+        $account->block();
       }
       $account->save();
     }
