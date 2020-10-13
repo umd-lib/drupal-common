@@ -36,6 +36,7 @@
         "drupal/ldap": "^3.0@beta",
         "drupal/message_digest": "^1.0@RC",
         "drupal/node_view_permissions": "^1.2",
+        "drupal/override_node_options": "^2.5",
         "drupal/purge": "^3.0",
         "drupal/queue_ui": "^2.1",
         "drupal/redirect": "^1.6",
