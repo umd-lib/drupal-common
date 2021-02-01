@@ -34,6 +34,12 @@ class SettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {  
     $config = $this->config('mirador_viewer.adminsettings');  
 
+    $form['fcrepo_token'] = [  
+      '#type' => 'textarea',  
+      '#title' => $this->t('FCRepo Token'),  
+      '#default_value' => $config->get('fcrepo_token'),
+      '#description' => $this->t('JWT token from FCRepo.'),
+    ];
     $form['iiif_server'] = [  
       '#type' => 'textfield',  
       '#title' => $this->t('IIIF Server'),  
@@ -52,6 +58,18 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('fcrepo_server'),
       '#description' => $this->t('E.g., https://fcrepodev.lib.umd.edu/fcrepo/rest/ with trailing slash.'),
     ];
+    $form['fcrepo_prefix'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Fcrepo Prefix'),
+      '#default_value' => $config->get('fcrepo_prefix'),
+      '#description' => $this->t('E.g., dc/2020/1/ with trailing slash.'),
+    ];
+    $form['mirador_index'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Search index'),
+      '#default_value' => $config->get('mirador_index'),
+      '#description' => $this->t('From SearchAPI configuration.'),
+    ];
     $form['error_message'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Error Message'),
@@ -68,6 +86,10 @@ class SettingsForm extends ConfigFormBase {
     parent::submitForm($form, $form_state);  
 
     $this->config('mirador_viewer.adminsettings')  
+      ->set('fcrepo_token', $form_state->getValue('fcrepo_token'))  
+      ->save();
+
+    $this->config('mirador_viewer.adminsettings')  
       ->set('iiif_server', $form_state->getValue('iiif_server'))  
       ->save();
 
@@ -77,6 +99,11 @@ class SettingsForm extends ConfigFormBase {
 
     $this->config('mirador_viewer.adminsettings')  
       ->set('fcrepo_server', $form_state->getValue('fcrepo_server'))  
+      ->save();
+
+
+    $this->config('mirador_viewer.adminsettings')  
+      ->set('fcrepo_prefix', $form_state->getValue('fcrepo_prefix'))  
       ->save();
 
     $this->config('mirador_viewer.adminsettings')  
