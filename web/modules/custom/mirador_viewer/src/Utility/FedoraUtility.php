@@ -6,7 +6,7 @@ use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 
 class FedoraUtility {
 
-  private $config;
+  public $config;
 
   public function __construct() {
     $this->config = \Drupal::config('mirador_viewer.adminsettings');
@@ -40,6 +40,14 @@ class FedoraUtility {
     $val = $this->config->get('fcrepo_server');
     if (empty($val)) {
       throw new UnexpectedValueException('Fcrepo Server must be set.');
+    }
+    return $val;
+  }
+
+  public function getCollectionPrefix() {
+    $val = $this->config->get('fcrepo_prefix');
+    if (empty($val)) {
+      throw new UnexpectedValueException('Prefix must be set.');
     }
     return $val;
   }
@@ -81,7 +89,7 @@ class FedoraUtility {
    */
   public function generateFedoraDatabaseDocumentID($id) {
     $fc_base = $this->getFcrepoServer();
-    $pcdm_prefix = "pcdm/";
+    $pcdm_prefix = $this->getCollectionPrefix();
     $pcdm_path = $pcdm_prefix . $this->addPairTreePrefix($id);    
     return $fc_base . $pcdm_path;
   }

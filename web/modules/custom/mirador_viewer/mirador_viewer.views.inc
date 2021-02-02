@@ -25,6 +25,13 @@ function mirador_viewer_views_data_alter(array &$data) {
         'id' => 'mirador_viewer',
       ),
     );
+    $data[$index_key]['static_viewer'] = array(
+      'title' => t('Static Viewer'),
+      'field' => array(
+        'title' => t('Static Viewer'),
+        'id' => 'static_viewer',
+      ),
+    );
     $data[$index_key]['fcrepo_hash_reverse'] = array(
       'real field' => 'id',
       'argument' => array(

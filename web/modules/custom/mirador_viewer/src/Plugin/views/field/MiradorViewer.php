@@ -59,7 +59,7 @@ class MiradorViewer extends FieldPluginBase {
     $entity = $values->_item;
     $id = $entity->getId();
     $c = new DisplayMiradorController();
-    $render = $c->viewObject($id);
+    $render = $c->viewMiradorObject($id);
     if (!empty($render)) {
       return $render;
     }

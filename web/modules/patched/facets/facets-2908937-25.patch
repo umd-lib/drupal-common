@@ -1,0 +1,60 @@
+diff --git a/src/Plugin/facets/processor/DependentFacetProcessor.php b/src/Plugin/facets/processor/DependentFacetProcessor.php
+index 85b037e..31226bb 100644
+--- a/src/Plugin/facets/processor/DependentFacetProcessor.php
++++ b/src/Plugin/facets/processor/DependentFacetProcessor.php
+@@ -3,6 +3,7 @@
+ namespace Drupal\facets\Plugin\facets\processor;
+ 
+ use Drupal\Core\Form\FormStateInterface;
++use Drupal\Core\Routing\RouteMatch;
+ use Drupal\facets\FacetInterface;
+ use Drupal\facets\Processor\BuildProcessorInterface;
+ use Drupal\facets\Processor\ProcessorPluginBase;
+@@ -10,6 +11,7 @@ use Drupal\facets\FacetManager\DefaultFacetManager;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
+ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
++use Symfony\Component\HttpFoundation\RedirectResponse;
+ 
+ /**
+  * Provides a processor that makes a facet depend on the state of another facet.
+@@ -198,7 +200,39 @@ class DependentFacetProcessor extends ProcessorPluginBase implements BuildProces
+       }
+     }
+ 
++    // If the facet parameter is still present in the query string but the facet
++    // is not visible redirect to reset the facet.
++    // @TODO: fix ajax enabled search pages.
++    if (!$return && !empty($facet->getActiveItems())) {
++      $params = \Drupal::request()->query->get('f');
++      if (!empty($params)) {
++        foreach ($params as $param) {
++          if (substr_count($param, $facet->getUrlAlias())) {
++            $uri = \Drupal::request()->getRequestUri();
++            $uri = str_replace(urlencode($param), '', $uri);
++          }
++        }
++        $this->redirect($uri);
++      }
++    }
++
+     return $return ? $results : [];
+   }
+ 
++  /**
++   * Redirect to an internal uri so we can reset this facet.
++   *
++   * @param string $uri
++   */
++  private function redirect($uri) {
++    $response = new RedirectResponse($uri);
++    $request = \Drupal::request();
++    // Save the session so things like messages get saved.
++    $request->getSession()->save();
++    $response->prepare($request);
++    // Make sure to trigger kernel events.
++    \Drupal::service('kernel')->terminate($request, $response);
++    $response->send();
++  }
++
+ }
