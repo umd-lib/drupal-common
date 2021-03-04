@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Basic viewer for Mirador
+ *
+ * Variables:
+ * - body
+ * - attachments (array)
+ */
+#}
+<div style="border: black; font-family: Monospace;">
+  {{ body|raw }}
+</div>
+{% for image in images %}
+  <div><img src="{{ image }}" /></div>
+{% endfor %}
+
+<ul>
+{% for attachment in attachments %}
+  <li>
+    <a href="{{ attachment}}">Attachment</a>
+  </li>
+{% endfor %}
+</ul>
