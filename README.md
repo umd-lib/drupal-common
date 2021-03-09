@@ -11,7 +11,7 @@ installed.
 
 Add the following to your /etc/hosts (customized if you wish):
 
-	    127.0.0.1		drupal.docker.localhost
+            127.0.0.1		drupal.docker.localhost
             127.0.0.1		portainer.drupal.docker.localhost
             127.0.0.1		solr.drupal.docker.localhost
 
@@ -21,16 +21,16 @@ Add the following to your /etc/hosts (customized if you wish):
 
 To deploy locally, clone the develop branch:
 
-	    > git clone https://github.com/umd-lib/drupal-common.git common-demo
-	    > cd common-demo
+            > git clone https://github.com/umd-lib/drupal-common.git common-demo
+            > cd common-demo
             > git checkout develop
 
 Assuming this site will run the UMD Libraries theme, you will need to clone this
 repo as well:
 
-	    > cd common-demo/web/themes
+            > cd common-demo/web/themes
             > mkdir custom	# If not already created
-	    > cd custom
+            > cd custom
             > git clone git@github.com:umd-lib/umd-libraries-theme.git umd_libraries
             > cd umd_libraries
             > git checkout develop
@@ -38,13 +38,13 @@ repo as well:
 Install the site using Composer. This will download all dependencies and prep
 for local deployment.
 
-	    # in common-demo/
-	    > composer install
+            # in common-demo/
+            > composer install
 
 Clone the drupal-projects-env repository locally and copy the demo/env file to
 your web root as .env:
 
-	    > cp drupal-projects/demo/env common-demo/.env
+            > cp drupal-projects/demo/env common-demo/.env
 
 Customize this file for your environment. Specifically, look at the values for:
 
@@ -56,7 +56,7 @@ All other values can stay the same.
 
 To bring up the site, use docker-compose:
 
-	    > cd common-demo
+            > cd common-demo
             > docker-compose up -d
 
 After a minute, the site should be available at:
@@ -165,15 +165,15 @@ As an example, we're using WHPool. The process should be the same for PACT and
 
 Clone the develop branch:
 
-	    > git clone https://github.com/umd-lib/drupal-common.git common-whpool
-	    > cd common-whpool
+            > git clone https://github.com/umd-lib/drupal-common.git common-whpool
+            > cd common-whpool
             > git checkout develop
 
 Because WHPool runs the UMD Libraries theme, you will need to clone this repo:
 
-	    > cd common-whpool/web/themes
+            > cd common-whpool/web/themes
             > mkdir custom	# If not already created
-	    > cd custom
+            > cd custom
             > git clone git@github.com:umd-lib/umd-libraries-theme.git umd_libraries
             > cd umd_libraries
             > git checkout develop
@@ -181,13 +181,13 @@ Because WHPool runs the UMD Libraries theme, you will need to clone this repo:
 Install the site using Composer. This will download all dependencies and prep
 for local deployment.
 
-	    # in common-whpool/
-	    > composer install
+            # in common-whpool/
+            > composer install
 
 Clone the drupal-projects-env repository locally and copy the whpool/env file to
 your web root as .env:
 
-	    > cp drupal-projects/whpool/env common-whpool/.env
+            > cp drupal-projects/whpool/env common-whpool/.env
 
 Customize this file for your environment. Specifically, look at the values for:
 
@@ -207,7 +207,7 @@ To get WHPool data, dump the Kubernetes database:
 
 To bring up the site, use docker-compose:
 
-	    > cd common-whpool
+            > cd common-whpool
             > docker-compose up -d
 
 After a minute, the site should be available at:
@@ -220,16 +220,12 @@ TODO: Copy files into local.
 
 To create a local Solr core with through docker-compose, do the following:
 
-	    > docker exec -ti [container]_solr sh
-	    > /opt/solr/bin/solr create_core -c drupal -d /opt/solr/server/solr/configsets/search_api_solr_8.x-3.9/conf/
+            > docker exec -ti [container]_solr sh
+            > /opt/solr/bin/solr create_core -c drupal -d /opt/solr/server/solr/configsets/search_api_solr_8.x-3.9/conf/
 
 ## Database
 
-# Dumping Database
+# Dumping Local Database
 
-	    > docker exec [container]_postgres pg_dump -U drupaluser -O drupaldb > /tmp/dump.sql
-
-TODO:
-* Installing existing sites Configuration Updates Installing umd_libraries theme
-* services.yml
+           > docker exec [container]_postgres pg_dump -U drupaluser -O drupaldb > /tmp/dump.sql
 
