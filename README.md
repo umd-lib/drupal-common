@@ -214,7 +214,19 @@ After a minute, the site should be available at:
 
 * http://drupal.docker.localhost:8000 (or wherever you deployed).
 
-TODO: Copy files into local.
+You can also copy any files you might need from the server into your local:
+
+            > kubectl exec --stdin --tty drupal-whpool-0 -- /bin/bash
+            > tar -czvf files.tgz web/sites/default/files/
+            > exit
+            > kubectl cp drupal-whpool-0:files.tgz common-whpool/
+
+And then extract the archive into your local's web/sites/default/files/.
+
+Flush cache after this so that Drupal can regenerate any thumbnails, etc.
+
+One thing to note is that a production database is likely optimized for performance
+and may need to have CSS/JS aggregation turned off and modules such as devel enabled.
 
 ## Solr Integration
 
