@@ -1,0 +1,9 @@
+services:
+  logger.channel.umd_examples:
+    parent: logger.channel_base
+    arguments: ['umd_examples']
+  # samlauth_attrib.event_subscriber.user_groups_sync:
+  #   class: Drupal\samlauth_attrib\EventSubscriber\UserGroupsSyncEventSubscriber
+  #   arguments: ['@config.factory', '@logger.channel.samlauth_attrib']
+  #   tags:
+  #     - { name: event_subscriber }

@@ -1,0 +1,7 @@
+<?php
+
+/**
+ * The .module file is falling out of favor in Drupals 8 and 9
+ * but still has some uses. It was the primary file in 7 and earlier.
+ */
+

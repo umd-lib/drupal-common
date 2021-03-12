@@ -1,0 +1,19 @@
+# The "name" and "description" appear in the Extend view.
+name: UMD Examples
+description: A demonstration module for learning basic module development as well as provide examples for various functionality. This module is intended to be augmented with new techniques / base functionality.
+
+# How the module is catagorized in Extend.
+package: 'Development'
+
+# If there is a settings form, it will use this route (see umd_examples.routing.yml)
+configure: umd_examples.sample_settings_form
+
+# Any dependencies will be installed alongside this module.
+dependencies:
+  - devel
+
+# Type can be theme or module.
+type: module
+
+# This module supports which core versions. Ideally we would test each module with core 9 in addition to 8.9.* to simplify future migrations but ensuring your module doesn't utilize any deprecated APIs either manually or using a tool like https://www.drupal.org/project/upgrade_status is probably enough.
+core_version_requirement: ^8.8 || ^9
