@@ -7,3 +7,10 @@ umd_examples.sample_settings_form:
     _permission: 'access administration pages'
   options:
     _admin_route: TRUE
+umd_examples.sample_page:
+  path: '/umd-examples'
+  defaults:
+    _controller: '\Drupal\umd_examples\Controller\ExamplesController::samplePage'
+    _title: 'Example Page'
+  requirements:
+    _permission: 'access content'

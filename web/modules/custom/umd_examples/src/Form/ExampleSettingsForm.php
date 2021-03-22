@@ -64,6 +64,12 @@ class ExampleSettingsForm extends ConfigFormBase {
       '#required' => FALSE,
     ];
 
+    $form['example_description'] = [
+      '#type' => 'textarea',
+      '#title' => t('Description'),
+      '#default_value' => $config->get('example_description'),
+    ];
+
     $form['example_date'] = [
       '#type' => 'date',
       '#title' => t('Example Date'),
@@ -85,27 +91,57 @@ class ExampleSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('example_range'),
     ];
 
-    $radio_options = [0 => t('zero'), 1 => t('one'), 2 => t('two')];
+    $entity_types = ['node' => t('Node'), 'user' => t('User'), 'term' => t('Term')];
     $form['example_fieldset']['example_radios'] = [
       '#type' => 'radios',
       '#title' => t('Example Radios'),
       '#default_value' => $config->get('example_radios'),
       '#description' => t('Example radios'),
-      '#options' => $radio_options,
+      '#options' => $entity_types,
     ];
 
-    $form['example_color'] = [
+    $form['example_tabs'] = [
+      '#type' => 'vertical_tabs',
+      '#default_tab' => 'edit-color',
+    ];
+
+    $form['example_ui'] = [
+      '#type' => 'details',
+      '#title' => t('UI'),
+      '#group' => 'example_tabs',
+    ];
+
+    $form['example_data'] = [
+      '#type' => 'details',
+      '#title' => t('Data'),
+      '#group' => 'example_tabs',
+    ];
+
+    $form['example_ui']['example_color'] = [
       '#type' => 'color',
       '#title' => t('Example Color'),
       '#default_value' => $config->get('example_color'),
       '#description' => t('This field is especially useful in theme forms'),
     ];
 
+    $options = [1 => t('one'), 2 => t('two'), 3 => t('three'), 4 => t('four'), 'other' => t('other')];
+    $form['example_data']['example_checkboxes'] = [
+      '#type' => 'checkboxes',
+      '#title' => t('Example Checkboxes'),
+      '#default_value' => $config->get('example_checkboxes'),
+      '#description' => t('This will produce an array'),
+      '#options' => $options,
+    ];
+
+    $form['example_hidden'] = [
+      '#type' => 'hidden',
+      '#value' => 'Hidden using ' . $config->get('example_radios'),
+    ];
+
     // Note that settings forms provide a submit button for free but using
     // FormAPI for non-settings forms will require a submit element.
 
     return parent::buildForm($form, $form_state);
-
   }
 
   /**
@@ -125,7 +161,16 @@ class ExampleSettingsForm extends ConfigFormBase {
       ->set('example_range', $form_state->getValue('example_range'))
       ->set('example_radios', $form_state->getValue('example_radios'))
       ->set('example_color', $form_state->getValue('example_color'))
+      ->set('example_description', $form_state->getValue('example_description'))
+      ->set('example_checkboxes', $form_state->getValue('example_checkboxes'))
+      ->set('example_hidden', $form_state->getValue('example_hidden'))
       ->save();
+
+    // Display the hidden value
+    \Drupal::messenger()->addStatus(t('Hidden Value: ') . $form_state->getValue('example_hidden'));
+
+    dsm($form_state->getValue('example_checkboxes'));
+
     parent::submitForm($form, $form_state);
   }
 }

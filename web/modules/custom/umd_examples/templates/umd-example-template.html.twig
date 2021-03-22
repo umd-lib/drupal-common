@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * A demo template
+ *
+ * Variables:
+ * - example_text
+ * - example_description
+ * - example_date
+ * - example_range 
+ * - example_radios
+ * - example_color
+ * - example_checkboxes (array)
+ * - example_hidden
+ * - example_entities (database query results count)
+ * - example_documents (solr results count)
+ */
+#}
+<ul>
+  <li>Text: {{ example_text }}</li>
+  <li>Desc: {{ example_description }}</li>
+  <li>Date: {{ example_date }}</li>
+  <li>Range: {{ example_range }}</li>
+  <li>Radio: {{ example_radios }}
+    <ul>
+      <li>{{ example_entities }} entities of this type.</li>
+      <li>{{ example_documents }} solr documents of this type.</li>
+    </ul>
+  </li>
+  <li><span style = "color: {{ example_color }};">Color: {{ example_color }}</span></li>
+  <li>Hidden: {{ example_hidden }}</li>
+  <li>Checkboxes:
+    <ul>
+      {% for box in example_checkboxes %}
+        {% if box %}
+          <li>Checkbox: {{ box }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </li>
+</ul>

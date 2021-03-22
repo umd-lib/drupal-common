@@ -1,7 +1,30 @@
 <?php
 
+use Drupal\umd_examples\Controller\ExampleDisplayController;
+
 /**
  * The .module file is falling out of favor in Drupals 8 and 9
  * but still has some uses. It was the primary file in 7 and earlier.
  */
 
+/**
+ * Implements hook_theme().
+ */
+function umd_examples_theme() {
+  return [
+    'umd_example_template' => [
+      'variables' => [
+        'example_text' => '',
+        'example_description' => '',
+        'example_date' => '',
+        'example_radios' => '',
+        'example_range' => '',
+        'example_color' => '',
+        'example_hidden' => '',
+        'example_entities' => '',
+        'example_documents' => '',
+        'example_checkboxes' => [],
+      ],
+    ],
+  ];
+}
