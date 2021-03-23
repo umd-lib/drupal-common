@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Definition of Drupal\umd_examples\Plugin\views\field\ExamplesController
+ */
+
 namespace Drupal\umd_examples\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
@@ -19,8 +24,10 @@ class ExamplesController extends ControllerBase implements TrustedCallbackInterf
     $this->config = \Drupal::config('umd_examples.settings');
   }
 
+  /**
+   * Generate sample page content for umd-examples page.
+   */
   public function samplePage() {
-    $this->solrQuery($this->config->get('example_radios'));
     return [
       '#theme' => 'umd_example_template',
       '#example_text' => $this->config->get('example_text'),
@@ -63,10 +70,12 @@ class ExamplesController extends ControllerBase implements TrustedCallbackInterf
    *   https://www.drupal.org/docs/8/modules/search-api/developer-documentation/executing-a-search-in-code
    */
   private function solrQuery($type) {
-    $index = \Drupal\search_api\Entity\Index::load('drupal');
-    $query = $index->query();
-    $query->addCondition('search_api_datasource', 'entity:' . $type);
-    return $query->execute()->getResultCount();
+    if ($index = \Drupal\search_api\Entity\Index::load('drupal')) {
+      $query = $index->query();
+      $query->addCondition('search_api_datasource', 'entity:' . $type);
+      return $query->execute()->getResultCount();
+    }
+    return false;
 
     /**
      * Alternately process results though this should generally be handled
