@@ -17,9 +17,11 @@ This module demonstrates the following:
 * Settings / Administration form
 ** umd_examples.routing.yml (umd_examples.sample_settings_form) for path and config
 ** src/Form/ExampleSettingsForm.php provides form definition and processing
+* Custom Views Field
+** src/Plugin/views/field/DemoField.php
+** umd_examples.views.inc
 
 TODO
-* Custom Views field
 * Custom Views filter
 * Event Listener
 * Custom cron job
