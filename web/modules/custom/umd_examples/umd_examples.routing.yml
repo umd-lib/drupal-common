@@ -1,0 +1,16 @@
+umd_examples.sample_settings_form:
+  path: '/admin/config/development/umd_settings_example'
+  defaults:
+    _form: '\Drupal\umd_examples\Form\ExampleSettingsForm'
+    _title: 'Example Settings Form'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+umd_examples.sample_page:
+  path: '/umd-examples'
+  defaults:
+    _controller: '\Drupal\umd_examples\Controller\ExamplesController::samplePage'
+    _title: 'Example Page'
+  requirements:
+    _permission: 'access content'

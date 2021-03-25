@@ -1,0 +1,7 @@
+umd_examples.sample_settings_form:
+  title: 'UMD Examples Settings'
+  description: 'An example settings form.'
+  parent: user.admin_index
+  parent: 'system.admin_config_development'
+  weight: 99
+  route_name: umd_examples.sample_settings_form
