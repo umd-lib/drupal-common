@@ -19,11 +19,11 @@ Add the following to your /etc/hosts (customized if you wish):
 
 ### Install
 
-To deploy locally, clone the develop branch:
+To deploy locally, clone the main branch:
 
             > git clone https://github.com/umd-lib/drupal-common.git common-demo
             > cd common-demo
-            > git checkout develop
+            > git checkout main
 
 Assuming this site will run the UMD Libraries theme, you will need to clone this
 repo as well:
@@ -163,11 +163,11 @@ using *Clear Cache* with some frequency.
 As an example, we're using WHPool. The process should be the same for PACT and 
 1856Project. Note that Staff Blog might require some special handling (TODO).
 
-Clone the develop branch:
+Clone the main branch:
 
             > git clone https://github.com/umd-lib/drupal-common.git common-whpool
             > cd common-whpool
-            > git checkout develop
+            > git checkout main 
 
 Because WHPool runs the UMD Libraries theme, you will need to clone this repo:
 
