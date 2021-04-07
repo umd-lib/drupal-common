@@ -1,6 +1,6 @@
 # UMD Drupal Common
 
-## Prerequisites 
+## Prerequisites
 
 Install the latest **Composer** (https://getcomposer.org/download/) if not already
 installed.
@@ -19,6 +19,12 @@ Add the following to your /etc/hosts (customized if you wish):
 
 ### Install
 
+Create a base directory to hold each of the directories for the project. This
+example will use "drupal", but that is arbitrary:
+
+            > mkdir drupal
+            > cd drupal
+
 To deploy locally, clone the main branch:
 
             > git clone https://github.com/umd-lib/drupal-common.git common-demo
@@ -28,7 +34,7 @@ To deploy locally, clone the main branch:
 Assuming this site will run the UMD Libraries theme, you will need to clone this
 repo as well:
 
-            > cd common-demo/web/themes
+            > cd web/themes
             > mkdir custom	# If not already created
             > cd custom
             > git clone git@github.com:umd-lib/umd-libraries-theme.git umd_libraries
@@ -41,16 +47,25 @@ for local deployment.
             # in common-demo/
             > composer install
 
-Clone the drupal-projects-env repository locally and copy the demo/env file to
-your web root as .env:
+Switch back to the base ("drupal") directory, and create empty directories for the
+Postgres and Solr data (used in the next steps):
 
-            > cp drupal-projects/demo/env common-demo/.env
+            > cd ..  # back to "drupal"
+            > mkdir postgres_data
+            > mkdir solr_data
 
-Customize this file for your environment. Specifically, look at the values for:
+Clone the drupal-projects-env repository locally and copy the demo/env file
+into your web root (i.e., common-demo) as .env:
+
+            > git clone git@github.com:umd-lib/drupal-projects-env.git
+            > cp drupal-projects-env/demo/env common-demo/.env
+
+Customize the common-demo/.env file for your environment. Specifically, look at
+the values for:
 
 * PROJECT_NAME
-* DB_DATA_DIR
-* SOLR_DATA_DIR
+* DB_DATA_DIR - the fully-qualified path to the "postgres_data" directory
+* SOLR_DATA_DIR - the fully-qualified path to the "solr_data" directory
 
 All other values can stay the same.
 
@@ -76,7 +91,7 @@ configuration form.
 ### Install UMD Terp Stack
 
 Once the site is installed, open the *Extend* panel, which lists
-plugins--enabled and disabled. 
+plugins--enabled and disabled.
 
 Install the following:
 
@@ -160,14 +175,14 @@ using *Clear Cache* with some frequency.
 
 ## Local Install (Existing Site)
 
-As an example, we're using WHPool. The process should be the same for PACT and 
+As an example, we're using WHPool. The process should be the same for PACT and
 1856Project. Note that Staff Blog might require some special handling (TODO).
 
 Clone the main branch:
 
             > git clone https://github.com/umd-lib/drupal-common.git common-whpool
             > cd common-whpool
-            > git checkout main 
+            > git checkout main
 
 Because WHPool runs the UMD Libraries theme, you will need to clone this repo:
 
