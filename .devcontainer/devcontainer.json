@@ -1,0 +1,14 @@
+{
+  "name": "umd-drupal",
+  "service": "php",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+	"extensions": [
+		"felixfbecker.php-debug",
+		"felixfbecker.php-intellisense",
+    "ikappas.phpcs"
+	],
+	"shutdownAction": "none",
+	"workspaceFolder": "/var/www/html"
+}
