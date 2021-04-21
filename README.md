@@ -273,3 +273,140 @@ where <DIRECTORY_OR_FILE> is the name of the directory or file. For example,
 to check the code in the "web/modules/custom/" directory, run:
 
             > vendor/bin/phpcs web/modules/custom/
+
+## VS Code Remote Containers
+
+The VS Code "Remote Containers" functionality can be used to quickly stand up
+a configured development environment, with development-specific extensions
+automatically installed in the container.
+
+For more information abot the "Remote Containers" functionality, see
+(https://code.visualstudio.com/docs/remote/containers).
+
+### Remote Containers Setup
+
+1) Start the Drupal application using Docker Compose.
+
+2) Open VS Code.
+
+3) In the lower-left corner of the VS Code window, there is a small green
+icon "><". Left-click the icon, and select "Remote Containers: Open Folder in Container..."
+
+4) In the resulting dialog, select the directory where "drupal-common" was
+checked out to. VS Code will reset and display the files in the "drupal-common"
+directory. Container-specific extensions, such as "PHP Intellisense" and
+"phpcs" will be automatically loaded. The "Terminal" window will default to
+the "/var/www/html" in the PHP container.
+
+The "PHP CodeSniffer" linter will be automatically enabled for ".php" files
+(i.e., opening a ".php" file should automatically highlight any violations
+in the file).
+
+The "PHP CodeSniffer" can also be run from the VS Code Terminal. For example,
+to check the "web/modules/custom/" directory:
+
+            > phpcs web/modules/custom/
+            
+### Remote Containers - Enabling Debugging
+
+The "PHP Debug" extension is added to the Remote Containers configuration by
+default. However, because it seems to slow Drupal down significantly, the
+"xdebug" tool is not enabled by default.
+
+To enable the "xdebug" tools in the Docker container, do the following:
+
+1) On the host machine, stop the running Docker containers. The simplest way
+to do this is to go to the directory where "drupal-common" is checked out
+and run:
+
+            > make down
+            
+2) Prune the existing containers (this seems to be necessary, as otherwise the
+PHP container does not appear to restart properly:
+
+            > docker system prune -f
+            
+3) Edit the "docker-compose.yml" file, uncommenting the following lines:
+
+            #      PHP_XDEBUG: 1
+            #      PHP_XDEBUG_DEFAULT_ENABLE: 1
+            #      PHP_XDEBUG_REMOTE_HOST: host.docker.internal
+            #      PHP_XDEBUG_REMOTE_PORT: 9123
+            #      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+            
+by changing them to:
+
+                   PHP_XDEBUG: 1
+                   PHP_XDEBUG_DEFAULT_ENABLE: 1
+                   PHP_XDEBUG_REMOTE_HOST: host.docker.internal
+                   PHP_XDEBUG_REMOTE_PORT: 9123
+                   PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+
+**Note:** A non-standard port of "9123" is used for "xdebug", because the
+stardard port of "9000" is exposed by the Docker container, and cannot be
+accessed via Remote Containers.
+
+4) Restart the Docker containers:
+
+            > make up
+
+Once debugging is enabled in the Docker container, the VS Code debugger can
+be used by doing the following:
+
+1) If necessary, open VS Code (or if VS Code was already running, left-click the
+"Reload Window" button). If you get a message about "Configuration files(s)
+changed", simply left-click the "Rebuild" button.
+
+2) Left-click the "Run and Debug" icon in the left-sidebar. At the top of 
+the sidebar will be a "Listen for Xdebug" dropdown, with a green "Play"
+button next to it. Left-click the green "Play" button. The status bar at the
+bottom of the VS Code will turn orange.
+
+3) Set breakpoints in the code of interest.
+
+4) In the web browser, perform whatever steps are necessary to trigger the
+code with the breakpoints. **Note:** If the breakpoint is not being triggered,
+the Drupal cache may need to be cleared.
+
+5) Once the breakpoint is hit, VS Code should display with the line containing
+the breakpoint highlighted.
+
+### Remote Containers - Disabling Debugging
+
+Since "xdebug" causes decreased performance, it can be disabled when no longer
+needed by doing the following:
+
+1) On the host machine, stop the running Docker containers. The simplest way
+to do this is to go to the directory where "drupal-common" is checked out
+and run:
+
+            > make down
+            
+2) Prune the existing containers (this seems to be necessary, as otherwise the
+PHP container does not appear to restart properly:
+
+            > docker system prune -f
+            
+3) Edit the "docker-compose.yml" file, commenting out the following lines:
+
+                   PHP_XDEBUG: 1
+                   PHP_XDEBUG_DEFAULT_ENABLE: 1
+                   PHP_XDEBUG_REMOTE_HOST: host.docker.internal
+                   PHP_XDEBUG_REMOTE_PORT: 9123
+                   PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+            
+by changing them to:
+
+            #      PHP_XDEBUG: 1
+            #      PHP_XDEBUG_DEFAULT_ENABLE: 1
+            #      PHP_XDEBUG_REMOTE_HOST: host.docker.internal
+            #      PHP_XDEBUG_REMOTE_PORT: 9123
+            #      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+
+4) Restart the Docker containers:
+
+            > make up
+
+5) If necessary, open VS Code (or if VS Code was already running, left-click the
+"Reload Window" button). If you get a message about "Configuration files(s)
+changed", simply left-click the "Rebuild" button.
