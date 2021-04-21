@@ -256,3 +256,20 @@ To create a local Solr core with through docker-compose, do the following:
 
            > docker exec [container]_postgres pg_dump -U drupaluser -O drupaldb > /tmp/dump.sql
 
+## Tools
+
+### PHP CodeSniffer
+
+PHP CodeSniffer (https://github.com/squizlabs/PHP_CodeSniffer) is a linter for
+identifying coding standard violations.
+
+The current configuration is defined in the "phpcs.xml.dist" file.
+
+To check a particular directory or file, run the following commands:
+
+            > vendor/bin/phpcs <DIRECTORY_OR_FILE>
+            
+where <DIRECTORY_OR_FILE> is the name of the directory or file. For example,
+to check the code in the "web/modules/custom/" directory, run:
+
+            > vendor/bin/phpcs web/modules/custom/
