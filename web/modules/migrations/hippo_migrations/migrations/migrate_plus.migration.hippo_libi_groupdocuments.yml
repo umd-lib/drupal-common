@@ -1,0 +1,109 @@
+# Migration configuration for imported articles.
+id: hippo_libi_groupdocuments
+label: 'Import libi:groupdocument documents from Hippo CMS'
+migration_group: Hippo
+migration_dependencies:
+  required:
+    - hippo_libi_parentgroupdocuments
+destination:
+  plugin: entity:node
+  default_bundle: group 
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: json
+  urls:
+    - http://localhost:8080/site/restservices/v1/libigroups?pageSize=100&sortBy=libi:name&order=asc&pageNumber=1
+  item_selector: resultList/
+
+  fields:
+    -
+      name: id
+      label: 'ID'
+      selector: canonicalHandleUuid 
+    -
+      name: title
+      label: 'Title'
+      selector: title
+    -
+      name: body
+      label: 'Body'
+      selector: groupDescription
+    -
+      name: created
+      label: 'Created'
+      selector: createdDate
+    -
+      name: changed 
+      label: 'Changed'
+      selector: modifiedDate
+    -
+      name: groupType
+      label: 'Type'
+      selector: groupType
+    -
+      name: acronym
+      label: 'Acronym'
+      selector: groupAcronym 
+    - 
+      name: parent
+      label: 'Parent'
+      selector: parentAcronym
+    - 
+      name: driveID 
+      label: 'Drive ID'
+      selector: driveID
+    - 
+      name: url
+      label: 'URL'
+      selector: links/0/Link/href
+    -
+      name: siteName
+      label: 'Site Name'
+      selector: links/0/Link/rel
+  ids:
+    acronym:
+      type: string
+
+process:
+  title: siteName
+  field_short_name: acronym
+  field_google_drives: driveID
+  body/value: body
+  body/format:
+    plugin: default_value
+    default_value: full_html
+  field_parent_group/target_id:
+    plugin: get_parent
+    source: parent
+  created:
+    plugin: format_date
+    from_format: 'Y-m-d\Th:i:s\Z'
+    to_format: 'U'
+    source: created
+  changed:
+    plugin: format_date
+    from_format: 'Y-m-d\Th:i:s\Z'
+    to_format: 'U'
+    source: changed
+  type:
+    plugin: default_value
+    default_value: group
+  pseudo_fld_type:
+    plugin: get_type
+    source: groupType
+  field_type:
+    -
+      plugin: skip_on_value
+      source: groupType
+      method: row
+      value: division
+    -
+      plugin: entity_generate
+      source: '@pseudo_fld_type' 
+      bundle: group_types
+      entity_type: taxonomy_term
+      ignore_case: true
+  path:
+    plugin: get_path
+    source: url

@@ -1,0 +1,91 @@
+# Migration configuration for imported articles.
+---
+id: hippo_public_textdocuments
+label: 'Import public:textdocument documents from Hippo CMS'
+migration_group: Hippo
+migration_dependencies:
+  optional: []
+  required: []
+destination:
+  plugin: entity:node
+  default_bundle: page
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: json
+  # http://localhost:8080/site/api/public:textdocument
+  urls:
+    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate
+    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=100
+    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=200
+    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=300
+    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=400
+    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=500
+    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=600
+    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=700
+
+  item_selector: items/
+
+  fields:
+    -
+      name: id
+      label: 'ID'
+      selector: id
+    -
+      name: name
+      label: 'Name'
+      selector: /name
+    -
+      name: title
+      label: 'Title'
+      selector: /items/public:title
+    -
+      name: body
+      label: 'Body'
+      selector: /items/public:body/content
+    -
+      name: summary
+      label: 'Summary'
+      selector: /items/public:summary
+    -
+      name: locale
+      label: 'Locale'
+      selector: /locale
+    -
+      name: created
+      label: 'Created'
+      selector: pubwfCreationDate
+    -
+      name: changed
+      label: 'changed'
+      selector: pubwfLastModificationDate
+  ids:
+    id:
+      type: string
+
+process:
+  title:
+    plugin: skip_on_empty
+    source: title
+    method: row
+    message: 'Title is missing'
+  field_id: id
+  type:
+    plugin: default_value
+    default_value: page
+  body/value: body
+  body/summary: summary
+  created:
+    plugin: format_date
+    from_format: Y-m-d\TH:i:s.vP
+    to_format: U
+    source: created
+  changed:
+    plugin: format_date
+    from_format: Y-m-d\TH:i:s.vP
+    to_format: U
+    source: changed
+  langcode:
+    plugin: default_value
+    source: locale
+    default_value: en
