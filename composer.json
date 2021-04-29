@@ -33,6 +33,8 @@
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
         "drupal/ldap": "^3.0@beta",
         "drupal/message_digest": "^1.0@RC",
+        "drupal/migrate_file": "^2.0",
+        "drupal/migrate_tools": "^5.0",
         "drupal/node_view_permissions": "^1.2",
         "drupal/override_node_options": "^2.5",
         "drupal/purge": "^3.0",

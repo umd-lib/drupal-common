@@ -8,21 +8,17 @@ migration_dependencies:
   required: []
 destination:
   plugin: entity:node
-  default_bundle: page
+  default_bundle: article
+# migration_dependencies:
+#   required:
+#     - hippo_body_images
 source:
   plugin: url
   data_fetcher_plugin: http
   data_parser_plugin: json
-  # http://localhost:8080/site/api/public:textdocument
   urls:
-    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate
-    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=100
-    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=200
-    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=300
-    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=400
-    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=500
-    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=600
-    - http://localhost:8080/site/api/documents?_nodetype=public:textdocument&_attributes=public:title,public:body,public:summary,public:left_body,public:right_body,pubwfLastModificationDate,pubwfCreationDate&_offset=700
+    - https://www.sandbox.lib.umd.edu/api/documents?_nodetype=public:textdocument&_query=migrateme&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=50
+    # - http://host.docker.internal:8080/site/api/documents?_nodetype=public:textdocument&_query=migrateme&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=50
 
   item_selector: items/
 
@@ -59,9 +55,15 @@ source:
       name: changed
       label: 'changed'
       selector: pubwfLastModificationDate
+    -
+      name: binaries
+      label: 'Binaries'
+      selector: /items/public:body/links/
   ids:
     id:
       type: string
+  constants:
+    file_destination: 'public://imported/'
 
 process:
   title:
@@ -72,8 +74,14 @@ process:
   field_id: id
   type:
     plugin: default_value
-    default_value: page
-  body/value: body
+    default_value: article
+  pseudo_body:
+    plugin: body_prepare
+    source: body
+  body/value: '@pseudo_body'
+  body/format:
+    plugin: default_value
+    default_value: full_html
   body/summary: summary
   created:
     plugin: format_date
@@ -89,3 +97,25 @@ process:
     plugin: default_value
     source: locale
     default_value: en
+  pseudo_image:
+    plugin: binaries_prepare
+    source: binaries
+  field_image:
+    plugin: image_import
+    source: '@pseudo_image'
+    destination: 'constants/file_destination'
+      #    -
+      #      plugin: sub_process
+      #      process:
+      #        target_id:
+      #          -
+      #            plugin: file_copy
+      #            source:
+      #            - source_path
+      #            - destination_path
+      #          -
+      #            plugin: entity_generate
+      #            value_key: uri
+      #            entity_type: file
+      #        alt: alt
+      #        title: title
