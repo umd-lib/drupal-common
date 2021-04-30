@@ -1927,7 +1927,7 @@
                 "laminas/laminas-diactoros": "^1.8",
                 "laminas/laminas-feed": "^2.12",
                 "masterminds/html5": "^2.1",
-                "pear/archive_tar": "^1.4.13",
+                "pear/archive_tar": "^1.4.12",
                 "php": "^7.0.8",
                 "psr/log": "^1.0",
                 "stack/builder": "^1.0",
@@ -2577,26 +2577,26 @@
         },
         {
             "name": "drupal/external_data_source",
-            "version": "2.2.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/external_data_source.git",
-                "reference": "8.x-2.2"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/external_data_source-8.x-2.2.zip",
-                "reference": "8.x-2.2",
-                "shasum": "d3fa79c03dca466d3af2af03905cb291fb0d5db9"
+                "url": "https://ftp.drupal.org/files/projects/external_data_source-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "0c32feae872b8b0fb2e7c78df1aec52636d1822a"
             },
             "require": {
-                "drupal/core": "^8"
+                "drupal/core": "^8.8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1587762845",
+                    "version": "3.0.0",
+                    "datestamp": "1609170939",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4401,17 +4401,17 @@
         },
         {
             "name": "drupal/search_api",
-            "version": "1.17.0",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/search_api.git",
-                "reference": "8.x-1.17"
+                "reference": "8.x-1.19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.17.zip",
-                "reference": "8.x-1.17",
-                "shasum": "a9f3352f1c8c893c7032c11f00a23f76b9733b56"
+                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.19.zip",
+                "reference": "8.x-1.19",
+                "shasum": "5654e9d02117e28c585d89a25ea3cc40d20c5019"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
@@ -4432,8 +4432,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.17",
-                    "datestamp": "1591128369",
+                    "version": "8.x-1.19",
+                    "datestamp": "1612192040",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4447,7 +4447,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -4984,17 +4984,17 @@
         },
         {
             "name": "drupal/twig_tweak",
-            "version": "2.8.0",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/twig_tweak.git",
-                "reference": "8.x-2.8"
+                "reference": "8.x-2.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/twig_tweak-8.x-2.8.zip",
-                "reference": "8.x-2.8",
-                "shasum": "11ae232159fc1139e00980736dff39bf2bfcfa6d"
+                "url": "https://ftp.drupal.org/files/projects/twig_tweak-8.x-2.9.zip",
+                "reference": "8.x-2.9",
+                "shasum": "c45ba1a41e323a432d1ff36d0a72344b88595a39"
             },
             "require": {
                 "drupal/core": "^8.7 || ^9.0",
@@ -5006,8 +5006,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.8",
-                    "datestamp": "1602156806",
+                    "version": "8.x-2.9",
+                    "datestamp": "1608093728",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7086,12 +7086,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/Archive_Tar.git",
-                "reference": "19bb8e95490d3e3ad92fcac95500ca80bdcc7495"
+                "reference": "2b87b41178cc6d4ad3cba678a46a1cae49786011"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/19bb8e95490d3e3ad92fcac95500ca80bdcc7495",
-                "reference": "19bb8e95490d3e3ad92fcac95500ca80bdcc7495",
+                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/2b87b41178cc6d4ad3cba678a46a1cae49786011",
+                "reference": "2b87b41178cc6d4ad3cba678a46a1cae49786011",
                 "shasum": ""
             },
             "require": {
@@ -7158,7 +7158,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-18T19:32:54+00:00"
+            "time": "2021-02-16T10:50:50+00:00"
         },
         {
             "name": "pear/console_getopt",
@@ -10510,20 +10510,24 @@
             "keywords": [
                 "drupal"
             ],
+            "support": {
+                "issues": "https://github.com/UMD-Digital/umd_schoolwide_header/issues",
+                "source": "https://github.com/UMD-Digital/umd_schoolwide_header/"
+            },
             "time": "2020-05-28T14:42:31+00:00"
         },
         {
             "name": "umd_digital/umd_terp",
-            "version": "8.1.54",
+            "version": "8.1.102",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UMD-Digital/umd_terp.git",
-                "reference": "a018853eb5f299bd911ec5fe2a31e81c86488d3d"
+                "reference": "cace5b97139b383ab0016cf133fe7328c3105ffd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UMD-Digital/umd_terp/zipball/a018853eb5f299bd911ec5fe2a31e81c86488d3d",
-                "reference": "a018853eb5f299bd911ec5fe2a31e81c86488d3d",
+                "url": "https://api.github.com/repos/UMD-Digital/umd_terp/zipball/cace5b97139b383ab0016cf133fe7328c3105ffd",
+                "reference": "cace5b97139b383ab0016cf133fe7328c3105ffd",
                 "shasum": ""
             },
             "require": {
@@ -10554,20 +10558,24 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-10-08T18:09:43+00:00"
+            "support": {
+                "issues": "https://github.com/UMD-Digital/umd_terp/issues",
+                "source": "https://github.com/UMD-Digital/umd_terp/"
+            },
+            "time": "2021-04-28T17:13:25+00:00"
         },
         {
             "name": "umd_digital/umd_terp_base",
-            "version": "8.1.30",
+            "version": "8.1.52",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UMD-Digital/umd_terp_base.git",
-                "reference": "430312e1b08f205002741f00d72a3cac1079a61d"
+                "reference": "5a07c3a27fb1451b11f543fbf4263fc7f4aa6d4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UMD-Digital/umd_terp_base/zipball/430312e1b08f205002741f00d72a3cac1079a61d",
-                "reference": "430312e1b08f205002741f00d72a3cac1079a61d",
+                "url": "https://api.github.com/repos/UMD-Digital/umd_terp_base/zipball/5a07c3a27fb1451b11f543fbf4263fc7f4aa6d4d",
+                "reference": "5a07c3a27fb1451b11f543fbf4263fc7f4aa6d4d",
                 "shasum": ""
             },
             "require": {
@@ -10604,7 +10612,11 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-10-15T15:19:02+00:00"
+            "support": {
+                "issues": "https://github.com/UMD-Digital/umd_terp_base/issues",
+                "source": "https://github.com/UMD-Digital/umd_terp_base/"
+            },
+            "time": "2021-03-24T14:54:13+00:00"
         },
         {
             "name": "webflo/drupal-finder",
