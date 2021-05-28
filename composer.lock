@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc13280b987615557a5a9282fdf58637",
+    "content-hash": "8c5f9bbb9835ff17021b59cd5a6f5fc8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1887,6 +1887,54 @@
             "homepage": "https://www.drupal.org/project/cas_attributes",
             "support": {
                 "source": "https://git.drupalcode.org/project/cas_attributes"
+            }
+        },
+        {
+            "name": "drupal/ckeditor_entity_link",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_entity_link.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_entity_link-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "a3a856ae1ee5b83fef40ad9fe8f3b8473f6ab38c"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1594326642",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "baskaran",
+                    "homepage": "https://www.drupal.org/user/2423304"
+                },
+                {
+                    "name": "dealancer",
+                    "homepage": "https://www.drupal.org/user/243418"
+                }
+            ],
+            "description": "Allows to insert entity links in CKEditor.",
+            "homepage": "https://www.drupal.org/project/ckeditor_entity_link",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor_entity_link"
             }
         },
         {
@@ -10189,16 +10237,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.4.21",
+            "version": "v4.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "0da0e174f728996f5d5072d6a9f0a42259dbc806"
+                "reference": "c194bcedde6295f3ec3e9eba1f5d484ea97c41a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/0da0e174f728996f5d5072d6a9f0a42259dbc806",
-                "reference": "0da0e174f728996f5d5072d6a9f0a42259dbc806",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/c194bcedde6295f3ec3e9eba1f5d484ea97c41a7",
+                "reference": "c194bcedde6295f3ec3e9eba1f5d484ea97c41a7",
                 "shasum": ""
             },
             "require": {
@@ -10258,7 +10306,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v4.4.21"
+                "source": "https://github.com/symfony/var-dumper/tree/v4.4.22"
             },
             "funding": [
                 {
@@ -10274,7 +10322,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-27T19:49:03+00:00"
+            "time": "2021-04-19T13:36:17+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -10515,108 +10563,6 @@
                 "source": "https://github.com/UMD-Digital/umd_schoolwide_header/"
             },
             "time": "2020-05-28T14:42:31+00:00"
-        },
-        {
-            "name": "umd_digital/umd_terp",
-            "version": "8.1.102",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/UMD-Digital/umd_terp.git",
-                "reference": "cace5b97139b383ab0016cf133fe7328c3105ffd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/UMD-Digital/umd_terp/zipball/cace5b97139b383ab0016cf133fe7328c3105ffd",
-                "reference": "cace5b97139b383ab0016cf133fe7328c3105ffd",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/twig_field_value": "*",
-                "drupal/twig_tweak": "*",
-                "umd_digital/umd_schoolwide_header": "*",
-                "umd_digital/umd_terp_base": "*"
-            },
-            "type": "drupal-theme",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Anthony Neumann",
-                    "homepage": "https://www.drupal.org/u/agn507",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Dan Rogers",
-                    "homepage": "https://www.drupal.org/u/dan_rogers",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "UMD Terp is the base theme for all UMD drupal 8 projects.",
-            "homepage": "https://github.com/UMD-Digital/umd_terp",
-            "keywords": [
-                "drupal"
-            ],
-            "support": {
-                "issues": "https://github.com/UMD-Digital/umd_terp/issues",
-                "source": "https://github.com/UMD-Digital/umd_terp/"
-            },
-            "time": "2021-04-28T17:13:25+00:00"
-        },
-        {
-            "name": "umd_digital/umd_terp_base",
-            "version": "8.1.52",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/UMD-Digital/umd_terp_base.git",
-                "reference": "5a07c3a27fb1451b11f543fbf4263fc7f4aa6d4d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/UMD-Digital/umd_terp_base/zipball/5a07c3a27fb1451b11f543fbf4263fc7f4aa6d4d",
-                "reference": "5a07c3a27fb1451b11f543fbf4263fc7f4aa6d4d",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/external_data_source": "*",
-                "drupal/field_group": "*",
-                "drupal/link_attributes": "*",
-                "drupal/metatag": "*",
-                "drupal/paragraphs": "*",
-                "drupal/pathauto": "*",
-                "drupal/search_api": "*",
-                "drupal/tablefield": "*",
-                "drupal/viewsreference": "*",
-                "drupal/webform": "*"
-            },
-            "type": "drupal-module",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Anthony Neumann",
-                    "homepage": "https://www.drupal.org/u/agn507",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Dan Rogers",
-                    "homepage": "https://www.drupal.org/u/dan_rogers",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "UMD Terp Base is the base module for all UMD drupal 8 projects.",
-            "homepage": "https://github.com/UMD-Digital/umd_terp_base",
-            "keywords": [
-                "drupal"
-            ],
-            "support": {
-                "issues": "https://github.com/UMD-Digital/umd_terp_base/issues",
-                "source": "https://github.com/UMD-Digital/umd_terp_base/"
-            },
-            "time": "2021-03-24T14:54:13+00:00"
         },
         {
             "name": "webflo/drupal-finder",
