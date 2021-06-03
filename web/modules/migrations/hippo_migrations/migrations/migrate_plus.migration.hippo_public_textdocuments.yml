@@ -8,16 +8,13 @@ migration_dependencies:
   required: []
 destination:
   plugin: entity:node
-  default_bundle: article
-# migration_dependencies:
-#   required:
-#     - hippo_body_images
+  default_bundle: umd_terp_basic_page
 source:
   plugin: url
   data_fetcher_plugin: http
   data_parser_plugin: json
   urls:
-    - https://www.sandbox.lib.umd.edu/api/documents?_nodetype=public:textdocument&_query=migrateme&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=50
+    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=50
     # - http://host.docker.internal:8080/site/api/documents?_nodetype=public:textdocument&_query=migrateme&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=50
 
   item_selector: items/
@@ -74,7 +71,7 @@ process:
   field_id: id
   type:
     plugin: default_value
-    default_value: article
+    default_value: umd_terp_basic_page
   pseudo_body:
     plugin: body_prepare
     source: body
@@ -93,6 +90,7 @@ process:
     from_format: Y-m-d\TH:i:s.vP
     to_format: U
     source: changed
+  field_migrated_source_date: changed
   langcode:
     plugin: default_value
     source: locale
@@ -100,22 +98,7 @@ process:
   pseudo_image:
     plugin: binaries_prepare
     source: binaries
-  field_image:
+  field_migrated_files:
     plugin: image_import
     source: '@pseudo_image'
     destination: 'constants/file_destination'
-      #    -
-      #      plugin: sub_process
-      #      process:
-      #        target_id:
-      #          -
-      #            plugin: file_copy
-      #            source:
-      #            - source_path
-      #            - destination_path
-      #          -
-      #            plugin: entity_generate
-      #            value_key: uri
-      #            entity_type: file
-      #        alt: alt
-      #        title: title
