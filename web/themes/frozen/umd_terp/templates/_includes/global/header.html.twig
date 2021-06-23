@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Displays the global header.
+ *
+ */
+#}
+
+{%
+  set header_classes = [
+    'site-header',
+    umd_terp_header_light ? 'site-header-light',
+  ]
+%}
+<header class="{{ header_classes|join(' ') }}">
+	<div class="site-header__bar max-bound">
+		<a class="site-header__logo" href="{{ path('<front>') }}">
+			{% if logo_path %}
+				<img src="{{ logo_path }}" alt="{{ site_name }} logo">
+			{% else %}
+				<span role="img" aria-label="{{ site_name }} logo" class="site-header__logo-text">
+					<span aria-hidden="true">{{ site_name }}</span>
+				</span>
+			{% endif %}
+		</a>
+		<a href="#main-content" class="visually-hidden focusable">
+			{{ 'Skip to main content'|t }}
+		</a>
+		<a href="#site-header-nav" class="site-header__nav-toggle" id="site-header-nav-toggle" tabindex="0" role="button" aria-label="Main Menu" aria-controls="site-header-nav">
+			<span aria-hidden="true" class="site-header__nav-icon">
+				<span role="presentation"></span>
+				<span role="presentation"></span>
+				<span role="presentation"></span>
+				<span role="presentation"></span>
+			</span>
+			<span class="sr-only">Main Menu</span>
+		</a>
+		<nav class="site-header__nav" id="site-header-nav" aria-labelledby="site-header-nav-toggle">
+			{{ drupal_menu('main', 1, 2, TRUE) }}
+		</nav>
+	</div>
+</header>

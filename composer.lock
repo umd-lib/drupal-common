@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6212d1b6fd5e5be8fa744057a97505e",
+    "content-hash": "bbfd0571f1a55fd102229fc7e4e1f860",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1892,6 +1892,54 @@
             }
         },
         {
+            "name": "drupal/ckeditor_entity_link",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_entity_link.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_entity_link-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "a3a856ae1ee5b83fef40ad9fe8f3b8473f6ab38c"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1594326642",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "baskaran",
+                    "homepage": "https://www.drupal.org/user/2423304"
+                },
+                {
+                    "name": "dealancer",
+                    "homepage": "https://www.drupal.org/user/243418"
+                }
+            ],
+            "description": "Allows to insert entity links in CKEditor.",
+            "homepage": "https://www.drupal.org/project/ckeditor_entity_link",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor_entity_link"
+            }
+        },
+        {
             "name": "drupal/core",
             "version": "8.9.16",
             "source": {
@@ -2303,17 +2351,17 @@
         },
         {
             "name": "drupal/ctools",
-            "version": "3.5.0",
+            "version": "3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ctools.git",
-                "reference": "8.x-3.5"
+                "reference": "8.x-3.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.5.zip",
-                "reference": "8.x-3.5",
-                "shasum": "0113cd1e787ff3bde088c836c2d79d14136b0013"
+                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.7.zip",
+                "reference": "8.x-3.7",
+                "shasum": "b11c0981a1d2ab3cc9e8e614a337d8e2a2a70c0e"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
@@ -2321,8 +2369,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.5",
-                    "datestamp": "1618592931",
+                    "version": "8.x-3.7",
+                    "datestamp": "1623860918",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2579,26 +2627,26 @@
         },
         {
             "name": "drupal/external_data_source",
-            "version": "2.2.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/external_data_source.git",
-                "reference": "8.x-2.2"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/external_data_source-8.x-2.2.zip",
-                "reference": "8.x-2.2",
-                "shasum": "d3fa79c03dca466d3af2af03905cb291fb0d5db9"
+                "url": "https://ftp.drupal.org/files/projects/external_data_source-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "0c32feae872b8b0fb2e7c78df1aec52636d1822a"
             },
             "require": {
-                "drupal/core": "^8"
+                "drupal/core": "^8.8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1587762845",
+                    "version": "3.0.0",
+                    "datestamp": "1609170939",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3373,6 +3421,52 @@
             }
         },
         {
+            "name": "drupal/merge_translations",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/merge_translations.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/merge_translations-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "f72e795750baab2e28da0e477ceff65bba498cef"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1585037297",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "lamp5",
+                    "homepage": "https://www.drupal.org/user/2870321",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Allows users to merge node translations.",
+            "homepage": "https://www.drupal.org/project/merge_translations",
+            "support": {
+                "source": "https://cgit.drupalcode.org/merge_translations",
+                "issues": "https://www.drupal.org/project/issues/merge_translations"
+            }
+        },
+        {
             "name": "drupal/message",
             "version": "1.1.0",
             "source": {
@@ -3619,6 +3713,182 @@
                 "source": "https://git.drupalcode.org/project/metatag",
                 "issues": "https://www.drupal.org/project/issues/metatag",
                 "docs": "https://www.drupal.org/docs/8/modules/metatag"
+            }
+        },
+        {
+            "name": "drupal/migrate_file",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/migrate_file.git",
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/migrate_file-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "84bc9aea018baa263cd24d0a6194a30b79f60801"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0",
+                    "datestamp": "1605920047",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "drclaw",
+                    "homepage": "https://www.drupal.org/user/823702"
+                }
+            ],
+            "description": "Additional support for migrating files including downloading remote files and using remote uris (without download)",
+            "homepage": "https://www.drupal.org/project/migrate_file",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/migrate_file",
+                "issues": "https://www.drupal.org/project/issues/migrate_file"
+            }
+        },
+        {
+            "name": "drupal/migrate_plus",
+            "version": "5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/migrate_plus.git",
+                "reference": "8.x-5.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/migrate_plus-8.x-5.1.zip",
+                "reference": "8.x-5.1",
+                "shasum": "1257427ab0c64459c3c1e42bb2a98d3114b77163"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "drupal/migrate_example_advanced_setup": "*",
+                "drupal/migrate_example_setup": "*"
+            },
+            "suggest": {
+                "ext-soap": "*",
+                "sainsburys/guzzle-oauth2-plugin": "3.0 required for the OAuth2 authentication plugin"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-5.1",
+                    "datestamp": "1588261060",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Ryan",
+                    "homepage": "https://www.drupal.org/u/mikeryan",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Lucas Hedding",
+                    "homepage": "https://www.drupal.org/u/heddn",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Enhancements to core migration support.",
+            "homepage": "https://www.drupal.org/project/migrate_plus",
+            "support": {
+                "source": "https://git.drupalcode.org/project/migrate_plus",
+                "issues": "https://www.drupal.org/project/issues/migrate_plus",
+                "slack": "#migrate"
+            }
+        },
+        {
+            "name": "drupal/migrate_tools",
+            "version": "5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/migrate_tools.git",
+                "reference": "8.x-5.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/migrate_tools-8.x-5.0.zip",
+                "reference": "8.x-5.0",
+                "shasum": "b7c91aa6f7de9d6d548f65f83c8736e47e5926a1"
+            },
+            "require": {
+                "drupal/core": "^8.8 | ^9",
+                "drupal/migrate_plus": "^5",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "drupal/migrate_plus": "^5",
+                "drupal/migrate_source_csv": "^3",
+                "drush/drush": "^10"
+            },
+            "suggest": {
+                "drush/drush": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-5.0",
+                    "datestamp": "1588260531",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Ryan",
+                    "homepage": "https://www.drupal.org/u/mikeryan",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Lucas Hedding",
+                    "homepage": "https://www.drupal.org/u/heddn",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Tools to assist in developing and running migrations.",
+            "homepage": "http://drupal.org/project/migrate_tools",
+            "support": {
+                "source": "https://git.drupalcode.org/project/migrate_tools",
+                "issues": "https://www.drupal.org/project/issues/migrate_tools",
+                "slack": "#migrate"
             }
         },
         {
@@ -5082,17 +5352,17 @@
         },
         {
             "name": "drupal/webform",
-            "version": "6.0.2",
+            "version": "6.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "6.0.2"
+                "reference": "6.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-6.0.2.zip",
-                "reference": "6.0.2",
-                "shasum": "a264554699736034b44fd960e2858d006029e025"
+                "url": "https://ftp.drupal.org/files/projects/webform-6.0.3.zip",
+                "reference": "6.0.3",
+                "shasum": "b75f79e26b5d58f4a9e047131f63c482bdaa5593"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
@@ -5140,8 +5410,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.0.2",
-                    "datestamp": "1614794871",
+                    "version": "6.0.3",
+                    "datestamp": "1620250254",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -10336,101 +10606,11 @@
             "keywords": [
                 "drupal"
             ],
+            "support": {
+                "issues": "https://github.com/UMD-Digital/umd_schoolwide_header/issues",
+                "source": "https://github.com/UMD-Digital/umd_schoolwide_header/"
+            },
             "time": "2020-05-28T14:42:31+00:00"
-        },
-        {
-            "name": "umd_digital/umd_terp",
-            "version": "8.1.54",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/UMD-Digital/umd_terp.git",
-                "reference": "a018853eb5f299bd911ec5fe2a31e81c86488d3d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/UMD-Digital/umd_terp/zipball/a018853eb5f299bd911ec5fe2a31e81c86488d3d",
-                "reference": "a018853eb5f299bd911ec5fe2a31e81c86488d3d",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/twig_field_value": "*",
-                "drupal/twig_tweak": "*",
-                "umd_digital/umd_schoolwide_header": "*",
-                "umd_digital/umd_terp_base": "*"
-            },
-            "type": "drupal-theme",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Anthony Neumann",
-                    "homepage": "https://www.drupal.org/u/agn507",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Dan Rogers",
-                    "homepage": "https://www.drupal.org/u/dan_rogers",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "UMD Terp is the base theme for all UMD drupal 8 projects.",
-            "homepage": "https://github.com/UMD-Digital/umd_terp",
-            "keywords": [
-                "drupal"
-            ],
-            "time": "2020-10-08T18:09:43+00:00"
-        },
-        {
-            "name": "umd_digital/umd_terp_base",
-            "version": "8.1.30",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/UMD-Digital/umd_terp_base.git",
-                "reference": "430312e1b08f205002741f00d72a3cac1079a61d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/UMD-Digital/umd_terp_base/zipball/430312e1b08f205002741f00d72a3cac1079a61d",
-                "reference": "430312e1b08f205002741f00d72a3cac1079a61d",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/external_data_source": "*",
-                "drupal/field_group": "*",
-                "drupal/link_attributes": "*",
-                "drupal/metatag": "*",
-                "drupal/paragraphs": "*",
-                "drupal/pathauto": "*",
-                "drupal/search_api": "*",
-                "drupal/tablefield": "*",
-                "drupal/viewsreference": "*",
-                "drupal/webform": "*"
-            },
-            "type": "drupal-module",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Anthony Neumann",
-                    "homepage": "https://www.drupal.org/u/agn507",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Dan Rogers",
-                    "homepage": "https://www.drupal.org/u/dan_rogers",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "UMD Terp Base is the base module for all UMD drupal 8 projects.",
-            "homepage": "https://github.com/UMD-Digital/umd_terp_base",
-            "keywords": [
-                "drupal"
-            ],
-            "time": "2020-10-15T15:19:02+00:00"
         },
         {
             "name": "webflo/drupal-finder",

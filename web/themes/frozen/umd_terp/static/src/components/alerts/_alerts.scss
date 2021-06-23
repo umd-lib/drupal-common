@@ -1,0 +1,61 @@
+.alerts {
+    background-color: $yellow;
+    color: $black;
+    padding: rem(20) rem(30);
+    @include media-breakpoint-up(800) {
+        padding: rem(30) rem(50);
+    }
+    &.bg-red {
+        color: $white;
+        .alert-cta {
+            border-color: $white;
+            color: $white;
+            &:hover,
+            &:focus {
+                background-color: $white;
+                border-color: $white;
+                color: $black;
+            }
+        }
+    }
+}
+
+.alert {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    a:not(.btn) {
+        color: inherit;
+        text-decoration: underline;
+    }
+    &:not(:first-of-type) {
+        border-top: rem(1) solid $black;
+        margin-top: rem(25);
+        padding-top: rem(25);
+        @include media-breakpoint-up(800) {
+            margin-top: rem(25);
+            padding-top: rem(40);
+        }
+    }
+    .bg-red & {
+        &:not(:first-of-type) {
+            border-top-color: $white;
+        }
+    }
+}
+
+.alert-cta.btn {
+    border-color: $black;
+    color: $black;
+    margin-top: rem(24);
+    &:hover,
+    &:focus {
+        background-color: $black;
+        border-color: $black;
+        color: $white;
+    }
+}
+
+.alert-wrapper .alert {
+    padding: 0.75rem 1.25rem;
+}

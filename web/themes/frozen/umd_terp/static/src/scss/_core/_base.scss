@@ -1,0 +1,106 @@
+html {
+  font-size: $rem-base;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+a {
+  color: $link-color;
+  transition: .25s color ease-in-out;
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+
+hr {
+  border-bottom: 1px solid #EDEDED;
+  border-top: 0;
+  margin: rem(16) 0 rem(8);
+}
+
+.align {
+  &-right,
+  &-left,
+  &-center {
+    margin-bottom: rem(24);
+    @include media-breakpoint-down(799) {
+      margin-top: rem(24);
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+  &-right,
+  &-left {
+    @include media-breakpoint-up(800) {
+      max-width: 50%;
+    }
+  }
+  &-right {
+    @include media-breakpoint-down(799) {
+      float: none;
+    }
+    @include media-breakpoint-up(800) {
+      float: right;
+      margin-left: rem(30);
+    }
+  }
+  &-left {
+    @include media-breakpoint-down(799) {
+      float: none;
+    }
+    @include media-breakpoint-up(800) {
+      float: left;
+      margin-right: rem(30);
+    }
+  }
+}
+
+img.align-left,
+img.align-right,
+img.align-center {
+  display: block;
+  height: auto;
+}
+
+.editor-content figure,
+figure.align-left,
+figure.align-right,
+figure.align-center {
+  display: table;
+  @include media-breakpoint-down(799) {
+    max-width: 100%;
+  }
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+  figcaption {
+    caption-side: bottom;
+    display: table-caption;
+  }
+}
+
+figure.align-center {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+  img {
+    margin: 0 auto;
+  }
+}
+
+figcaption {
+  color: #404245;
+  font-size: rem(14);
+  line-height: (23 / 14);
+  margin-top: rem(8);
+}

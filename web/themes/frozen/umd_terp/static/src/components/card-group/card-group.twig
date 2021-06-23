@@ -1,0 +1,12 @@
+<div class="card-group-bg">
+  {% if heading %}
+    <h2 class="widget-heading h3">{{heading}}</h2>
+  {% endif %}
+  <div class="card-group">
+    {% for card in cards %}
+      <div class="card-wrap">
+        {% include "@card" with card %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

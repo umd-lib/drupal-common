@@ -1,0 +1,50 @@
+/* Flickity */
+
+.flickity-enabled.flickity-enabled {
+  &:focus {
+    outline: 1px dotted #212121; // Default focus state for accessibility
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+}
+
+.flickity-page-dots {
+  display: flex;
+  justify-content: center;
+
+  .dot {
+    background-color: #ACACAC;
+    height: rem(14);
+    width: rem(14);
+    margin: 0 rem(16);
+    opacity: 1;
+    transition: .3s background-color ease-in-out;
+
+    &.is-selected {
+      background-color: $red;
+    }
+  }
+
+  [class*="-bg-dark"] & {
+    .dot {
+      &.is-selected {
+        background-color: $yellow;
+      }
+    }
+  }
+}
+
+/* UMD Generated Header */
+body .umdheader-wrap {
+  z-index: 100 !important;
+
+  .umdheader-main__container {
+    max-width: $max-bound-width !important;
+    padding-right: $grid-gutter-width / 2 !important;
+    padding-left: $grid-gutter-width / 2 !important;
+
+    @include media-breakpoint-up(1200) {
+      padding-right: rem(24) !important;
+      padding-left: rem(24) !important;
+    }
+  }
+}
