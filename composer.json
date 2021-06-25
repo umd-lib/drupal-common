@@ -25,6 +25,7 @@
         "drupal/core-recommended": "^8.9",
         "drupal/ctools": "^3.7",
         "drupal/devel": "^2.1",
+        "drupal/dropdown_language": "2.7",
         "drupal/easy_email": "^1.0@beta",
         "drupal/entity_reference_revisions": "^1.9",
         "drupal/external_data_source": "^3.0",
