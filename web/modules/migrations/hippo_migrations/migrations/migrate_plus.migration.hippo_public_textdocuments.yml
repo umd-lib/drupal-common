@@ -15,9 +15,12 @@ source:
   data_parser_plugin: json
   urls:
     - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=25
-    # - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=25&_max=25
-    # - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=50&_max=25
-    # - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=75&_max=25
+    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=25&_max=25
+    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=50&_max=25
+    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=75&_max=25
+    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=100&_max=25
+    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=125&_max=25
+    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=150&_max=25
     # - http://host.docker.internal:8080/site/api/documents?_nodetype=public:textdocument&_query=migrateme&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=50
 
   item_selector: items/
