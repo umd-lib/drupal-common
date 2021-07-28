@@ -1,0 +1,6 @@
+aleph_connector.admin_settings_form:
+  title: 'Aleph Connector'
+  description: 'Connector setup and information for Aleph endpoints.'
+  parent: 'system.admin_config_development'
+  weight: 99
+  route_name: aleph_connector.admin_settings_form

@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * A demo template
+ *
+ * Variables:
+ *   - equipment_count
+ *   - equipment_sysnum
+ *   - equipment_mindue
+ */
+#}
+<div id="equipment-{{ equipment_sysnum }}">
+  <div class="equipment-count">{{ equipment_count }} available now</div>
+  {% if equipment_count <= 0 %}
+    {%if equipment_mindue %}
+      <div class="equipment-available">Next Available: {{ equipment_mindue }}</div>
+    {% endif %}
+  {% endif %}
+</div>
