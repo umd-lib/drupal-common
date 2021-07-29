@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * equipment_tracking module install file.
+ */
+
+/**
+ * Install EQ tracking configuration.
+ */
+function equipment_tracking_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'equipment_tracking');
+}

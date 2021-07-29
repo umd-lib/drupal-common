@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bibnumber
+    - node.type.sys_equipment
+id: node.sys_equipment.field_bibnumber
+field_name: field_bibnumber
+entity_type: node
+bundle: sys_equipment
+label: BibNumber
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

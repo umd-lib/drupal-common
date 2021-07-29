@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.equipment_tracking
+  module:
+    - system
+    - views
+  theme:
+    - umd_terp
+id: exposedformequipment_trackingpage_1
+theme: umd_terp
+region: content
+weight: -9
+provider: null
+plugin: 'views_exposed_filter_block:equipment_tracking-page_1'
+settings:
+  id: 'views_exposed_filter_block:equipment_tracking-page_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: '/find/borrow/equipment*'
+    negate: false
+    context_mapping: {  }

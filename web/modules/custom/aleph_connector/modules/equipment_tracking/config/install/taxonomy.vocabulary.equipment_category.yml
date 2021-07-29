@@ -1,0 +1,6 @@
+status: true
+dependencies: {  }
+name: 'Equipment Category'
+vid: equipment_category
+description: 'For equipment availability'
+weight: 0
