@@ -21,6 +21,7 @@
         "drupal/cas": "^1.6",
         "drupal/cas_attributes": "^1.0@beta",
         "drupal/ckeditor_entity_link": "^1.2",
+        "drupal/content_moderation_notifications": "^3.3",
         "drupal/core-composer-scaffold": "^8.9",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.9",
