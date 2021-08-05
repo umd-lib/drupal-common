@@ -7,6 +7,7 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_preprocess_HOOK() for HTML document templates.
