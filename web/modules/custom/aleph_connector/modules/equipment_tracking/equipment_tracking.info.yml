@@ -6,6 +6,9 @@ configure: aleph_connector.admin_settings_form
 dependencies:
   - aleph_connector
   - easy_install
+  - facets
+  - facets_block
+  - cshs
 type: module
 
 core_version_requirement: ^8.9 || ^9
