@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Example module install file.
+ */
+
+/**
+ * Install Solr configuration.
+ */
+function umd_feature_example_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_feature_example');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function umd_feature_example_uninstall() {
+}
