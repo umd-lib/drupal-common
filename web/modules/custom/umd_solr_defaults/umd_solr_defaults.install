@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * solr defaults  module install file.
+ */
+
+/**
+ * Install Solr configuration.
+ */
+function umd_solr_defaults_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_solr_defaults');
+}

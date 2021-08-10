@@ -1,0 +1,178 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+    - node
+    - taxonomy
+    - search_api
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_equipment_category
+    - field.storage.node.field_library_location
+    - search_api.server.drupal
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+id: website_content
+name: 'Website Content'
+description: ''
+read_only: false
+field_settings:
+  aggregated_field:
+    label: 'Aggregated field'
+    property_path: aggregated_field
+    type: text
+    configuration:
+      type: concat
+      fields:
+        - 'entity:node/body'
+        - 'entity:node/field_bibnumber'
+        - 'entity:node/title'
+  body:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  field_equipment_category:
+    label: 'Equipment Category'
+    datasource_id: 'entity:node'
+    property_path: field_equipment_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_equipment_category
+  field_library_location:
+    label: 'Library Location'
+    datasource_id: 'entity:node'
+    property_path: field_library_location
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_library_location
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  taxonomy_parent:
+    label: 'Library Location » Taxonomy term » Term Parents » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_library_location:entity:parent:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_library_location
+      module:
+        - taxonomy
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - node
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - sys_equipment
+        - umd_terp_basic_page
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  hierarchy:
+    fields:
+      field_equipment_category: taxonomy_term-parent
+      field_library_location: taxonomy_term-parent
+    weights:
+      preprocess_index: -45
+  language_with_fallback: {  }
+  rendered_item: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: drupal
