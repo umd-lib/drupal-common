@@ -11,3 +11,10 @@
 function umd_solr_defaults_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_solr_defaults');
 }
+
+/**
+ * Implements hook_uninstall
+ */
+function umd_solr_defaults_uninstall() {
+  // \Drupal::configFactory()->getEditable('system.site')->clear('umd_solr_defaults')->save();
+}

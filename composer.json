@@ -30,6 +30,7 @@
         "drupal/devel": "^2.1",
         "drupal/dropdown_language": "2.7",
         "drupal/easy_email": "^1.0@beta",
+        "drupal/easy_install": "^10.5",
         "drupal/entity_reference_revisions": "^1.9",
         "drupal/entityqueue": "^1.2",
         "drupal/external_data_source": "^3.0",
