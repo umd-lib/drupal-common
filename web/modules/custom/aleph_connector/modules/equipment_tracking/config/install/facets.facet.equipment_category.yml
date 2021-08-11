@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - search_api.index.website_content
+    - search_api.index.equipment_tracking
     - views.view.equipment_tracking
   module:
     - search_api

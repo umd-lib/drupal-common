@@ -49,8 +49,8 @@ third_party_settings:
       index_prefix: ''
       collection: ''
       timezone: ''
-id: website_content
-name: 'Website Content'
+id: equipment_tracking
+name: 'Equipment Tracking'
 description: ''
 read_only: false
 field_settings:

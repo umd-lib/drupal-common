@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_bibnumber
     - field.storage.node.field_equipment_category
     - field.storage.node.field_library_location
-    - search_api.index.website_content
+    - search_api.index.equipment_tracking
   module:
     - aleph_connector
     - cshs
@@ -17,7 +17,7 @@ label: 'Equipment Tracking'
 module: views
 description: ''
 tag: ''
-base_table: search_api_index_website_content
+base_table: search_api_index_equipment_tracking
 base_field: search_api_id
 display:
   default:
@@ -83,7 +83,7 @@ display:
       fields:
         body:
           id: body
-          table: search_api_index_website_content
+          table: search_api_index_equipment_tracking
           field: body
           relationship: none
           group_type: group
@@ -154,7 +154,7 @@ display:
           plugin_id: search_api_field
         title:
           id: title
-          table: search_api_datasource_website_content_entity_node
+          table: search_api_datasource_equipment_tracking_entity_node
           field: title
           relationship: none
           group_type: group
@@ -225,7 +225,7 @@ display:
           plugin_id: search_api_field
         field_equipment_category:
           id: field_equipment_category
-          table: search_api_datasource_website_content_entity_node
+          table: search_api_datasource_equipment_tracking_entity_node
           field: field_equipment_category
           relationship: none
           group_type: group
@@ -308,7 +308,7 @@ display:
           plugin_id: search_api_field
         field_bibnumber:
           id: field_bibnumber
-          table: search_api_datasource_website_content_entity_node
+          table: search_api_datasource_equipment_tracking_entity_node
           field: field_bibnumber
           relationship: none
           group_type: group
@@ -379,7 +379,7 @@ display:
           plugin_id: search_api_field
         aleph_equipment_available:
           id: aleph_equipment_available
-          table: search_api_index_website_content
+          table: search_api_index_equipment_tracking
           field: aleph_equipment_available
           relationship: none
           group_type: group
@@ -428,7 +428,7 @@ display:
           plugin_id: aleph_equipment_available
         field_library_location:
           id: field_library_location
-          table: search_api_datasource_website_content_entity_node
+          table: search_api_datasource_equipment_tracking_entity_node
           field: field_library_location
           relationship: none
           group_type: group
@@ -564,7 +564,7 @@ display:
       filters:
         type:
           id: type
-          table: search_api_index_website_content
+          table: search_api_index_equipment_tracking
           field: type
           relationship: none
           group_type: group
@@ -605,7 +605,7 @@ display:
           plugin_id: search_api_options
         search_api_fulltext:
           id: search_api_fulltext
-          table: search_api_index_website_content
+          table: search_api_index_equipment_tracking
           field: search_api_fulltext
           relationship: none
           group_type: group
@@ -652,7 +652,7 @@ display:
       sorts:
         search_api_relevance:
           id: search_api_relevance
-          table: search_api_index_website_content
+          table: search_api_index_equipment_tracking
           field: search_api_relevance
           relationship: none
           group_type: group
@@ -664,7 +664,7 @@ display:
           plugin_id: search_api
         title:
           id: title
-          table: search_api_index_website_content
+          table: search_api_index_equipment_tracking
           field: title
           relationship: none
           group_type: group
@@ -709,7 +709,7 @@ display:
         - 'config:field.storage.node.field_bibnumber'
         - 'config:field.storage.node.field_equipment_category'
         - 'config:field.storage.node.field_library_location'
-        - 'config:search_api.index.website_content'
+        - 'config:search_api.index.equipment_tracking'
   block_1:
     display_plugin: block
     id: block_1
@@ -720,7 +720,7 @@ display:
       filters:
         type:
           id: type
-          table: search_api_index_website_content
+          table: search_api_index_equipment_tracking
           field: type
           relationship: none
           group_type: group
@@ -761,7 +761,7 @@ display:
           plugin_id: search_api_options
         taxonomy_parent:
           id: taxonomy_parent
-          table: search_api_index_website_content
+          table: search_api_index_equipment_tracking
           field: taxonomy_parent
           relationship: none
           group_type: group
@@ -816,7 +816,7 @@ display:
       sorts:
         title:
           id: title
-          table: search_api_index_website_content
+          table: search_api_index_equipment_tracking
           field: title
           relationship: none
           group_type: group
@@ -841,7 +841,7 @@ display:
         - 'config:field.storage.node.field_bibnumber'
         - 'config:field.storage.node.field_equipment_category'
         - 'config:field.storage.node.field_library_location'
-        - 'config:search_api.index.website_content'
+        - 'config:search_api.index.equipment_tracking'
   page_1:
     display_plugin: page
     id: page_1
@@ -870,5 +870,5 @@ display:
         - 'config:field.storage.node.field_bibnumber'
         - 'config:field.storage.node.field_equipment_category'
         - 'config:field.storage.node.field_library_location'
-        - 'config:search_api.index.website_content'
+        - 'config:search_api.index.equipment_tracking'
 
