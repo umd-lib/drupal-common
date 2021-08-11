@@ -1,13 +1,8 @@
 name: UMD Solr Defaults
 description: A helper module for setting up Solr locally. Should be expanded as new Solr databases come online.
 
-package: 'UMD Services'
+package: 'Development'
 dependencies:
-  - search_api_solr
-  - facets
-  - equipment_tracking
-  - facets_block
-  - cshs
   - easy_install
 type: module
 
