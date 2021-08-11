@@ -1,4 +1,4 @@
-name: UMD Solr Defaults
+name: UMD Feature Example 
 description: A helper module for setting up Solr locally. Should be expanded as new Solr databases come online.
 
 package: 'Development'
