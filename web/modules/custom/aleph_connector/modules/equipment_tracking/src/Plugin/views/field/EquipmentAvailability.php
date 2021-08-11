@@ -60,9 +60,8 @@ class EquipmentAvailability extends FieldPluginBase {
   public function render(ResultRow $values) {
     $aleph = new AlephController();
     if (!$this->isValueEmpty($aleph->getQueryField(), TRUE)) {
-      if ($bibnum = $this->view->field[$aleph->getQueryField()]->original_value && $bibnum_data = $aleph->getBibnumData($bibnum->__toString())) {
+      if ($bibnum = $this->view->field[$aleph->getQueryField()]->original_value->__toString() && $bibnum_data = $aleph->getBibnumData($bibnum)) {
         return $this->availabilityField($bibnum, $bibnum_data);
-        // return $aleph->getBibnumData($bibnum->__toString());
       }
     }
     return FALSE; 
@@ -74,7 +73,6 @@ class EquipmentAvailability extends FieldPluginBase {
   public function availabilityField($bibnum, $availability_data) {
     $processed_date = null;
     if ($raw_date = $availability_data['mindue']) {
-      // $tz = new DateTimeZone('EST');
       try {
         // 2021-07-30-16:30
         $datetime_p = DateTimePlus::createFromFormat('YmdHi', $raw_date);
