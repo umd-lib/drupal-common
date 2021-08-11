@@ -2,7 +2,6 @@ name: Equipment Tracking
 description: A module for displaying Equipment Tracking information from Aleph.
 
 package: 'UMD Services'
-configure: aleph_connector.admin_settings_form
 dependencies:
   - aleph_connector
   - easy_install
@@ -10,6 +9,9 @@ dependencies:
   - views
   - token_filter
   - search_api_solr
+  - facets
+  - facets_block
+  - umd_solr_defaults
 type: module
 
 core_version_requirement: ^8.9 || ^9
