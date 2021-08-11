@@ -5,6 +5,8 @@ package: 'UMD Services'
 dependencies:
   - search_api_solr
   - easy_install
+  - facets
+  - facets_block
 type: module
 
 core_version_requirement: ^8.9 || ^9

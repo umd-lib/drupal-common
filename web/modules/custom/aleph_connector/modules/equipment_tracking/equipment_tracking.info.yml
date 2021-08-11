@@ -6,12 +6,11 @@ configure: aleph_connector.admin_settings_form
 dependencies:
   - aleph_connector
   - easy_install
-  - facets
-  - facets_block
   - cshs
   - views
   - token_filter
   - search_api_solr
+  - umd_solr_defaults
 type: module
 
 core_version_requirement: ^8.9 || ^9
