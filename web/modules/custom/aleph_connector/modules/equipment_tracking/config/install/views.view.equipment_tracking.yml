@@ -6,7 +6,6 @@ dependencies:
     - field.storage.node.field_bibnumber
     - field.storage.node.field_equipment_category
     - field.storage.node.field_library_location
-    - search_api.index.website_content
   module:
     - aleph_connector
     - cshs
