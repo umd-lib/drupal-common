@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: equipment_avail
+label: 'Equipment Avail'
+type: 'canonical_entities:node'
+pattern: '/system/equipment/[random:hash:md4]'
+selection_criteria:
+  b8e37c41-c445-4991-820d-1822b89034ba:
+    id: node_type
+    bundles:
+      sys_equipment: sys_equipment
+    negate: false
+    context_mapping:
+      node: node
+    uuid: b8e37c41-c445-4991-820d-1822b89034ba
+selection_logic: and
+weight: -5
+relationships: {  }
