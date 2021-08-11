@@ -73,9 +73,6 @@ class AlephController extends ControllerBase implements TrustedCallbackInterface
       $row_data = [];
       $tmp_sysnum = null;
       foreach ($row->td as $td) {
-        // \Drupal::messenger()->addStatus((string)$td);
-        // \Drupal::messenger()->addStatus(json_encode($td->attributes()['class']));
-        // \Drupal::messenger()->addStatus((string)$td->attributes()['class']);
         if ((string)$td->attributes()['class'] == 'sysnum') {
           $tmp_sysnum = (string)$td;
         }
@@ -102,6 +99,7 @@ class AlephController extends ControllerBase implements TrustedCallbackInterface
       // Log this
       return FALSE;
     }
+    return $equipment_data;
     if (!empty($equipment_data[$bibnum])) {
       return $this->availabilityField($bibnum, $equipment_data[$bibnum]); 
     }

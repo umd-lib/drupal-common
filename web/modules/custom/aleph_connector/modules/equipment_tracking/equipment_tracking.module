@@ -5,4 +5,17 @@
  * Module file for equipment_tracking module.
  */
 
-// Intentionally empty.
+/**
+ * Implements hook_theme().
+ */
+function equipment_tracking_theme() {
+  return [
+    'aleph_equipment_available' => [
+      'variables' => [
+        'equipment_count' => '',
+        'equipment_sysnum' => '',
+        'equipment_mindue' => '',
+      ],
+    ],
+  ];
+}

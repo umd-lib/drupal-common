@@ -9,6 +9,7 @@
  *   - equipment_mindue
  */
 #}
+{{ attach_library('equipment_tracking/equipment-tracking') }}
 <div id="equipment-{{ equipment_sysnum }}">
   <div class="equipment-count">{{ equipment_count }} available now</div>
   {% if equipment_count <= 0 %}

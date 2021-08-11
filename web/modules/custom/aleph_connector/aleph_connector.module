@@ -1,31 +1,8 @@
 <?php
 
-use Drupal\aleph_connector\Controller\AlephController;
-
 /**
  * The .module file is falling out of favor in Drupals 8 and 9
  * but still has some uses. It was the primary file in 7 and earlier.
  */
 
-    return [
-      '#theme' => 'aleph_equipment_available',
-      '#equipment_count' => 'count value',
-      '#equipment_mindue' => 'due value',
-      '#equipment_sysnum' => 'sysnum value',
-    ];
-
-
-/**
- * Implements hook_theme().
- */
-function aleph_connector_theme() {
-  return [
-    'aleph_equipment_available' => [
-      'variables' => [
-        'equipment_count' => '',
-        'equipment_sysnum' => '',
-        'equipment_mindue' => '',
-      ],
-    ],
-  ];
-}
+/** Intentionally empty **/

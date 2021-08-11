@@ -6,7 +6,7 @@ use Drupal\search_api\IndexInterface;
 /**
  * Implements hook_views_data_alter().
  */
-function aleph_connector_views_data_alter(array &$data) {
+function equipment_tracking_views_data_alter(array &$data) {
   /** @var \Drupal\search_api\IndexInterface $index */
   foreach (Index::loadMultiple() as $index) {
     $index_key = 'search_api_index_' . $index->id();

@@ -1,0 +1,5 @@
+equipment-tracking:
+  version: 1.x
+  css:
+    theme:
+      css/equipment-tracking.css: {}
