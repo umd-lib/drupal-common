@@ -71,7 +71,7 @@ class AlephController extends ControllerBase implements TrustedCallbackInterface
       // Log this
       return FALSE;
     }
-    return $equipment_data;
+    return empty($equipment_data[$bibnum]) ? FALSE : $equipment_data[$bibnum];
   }
 
   /**
