@@ -1,0 +1,14 @@
+# Add CSS or JS to any module with a libraries file.
+# See: https://www.drupal.org/docs/creating-custom-modules/adding-stylesheets-css-and-javascript-js-to-a-drupal-module
+#   for usage and attachment information.
+umd-examples:
+  version: 1.x
+  css:
+    layout:
+      css/umd-examples-layout.css: {}
+    component:
+      css/umd-examples-component.css: {}
+    theme:
+      css/umd-examples-theme.css: {}
+  js:
+    js/umd-examples.js: {}

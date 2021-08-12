@@ -1,0 +1,29 @@
+name: UMD Content Example
+description: A means of distributing demo content.
+# Drush will export the UUIDs under content/, which will then import when the module
+# is enabled. Note that this module must be enabled to run the drush command.
+# e.g.,
+# > drush dcem umd_content_example
+
+package: 'UMD Demo Content'
+dependencies:
+  - default_content:default_content
+  # Add another dependency to the custom module employing this content.
+type: module
+default_content:
+  node:
+  # An array of node UUIDs. E.g., 
+  # - fbf5bfc3-c436-488c-845c-2072cb988279
+  # - a649fbcf-2e87-4666-a11f-fdb3b0724c92
+  taxonomy_term:
+  # An array of term UUIDs.
+  file:
+  # An array of file UUIDs.
+  media:
+  # An array of media UUIDs.
+  menu_link_content:
+  # An array of menu link UUIDs.
+  block_content:
+  # An array of block content UUIDs.
+
+core_version_requirement: ^8.9 || ^9
