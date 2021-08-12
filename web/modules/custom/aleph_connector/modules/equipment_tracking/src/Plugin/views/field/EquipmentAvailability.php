@@ -60,8 +60,10 @@ class EquipmentAvailability extends FieldPluginBase {
   public function render(ResultRow $values) {
     $aleph = new AlephController();
     if (!$this->isValueEmpty($aleph->getQueryField(), TRUE)) {
-      if ($bibnum = $this->view->field[$aleph->getQueryField()]->original_value->__toString() && $bibnum_data = $aleph->getBibnumData($bibnum)) {
-        return $this->availabilityField($bibnum, $bibnum_data);
+      if ($bibnum = $this->view->field[$aleph->getQueryField()]->original_value->__toString()) {
+        if ($bibnum_data = $aleph->getBibnumData($bibnum)) {
+          return $this->availabilityField($bibnum, $bibnum_data);
+        }
       }
     }
     return FALSE; 
