@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 70ae0458-0f13-4b4b-825c-0ce5626efd28
+  bundle: library_locations
+  default_langcode: en
+  depends:
+    edef8a0e-c8ad-48d3-9ca2-2e755dcdc219: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: 'Service Desk'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      entity: edef8a0e-c8ad-48d3-9ca2-2e755dcdc219
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

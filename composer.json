@@ -27,6 +27,7 @@
         "drupal/core-recommended": "^8.9",
         "drupal/cshs": "^3.4",
         "drupal/ctools": "^3.7",
+        "drupal/default_content": "^2.0@alpha",
         "drupal/devel": "^2.1",
         "drupal/dropdown_language": "2.7",
         "drupal/easy_email": "^1.0@beta",
