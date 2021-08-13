@@ -1,0 +1,26 @@
+name: UMD Libraries Equipment
+description: Taxonomy configuration for Libraries Equipment including default content.
+# Drush will export the UUIDs under content/, which will then import when the module
+# is enabled. Note that this module must be enabled to run the drush command.
+# e.g.,
+# > drush dcem umd_content_example
+
+package: 'UMD Taxonomies'
+dependencies:
+  - default_content:default_content
+  # Add another dependency to the custom module employing this content.
+type: module
+default_content:
+  taxonomy_term:
+  # An array of term UUIDs.
+  - b0966681-86be-45d7-b032-37151394a68c
+  - 18b66d0d-7f28-4f9d-9ee6-99b0224019b7
+  - 2d1122c0-f87e-4829-9cc1-7035b78312a3
+  - fc7de484-caeb-4054-a880-8e95b5bbc555
+  - f93efca8-2f9f-4421-a847-8fd3f69750ef
+  - 3d4784fe-7f4c-4da2-bc76-42b63ad7c3f3
+  - 4ae16082-0ef6-452b-a02f-2d25bc1b056d
+  - 88169eb7-d835-42df-943e-0d4d3a44b039
+  - 317787a1-fbaa-4ead-8851-6aceee37cf9e
+
+core_version_requirement: ^8.9 || ^9

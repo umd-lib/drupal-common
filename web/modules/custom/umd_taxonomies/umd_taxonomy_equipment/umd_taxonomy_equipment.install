@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Equipment module install file.
+ */
+
+/**
+ * Install Equipment configuration.
+ */
+function umd_taxonomy_equipment_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_taxonomy_equipment');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function umd_taxonomy_equipment_uninstall() {
+}

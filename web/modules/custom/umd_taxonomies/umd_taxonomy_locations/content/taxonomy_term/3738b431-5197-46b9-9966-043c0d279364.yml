@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 3738b431-5197-46b9-9966-043c0d279364
+  bundle: library_locations
+  default_langcode: en
+  depends:
+    edef8a0e-c8ad-48d3-9ca2-2e755dcdc219: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: '3rd Floor'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      entity: edef8a0e-c8ad-48d3-9ca2-2e755dcdc219
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

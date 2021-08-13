@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Locations module install file.
+ */
+
+/**
+ * Install locations configuration.
+ */
+function umd_taxonomy_locations_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_taxonomy_locations');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function umd_taxonomy_locations_uninstall() {
+}

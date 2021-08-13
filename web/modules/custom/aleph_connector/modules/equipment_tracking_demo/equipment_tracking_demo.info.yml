@@ -12,19 +12,5 @@ default_content:
   - a649fbcf-2e87-4666-a11f-fdb3b0724c92
   - 6d1bdd7c-4c29-4b06-9dba-6daeb740c4f8
   - 2f210d66-639a-4540-8fce-fa65a8fcbe7b
-  taxonomy_term:
-  - b0966681-86be-45d7-b032-37151394a68c
-  - 18b66d0d-7f28-4f9d-9ee6-99b0224019b7
-  - 2d1122c0-f87e-4829-9cc1-7035b78312a3
-  - fc7de484-caeb-4054-a880-8e95b5bbc555
-  - f93efca8-2f9f-4421-a847-8fd3f69750ef
-  - 3d4784fe-7f4c-4da2-bc76-42b63ad7c3f3
-  - 4ae16082-0ef6-452b-a02f-2d25bc1b056d
-  - 88169eb7-d835-42df-943e-0d4d3a44b039
-  - 317787a1-fbaa-4ead-8851-6aceee37cf9e
-  - 317cd7de-bb42-4802-855a-951da004233e
-  - 51366842-6734-4089-8ee5-0079e8b1baf3
-  - edef8a0e-c8ad-48d3-9ca2-2e755dcdc219
-  - 70ae0458-0f13-4b4b-825c-0ce5626efd28
 
 core_version_requirement: ^8.9 || ^9

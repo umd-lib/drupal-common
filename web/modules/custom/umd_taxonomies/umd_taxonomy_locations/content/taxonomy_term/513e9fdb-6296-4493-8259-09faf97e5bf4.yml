@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 513e9fdb-6296-4493-8259-09faf97e5bf4
+  bundle: library_locations
+  default_langcode: en
+  depends:
+    317cd7de-bb42-4802-855a-951da004233e: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: '1st Floor'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      entity: 317cd7de-bb42-4802-855a-951da004233e
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

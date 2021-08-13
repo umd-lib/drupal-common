@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 09424823-1494-4ac3-8962-e7a70d32ba8f
+  bundle: library_locations
+  default_langcode: en
+  depends:
+    317cd7de-bb42-4802-855a-951da004233e: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: '5th Floor'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      entity: 317cd7de-bb42-4802-855a-951da004233e
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 7db7b2a3-710b-422b-ab88-c5c1b34140fb
+  bundle: library_locations
+  default_langcode: en
+  depends:
+    98959f1c-2d20-484d-b11c-8afc619280fa: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: '2nd Floor'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      entity: 98959f1c-2d20-484d-b11c-8afc619280fa
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

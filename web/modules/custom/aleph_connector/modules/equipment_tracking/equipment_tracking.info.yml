@@ -12,6 +12,8 @@ dependencies:
   - facets
   - facets_block
   - umd_solr_defaults
+  - umd_taxonomy_equipment
+  - umd_taxonomy_locations
 type: module
 
 core_version_requirement: ^8.9 || ^9
