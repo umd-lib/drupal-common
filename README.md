@@ -11,7 +11,7 @@ installed.
 
 Add the following to your /etc/hosts (customized if you wish):
 
-            127.0.0.1		drupal.docker.localhost
+            127.0.0.1		www.docker.localhost
             127.0.0.1		portainer.drupal.docker.localhost
             127.0.0.1		solr.drupal.docker.localhost
 
@@ -27,24 +27,14 @@ example will use "drupal", but that is arbitrary:
 
 To deploy locally, clone the main branch:
 
-            > git clone https://github.com/umd-lib/drupal-common.git common-demo
-            > cd common-demo
-            > git checkout main
-
-Assuming this site will run the UMD Libraries theme, you will need to clone this
-repo as well:
-
-            > cd web/themes
-            > mkdir custom	# If not already created
-            > cd custom
-            > git clone git@github.com:umd-lib/umd-libraries-theme.git umd_libraries
-            > cd umd_libraries
-            > git checkout develop
+            > git clone https://github.com/umd-lib/drupal-common.git common-www
+            > cd common-www
+            > git checkout feature/LIBWEB-5305 (temporary development branch)
 
 Install the site using Composer. This will download all dependencies and prep
 for local deployment.
 
-            # in common-demo/
+            # in common-www/
             > composer install
 
 Switch back to the base ("drupal") directory, and create empty directories for the
@@ -58,105 +48,51 @@ Clone the drupal-projects-env repository locally and copy the demo/env file
 into your web root (i.e., common-demo) as .env:
 
             > git clone git@github.com:umd-lib/drupal-projects-env.git
-            > cp drupal-projects-env/demo/env common-demo/.env
+            > cp drupal-projects-env/www/env common-www/.env
+            > cp drupal-projects-env/www/settings.php common-www/web/sites/default/settings.php
 
-Customize the common-demo/.env file for your environment. Specifically, look at
+Customize the common-www/.env file for your environment. Specifically, look at
 the values for:
 
-* PROJECT_NAME
 * DB_DATA_DIR - the fully-qualified path to the "postgres_data" directory
 * SOLR_DATA_DIR - the fully-qualified path to the "solr_data" directory
+
+Get a recent database dump from production, and copy to postgres-init:
+
+            > cp wwwnew.sql common-www/postgres-init/
+
+(See below for instructions for generating the sql dump).
 
 All other values can stay the same.
 
 To bring up the site, use docker-compose:
 
-            > cd common-demo
+            > cd common-www
             > docker-compose up -d
 
-After a minute, the site should be available at:
+Note that it is very likely you will need to flush cache before the site will
+properly appear. Wait a minute before performing this to ensure the stack is
+fully started.
 
-* http://drupal.docker.localhost:8000 (or wherever you deployed).
+            > docker exec -ti wwwnew_php drush cr
 
-For a new site, Drupal will launch the site setup wizard. Use whichever Postgres
-username/password/database combos you had set up in your .env file. Note that
-you will need to change host under  Advanced Operations in your database
-configuration. Change this to simply *postgres*.
+Unless clearing cache produces errors, the site should be available at:
 
-If all values are correct, Drupal will install and provide you will an site
-configuration form.
+* http://www.docker.localhost:18080
 
-## Basic Configuration
+If the site fails to come up, kill the stack with:
 
-### Install UMD Terp Stack
+            > docker-compose down
 
-Once the site is installed, open the *Extend* panel, which lists
-plugins--enabled and disabled.
+And restart without the -d in order to pump logging to standard out.
 
-Install the following:
+            > docker-compose up
 
-* UMD Schoolwide Header
-* UMD Terp (all)
-* Twig Field Value
-* Twig Tweak
-* Image Optimize - Binaries
-* CAS (no need to install CAS Attributes)
-* Metatag
-* Google Tag Manager
-* SAMLAuth Attrib (to be used later)
+If your work depends on having all images in place, you will want to generate a dump
+from production. These can be copied to common-www/web/sites/default/files/
+Instructions below.
 
-Some are necessary for UMD Terp to behave correctly. Others are just nice to
-have or intended for future-proofing.
-
-(Note that in local, this installation could take a while. To prevent PHP
-timeouts, consider enabling only five or so at a time as many also install
-dependencies.)
-
-UMD Terp also requires an *optimized* Image Style. For this, click
-*Configuration* and first ensure you have an *Image Optimize* pipeline for Local
-Binaries. Then, under *Image styles*, create a style called *optimized* using
-the *Local Binaries* pipeline.
-
-We can now enable the UMD Terp theme. Do this under *Appearance*. Note that it
-will not be used as the administration theme. Visit the site homepage and if all
-comes up without errors, you can now install the UMD Libraries theme.
-
-### Configure UMD Libraries theme
-
-If you haven't yet, install the UMD Libraries theme under *Appearance* as
-default. Again, this should not be used as the administration theme (which
-should be kept as Seven unless another admin theme is intentionally installed.)
-
-Once installed, click *Settings* for UMD Libraries.
-
-*Logo Image* and *Favicon* can be kept at defaults.
-
-*UMD Terp Header* should be set to *Light header style* (as dark is not
-currently supported).
-
-Under *UMD Terp Social Media Accounts*, click *Hide Social Icons*.
-
-*UMD Libraries Header Settings* has options if this is a digital branded site,
-but otherwise, all other options can be left empty/unchecked for now.
-
-#### Menu Configuration
-
-Under *Structure*, select *Menus* and create a menu called *Global*.
-
-At the very least, make sure this menu has the following entries:
-
-* Privacy Policy : https://www.lib.umd.edu/about/privacy
-* Web Accessibility : https://www.umd.edu/web-accessibility
-
-Note that the *Main Navigation* menu manages the top menu. Heirarchical menu
-options are supported and will appear as a drop-down.
-
-#### Content Types
-
-Under *Structure*, select *Content Types* and delete the *Article* and *Basic
-Page* content types. We will be using only the UMD Terp content types. Depending
-on the site requirements, we may be able to also remove the UMD Terp Person
-content type.
+Be sure to flush cache after the file copy is complete.
 
 ### Developer Configuration
 
@@ -173,68 +109,27 @@ Under *Extend*, you can enable the *Devel* module, which, among other features,
 provides a *Clear Cache* link on the toolbar.  You're in Drupal now and will be
 using *Clear Cache* with some frequency.
 
-## Local Install (Existing Site)
+## Additional Help 
 
-As an example, we're using WHPool. The process should be the same for PACT and
-1856Project. Note that Staff Blog might require some special handling (TODO).
+### Database Dump
 
-Clone the main branch:
+To dump SQL data from the Kubernetes cluster:
 
-            > git clone https://github.com/umd-lib/drupal-common.git common-whpool
-            > cd common-whpool
-            > git checkout main
+            > cd common-www/
+            > kubectl exec drupal-wwwnew-db-0 -- pg_dump -c -O -U drupaldb -d drupaldb > postgres-init/wwwnew.sql
 
-Because WHPool runs the UMD Libraries theme, you will need to clone this repo:
+Dumping Local Database (generally not needed)
 
-            > cd common-whpool/web/themes
-            > mkdir custom	# If not already created
-            > cd custom
-            > git clone git@github.com:umd-lib/umd-libraries-theme.git umd_libraries
-            > cd umd_libraries
-            > git checkout develop
+           > docker exec wwwnew_postgres pg_dump -U drupaluser -O drupaldb > /tmp/dump.sql
 
-Install the site using Composer. This will download all dependencies and prep
-for local deployment.
+### Files Copy
 
-            # in common-whpool/
-            > composer install
+To copy files you might need from the server into your local:
 
-Clone the drupal-projects-env repository locally and copy the whpool/env file to
-your web root as .env:
-
-            > cp drupal-projects/whpool/env common-whpool/.env
-
-Customize this file for your environment. Specifically, look at the values for:
-
-* DB_DATA_DIR
-* SOLR_DATA_DIR
-
-All other values can stay the same.
-
-Copy the settings.php from drupal-projects-env to the proper location:
-
-            > cp drupal-projects/whpool/settings.php common-whpool/web/sites/default/
-
-To get WHPool data, dump the Kubernetes database:
-
-            > cd common-whpool/
-            > kubectl exec drupal-whpool-db-0 -- pg_dump -c -O -U drupaldb -d drupaldb > postgres-init/whpool.sql
-
-To bring up the site, use docker-compose:
-
-            > cd common-whpool
-            > docker-compose up -d
-
-After a minute, the site should be available at:
-
-* http://drupal.docker.localhost:8000 (or wherever you deployed).
-
-You can also copy any files you might need from the server into your local:
-
-            > kubectl exec --stdin --tty drupal-whpool-0 -- /bin/bash
+            > kubectl exec --stdin --tty drupal-wwwnew-0 -- /bin/bash
             > tar -czvf files.tgz web/sites/default/files/
             > exit
-            > kubectl cp drupal-whpool-0:files.tgz common-whpool/
+            > kubectl cp drupal-wwwnew-0:files.tgz common-www/
 
 And then extract the archive into your local's web/sites/default/files/.
 
@@ -243,18 +138,12 @@ Flush cache after this so that Drupal can regenerate any thumbnails, etc.
 One thing to note is that a production database is likely optimized for performance
 and may need to have CSS/JS aggregation turned off and modules such as devel enabled.
 
-## Solr Integration
+### Solr Integration
 
 To create a local Solr core with through docker-compose, do the following:
 
-            > docker exec -ti [container]_solr sh
+            > docker exec -ti wwwnew_solr sh
             > /opt/solr/bin/solr create_core -c drupal -d /opt/solr/server/solr/configsets/search_api_solr_8.x-3.9/conf/
-
-## Database
-
-# Dumping Local Database
-
-           > docker exec [container]_postgres pg_dump -U drupaluser -O drupaldb > /tmp/dump.sql
 
 ## Tools
 

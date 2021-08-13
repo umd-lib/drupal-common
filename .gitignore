@@ -53,3 +53,6 @@ sync/
 .env
 web/themes/custom/umd_libraries
 certs/
+
+local-db/
+local-solr/
