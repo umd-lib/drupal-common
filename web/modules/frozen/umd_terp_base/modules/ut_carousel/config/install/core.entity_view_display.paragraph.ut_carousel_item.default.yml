@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ut_carousel_item.field_ut_carousel_item_image
+    - paragraphs.paragraphs_type.ut_carousel_item
+_core:
+  default_config_hash: NSKcSK9BnXvZxryGj_J1q5R_yCm8NNGmZZPF7WRyjZE
+id: paragraph.ut_carousel_item.default
+targetEntityType: paragraph
+bundle: ut_carousel_item
+mode: default
+content:
+  field_ut_carousel_item_image:
+    type: entity_reference_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true
