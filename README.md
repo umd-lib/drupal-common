@@ -15,7 +15,7 @@ Add the following to your /etc/hosts (customized if you wish):
             127.0.0.1		portainer.drupal.docker.localhost
             127.0.0.1		solr.drupal.docker.localhost
 
-## Local Deploy (new site)
+## Local Deploy
 
 ### Install
 
