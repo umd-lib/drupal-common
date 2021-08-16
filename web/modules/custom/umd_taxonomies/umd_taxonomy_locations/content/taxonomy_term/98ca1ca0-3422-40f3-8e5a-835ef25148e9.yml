@@ -15,7 +15,7 @@ default:
       value: '2nd Floor'
   weight:
     -
-      value: 0
+      value: 2
   parent:
     -
       entity: edef8a0e-c8ad-48d3-9ca2-2e755dcdc219

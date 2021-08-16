@@ -13,7 +13,7 @@ default:
       value: Priddy
   weight:
     -
-      value: 0
+      value: 19
   parent:
     -
       target_id: 0
@@ -25,6 +25,3 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_long_name:
-    -
-      value: 'Priddy Library (Universities at Shady Grove)'

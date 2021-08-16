@@ -13,7 +13,7 @@ default:
       value: Severn
   weight:
     -
-      value: 0
+      value: 9
   parent:
     -
       target_id: 0
@@ -25,6 +25,3 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_long_name:
-    -
-      value: 'Severn Library'

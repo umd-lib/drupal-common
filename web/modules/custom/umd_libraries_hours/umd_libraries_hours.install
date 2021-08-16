@@ -6,7 +6,7 @@
  */
 
 /**
- * Install Solr configuration.
+ * Install hours configuration.
  */
 function umd_libraries_hours_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_libraries_hours');

@@ -25,6 +25,3 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_long_name:
-    -
-      value: 'Architecture Library'

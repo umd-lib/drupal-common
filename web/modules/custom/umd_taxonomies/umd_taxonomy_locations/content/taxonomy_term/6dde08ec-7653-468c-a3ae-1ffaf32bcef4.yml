@@ -15,7 +15,7 @@ default:
       value: '4th Floor'
   weight:
     -
-      value: 0
+      value: 4
   parent:
     -
       entity: 317cd7de-bb42-4802-855a-951da004233e
