@@ -145,6 +145,27 @@ To create a local Solr core with through docker-compose, do the following:
             > docker exec -ti wwwnew_solr sh
             > /opt/solr/bin/solr create_core -c drupal -d /opt/solr/server/solr/configsets/search_api_solr_8.x-3.9/conf/
 
+### SAML Integration
+
+SAML is available for local development but not immediately available if working
+with a k8s server database dump. 
+
+Place the key and cert in the drupal-common root under certs/. So for example:
+
+* common-www/certs/sp.key
+* common-www/certs/sp.cert
+
+Log into Drupal using the legacy login and access /admin/config/people/saml
+
+Under *Service Provider*, set the following values:
+
+* Entity ID: wwwnew-test.lib.umd.edu
+* Certificate folder: /var/www/html
+
+All other values can stay the same.
+
+Save and test logging in at /user.
+
 ## Tools
 
 ### PHP CodeSniffer
