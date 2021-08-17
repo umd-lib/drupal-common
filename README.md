@@ -153,7 +153,7 @@ with a k8s server database dump.
 Place the key and cert in the drupal-common root under certs/. So for example:
 
 * common-www/certs/sp.key
-* common-www/certs/sp.cert
+* common-www/certs/sp.crt
 
 Log into Drupal using the legacy login and access /admin/config/people/saml
 
