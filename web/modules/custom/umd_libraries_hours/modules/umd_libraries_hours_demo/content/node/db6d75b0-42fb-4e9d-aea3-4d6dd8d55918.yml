@@ -1,0 +1,2519 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: db6d75b0-42fb-4e9d-aea3-4d6dd8d55918
+  bundle: library_hours
+  default_langcode: en
+  depends:
+    f38c7b95-f831-4100-859f-eddf29e92f9b: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Special Collections Hours-Fall 2021'
+  created:
+    -
+      value: 1629216604
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /system/hours/40c534f117a913314ac02672c2aa067d
+      langcode: en
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_branch:
+    -
+      entity: f38c7b95-f831-4100-859f-eddf29e92f9b
+  field_hours:
+    -
+      value: 1630324800
+      end_value: 1630359000
+      duration: 570
+      rrule: 2
+      rrule_index: 1
+      timezone: ''
+    -
+      value: 1630411200
+      end_value: 1630445400
+      duration: 570
+      rrule: 2
+      rrule_index: 2
+      timezone: ''
+    -
+      value: 1630497600
+      end_value: 1630531800
+      duration: 570
+      rrule: 2
+      rrule_index: 3
+      timezone: ''
+    -
+      value: 1630584000
+      end_value: 1630618200
+      duration: 570
+      rrule: 2
+      rrule_index: 4
+      timezone: ''
+    -
+      value: 1630670400
+      end_value: 1630704600
+      duration: 570
+      rrule: 2
+      rrule_index: 5
+      timezone: ''
+    -
+      value: 1630929600
+      end_value: 1630963800
+      duration: 570
+      rrule: 2
+      rrule_index: 6
+      timezone: ''
+    -
+      value: 1631016000
+      end_value: 1631050200
+      duration: 570
+      rrule: 2
+      rrule_index: 7
+      timezone: ''
+    -
+      value: 1631102400
+      end_value: 1631136600
+      duration: 570
+      rrule: 2
+      rrule_index: 8
+      timezone: ''
+    -
+      value: 1631188800
+      end_value: 1631223000
+      duration: 570
+      rrule: 2
+      rrule_index: 9
+      timezone: ''
+    -
+      value: 1631275200
+      end_value: 1631309400
+      duration: 570
+      rrule: 2
+      rrule_index: 10
+      timezone: ''
+    -
+      value: 1631534400
+      end_value: 1631568600
+      duration: 570
+      rrule: 2
+      rrule_index: 11
+      timezone: ''
+    -
+      value: 1631620800
+      end_value: 1631655000
+      duration: 570
+      rrule: 2
+      rrule_index: 12
+      timezone: ''
+    -
+      value: 1631707200
+      end_value: 1631741400
+      duration: 570
+      rrule: 2
+      rrule_index: 13
+      timezone: ''
+    -
+      value: 1631793600
+      end_value: 1631827800
+      duration: 570
+      rrule: 2
+      rrule_index: 14
+      timezone: ''
+    -
+      value: 1631880000
+      end_value: 1631914200
+      duration: 570
+      rrule: 2
+      rrule_index: 15
+      timezone: ''
+    -
+      value: 1632139200
+      end_value: 1632173400
+      duration: 570
+      rrule: 2
+      rrule_index: 16
+      timezone: ''
+    -
+      value: 1632225600
+      end_value: 1632259800
+      duration: 570
+      rrule: 2
+      rrule_index: 17
+      timezone: ''
+    -
+      value: 1632312000
+      end_value: 1632346200
+      duration: 570
+      rrule: 2
+      rrule_index: 18
+      timezone: ''
+    -
+      value: 1632398400
+      end_value: 1632432600
+      duration: 570
+      rrule: 2
+      rrule_index: 19
+      timezone: ''
+    -
+      value: 1632484800
+      end_value: 1632519000
+      duration: 570
+      rrule: 2
+      rrule_index: 20
+      timezone: ''
+    -
+      value: 1632744000
+      end_value: 1632778200
+      duration: 570
+      rrule: 2
+      rrule_index: 21
+      timezone: ''
+    -
+      value: 1632830400
+      end_value: 1632864600
+      duration: 570
+      rrule: 2
+      rrule_index: 22
+      timezone: ''
+    -
+      value: 1632916800
+      end_value: 1632951000
+      duration: 570
+      rrule: 2
+      rrule_index: 23
+      timezone: ''
+    -
+      value: 1633003200
+      end_value: 1633037400
+      duration: 570
+      rrule: 2
+      rrule_index: 24
+      timezone: ''
+    -
+      value: 1633089600
+      end_value: 1633123800
+      duration: 570
+      rrule: 2
+      rrule_index: 25
+      timezone: ''
+    -
+      value: 1633348800
+      end_value: 1633383000
+      duration: 570
+      rrule: 2
+      rrule_index: 26
+      timezone: ''
+    -
+      value: 1633435200
+      end_value: 1633469400
+      duration: 570
+      rrule: 2
+      rrule_index: 27
+      timezone: ''
+    -
+      value: 1633521600
+      end_value: 1633555800
+      duration: 570
+      rrule: 2
+      rrule_index: 28
+      timezone: ''
+    -
+      value: 1633608000
+      end_value: 1633642200
+      duration: 570
+      rrule: 2
+      rrule_index: 29
+      timezone: ''
+    -
+      value: 1633694400
+      end_value: 1633728600
+      duration: 570
+      rrule: 2
+      rrule_index: 30
+      timezone: ''
+    -
+      value: 1633953600
+      end_value: 1633987800
+      duration: 570
+      rrule: 2
+      rrule_index: 31
+      timezone: ''
+    -
+      value: 1634040000
+      end_value: 1634074200
+      duration: 570
+      rrule: 2
+      rrule_index: 32
+      timezone: ''
+    -
+      value: 1634126400
+      end_value: 1634160600
+      duration: 570
+      rrule: 2
+      rrule_index: 33
+      timezone: ''
+    -
+      value: 1634212800
+      end_value: 1634247000
+      duration: 570
+      rrule: 2
+      rrule_index: 34
+      timezone: ''
+    -
+      value: 1634299200
+      end_value: 1634333400
+      duration: 570
+      rrule: 2
+      rrule_index: 35
+      timezone: ''
+    -
+      value: 1634558400
+      end_value: 1634592600
+      duration: 570
+      rrule: 2
+      rrule_index: 36
+      timezone: ''
+    -
+      value: 1634644800
+      end_value: 1634679000
+      duration: 570
+      rrule: 2
+      rrule_index: 37
+      timezone: ''
+    -
+      value: 1634731200
+      end_value: 1634765400
+      duration: 570
+      rrule: 2
+      rrule_index: 38
+      timezone: ''
+    -
+      value: 1634817600
+      end_value: 1634851800
+      duration: 570
+      rrule: 2
+      rrule_index: 39
+      timezone: ''
+    -
+      value: 1634904000
+      end_value: 1634938200
+      duration: 570
+      rrule: 2
+      rrule_index: 40
+      timezone: ''
+    -
+      value: 1635163200
+      end_value: 1635197400
+      duration: 570
+      rrule: 2
+      rrule_index: 41
+      timezone: ''
+    -
+      value: 1635249600
+      end_value: 1635283800
+      duration: 570
+      rrule: 2
+      rrule_index: 42
+      timezone: ''
+    -
+      value: 1635336000
+      end_value: 1635370200
+      duration: 570
+      rrule: 2
+      rrule_index: 43
+      timezone: ''
+    -
+      value: 1635422400
+      end_value: 1635456600
+      duration: 570
+      rrule: 2
+      rrule_index: 44
+      timezone: ''
+    -
+      value: 1635508800
+      end_value: 1635543000
+      duration: 570
+      rrule: 2
+      rrule_index: 45
+      timezone: ''
+    -
+      value: 1635768000
+      end_value: 1635802200
+      duration: 570
+      rrule: 2
+      rrule_index: 46
+      timezone: ''
+    -
+      value: 1635854400
+      end_value: 1635888600
+      duration: 570
+      rrule: 2
+      rrule_index: 47
+      timezone: ''
+    -
+      value: 1635940800
+      end_value: 1635975000
+      duration: 570
+      rrule: 2
+      rrule_index: 48
+      timezone: ''
+    -
+      value: 1636027200
+      end_value: 1636061400
+      duration: 570
+      rrule: 2
+      rrule_index: 49
+      timezone: ''
+    -
+      value: 1636113600
+      end_value: 1636147800
+      duration: 570
+      rrule: 2
+      rrule_index: 50
+      timezone: ''
+    -
+      value: 1636376400
+      end_value: 1636410600
+      duration: 570
+      rrule: 2
+      rrule_index: 51
+      timezone: ''
+    -
+      value: 1636462800
+      end_value: 1636497000
+      duration: 570
+      rrule: 2
+      rrule_index: 52
+      timezone: ''
+    -
+      value: 1636549200
+      end_value: 1636583400
+      duration: 570
+      rrule: 2
+      rrule_index: 53
+      timezone: ''
+    -
+      value: 1636635600
+      end_value: 1636669800
+      duration: 570
+      rrule: 2
+      rrule_index: 54
+      timezone: ''
+    -
+      value: 1636722000
+      end_value: 1636756200
+      duration: 570
+      rrule: 2
+      rrule_index: 55
+      timezone: ''
+    -
+      value: 1636981200
+      end_value: 1637015400
+      duration: 570
+      rrule: 2
+      rrule_index: 56
+      timezone: ''
+    -
+      value: 1637067600
+      end_value: 1637101800
+      duration: 570
+      rrule: 2
+      rrule_index: 57
+      timezone: ''
+    -
+      value: 1637154000
+      end_value: 1637188200
+      duration: 570
+      rrule: 2
+      rrule_index: 58
+      timezone: ''
+    -
+      value: 1637240400
+      end_value: 1637274600
+      duration: 570
+      rrule: 2
+      rrule_index: 59
+      timezone: ''
+    -
+      value: 1637326800
+      end_value: 1637361000
+      duration: 570
+      rrule: 2
+      rrule_index: 60
+      timezone: ''
+    -
+      value: 1637586000
+      end_value: 1637620200
+      duration: 570
+      rrule: 2
+      rrule_index: 61
+      timezone: ''
+    -
+      value: 1637672400
+      end_value: 1637706600
+      duration: 570
+      rrule: 2
+      rrule_index: 62
+      timezone: ''
+    -
+      value: 1637758800
+      end_value: 1637793000
+      duration: 570
+      rrule: 2
+      rrule_index: 63
+      timezone: ''
+    -
+      value: 1637845200
+      end_value: 1637879400
+      duration: 570
+      rrule: 2
+      rrule_index: 64
+      timezone: ''
+    -
+      value: 1637931600
+      end_value: 1637965800
+      duration: 570
+      rrule: 2
+      rrule_index: 65
+      timezone: ''
+    -
+      value: 1638190800
+      end_value: 1638225000
+      duration: 570
+      rrule: 2
+      rrule_index: 66
+      timezone: ''
+    -
+      value: 1638277200
+      end_value: 1638311400
+      duration: 570
+      rrule: 2
+      rrule_index: 67
+      timezone: ''
+    -
+      value: 1638363600
+      end_value: 1638397800
+      duration: 570
+      rrule: 2
+      rrule_index: 68
+      timezone: ''
+    -
+      value: 1638450000
+      end_value: 1638484200
+      duration: 570
+      rrule: 2
+      rrule_index: 69
+      timezone: ''
+    -
+      value: 1638536400
+      end_value: 1638570600
+      duration: 570
+      rrule: 2
+      rrule_index: 70
+      timezone: ''
+    -
+      value: 1638795600
+      end_value: 1638829800
+      duration: 570
+      rrule: 2
+      rrule_index: 71
+      timezone: ''
+    -
+      value: 1638882000
+      end_value: 1638916200
+      duration: 570
+      rrule: 2
+      rrule_index: 72
+      timezone: ''
+    -
+      value: 1638968400
+      end_value: 1639002600
+      duration: 570
+      rrule: 2
+      rrule_index: 73
+      timezone: ''
+    -
+      value: 1639054800
+      end_value: 1639089000
+      duration: 570
+      rrule: 2
+      rrule_index: 74
+      timezone: ''
+    -
+      value: 1639141200
+      end_value: 1639175400
+      duration: 570
+      rrule: 2
+      rrule_index: 75
+      timezone: ''
+    -
+      value: 1639400400
+      end_value: 1639434600
+      duration: 570
+      rrule: 2
+      rrule_index: 76
+      timezone: ''
+    -
+      value: 1639486800
+      end_value: 1639521000
+      duration: 570
+      rrule: 2
+      rrule_index: 77
+      timezone: ''
+    -
+      value: 1639573200
+      end_value: 1639607400
+      duration: 570
+      rrule: 2
+      rrule_index: 78
+      timezone: ''
+    -
+      value: 1639659600
+      end_value: 1639693800
+      duration: 570
+      rrule: 2
+      rrule_index: 79
+      timezone: ''
+    -
+      value: 1639746000
+      end_value: 1639780200
+      duration: 570
+      rrule: 2
+      rrule_index: 80
+      timezone: ''
+    -
+      value: 1640005200
+      end_value: 1640039400
+      duration: 570
+      rrule: 2
+      rrule_index: 81
+      timezone: ''
+    -
+      value: 1640091600
+      end_value: 1640125800
+      duration: 570
+      rrule: 2
+      rrule_index: 82
+      timezone: ''
+    -
+      value: 1640178000
+      end_value: 1640212200
+      duration: 570
+      rrule: 2
+      rrule_index: 83
+      timezone: ''
+    -
+      value: 1640264400
+      end_value: 1640298600
+      duration: 570
+      rrule: 2
+      rrule_index: 84
+      timezone: ''
+    -
+      value: 1640350800
+      end_value: 1640385000
+      duration: 570
+      rrule: 2
+      rrule_index: 85
+      timezone: ''
+    -
+      value: 1640610000
+      end_value: 1640644200
+      duration: 570
+      rrule: 2
+      rrule_index: 86
+      timezone: ''
+    -
+      value: 1640696400
+      end_value: 1640730600
+      duration: 570
+      rrule: 2
+      rrule_index: 87
+      timezone: ''
+    -
+      value: 1640782800
+      end_value: 1640817000
+      duration: 570
+      rrule: 2
+      rrule_index: 88
+      timezone: ''
+    -
+      value: 1640869200
+      end_value: 1640903400
+      duration: 570
+      rrule: 2
+      rrule_index: 89
+      timezone: ''
+    -
+      value: 1640955600
+      end_value: 1640989800
+      duration: 570
+      rrule: 2
+      rrule_index: 90
+      timezone: ''
+    -
+      value: 1641214800
+      end_value: 1641249000
+      duration: 570
+      rrule: 2
+      rrule_index: 91
+      timezone: ''
+    -
+      value: 1641301200
+      end_value: 1641335400
+      duration: 570
+      rrule: 2
+      rrule_index: 92
+      timezone: ''
+    -
+      value: 1641387600
+      end_value: 1641421800
+      duration: 570
+      rrule: 2
+      rrule_index: 93
+      timezone: ''
+    -
+      value: 1641474000
+      end_value: 1641508200
+      duration: 570
+      rrule: 2
+      rrule_index: 94
+      timezone: ''
+    -
+      value: 1641560400
+      end_value: 1641594600
+      duration: 570
+      rrule: 2
+      rrule_index: 95
+      timezone: ''
+    -
+      value: 1641819600
+      end_value: 1641853800
+      duration: 570
+      rrule: 2
+      rrule_index: 96
+      timezone: ''
+    -
+      value: 1641906000
+      end_value: 1641940200
+      duration: 570
+      rrule: 2
+      rrule_index: 97
+      timezone: ''
+    -
+      value: 1641992400
+      end_value: 1642026600
+      duration: 570
+      rrule: 2
+      rrule_index: 98
+      timezone: ''
+    -
+      value: 1642078800
+      end_value: 1642113000
+      duration: 570
+      rrule: 2
+      rrule_index: 99
+      timezone: ''
+    -
+      value: 1642165200
+      end_value: 1642199400
+      duration: 570
+      rrule: 2
+      rrule_index: 100
+      timezone: ''
+    -
+      value: 1642424400
+      end_value: 1642458600
+      duration: 570
+      rrule: 2
+      rrule_index: 101
+      timezone: ''
+    -
+      value: 1642510800
+      end_value: 1642545000
+      duration: 570
+      rrule: 2
+      rrule_index: 102
+      timezone: ''
+    -
+      value: 1642597200
+      end_value: 1642631400
+      duration: 570
+      rrule: 2
+      rrule_index: 103
+      timezone: ''
+    -
+      value: 1642683600
+      end_value: 1642717800
+      duration: 570
+      rrule: 2
+      rrule_index: 104
+      timezone: ''
+    -
+      value: 1642770000
+      end_value: 1642804200
+      duration: 570
+      rrule: 2
+      rrule_index: 105
+      timezone: ''
+    -
+      value: 1643029200
+      end_value: 1643063400
+      duration: 570
+      rrule: 2
+      rrule_index: 106
+      timezone: ''
+    -
+      value: 1643115600
+      end_value: 1643149800
+      duration: 570
+      rrule: 2
+      rrule_index: 107
+      timezone: ''
+    -
+      value: 1643202000
+      end_value: 1643236200
+      duration: 570
+      rrule: 2
+      rrule_index: 108
+      timezone: ''
+    -
+      value: 1643288400
+      end_value: 1643322600
+      duration: 570
+      rrule: 2
+      rrule_index: 109
+      timezone: ''
+    -
+      value: 1643374800
+      end_value: 1643409000
+      duration: 570
+      rrule: 2
+      rrule_index: 110
+      timezone: ''
+    -
+      value: 1643634000
+      end_value: 1643668200
+      duration: 570
+      rrule: 2
+      rrule_index: 111
+      timezone: ''
+    -
+      value: 1643720400
+      end_value: 1643754600
+      duration: 570
+      rrule: 2
+      rrule_index: 112
+      timezone: ''
+    -
+      value: 1643806800
+      end_value: 1643841000
+      duration: 570
+      rrule: 2
+      rrule_index: 113
+      timezone: ''
+    -
+      value: 1643893200
+      end_value: 1643927400
+      duration: 570
+      rrule: 2
+      rrule_index: 114
+      timezone: ''
+    -
+      value: 1643979600
+      end_value: 1644013800
+      duration: 570
+      rrule: 2
+      rrule_index: 115
+      timezone: ''
+    -
+      value: 1644238800
+      end_value: 1644273000
+      duration: 570
+      rrule: 2
+      rrule_index: 116
+      timezone: ''
+    -
+      value: 1644325200
+      end_value: 1644359400
+      duration: 570
+      rrule: 2
+      rrule_index: 117
+      timezone: ''
+    -
+      value: 1644411600
+      end_value: 1644445800
+      duration: 570
+      rrule: 2
+      rrule_index: 118
+      timezone: ''
+    -
+      value: 1644498000
+      end_value: 1644532200
+      duration: 570
+      rrule: 2
+      rrule_index: 119
+      timezone: ''
+    -
+      value: 1644584400
+      end_value: 1644618600
+      duration: 570
+      rrule: 2
+      rrule_index: 120
+      timezone: ''
+    -
+      value: 1644843600
+      end_value: 1644877800
+      duration: 570
+      rrule: 2
+      rrule_index: 121
+      timezone: ''
+    -
+      value: 1644930000
+      end_value: 1644964200
+      duration: 570
+      rrule: 2
+      rrule_index: 122
+      timezone: ''
+    -
+      value: 1645016400
+      end_value: 1645050600
+      duration: 570
+      rrule: 2
+      rrule_index: 123
+      timezone: ''
+    -
+      value: 1645102800
+      end_value: 1645137000
+      duration: 570
+      rrule: 2
+      rrule_index: 124
+      timezone: ''
+    -
+      value: 1645189200
+      end_value: 1645223400
+      duration: 570
+      rrule: 2
+      rrule_index: 125
+      timezone: ''
+    -
+      value: 1645448400
+      end_value: 1645482600
+      duration: 570
+      rrule: 2
+      rrule_index: 126
+      timezone: ''
+    -
+      value: 1645534800
+      end_value: 1645569000
+      duration: 570
+      rrule: 2
+      rrule_index: 127
+      timezone: ''
+    -
+      value: 1645621200
+      end_value: 1645655400
+      duration: 570
+      rrule: 2
+      rrule_index: 128
+      timezone: ''
+    -
+      value: 1645707600
+      end_value: 1645741800
+      duration: 570
+      rrule: 2
+      rrule_index: 129
+      timezone: ''
+    -
+      value: 1645794000
+      end_value: 1645828200
+      duration: 570
+      rrule: 2
+      rrule_index: 130
+      timezone: ''
+    -
+      value: 1646053200
+      end_value: 1646087400
+      duration: 570
+      rrule: 2
+      rrule_index: 131
+      timezone: ''
+    -
+      value: 1646139600
+      end_value: 1646173800
+      duration: 570
+      rrule: 2
+      rrule_index: 132
+      timezone: ''
+    -
+      value: 1646226000
+      end_value: 1646260200
+      duration: 570
+      rrule: 2
+      rrule_index: 133
+      timezone: ''
+    -
+      value: 1646312400
+      end_value: 1646346600
+      duration: 570
+      rrule: 2
+      rrule_index: 134
+      timezone: ''
+    -
+      value: 1646398800
+      end_value: 1646433000
+      duration: 570
+      rrule: 2
+      rrule_index: 135
+      timezone: ''
+    -
+      value: 1646658000
+      end_value: 1646692200
+      duration: 570
+      rrule: 2
+      rrule_index: 136
+      timezone: ''
+    -
+      value: 1646744400
+      end_value: 1646778600
+      duration: 570
+      rrule: 2
+      rrule_index: 137
+      timezone: ''
+    -
+      value: 1646830800
+      end_value: 1646865000
+      duration: 570
+      rrule: 2
+      rrule_index: 138
+      timezone: ''
+    -
+      value: 1646917200
+      end_value: 1646951400
+      duration: 570
+      rrule: 2
+      rrule_index: 139
+      timezone: ''
+    -
+      value: 1647003600
+      end_value: 1647037800
+      duration: 570
+      rrule: 2
+      rrule_index: 140
+      timezone: ''
+    -
+      value: 1647259200
+      end_value: 1647293400
+      duration: 570
+      rrule: 2
+      rrule_index: 141
+      timezone: ''
+    -
+      value: 1647345600
+      end_value: 1647379800
+      duration: 570
+      rrule: 2
+      rrule_index: 142
+      timezone: ''
+    -
+      value: 1647432000
+      end_value: 1647466200
+      duration: 570
+      rrule: 2
+      rrule_index: 143
+      timezone: ''
+    -
+      value: 1647518400
+      end_value: 1647552600
+      duration: 570
+      rrule: 2
+      rrule_index: 144
+      timezone: ''
+    -
+      value: 1647604800
+      end_value: 1647639000
+      duration: 570
+      rrule: 2
+      rrule_index: 145
+      timezone: ''
+    -
+      value: 1647864000
+      end_value: 1647898200
+      duration: 570
+      rrule: 2
+      rrule_index: 146
+      timezone: ''
+    -
+      value: 1647950400
+      end_value: 1647984600
+      duration: 570
+      rrule: 2
+      rrule_index: 147
+      timezone: ''
+    -
+      value: 1648036800
+      end_value: 1648071000
+      duration: 570
+      rrule: 2
+      rrule_index: 148
+      timezone: ''
+    -
+      value: 1648123200
+      end_value: 1648157400
+      duration: 570
+      rrule: 2
+      rrule_index: 149
+      timezone: ''
+    -
+      value: 1648209600
+      end_value: 1648243800
+      duration: 570
+      rrule: 2
+      rrule_index: 150
+      timezone: ''
+    -
+      value: 1648468800
+      end_value: 1648503000
+      duration: 570
+      rrule: 2
+      rrule_index: 151
+      timezone: ''
+    -
+      value: 1648555200
+      end_value: 1648589400
+      duration: 570
+      rrule: 2
+      rrule_index: 152
+      timezone: ''
+    -
+      value: 1648641600
+      end_value: 1648675800
+      duration: 570
+      rrule: 2
+      rrule_index: 153
+      timezone: ''
+    -
+      value: 1648728000
+      end_value: 1648762200
+      duration: 570
+      rrule: 2
+      rrule_index: 154
+      timezone: ''
+    -
+      value: 1648814400
+      end_value: 1648848600
+      duration: 570
+      rrule: 2
+      rrule_index: 155
+      timezone: ''
+    -
+      value: 1649073600
+      end_value: 1649107800
+      duration: 570
+      rrule: 2
+      rrule_index: 156
+      timezone: ''
+    -
+      value: 1649160000
+      end_value: 1649194200
+      duration: 570
+      rrule: 2
+      rrule_index: 157
+      timezone: ''
+    -
+      value: 1649246400
+      end_value: 1649280600
+      duration: 570
+      rrule: 2
+      rrule_index: 158
+      timezone: ''
+    -
+      value: 1649332800
+      end_value: 1649367000
+      duration: 570
+      rrule: 2
+      rrule_index: 159
+      timezone: ''
+    -
+      value: 1649419200
+      end_value: 1649453400
+      duration: 570
+      rrule: 2
+      rrule_index: 160
+      timezone: ''
+    -
+      value: 1649678400
+      end_value: 1649712600
+      duration: 570
+      rrule: 2
+      rrule_index: 161
+      timezone: ''
+    -
+      value: 1649764800
+      end_value: 1649799000
+      duration: 570
+      rrule: 2
+      rrule_index: 162
+      timezone: ''
+    -
+      value: 1649851200
+      end_value: 1649885400
+      duration: 570
+      rrule: 2
+      rrule_index: 163
+      timezone: ''
+    -
+      value: 1649937600
+      end_value: 1649971800
+      duration: 570
+      rrule: 2
+      rrule_index: 164
+      timezone: ''
+    -
+      value: 1650024000
+      end_value: 1650058200
+      duration: 570
+      rrule: 2
+      rrule_index: 165
+      timezone: ''
+    -
+      value: 1650283200
+      end_value: 1650317400
+      duration: 570
+      rrule: 2
+      rrule_index: 166
+      timezone: ''
+    -
+      value: 1650369600
+      end_value: 1650403800
+      duration: 570
+      rrule: 2
+      rrule_index: 167
+      timezone: ''
+    -
+      value: 1650456000
+      end_value: 1650490200
+      duration: 570
+      rrule: 2
+      rrule_index: 168
+      timezone: ''
+    -
+      value: 1650542400
+      end_value: 1650576600
+      duration: 570
+      rrule: 2
+      rrule_index: 169
+      timezone: ''
+    -
+      value: 1650628800
+      end_value: 1650663000
+      duration: 570
+      rrule: 2
+      rrule_index: 170
+      timezone: ''
+    -
+      value: 1650888000
+      end_value: 1650922200
+      duration: 570
+      rrule: 2
+      rrule_index: 171
+      timezone: ''
+    -
+      value: 1650974400
+      end_value: 1651008600
+      duration: 570
+      rrule: 2
+      rrule_index: 172
+      timezone: ''
+    -
+      value: 1651060800
+      end_value: 1651095000
+      duration: 570
+      rrule: 2
+      rrule_index: 173
+      timezone: ''
+    -
+      value: 1651147200
+      end_value: 1651181400
+      duration: 570
+      rrule: 2
+      rrule_index: 174
+      timezone: ''
+    -
+      value: 1651233600
+      end_value: 1651267800
+      duration: 570
+      rrule: 2
+      rrule_index: 175
+      timezone: ''
+    -
+      value: 1651492800
+      end_value: 1651527000
+      duration: 570
+      rrule: 2
+      rrule_index: 176
+      timezone: ''
+    -
+      value: 1651579200
+      end_value: 1651613400
+      duration: 570
+      rrule: 2
+      rrule_index: 177
+      timezone: ''
+    -
+      value: 1651665600
+      end_value: 1651699800
+      duration: 570
+      rrule: 2
+      rrule_index: 178
+      timezone: ''
+    -
+      value: 1651752000
+      end_value: 1651786200
+      duration: 570
+      rrule: 2
+      rrule_index: 179
+      timezone: ''
+    -
+      value: 1651838400
+      end_value: 1651872600
+      duration: 570
+      rrule: 2
+      rrule_index: 180
+      timezone: ''
+    -
+      value: 1652097600
+      end_value: 1652131800
+      duration: 570
+      rrule: 2
+      rrule_index: 181
+      timezone: ''
+    -
+      value: 1652184000
+      end_value: 1652218200
+      duration: 570
+      rrule: 2
+      rrule_index: 182
+      timezone: ''
+    -
+      value: 1652270400
+      end_value: 1652304600
+      duration: 570
+      rrule: 2
+      rrule_index: 183
+      timezone: ''
+    -
+      value: 1652356800
+      end_value: 1652391000
+      duration: 570
+      rrule: 2
+      rrule_index: 184
+      timezone: ''
+    -
+      value: 1652443200
+      end_value: 1652477400
+      duration: 570
+      rrule: 2
+      rrule_index: 185
+      timezone: ''
+    -
+      value: 1652702400
+      end_value: 1652736600
+      duration: 570
+      rrule: 2
+      rrule_index: 186
+      timezone: ''
+    -
+      value: 1652788800
+      end_value: 1652823000
+      duration: 570
+      rrule: 2
+      rrule_index: 187
+      timezone: ''
+    -
+      value: 1652875200
+      end_value: 1652909400
+      duration: 570
+      rrule: 2
+      rrule_index: 188
+      timezone: ''
+    -
+      value: 1652961600
+      end_value: 1652995800
+      duration: 570
+      rrule: 2
+      rrule_index: 189
+      timezone: ''
+    -
+      value: 1653048000
+      end_value: 1653082200
+      duration: 570
+      rrule: 2
+      rrule_index: 190
+      timezone: ''
+    -
+      value: 1653307200
+      end_value: 1653341400
+      duration: 570
+      rrule: 2
+      rrule_index: 191
+      timezone: ''
+    -
+      value: 1653393600
+      end_value: 1653427800
+      duration: 570
+      rrule: 2
+      rrule_index: 192
+      timezone: ''
+    -
+      value: 1653480000
+      end_value: 1653514200
+      duration: 570
+      rrule: 2
+      rrule_index: 193
+      timezone: ''
+    -
+      value: 1653566400
+      end_value: 1653600600
+      duration: 570
+      rrule: 2
+      rrule_index: 194
+      timezone: ''
+    -
+      value: 1653652800
+      end_value: 1653687000
+      duration: 570
+      rrule: 2
+      rrule_index: 195
+      timezone: ''
+    -
+      value: 1653912000
+      end_value: 1653946200
+      duration: 570
+      rrule: 2
+      rrule_index: 196
+      timezone: ''
+    -
+      value: 1653998400
+      end_value: 1654032600
+      duration: 570
+      rrule: 2
+      rrule_index: 197
+      timezone: ''
+    -
+      value: 1654084800
+      end_value: 1654119000
+      duration: 570
+      rrule: 2
+      rrule_index: 198
+      timezone: ''
+    -
+      value: 1654171200
+      end_value: 1654205400
+      duration: 570
+      rrule: 2
+      rrule_index: 199
+      timezone: ''
+    -
+      value: 1654257600
+      end_value: 1654291800
+      duration: 570
+      rrule: 2
+      rrule_index: 200
+      timezone: ''
+    -
+      value: 1654516800
+      end_value: 1654551000
+      duration: 570
+      rrule: 2
+      rrule_index: 201
+      timezone: ''
+    -
+      value: 1654603200
+      end_value: 1654637400
+      duration: 570
+      rrule: 2
+      rrule_index: 202
+      timezone: ''
+    -
+      value: 1654689600
+      end_value: 1654723800
+      duration: 570
+      rrule: 2
+      rrule_index: 203
+      timezone: ''
+    -
+      value: 1654776000
+      end_value: 1654810200
+      duration: 570
+      rrule: 2
+      rrule_index: 204
+      timezone: ''
+    -
+      value: 1654862400
+      end_value: 1654896600
+      duration: 570
+      rrule: 2
+      rrule_index: 205
+      timezone: ''
+    -
+      value: 1655121600
+      end_value: 1655155800
+      duration: 570
+      rrule: 2
+      rrule_index: 206
+      timezone: ''
+    -
+      value: 1655208000
+      end_value: 1655242200
+      duration: 570
+      rrule: 2
+      rrule_index: 207
+      timezone: ''
+    -
+      value: 1655294400
+      end_value: 1655328600
+      duration: 570
+      rrule: 2
+      rrule_index: 208
+      timezone: ''
+    -
+      value: 1655380800
+      end_value: 1655415000
+      duration: 570
+      rrule: 2
+      rrule_index: 209
+      timezone: ''
+    -
+      value: 1655467200
+      end_value: 1655501400
+      duration: 570
+      rrule: 2
+      rrule_index: 210
+      timezone: ''
+    -
+      value: 1655726400
+      end_value: 1655760600
+      duration: 570
+      rrule: 2
+      rrule_index: 211
+      timezone: ''
+    -
+      value: 1655812800
+      end_value: 1655847000
+      duration: 570
+      rrule: 2
+      rrule_index: 212
+      timezone: ''
+    -
+      value: 1655899200
+      end_value: 1655933400
+      duration: 570
+      rrule: 2
+      rrule_index: 213
+      timezone: ''
+    -
+      value: 1655985600
+      end_value: 1656019800
+      duration: 570
+      rrule: 2
+      rrule_index: 214
+      timezone: ''
+    -
+      value: 1656072000
+      end_value: 1656106200
+      duration: 570
+      rrule: 2
+      rrule_index: 215
+      timezone: ''
+    -
+      value: 1656331200
+      end_value: 1656365400
+      duration: 570
+      rrule: 2
+      rrule_index: 216
+      timezone: ''
+    -
+      value: 1656417600
+      end_value: 1656451800
+      duration: 570
+      rrule: 2
+      rrule_index: 217
+      timezone: ''
+    -
+      value: 1656504000
+      end_value: 1656538200
+      duration: 570
+      rrule: 2
+      rrule_index: 218
+      timezone: ''
+    -
+      value: 1656590400
+      end_value: 1656624600
+      duration: 570
+      rrule: 2
+      rrule_index: 219
+      timezone: ''
+    -
+      value: 1656676800
+      end_value: 1656711000
+      duration: 570
+      rrule: 2
+      rrule_index: 220
+      timezone: ''
+    -
+      value: 1656936000
+      end_value: 1656970200
+      duration: 570
+      rrule: 2
+      rrule_index: 221
+      timezone: ''
+    -
+      value: 1657022400
+      end_value: 1657056600
+      duration: 570
+      rrule: 2
+      rrule_index: 222
+      timezone: ''
+    -
+      value: 1657108800
+      end_value: 1657143000
+      duration: 570
+      rrule: 2
+      rrule_index: 223
+      timezone: ''
+    -
+      value: 1657195200
+      end_value: 1657229400
+      duration: 570
+      rrule: 2
+      rrule_index: 224
+      timezone: ''
+    -
+      value: 1657281600
+      end_value: 1657315800
+      duration: 570
+      rrule: 2
+      rrule_index: 225
+      timezone: ''
+    -
+      value: 1657540800
+      end_value: 1657575000
+      duration: 570
+      rrule: 2
+      rrule_index: 226
+      timezone: ''
+    -
+      value: 1657627200
+      end_value: 1657661400
+      duration: 570
+      rrule: 2
+      rrule_index: 227
+      timezone: ''
+    -
+      value: 1657713600
+      end_value: 1657747800
+      duration: 570
+      rrule: 2
+      rrule_index: 228
+      timezone: ''
+    -
+      value: 1657800000
+      end_value: 1657834200
+      duration: 570
+      rrule: 2
+      rrule_index: 229
+      timezone: ''
+    -
+      value: 1657886400
+      end_value: 1657920600
+      duration: 570
+      rrule: 2
+      rrule_index: 230
+      timezone: ''
+    -
+      value: 1658145600
+      end_value: 1658179800
+      duration: 570
+      rrule: 2
+      rrule_index: 231
+      timezone: ''
+    -
+      value: 1658232000
+      end_value: 1658266200
+      duration: 570
+      rrule: 2
+      rrule_index: 232
+      timezone: ''
+    -
+      value: 1658318400
+      end_value: 1658352600
+      duration: 570
+      rrule: 2
+      rrule_index: 233
+      timezone: ''
+    -
+      value: 1658404800
+      end_value: 1658439000
+      duration: 570
+      rrule: 2
+      rrule_index: 234
+      timezone: ''
+    -
+      value: 1658491200
+      end_value: 1658525400
+      duration: 570
+      rrule: 2
+      rrule_index: 235
+      timezone: ''
+    -
+      value: 1658750400
+      end_value: 1658784600
+      duration: 570
+      rrule: 2
+      rrule_index: 236
+      timezone: ''
+    -
+      value: 1658836800
+      end_value: 1658871000
+      duration: 570
+      rrule: 2
+      rrule_index: 237
+      timezone: ''
+    -
+      value: 1658923200
+      end_value: 1658957400
+      duration: 570
+      rrule: 2
+      rrule_index: 238
+      timezone: ''
+    -
+      value: 1659009600
+      end_value: 1659043800
+      duration: 570
+      rrule: 2
+      rrule_index: 239
+      timezone: ''
+    -
+      value: 1659096000
+      end_value: 1659130200
+      duration: 570
+      rrule: 2
+      rrule_index: 240
+      timezone: ''
+    -
+      value: 1659355200
+      end_value: 1659389400
+      duration: 570
+      rrule: 2
+      rrule_index: 241
+      timezone: ''
+    -
+      value: 1659441600
+      end_value: 1659475800
+      duration: 570
+      rrule: 2
+      rrule_index: 242
+      timezone: ''
+    -
+      value: 1659528000
+      end_value: 1659562200
+      duration: 570
+      rrule: 2
+      rrule_index: 243
+      timezone: ''
+    -
+      value: 1659614400
+      end_value: 1659648600
+      duration: 570
+      rrule: 2
+      rrule_index: 244
+      timezone: ''
+    -
+      value: 1659700800
+      end_value: 1659735000
+      duration: 570
+      rrule: 2
+      rrule_index: 245
+      timezone: ''
+    -
+      value: 1659960000
+      end_value: 1659994200
+      duration: 570
+      rrule: 2
+      rrule_index: 246
+      timezone: ''
+    -
+      value: 1660046400
+      end_value: 1660080600
+      duration: 570
+      rrule: 2
+      rrule_index: 247
+      timezone: ''
+    -
+      value: 1660132800
+      end_value: 1660167000
+      duration: 570
+      rrule: 2
+      rrule_index: 248
+      timezone: ''
+    -
+      value: 1660219200
+      end_value: 1660253400
+      duration: 570
+      rrule: 2
+      rrule_index: 249
+      timezone: ''
+    -
+      value: 1660305600
+      end_value: 1660339800
+      duration: 570
+      rrule: 2
+      rrule_index: 250
+      timezone: ''
+    -
+      value: 1660564800
+      end_value: 1660599000
+      duration: 570
+      rrule: 2
+      rrule_index: 251
+      timezone: ''
+    -
+      value: 1660651200
+      end_value: 1660685400
+      duration: 570
+      rrule: 2
+      rrule_index: 252
+      timezone: ''
+    -
+      value: 1660737600
+      end_value: 1660771800
+      duration: 570
+      rrule: 2
+      rrule_index: 253
+      timezone: ''
+    -
+      value: 1630760400
+      end_value: 1630780200
+      duration: 330
+      rrule: 3
+      rrule_index: 1
+      timezone: ''
+    -
+      value: 1630846800
+      end_value: 1630866600
+      duration: 330
+      rrule: 3
+      rrule_index: 2
+      timezone: ''
+    -
+      value: 1631365200
+      end_value: 1631385000
+      duration: 330
+      rrule: 3
+      rrule_index: 3
+      timezone: ''
+    -
+      value: 1631451600
+      end_value: 1631471400
+      duration: 330
+      rrule: 3
+      rrule_index: 4
+      timezone: ''
+    -
+      value: 1631970000
+      end_value: 1631989800
+      duration: 330
+      rrule: 3
+      rrule_index: 5
+      timezone: ''
+    -
+      value: 1632056400
+      end_value: 1632076200
+      duration: 330
+      rrule: 3
+      rrule_index: 6
+      timezone: ''
+    -
+      value: 1632574800
+      end_value: 1632594600
+      duration: 330
+      rrule: 3
+      rrule_index: 7
+      timezone: ''
+    -
+      value: 1632661200
+      end_value: 1632681000
+      duration: 330
+      rrule: 3
+      rrule_index: 8
+      timezone: ''
+    -
+      value: 1633179600
+      end_value: 1633199400
+      duration: 330
+      rrule: 3
+      rrule_index: 9
+      timezone: ''
+    -
+      value: 1633266000
+      end_value: 1633285800
+      duration: 330
+      rrule: 3
+      rrule_index: 10
+      timezone: ''
+    -
+      value: 1633784400
+      end_value: 1633804200
+      duration: 330
+      rrule: 3
+      rrule_index: 11
+      timezone: ''
+    -
+      value: 1633870800
+      end_value: 1633890600
+      duration: 330
+      rrule: 3
+      rrule_index: 12
+      timezone: ''
+    -
+      value: 1634389200
+      end_value: 1634409000
+      duration: 330
+      rrule: 3
+      rrule_index: 13
+      timezone: ''
+    -
+      value: 1634475600
+      end_value: 1634495400
+      duration: 330
+      rrule: 3
+      rrule_index: 14
+      timezone: ''
+    -
+      value: 1634994000
+      end_value: 1635013800
+      duration: 330
+      rrule: 3
+      rrule_index: 15
+      timezone: ''
+    -
+      value: 1635080400
+      end_value: 1635100200
+      duration: 330
+      rrule: 3
+      rrule_index: 16
+      timezone: ''
+    -
+      value: 1635598800
+      end_value: 1635618600
+      duration: 330
+      rrule: 3
+      rrule_index: 17
+      timezone: ''
+    -
+      value: 1635685200
+      end_value: 1635705000
+      duration: 330
+      rrule: 3
+      rrule_index: 18
+      timezone: ''
+    -
+      value: 1636203600
+      end_value: 1636223400
+      duration: 330
+      rrule: 3
+      rrule_index: 19
+      timezone: ''
+    -
+      value: 1636293600
+      end_value: 1636313400
+      duration: 330
+      rrule: 3
+      rrule_index: 20
+      timezone: ''
+    -
+      value: 1636812000
+      end_value: 1636831800
+      duration: 330
+      rrule: 3
+      rrule_index: 21
+      timezone: ''
+    -
+      value: 1636898400
+      end_value: 1636918200
+      duration: 330
+      rrule: 3
+      rrule_index: 22
+      timezone: ''
+    -
+      value: 1637416800
+      end_value: 1637436600
+      duration: 330
+      rrule: 3
+      rrule_index: 23
+      timezone: ''
+    -
+      value: 1637503200
+      end_value: 1637523000
+      duration: 330
+      rrule: 3
+      rrule_index: 24
+      timezone: ''
+    -
+      value: 1638021600
+      end_value: 1638041400
+      duration: 330
+      rrule: 3
+      rrule_index: 25
+      timezone: ''
+    -
+      value: 1638108000
+      end_value: 1638127800
+      duration: 330
+      rrule: 3
+      rrule_index: 26
+      timezone: ''
+    -
+      value: 1638626400
+      end_value: 1638646200
+      duration: 330
+      rrule: 3
+      rrule_index: 27
+      timezone: ''
+    -
+      value: 1638712800
+      end_value: 1638732600
+      duration: 330
+      rrule: 3
+      rrule_index: 28
+      timezone: ''
+    -
+      value: 1639231200
+      end_value: 1639251000
+      duration: 330
+      rrule: 3
+      rrule_index: 29
+      timezone: ''
+    -
+      value: 1639317600
+      end_value: 1639337400
+      duration: 330
+      rrule: 3
+      rrule_index: 30
+      timezone: ''
+    -
+      value: 1639836000
+      end_value: 1639855800
+      duration: 330
+      rrule: 3
+      rrule_index: 31
+      timezone: ''
+    -
+      value: 1639922400
+      end_value: 1639942200
+      duration: 330
+      rrule: 3
+      rrule_index: 32
+      timezone: ''
+    -
+      value: 1640440800
+      end_value: 1640460600
+      duration: 330
+      rrule: 3
+      rrule_index: 33
+      timezone: ''
+    -
+      value: 1640527200
+      end_value: 1640547000
+      duration: 330
+      rrule: 3
+      rrule_index: 34
+      timezone: ''
+    -
+      value: 1641045600
+      end_value: 1641065400
+      duration: 330
+      rrule: 3
+      rrule_index: 35
+      timezone: ''
+    -
+      value: 1641132000
+      end_value: 1641151800
+      duration: 330
+      rrule: 3
+      rrule_index: 36
+      timezone: ''
+    -
+      value: 1641650400
+      end_value: 1641670200
+      duration: 330
+      rrule: 3
+      rrule_index: 37
+      timezone: ''
+    -
+      value: 1641736800
+      end_value: 1641756600
+      duration: 330
+      rrule: 3
+      rrule_index: 38
+      timezone: ''
+    -
+      value: 1642255200
+      end_value: 1642275000
+      duration: 330
+      rrule: 3
+      rrule_index: 39
+      timezone: ''
+    -
+      value: 1642341600
+      end_value: 1642361400
+      duration: 330
+      rrule: 3
+      rrule_index: 40
+      timezone: ''
+    -
+      value: 1642860000
+      end_value: 1642879800
+      duration: 330
+      rrule: 3
+      rrule_index: 41
+      timezone: ''
+    -
+      value: 1642946400
+      end_value: 1642966200
+      duration: 330
+      rrule: 3
+      rrule_index: 42
+      timezone: ''
+    -
+      value: 1643464800
+      end_value: 1643484600
+      duration: 330
+      rrule: 3
+      rrule_index: 43
+      timezone: ''
+    -
+      value: 1643551200
+      end_value: 1643571000
+      duration: 330
+      rrule: 3
+      rrule_index: 44
+      timezone: ''
+    -
+      value: 1644069600
+      end_value: 1644089400
+      duration: 330
+      rrule: 3
+      rrule_index: 45
+      timezone: ''
+    -
+      value: 1644156000
+      end_value: 1644175800
+      duration: 330
+      rrule: 3
+      rrule_index: 46
+      timezone: ''
+    -
+      value: 1644674400
+      end_value: 1644694200
+      duration: 330
+      rrule: 3
+      rrule_index: 47
+      timezone: ''
+    -
+      value: 1644760800
+      end_value: 1644780600
+      duration: 330
+      rrule: 3
+      rrule_index: 48
+      timezone: ''
+    -
+      value: 1645279200
+      end_value: 1645299000
+      duration: 330
+      rrule: 3
+      rrule_index: 49
+      timezone: ''
+    -
+      value: 1645365600
+      end_value: 1645385400
+      duration: 330
+      rrule: 3
+      rrule_index: 50
+      timezone: ''
+    -
+      value: 1645884000
+      end_value: 1645903800
+      duration: 330
+      rrule: 3
+      rrule_index: 51
+      timezone: ''
+    -
+      value: 1645970400
+      end_value: 1645990200
+      duration: 330
+      rrule: 3
+      rrule_index: 52
+      timezone: ''
+    -
+      value: 1646488800
+      end_value: 1646508600
+      duration: 330
+      rrule: 3
+      rrule_index: 53
+      timezone: ''
+    -
+      value: 1646575200
+      end_value: 1646595000
+      duration: 330
+      rrule: 3
+      rrule_index: 54
+      timezone: ''
+    -
+      value: 1647093600
+      end_value: 1647113400
+      duration: 330
+      rrule: 3
+      rrule_index: 55
+      timezone: ''
+    -
+      value: 1647176400
+      end_value: 1647196200
+      duration: 330
+      rrule: 3
+      rrule_index: 56
+      timezone: ''
+    -
+      value: 1647694800
+      end_value: 1647714600
+      duration: 330
+      rrule: 3
+      rrule_index: 57
+      timezone: ''
+    -
+      value: 1647781200
+      end_value: 1647801000
+      duration: 330
+      rrule: 3
+      rrule_index: 58
+      timezone: ''
+    -
+      value: 1648299600
+      end_value: 1648319400
+      duration: 330
+      rrule: 3
+      rrule_index: 59
+      timezone: ''
+    -
+      value: 1648386000
+      end_value: 1648405800
+      duration: 330
+      rrule: 3
+      rrule_index: 60
+      timezone: ''
+    -
+      value: 1648904400
+      end_value: 1648924200
+      duration: 330
+      rrule: 3
+      rrule_index: 61
+      timezone: ''
+    -
+      value: 1648990800
+      end_value: 1649010600
+      duration: 330
+      rrule: 3
+      rrule_index: 62
+      timezone: ''
+    -
+      value: 1649509200
+      end_value: 1649529000
+      duration: 330
+      rrule: 3
+      rrule_index: 63
+      timezone: ''
+    -
+      value: 1649595600
+      end_value: 1649615400
+      duration: 330
+      rrule: 3
+      rrule_index: 64
+      timezone: ''
+    -
+      value: 1650114000
+      end_value: 1650133800
+      duration: 330
+      rrule: 3
+      rrule_index: 65
+      timezone: ''
+    -
+      value: 1650200400
+      end_value: 1650220200
+      duration: 330
+      rrule: 3
+      rrule_index: 66
+      timezone: ''
+    -
+      value: 1650718800
+      end_value: 1650738600
+      duration: 330
+      rrule: 3
+      rrule_index: 67
+      timezone: ''
+    -
+      value: 1650805200
+      end_value: 1650825000
+      duration: 330
+      rrule: 3
+      rrule_index: 68
+      timezone: ''
+    -
+      value: 1651323600
+      end_value: 1651343400
+      duration: 330
+      rrule: 3
+      rrule_index: 69
+      timezone: ''
+    -
+      value: 1651410000
+      end_value: 1651429800
+      duration: 330
+      rrule: 3
+      rrule_index: 70
+      timezone: ''
+    -
+      value: 1651928400
+      end_value: 1651948200
+      duration: 330
+      rrule: 3
+      rrule_index: 71
+      timezone: ''
+    -
+      value: 1652014800
+      end_value: 1652034600
+      duration: 330
+      rrule: 3
+      rrule_index: 72
+      timezone: ''
+    -
+      value: 1652533200
+      end_value: 1652553000
+      duration: 330
+      rrule: 3
+      rrule_index: 73
+      timezone: ''
+    -
+      value: 1652619600
+      end_value: 1652639400
+      duration: 330
+      rrule: 3
+      rrule_index: 74
+      timezone: ''
+    -
+      value: 1653138000
+      end_value: 1653157800
+      duration: 330
+      rrule: 3
+      rrule_index: 75
+      timezone: ''
+    -
+      value: 1653224400
+      end_value: 1653244200
+      duration: 330
+      rrule: 3
+      rrule_index: 76
+      timezone: ''
+    -
+      value: 1653742800
+      end_value: 1653762600
+      duration: 330
+      rrule: 3
+      rrule_index: 77
+      timezone: ''
+    -
+      value: 1653829200
+      end_value: 1653849000
+      duration: 330
+      rrule: 3
+      rrule_index: 78
+      timezone: ''
+    -
+      value: 1654347600
+      end_value: 1654367400
+      duration: 330
+      rrule: 3
+      rrule_index: 79
+      timezone: ''
+    -
+      value: 1654434000
+      end_value: 1654453800
+      duration: 330
+      rrule: 3
+      rrule_index: 80
+      timezone: ''
+    -
+      value: 1654952400
+      end_value: 1654972200
+      duration: 330
+      rrule: 3
+      rrule_index: 81
+      timezone: ''
+    -
+      value: 1655038800
+      end_value: 1655058600
+      duration: 330
+      rrule: 3
+      rrule_index: 82
+      timezone: ''
+    -
+      value: 1655557200
+      end_value: 1655577000
+      duration: 330
+      rrule: 3
+      rrule_index: 83
+      timezone: ''
+    -
+      value: 1655643600
+      end_value: 1655663400
+      duration: 330
+      rrule: 3
+      rrule_index: 84
+      timezone: ''
+    -
+      value: 1656162000
+      end_value: 1656181800
+      duration: 330
+      rrule: 3
+      rrule_index: 85
+      timezone: ''
+    -
+      value: 1656248400
+      end_value: 1656268200
+      duration: 330
+      rrule: 3
+      rrule_index: 86
+      timezone: ''
+    -
+      value: 1656766800
+      end_value: 1656786600
+      duration: 330
+      rrule: 3
+      rrule_index: 87
+      timezone: ''
+    -
+      value: 1656853200
+      end_value: 1656873000
+      duration: 330
+      rrule: 3
+      rrule_index: 88
+      timezone: ''
+    -
+      value: 1657371600
+      end_value: 1657391400
+      duration: 330
+      rrule: 3
+      rrule_index: 89
+      timezone: ''
+    -
+      value: 1657458000
+      end_value: 1657477800
+      duration: 330
+      rrule: 3
+      rrule_index: 90
+      timezone: ''
+    -
+      value: 1657976400
+      end_value: 1657996200
+      duration: 330
+      rrule: 3
+      rrule_index: 91
+      timezone: ''
+    -
+      value: 1658062800
+      end_value: 1658082600
+      duration: 330
+      rrule: 3
+      rrule_index: 92
+      timezone: ''
+    -
+      value: 1658581200
+      end_value: 1658601000
+      duration: 330
+      rrule: 3
+      rrule_index: 93
+      timezone: ''
+    -
+      value: 1658667600
+      end_value: 1658687400
+      duration: 330
+      rrule: 3
+      rrule_index: 94
+      timezone: ''
+    -
+      value: 1659186000
+      end_value: 1659205800
+      duration: 330
+      rrule: 3
+      rrule_index: 95
+      timezone: ''
+    -
+      value: 1659272400
+      end_value: 1659292200
+      duration: 330
+      rrule: 3
+      rrule_index: 96
+      timezone: ''
+    -
+      value: 1659790800
+      end_value: 1659810600
+      duration: 330
+      rrule: 3
+      rrule_index: 97
+      timezone: ''
+    -
+      value: 1659877200
+      end_value: 1659897000
+      duration: 330
+      rrule: 3
+      rrule_index: 98
+      timezone: ''
+    -
+      value: 1660395600
+      end_value: 1660415400
+      duration: 330
+      rrule: 3
+      rrule_index: 99
+      timezone: ''
+    -
+      value: 1660482000
+      end_value: 1660501800
+      duration: 330
+      rrule: 3
+      rrule_index: 100
+      timezone: ''
