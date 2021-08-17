@@ -8,6 +8,7 @@ description: Demo content for Libraries Hours.
 package: 'UMD Demo Content'
 dependencies:
   - default_content:default_content
+  - umd_libraries_hours
   # Add another dependency to the custom module employing this content.
 type: module
 default_content:
