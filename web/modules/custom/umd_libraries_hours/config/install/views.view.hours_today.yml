@@ -296,25 +296,29 @@ display:
           operator: between
           value:
             min: 'today 00:10'
-            max: 'today 23:50'
-            value: now
+            max: 'tomorrow 00:10'
+            value: 'today 01:00'
             type: offset
           group: 1
           exposed: false
           expose:
-            operator_id: ''
-            label: ''
+            operator_id: field_hours_end_value_op
+            label: 'Hours - End'
             description: ''
             use_operator: false
-            operator: ''
+            operator: field_hours_end_value_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: ''
+            identifier: field_hours_end_value
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              updater: '0'
+              editor: '0'
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
@@ -505,7 +509,7 @@ display:
           operator: between
           value:
             min: 'today 00:10'
-            max: 'today 23:50'
+            max: 'tomorrow 00:10'
             value: now
             type: offset
           group: 1
@@ -686,7 +690,7 @@ display:
           operator: between
           value:
             min: 'today 00:10'
-            max: 'today 23:50'
+            max: 'tomorrow 00:10'
             value: now
             type: offset
           group: 1
@@ -867,7 +871,7 @@ display:
           operator: between
           value:
             min: 'today 00:10'
-            max: 'today 23:50'
+            max: 'tomorrow 00:10'
             value: now
             type: offset
           group: 1
@@ -1100,7 +1104,7 @@ display:
           operator: between
           value:
             min: 'today 00:10'
-            max: 'today 23:50'
+            max: 'tomorrow 00:10'
             value: now
             type: offset
           group: 1
@@ -1281,7 +1285,7 @@ display:
           operator: between
           value:
             min: 'today 00:10'
-            max: 'today 23:50'
+            max: 'tomorrow 00:10'
             value: now
             type: offset
           group: 1
@@ -1462,7 +1466,7 @@ display:
           operator: between
           value:
             min: 'today 00:10'
-            max: 'today 23:50'
+            max: 'tomorrow 00:10'
             value: now
             type: offset
           group: 1
