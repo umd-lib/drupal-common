@@ -8,6 +8,7 @@ dependencies:
   - views
   - umd_taxonomy_locations
   - fullcalendar_view
+  - cshs
 type: module
 
 core_version_requirement: ^8.9 || ^9
