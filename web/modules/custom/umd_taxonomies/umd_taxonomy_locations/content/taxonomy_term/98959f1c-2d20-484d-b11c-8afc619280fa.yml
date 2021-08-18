@@ -10,10 +10,10 @@ default:
       value: true
   name:
     -
-      value: MSPAL
+      value: 'Michelle Smith Performing Arts'
   weight:
     -
-      value: 0
+      value: 7
   parent:
     -
       target_id: 0
@@ -25,6 +25,3 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_long_name:
-    -
-      value: 'Michelle Smith Performing Arts Library'

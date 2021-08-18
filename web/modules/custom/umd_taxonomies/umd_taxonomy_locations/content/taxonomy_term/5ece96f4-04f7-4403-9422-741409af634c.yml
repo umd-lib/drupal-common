@@ -13,7 +13,7 @@ default:
       value: Hornbake
   weight:
     -
-      value: 0
+      value: 22
   parent:
     -
       target_id: 0
@@ -25,6 +25,3 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_long_name:
-    -
-      value: 'Hornbake Library'

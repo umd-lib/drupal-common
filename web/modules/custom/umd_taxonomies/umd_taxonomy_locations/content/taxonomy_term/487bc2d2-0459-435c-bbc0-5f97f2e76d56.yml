@@ -15,7 +15,7 @@ default:
       value: '1st Floor'
   weight:
     -
-      value: 0
+      value: 1
   parent:
     -
       entity: 98959f1c-2d20-484d-b11c-8afc619280fa

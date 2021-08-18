@@ -1,0 +1,22 @@
+name: UMD Libraries Hours Content 
+description: Demo content for Libraries Hours.
+# Drush will export the UUIDs under content/, which will then import when the module
+# is enabled. Note that this module must be enabled to run the drush command.
+# e.g.,
+# > drush dcem umd_libraries_hours_demo 
+
+package: 'UMD Demo Content'
+dependencies:
+  - default_content:default_content
+  - umd_libraries_hours
+  # Add another dependency to the custom module employing this content.
+type: module
+default_content:
+  node:
+  # An array of node UUIDs. E.g.,
+  - ef76969c-bb35-4e83-b0f7-924954d29dd8
+  - 98c1f78e-e2b8-446e-bab7-79e890919733
+  - 25f58ffe-41d5-4088-a4cb-abf6e430ed6c
+  - 14e9b306-97b8-4191-958c-0f81363e7352
+
+core_version_requirement: ^8.9 || ^9
