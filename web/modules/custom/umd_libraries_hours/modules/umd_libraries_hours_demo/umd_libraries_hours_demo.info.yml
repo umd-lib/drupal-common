@@ -14,12 +14,9 @@ type: module
 default_content:
   node:
   # An array of node UUIDs. E.g.,
-  - 0ce9cec6-1578-49fa-9fd6-d8491edda292
-  - f8d0c2f5-1f6f-4964-a2d3-70539150bd3c
-  - 186d0574-5f20-402d-b916-8fb9049b55bd
-  - 47fc2cad-0ace-48b9-bb00-71bb70ed8cc2
-  - 169bb0c5-4513-4aaa-af85-66e844f70cc0
-  - a1f68284-2c95-4684-9fd7-ac9890b8ab5a
-  - db6d75b0-42fb-4e9d-aea3-4d6dd8d55918
+  - ef76969c-bb35-4e83-b0f7-924954d29dd8
+  - 98c1f78e-e2b8-446e-bab7-79e890919733
+  - 25f58ffe-41d5-4088-a4cb-abf6e430ed6c
+  - 14e9b306-97b8-4191-958c-0f81363e7352
 
 core_version_requirement: ^8.9 || ^9
