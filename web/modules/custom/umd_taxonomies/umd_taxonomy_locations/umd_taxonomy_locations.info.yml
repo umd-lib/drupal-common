@@ -36,5 +36,6 @@ default_content:
   - 317cd7de-bb42-4802-855a-951da004233e
   - 98959f1c-2d20-484d-b11c-8afc619280fa
   - 5ece96f4-04f7-4403-9422-741409af634c
+  - f38c7b95-f831-4100-859f-eddf29e92f9b
 
 core_version_requirement: ^8.9 || ^9

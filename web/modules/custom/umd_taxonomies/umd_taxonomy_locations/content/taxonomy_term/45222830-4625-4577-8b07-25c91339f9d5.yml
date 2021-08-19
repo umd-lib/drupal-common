@@ -15,7 +15,7 @@ default:
       value: '6th Floor'
   weight:
     -
-      value: 2
+      value: 0
   parent:
     -
       entity: 317cd7de-bb42-4802-855a-951da004233e
