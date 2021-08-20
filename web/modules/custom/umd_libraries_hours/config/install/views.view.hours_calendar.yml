@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_branch
     - field.storage.node.field_hours
     - node.type.library_hours
+    - system.menu.main
     - taxonomy.vocabulary.library_locations
   content:
     - 'taxonomy_term:library_locations:1b264ac3-7ebe-4115-9b42-93b586fbbe96'
@@ -23,7 +24,7 @@ dependencies:
     - text
     - user
 _core:
-  default_config_hash: uZaGJj5M9S1r0PHCjxHJrNTeRNQUIg_UaN87NqOa4xY
+  default_config_hash: sDwkr93DQpEcAK8gTBbU6cju_kX3ExEjL0DmDYnZ5lA
 id: hours_calendar
 label: 'Hours Calendar'
 module: views
@@ -367,7 +368,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '12'
+          value: '6'
           group: 1
           exposed: false
           expose:
@@ -517,7 +518,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '11'
+          value: '8'
           group: 1
           exposed: false
           expose:
@@ -653,7 +654,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '13'
+          value: '7'
           group: 1
           exposed: false
           expose:
@@ -789,7 +790,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '10'
+          value: '9'
           group: 1
           exposed: false
           expose:
@@ -861,11 +862,11 @@ display:
       display_extenders: {  }
       path: visit/libraries/mckeldin/hours
       menu:
-        type: tab
+        type: normal
         title: Calendar
-        description: ''
+        description: 'McKeldin Library Hours Calendar'
         expanded: false
-        parent: ''
+        parent: 'menu_link_content:d2fd77f8-abf4-4f07-ad59-16ccd59824fd'
         weight: 0
         context: '0'
         menu_name: main
@@ -955,7 +956,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '14'
+          value: '5'
           group: 1
           exposed: false
           expose:
@@ -1091,7 +1092,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '33'
+          value: '2'
           group: 1
           exposed: false
           expose:
@@ -1227,7 +1228,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '16'
+          value: '3'
           group: 1
           exposed: false
           expose:
@@ -1278,6 +1279,15 @@ display:
         operator: AND
         groups:
           1: AND
+      menu:
+        type: normal
+        title: Calendar
+        description: ''
+        expanded: false
+        parent: 'menu_link_content:5382e59c-8886-4674-97a7-f64347b1d29c'
+        weight: 0
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:

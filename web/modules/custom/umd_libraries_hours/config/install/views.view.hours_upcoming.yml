@@ -21,6 +21,8 @@ dependencies:
     - taxonomy
     - text
     - user
+_core:
+  default_config_hash: XGbjcDJt8f9UlNHzcYDs5z-5D7kANTxpESoSvJ14CT0
 id: hours_upcoming
 label: 'Hours Upcoming'
 module: views
@@ -63,7 +65,7 @@ display:
       pager:
         type: some
         options:
-          items_per_page: 6
+          items_per_page: 7
           offset: 0
       style:
         type: default
@@ -351,7 +353,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '12'
+          value: '6'
           group: 1
           exposed: false
           expose:
@@ -423,7 +425,20 @@ display:
             value: '<h3>Upcoming {{ field_branch }} Hours</h3>'
             format: basic_html
           plugin_id: text
-      footer: {  }
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<a href="/visit/libraries/hornbake/hours/" title = "full Hornbake Library calendar">Calendar</a>'
+            format: full_html
+          plugin_id: text
       empty: {  }
       relationships: {  }
       arguments: {  }
@@ -529,7 +544,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '11'
+          value: '8'
           group: 1
           exposed: false
           expose:
@@ -576,10 +591,25 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        footer: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<a href="/visit/libraries/architecture/hours/" title = "full Architecture Library calendar">Calendar</a>'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -680,7 +710,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '13'
+          value: '7'
           group: 1
           exposed: false
           expose:
@@ -727,10 +757,25 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        footer: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<a href="/visit/libraries/art/hours/" title = "full Art library calendar">Calendar</a>'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -831,7 +876,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '10'
+          value: '9'
           group: 1
           exposed: false
           expose:
@@ -903,6 +948,22 @@ display:
       display_extenders: {  }
       block_description: 'McKeldin Upcoming Hours'
       display_description: ''
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<a href="/visit/libraries/mckeldin/hours/" title = "full Mckeldin Library calendar">Calendar</a>'
+            format: full_html
+          plugin_id: text
+      defaults:
+        footer: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1003,7 +1064,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '14'
+          value: '5'
           group: 1
           exposed: false
           expose:
@@ -1050,10 +1111,25 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        footer: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<a href="/visit/libraries/mspal/hours/" title = "full Michelle Smith Library calendar">Calendar</a>'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -1154,7 +1230,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '33'
+          value: '2'
           group: 1
           exposed: false
           expose:
@@ -1201,10 +1277,25 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        footer: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<a href="/visit/libraries/special/hours/" title = "full Special Collections Library calendar">Calendar</a>'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -1305,7 +1396,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '16'
+          value: '3'
           group: 1
           exposed: false
           expose:
@@ -1352,10 +1443,25 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        footer: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<a href="/visit/libraries/stem/hours/" title = "full STEM Library calendar">Calendar</a>'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:

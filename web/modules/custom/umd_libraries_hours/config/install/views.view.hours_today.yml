@@ -20,6 +20,8 @@ dependencies:
     - taxonomy
     - text
     - user
+_core:
+  default_config_hash: S-GZzJoXmRR-E3kArhvNrjWCkesjtf_le-PUQ9O33G4
 id: hours_today
 label: 'Hours Today'
 module: views
@@ -242,7 +244,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '12'
+          value: '6'
           group: 1
           exposed: false
           expose:
@@ -295,8 +297,8 @@ display:
           admin_label: ''
           operator: between
           value:
-            min: 'today 00:10'
-            max: 'tomorrow 00:10'
+            min: 'today 04:10'
+            max: 'tomorrow 04:10'
             value: 'today 01:00'
             type: offset
           group: 1
@@ -455,7 +457,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '11'
+          value: '8'
           group: 1
           exposed: false
           expose:
@@ -508,8 +510,8 @@ display:
           admin_label: ''
           operator: between
           value:
-            min: 'today 00:10'
-            max: 'tomorrow 00:10'
+            min: 'today 04:10'
+            max: 'tomorrow 04:10'
             value: now
             type: offset
           group: 1
@@ -636,7 +638,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '13'
+          value: '7'
           group: 1
           exposed: false
           expose:
@@ -689,8 +691,8 @@ display:
           admin_label: ''
           operator: between
           value:
-            min: 'today 00:10'
-            max: 'tomorrow 00:10'
+            min: 'today 04:10'
+            max: 'tomorrow 04:10'
             value: now
             type: offset
           group: 1
@@ -817,7 +819,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '10'
+          value: '9'
           group: 1
           exposed: false
           expose:
@@ -870,8 +872,8 @@ display:
           admin_label: ''
           operator: between
           value:
-            min: 'today 00:10'
-            max: 'tomorrow 00:10'
+            min: 'today 04:10'
+            max: 'tomorrow 04:10'
             value: now
             type: offset
           group: 1
@@ -1050,7 +1052,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '14'
+          value: '5'
           group: 1
           exposed: false
           expose:
@@ -1103,8 +1105,8 @@ display:
           admin_label: ''
           operator: between
           value:
-            min: 'today 00:10'
-            max: 'tomorrow 00:10'
+            min: 'today 04:10'
+            max: 'tomorrow 04:10'
             value: now
             type: offset
           group: 1
@@ -1231,7 +1233,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '33'
+          value: '2'
           group: 1
           exposed: false
           expose:
@@ -1284,8 +1286,8 @@ display:
           admin_label: ''
           operator: between
           value:
-            min: 'today 00:10'
-            max: 'tomorrow 00:10'
+            min: 'today 04:10'
+            max: 'tomorrow 04:10'
             value: now
             type: offset
           group: 1
@@ -1412,7 +1414,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: '16'
+          value: '3'
           group: 1
           exposed: false
           expose:
@@ -1465,8 +1467,8 @@ display:
           admin_label: ''
           operator: between
           value:
-            min: 'today 00:10'
-            max: 'tomorrow 00:10'
+            min: 'today 04:10'
+            max: 'tomorrow 04:10'
             value: now
             type: offset
           group: 1
