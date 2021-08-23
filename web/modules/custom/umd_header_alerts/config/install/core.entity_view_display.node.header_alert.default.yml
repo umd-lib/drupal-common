@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.header_alert.body
+    - field.field.node.header_alert.field_alert_type
+    - field.field.node.header_alert.field_icon
+    - node.type.header_alert
+  module:
+    - fontawesome
+    - options
+    - text
+    - user
+id: node.header_alert.default
+targetEntityType: node
+bundle: header_alert
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_alert_type:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_icon:
+    weight: 103
+    label: above
+    settings:
+      layers: false
+    third_party_settings: {  }
+    type: fontawesome_icon_formatter
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

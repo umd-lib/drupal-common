@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: alerts
+label: Alerts
+type: 'canonical_entities:node'
+pattern: '/system/alert/[random:hash:md4]'
+selection_criteria:
+  7b475ada-1356-4410-bdab-04d719f6b32a:
+    id: node_type
+    bundles:
+      header_alert: header_alert
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 7b475ada-1356-4410-bdab-04d719f6b32a
+selection_logic: and
+weight: -5
+relationships: {  }

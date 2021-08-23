@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Module file for umd_header_alerts module.
+ */
+
+use Drupal\views\ViewExecutable;
+
+/**
+* Implements hook_views_pre_render().
+*/
+function umd_header_alerts_views_pre_render(ViewExecutable $view) {
+  if (!empty($view) && ($view->storage->id() == 'sitewide_header_alerts')) {
+    $view->element['#attached']['library'][] = 'umd_header_alerts/umd-header-alerts';
+  }
+}
