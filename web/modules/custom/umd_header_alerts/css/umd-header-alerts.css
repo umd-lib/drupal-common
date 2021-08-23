@@ -1,3 +1,31 @@
 /**
  * header alerts module css
  */
+#header-alerts {
+}
+
+/**
+ Status Types
+ */
+#header-alerts .info {
+}
+
+#header-alerts .closure {
+}
+
+#header-alerts .status {
+}
+
+#header-alerts .alert {
+}
+
+#header-alerts .emergency {
+}
+
+.header-alert {
+  border-bottom: 1px solid black;
+  text-align: center; 
+}
+
+.header-alert .fontawesome-icons {
+}
