@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * header alerts module install file.
+ */
+
+/**
+ * Install alerts configuration.
+ */
+function umd_header_alerts_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_header_alerts');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function umd_header_alerts_uninstall() {
+}

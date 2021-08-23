@@ -1,0 +1,11 @@
+name: UMD Header Alerts
+description: Enables header alert functionality including a content type and views.
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+  - fontawesome_iconpicker_widget
+  - scheduler
+type: module
+
+core_version_requirement: ^8.9 || ^9
