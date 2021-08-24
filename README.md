@@ -74,7 +74,7 @@ Note that it is very likely you will need to flush cache before the site will
 properly appear. Wait a minute before performing this to ensure the stack is
 fully started.
 
-            > docker exec -ti wwwnew_php drush cr
+            > make drush cr
 
 Unless clearing cache produces errors, the site should be available at:
 
@@ -116,7 +116,7 @@ using *Clear Cache* with some frequency.
 To dump SQL data from the Kubernetes cluster:
 
             > cd common-www/
-            > kubectl exec drupal-wwwnew-db-0 -- pg_dump -c -O -U drupaldb -d drupaldb > postgres-init/wwwnew.sql
+            > kubectl exec drupal-www-db-0 -- pg_dump -c -O -U drupaldb -d drupaldb > postgres-init/wwwnew.sql
 
 Dumping Local Database (generally not needed)
 
@@ -129,7 +129,7 @@ To copy files you might need from the server into your local:
             > kubectl exec --stdin --tty drupal-wwwnew-0 -- /bin/bash
             > tar -czvf files.tgz web/sites/default/files/
             > exit
-            > kubectl cp drupal-wwwnew-0:files.tgz common-www/
+            > kubectl cp drupal-www-0:files.tgz common-www/
 
 And then extract the archive into your local's web/sites/default/files/.
 
