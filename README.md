@@ -109,7 +109,7 @@ Under *Extend*, you can enable the *Devel* module, which, among other features,
 provides a *Clear Cache* link on the toolbar.  You're in Drupal now and will be
 using *Clear Cache* with some frequency.
 
-## Additional Help 
+## Additional Help
 
 ### Database Dump
 
@@ -148,7 +148,7 @@ To create a local Solr core with through docker-compose, do the following:
 ### SAML Integration
 
 SAML is available for local development but not immediately available if working
-with a k8s server database dump. 
+with a k8s server database dump.
 
 Place the key and cert in the drupal-common root under certs/. So for example:
 
@@ -178,7 +178,7 @@ The current configuration is defined in the "phpcs.xml.dist" file.
 To check a particular directory or file, run the following commands:
 
             > vendor/bin/phpcs <DIRECTORY_OR_FILE>
-            
+
 where <DIRECTORY_OR_FILE> is the name of the directory or file. For example,
 to check the code in the "web/modules/custom/" directory, run:
 
@@ -216,7 +216,7 @@ The "PHP CodeSniffer" can also be run from the VS Code Terminal. For example,
 to check the "web/modules/custom/" directory:
 
             > phpcs web/modules/custom/
-            
+
 ### Remote Containers - Enabling Debugging
 
 The "PHP Debug" extension is added to the Remote Containers configuration by
@@ -230,12 +230,12 @@ to do this is to go to the directory where "drupal-common" is checked out
 and run:
 
             > make down
-            
+
 2) Prune the existing containers (this seems to be necessary, as otherwise the
 PHP container does not appear to restart properly:
 
             > docker system prune -f
-            
+
 3) Edit the "docker-compose.yml" file, uncommenting the following lines:
 
             #      PHP_XDEBUG: 1
@@ -243,7 +243,7 @@ PHP container does not appear to restart properly:
             #      PHP_XDEBUG_REMOTE_HOST: host.docker.internal
             #      PHP_XDEBUG_REMOTE_PORT: 9123
             #      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
-            
+
 by changing them to:
 
                    PHP_XDEBUG: 1
@@ -267,7 +267,7 @@ be used by doing the following:
 "Reload Window" button). If you get a message about "Configuration files(s)
 changed", simply left-click the "Rebuild" button.
 
-2) Left-click the "Run and Debug" icon in the left-sidebar. At the top of 
+2) Left-click the "Run and Debug" icon in the left-sidebar. At the top of
 the sidebar will be a "Listen for Xdebug" dropdown, with a green "Play"
 button next to it. Left-click the green "Play" button. The status bar at the
 bottom of the VS Code will turn orange.
@@ -291,12 +291,12 @@ to do this is to go to the directory where "drupal-common" is checked out
 and run:
 
             > make down
-            
+
 2) Prune the existing containers (this seems to be necessary, as otherwise the
 PHP container does not appear to restart properly:
 
             > docker system prune -f
-            
+
 3) Edit the "docker-compose.yml" file, commenting out the following lines:
 
                    PHP_XDEBUG: 1
@@ -304,7 +304,7 @@ PHP container does not appear to restart properly:
                    PHP_XDEBUG_REMOTE_HOST: host.docker.internal
                    PHP_XDEBUG_REMOTE_PORT: 9123
                    PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
-            
+
 by changing them to:
 
             #      PHP_XDEBUG: 1
