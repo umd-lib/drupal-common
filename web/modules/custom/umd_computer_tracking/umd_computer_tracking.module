@@ -5,4 +5,11 @@
  * Module file for umd_computer_tracking module.
  */
 
-// Intentionally empty.
+/**
+* Implements hook_views_pre_render().
+*/
+function umd_computer_tracking_views_pre_render(ViewExecutable $view) {
+  if (!empty($view) && ($view->storage->id() == 'workstation_tracking')) {
+    $view->element['#attached']['library'][] = 'umd_computer_tracking/umd-computer-tracking';
+  }
+}
