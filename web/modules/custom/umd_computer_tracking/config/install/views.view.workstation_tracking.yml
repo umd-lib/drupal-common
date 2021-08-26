@@ -430,6 +430,7 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
+      block_description: 'Computer Tracking: All'
     cache_metadata:
       max-age: -1
       contexts:
@@ -491,6 +492,7 @@ display:
         operator: AND
         groups:
           1: AND
+      block_description: 'Computer Tracking: McKeldin'
     cache_metadata:
       max-age: -1
       contexts:
@@ -552,6 +554,7 @@ display:
         operator: AND
         groups:
           1: AND
+      block_description: 'Computer Tracking: STEM'
     cache_metadata:
       max-age: -1
       contexts:
