@@ -5,6 +5,8 @@
  * Module file for umd_computer_tracking module.
  */
 
+use Drupal\views\ViewExecutable;
+
 /**
 * Implements hook_views_pre_render().
 */
