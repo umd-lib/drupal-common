@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Module file for top_textbooks module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function top_textbooks_theme() {
+  return [
+    'textbook_availability_field' => [
+      'variables' => [
+        'textbook_count' => '',
+        'textbook_mindue' => '',
+        'textbook_sysnum' => '',
+        'error' => '',
+      ],
+    ],
+  ];
+}

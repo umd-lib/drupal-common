@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - facets_block
+    - system
+  theme:
+    - umd_terp
+id: facetsblock_3
+theme: umd_terp
+region: sidebar
+weight: -3
+provider: null
+plugin: facets_block
+settings:
+  id: facets_block
+  label: "Textbook Facets Block"
+  provider: facets_block
+  label_display: visible
+  show_title: true
+  exclude_empty_facets: true
+  facets_to_include:
+    "facet_block:program": "facet_block:program"
+    "facet_block:library_location_taxonomy_term_term_parents_taxono": "0"
+    "facet_block:equipment_category": "0"
+visibility:
+  request_path:
+    id: request_path
+    pages: /find/reserves/top-textbooks
+    negate: false
+    context_mapping: {}
