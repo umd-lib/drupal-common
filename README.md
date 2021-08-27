@@ -23,7 +23,7 @@ Add the following to your /etc/hosts (customized if you wish):
 
 ### Install
 
-Create a base directory to hold each of the directories for the project. This
+1) Create a base directory to hold each of the directories for the project. This
 example will use "drupal", but that is arbitrary:
 
 ```
@@ -31,15 +31,15 @@ example will use "drupal", but that is arbitrary:
 > cd drupal
 ```
 
-To deploy locally, clone the main branch:
+2) To deploy locally, clone the main branch:
 
 ```
 > git clone https://github.com/umd-lib/drupal-common.git common-www
 > cd common-www
-> git checkout feature/LIBWEB-5305 (temporary development branch)
+> git checkout feature/LIBWEB-5305   # (temporary development branch)
 ```
 
-Install the site using Composer. This will download all dependencies and prep
+3) Install the site using Composer. This will download all dependencies and prep
 for local deployment.
 
 ```
@@ -47,8 +47,8 @@ for local deployment.
 > composer install
 ```
 
-Switch back to the base ("drupal") directory, and create empty directories for the
-Postgres and Solr data (used in the next steps):
+4) Switch back to the base ("drupal") directory, and create empty directories
+for the Postgres and Solr data (used in the next steps):
 
 ```
 > cd ..  # back to "drupal"
@@ -56,7 +56,7 @@ Postgres and Solr data (used in the next steps):
 > mkdir solr_data
 ```
 
-Clone the drupal-projects-env repository locally and copy the demo/env file
+5) Clone the drupal-projects-env repository locally and copy the demo/env file
 into your web root (i.e., common-demo) as .env:
 
 ```
@@ -65,13 +65,21 @@ into your web root (i.e., common-demo) as .env:
 > cp drupal-projects-env/www/settings.php common-www/web/sites/default/settings.php
 ```
 
-Customize the common-www/.env file for your environment. Specifically, look at
-the values for:
+6) Edit the "common-www/.env" file:
+
+```
+> vi common-www/.env
+```
+
+and customize the common-www/.env file for your environment. Specifically,
+modify the values for:
 
 * DB_DATA_DIR - the fully-qualified path to the "postgres_data" directory
 * SOLR_DATA_DIR - the fully-qualified path to the "solr_data" directory
 
-Get a recent database dump from production, and copy to postgres-init:
+All other values can stay the same.
+
+7) Get a recent database dump from production, and copy to postgres-init:
 
 ```
 > cp wwwnew.sql common-www/postgres-init/
@@ -79,9 +87,17 @@ Get a recent database dump from production, and copy to postgres-init:
 
 (See below for instructions for generating the sql dump).
 
-All other values can stay the same.
+8) (Optional - Local development only) Copy drupal-projects-env/services.yml
+to common-demo/web/sites/default/:
 
-To bring up the site, use docker-compose:
+```
+> cp drupal-projects-env/services.yml common-www/web/sites/default/
+```
+
+(See additional post-startup development steps in the
+"Local Development Configuration" section below).
+
+9) To bring up the site, use docker-compose:
 
 ```
 > cd common-www
@@ -112,22 +128,26 @@ And restart without the -d in order to pump logging to standard out.
 > docker-compose up
 ```
 
-If your work depends on having all images in place, you will want to generate a dump
-from production. These can be copied to common-www/web/sites/default/files/
-Instructions below.
+10) If your work depends on having all images in place, you will want to
+generate a dump from production. These can be copied to
+
+common-www/web/sites/default/files/
+
+See instructions below.
 
 Be sure to flush cache after the file copy is complete.
 
-### Developer Configuration
+### Local Development Configuration
 
-For development, it is good to copy the drupal-projects-env/services.yml to
-common-demo/web/sites/default/. This will preconfigure your site for dev mode
-and make theming much easier by injecting template information directly into the
-site markup. Note that we don't want this file included in production (which is
-a danger given that it isn't currently overwritten by k8s configuration.)
+As mentioned in the optional step above for local development, copy the
+drupal-projects-env/services.yml file to common-demo/web/sites/default/.
+This will preconfigure your site for dev mode and make theming much easier by
+injecting template information directly into the site markup. Note that we don't
+want this file included in production (which is a danger given that it isn't
+currently overwritten by k8s configuration.)
 
-Under *Configuration* and *Performance*, make sure both Aggregate CSS/JavaScript
-checkboxes are disabled.
+Under *Configuration | Performance*, make sure both Aggregate CSS/JavaScript
+checkboxes are unchecked.
 
 Under *Extend*, you can enable the *Devel* module, which, among other features,
 provides a *Clear Cache* link on the toolbar.  You're in Drupal now and will be
@@ -141,7 +161,8 @@ To dump SQL data from the Kubernetes cluster:
 
 ```
 > cd common-www/
-> kubectl exec drupal-www-db-0 -- pg_dump -c -O -U drupaldb -d drupaldb > postgres-init/wwwnew.sql
+> kubectl exec drupal-www-db-0 -- pg_dump -c --if-exists -O -U drupaldb -d drupaldb > postgres-init/wwwnew.sql
+> cd ..
 ```
 
 Dumping Local Database (generally not needed)
@@ -155,15 +176,27 @@ Dumping Local Database (generally not needed)
 To copy files you might need from the server into your local:
 
 ```
-> kubectl exec --stdin --tty drupal-wwwnew-0 -- /bin/bash
+> kubectl exec --stdin --tty drupal-www-0 -- /bin/bash
 > tar -czvf files.tgz web/sites/default/files/
 > exit
-> kubectl cp drupal-www-0:files.tgz common-www/
+> kubectl cp drupal-www-0:files.tgz common-www/files.tgz
 ```
 
-And then extract the archive into your local's web/sites/default/files/.
+And then extract the archive into your local's web/sites/default/files/:
 
-Flush cache after this so that Drupal can regenerate any thumbnails, etc.
+```
+> cd common-www
+> tar -xvzf files.tgz
+> cd ..
+```
+
+Flush cache after this so that Drupal can regenerate any thumbnails, etc:
+
+```
+> cd common-www
+> make drush cr
+> cd ..
+```
 
 One thing to note is that a production database is likely optimized for performance
 and may need to have CSS/JS aggregation turned off and modules such as devel enabled.
