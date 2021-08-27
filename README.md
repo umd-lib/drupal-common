@@ -79,13 +79,13 @@ modify the values for:
 
 All other values can stay the same.
 
-7) Get a recent database dump from production, and copy to postgres-init:
+7) Get a recent database dump from production (or qa/test, as desired),
+and copy to postgres-init:
 
 ```
-> cp wwwnew.sql common-www/postgres-init/
+> kubectl config get-contexts prod
+> kubectl exec drupal-www-db-0 -- pg_dump -c --if-exists -O -U drupaldb -d drupaldb > common-www/postgres-init/wwwnew.sql
 ```
-
-(See below for instructions for generating the sql dump).
 
 8) (Optional - Local development only) Copy drupal-projects-env/services.yml
 to common-demo/web/sites/default/:
@@ -160,9 +160,8 @@ using *Clear Cache* with some frequency.
 To dump SQL data from the Kubernetes cluster:
 
 ```
-> cd common-www/
-> kubectl exec drupal-www-db-0 -- pg_dump -c --if-exists -O -U drupaldb -d drupaldb > postgres-init/wwwnew.sql
-> cd ..
+# In "drupal"
+> kubectl exec drupal-www-db-0 -- pg_dump -c --if-exists -O -U drupaldb -d drupaldb > common-www/postgres-init/wwwnew.sql
 ```
 
 Dumping Local Database (generally not needed)
@@ -176,9 +175,10 @@ Dumping Local Database (generally not needed)
 To copy files you might need from the server into your local:
 
 ```
+# In "drupal"
 > kubectl exec --stdin --tty drupal-www-0 -- /bin/bash
-> tar -czvf files.tgz web/sites/default/files/
-> exit
+drupal-www-0> tar -czvf files.tgz web/sites/default/files/
+drupal-www-0> exit
 > kubectl cp drupal-www-0:files.tgz common-www/files.tgz
 ```
 
@@ -187,13 +187,11 @@ And then extract the archive into your local's web/sites/default/files/:
 ```
 > cd common-www
 > tar -xvzf files.tgz
-> cd ..
 ```
 
 Flush cache after this so that Drupal can regenerate any thumbnails, etc:
 
 ```
-> cd common-www
 > make drush cr
 > cd ..
 ```
