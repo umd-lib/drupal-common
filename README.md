@@ -7,13 +7,17 @@ installed.
 
 (Recommended) Add the following to your **~/.profile**:
 
-            alias composer="composer.phar"
+```
+alias composer="composer.phar"
+```
 
 Add the following to your /etc/hosts (customized if you wish):
 
-            127.0.0.1		www.docker.localhost
-            127.0.0.1		portainer.drupal.docker.localhost
-            127.0.0.1		solr.drupal.docker.localhost
+```
+127.0.0.1		www.docker.localhost
+127.0.0.1		portainer.drupal.docker.localhost
+127.0.0.1		solr.drupal.docker.localhost
+```
 
 ## Local Deploy
 
@@ -22,34 +26,44 @@ Add the following to your /etc/hosts (customized if you wish):
 Create a base directory to hold each of the directories for the project. This
 example will use "drupal", but that is arbitrary:
 
-            > mkdir drupal
-            > cd drupal
+```
+> mkdir drupal
+> cd drupal
+```
 
 To deploy locally, clone the main branch:
 
-            > git clone https://github.com/umd-lib/drupal-common.git common-www
-            > cd common-www
-            > git checkout feature/LIBWEB-5305 (temporary development branch)
+```
+> git clone https://github.com/umd-lib/drupal-common.git common-www
+> cd common-www
+> git checkout feature/LIBWEB-5305 (temporary development branch)
+```
 
 Install the site using Composer. This will download all dependencies and prep
 for local deployment.
 
-            # in common-www/
-            > composer install
+```
+# in common-www/
+> composer install
+```
 
 Switch back to the base ("drupal") directory, and create empty directories for the
 Postgres and Solr data (used in the next steps):
 
-            > cd ..  # back to "drupal"
-            > mkdir postgres_data
-            > mkdir solr_data
+```
+> cd ..  # back to "drupal"
+> mkdir postgres_data
+> mkdir solr_data
+```
 
 Clone the drupal-projects-env repository locally and copy the demo/env file
 into your web root (i.e., common-demo) as .env:
 
-            > git clone git@github.com:umd-lib/drupal-projects-env.git
-            > cp drupal-projects-env/www/env common-www/.env
-            > cp drupal-projects-env/www/settings.php common-www/web/sites/default/settings.php
+```
+> git clone git@github.com:umd-lib/drupal-projects-env.git
+> cp drupal-projects-env/www/env common-www/.env
+> cp drupal-projects-env/www/settings.php common-www/web/sites/default/settings.php
+```
 
 Customize the common-www/.env file for your environment. Specifically, look at
 the values for:
@@ -59,7 +73,9 @@ the values for:
 
 Get a recent database dump from production, and copy to postgres-init:
 
-            > cp wwwnew.sql common-www/postgres-init/
+```
+> cp wwwnew.sql common-www/postgres-init/
+```
 
 (See below for instructions for generating the sql dump).
 
@@ -67,14 +83,18 @@ All other values can stay the same.
 
 To bring up the site, use docker-compose:
 
-            > cd common-www
-            > docker-compose up -d
+```
+> cd common-www
+> docker-compose up -d
+```
 
 Note that it is very likely you will need to flush cache before the site will
 properly appear. Wait a minute before performing this to ensure the stack is
 fully started.
 
-            > make drush cr
+```
+> make drush cr
+```
 
 Unless clearing cache produces errors, the site should be available at:
 
@@ -82,11 +102,15 @@ Unless clearing cache produces errors, the site should be available at:
 
 If the site fails to come up, kill the stack with:
 
-            > docker-compose down
+```
+> docker-compose down
+```
 
 And restart without the -d in order to pump logging to standard out.
 
-            > docker-compose up
+```
+> docker-compose up
+```
 
 If your work depends on having all images in place, you will want to generate a dump
 from production. These can be copied to common-www/web/sites/default/files/
@@ -115,21 +139,27 @@ using *Clear Cache* with some frequency.
 
 To dump SQL data from the Kubernetes cluster:
 
-            > cd common-www/
-            > kubectl exec drupal-www-db-0 -- pg_dump -c -O -U drupaldb -d drupaldb > postgres-init/wwwnew.sql
+```
+> cd common-www/
+> kubectl exec drupal-www-db-0 -- pg_dump -c -O -U drupaldb -d drupaldb > postgres-init/wwwnew.sql
+```
 
 Dumping Local Database (generally not needed)
 
-           > docker exec wwwnew_postgres pg_dump -U drupaluser -O drupaldb > /tmp/dump.sql
+```
+> docker exec wwwnew_postgres pg_dump -U drupaluser -O drupaldb > /tmp/dump.sql
+```
 
 ### Files Copy
 
 To copy files you might need from the server into your local:
 
-            > kubectl exec --stdin --tty drupal-wwwnew-0 -- /bin/bash
-            > tar -czvf files.tgz web/sites/default/files/
-            > exit
-            > kubectl cp drupal-www-0:files.tgz common-www/
+```
+> kubectl exec --stdin --tty drupal-wwwnew-0 -- /bin/bash
+> tar -czvf files.tgz web/sites/default/files/
+> exit
+> kubectl cp drupal-www-0:files.tgz common-www/
+```
 
 And then extract the archive into your local's web/sites/default/files/.
 
@@ -142,8 +172,10 @@ and may need to have CSS/JS aggregation turned off and modules such as devel ena
 
 To create a local Solr core with through docker-compose, do the following:
 
-            > docker exec -ti wwwnew_solr sh
-            > /opt/solr/bin/solr create_core -c drupal -d /opt/solr/server/solr/configsets/search_api_solr_8.x-3.9/conf/
+```
+> docker exec -ti wwwnew_solr sh
+> /opt/solr/bin/solr create_core -c drupal -d /opt/solr/server/solr/configsets/search_api_solr_8.x-3.9/conf/
+```
 
 ### SAML Integration
 
@@ -177,12 +209,16 @@ The current configuration is defined in the "phpcs.xml.dist" file.
 
 To check a particular directory or file, run the following commands:
 
-            > vendor/bin/phpcs <DIRECTORY_OR_FILE>
+```
+> vendor/bin/phpcs <DIRECTORY_OR_FILE>
+```
 
 where <DIRECTORY_OR_FILE> is the name of the directory or file. For example,
 to check the code in the "web/modules/custom/" directory, run:
 
-            > vendor/bin/phpcs web/modules/custom/
+```
+> vendor/bin/phpcs web/modules/custom/
+```
 
 ## VS Code Remote Containers
 
@@ -215,7 +251,9 @@ in the file).
 The "PHP CodeSniffer" can also be run from the VS Code Terminal. For example,
 to check the "web/modules/custom/" directory:
 
-            > phpcs web/modules/custom/
+```
+> phpcs web/modules/custom/
+```
 
 ### Remote Containers - Enabling Debugging
 
@@ -229,28 +267,36 @@ To enable the "xdebug" tools in the Docker container, do the following:
 to do this is to go to the directory where "drupal-common" is checked out
 and run:
 
-            > make down
+```
+> make down
+```
 
 2) Prune the existing containers (this seems to be necessary, as otherwise the
 PHP container does not appear to restart properly:
 
-            > docker system prune -f
+```
+> docker system prune -f
+```
 
 3) Edit the "docker-compose.yml" file, uncommenting the following lines:
 
-            #      PHP_XDEBUG: 1
-            #      PHP_XDEBUG_DEFAULT_ENABLE: 1
-            #      PHP_XDEBUG_REMOTE_HOST: host.docker.internal
-            #      PHP_XDEBUG_REMOTE_PORT: 9123
-            #      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+```
+#      PHP_XDEBUG: 1
+#      PHP_XDEBUG_DEFAULT_ENABLE: 1
+#      PHP_XDEBUG_REMOTE_HOST: host.docker.internal
+#      PHP_XDEBUG_REMOTE_PORT: 9123
+#      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+```
 
 by changing them to:
 
-                   PHP_XDEBUG: 1
-                   PHP_XDEBUG_DEFAULT_ENABLE: 1
-                   PHP_XDEBUG_REMOTE_HOST: host.docker.internal
-                   PHP_XDEBUG_REMOTE_PORT: 9123
-                   PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+```
+PHP_XDEBUG: 1
+PHP_XDEBUG_DEFAULT_ENABLE: 1
+PHP_XDEBUG_REMOTE_HOST: host.docker.internal
+PHP_XDEBUG_REMOTE_PORT: 9123
+PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+```
 
 **Note:** A non-standard port of "9123" is used for "xdebug", because the
 stardard port of "9000" is exposed by the Docker container, and cannot be
@@ -258,7 +304,9 @@ accessed via Remote Containers.
 
 4) Restart the Docker containers:
 
-            > make up
+```
+> make up
+```
 
 Once debugging is enabled in the Docker container, the VS Code debugger can
 be used by doing the following:
@@ -290,32 +338,42 @@ needed by doing the following:
 to do this is to go to the directory where "drupal-common" is checked out
 and run:
 
-            > make down
+```
+> make down
+```
 
 2) Prune the existing containers (this seems to be necessary, as otherwise the
 PHP container does not appear to restart properly:
 
-            > docker system prune -f
+```
+> docker system prune -f
+```
 
 3) Edit the "docker-compose.yml" file, commenting out the following lines:
 
-                   PHP_XDEBUG: 1
-                   PHP_XDEBUG_DEFAULT_ENABLE: 1
-                   PHP_XDEBUG_REMOTE_HOST: host.docker.internal
-                   PHP_XDEBUG_REMOTE_PORT: 9123
-                   PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+```
+PHP_XDEBUG: 1
+PHP_XDEBUG_DEFAULT_ENABLE: 1
+PHP_XDEBUG_REMOTE_HOST: host.docker.internal
+PHP_XDEBUG_REMOTE_PORT: 9123
+PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+```
 
 by changing them to:
 
-            #      PHP_XDEBUG: 1
-            #      PHP_XDEBUG_DEFAULT_ENABLE: 1
-            #      PHP_XDEBUG_REMOTE_HOST: host.docker.internal
-            #      PHP_XDEBUG_REMOTE_PORT: 9123
-            #      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+```
+#      PHP_XDEBUG: 1
+#      PHP_XDEBUG_DEFAULT_ENABLE: 1
+#      PHP_XDEBUG_REMOTE_HOST: host.docker.internal
+#      PHP_XDEBUG_REMOTE_PORT: 9123
+#      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+```
 
 4) Restart the Docker containers:
 
-            > make up
+```
+> make up
+```
 
 5) If necessary, open VS Code (or if VS Code was already running, left-click the
 "Reload Window" button). If you get a message about "Configuration files(s)
