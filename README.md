@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Install the latest **Composer** (https://getcomposer.org/download/) if not already
+Install the latest **Composer** <https://getcomposer.org/download/> if not already
 installed.
 
 (Recommended) Add the following to your **~/.profile**:
@@ -98,7 +98,7 @@ fully started.
 
 Unless clearing cache produces errors, the site should be available at:
 
-* http://www.docker.localhost:18080
+* <http://www.docker.localhost:18080>
 
 If the site fails to come up, kill the stack with:
 
@@ -202,7 +202,7 @@ Save and test logging in at /user.
 
 ### PHP CodeSniffer
 
-PHP CodeSniffer (https://github.com/squizlabs/PHP_CodeSniffer) is a linter for
+PHP CodeSniffer <https://github.com/squizlabs/PHP_CodeSniffer> is a linter for
 identifying coding standard violations.
 
 The current configuration is defined in the "phpcs.xml.dist" file.
@@ -227,7 +227,7 @@ a configured development environment, with development-specific extensions
 automatically installed in the container.
 
 For more information abot the "Remote Containers" functionality, see
-(https://code.visualstudio.com/docs/remote/containers).
+<https://code.visualstudio.com/docs/remote/containers>.
 
 ### Remote Containers Setup
 
