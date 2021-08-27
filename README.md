@@ -83,7 +83,7 @@ All other values can stay the same.
 and copy to postgres-init:
 
 ```
-> kubectl config get-contexts prod
+> kubectl config use-context prod
 > kubectl exec drupal-www-db-0 -- pg_dump -c --if-exists -O -U drupaldb -d drupaldb > common-www/postgres-init/wwwnew.sql
 ```
 
@@ -130,10 +130,9 @@ And restart without the -d in order to pump logging to standard out.
 
 10) If your work depends on having all images in place, you will want to
 generate a dump from production. These can be copied to
+`common-www/web/sites/default/files/`.
 
-common-www/web/sites/default/files/
-
-See instructions below.
+See the "Files Copy" section below.
 
 Be sure to flush cache after the file copy is complete.
 
@@ -175,7 +174,7 @@ Dumping Local Database (generally not needed)
 To copy files you might need from the server into your local:
 
 ```
-# In "drupal"
+# In "drupal" (and with Kubernetes set to the appropriate namespace)
 > kubectl exec --stdin --tty drupal-www-0 -- /bin/bash
 drupal-www-0> tar -czvf files.tgz web/sites/default/files/
 drupal-www-0> exit
