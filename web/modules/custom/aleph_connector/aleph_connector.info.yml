@@ -6,4 +6,6 @@ configure: aleph_connector.admin_settings_form
 dependencies:
 type: module
 
+version: 2.x
+
 core_version_requirement: ^8.9 || ^9
