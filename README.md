@@ -5,7 +5,8 @@
 Install the latest **Composer** <https://getcomposer.org/download/> if not already
 installed.
 
-(Recommended) Add the following to your **~/.profile**:
+(Recommended only if your executable is *composer.phar*) Add the following to
+your **~/.profile**:
 
 ```
 alias composer="composer.phar"
