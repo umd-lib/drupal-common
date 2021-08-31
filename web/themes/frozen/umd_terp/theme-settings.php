@@ -78,6 +78,38 @@ function umd_terp_form_system_theme_settings_alter(&$form, FormStateInterface $f
     '#default_value' => theme_get_setting('umd_terp_email_secondary'),
     '#description' => t('Please add the secondary email address you wish to display, if you require one.'),
   ];
+  // Customization for LIBWEB-5396
+  $form['umd_terp_footer_settings']['umd_terp_footer_menu1_title'] = [
+    '#type' => 'textfield',
+    '#title' => t('Footer Menu 1 Title'),
+    '#default_value' => theme_get_setting('umd_terp_footer_menu1_title'),
+    '#description' => t('Please add the title to display for footer menu 1.'),
+  ];
+  $form['umd_terp_footer_settings']['umd_terp_footer_menu2_title'] = [
+    '#type' => 'textfield',
+    '#title' => t('Footer Menu 2 Title'),
+    '#default_value' => theme_get_setting('umd_terp_footer_menu2_title'),
+    '#description' => t('Please add the title to display for footer menu 2.'),
+  ];
+  $form['umd_terp_footer_settings']['umd_terp_job_link'] = [
+    '#type' => 'textfield',
+    '#title' => t('Jobs link'),
+    '#default_value' => theme_get_setting('umd_terp_job_link'),
+    '#description' => t('Add the URL to the jobs page.'),
+  ];
+  $form['umd_terp_footer_settings']['umd_terp_library_hours_link'] = [
+    '#type' => 'textfield',
+    '#title' => t('Library Hours link'),
+    '#default_value' => theme_get_setting('umd_terp_library_hours_link'),
+    '#description' => t('Add the URL to the library hours page.'),
+  ];
+  $form['umd_terp_footer_settings']['umd_terp_library_ask_a_librarian_link'] = [
+    '#type' => 'textfield',
+    '#title' => t('Ask a Librarian link'),
+    '#default_value' => theme_get_setting('umd_terp_library_ask_a_librarian_link'),
+    '#description' => t('Add the URL to the ask a librarian page.'),
+  ];
+  // End customization for LIBWEB-5396
 
   // Social media.
   $form['umd_terp_social_settings'] = [

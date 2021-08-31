@@ -1,0 +1,20 @@
+
+<?php
+
+/**
+ * @file
+ * Example module install file.
+ */
+
+/**
+ * Install Solr configuration.
+ */
+function footer_extend_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'footer_extend');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function footer_extend_uninstall() {
+}

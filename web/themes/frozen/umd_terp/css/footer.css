@@ -1,0 +1,139 @@
+.umdlib-site-footer {
+  text-align: center; }
+
+.umdlib-site-footer-main {
+  background-color: #F7F7F7;
+  padding: 0 2.5rem; }
+  .umdlib-site-footer-main .max-bound {
+    max-width: 68.4375rem; }
+  .umdlib-site-footer-main a {
+    color: #666666;
+    transition: .25s color ease-in-out; }
+    .umdlib-site-footer-main a:hover, .umdlib-site-footer-main a:focus {
+      color: #222222;
+      text-decoration: underline; }
+  .umdlib-site-footer-main .umdlib-site-footer-social a:hover, .umdlib-site-footer-main .umdlib-site-footer-social a:focus {
+    color: #E21833;
+    text-decoration: none; }
+  @media (min-width: 800px) {
+    .umdlib-site-footer-main {
+      display: flex; } }
+  .umdlib-site-footer-main > div {
+    padding: 0 2.5rem; }
+
+.umdlib-site-footer-nav {
+  margin: 0 auto;
+  padding: 3.75rem 0;
+  position: relative; }
+  .umdlib-site-footer-nav:after {
+    content: "";
+    /* background-color: #D8D8D8; */
+    display: block;
+    height: 3px;
+    position: absolute;
+    right: -2.5rem;
+    bottom: 0;
+    left: -2.5rem; }
+    /* @media (min-width: 800px) {
+      .umdlib-site-footer-nav:after {
+        right: 0;
+        left: 0; } } */
+  .umdlib-site-footer-nav li {
+    display: block;
+    font-size: 0.875rem;
+    letter-spacing: 0.01562rem; }
+    /* @media (min-width: 600px) {
+      .umdlib-site-footer-nav li {
+        display: inline-block; } } */
+    .umdlib-site-footer-nav li:not(:last-child) {
+      margin: 1.125rem; }
+      /* @media (min-width: 600px) {
+        .umdlib-site-footer-nav li:not(:last-child):after {
+          content: "|";
+          color: #E21833;
+          display: inline-block;
+          margin: 0 1.75rem; } } */
+
+.umdlib-site-footer-about {
+  color: #4A4A4A;
+  font-size: 0.875rem;
+  padding: 3.75rem 0; }
+
+.umdlib-site-footer-addon {
+  color: #4A4A4A;
+  font-size: 0.875rem;
+  padding: 3.75rem 0; }
+
+.umdlib-site-footer-logo {
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin: 0 auto 1.5rem;
+  max-width: 17.1875rem;
+  width: 100%; }
+  @media (min-width: 800px) {
+    .umdlib-site-footer-logo {
+      margin-right: 2rem; } }
+  @media (min-width: 1200px) {
+    .umdlib-site-footer-logo {
+      margin-right: 3.5rem; } }
+  .umdlib-site-footer-logo img {
+    display: block;
+    width: 100%; }
+
+.umdlib-site-footer-address {
+  margin: 0 auto 2rem; }
+  @media (min-width: 800px) {
+    .umdlib-site-footer-address {
+      text-align: left; } }
+
+.umdlib-site-footer-social {
+  margin: 0 auto;
+  max-width: 18.4375rem; }
+  @media (min-width: 800px) {
+    .umdlib-site-footer-social {
+      flex-grow: 0;
+      flex-grow: 0;
+      max-width: none;
+      width: 33.333%; } }
+  .umdlib-site-footer-social ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+  .umdlib-site-footer-social li {
+    align-items: center;
+    display: flex;
+    flex: 1 1 0px;
+    justify-content: center;
+    max-width: 25%; }
+  .umdlib-site-footer-social [class*="icon"] {
+    font-size: 1.0625rem; }
+  .umdlib-site-footer-social .icon-youtube {
+    font-size: 0.8125rem; }
+
+.umdlib-site-footer-legal {
+  background-color: #222222;
+  padding: 2.625rem 2.5rem 3.5rem; }
+  @media (min-width: 800px) {
+    .umdlib-site-footer-legal {
+      padding: 2rem 2.5rem; } }
+  .umdlib-site-footer-legal ul {
+    text-align: center;
+    display: inline-block; }
+  .umdlib-site-footer-legal li {
+    color: #8E8E8E;
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 2.07143; }
+    /* .umdlib-site-footer-legal li:not(:last-child):after { */
+    .umdlib-site-footer-legal li:after {
+      content: "|";
+      display: inline-block;
+      margin: 0 0.5rem; }
+  .umdlib-site-footer-legal a {
+    color: inherit; }
+  .umdlib-site-footer-legal span {
+    color: #8E8E8E;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 2.07143; }

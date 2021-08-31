@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {}
+id: footer_addon
+label: 'Footer Addon'
+revision: 0
+description: 'Footer addon block type to add styled buttons to the footer addon region.'
