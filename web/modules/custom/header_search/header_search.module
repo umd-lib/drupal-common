@@ -1,0 +1,18 @@
+<?php
+/**
+ * @file
+ * Module file for the header_search module
+ */
+
+ /**
+ * Implements hook_theme().
+ */
+function header_search_theme() {
+  return [
+    'header_search_block' => [
+      'variables' => [
+        'header_search_form' => '',
+      ],
+    ],
+  ];
+}

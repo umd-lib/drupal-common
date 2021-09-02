@@ -1,0 +1,6 @@
+header_search.admin_settings_form:
+  title: 'Header Search'
+  description: 'Confiugration of the Header Search targer Urls.'
+  parent: 'system.admin_config_search'
+  weight: 99
+  route_name: header_search.admin_settings_form
