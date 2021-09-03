@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "drupal/block_type_templates": "^1.0.0-alpha3",
         "drupal/better_exposed_filters": "^5.0@beta",
         "drupal/bootstrap": "^3.21",
         "drupal/cas": "^1.6",
