@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - umd_terp
+id: poweredbydrupal_2
+theme: umd_terp
+region: sidebar
+weight: -2
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: "Textbook Facet Temp Fix"
+  provider: system
+  label_display: "0"
+visibility:
+  request_path:
+    id: request_path
+    pages: "\r\n/find/reserves/top-textbooks"
+    negate: false
+    context_mapping: {}
