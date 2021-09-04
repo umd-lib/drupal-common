@@ -1,0 +1,20 @@
+
+<?php
+
+/**
+ * @file
+ * Example module install file.
+ */
+
+/**
+ * Install configuration.
+ */
+function system_status_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'system_status');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function system_status_uninstall() {
+}
