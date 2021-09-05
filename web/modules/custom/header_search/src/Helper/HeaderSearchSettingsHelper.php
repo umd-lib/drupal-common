@@ -12,16 +12,6 @@ namespace Drupal\header_search\Helper;
  */
 class HeaderSearchSettingsHelper {
 
-  const SEARCH_TARGETS = [
-    "all" =>  'All',
-    "umd_catalog" =>  'UMD CATALOG',
-    "worldcat" =>  'WORLDCAT',
-    "databases" =>  'DATABASES',
-    "research_guides" =>  'RESEARCH GUIDES',
-    "faqs" =>  'FAQS',
-    "website" =>  'WEBSITE',
-  ];
-
   protected $config;
 
   private static $instance;
@@ -39,11 +29,47 @@ class HeaderSearchSettingsHelper {
     return self::$instance;
   }
 
-  public function getSearchTargets() {
-    return static::SEARCH_TARGETS;
+  // 
+  public function parseSearchTargets($multiline_str) {
+    $values = [];
+
+    $list = explode("\n", $multiline_str);
+    $list = array_map('trim', $list);
+    $list = array_filter($list, 'strlen');
+
+    foreach ($list as $position => $text) {
+      // Check for an explicit key.
+      $matches = [];
+      if (preg_match('/(.*)\|(.*)/', $text, $matches)) {
+        // Trim key and value to avoid unwanted spaces issues.
+        $key = trim($matches[1]);
+        $value = trim($matches[2]);
+      }
+      else {
+        return;
+      }
+
+      $values[$key] = $value;
+    }
+
+    return $values;
+  }
+
+  public function convertSearchTargetsToString($targets) {
+    $target_str = '';
+    foreach($targets as $name => $url) {
+      $target_str = $target_str . "$name|$url\n";
+    }
+    return $target_str;
+  }
+
+  public function getSearchTargetOptions() {
+    $target_names = array_keys($this->config->get('search_targets'));
+    return array_combine($target_names, $target_names);
   }
 
   public function getSearchTargetUrl($target) {
-    return $this->config->get($target);
+    $targets = $this->config->get('search_targets');
+    return $targets[$target];
   }
 } 

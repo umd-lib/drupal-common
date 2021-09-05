@@ -44,7 +44,7 @@ class HeaderSearchForm extends FormBase {
     $form['search_target'] = array(
       '#type' => 'select',
       '#name' => 'search_target',
-      '#options' => $this->configHelper->getSearchTargets(),
+      '#options' => $this->configHelper->getSearchTargetOptions(),
     );
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [

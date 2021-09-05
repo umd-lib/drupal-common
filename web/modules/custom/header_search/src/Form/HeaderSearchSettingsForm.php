@@ -52,16 +52,15 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
           'Example: https://www.example.com/search?query=') . '</h3>',
     ];
 
-    foreach($this->configHelper->getSearchTargets() as $target => $name) {
-      $form[$target] = [
-        '#type' => 'url',
-        '#title' => t($name),
-        '#default_value' => $config->get($target),
-        '#size' => 100,
-        '#maxlength' => 100,
-        '#required' => TRUE,
-      ];
-    }
+    $form['search_targets'] = [
+      '#type' => 'textarea',
+      '#title' => t('Search Targets'),
+      '#description' => t('One mapping per line with the format <strong>Searcher Name|Searcher URL</strong>.'),
+      '#default_value' => $this->configHelper->convertSearchTargetsToString($config->get('search_targets')),
+      '#rows' => 10,
+      '#cols' => 100,
+      '#required' => TRUE,
+    ];
 
     return parent::buildForm($form, $form_state);
   }
@@ -70,12 +69,20 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $err_msg = 'The url should be of format https://DOMAIN/ENDPOINT?SEARCH_QEURY_PARAM=';
-    foreach($this->configHelper->getSearchTargets() as $target => $name) {
-      $url = $form_state->getValue($target);
-      if (!str_ends_with($url, '=')) {
-        $form_state->setErrorByName($target, $this->t($err_msg));
+    $err_msg = "The url should be of format https://DOMAIN/ENDPOINT?SEARCH_QEURY_PARAM=. Error urls: \n";
+    $search_targets_str = $form_state->getValue('search_targets');
+    $search_targets = $this->configHelper->parseSearchTargets($search_targets_str);
+    $error_urls = [];
+    foreach($search_targets as $name => $url) {
+      if (filter_var($url, FILTER_VALIDATE_URL) == false) {
+        array_push($error_urls, $url);
+      } elseif (!str_ends_with($url, '=')) {
+        array_push($error_urls, $url);
       }
+    }
+    if (count($error_urls) > 0) {
+      $error_urls_str = implode("'\n'", $error_urls);
+      $form_state->setErrorByName('search_targets', $this->t($err_msg) . "'$error_urls_str'");
     }
   }
 
@@ -84,10 +91,11 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->configFactory->getEditable(static::SETTINGS);
-    foreach($this->configHelper->getSearchTargets() as $target => $name) {
-      $url = $form_state->getValue($target);
-      $config->set($target, $url);
-    }
+
+    $search_targets_str = $form_state->getValue('search_targets');
+    $search_targets = $this->configHelper->parseSearchTargets($search_targets_str);
+    $config->set('search_targets', $search_targets);
+
     $config->save();
     parent::submitForm($form, $form_state);
   }
