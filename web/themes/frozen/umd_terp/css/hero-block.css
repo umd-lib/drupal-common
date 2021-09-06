@@ -1,0 +1,10 @@
+.hero-block-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-block {
+  width: 400px;
+  height: 300px;
+  background-color: wheat;
+}
