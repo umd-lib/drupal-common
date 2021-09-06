@@ -4,7 +4,7 @@ This module adds the custom header search block that allows launching a search i
 
 ## Setup
 
-Enable the "Aleph Connector" module in "Manage | Extend"
+Enable the "Header Search" module in "Manage | Extend"
 
 After the module is installed, the "Header Search" block can be placed in the theme's header region.
 
