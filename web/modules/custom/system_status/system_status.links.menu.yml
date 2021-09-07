@@ -1,0 +1,6 @@
+system_status.admin_settings_form:
+  title: 'System Status'
+  description: 'Confiugration of the System Status.'
+  parent: 'system.admin_config_system'
+  weight: 99
+  route_name: system_status.admin_settings_form
