@@ -1,10 +1,40 @@
 .hero-block-container {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
+
 .hero-block {
-  width: 400px;
-  height: 300px;
-  background-color: wheat;
+  margin-left: 25px;
+}
+
+/* home-hero-content z-index is 100 */
+
+.home-hero-media {
+  z-index: 110;
+  position: relative;
+}
+
+.home-hero-media {
+  overflow: hidden;
+  position: relative;
+  z-index: 0
+}
+
+@media (min-width:1200px) {
+  .home-hero-media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%
+  }
+}
+
+.home-hero-media:before {
+  content: unset;
+}
+
+.home-hero-bg .home-hero-media:after {
+  content: unset;
 }
