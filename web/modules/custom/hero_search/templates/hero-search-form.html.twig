@@ -1,0 +1,16 @@
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+ 
+<div class="hero-search-form">
+  <div class="row hero-search-input">
+    {{ form.search_query }}
+    {{ form.actions.submit }}
+  </div>
+  <div class="row hero-search-options">
+    {{ form.search_target }}
+    <span class='hero-search-left-align'>
+      {{ form.advanced_search }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+services:
+  logger.channel.hero_search:
+    parent: logger.channel_base
+    arguments: ['hero_search']
