@@ -1,5 +1,5 @@
-system_status.system_status_tab:
+system_status.admin_settings_form:
   title: 'System Status'
   route_name: system_status.admin_settings_form
-  base_route: system_status.admin_settings_form
+  base_route: libraries_configuration.base_tab
   weight: 99

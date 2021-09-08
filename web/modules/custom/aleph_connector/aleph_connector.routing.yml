@@ -1,5 +1,5 @@
 aleph_connector.admin_settings_form:
-  path: '/admin/config/services/aleph_connector'
+  path: '/admin/config/system/aleph_connector'
   defaults:
     _form: '\Drupal\aleph_connector\Form\AlephSettingsForm'
     _title: 'Aleph Connector Settings Form'
@@ -8,7 +8,7 @@ aleph_connector.admin_settings_form:
   options:
     _admin_route: TRUE
 alephx_connector.admin_settings_form:
-  path: '/admin/config/services/alephx_connector'
+  path: '/admin/config/system/alephx_connector'
   defaults:
     _form: '\Drupal\aleph_connector\Form\AlephxSettingsForm'
     _title: 'Aleph X Connector Settings Form'
