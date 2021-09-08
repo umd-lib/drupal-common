@@ -1,3 +1,39 @@
 /**
  * Equipment Tracking CSS
  */
+.equip-search-header{
+    margin:  1rem 0;
+}
+.equip-search-title{
+    font-weight: bold;
+}
+.equip-available-now{
+
+}
+.equipment-count{
+
+}
+
+/** Below are general styles for the whole site **/
+ .dark-green{
+    color: green;
+ }
+
+ /** Search Facet **/
+
+.facet-block {
+    margin-bottom: .7rem;
+}
+ p.facet-block__title {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+.facets-widget-checkbox label{
+    margin-left: 0.5rem;
+}
+/** Search field options. Overwrite UMD search**/
+.views-exposed-form .button, .views-exposed-form .form-select, .views-exposed-form .form-text {
+    width: auto;
+    padding-right: 2rem;
+    padding-left:  2rem;
+}
