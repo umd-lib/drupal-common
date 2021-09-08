@@ -1,0 +1,5 @@
+libraries_configuration.libraries_configuration_tab:
+  title: "Libraries' Configuration"
+  route_name: llibraries_configuration.base_tab
+  base_route: llibraries_configuration.base_tab
+  weight: 99

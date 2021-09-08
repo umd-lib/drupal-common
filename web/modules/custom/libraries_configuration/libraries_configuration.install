@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Libraries configuration module install file.
+ */
+
+/**
+ * Install  configuration.
+ */
+function libraries_configuration_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'libraries_configuration');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function libraries_configuration_uninstall() {
+}
