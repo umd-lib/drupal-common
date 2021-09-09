@@ -25,7 +25,11 @@
 						<video aria-hidden="true" src="{{ file_url(content.field_umdt_ct_hero_video[0]['#media'].field_media_video_file.entity.uri.value) }}" poster="{{ file_url(content.field_umdt_ct_hero_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" autoplay muted loop></video>
 					</noscript>
 				{% elseif content.field_umdt_ct_hero_image|field_value %}
-					<img src="{{ file_url(content.field_umdt_ct_hero_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" alt="{{ content.field_umdt_ct_hero_image[0]['#media'].field_media_image.alt }}"/>
+					<div class="hero-block-container" style="height: 100%; background-image: url({{ file_url(content.field_umdt_ct_hero_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }});">
+						<div class="hero-block">
+							{{ hero_block }}
+						</div>
+					</div>
 				{% endif %}
 			</div>
 		{% endif %}

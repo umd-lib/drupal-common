@@ -1,0 +1,10 @@
+name: Hero Search
+description: Provides a custom search block for home page searching.
+
+package: 'UMD Services'
+configure: hero_search.admin_settings_form
+type: module
+dependencies:
+  - easy_install
+
+core_version_requirement: ^8.8 || ^9

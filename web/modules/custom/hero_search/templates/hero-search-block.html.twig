@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * hero-search-block template
+ *
+ * Variables:
+ *   - hero_search_title
+ *   - hero_search_form
+ *   - hero_search_buttons
+ *   - hero_search_top_right_link
+ *   - hero_search_bottom_left_link
+ *   - hero_search_bottom_right_link
+ */
+#}
+{{ attach_library('hero_search/hero-search') }}
+<div class='hero-search-block'>
+  <div class='row'>
+    <span>{{ hero_search_title }}</span>
+    <span class='hero-search-left-align'>
+      {% if hero_search_top_right_link %}
+        <a href='{{ hero_search_top_right_link.url }}' title='{{ hero_search_top_right_link.title }}'>
+          {{ hero_search_top_right_link.text }}
+        </a>
+      {% endif %}
+    </span>
+  </div>
+  <div class='row'>
+    {{ hero_search_form }}
+  </div>
+  <div class='row'>
+    <div class='hero_search_buttons_container'>
+      {% for button in hero_search_buttons %}
+        <span>
+          <a class="btn" href='{{ button.url }}' title='{{ button.title }}'>{{ button.text }}</a>
+        </span>
+      {% endfor %}
+    </div>
+  </div>
+  <div class='row'>
+    <span>
+      {% if hero_search_bottom_left_link %}
+        <a href='{{ hero_search_bottom_left_link.url }}' title='{{ hero_search_bottom_left_link.title }}'>
+          {{ hero_search_bottom_left_link.text }}
+        </a>
+      {% endif %}
+    </span>
+    <span class='hero-search-left-align'>
+      {% if hero_search_bottom_right_link %}
+        <a href='{{ hero_search_bottom_right_link.url }}' title='{{ hero_search_bottom_right_link.title }}'>
+          {{ hero_search_bottom_right_link.text }}
+        </a>
+      {% endif %}
+    </span>
+  
+  </div>
+</div>

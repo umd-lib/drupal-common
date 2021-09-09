@@ -9,6 +9,7 @@ libraries:
 regions:
   header_alerts: 'Header Alerts'
   main_menu: 'Main Menu'
+  hero_block: 'Hero Block'
   help: 'Help'
   breadcrumbs: 'Breadcrumbs'
   sidebar: 'Sidebar'
