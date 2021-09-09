@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * A footer-addon template
+ *
+ * Variables:
+ *   - content
+ */
+#}
+{{ attach_library('footer_extend/footer-extend') }}
+<div class="footer-addon-block">
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

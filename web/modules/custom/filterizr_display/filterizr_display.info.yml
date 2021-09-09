@@ -1,0 +1,10 @@
+name: Filterizr Display
+description: Employs the Filterizr JS library to Views output for Profiles but can be used elsewhere.
+
+package: 'UMD Custom'
+dependencies:
+  - easy_install
+  - views
+type: module
+
+core_version_requirement: ^8.9 || ^9

@@ -40,7 +40,7 @@ services:
       NGINX_BACKEND_HOST: php
       NGINX_SERVER_ROOT: /var/www/html/web
       NGINX_VHOST_PRESET: $NGINX_VHOST_PRESET
-      NGINX_DRUPAL_FILE_PROXY_URL: http://example.com
+      # NGINX_DRUPAL_FILE_PROXY_URL: http://example.com
     volumes:
       - ./:/var/www/html:cached
 ## Alternative for macOS users: docker-sync https://wodby.com/docs/stacks/drupal/local#docker-for-mac
@@ -70,6 +70,10 @@ services:
       - "traefik.http.routers.${PROJECT_NAME}_solr.rule=Host(`solr.${PROJECT_BASE_URL}`)"
     volumes:
       - $SOLR_DATA_DIR:/opt/solr/server/solr
+
+  solr-textbook:
+    image: docker.lib.umd.edu/solr-textbook:3.1.4
+    container_name: "${PROJECT_NAME}_solr_textbook"
 
   varnish:
     image: wodby/varnish:$VARNISH_TAG

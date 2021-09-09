@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Top textbooks template
+ *
+ * Variables:
+ *   - textbook_count
+ *   - textbook_mindue
+ *   - textbook_sysnum
+ *   - error
+ */
+#}
+{{ attach_library('top_textbooks/top-textbooks') }}
+<div id="texbook-{{ textbook_sysnum }}">
+  {%if textbook_count > 0 %}
+    <div class="textbook-request">
+      <button>Request Chapter Scan</button>
+    </div>
+    <div class="textbook-count">{{ textbook_count }} available now</div>
+  {%else %}
+    <div class="textbook-request">
+      <button disabled="true">Request Chapter Scan</button>
+    </div>
+    {%if error %}
+      <div class="textbook-error">Error retrieving availability information.</div>
+    {%elseif textbook_mindue %}
+      <div class="textbook-available">Next Available: {{ textbook_mindue }}</div>
+    {%else %}
+      <div class="textbook-not-available">None Available.</div>
+    {% endif %}
+  {% endif %}
+</div>

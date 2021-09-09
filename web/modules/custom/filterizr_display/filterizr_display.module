@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Module file for filterizr module.
+ */
+
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_theme().
+ */
+function filterizr_display_theme($existing, $type, $theme, $path) {
+dsm($path);
+  \Drupal::moduleHandler()->loadInclude('filterizr_display', 'inc', 'filterizr_display');
+  return array(
+    'filterizr_display' => array(
+      'file' => 'filterizr_display.theme.inc',
+    ),
+  );
+}
+

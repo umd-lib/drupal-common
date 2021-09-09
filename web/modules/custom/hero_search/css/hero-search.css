@@ -1,0 +1,28 @@
+/**
+ * hero_search component CSS file.
+ */
+
+.hero-search-block {
+  background-color: wheat;
+}
+
+.hero-search-input div {
+  display: inline-block;
+}
+
+.hero-search-options div {
+  display: inline-block;
+}
+
+.hero-search-block .row {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.hero-search-block .form-item label {
+  display: inline-block;
+}
+
+.hero-search-left-align {
+  margin-left: auto;
+}

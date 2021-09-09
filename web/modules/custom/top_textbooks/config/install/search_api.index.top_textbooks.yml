@@ -1,0 +1,132 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+    - search_api
+  config:
+    - search_api.server.top_textbooks
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    advanced:
+      index_prefix: ""
+      collection: ""
+      timezone: ""
+id: top_textbooks
+name: "Top Textbooks"
+description: ""
+read_only: true
+field_settings:
+  alternate_isbns:
+    label: "Alternate ISBNs"
+    datasource_id: solr_document
+    property_path: alternate_isbns
+    type: text
+  author:
+    label: Author
+    datasource_id: solr_document
+    property_path: author
+    type: text
+  bar_code:
+    label: Barcodes
+    datasource_id: solr_document
+    property_path: bar_code
+    type: text
+  call_number:
+    label: "Call Number"
+    datasource_id: solr_document
+    property_path: call_number
+    type: string
+  comment:
+    label: Comment
+    datasource_id: solr_document
+    property_path: comment
+    type: string
+  course:
+    label: Course
+    datasource_id: solr_document
+    property_path: course
+    type: string
+  edition:
+    label: Edition
+    datasource_id: solr_document
+    property_path: edition
+    type: string
+  isbn:
+    label: ISBN
+    datasource_id: solr_document
+    property_path: isbn
+    type: string
+  program:
+    label: Program
+    datasource_id: solr_document
+    property_path: program
+    type: string
+  text:
+    label: Text
+    datasource_id: solr_document
+    property_path: text
+    type: text
+  title:
+    label: Title
+    datasource_id: solr_document
+    property_path: title
+    type: string
+  year:
+    label: Year
+    datasource_id: solr_document
+    property_path: year
+    type: integer
+datasource_settings:
+  solr_document:
+    id_field: author
+    request_handler: ""
+    default_query: "*:*"
+    label_field: ""
+    language_field: ""
+    url_field: ""
+processor_settings:
+  add_url: {}
+  aggregated_field: {}
+  language_with_fallback: {}
+  rendered_item: {}
+  solr_date_range: {}
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: false
+  cron_limit: 50
+server: top_textbooks

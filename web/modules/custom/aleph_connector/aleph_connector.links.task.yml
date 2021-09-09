@@ -1,0 +1,10 @@
+aleph_connector.aleph_config_tab:
+  title: 'Aleph Connector'
+  route_name: aleph_connector.admin_settings_form
+  base_route: libraries_configuration.base_tab
+  weight: 99
+aleph_connector.alephx_config_tab:
+  title: 'Aleph X Connector'
+  route_name: alephx_connector.admin_settings_form
+  base_route: libraries_configuration.base_tab
+  weight: 99

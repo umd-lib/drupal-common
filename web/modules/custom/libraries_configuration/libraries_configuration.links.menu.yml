@@ -1,0 +1,6 @@
+libraries_configuration.base_tab:
+  title: "Libraries' Configuration"
+  description: "Configuration of the Libraries' custom modules."
+  parent: 'system.admin_config_system'
+  weight: 99
+  route_name: libraries_configuration.base_tab

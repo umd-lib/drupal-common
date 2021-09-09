@@ -1,0 +1,20 @@
+
+<?php
+
+/**
+ * @file
+ * Example module install file.
+ */
+
+/**
+ * Install configuration.
+ */
+function header_search_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'header_search');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function header_search_uninstall() {
+}

@@ -1,0 +1,9 @@
+hero_search.admin_settings_form:
+  path: '/admin/config/search/hero_search'
+  defaults:
+    _form: '\Drupal\hero_search\Form\HeroSearchSettingsForm'
+    _title: 'Hero Search Settings Form'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,26 @@
+<?php
+/**
+ * @file
+ * Module file for the hero_search module
+ */
+
+ /**
+ * Implements hook_theme().
+ */
+function hero_search_theme() {
+  return [
+    'hero_search_block' => [
+      'variables' => [
+        'hero_search_title' => '',
+        'hero_search_form' => '',
+        'hero_search_buttons' => '',
+        'hero_search_top_right_link' => '',
+        'hero_search_bottom_left_link' => '',
+        'hero_search_bottom_right_link' => '',
+      ],
+    ],
+    'hero_search_form' => [
+      'render element' => 'form',
+    ],
+  ];
+}

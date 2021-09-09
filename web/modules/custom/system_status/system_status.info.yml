@@ -1,0 +1,11 @@
+name: System Status
+description: Provides a cached system status json endpoint that pulls data from external system status json service.
+
+package: 'UMD Services'
+configure: system_status.admin_settings_form
+type: module
+dependencies:
+  - easy_install
+  - libraries_configuration
+
+core_version_requirement: ^8.9 || ^9

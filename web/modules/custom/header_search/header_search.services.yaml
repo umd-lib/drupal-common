@@ -1,0 +1,4 @@
+services:
+  logger.channel.header_search:
+    parent: logger.channel_base
+    arguments: ['header_search']

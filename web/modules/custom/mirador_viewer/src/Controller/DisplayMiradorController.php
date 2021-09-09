@@ -199,7 +199,10 @@ class DisplayMiradorController extends ControllerBase implements TrustedCallback
     $token = $this->fc->config->get('fcrepo_token');
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $uri);
-    $authorization = "Authorization: Bearer ". $token;
+    $authorization = NULL;
+    if (!empty(trim($token))) {
+      $authorization = "Authorization: Bearer ". $token;
+    }
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: text/html' , $authorization ));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);

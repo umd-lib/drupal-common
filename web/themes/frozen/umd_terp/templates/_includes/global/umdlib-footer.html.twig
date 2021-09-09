@@ -1,0 +1,79 @@
+{#
+/**
+* @file
+* Displays global footer.
+*
+*/
+#}
+
+<footer class="umdlib-site-footer" aria-label="Main">
+	<div class="umdlib-site-footer-main">
+		<div class="umdlib-site-footer-about">
+			<div class="umdlib-site-footer-logo">
+				{% if umd_terp_footer_logo_svg %}
+					{{ umd_terp_footer_logo_svg|raw }}
+				{% else %}
+					<img src="{{ footer_logo_path }}" alt="{{ site_name }} logo">
+				{% endif %}
+			</div>
+			<div class="umdlib-site-footer-address">
+				<strong>{{ site_name }}</strong><br>
+				{% if umd_terp_address %}
+					<span>{{ umd_terp_address }}</span><br>
+				{% endif %}
+				{% if umd_terp_phone %}
+					<a aria-label="{{ umd_terp_phone|preg_replace('/[^0-9]/', '') }}" href="tel:+{{ umd_terp_phone|preg_replace('/[^0-9]/', '') }}">{{ umd_terp_phone }}</a>
+					{% if umd_terp_phone_secondary %}
+						<span aria-hidden="true">&nbsp;/&nbsp;</span>
+						<a aria-label="{{ umd_terp_phone_secondary|preg_replace('/[^0-9]/', '') }}" href="tel:+{{ umd_terp_phone_secondary|preg_replace('/[^0-9]/', '') }}">{{ umd_terp_phone_secondary }}</a>
+					{% endif %}
+				{% endif %}
+				{% if umd_terp_library_ask_a_librarian_link %}
+					{% if umd_terp_phone %}
+						<span aria-hidden="true">&nbsp;·&nbsp;</span>
+					{% endif %}
+					<a href="{{ umd_terp_library_ask_a_librarian_link }}">Ask a Librarian</a>
+				{% endif %}
+			</div>
+			<div class="umdlib-site-footer-social">
+				{% include directory ~ '/templates/partials/social-links.html.twig' %}
+			</div>
+		</div>
+		<div class="umdlib-site-footer-nav-container">
+			<nav class="umdlib-site-footer-nav" aria-label="Footer Menu 1">
+				{% if umd_terp_footer_menu1_title %}
+					<strong>{{ umd_terp_footer_menu1_title }}</strong>
+				{% endif %}
+				{{ drupal_menu('footer') }}
+			</nav>
+			{% if umd_terp_library_hours_link %}
+			<div>
+				<a href="{{ umd_terp_library_hours_link }}">Library Hours</a>
+			</div>
+			{% endif %}
+		</div>
+		<div class="umdlib-site-footer-nav-container">
+			<nav class="umdlib-site-footer-nav" aria-label="Footer Menu 2">
+					{% if umd_terp_footer_menu2_title %}
+					<strong>{{ umd_terp_footer_menu2_title }}</strong>
+				{% endif %}
+				{{ drupal_menu('footer2') }}
+			</nav>
+			{% if umd_terp_job_link %}
+			<div>
+				<a href="{{ umd_terp_job_link }}">Jobs</a>
+			</div>
+			{% endif %}
+		</div>
+		<div class="umdlib-site-footer-addon">
+		  {{ page.footer_addon }}
+		</div>
+	</div>
+	<div class="umdlib-site-footer-legal">
+		<div class="max-bound">
+			{{ drupal_menu('global') }}
+      <span>Ⓒ {{ "now"|date('Y') }} UNIVERSITY OF MARYLAND</span>
+		</div>
+	</div>
+</footer>
+<a href="#" class="back-to-top">Back to Top</a>

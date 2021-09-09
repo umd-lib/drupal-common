@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Example module install file.
+ */
+
+/**
+ * Install Solr configuration.
+ */
+function umd_computer_tracking_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_computer_tracking');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function umd_computer_tracking_uninstall() {
+}
