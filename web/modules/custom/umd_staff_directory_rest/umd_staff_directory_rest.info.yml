@@ -1,0 +1,13 @@
+name: UMD Staff Directory REST
+description: REST endpoint for processing Staff Directory JSON file from umd-lib/staffdirectory-ldap.
+
+package: UMD Services
+dependencies:
+  - restui
+  - basic_auth
+  - umd_terp_content_types
+  - umd_taxonomy_divisions
+  - umd_taxonomy_divisions_demo
+type: module
+
+core_version_requirement: ^8 || ^9
