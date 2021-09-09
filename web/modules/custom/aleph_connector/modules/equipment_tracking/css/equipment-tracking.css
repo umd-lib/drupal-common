@@ -1,3 +1,16 @@
 /**
  * Equipment Tracking CSS
  */
+.equip-search-header{
+    margin:  1rem 0;
+}
+.equip-search-title{
+    font-weight: bold;
+}
+.equip-available-now{
+
+}
+.equipment-count{
+
+}
+

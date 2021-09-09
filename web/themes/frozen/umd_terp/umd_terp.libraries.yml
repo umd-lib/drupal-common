@@ -5,6 +5,7 @@ global:
      static/build/css/index.css: { media: screen }
      css/footer.css: { media: screen }
      css/hero-block.css: { media: screen }
+     css/umd-search.css: { media: screen }
      static/build/css/print.css: { media: print }
   js:
     static/build/js/index.js: {}
