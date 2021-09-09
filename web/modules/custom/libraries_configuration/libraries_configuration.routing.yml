@@ -1,0 +1,9 @@
+libraries_configuration.base_tab:
+  path: '/admin/config/system/libraries_configuration'
+  defaults:
+    _controller: '\Drupal\libraries_configuration\Controller\LibrariesConfigurationController::content'
+    _title: "Libraries' Configuration"
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,10 @@
+name: Libraries' Configuration
+description: Adds Libraries' Configuration menu item to the configuration page.
+
+package: 'UMD Services'
+configure: libraries_confiugration.admin_settings_form
+dependencies:
+  - easy_install
+type: module
+
+core_version_requirement: ^8.9 || ^9
