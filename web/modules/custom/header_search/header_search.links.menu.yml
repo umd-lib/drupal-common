@@ -1,6 +1,6 @@
 header_search.admin_settings_form:
-  title: 'Libraries Search'
-  description: 'Confiugration of the Libraries search.'
+  title: 'Libraries Search (Header)'
+  description: 'Configuration of the Libraries search.'
   parent: 'system.admin_config_search'
   weight: 99
   route_name: header_search.admin_settings_form
