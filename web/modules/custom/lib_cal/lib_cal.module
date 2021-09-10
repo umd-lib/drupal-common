@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Module file for lib_cal module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function lib_cal_theme() {
+  return [
+    'lib_cal_block' => [
+      'variables' => [
+        'events' => '',
+      ],
+    ],
+  ];
+}

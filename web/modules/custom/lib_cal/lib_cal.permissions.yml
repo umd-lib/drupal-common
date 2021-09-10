@@ -1,0 +1,4 @@
+access libcal configuration:
+  title: 'Access LibCal Configuration'
+  description: 'Allows users to access to LibCal API configuration.'
+  restrict access: TRUE

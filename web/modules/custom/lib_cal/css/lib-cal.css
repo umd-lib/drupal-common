@@ -1,0 +1,27 @@
+/**
+ * LibCal CSS
+ */
+
+/* .lib-cal-block {}
+
+.lib-cal-event {}
+
+.lib-cal-event-category {}
+
+.lib-cal-event-title {} */
+
+.lib-cal-event-time {
+  display: inline-block;
+  border: 2px solid gray;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+}
+
+.lib-cal-event-time span {
+  display: block;
+}
+
+.lib-cal-event-detail {
+  display: inline-block;
+}

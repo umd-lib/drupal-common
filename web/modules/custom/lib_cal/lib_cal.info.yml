@@ -1,0 +1,11 @@
+name: LibCal
+description: Provides a custom block module that displays calendar events pulled from LibCal API.
+
+package: 'UMD Services'
+configure: lib_cal.admin_settings_form
+dependencies:
+  - easy_install
+  - libraries_configuration
+type: module
+
+core_version_requirement: ^8.9 || ^9

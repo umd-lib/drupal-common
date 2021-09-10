@@ -1,0 +1,9 @@
+lib_cal.admin_settings_form:
+  path: '/admin/config/system/lib_cal'
+  defaults:
+    _form: '\Drupal\lib_cal\Form\LibCalSettingsForm'
+    _title: 'LibCal Settings Form'
+  requirements:
+    _permission: 'access libcal configuration'
+  options:
+    _admin_route: TRUE
