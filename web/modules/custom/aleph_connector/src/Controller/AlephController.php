@@ -32,7 +32,9 @@ class AlephController extends ControllerBase implements TrustedCallbackInterface
     }
     else {
       $data = $this->getEquipmentDataFromApi();
-      \Drupal::cache()->set($this->cid, $data, time() + 360);
+      if ($data) {
+        \Drupal::cache()->set($this->cid, $data, time() + 360);
+      }
     }
     return $data;
   }
