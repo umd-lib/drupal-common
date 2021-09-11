@@ -15,13 +15,36 @@ use Drupal\Core\Security\TrustedCallbackInterface;
  */
 class AlephController extends ControllerBase implements TrustedCallbackInterface {
 
+  private $cid;
   protected $config;
 
   public function __construct() {
     $this->config = \Drupal::config('aleph_connector.settings');
+    $this->cid = 'aleph_connector:' . \Drupal::languageManager()
+      ->getCurrentLanguage()
+      ->getId();
   }
 
   public function getEquipmentData() {
+    $data = NULL;
+    if ($cache = \Drupal::cache()->get($this->cid)) {
+      $data = $cache->data;
+    }
+    else {
+      $data = $this->getEquipmentDataFromApi();
+      \Drupal::cache()->set($this->cid, $data, time() + 360);
+    }
+    return $data;
+  }
+
+  public function updateEquipmentDataCache() {
+    $data = $this->getEquipmentDataFromApi();
+    if ($data) {
+      \Drupal::cache()->set($this->cid, $data, time() + 360);
+    }
+  }
+
+  private function getEquipmentDataFromApi() {
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $this->getAlephBase() . $this->getEquipmentEndpoint());
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
