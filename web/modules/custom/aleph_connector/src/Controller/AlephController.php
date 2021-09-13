@@ -54,11 +54,11 @@ class AlephController extends ControllerBase implements TrustedCallbackInterface
 
     if (!curl_errno($curl)) {
       if (curl_getinfo($curl, CURLINFO_HTTP_CODE) != 200) {
-        \Drupal::messenger()->addError(t('Connection error.'));
+        \Drupal::messenger()->addError(t('Aleph connection error. Non-200 response.'));
         return FALSE; 
       }
     } else {
-      \Drupal::messenger()->addError(t('Connection error.'));
+      \Drupal::messenger()->addError(t('Aleph connection error. Non-200 response.'));
       return FALSE;
     }
 
