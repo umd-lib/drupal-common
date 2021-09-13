@@ -81,6 +81,18 @@ class DrupalGateway {
     $node->save();
   }
 
+  /**
+   * Restores the node (by publishing) at the given node id.
+   *
+   * @param int the node id of the node to republish
+   */
+  public static function republishEntry(int $node_id) {
+    $node = Node::load($node_id);
+
+    $node->set('status', self::STATUS_PUBLISHED);
+    $node->save();
+  }
+
   private static function setDivision(Node $node, array $staff_dir_values, string $staff_dir_field, string $umd_terp_field, array $division_ids_by_name) {
     $division_name = $staff_dir_values[$staff_dir_field];
     if (!empty($division_name)) {
@@ -106,6 +118,29 @@ class DrupalGateway {
     $ids = $query->execute();
     $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($ids);
     return $nodes;
+  }
+
+  /**
+   * Returns an array of directory ids for all unpublished UMD Terp Persons
+   *
+   * @return array an array of directory ids for all unpublished UMD Terp Persons
+   */
+  public static function getUnpublishedUmdTerpPersonDirectoryIds() {
+    $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+    $query->condition('type', 'umd_terp_person');
+    $query->condition('status', FALSE);
+    $ids = $query->execute();
+    $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($ids);
+
+    $directory_ids = array();
+
+    foreach($nodes as $node) {
+      $directory_id = self::getNodeValue($node, 'field_directory_id');
+      if (!empty($directory_id)) {
+        $directory_ids[] = $directory_id;
+      }
+    }
+    return $directory_ids;
   }
 
   /**
