@@ -44,7 +44,7 @@ class LibCalApiHelper {
       $curr_time = time();
       $token_array = $this->requestToken();
       if ($token_array == null) {
-        // LOG ERROR
+        \Drupal::logger('lib_cal')->notice('LibCal API Token request failed!');
         return null;
       } else {
         $this->token = $token_array['access_token'];

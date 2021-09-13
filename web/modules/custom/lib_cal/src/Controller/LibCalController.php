@@ -15,13 +15,56 @@ use Drupal\Core\Security\TrustedCallbackInterface;
   */
   class LibCalController {
 
+    private $cid;
     private $configHelper;
 
     public function __construct() {
       $this->configHelper = LibCalSettingsHelper::getInstance();
+      $this->cid = 'lib_cal:' . \Drupal::languageManager()
+        ->getCurrentLanguage()
+        ->getId();
     }
 
     public function getEvents($limit=3) {
+      $events = NULL;
+      $cached_limit = $this->getCachedEventsCount();
+      if ($cached_limit >= $limit && $cache = \Drupal::cache()->get($this->cid)) {
+        $events = $cache->data;
+      }
+      else {
+        $req_limit = $cached_limit > $limit ? $cached_limit : $limit;
+        $events = $this->getEventsFromApi($req_limit);
+        if ($events) {
+          \Drupal::cache()->set($this->cid . '_count', $req_limit);
+          \Drupal::cache()->set($this->cid, $events, time() + 360);
+        } else {
+          return FALSE;
+        }
+      }
+      return array_slice($events, 0, $limit);
+    }
+
+    private function getCachedEventsCount() {
+      if ($cache = \Drupal::cache()->get($this->cid . '_count')) {
+        return $cache->data;
+      }
+      return 0;
+    }
+  
+    public function updateEquipmentDataCache($limit=3) {
+      $cached_limit = $this->getCachedEventsCount();
+      if ($cached_limit > $limit) {
+        $limit = $cached_limit;
+      }
+      $events = $this->getEventsFromApi($limit);
+      if ($events) {
+        \Drupal::cache()->set($this->cid . '_count', $limit);
+        \Drupal::cache()->set($this->cid, $events, time() + 360);
+      }
+    }
+  
+    
+    public function getEventsFromApi($limit=3) {
       $endpoint = $this->configHelper->getEndpoint();
       $client_id = $this->configHelper->getClientID();
       $client_secret = $this->configHelper->getClientSecret();
@@ -29,7 +72,7 @@ use Drupal\Core\Security\TrustedCallbackInterface;
       
       // Verify configuration
       if ($endpoint == null) {
-        // LOG ERROR
+        \Drupal::logger('lib_cal')->notice('LibCal API Configuration missing!');
         return FALSE;
       }
 
