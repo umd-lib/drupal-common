@@ -4,7 +4,9 @@ namespace Drupal\umd_staff_directory_rest\Plugin\rest\resource;
 
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
-use Drupal\node\Entity\Node;
+use Drupal\umd_staff_directory_rest\DrupalGateway;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Provides a UMD Staff Directory Updater REST Resource.
@@ -18,6 +20,37 @@ use Drupal\node\Entity\Node;
  * )
  */
 class UmdStaffDirectoryRestUpdater extends ResourceBase {
+
+  /**
+   * @var \Drupal\umd_staff_directory_rest\DrupalGateway
+   */
+  protected $gateway;
+
+  /**
+   * UmdStaffDirectoryRestUpdater constructor.
+   *
+   * @param \Drupal\umd_staff_directory_rest\DrupalGateway $gateway
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, DrupalGateway $gateway) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
+    $this->gateway = $gateway;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->getParameter('serializer.formats'),
+      $container->get('logger.factory')->get('rest'),
+      $container->get('umd_staff_directory_rest.gateway')
+    );
+  }
+
+
   /**
    * Responds to POST requests.
    *
@@ -32,12 +65,9 @@ class UmdStaffDirectoryRestUpdater extends ResourceBase {
       "Number of incoming entries: " . count($incoming_json)
     );
 
-    $division_ids_by_name = DrupalGateway::get_division_ids_by_name();
-
-    $terp_persons = DrupalGateway::getUmdTerpPersons();
-    $current_json = DrupalGateway::umdTerpPersonsToJsonArray($terp_persons);
-    $directory_id_to_node_ids = DrupalGateway::getDirectoryIdsToNodeIds($terp_persons);
-    $unpublished_directory_ids = DrupalGateway::getUnpublishedUmdTerpPersonDirectoryIds();
+    // $terp_persons = $this->gateway->getUmdTerpPersons();
+    $current_json = $this->gateway->umdTerpPersonsToJsonArray();
+    $unpublished_directory_ids = $this->gateway->getUnpublishedUmdTerpPersonDirectoryIds();
 
     $current_directory_ids = array_keys($current_json);
     $incoming_directory_ids = array_keys($incoming_json);
@@ -54,10 +84,10 @@ class UmdStaffDirectoryRestUpdater extends ResourceBase {
       "Entries to remove: (count=" . count($directory_ids_to_remove) . "): " . implode(",", $directory_ids_to_remove) . "\n" .
       "Entries to republish: (count=" . count($directory_ids_to_republish) . "): " . implode(",", $directory_ids_to_republish) . "\n" );
 
-    self::addEntries($directory_ids_to_add, $incoming_json, $division_ids_by_name);
-    self::updateEntries($directory_ids_to_update, $directory_id_to_node_ids, $current_json, $incoming_json, $division_ids_by_name);
-    self::removeEntries($directory_ids_to_remove, $directory_id_to_node_ids);
-    self::republishEntries($directory_ids_to_republish, $directory_id_to_node_ids);
+    $this->addEntries($directory_ids_to_add, $incoming_json);
+    $this->updateEntries($directory_ids_to_update, $current_json, $incoming_json);
+    $this->removeEntries($directory_ids_to_remove);
+    $this->republishEntries($directory_ids_to_republish);
 
     $now = (new \DateTime())->format('Y-m-d H:i:s');
     $response = ['message' => "UmdStaffDirectoryRestUpdater::$now::" .
@@ -111,18 +141,17 @@ class UmdStaffDirectoryRestUpdater extends ResourceBase {
     return $directory_ids_to_republish;
   }
 
-  private static function addEntries(array $directory_ids_to_add, array $incoming_json, array $division_ids_by_name) {
+  private function addEntries(array $directory_ids_to_add, array $incoming_json) {
     foreach($directory_ids_to_add as $directory_id) {
       $staff_dir_values = $incoming_json[$directory_id];
-      DrupalGateway::addEntry($staff_dir_values, $division_ids_by_name);
+      $this->gateway->addEntry($staff_dir_values);
     }
   }
 
-  private static function updateEntries(array $directory_ids_to_update, array $directory_id_to_node_ids, array $current_json, array $incoming_json, array $division_ids_by_name) {
+  private function updateEntries(array $directory_ids_to_update, array $current_json, array $incoming_json) {
     foreach($directory_ids_to_update as $directory_id) {
       $staff_dir_values = $incoming_json[$directory_id];
-      $node_id = $directory_id_to_node_ids[$directory_id];
-      DrupalGateway::updateEntry($node_id, $staff_dir_values, $division_ids_by_name);
+      $this->gateway->updateEntry($directory_id, $staff_dir_values);
     }
   }
 
@@ -130,12 +159,10 @@ class UmdStaffDirectoryRestUpdater extends ResourceBase {
    * Removes staff directory entries by setting them to unpublished.
    *
    * @param array $directory_ids_to_remove the directory ids to remove
-   * @param array $directory_id_to_node_ids associative array mapping directory ids to node ids
    */
-  private static function removeEntries(array $directory_ids_to_remove, array $directory_id_to_node_ids) {
+  private function removeEntries(array $directory_ids_to_remove) {
     foreach($directory_ids_to_remove as $directory_id) {
-      $node_id = $directory_id_to_node_ids[$directory_id];
-      DrupalGateway::removeEntry($node_id);
+      $this->gateway->removeEntry($directory_id);
     }
   }
 
@@ -143,12 +170,10 @@ class UmdStaffDirectoryRestUpdater extends ResourceBase {
    * Restores previously removed staff directory entries by setting them to published.
    *
    * @param array $directory_ids_to_republish the directory ids to republish
-   * @param array $directory_id_to_node_ids associative array mapping directory ids to node ids
    */
-  private static function republishEntries(array $directory_ids_to_republish, array $directory_id_to_node_ids) {
+  private function republishEntries(array $directory_ids_to_republish) {
     foreach($directory_ids_to_republish as $directory_id) {
-      $node_id = $directory_id_to_node_ids[$directory_id];
-      DrupalGateway::republishEntry($node_id);
+      $this->gateway->republishEntry($directory_id);
     }
   }
 

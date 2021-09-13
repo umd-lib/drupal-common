@@ -1,20 +1,21 @@
 <?php
 
-namespace Drupal\umd_staff_directory_rest\Plugin\rest\resource;
+namespace Drupal\umd_staff_directory_rest\impl;
+
 use Drupal\node\Entity\Node;
+use Drupal\umd_staff_directory_rest\DrupalGateway;
 
 /**
- * Provides a UMD Staff Directory Updater REST Resource.
- *
- * @RestResource(
- *   id = "umd_staff_directory_rest_updater",
- *   label = @Translation("UMD Staff Directory Rest Updater"),
- *   uri_paths = {
- *     "create" = "/directory/updater"
- *   }
- * )
+ * Drupal gateway for the UMD Staff Directory REST endpoing
  */
-class DrupalGateway {
+class DrupalGatewayImpl implements DrupalGateway {
+  protected $umd_terp_persons_nodes;
+  protected $directory_id_to_node_ids;
+
+  // An associative array of Division taxonomy ids, indexed by division name
+  protected $division_ids_by_name;
+
+
   /**
    * Mapping of fields in UmdTerpPerson to the corresponding fields in
    * the Staff Directory JSON file.
@@ -36,29 +37,62 @@ class DrupalGateway {
   const STATUS_PUBLISHED = 1;
   const STATUS_UNPUBLISHED = 0;
 
-  public static function addEntry(array $staff_dir_values, array $division_ids_by_name) {
+  public function __construct() {
+    $this->umd_terp_persons_nodes = self::getUmdTerpPersonsNodes();
+    $this->directory_id_to_node_ids = self::getDirectoryIdsToNodeIds($this->umd_terp_persons_nodes);
+    $this->division_ids_by_name = self::get_division_ids_by_name();
+  }
+
+  public function addEntry(array $staff_dir_values) {
     $values = [
       'type' => 'umd_terp_person',
       'title' => $staff_dir_values['display_name']
     ];
     $node = \Drupal::entityTypeManager()->getStorage('node')->create($values);
-    self::populateNode($node, $staff_dir_values, $division_ids_by_name);
+    $this->populateNode($node, $staff_dir_values);
     $node->save();
   }
 
-  public static function updateEntry(string $node_id, array $staff_dir_values, array $division_ids_by_name) {
+  public function updateEntry(string $directory_id, array $staff_dir_values) {
+    $node_id = $this->directory_id_to_node_ids[$directory_id];
     $node = Node::load($node_id);
 
-    self::populateNode($node, $staff_dir_values, $division_ids_by_name);
+    $this->populateNode($node, $staff_dir_values);
     $node->save();
   }
 
-  private static function populateNode(Node $node, array $staff_dir_values, array $division_ids_by_name) {
+    /**
+   * Removes (by unpublishing) the node for the given directory id.
+   *
+   * @param string $directory_id the directory id of the node to remove.
+   */
+  public function removeEntry(string $directory_id) {
+    $node_id = $this->directory_id_to_node_ids[$directory_id];
+    $node = Node::load($node_id);
+
+    $node->set('status', self::STATUS_UNPUBLISHED);
+    $node->save();
+  }
+
+  /**
+   * Restores the node (by publishing) for the given diretory id.
+   *
+   * @param string $directory_id the directory id of the node to republish.
+   */
+  public function republishEntry(string $directory_id) {
+    $node_id = $this->directory_id_to_node_ids[$directory_id];
+    $node = Node::load($node_id);
+
+    $node->set('status', self::STATUS_PUBLISHED);
+    $node->save();
+  }
+
+  private function populateNode(Node $node, array $staff_dir_values) {
     $field_mappings = array_flip(self::UMD_TERP_PERSON_TO_STAFF_DIRECTORY);
 
     foreach($field_mappings as $staff_dir_field => $umd_field) {
       if ($staff_dir_field == "division") {
-        self::setDivision($node, $staff_dir_values, $staff_dir_field, $field_mappings[$staff_dir_field], $division_ids_by_name);
+        self::setDivision($node, $staff_dir_values, $staff_dir_field, $field_mappings[$staff_dir_field]);
         continue;
       }
 
@@ -69,35 +103,11 @@ class DrupalGateway {
     $node->set('status', self::STATUS_PUBLISHED);
   }
 
-  /**
-   * Removes (by unpublishing) the node at the given node id.
-   *
-   * @param int the node id of the node to remove
-   */
-  public static function removeEntry(int $node_id) {
-    $node = Node::load($node_id);
-
-    $node->set('status', self::STATUS_UNPUBLISHED);
-    $node->save();
-  }
-
-  /**
-   * Restores the node (by publishing) at the given node id.
-   *
-   * @param int the node id of the node to republish
-   */
-  public static function republishEntry(int $node_id) {
-    $node = Node::load($node_id);
-
-    $node->set('status', self::STATUS_PUBLISHED);
-    $node->save();
-  }
-
-  private static function setDivision(Node $node, array $staff_dir_values, string $staff_dir_field, string $umd_terp_field, array $division_ids_by_name) {
+  private function setDivision(Node $node, array $staff_dir_values, string $staff_dir_field, string $umd_terp_field) {
     $division_name = $staff_dir_values[$staff_dir_field];
     if (!empty($division_name)) {
-      if (array_key_exists($division_name, $division_ids_by_name)) {
-        $division_id = $division_ids_by_name[$division_name];
+      if (array_key_exists($division_name, $this->division_ids_by_name)) {
+        $division_id = $this->division_ids_by_name[$division_name];
         $node->set($umd_terp_field, ['target_id' => $division_id ]);
       }
       else {
@@ -112,7 +122,7 @@ class DrupalGateway {
    *
    * @return array an array of all UMD Terp Person nodes
    */
-  public static function getUmdTerpPersons() {
+  private static function getUmdTerpPersonsNodes() {
     $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
     $query->condition('type', 'umd_terp_person');
     $ids = $query->execute();
@@ -150,7 +160,7 @@ class DrupalGateway {
    * @return array an associative array of Drupal node ids, keyed by
    * directory id
    */
-  public static function getDirectoryIdsToNodeIds($terp_persons) {
+  private static function getDirectoryIdsToNodeIds($terp_persons) {
     $directory_ids_to_node_ids = array();
 
     foreach ($terp_persons as $node) {
@@ -162,7 +172,9 @@ class DrupalGateway {
     return $directory_ids_to_node_ids;
   }
 
-  public static function umdTerpPersonsToJsonArray($nodes) {
+  public function umdTerpPersonsToJsonArray() {
+    $nodes = $this->umd_terp_persons_nodes;
+
     $json_array = array();
     foreach ($nodes as $node) {
       $node_json = self::umdTerpPersonToJsonArray($node);
@@ -229,7 +241,7 @@ class DrupalGateway {
    * Returns an associative array, indexed by division name, containing the
    * division's taxonomy id.
    */
-  public static function get_division_ids_by_name() {
+  private static function get_division_ids_by_name() {
     $vid = "divisions";
     $terms =\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
     $divisions = array();
