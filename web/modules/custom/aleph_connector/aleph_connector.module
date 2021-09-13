@@ -5,4 +5,10 @@
  * but still has some uses. It was the primary file in 7 and earlier.
  */
 
-/** Intentionally empty **/
+/**
+ * Implement hook_cron
+ */
+function aleph_connector_cron() {
+  $aleph_controller = new \Drupal\aleph_connector\Controller\AlephController();
+  $aleph_controller->updateEquipmentDataCache();
+}
