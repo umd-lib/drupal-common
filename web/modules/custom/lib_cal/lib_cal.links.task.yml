@@ -1,0 +1,5 @@
+lib_cal.admin_settings_form:
+  title: 'Lib Cal'
+  route_name: lib_cal.admin_settings_form
+  base_route: libraries_configuration.base_tab
+  weight: 99

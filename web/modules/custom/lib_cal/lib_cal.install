@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * LibCal module install file.
+ */
+
+/**
+ * Install configuration.
+ */
+function lib_cal_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'lib_cal');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function lib_cal_uninstall() {
+}
