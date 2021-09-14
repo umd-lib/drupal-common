@@ -6,14 +6,8 @@
  */
 
 /**
- * Install default configuration
+ * Install default configuration.
  */
 function umd_staff_directory_rest_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_staff_directory_rest');
-}
-
-/**
- * Implements hook_uninstall().
- */
-function umd_staff_directory_rest_uninstall() {
 }
