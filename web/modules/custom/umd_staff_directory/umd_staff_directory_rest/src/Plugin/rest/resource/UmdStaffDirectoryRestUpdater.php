@@ -58,7 +58,7 @@ class UmdStaffDirectoryRestUpdater extends ResourceBase {
       $plugin_id,
       $plugin_definition,
       $container->getParameter('serializer.formats'),
-      $container->get('logger.factory')->get('rest'),
+      $container->get('logger.factory')->get('umd_staff_directory_rest'),
       $container->get('umd_staff_directory_rest.gateway')
     );
   }
@@ -74,7 +74,7 @@ class UmdStaffDirectoryRestUpdater extends ResourceBase {
    */
   public function post(array $incoming_entries) {
     \Drupal::service('page_cache_kill_switch')->trigger();
-    \Drupal::logger('umd_staff_directory_rest_updater')->info(
+    $this->logger->info(
       "Number of incoming entries: " . count($incoming_entries)
     );
 
@@ -90,7 +90,7 @@ class UmdStaffDirectoryRestUpdater extends ResourceBase {
 
     $directory_ids_to_republish = self::entriesToRepublish($incoming_directory_ids, $directory_ids_to_update, $unpublished_directory_ids);
 
-    \Drupal::logger('umd_staff_directory_rest_updater')->info(
+    $this->logger->info(
       "Entries to add (count=" . count($directory_ids_to_add) . "): " . implode(",", $directory_ids_to_add) . "\n" .
       "Entries to update: (count=" . count($directory_ids_to_update) . "): " . implode(",", $directory_ids_to_update) . "\n" .
       "Entries to remove: (count=" . count($directory_ids_to_remove) . "): " . implode(",", $directory_ids_to_remove) . "\n" .
