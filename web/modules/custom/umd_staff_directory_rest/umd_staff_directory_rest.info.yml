@@ -3,11 +3,11 @@ description: REST endpoint for processing Staff Directory JSON file from umd-lib
 
 package: UMD Services
 dependencies:
-  - restui
-  - basic_auth
-  - umd_terp_content_types
-  - umd_taxonomy_divisions
-  - umd_taxonomy_divisions_demo
+  - restui:restui
+  - drupal:basic_auth
+  - umd_digital/umd_terp_base:umd_terp_content_types
+  - umd_taxonomies:umd_taxonomy_divisions
+  - umd_taxonomies:umd_taxonomy_divisions_demo
 type: module
 
 core_version_requirement: ^8 || ^9

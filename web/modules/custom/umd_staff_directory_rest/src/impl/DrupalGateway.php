@@ -2,9 +2,11 @@
 
 namespace Drupal\umd_staff_directory_rest\impl;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\StringItem;
 use Drupal\Core\Field\Plugin\Field\FieldType\IntegerItem;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\node\Entity\Node;
 use Drupal\umd_staff_directory_rest\DrupalGatewayInterface;
 
@@ -12,6 +14,20 @@ use Drupal\umd_staff_directory_rest\DrupalGatewayInterface;
  * Drupal gateway for the UMD Staff Directory REST endpoint.
  */
 class DrupalGateway implements DrupalGatewayInterface {
+  /**
+   * The entity type manager used to access the database.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * The logger service.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   */
+  protected $logger;
+
   /**
    * Array of all UmdTerpPerson nodes (both published and unpublished).
    *
@@ -59,11 +75,21 @@ class DrupalGateway implements DrupalGatewayInterface {
 
   /**
    * Constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager for communicating with the database.
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger instance.
    */
-  public function __construct() {
-    $this->umdTerpPersonNodes = self::getUmdTerpPersonsNodes();
+  public function __construct(
+      EntityTypeManagerInterface $entity_type_manager,
+      LoggerChannelInterface $logger) {
+    $this->entityTypeManager = $entity_type_manager;
+    $this->logger = $logger;
+
+    $this->umdTerpPersonNodes = self::getUmdTerpPersonsNodes($this->entityTypeManager);
     $this->directoryIdToNodeIds = self::getDirectoryIdsToNodeIds($this->umdTerpPersonNodes);
-    $this->divisionIdsByName = self::getDivisionIdsByName();
+    $this->divisionIdsByName = self::getDivisionIdsByName($this->entityTypeManager);
   }
 
   /**
@@ -74,7 +100,7 @@ class DrupalGateway implements DrupalGatewayInterface {
       'type' => 'umd_terp_person',
       'title' => $staff_dir_values['display_name'],
     ];
-    $node = \Drupal::entityTypeManager()->getStorage('node')->create($values);
+    $node = $this->entityTypeManager->getStorage('node')->create($values);
     $this->populateNode($node, $staff_dir_values);
     $node->save();
   }
@@ -84,7 +110,7 @@ class DrupalGateway implements DrupalGatewayInterface {
    */
   public function updateEntry(string $directory_id, array $staff_dir_values) {
     $node_id = $this->directoryIdToNodeIds[$directory_id];
-    $node = Node::load($node_id);
+    $node = $this->entityTypeManager->getStorage('node')->load($node_id);
 
     $this->populateNode($node, $staff_dir_values);
     $node->save();
@@ -95,7 +121,7 @@ class DrupalGateway implements DrupalGatewayInterface {
    */
   public function removeEntry(string $directory_id) {
     $node_id = $this->directoryIdToNodeIds[$directory_id];
-    $node = Node::load($node_id);
+    $node = $this->entityTypeManager->getStorage('node')->load($node_id);
 
     $node->set('status', self::STATUS_UNPUBLISHED);
     $node->save();
@@ -106,7 +132,7 @@ class DrupalGateway implements DrupalGatewayInterface {
    */
   public function republishEntry(string $directory_id) {
     $node_id = $this->directoryIdToNodeIds[$directory_id];
-    $node = Node::load($node_id);
+    $node = $this->entityTypeManager->getStorage('node')->load($node_id);
 
     $node->set('status', self::STATUS_PUBLISHED);
     $node->save();
@@ -158,7 +184,7 @@ class DrupalGateway implements DrupalGatewayInterface {
         $node->set($umd_terp_field, ['target_id' => $division_id]);
       }
       else {
-        \Drupal::logger('umd_staff_directory_rest_updater')->error(
+        $this->logger('umd_staff_directory_rest_updater')->error(
           "Node with id " . $node_id . " has an unknown division of '" . $division_name . "'. Skipping division update.");
       }
     }
@@ -167,14 +193,17 @@ class DrupalGateway implements DrupalGatewayInterface {
   /**
    * Returns an array of all (published and unpublished) UMDTerpPerson nodes.
    *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager to use to communicate with the Drupal database.
+   *
    * @return array
    *   An array of all (published and unpublished) UMDTerpPerson nodes.
    */
-  private static function getUmdTerpPersonsNodes() {
-    $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  private static function getUmdTerpPersonsNodes(EntityTypeManagerInterface $entityTypeManager) {
+    $query = $entityTypeManager->getStorage('node')->getQuery();
     $query->condition('type', 'umd_terp_person');
     $ids = $query->execute();
-    $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($ids);
+    $nodes = $entityTypeManager->getStorage('node')->loadMultiple($ids);
     return $nodes;
   }
 
@@ -185,11 +214,11 @@ class DrupalGateway implements DrupalGatewayInterface {
    *   An array of directory ids for all unpublished UMDTerpPersons.
    */
   public function getUnpublishedUmdTerpPersonDirectoryIds() {
-    $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $query->condition('type', 'umd_terp_person');
     $query->condition('status', FALSE);
     $ids = $query->execute();
-    $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($ids);
+    $nodes = $this->entityTypeManager->getStorage('node')->loadMultiple($ids);
 
     $directory_ids = [];
 
@@ -247,7 +276,7 @@ class DrupalGateway implements DrupalGatewayInterface {
       $directory_id = $node_values['directory_id'];
       if (empty($directory_id)) {
         $node_id = $node->get('nid')->first()->value;
-        \Drupal::logger('umd_staff_directory_rest_updater')->error(
+        $this->logger('umd_staff_directory_rest_updater')->error(
           "Node with id " . $node_id . " does not have a directory id. Skipping.");
         continue;
       }
@@ -325,13 +354,16 @@ class DrupalGateway implements DrupalGatewayInterface {
   /**
    * Returns an associative array of Division taxonomy ids by division name.
    *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager to use to communicate with the Drupal database.
+   *
    * @return array
    *   An associative array of Division taxonomy ids, indexed by Library
    *   division name.
    */
-  private static function getDivisionIdsByName() {
+  private static function getDivisionIdsByName(EntityTypeManagerInterface $entityTypeManager) {
     $vid = "divisions";
-    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
+    $terms = $entityTypeManager->getStorage('taxonomy_term')->loadTree($vid);
     $divisions = [];
     foreach ($terms as $term) {
       $divisions[$term->name] = $term->tid;
