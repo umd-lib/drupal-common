@@ -87,8 +87,15 @@ class DrupalGateway implements DrupalGatewayInterface {
     $this->entityTypeManager = $entity_type_manager;
     $this->logger = $logger;
 
+    $this->initialize();
+  }
+
+  /**
+   * Initializes the gateway instance by retrieving items from the database.
+   */
+  private function initialize() {
     $this->umdTerpPersonNodes = self::getUmdTerpPersonsNodes($this->entityTypeManager);
-    $this->directoryIdToNodeIds = self::getDirectoryIdsToNodeIds($this->umdTerpPersonNodes);
+    $this->directoryIdToNodeIds = $this->getDirectoryIdsToNodeIds($this->umdTerpPersonNodes);
     $this->divisionIdsByName = self::getDivisionIdsByName($this->entityTypeManager);
   }
 
@@ -184,7 +191,7 @@ class DrupalGateway implements DrupalGatewayInterface {
         $node->set($umd_terp_field, ['target_id' => $division_id]);
       }
       else {
-        $this->logger('umd_staff_directory_rest_updater')->error(
+        $this->logger->error(
           "Node with id " . $node_id . " has an unknown division of '" . $division_name . "'. Skipping division update.");
       }
     }
@@ -223,7 +230,7 @@ class DrupalGateway implements DrupalGatewayInterface {
     $directory_ids = [];
 
     foreach ($nodes as $node) {
-      $directory_id = self::getNodeValue($node, 'field_directory_id');
+      $directory_id = $this->getNodeValue($node, 'field_directory_id');
       if (!empty($directory_id)) {
         $directory_ids[] = $directory_id;
       }
@@ -240,12 +247,12 @@ class DrupalGateway implements DrupalGatewayInterface {
    * @return array
    *   An associative array of Drupal node ids, keyed by directory id
    */
-  private static function getDirectoryIdsToNodeIds(array $terp_persons) {
+  private function getDirectoryIdsToNodeIds(array $terp_persons) {
     $directory_ids_to_node_ids = [];
 
     foreach ($terp_persons as $node) {
-      $directory_id = self::getNodeValue($node, 'field_directory_id');
-      $node_id = self::getNodeValue($node, 'nid');
+      $directory_id = $this->getNodeValue($node, 'field_directory_id');
+      $node_id = $this->getNodeValue($node, 'nid');
       $directory_ids_to_node_ids[$directory_id] = $node_id;
     }
 
@@ -272,11 +279,11 @@ class DrupalGateway implements DrupalGatewayInterface {
 
     $staff_dir_values = [];
     foreach ($nodes as $node) {
-      $node_values = self::umdTerpPersonToStaffDirectoryArray($node);
+      $node_values = $this->umdTerpPersonToStaffDirectoryArray($node);
       $directory_id = $node_values['directory_id'];
       if (empty($directory_id)) {
         $node_id = $node->get('nid')->first()->value;
-        $this->logger('umd_staff_directory_rest_updater')->error(
+        $this->logger->error(
           "Node with id " . $node_id . " does not have a directory id. Skipping.");
         continue;
       }
@@ -297,10 +304,10 @@ class DrupalGateway implements DrupalGatewayInterface {
    * @return array
    *   An associative array consistent with the incoming Staff Directory data.
    */
-  private static function umdTerpPersonToStaffDirectoryArray(Node $node) {
+  private function umdTerpPersonToStaffDirectoryArray(Node $node) {
     $json_array = [];
     foreach (self::UMD_TERP_PERSON_TO_STAFF_DIRECTORY as $umd_field => $staff_dir_field) {
-      $node_value = self::getNodeValue($node, $umd_field);
+      $node_value = $this->getNodeValue($node, $umd_field);
       $json_array[$staff_dir_field] = $node_value;
     }
     unset($umd_field);
@@ -323,7 +330,7 @@ class DrupalGateway implements DrupalGatewayInterface {
    *   The string value for the given field of the given Node, or the
    *   empty string ("") if the field value is null.
    */
-  private static function getNodeValue(Node $node, string $field) {
+  private function getNodeValue(Node $node, string $field) {
     $node_field = $node->get($field);
 
     if (is_null($node_field)) {
@@ -345,7 +352,7 @@ class DrupalGateway implements DrupalGatewayInterface {
       return $value;
     }
     else {
-      \Drupal::logger('umd_staff_directory_rest_updater')->error(
+      $this->logger->error(
         "Field " . $umd_field . " has an unknown node value type " . get_class($node_value));
     }
     return "";
