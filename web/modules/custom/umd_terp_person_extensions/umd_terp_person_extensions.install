@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * UMD Terp Person Extensions module install file.
+ */
+
+/**
+ * Install UMD Terp Person extensions.
+ */
+function umd_terp_person_extensions_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_terp_person_extensions');
+}

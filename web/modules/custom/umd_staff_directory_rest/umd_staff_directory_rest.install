@@ -11,3 +11,16 @@
 function umd_staff_directory_rest_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_staff_directory_rest');
 }
+
+/**
+ * Updates to umd_terp_person content type.
+ *
+ * Adding the following fields:
+ *   * Directory Id - field_directory_id
+ *   * Library Division - field_library_division
+ *   * Library Department - field_library_department
+ *   * Library Unit - field_library_unit.
+ */
+function umd_staff_directory_rest_update_8002(&$sandbox) {
+
+}
