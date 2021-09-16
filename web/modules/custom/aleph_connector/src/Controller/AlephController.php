@@ -21,12 +21,20 @@ class AlephController extends ControllerBase implements TrustedCallbackInterface
     $this->config = \Drupal::config('aleph_connector.settings');
   }
 
-  public function getEquipmentData() {
+  public function getEquipmentData($bibnums) {
+    $post_data = [];
+    $i = 0;
+    foreach ($bibnums as $bibnum) {
+      $post_data[] = "bib=" . $bibnum . "|" . "Equipment" . $i;
+      $i++;
+    }
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $this->getAlephBase() . $this->getEquipmentEndpoint());
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, implode('&', $post_data));
     $output = curl_exec($curl);
-
     if (!curl_errno($curl)) {
       if (curl_getinfo($curl, CURLINFO_HTTP_CODE) != 200) {
         \Drupal::messenger()->addError(t('Aleph connection error. Non-200 response.'));
@@ -66,12 +74,12 @@ class AlephController extends ControllerBase implements TrustedCallbackInterface
     return FALSE;
   }
 
-  public function getBibnumData($bibnum) {
-    if (!$equipment_data = $this->getEquipmentData()) {
+  public function getBibnumData($bibnums) {
+    if (!$equipment_data = $this->getEquipmentData($bibnums)) {
       // Log this
       return FALSE;
     }
-    return empty($equipment_data[$bibnum]) ? FALSE : $equipment_data[$bibnum];
+    return $equipment_data;
   }
 
   /**
