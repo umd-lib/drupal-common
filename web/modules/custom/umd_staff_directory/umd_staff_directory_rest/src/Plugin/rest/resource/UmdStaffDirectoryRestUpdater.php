@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
  *   id = "umd_staff_directory_rest_updater",
  *   label = @Translation("UMD Staff Directory Rest Updater"),
  *   uri_paths = {
- *     "create" = "/directory/updater"
+ *     "create" = "/staff-directory/updater"
  *   }
  * )
  */
