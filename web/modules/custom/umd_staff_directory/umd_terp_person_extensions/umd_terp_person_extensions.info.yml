@@ -5,6 +5,8 @@ package: 'UMD Services'
 dependencies:
   - easy_install:easy_install
   - umd_terp_base:umd_terp_content_types
+  - umd_taxonomies:umd_taxonomy_divisions
+  - umd_taxonomies:umd_taxonomy_divisions_demo
 type: module
 
 core_version_requirement: ^8.9 || ^9

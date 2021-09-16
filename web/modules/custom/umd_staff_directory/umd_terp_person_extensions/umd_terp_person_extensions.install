@@ -5,9 +5,157 @@
  * UMD Terp Person Extensions module install file.
  */
 
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
+
 /**
- * Install UMD Terp Person extensions.
+ * Update the UMD Terp Person view and form for the fields added by this module.
  */
-function umd_terp_person_extensions_update_8001() {
+function umd_terp_person_extensions_install() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_terp_person_extensions');
+  $view_displays = \Drupal::entityTypeManager()->getStorage('entity_view_display')->loadByProperties(['bundle' => 'umd_terp_person']);
+  foreach ($view_displays as $view_display) {
+    // Directory Id.
+    add_field_to_view_display(
+      $view_display,
+      'field_directory_id',
+      ['type' => 'string', 'region' => 'content', 'label' => 'hidden']
+    );
+
+    // Library Division.
+    add_field_to_view_display(
+      $view_display,
+      'field_library_division',
+      [
+        'type' => 'entity_reference_label',
+        'region' => 'content',
+        'label' => 'hidden',
+        'settings' => ['link' => TRUE],
+      ]
+    );
+
+    // Library Department.
+    add_field_to_view_display(
+      $view_display,
+      'field_library_department',
+      ['type' => 'string', 'region' => 'content', 'label' => 'hidden']
+    );
+
+    // Library Unit.
+    add_field_to_view_display(
+      $view_display,
+      'field_library_unit',
+      ['type' => 'string', 'region' => 'content', 'label' => 'hidden']
+    );
+  }
+
+  $form_displays = \Drupal::entityTypeManager()->getStorage('entity_form_display')->loadByProperties(['bundle' => 'umd_terp_person']);
+  foreach ($form_displays as $form_display) {
+    // Directory Id.
+    add_field_to_form_display(
+      $form_display,
+      'field_directory_id',
+      [
+        'type' => 'string_textfield',
+        'region' => 'content',
+        'label' => 'hidden',
+        'settings' => ['size' => 60, 'placeholder' => ''],
+      ]
+    );
+
+    // Library Division.
+    add_field_to_form_display(
+      $form_display,
+      'field_library_division',
+      [
+        'type' => 'entity_reference_autocomplete',
+        'region' => 'content',
+        'label' => 'hidden',
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'match_limit' => 10,
+          'size' => 60,
+          'placeholder' => '',
+        ],
+      ]
+    );
+
+    // Library Department.
+    add_field_to_form_display(
+      $form_display,
+      'field_library_department',
+      [
+        'type' => 'string_textfield',
+        'region' => 'content',
+        'label' => 'hidden',
+        'settings' => ['size' => 60, 'placeholder' => ''],
+      ]
+    );
+
+    // Library Unit.
+    add_field_to_form_display(
+      $form_display,
+      'field_library_unit',
+      [
+        'type' => 'string_textfield',
+        'region' => 'content',
+        'label' => 'hidden',
+        'settings' => ['size' => 60, 'placeholder' => ''],
+      ]
+    );
+
+    add_field_to_field_group($form_display, 'group_general', 'field_directory_id');
+    add_field_to_field_group($form_display, 'group_contact', 'field_library_division');
+    add_field_to_field_group($form_display, 'group_contact', 'field_library_department');
+    add_field_to_field_group($form_display, 'group_contact', 'field_library_unit');
+  }
+}
+
+/**
+ * Adds a field to the given view display.
+ *
+ * @param \Drupal\Core\Entity\Entity\EntityViewDisplay $view_display
+ *   The EntityFormDisplay to add the field to.
+ * @param string $field_name
+ *   The machine name of the field to add.
+ * @param array $options
+ *   The form options for the field.
+ */
+function add_field_to_view_display(EntityViewDisplay $view_display, string $field_name, array $options) {
+  $view_display->setComponent($field_name, $options);
+  $view_display->save();
+}
+
+/**
+ * Adds a field to the given form display.
+ *
+ * @param \Drupal\Core\Entity\Entity\EntityFormDisplay $form_display
+ *   The EntityFormDisplay to add the field to.
+ * @param string $field_name
+ *   The machine name of the field to add.
+ * @param array $options
+ *   The form options for the field.
+ */
+function add_field_to_form_display(EntityFormDisplay $form_display, string $field_name, array $options) {
+  $form_display->setComponent($field_name, $options);
+  $form_display->save();
+}
+
+/**
+ * Updates the field group for the form display with the given field.
+ *
+ * @param \Drupal\Core\Entity\Entity\EntityFormDisplay $form_display
+ *   The EntityFormDisplay to add the field to.
+ * @param string $field_group_name
+ *   The name of the field group to add the field to.
+ * @param string $field_name
+ *   The machine name of the field to add.
+ */
+function add_field_to_field_group(EntityFormDisplay $form_display, string $field_group_name, string $field_name) {
+  $field_group = $form_display->getThirdPartySetting('field_group', $field_group_name);
+  $children = $field_group['children'];
+  $children[] = $field_name;
+  $field_group['children'] = $children;
+  $form_display->setThirdPartySetting('field_group', $field_group_name, $field_group);
+  $form_display->save();
 }
