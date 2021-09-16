@@ -109,6 +109,12 @@ function umd_terp_form_system_theme_settings_alter(&$form, FormStateInterface $f
     '#default_value' => theme_get_setting('umd_terp_library_ask_a_librarian_link'),
     '#description' => t('Add the URL to the ask a librarian page.'),
   ];
+  $form['umd_terp_footer_settings']['umd_terp_enable_ask_us_chat'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Ask Us Widget'),
+    '#default_value' => theme_get_setting('umd_terp_enable_ask_us_chat'),
+    '#description' => t('Enable the Ask Us chat widget!'),
+  ];
   // End customization for LIBWEB-5396
 
   // Social media.
