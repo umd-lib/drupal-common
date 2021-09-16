@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Module file for library_services module.
+ */
+
+use Drupal\views\ViewExecutable;
+
+/**
+* Implements hook_views_pre_render().
+*/
+function library_services_views_pre_render(ViewExecutable $view) {
+  if (!empty($view) && ($view->storage->id() == 'services_resources_block')) {
+    $view->element['#attached']['library'][] = 'library_services/library-services';
+  }
+}

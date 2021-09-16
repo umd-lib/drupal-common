@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: j6YgzYhLIrMHRslGgOaKBWkFWbWg3uCD-KSnZasV1As
+id: services_resources
+label: 'Services & Resources'
+type: 'canonical_entities:node'
+pattern: '/system/services/[random:hash:md4]'
+selection_criteria:
+  dc5562b1-9e19-45cb-8994-b38180e2279a:
+    id: node_type
+    bundles:
+      services_resources: services_resources
+    negate: false
+    context_mapping:
+      node: node
+    uuid: dc5562b1-9e19-45cb-8994-b38180e2279a
+selection_logic: and
+weight: -5
+relationships: {  }

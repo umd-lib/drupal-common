@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * header alerts module install file.
+ */
+
+/**
+ * Install alerts configuration.
+ */
+function library_services_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'library_services');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function library_services_uninstall() {
+}
