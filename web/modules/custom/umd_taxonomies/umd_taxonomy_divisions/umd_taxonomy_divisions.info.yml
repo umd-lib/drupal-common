@@ -1,0 +1,10 @@
+name: UMD Library Divisions
+description: Taxonomy configuration for organizational divisions of the Library.
+
+package: 'UMD Taxonomies'
+dependencies:
+  - easy_install
+
+type: module
+
+core_version_requirement: ^8.9 || ^9

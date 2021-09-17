@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Module install file for the UMD Staff Directory REST module.
+ */
+
+/**
+ * Install default configuration.
+ */
+function umd_staff_directory_rest_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_staff_directory_rest');
+}

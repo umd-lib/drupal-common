@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Module file for extends UMD Terp Persons with fields used by Staff Directory.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function umd_terp_person_extensions_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.umd_terp_person_extensions':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds the following fields to UMD Terp Person:') . '</p>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('Directory Id') . '</li>';
+      $output .= '<li>' . t('Library Division') . '</li>';
+      $output .= '<li>' . t('Library Department') . '</li>';
+      $output .= '<li>' . t('Library unit') . '</li>';
+      $output .= '</ul>';
+      return $output;
+
+    default:
+  }
+}
