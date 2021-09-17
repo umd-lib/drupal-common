@@ -49,6 +49,7 @@
         "drupal/linkit": "6.0.0-beta2",
         "drupal/masquerade": "^2.0@beta",
         "drupal/masquerade_log": "^1.0",
+        "drupal/menu_item_extras": "^2.16",
         "drupal/merge_translations": "^1.1",
         "drupal/message_digest": "^1.0@RC",
         "drupal/migrate_file": "^2.0",
