@@ -8,7 +8,9 @@
 <div {{attributes}}>
 	{{ title_suffix }}
 	<div class="editor-content">
-		<h1>{{ node.title.value }}</h1>
+		{% if umd_terp_disable_title == false %}
+			<h1>{{ node.title.value }}</h1>
+		{% endif %}
 		{% if content.body|field_value %}
 			{{ content.body|field_value }}
 		{% endif %}

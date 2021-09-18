@@ -10,7 +10,9 @@
           {% else %}
             <span class="label">{{ node.field_umdt_ct_event_start_date.value|date('F j, Y') }} - {{ node.field_umdt_ct_event_end_date.value|date('F j, Y') }}</span>
           {% endif %}
-          <h1>{{ node.title.value }}</h1>
+          {% if umd_terp_disable_title == false %}
+            <h1>{{ node.title.value }}</h1>
+          {% endif %}
           {% if node.field_umdt_ct_event_time.value %}
             <span class="label">{{ node.field_umdt_ct_event_time.value }}</span>
           {% endif %}
