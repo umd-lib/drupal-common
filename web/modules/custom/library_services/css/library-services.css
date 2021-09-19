@@ -2,6 +2,8 @@
   display: grid;
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
+  padding: 1em 4em 3.5em 6.5em;
+  border-bottom: 14px solid rgb(236 236 236);
 }
 
 /* Grid layout for service elements:
@@ -15,34 +17,44 @@
   +------+-------------+
 
  */
+
 .service {
   display: grid;
   grid-template-areas: ". title" "icon description" "icon link";
-  grid-template-rows: .5fr 1fr .25fr;
-  grid-template-columns: .25fr .75fr;
+  grid-template-rows: .2fr .8fr .1fr;
+  grid-template-columns: .3fr .7fr;
   column-gap: 1em;
-  row-gap: .5em;
   padding: 0 2em 0 1em;
-  border-left: 1px solid lightgrey;
+  border-left: 0.5px solid lightgrey;
+  border-right: 0.5px solid lightgrey;
+}
+
+/* Remove left border for every .service class except first */
+
+.service~.service {
+  border-left: 0px;
 }
 
 .service-icon {
   grid-area: icon;
   font-size: 3em;
-  color: darkgrey;
+  color: rgb(120, 120, 120);
   text-align: center;
 }
 
 .service-title {
   grid-area: title;
-  font-size: 1.25em;
+  font-size: 1.125em;
   font-weight: bold;
 }
 
 .service-description {
   grid-area: description;
+  font-size: .9em;
 }
 
 .service-link {
   grid-area: link;
+  text-decoration: underline;
+  font-size: .95em;
 }
