@@ -18,7 +18,9 @@
 			{{ page.highlighted }}
 			<div class="row justify-content-center login">
 				<div class="col-800-5 login__cas">
-					<h1 class="h3">UMD Login</h1>
+					{% if umd_terp_disable_title == false %}
+            <h1 class="h3">UMD Login</h1>
+          {% endif %}
 					<p>University of Maryland staff and faculty accounts can access site via the Division of IT Central Authentication Service (CAS).</p>
 					<a class="button btn btn-primary" href="/caslogin">Log In with CAS</a>
 				</div>

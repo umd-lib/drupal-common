@@ -8,7 +8,9 @@
           {% if node.field_umdt_ct_article_categories.value %}
             <span class="label">{{ drupal_field('name', 'taxonomy_term', node.field_umdt_ct_article_categories.value.0.target_id) }}</span>
           {% endif %}
-          <h1>{{ node.title.value }}</h1>
+          {% if umd_terp_disable_title == false %}
+            <h1>{{ node.title.value }}</h1>
+          {% endif %}
           {% if node.field_umdt_ct_article_subtitle.value %}
             <p class="article-subhead h4">{{ node.field_umdt_ct_article_subtitle.value }}</p>
           {% endif %}
