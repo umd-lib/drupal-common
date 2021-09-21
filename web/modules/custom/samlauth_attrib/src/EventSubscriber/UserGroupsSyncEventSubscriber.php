@@ -65,18 +65,19 @@ class UserGroupsSyncEventSubscriber implements EventSubscriberInterface {
       $this->logger->warning(t('Grouper Attribute not set'));
       return;
     }
-    if (!empty($attributes[$grouper_attrib][0])) {
+    $account = $event->getAccount();
+    if (empty($attributes[$grouper_attrib][0])) {
+      $this->resetRoles($account);
+      $account->block();
+    } else {
       $groups = $attributes[$grouper_attrib];
-      $account = $event->getAccount();
 
       if ($account->isNew()) {
-
         $this->logger->notice('Account is new.');
       }
 
       if (!empty($account->id()) && $account->id() > 2) {
         $this->logger->notice('Account number:' . $account->id());
-        
       }
 
       if (!$account->isNew() && $account->id() < 2) {
@@ -107,8 +108,6 @@ class UserGroupsSyncEventSubscriber implements EventSubscriberInterface {
       }
 
       $roles = $this->config->get('grouper_map');
-
-      $allRoles = $account->getRoles(TRUE);
 
       $updated_roles = [];
       foreach ($groups as $group) {
