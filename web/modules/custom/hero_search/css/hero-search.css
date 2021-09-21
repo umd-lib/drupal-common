@@ -2,8 +2,53 @@
  * hero_search component CSS file.
  */
 
+
+.hero-search-title {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
 .hero-search-block {
-  background-color: wheat;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.top-right-link {
+  font-size: 1rem;
+}
+
+.darklinks, .darklinks a{
+  color: #333;
+  text-decoration: underline;
+  font-size: 0.912rem;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+} 
+.hero-search-input > input#edit-submit {
+  background: #e21833;
+  color: #fff!important;
+  margin-bottom: 2rem;
+}
+
+.hero_search_buttons_container {
+  border-top: .6rem solid #f1f1f1;
+  padding-top: 1rem;
+}
+.hero-search-options div {
+  margin-right: 2rem;
+  margin-bottom: 0;
+}
+.home-hero.home-hero-bg .btn, .home-hero.home-hero-dark .btn {
+  color: #000!important;
+  border-color: #c8c8c8!important;
+  font-weight: 400;
+  margin: 0 0.2rem 1rem;
+  padding: 0.7rem 2rem;
 }
 
 .hero-search-input div {
@@ -25,4 +70,22 @@
 
 .hero-search-left-align {
   margin-left: auto;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1000px) {
+.hero-block {
+  margin-left: 12rem!important;
+}
+
+.form-actions, .form-item {
+}
+}
+
+@media (max-width: 768px) {
+.hero-block {
+  margin-left: 0!important;
+  border: 1px solid #ccc;
+  padding:  1rem;
+}
 }
