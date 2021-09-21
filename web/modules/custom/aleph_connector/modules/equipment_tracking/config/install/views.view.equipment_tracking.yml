@@ -7,13 +7,14 @@ dependencies:
     - field.storage.node.field_equipment_category
     - field.storage.node.field_library_location
     - search_api.index.equipment_tracking
+    - system.menu.main
   module:
     - cshs
     - equipment_tracking
     - search_api
     - text
 _core:
-  default_config_hash: 8HswUJqSvugUf7nbiTV4HFOyDDKXX5c52Hj-G_qe7Z8
+  default_config_hash: Fo9Obo-3rnZu5J-VbhYUVZ6T3NNvpb1j_MmGYxjm3A4
 id: equipment_tracking
 label: 'Equipment Tracking'
 module: views
@@ -96,8 +97,8 @@ display:
           label: ''
           exclude: true
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: ', {{ body }}'
             make_link: false
             path: ''
             absolute: false
@@ -235,11 +236,11 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Category
+          label: ''
           exclude: true
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: 'Category: {{ field_equipment_category }}'
             make_link: false
             path: ''
             absolute: false
@@ -268,12 +269,12 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
-          hide_empty: false
+          hide_empty: true
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
@@ -441,7 +442,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"row\">\r\n  <div class=\"col-800-9\">\r\n   <p><span class=\"equip-search-title\">{{ title }}</span>, {{ body }}\r\n       <br /> \r\n       Category: {{ field_equipment_category }} \r\n     </p>\r\n  </div>\r\n  <div class=\"col-800-3\">\r\n    {{ aleph_equipment_available }}\r\n    {{ field_library_location }}\r\n  </div>\r\n</div>"
+            text: "<div class=\"row\">\r\n  <div class=\"col-800-9\">\r\n   <p><span class=\"equip-search-title\">{{ title }}</span>{{ body }}\r\n       <br /> \r\n       {{ field_equipment_category }} \r\n     </p>\r\n  </div>\r\n  <div class=\"col-800-3\">\r\n    {{ aleph_equipment_available }}\r\n    {{ field_library_location }}\r\n  </div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -862,7 +863,16 @@ display:
         type: none
       defaults:
         cache: false
-      exposed_block: false
+      exposed_block: true
+      menu:
+        type: normal
+        title: 'Equipment Loan'
+        description: ''
+        expanded: false
+        parent: 'menu_link_content:a84eabd6-e109-486e-a55a-3e801fbff58d'
+        weight: 0
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:

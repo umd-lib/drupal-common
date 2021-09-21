@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Divisions
+vid: divisions
+description: 'This taxonomy holds divisions for the UMD Terp Person content.'
+weight: 0
+

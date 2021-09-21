@@ -7,7 +7,9 @@
 
 <div {{attributes}}>
 	{{ title_suffix }}
-	<h1 class="sr-only">{{ node.title.value }}</h1>
+	{% if umd_terp_disable_title == false %}
+		<h1 class="sr-only">{{ node.title.value }}</h1>
+	{% endif %}
 	<div class="container-fluid">
 		<div class="row justify-content-center">
 			<div class="col-1000-11">

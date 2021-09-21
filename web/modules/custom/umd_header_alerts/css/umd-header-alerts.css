@@ -1,7 +1,17 @@
 /**
  * header alerts module css
  */
+
 #header-alerts {
+  background-color: #ecc000;
+  width: 100%;
+}
+
+#home-header-alerts {
+  background-color: #ecc000;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
 }
 
 /**

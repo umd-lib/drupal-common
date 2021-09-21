@@ -58,12 +58,16 @@ class EquipmentAvailability extends FieldPluginBase {
    * @{inheritdoc}
    */
   public function render(ResultRow $values) {
+    $bibnums = [];
     $aleph = new AlephController();
     if (!$this->isValueEmpty($aleph->getQueryField(), TRUE)) {
       if ($bibnum = $this->view->field[$aleph->getQueryField()]->original_value->__toString()) {
-        if ($bibnum_data = $aleph->getBibnumData($bibnum)) {
-          return $this->availabilityField($bibnum, $bibnum_data);
-        }
+        $bibnums[] = $bibnum;
+      }
+    }
+    if (count($bibnums) > 0) {
+      if ($bibnum_data = $aleph->getBibnumData($bibnums)) {
+        return $this->availabilityField($bibnums, $bibnum_data);
       }
     }
     return FALSE; 
@@ -72,7 +76,8 @@ class EquipmentAvailability extends FieldPluginBase {
   /**
    * Generate sample page content for umd-examples page.
    */
-  public function availabilityField($bibnum, $availability_data) {
+  public function availabilityField($bibnums, $availability_data) {
+    $availability_data = reset($availability_data);
     $processed_date = null;
     if ($raw_date = $availability_data['mindue']) {
       try {
@@ -81,17 +86,17 @@ class EquipmentAvailability extends FieldPluginBase {
         $processed_date = $datetime_p->format('g:i A \o\n F j, Y');
       }
       catch (\InvalidArgumentException $e) {
-        \Drupal::messenger()->addError('fail1: ' . $e->getMessage());
+        // TODO: Replace this with logger -- \Drupal::messenger()->addError('Error 1: ' . $e->getMessage());
       }
       catch (\UnexpectedValueException $e) {
-        \Drupal::messenger()->addError('fail2: ' . $e->getMessage());
+        // TODO: Replace this with logger -- \Drupal::messenger()->addError('Error 2: ' . $e->getMessage());
       }
     }
     return [
       '#theme' => 'aleph_equipment_available',
       '#equipment_count' => $availability_data['available'],
       '#equipment_mindue' => $processed_date,
-      '#equipment_sysnum' => $bibnum,
+      '#equipment_sysnum' => implode(',', $bibnums),
     ];
   }
 }

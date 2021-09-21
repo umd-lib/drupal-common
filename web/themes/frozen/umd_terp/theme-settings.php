@@ -13,6 +13,19 @@ use Drupal\file\Entity\File;
  */
 function umd_terp_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
 
+
+  // Title
+  $form['umd_terp_title_settings'] = [
+    '#type' => 'details',
+    '#title' => t('UMD Terp Title Settings'),
+  ];
+  $form['umd_terp_title_settings']['umd_terp_disable_title'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Disable title'),
+    '#default_value' => theme_get_setting('umd_terp_disable_title'),
+    '#description' => t('If checked, the theme will not render the title.'),
+  ];
+
   // Header.
   $form['umd_terp_header_settings'] = [
     '#type' => 'details',
@@ -108,6 +121,12 @@ function umd_terp_form_system_theme_settings_alter(&$form, FormStateInterface $f
     '#title' => t('Ask a Librarian link'),
     '#default_value' => theme_get_setting('umd_terp_library_ask_a_librarian_link'),
     '#description' => t('Add the URL to the ask a librarian page.'),
+  ];
+  $form['umd_terp_footer_settings']['umd_terp_enable_ask_us_chat'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Ask Us Widget'),
+    '#default_value' => theme_get_setting('umd_terp_enable_ask_us_chat'),
+    '#description' => t('Enable the Ask Us chat widget!'),
   ];
   // End customization for LIBWEB-5396
 

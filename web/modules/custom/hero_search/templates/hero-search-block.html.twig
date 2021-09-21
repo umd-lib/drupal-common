@@ -15,10 +15,10 @@
 {{ attach_library('hero_search/hero-search') }}
 <div class='hero-search-block'>
   <div class='row'>
-    <span>{{ hero_search_title }}</span>
+    <span class="hero-search-title">{{ hero_search_title }}</span>
     <span class='hero-search-left-align'>
       {% if hero_search_top_right_link %}
-        <a href='{{ hero_search_top_right_link.url }}' title='{{ hero_search_top_right_link.title }}'>
+        <a class="top-right-link" href='{{ hero_search_top_right_link.url }}' title='{{ hero_search_top_right_link.title }}'>
           {{ hero_search_top_right_link.text }}
         </a>
       {% endif %}
@@ -31,7 +31,7 @@
     <div class='hero_search_buttons_container'>
       {% for button in hero_search_buttons %}
         <span>
-          <a class="btn" href='{{ button.url }}' title='{{ button.title }}'>{{ button.text }}</a>
+          <a class="btn btn-success" href='{{ button.url }}' title='{{ button.title }}'>{{ button.text }}</a>
         </span>
       {% endfor %}
     </div>
@@ -39,14 +39,14 @@
   <div class='row'>
     <span>
       {% if hero_search_bottom_left_link %}
-        <a href='{{ hero_search_bottom_left_link.url }}' title='{{ hero_search_bottom_left_link.title }}'>
+        <a href='{{ hero_search_bottom_left_link.url }}' class="darklinks" title='{{ hero_search_bottom_left_link.title }}'>
           {{ hero_search_bottom_left_link.text }}
         </a>
       {% endif %}
     </span>
     <span class='hero-search-left-align'>
       {% if hero_search_bottom_right_link %}
-        <a href='{{ hero_search_bottom_right_link.url }}' title='{{ hero_search_bottom_right_link.title }}'>
+        <a href='{{ hero_search_bottom_right_link.url }}' class="darklinks" title='{{ hero_search_bottom_right_link.title }}'>
           {{ hero_search_bottom_right_link.text }}
         </a>
       {% endif %}

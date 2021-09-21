@@ -7,7 +7,7 @@ dependencies:
     - search_api
     - top_textbooks
 _core:
-  default_config_hash: hL_-iv5p5S6bcg-URM3ToIj-hc8ChiDEqjaM5HCMBoU
+  default_config_hash: FnUdcMwgQ-x7EHtJzErpAj3FODMNBciOMxXoe8668gE
 id: top_textbooks
 label: 'Top Textbooks'
 module: views
@@ -24,10 +24,10 @@ display:
     display_options:
       access:
         type: none
-        options: {}
+        options: {  }
       cache:
         type: tag
-        options: {}
+        options: {  }
       query:
         type: views_query
         options:
@@ -78,7 +78,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -131,7 +131,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -184,7 +184,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: true
             text: '{{ edition }} edition,'
@@ -237,7 +237,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -280,16 +280,16 @@ display:
           set_precision: false
           precision: 0
           decimal: .
-          separator: ','
+          separator: ''
           format_plural: false
-          format_plural_string: !!binary MQNAY291bnQ=
+          format_plural_string: !!binary Aw==
           prefix: ''
           suffix: ''
           link_to_item: false
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          format_plural_values: {}
+          format_plural_values: {  }
           plugin_id: search_api_numeric
         isbn:
           id: isbn
@@ -298,8 +298,110 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: ISBN
-          exclude: false
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+          plugin_id: search_api
+        textbook_availability_field:
+          id: textbook_availability_field
+          table: search_api_index_top_textbooks
+          field: textbook_availability_field
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: available-block
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          plugin_id: textbook_availability_field
+        author:
+          id: author
+          table: search_api_index_top_textbooks
+          field: author
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -331,7 +433,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -351,11 +453,11 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Call Number'
+          label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: "<div style=\"clearboth\"></div>\r\n<div class=\"row\">\r\n  <div class=\"col-800-2\">{{ course }}\r\n  </div>\r\n  <div class=\"col-800-7\"><span class=\"textbook-title\">{{ title }}</span>, {{ edition }} {{ year }} \r\n     <br />\r\n     By: {{ author }}\r\n     <br />\r\n     ISBN: {{ isbn }} \r\n    <br />\r\n    Call Number: {{ call_number }}\r\n  </div>\r\n  <div class=\"col-800-3\">{{ textbook_availability_field }}\r\n  </div>\r\n</row>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -384,7 +486,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -450,55 +552,6 @@ display:
           multi_type: separator
           multi_separator: ', '
           plugin_id: search_api
-        textbook_availability_field:
-          id: textbook_availability_field
-          table: search_api_index_top_textbooks
-          field: textbook_availability_field
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          plugin_id: textbook_availability_field
         nothing:
           id: nothing
           table: views
@@ -567,7 +620,7 @@ display:
             use_operator: false
             operator: search_api_fulltext_op
             operator_limit_selection: false
-            operator_list: {}
+            operator_list: {  }
             identifier: search_api_textbook_fulltext
             required: false
             remember: false
@@ -589,8 +642,8 @@ display:
             multiple: false
             remember: false
             default_group: All
-            default_group_multiple: {}
-            group_items: {}
+            default_group_multiple: {  }
+            group_items: {  }
           parse_mode: terms
           min_length: null
           fields:
@@ -634,12 +687,12 @@ display:
             label: Title
           plugin_id: search_api
       title: 'Top Textbooks'
-      header: {}
-      footer: {}
-      empty: {}
-      relationships: {}
-      arguments: {}
-      display_extenders: {}
+      header: {  }
+      footer: {  }
+      empty: {  }
+      relationships: {  }
+      arguments: {  }
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -656,7 +709,7 @@ display:
     display_title: Page
     position: 1
     display_options:
-      display_extenders: {}
+      display_extenders: {  }
       path: find/reserves/top-textbooks
     cache_metadata:
       max-age: -1
