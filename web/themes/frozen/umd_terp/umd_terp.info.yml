@@ -19,3 +19,4 @@ regions:
 dependencies:
   - twig_tweak
   - umd_terp_base
+  - footer_extend
