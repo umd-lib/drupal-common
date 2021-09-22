@@ -11,15 +11,14 @@
 		<div class="umdlib-site-footer-about">
 			<div class="umdlib-site-footer-logo">
 				{% if umd_terp_footer_logo_svg %}
-					{{ umd_terp_footer_logo_svg|raw }}
+					<div style="background-image: url('data:image/svg+xml;utf8,{{ umd_terp_footer_logo_svg|raw }}')" role="img" alt="{{ site_name }} logo"></div>
 				{% else %}
-					<img src="{{ footer_logo_path }}" alt="{{ site_name }} logo">
+					<div style="background-image: url({{ footer_logo_path }})" role="img" alt="{{ site_name }} logo"></div>
 				{% endif %}
 			</div>
 			<div class="umdlib-site-footer-address">
-				<strong>{{ site_name }}</strong><br>
 				{% if umd_terp_address %}
-					<span>{{ umd_terp_address }}</span><br>
+					<span class="umdlib-site-footer-address-addrline">{{ umd_terp_address }}</span>
 				{% endif %}
 				{% if umd_terp_phone %}
 					<a aria-label="{{ umd_terp_phone|preg_replace('/[^0-9]/', '') }}" href="tel:+{{ umd_terp_phone|preg_replace('/[^0-9]/', '') }}">{{ umd_terp_phone }}</a>
@@ -30,7 +29,7 @@
 				{% endif %}
 				{% if umd_terp_library_ask_a_librarian_link %}
 					{% if umd_terp_phone %}
-						<span aria-hidden="true">&nbsp;·&nbsp;</span>
+						<span aria-hidden="true">&nbsp;|&nbsp;</span>
 					{% endif %}
 					<a href="{{ umd_terp_library_ask_a_librarian_link }}">Ask a Librarian</a>
 				{% endif %}
@@ -42,28 +41,30 @@
 		<div class="umdlib-site-footer-nav-container">
 			<nav class="umdlib-site-footer-nav" aria-label="Footer Menu 1">
 				{% if umd_terp_footer_menu1_title %}
-					<strong>{{ umd_terp_footer_menu1_title }}</strong>
+					<span class="umdlib-site-footer-nav-title">{{ umd_terp_footer_menu1_title }}</span>
 				{% endif %}
 				{{ drupal_menu('footer') }}
+				{% if umd_terp_library_hours_link %}
+				<div>
+					<br/>
+					<a href="{{ umd_terp_library_hours_link }}">Library Hours</a>
+				</div>
+				{% endif %}
 			</nav>
-			{% if umd_terp_library_hours_link %}
-			<div>
-				<a href="{{ umd_terp_library_hours_link }}">Library Hours</a>
-			</div>
-			{% endif %}
 		</div>
 		<div class="umdlib-site-footer-nav-container">
 			<nav class="umdlib-site-footer-nav" aria-label="Footer Menu 2">
 					{% if umd_terp_footer_menu2_title %}
-					<strong>{{ umd_terp_footer_menu2_title }}</strong>
+					<span class="umdlib-site-footer-nav-title">{{ umd_terp_footer_menu2_title }}</span>
 				{% endif %}
 				{{ drupal_menu('footer2') }}
+				{% if umd_terp_job_link %}
+				<div>
+					<br/>
+					<a href="{{ umd_terp_job_link }}">Jobs</a>
+				</div>
+				{% endif %}
 			</nav>
-			{% if umd_terp_job_link %}
-			<div>
-				<a href="{{ umd_terp_job_link }}">Jobs</a>
-			</div>
-			{% endif %}
 		</div>
 		<div class="umdlib-site-footer-addon">
 		  {{ page.footer_addon }}
