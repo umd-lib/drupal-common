@@ -1,0 +1,8 @@
+system_status-global:
+  version: 1.0.0
+  js:
+    js/system_status.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
