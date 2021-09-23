@@ -52,6 +52,10 @@
   font-weight: lighter;
 }
 
+.lib-cal-event-title {
+  padding-top: 1rem;
+}
+
 .lib-cal-event-title a {
   font-weight: bold;
   color: black;
