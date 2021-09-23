@@ -7,5 +7,6 @@ type: module
 dependencies:
   - easy_install
   - libraries_configuration
+  - utility_nav
 
 core_version_requirement: ^8.9 || ^9
