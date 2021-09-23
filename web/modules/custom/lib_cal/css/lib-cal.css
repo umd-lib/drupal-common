@@ -2,26 +2,57 @@
  * LibCal CSS
  */
 
-/* .lib-cal-block {}
+.lib-cal-block {
+  width: 32rem;
+}
 
-.lib-cal-event {}
-
-.lib-cal-event-category {}
-
-.lib-cal-event-title {} */
+.lib-cal-event {
+  display: grid;
+  grid-template-areas: "time detail";
+  grid-template-columns: .2fr .8fr;
+  padding: .5rem;
+}
 
 .lib-cal-event-time {
+  grid-area: time;
   display: inline-block;
-  border: 2px solid gray;
-  width: 150px;
-  height: 150px;
+  border: .2rem solid lightgray;
+  width: 7rem;
+  height: 7rem;
   text-align: center;
+  margin: 1rem;
+  font-size: .8em;
+  color: darkgray;
+  line-height: .8;
+  padding: 1.25rem;
+  font-weight: bold;
 }
 
 .lib-cal-event-time span {
   display: block;
+  text-transform: uppercase;
+}
+
+.lib-cal-event-time-day {
+  font-size: 3em;
+  color: #e21833;
 }
 
 .lib-cal-event-detail {
+  grid-area: detail;
   display: inline-block;
+  padding-left: .5rem;
+  padding-top: 2rem;
+  line-height: 1.25;
+}
+
+.lib-cal-event-category {
+  text-transform: uppercase;
+  font-size: .9em;
+  font-weight: lighter;
+}
+
+.lib-cal-event-title a {
+  font-weight: bold;
+  color: black;
 }
