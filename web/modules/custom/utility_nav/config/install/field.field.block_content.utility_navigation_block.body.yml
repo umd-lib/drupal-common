@@ -17,7 +17,7 @@ translatable: true
 default_value:
   -
     summary: ''
-    value: "<ul>\r\n  <li><span class=\"fas fa-clock\"></span> <a class=\"umd-utility-nav-locations\" data-drupal-link-system-path=\"node/209\" href=\"/locations\">Locations &amp; Hours</a></li>\r\n  <li><span class=\"fas fa-exclamation-triangle\"></span> <a class=\"umd-utility-nav-status\" data-drupal-link-system-path=\"node/36\" href=\"/about/systems\">Systems Status</a></li>\r\n  <li><span class=\"fas fa-question-circle\"></span> <a class=\"umd-utility-nav-help\" data-drupal-link-system-path=\"node/274\" href=\"/help\">Get Help</a></li>\r\n  <li><span class=\"fas fa-info-circle\"></span> <a class=\"umd-utility-nav-info\" data-drupal-link-system-path=\"node/211\" href=\"/info\">Info For</a></li>\r\n  <li><span class=\"fas fa-user\"></span> <a class=\"umd-utility-nav-accounts\" data-drupal-link-system-path=\"node/210\" href=\"/accounts\">My Accounts</a></li>\r\n</ul>\r\n"
+    value: "<ul>\r\n  <li><span class=\"fas fa-clock\"></span> <a class=\"umd-utility-nav-locations\" href=\"/locations\">Locations &amp; Hours</a></li>\r\n  <li><span class=\"fas fa-exclamation-triangle\"></span> <a class=\"umd-utility-nav-status\" href=\"/about/systems\">Systems Status</a></li>\r\n  <li><span class=\"fas fa-question-circle\"></span> <a class=\"umd-utility-nav-help\" href=\"/help\">Get Help</a></li>\r\n  <li><span class=\"fas fa-info-circle\"></span> <a class=\"umd-utility-nav-info\" href=\"/info\">Info For</a></li>\r\n  <li><span class=\"fas fa-user\"></span> <a class=\"umd-utility-nav-accounts\" href=\"/accounts\">My Accounts</a></li>\r\n</ul>\r\n"
     format: full_html
 default_value_callback: ''
 settings:
