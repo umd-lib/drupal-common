@@ -38,3 +38,7 @@
 .home-hero-bg .home-hero-media:after {
   content: unset;
 }
+
+.embedded-heading {
+  display: none;
+}

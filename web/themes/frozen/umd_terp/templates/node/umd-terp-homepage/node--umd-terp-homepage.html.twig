@@ -38,6 +38,8 @@
 				<div class="editor-content">
 					{% if content.field_umdt_ct_hero_title|field_value %}
 						<h1>{{ content.field_umdt_ct_hero_title|field_value }}</h1>
+					{% else %}
+						<h1 class="embedded-heading">{{ node.title.value }}</h1>
 					{% endif %}
 					{% if content.field_umdt_ct_hero_subtitle|field_value %}
 						<h2>{{ content.field_umdt_ct_hero_subtitle|field_value }}</h2>
