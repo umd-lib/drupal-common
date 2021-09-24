@@ -4,6 +4,6 @@ hero_search.admin_settings_form:
     _form: '\Drupal\hero_search\Form\HeroSearchSettingsForm'
     _title: 'Hero Search Settings Form'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'access libraries configuration'
   options:
     _admin_route: TRUE

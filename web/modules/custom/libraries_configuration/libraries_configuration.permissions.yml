@@ -1,0 +1,4 @@
+access libraries configuration:
+  title: "Access Libraries' Configuration"
+  description: "Allows users to access to Libraries' configuration."
+  restrict access: TRUE
