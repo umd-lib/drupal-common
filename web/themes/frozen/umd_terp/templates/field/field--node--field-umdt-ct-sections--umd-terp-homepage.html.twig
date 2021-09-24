@@ -45,7 +45,7 @@
     ]
   %}
   <div class="{{ classes|join(' ') }}">
-    <div class="max-bound">
+    <div class="paragraph-section section-bound-{{ item.content['#paragraph'].getType() }}">
       <div class="outer-pad">
         {{ item.content }}
       </div>
