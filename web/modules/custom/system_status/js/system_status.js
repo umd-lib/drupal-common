@@ -3,10 +3,18 @@
 
   Drupal.behaviors.systemStatusBehavior = {
     attach: function (context, settings) {
+      /**
+       * Retrieves the systems status from the given endpoint, and updates
+       * the "Systems Status" entry in the utility navigation menu
+       */
       function retrieveStatus(systemStatusUrl) {
-        if (systemStatusUrl === undefined) {
+        var utilityNavItem = $(context).find('.umd-utility-nav-status');
+
+        if (utilityNavItem === undefined || utilityNavItem[0] === undefined) {
+          // Status menu item not on page
           return;
         }
+
         $.getJSON( systemStatusUrl, function( data ) {
           if (data === undefined) {
             return;
@@ -21,12 +29,6 @@
             // No further action if all systems are operational
             return;
           }
-
-          var utilityNavItem = $(context).find('.umd-utility-nav-status');
-          if (utilityNavItem === undefined) {
-            return;
-          }
-
 
           var currentCaption = utilityNavItem[0].textContent
           var nonNormalCaption = '<span class="badge">'+nonNormalCount+'</span>';
