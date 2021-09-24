@@ -6,6 +6,8 @@ dependencies:
     - field.storage.block_content.body
   module:
     - text
+_core:
+  default_config_hash: Ef2E3eHsEZWxZ5JNpsHIewKTDiRv30zP8UnwMzdbD_g
 id: block_content.utility_navigation_block.body
 field_name: body
 entity_type: block_content
@@ -17,7 +19,7 @@ translatable: true
 default_value:
   -
     summary: ''
-    value: "<ul>\r\n  <li><span class=\"fas fa-clock\"></span> <a class=\"umd-utility-nav-locations\" href=\"/locations\">Locations &amp; Hours</a></li>\r\n  <li><span class=\"fas fa-exclamation-triangle\"></span> <a class=\"umd-utility-nav-status\" href=\"/about/systems\">Systems Status</a></li>\r\n  <li><span class=\"fas fa-question-circle\"></span> <a class=\"umd-utility-nav-help\" href=\"/help\">Get Help</a></li>\r\n  <li><span class=\"fas fa-info-circle\"></span> <a class=\"umd-utility-nav-info\" href=\"/info\">Info For</a></li>\r\n  <li><span class=\"fas fa-user\"></span> <a class=\"umd-utility-nav-accounts\" href=\"/accounts\">My Accounts</a></li>\r\n</ul>\r\n"
+    value: "<h2 class=\"visually-hidden\" id=\"block-utilitynavigation-menu\">Utility Navigation</h2>\r\n<ul class=\"utility-menus\">\r\n  <li>\r\n    <a href=\"/locations\"><span class=\"fas fa-clock\"></span><br />\r\n    <span class=\"utility-label utility-nav-locations\">Locations &amp; Hours</span></a>\r\n  </li>\r\n  <li>\r\n    <a href=\"/about/systems\"><span class=\"fas fa-exclamation-triangle\"></span><br />\r\n    <span class=\"utility-label utility-nav-systems-status\">Systems Status</span></a>\r\n  </li>\r\n  <li>\r\n    <a href=\"/help\"><span class=\"fas fa-question-circle\"></span><br />\r\n    <span class=\"utility-label utility-nav-help\">Get Help<br/>&nbsp;</span></a>\r\n  </li>\r\n  <li>\r\n    <a href=\"/info\"><span class=\"fas fa-info-circle\"></span><br />\r\n    <span class=\"utility-label utility-nav-info\">Info For<br/>&nbsp;</span></a>\r\n  </li>\r\n  <li>\r\n    <a href=\"/accounts\"><span class=\"fas fa-user\"></span><br />\r\n    <span class=\"utility-label utility-nav-accounts\">My Accounts<br/>&nbsp;</span></a>\r\n  </li>\r\n</ul>"
     format: full_html
 default_value_callback: ''
 settings:

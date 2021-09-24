@@ -4,3 +4,12 @@
  * @file
  * Module file for the utility_nav module.
  */
+
+/**
+ * @param $variables
+ */
+function utility_nav_preprocess_page(&$variables)
+{
+  // Add CSS
+  $variables['#attached']['library'][] = 'utility_nav/utility-nav';
+}

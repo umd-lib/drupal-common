@@ -8,7 +8,7 @@
        * the "Systems Status" entry in the utility navigation menu
        */
       function retrieveStatus(systemStatusUrl) {
-        var utilityNavItem = $(context).find('.umd-utility-nav-status');
+        var utilityNavItem = $(context).find('.utility-nav-systems-status');
 
         if (utilityNavItem === undefined || utilityNavItem[0] === undefined) {
           // Status menu item not on page

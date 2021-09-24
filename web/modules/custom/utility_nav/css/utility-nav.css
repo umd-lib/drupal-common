@@ -1,0 +1,35 @@
+/* CSS Document for Utility Menus */
+
+.site-header__logo img {
+  height: auto;
+  width: 250px;
+}
+.site-header__bar {
+  margin-bottom: 1rem;
+}
+nav#block-utilitynavigation{
+  float: right;
+}
+.site-header__nav, .site-header__nav>ul{
+  float: right;
+}
+ul.utility-menus > li {
+  display: inline-block;
+  text-align: center;
+  line-height: 1.5rem;
+  border-left: 2px #eee solid;
+  padding: 0 0.5rem;
+  margin: 1rem 0;
+  text-transform: uppercase;
+  max-width: 110px;
+  vertical-align: top;
+}
+.fa-big {
+  font-size: 1.3rem;
+}
+.utility-icon {
+  padding: 0.2rem 2rem;
+}
+.utility-label {
+  font-size: 0.8rem;
+}
