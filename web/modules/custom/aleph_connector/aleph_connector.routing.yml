@@ -4,7 +4,7 @@ aleph_connector.admin_settings_form:
     _form: '\Drupal\aleph_connector\Form\AlephSettingsForm'
     _title: 'Aleph Connector Settings Form'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'access libraries configuration'
   options:
     _admin_route: TRUE
 alephx_connector.admin_settings_form:
@@ -13,6 +13,6 @@ alephx_connector.admin_settings_form:
     _form: '\Drupal\aleph_connector\Form\AlephxSettingsForm'
     _title: 'Aleph X Connector Settings Form'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'access libraries configuration'
   options:
     _admin_route: TRUE

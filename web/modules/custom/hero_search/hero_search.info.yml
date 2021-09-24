@@ -6,5 +6,6 @@ configure: hero_search.admin_settings_form
 type: module
 dependencies:
   - easy_install
+  - libraries_configuration
 
 core_version_requirement: ^8.8 || ^9
