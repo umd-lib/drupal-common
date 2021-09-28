@@ -4,19 +4,35 @@ namespace Drupal\hero_search\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
 use Drupal\hero_search\Helper\HeroSearchSettingsHelper;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Implement HeroSearchForm
  */
 class HeroSearchForm extends FormBase {
 
+  protected $logger;
+
   protected $configHelper;
 
-  public function __construct() {
+  public function __construct(LoggerChannelInterface $logger) {
+    $this->logger = $logger;
     $this->configHelper = HeroSearchSettingsHelper::getInstance();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    // Instantiates this form class.
+    return new static(
+      // Load the service required to construct this class.
+      $container->get('logger.channel.hero_search')
+    );
   }
 
   /**
@@ -91,7 +107,7 @@ class HeroSearchForm extends FormBase {
     $target_base_url = $this->configHelper->getSearchTargetUrl($target);
     $url = '/';
     if ($target_base_url == NULL) {
-      \Drupal::logger('hero_search')->notice("The base search Url configuration for '$target' is missing!");
+      $this->logger->notice("The base search Url configuration for '$target' is missing!");
     }
     else {
       $url = Url::fromUri($target_base_url . $query)->toString();

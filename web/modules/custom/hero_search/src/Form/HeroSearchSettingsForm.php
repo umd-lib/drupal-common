@@ -4,10 +4,11 @@ namespace Drupal\hero_search\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\hero_search\Helper\HeroSearchSettingsHelper;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Settings for Hero Search target urls.
@@ -18,10 +19,23 @@ class HeroSearchSettingsForm extends ConfigFormBase {
 
   const SETTINGS = 'hero_search.settings';
 
+  protected $logger;
+
   protected $configHelper;
 
-  public function __construct() {
+
+  public function __construct(LoggerChannelInterface $logger) {
+    $this->logger = $logger;
     $this->configHelper = HeroSearchSettingsHelper::getInstance();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('logger.channel.hero_search')
+    );
   }
 
   /**
@@ -179,7 +193,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     catch (ParseException $pe) {
       // Shouldn't happen, because invalid YAML should be caught by
       // "validateForm" method.
-      \Drupal::logger('hero_search')->error("Error parsing 'Search Targets' YAML: " . $pe);
+      $this->logger('hero_search')->error("Error parsing 'Search Targets' YAML: " . $pe);
     }
 
     foreach (HeroSearchSettingsHelper::LINK_FIELDS as $name => $title) {

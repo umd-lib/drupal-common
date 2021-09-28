@@ -3,7 +3,11 @@
 namespace Drupal\hero_search\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\hero_search\Helper\HeroSearchSettingsHelper;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Implements the HeroSearchBlock.
@@ -14,15 +18,54 @@ use Drupal\hero_search\Helper\HeroSearchSettingsHelper;
  *   category = @Translation("custom"),
  * )
  */
-class HeroSearchBlock extends BlockBase {
+class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
+  protected $formBuilder;
+  protected $renderer;
+
+  /**
+   * @param array $configuration
+   * @param string $plugin_id
+   * @param mixed $plugin_definition
+   * @param \Drupal\Core\Form\FormBuilderInterface $formBuilder
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   */
+  public function __construct(
+      array $configuration,
+      $plugin_id,
+      $plugin_definition,
+      FormBuilderInterface $formBuilder,
+      RendererInterface $renderer) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->formBuilder = $formBuilder;
+    $this->renderer = $renderer;
+  }
+
+  /**
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   * @param array $configuration
+   * @param string $plugin_id
+   * @param mixed $plugin_definition
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('form_builder'),
+      $container->get('renderer')
+    );
+  }
 
   /**
    * {@inheritdoc}
    */
   public function build() {
     $configHelper = HeroSearchSettingsHelper::getInstance();
-    $form = \Drupal::formBuilder()->getForm('Drupal\hero_search\Form\HeroSearchForm');
-    $rendered_form = \Drupal::service('renderer')->render($form);
+    $form = $this->formBuilder->getForm('Drupal\hero_search\Form\HeroSearchForm');
+    $rendered_form = $this->renderer->render($form);
     $buttons = array_filter([
       $configHelper->getLinkField('button1'),
       $configHelper->getLinkField('button2'),
