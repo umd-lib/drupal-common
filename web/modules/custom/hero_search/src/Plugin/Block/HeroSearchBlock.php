@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Definition of Drupal\hero_search\Plugin\Block\HeroSearchBlock
- */
 
 namespace Drupal\hero_search\Plugin\Block;
 
@@ -10,8 +6,8 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\hero_search\Helper\HeroSearchSettingsHelper;
 
 /**
- * Implements the HeroSearchBlock
- * 
+ * Implements the HeroSearchBlock.
+ *
  * @Block(
  *   id = "hero_search",
  *   admin_label = @Translation("Hero Search"),
@@ -47,4 +43,5 @@ class HeroSearchBlock extends BlockBase {
       '#hero_search_bottom_right_link' => $bottom_right_link,
     ];
   }
+
 }

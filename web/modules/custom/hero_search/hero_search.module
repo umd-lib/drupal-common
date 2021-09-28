@@ -1,10 +1,11 @@
 <?php
+
 /**
  * @file
- * Module file for the hero_search module
+ * Module file for the hero_search module.
  */
 
- /**
+/**
  * Implements hook_theme().
  */
 function hero_search_theme() {

@@ -20,7 +20,7 @@ function hero_search_update_8002() {
   $hero_search_settings = $config_factory->getEditable('hero_search.settings');
   \Drupal::logger('hero_search')->notice("Running hero_search_update_8002");
 
-  // Replace existing "search_targets" with updated YAML configuration
+  // Replace existing "search_targets" with updated YAML configuration.
   $hero_search_settings->set('search_targets',
       [
         "All" => [
@@ -40,15 +40,9 @@ function hero_search_update_8002() {
       ]
   );
 
-  // Remove obsolete "advanced_search" settings
+  // Remove obsolete "advanced_search" settings.
   $hero_search_settings->clear('advanced_search_url');
   $hero_search_settings->clear('advanced_search_text');
   $hero_search_settings->clear('advanced_search_title');
   $hero_search_settings->save();
-}
-
-/**
- * Implements hook_uninstall
- */
-function hero_search_uninstall() {
 }

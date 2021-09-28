@@ -19,16 +19,19 @@
   font-size: 1rem;
 }
 
-.darklinks, .darklinks a{
+.darklinks,
+.darklinks a {
   color: #333;
   text-decoration: underline;
   font-size: 0.912rem;
 }
 
-input[type=text], select, textarea {
+input[type=text],
+select,
+textarea {
   width: 100%;
   padding: 12px;
-} 
+}
 .hero-search-input > input#edit-submit {
   background: #e21833;
   color: #fff!important;
@@ -43,7 +46,8 @@ input[type=text], select, textarea {
   margin-right: 2rem;
   margin-bottom: 0;
 }
-.home-hero.home-hero-bg .btn, .home-hero.home-hero-dark .btn {
+.home-hero.home-hero-bg .btn,
+.home-hero.home-hero-dark .btn {
   color: #000!important;
   border-color: #c8c8c8!important;
   font-weight: 400;
@@ -74,18 +78,15 @@ input[type=text], select, textarea {
 }
 
 @media (min-width: 1000px) {
-.hero-block {
-  margin-left: 12rem!important;
-}
-
-.form-actions, .form-item {
-}
+  .hero-block {
+    margin-left: 12rem!important;
+  }
 }
 
 @media (max-width: 768px) {
-.hero-block {
-  margin-left: 0!important;
-  border: 1px solid #ccc;
-  padding:  1rem;
-}
+  .hero-block {
+    margin-left: 0!important;
+    border: 1px solid #ccc;
+    padding: 1rem;
+  }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Drupal\hero_search\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
@@ -8,11 +9,12 @@ use Drupal\hero_search\Helper\HeroSearchSettingsHelper;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
 
-
 /**
  * Settings for Hero Search target urls.
  */
 class HeroSearchSettingsForm extends ConfigFormBase {
+
+  use \Drupal\Core\StringTranslation\StringTranslationTrait;
 
   const SETTINGS = 'hero_search.settings';
 
@@ -48,12 +50,12 @@ class HeroSearchSettingsForm extends ConfigFormBase {
 
     $form['hero_search_settings'] = [
       '#type' => 'item',
-      '#markup' => '<h3>' . t('Configuration for the Hero Search block') . '</h3>',
+      '#markup' => '<h3>' . $this->t('Configuration for the Hero Search block') . '</h3>',
     ];
 
     $form['title'] = [
       '#type' => 'textfield',
-      '#title' => t('Title'),
+      '#title' => $this->t('Title'),
       '#default_value' => $config->get('title'),
       '#size' => 30,
       '#maxlength' => 30,
@@ -62,7 +64,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
 
     $form['placeholder'] = [
       '#type' => 'textfield',
-      '#title' => t('Placeholder'),
+      '#title' => $this->t('Placeholder'),
       '#default_value' => $config->get('placeholder'),
       '#size' => 50,
       '#maxlength' => 60,
@@ -71,8 +73,8 @@ class HeroSearchSettingsForm extends ConfigFormBase {
 
     $form['search_targets'] = [
       '#type' => 'textarea',
-      '#title' => t('Search Targets'),
-      '#description' => t('YAML formatted Search Targets. See the README.md file.'),
+      '#title' => $this->t('Search Targets'),
+      '#description' => $this->t('YAML formatted Search Targets. See the README.md file.'),
       '#default_value' => Yaml::dump($config->get('search_targets')),
       '#rows' => 7,
       '#cols' => 100,
@@ -82,12 +84,12 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     foreach (HeroSearchSettingsHelper::LINK_FIELDS as $name => $title) {
       $form[$name] = [
         '#type' => 'fieldset',
-        '#title' => t($title)
+        '#title' => $this->t($title),
       ];
 
       $form[$name][$name . '_url'] = [
         '#type' => 'url',
-        '#title' => t('URL'),
+        '#title' => $this->t('URL'),
         '#default_value' => $config->get($name . '_url'),
         '#size' => 100,
         '#maxlength' => 100,
@@ -95,7 +97,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
 
       $form[$name][$name . '_text'] = [
         '#type' => 'textfield',
-        '#title' => t('Text'),
+        '#title' => $this->t('Text'),
         '#default_value' => $config->get($name . '_text'),
         '#size' => 50,
         '#maxlength' => 60,
@@ -103,7 +105,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
 
       $form[$name][$name . '_title'] = [
         '#type' => 'textfield',
-        '#title' => t('Title'),
+        '#title' => $this->t('Title'),
         '#default_value' => $config->get($name . '_title'),
         '#size' => 50,
         '#maxlength' => 60,
@@ -120,7 +122,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     $search_targets_str = trim($form_state->getValue('search_targets'));
 
     // A starting line with "---" is required by the YAML parser, so add it,
-    // if it is not present
+    // if it is not present.
     if (!str_starts_with($search_targets_str, "---")) {
       $search_targets_str = "---\n" . $search_targets_str;
     }
@@ -128,7 +130,8 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     $decoded_search_targets = [];
     try {
       $decoded_search_targets = Yaml::parse($search_targets_str);
-    } catch(ParseException $e) {
+    }
+    catch (ParseException $e) {
       $error_message = $form['search_targets']['#title'] . " has missing or invalid YAML.";
       $form_state->setErrorByName('search_targets', $error_message);
       return;
@@ -140,15 +143,16 @@ class HeroSearchSettingsForm extends ConfigFormBase {
       return;
     }
 
-    // Targets with missing or bad URLs
+    // Targets with missing or bad URLs.
     $targets_bad_urls = [];
     $error_message = "The 'url' field is missing or invalid for the following search targets " .
                      "(should have format 'https://DOMAIN/ENDPOINT?SEARCH_QUERY_PARAM='): ";
-    foreach($decoded_search_targets as $name => $val) {
+    foreach ($decoded_search_targets as $name => $val) {
       $url = $val['url'];
-      if (filter_var($url, FILTER_VALIDATE_URL) == false) {
+      if (filter_var($url, FILTER_VALIDATE_URL) == FALSE) {
         $targets_bad_urls[] = $name;
-      } elseif (!str_ends_with($url, '=')) {
+      }
+      elseif (!str_ends_with($url, '=')) {
         $targets_bad_urls[] = $name;
       }
     }
@@ -171,19 +175,21 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     try {
       $search_targets = Yaml::parse($search_targets_str);
       $config->set('search_targets', $search_targets);
-    } catch(ParseException $pe) {
+    }
+    catch (ParseException $pe) {
       // Shouldn't happen, because invalid YAML should be caught by
-      // "validateForm" method
+      // "validateForm" method.
       \Drupal::logger('hero_search')->error("Error parsing 'Search Targets' YAML: " . $pe);
     }
 
-    foreach(HeroSearchSettingsHelper::LINK_FIELDS as $name => $title) {
-      $config->set($name . '_url', $form_state->getValue($name .'_url'));
-      $config->set($name . '_text', $form_state->getValue($name .'_text'));
-      $config->set($name . '_title', $form_state->getValue($name .'_title'));
+    foreach (HeroSearchSettingsHelper::LINK_FIELDS as $name => $title) {
+      $config->set($name . '_url', $form_state->getValue($name . '_url'));
+      $config->set($name . '_text', $form_state->getValue($name . '_text'));
+      $config->set($name . '_title', $form_state->getValue($name . '_title'));
     }
 
     $config->save();
     parent::submitForm($form, $form_state);
   }
+
 }

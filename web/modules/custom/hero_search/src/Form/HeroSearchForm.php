@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Definition of HeroSearchForm
- */
 
 namespace Drupal\hero_search\Form;
 
@@ -14,7 +10,7 @@ use Drupal\hero_search\Helper\HeroSearchSettingsHelper;
 
 /**
  * Implement HeroSearchForm
-*/
+ */
 class HeroSearchForm extends FormBase {
 
   protected $configHelper;
@@ -25,14 +21,14 @@ class HeroSearchForm extends FormBase {
 
   /**
    * {@inheritdoc}
-  */
+   */
   public function getFormId() {
     return 'hero_search_form';
   }
 
   /**
    * {@inheritdoc}
-  */
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['search_query'] = [
       '#type' => 'textfield',
@@ -42,12 +38,12 @@ class HeroSearchForm extends FormBase {
       '#maxlength' => 60,
       '#required' => TRUE,
     ];
-    $form['search_target'] = array(
+    $form['search_target'] = [
       '#type' => 'radios',
       '#name' => 'search_target',
       '#default_value' => array_key_first($this->configHelper->getSearchTargetOptions()),
       '#options' => $this->configHelper->getSearchTargetOptions(),
-    );
+    ];
     $alternate_searches = $this->configHelper->getAlternateSearches();
 
     foreach ($alternate_searches as $alternate_search) {
@@ -59,13 +55,13 @@ class HeroSearchForm extends FormBase {
         '#type' => 'item',
         '#markup' => "<a href='{$url}' title='{$this->t($title)}'>{$this->t($text)}</a>",
         '#attributes' => [
-           'id' => $id,
-         ],
+          'id' => $id,
+        ],
         '#states' => [
           'visible' => [
             ':input[name="search_target"]' => ['value' => $alternate_search['search_target']],
           ],
-        ]
+        ],
       ];
     }
 
@@ -81,25 +77,27 @@ class HeroSearchForm extends FormBase {
 
   /**
    * {@inheritdoc}
-  */
+   */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     // Nothing.
   }
 
   /**
    * {@inheritdoc}
-  */
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $query = $form_state->getValue('search_query');
     $target = $form_state->getValue('search_target');
     $target_base_url = $this->configHelper->getSearchTargetUrl($target);
     $url = '/';
-    if ($target_base_url == null) {
+    if ($target_base_url == NULL) {
       \Drupal::logger('hero_search')->notice("The base search Url configuration for '$target' is missing!");
-    } else {
+    }
+    else {
       $url = Url::fromUri($target_base_url . $query)->toString();
     }
     $response = new TrustedRedirectResponse($url);
     $form_state->setResponse($response);
   }
+
 }

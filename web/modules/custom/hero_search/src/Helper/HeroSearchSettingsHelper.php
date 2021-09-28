@@ -1,16 +1,9 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\hero_search\Controller\HeroSearchSettingsHelper
- */
-
 namespace Drupal\hero_search\Helper;
 
-use Symfony\Component\Yaml\Yaml;
-
 /**
- * Helper class for retrieving search target settings
+ * Helper class for retrieving search target settings.
  */
 class HeroSearchSettingsHelper {
 
@@ -32,10 +25,8 @@ class HeroSearchSettingsHelper {
     $this->config = \Drupal::config('hero_search.settings');
   }
 
-  public static function getInstance()
-  {
-    if ( is_null( self::$instance ) )
-    {
+  public static function getInstance() {
+    if (is_null(self::$instance)) {
       self::$instance = new self();
     }
     return self::$instance;
@@ -61,7 +52,7 @@ class HeroSearchSettingsHelper {
 
   public function getLinkField($name) {
     $url = $this->config->get($name . '_url');
-    return $url == null ? null : [
+    return $url == NULL ? NULL : [
       'url' => $url,
       'text' => $this->config->get($name . '_text'),
       'title' => $this->config->get($name . '_title'),
@@ -69,7 +60,7 @@ class HeroSearchSettingsHelper {
   }
 
   public function getAlternateSearches() {
-    $search_targets =$this->config->get('search_targets');
+    $search_targets = $this->config->get('search_targets');
     $alternate_searches = [];
     foreach ($search_targets as $search_target => $val) {
       $has_alternate = isset($val['alternate']);
@@ -80,4 +71,5 @@ class HeroSearchSettingsHelper {
     }
     return $alternate_searches;
   }
+
 }
