@@ -48,20 +48,33 @@ class HeroSearchForm extends FormBase {
       '#default_value' => array_key_first($this->configHelper->getSearchTargetOptions()),
       '#options' => $this->configHelper->getSearchTargetOptions(),
     );
-    $adv_search_link = $this->configHelper->getLinkField('advanced_search');
-    if ($adv_search_link != null) {
-      $form['advanced_search'] = [
-        '#type' => 'markup',
-        '#markup' => "<a href='{$adv_search_link['url']}' title='{$this->t($adv_search_link['title'])}'>{$this->t($adv_search_link['text'])}</a>",
-        '#url' => $adv_search_link['url'],
+    $alternate_searches = $this->configHelper->getAlternateSearches();
+
+    foreach ($alternate_searches as $alternate_search) {
+      $id = 'alternate_search_' . $alternate_search['search_target'];
+      $url = $alternate_search['url'];
+      $title = $alternate_search['title'];
+      $text = $alternate_search['text'];
+      $form['alternate_search'][] = [
+        '#type' => 'item',
+        '#markup' => "<a href='{$url}' title='{$this->t($title)}'>{$this->t($text)}</a>",
+        '#attributes' => [
+           'id' => $id,
+         ],
+        '#states' => [
+          'visible' => [
+            ':input[name="search_target"]' => ['value' => $alternate_search['search_target']],
+          ],
+        ]
       ];
     }
+
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Search'),
     ];
-   
+
     $form['#theme'] = 'hero_search_form';
     return $form;
   }

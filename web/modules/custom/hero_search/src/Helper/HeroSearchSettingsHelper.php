@@ -7,6 +7,8 @@
 
 namespace Drupal\hero_search\Helper;
 
+use Symfony\Component\Yaml\Yaml;
+
 /**
  * Helper class for retrieving search target settings
  */
@@ -17,7 +19,6 @@ class HeroSearchSettingsHelper {
     'button2' => 'Button 2',
     'button3' => 'Button 3',
     'button4' => 'Button 4',
-    'advanced_search' => 'Advanced Search',
     'top_right_link' => 'Top Right Link',
     'bottom_left_link' => 'Bottom Left Link',
     'bottom_right_link' => 'Bottom Right Link',
@@ -40,40 +41,6 @@ class HeroSearchSettingsHelper {
     return self::$instance;
   }
 
-  // 
-  public function parseSearchTargets($multiline_str) {
-    $values = [];
-
-    $list = explode("\n", $multiline_str);
-    $list = array_map('trim', $list);
-    $list = array_filter($list, 'strlen');
-
-    foreach ($list as $position => $text) {
-      // Check for an explicit key.
-      $matches = [];
-      if (preg_match('/(.*)\|(.*)/', $text, $matches)) {
-        // Trim key and value to avoid unwanted spaces issues.
-        $key = trim($matches[1]);
-        $value = trim($matches[2]);
-      }
-      else {
-        return;
-      }
-
-      $values[$key] = $value;
-    }
-
-    return $values;
-  }
-
-  public function convertSearchTargetsToString($targets) {
-    $target_str = '';
-    foreach($targets as $name => $url) {
-      $target_str = $target_str . "$name|$url\n";
-    }
-    return $target_str;
-  }
-
   public function getSearchTargetOptions() {
     $target_names = array_keys($this->config->get('search_targets'));
     return array_combine($target_names, $target_names);
@@ -81,7 +48,7 @@ class HeroSearchSettingsHelper {
 
   public function getSearchTargetUrl($target) {
     $targets = $this->config->get('search_targets');
-    return $targets[$target];
+    return $targets[$target]['url'];
   }
 
   public function getSearchTitle() {
@@ -99,5 +66,18 @@ class HeroSearchSettingsHelper {
       'text' => $this->config->get($name . '_text'),
       'title' => $this->config->get($name . '_title'),
     ];
+  }
+
+  public function getAlternateSearches() {
+    $search_targets =$this->config->get('search_targets');
+    $alternate_searches = [];
+    foreach ($search_targets as $search_target => $val) {
+      $has_alternate = isset($val['alternate']);
+      if ($has_alternate) {
+        $val['alternate']['search_target'] = $search_target;
+        $alternate_searches[] = $val['alternate'];
+      }
+    }
+    return $alternate_searches;
   }
 }
