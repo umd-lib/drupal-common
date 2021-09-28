@@ -1,0 +1,30 @@
+title: Search
+placeholder: 'SEARCH BOOKS, JOURNALS, ARTICLE, MEDIA'
+search_targets:
+  All: 'https://searchnew.lib.umd.edu/results?search&query='
+  'UMD Catalog': 'https://catalog.umd.edu/cgi-bin/direct?searchtype=F1_WRD&base=CP&search=&searchrequest='
+  WorldCat: 'https://umaryland.on.worldcat.org/search?databaseList=&umdlib=&queryString='
+button1_url: 'https://lib.guides.umd.edu/az.php'
+button1_text: DATABASES
+button1_title: DATABASES
+button2_url: 'https://lib.guides.umd.edu/srch.php'
+button2_text: 'RESEARCH GUIDES'
+button2_title: 'RESEARCH GUIDES'
+button3_url: 'https://umd.libanswers.com/search'
+button3_text: FAQs
+button3_title: FAQs
+button4_url: 'https://searchnew.lib.umd.edu/website'
+button4_text: WEBSITE
+button4_title: WEBSITE
+advanced_search_url: 'https://umaryland.on.worldcat.org/advancedsearch'
+advanced_search_text: 'Advanced Search'
+advanced_search_title: 'Advanced Search'
+top_right_link_url: ''
+top_right_link_text: ''
+top_right_link_title: ''
+bottom_left_link_url: 'https://searchnew.lib.umd.edu/'
+bottom_left_link_text: 'Learn more about search at the University Libraries'
+bottom_left_link_title: 'Learn more about search at the University Libraries'
+bottom_right_link_url: 'https://www.lib.umd.edu/suggestions'
+bottom_right_link_text: Feedback
+bottom_right_link_title: Feedback

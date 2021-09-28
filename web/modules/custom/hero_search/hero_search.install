@@ -13,6 +13,41 @@ function hero_search_update_8001() {
 }
 
 /**
+ * LIBWEB-5441 - Replaces "Advanced Search" with "alternate search".
+ */
+function hero_search_update_8002() {
+  $config_factory = \Drupal::configFactory();
+  $hero_search_settings = $config_factory->getEditable('hero_search.settings');
+  \Drupal::logger('hero_search')->notice("Running hero_search_update_8002");
+
+  // Replace existing "search_targets" with updated YAML configuration
+  $hero_search_settings->set('search_targets',
+      [
+        "All" => [
+          "url" => "https://foobar.lib.umd.edu/results?search&query=",
+        ],
+        "UMD Catalog" => [
+          "url" => "https://catalog.umd.edu/cgi-bin/direct?searchtype=F1_WRD&base=CP&search=&searchrequest=",
+        ],
+        "WorldCat" => [
+          "url" => "https://umaryland.on.worldcat.org/search?databaseList=&umdlib=&queryString=",
+          "alternate" => [
+            "url" => "https://umaryland.on.worldcat.org/advancedsearch",
+            "text" => "Advanced Search",
+            "title" => "Advanced Search",
+          ],
+        ],
+      ]
+  );
+
+  // Remove obsolete "advanced_search" settings
+  $hero_search_settings->clear('advanced_search_url');
+  $hero_search_settings->clear('advanced_search_text');
+  $hero_search_settings->clear('advanced_search_title');
+  $hero_search_settings->save();
+}
+
+/**
  * Implements hook_uninstall
  */
 function hero_search_uninstall() {
