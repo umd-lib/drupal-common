@@ -31,3 +31,7 @@ span.facet-item__count {
 .facets-widget-checkbox label{
     width: 35%;
 }
+
+.red {
+    color: #e21833;
+}
