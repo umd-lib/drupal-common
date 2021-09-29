@@ -334,7 +334,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<div class="header-alert {{ field_alert_type }}"><p>{{ field_icon }} <strong>{{ title }}</strong> {{ body }}</p></div>'
+            text: '<div class="header-alert type-{{ field_alert_type }}"> <div class="header-alert-title">{{ field_icon }} {{ title }}</div><div class="header-alert-body"> {{ body }}</div></div>'
             make_link: false
             path: ''
             absolute: false
@@ -421,6 +421,7 @@ display:
       arguments: {  }
       display_extenders: {  }
       title: 'Header Alerts'
+      css_class: header-alerts
     cache_metadata:
       max-age: -1
       contexts:
