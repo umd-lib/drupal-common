@@ -20,15 +20,33 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
+  /**
+   * Form builder service.
+   *
+   * @var Drupal\Core\Plugin\ContainerFactoryPluginInterface
+   */
   protected $formBuilder;
+
+  /**
+   * Renderer service.
+   *
+   * @var Drupal\Core\Plugin\ContainerFactoryPluginInterface
+   */
   protected $renderer;
 
   /**
+   * Constructor.
+   *
    * @param array $configuration
+   *   Configuration array containing information about the plugin instance.
    * @param string $plugin_id
+   *   The id for the plugin.
    * @param mixed $plugin_definition
-   * @param \Drupal\Core\Form\FormBuilderInterface $formBuilder
-   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The definition of the plugin implementaton.
+   * @param Drupal\Core\Form\FormBuilderInterface $formBuilder
+   *   The "form_builder" service instance to use.
+   * @param Drupal\Core\Render\RendererInterface $renderer
+   *   The "renderer" service instance to use.
    */
   public function __construct(
       array $configuration,
@@ -42,12 +60,7 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
   }
 
   /**
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-   * @param array $configuration
-   * @param string $plugin_id
-   * @param mixed $plugin_definition
-   *
-   * @return static
+   * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(

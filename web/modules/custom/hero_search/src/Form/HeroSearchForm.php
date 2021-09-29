@@ -11,14 +11,30 @@ use Drupal\hero_search\Helper\HeroSearchSettingsHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Implement HeroSearchForm
+ * Implements search box displayed atop a hero image.
  */
 class HeroSearchForm extends FormBase {
 
+  /**
+   * The logger instance.
+   *
+   * @var Drupal\Core\Logger\LoggerChannelInterface
+   */
   protected $logger;
 
+  /**
+   * The HeroSearchSettingsHelper instance.
+   *
+   * @var Drupal\hero_search\Helper\HeroSearchSettingsHelper
+   */
   protected $configHelper;
 
+  /**
+   * Constructor.
+   *
+   * @param Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger instance.
+   */
   public function __construct(LoggerChannelInterface $logger) {
     $this->logger = $logger;
     $this->configHelper = HeroSearchSettingsHelper::getInstance();

@@ -18,7 +18,6 @@ function hero_search_update_8001() {
 function hero_search_update_8002() {
   $config_factory = \Drupal::configFactory();
   $hero_search_settings = $config_factory->getEditable('hero_search.settings');
-  \Drupal::logger('hero_search')->notice("Running hero_search_update_8002");
 
   // Replace existing "search_targets" with updated YAML configuration.
   $hero_search_settings->set('search_targets',

@@ -19,11 +19,26 @@ class HeroSearchSettingsForm extends ConfigFormBase {
 
   const SETTINGS = 'hero_search.settings';
 
+  /**
+   * The logger instance.
+   *
+   * @var Drupal\Core\Logger\LoggerChannelInterface
+   */
   protected $logger;
 
+  /**
+   * The HeroSearchSettingsHelper instance.
+   *
+   * @var Drupal\hero_search\Helper\HeroSearchSettingsHelper
+   */
   protected $configHelper;
 
-
+  /**
+   * Constructor.
+   *
+   * @param Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger instance.
+   */
   public function __construct(LoggerChannelInterface $logger) {
     $this->logger = $logger;
     $this->configHelper = HeroSearchSettingsHelper::getInstance();
