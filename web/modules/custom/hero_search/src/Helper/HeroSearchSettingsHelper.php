@@ -1,14 +1,9 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\hero_search\Controller\HeroSearchSettingsHelper
- */
-
 namespace Drupal\hero_search\Helper;
 
 /**
- * Helper class for retrieving search target settings
+ * Helper class for retrieving search target settings.
  */
 class HeroSearchSettingsHelper {
 
@@ -17,87 +12,129 @@ class HeroSearchSettingsHelper {
     'button2' => 'Button 2',
     'button3' => 'Button 3',
     'button4' => 'Button 4',
-    'advanced_search' => 'Advanced Search',
     'top_right_link' => 'Top Right Link',
     'bottom_left_link' => 'Bottom Left Link',
     'bottom_right_link' => 'Bottom Right Link',
   ];
 
+  /**
+   * The module configuration.
+   *
+   * @var Drupal\Core\Config\ImmutableConfig
+   */
   protected $config;
 
+  /**
+   * The singleton instance.
+   *
+   * @var Drupal\hero_search\Helper\HeroSearchSettingsHelper
+   */
   private static $instance;
 
+  /**
+   * Constructor.
+   */
   private function __construct() {
     $this->config = \Drupal::config('hero_search.settings');
   }
 
-  public static function getInstance()
-  {
-    if ( is_null( self::$instance ) )
-    {
+  /**
+   * Returns the single instance of this class.
+   *
+   * @return HeroSearchSettingsHelper
+   *   Tthe singleton instance of this class.
+   */
+  public static function getInstance() {
+    if (is_null(self::$instance)) {
       self::$instance = new self();
     }
     return self::$instance;
   }
 
-  // 
-  public function parseSearchTargets($multiline_str) {
-    $values = [];
-
-    $list = explode("\n", $multiline_str);
-    $list = array_map('trim', $list);
-    $list = array_filter($list, 'strlen');
-
-    foreach ($list as $position => $text) {
-      // Check for an explicit key.
-      $matches = [];
-      if (preg_match('/(.*)\|(.*)/', $text, $matches)) {
-        // Trim key and value to avoid unwanted spaces issues.
-        $key = trim($matches[1]);
-        $value = trim($matches[2]);
-      }
-      else {
-        return;
-      }
-
-      $values[$key] = $value;
-    }
-
-    return $values;
-  }
-
-  public function convertSearchTargetsToString($targets) {
-    $target_str = '';
-    foreach($targets as $name => $url) {
-      $target_str = $target_str . "$name|$url\n";
-    }
-    return $target_str;
-  }
-
+  /**
+   * An associative array of search targets.
+   *
+   * @return array
+   *   An associative array of search targets, suitable for use in the "options"
+   *   property of a "radios" form element.
+   */
   public function getSearchTargetOptions() {
     $target_names = array_keys($this->config->get('search_targets'));
     return array_combine($target_names, $target_names);
   }
 
+  /**
+   * Returns the URL for the given search target.
+   *
+   * @param string $target
+   *   The search target to return the URL of.
+   *
+   * @return string
+   *   The URL for the given search target.
+   */
   public function getSearchTargetUrl($target) {
     $targets = $this->config->get('search_targets');
-    return $targets[$target];
+    return $targets[$target]['url'];
   }
 
+  /**
+   * Returns the title to display in the search block.
+   *
+   * @return string
+   *   The title to display in the search block.
+   */
   public function getSearchTitle() {
     return $this->config->get('title');
   }
 
+  /**
+   * Returns the text to display in the search textfield.
+   *
+   * @return string
+   *   The text to display in the search textfield.
+   */
   public function getSearchPlaceholder() {
     return $this->config->get('placeholder');
   }
 
+  /**
+   * Returns an assoc. array of configured link info for the given name or NULL.
+   *
+   * @param string $name
+   *   The name to look up the configured link information.
+   *
+   * @return array
+   *   An associative array of link information for the given name, or NULL.
+   */
   public function getLinkField($name) {
     $url = $this->config->get($name . '_url');
-    return $url == null ? null : [
+    return $url == NULL ? NULL : [
       'url' => $url,
       'text' => $this->config->get($name . '_text'),
       'title' => $this->config->get($name . '_title'),
     ];
   }
+
+  /**
+   * Returns a (possibly empty) array of alternate search information.
+   *
+   * @return array
+   *   A (possibly empty) array of associative arrays containing information
+   *   about all alternate search links from the configuration.
+   */
+  public function getAlternateSearches() {
+    $search_targets = $this->config->get('search_targets');
+    $alternate_searches = [];
+    foreach ($search_targets as $search_target => $val) {
+      $has_alternate = isset($val['alternate']);
+      if ($has_alternate) {
+        // Append the search_target to the associative array, so the alternate
+        // can be associated with one of the search options.
+        $val['alternate']['search_target'] = $search_target;
+        $alternate_searches[] = $val['alternate'];
+      }
+    }
+    return $alternate_searches;
+  }
+
 }
