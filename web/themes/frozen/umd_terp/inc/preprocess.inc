@@ -21,6 +21,7 @@ function umd_terp_preprocess_html(&$variables) {
 
   if ($variables['is_front_page']) {
     $variables['attributes']['class'][] = 'home';
+    $variables['head_title'] = array(\Drupal::config('system.site')->get('name'));
   }
   else {
     $variables['attributes']['class'][] = 'internal';
