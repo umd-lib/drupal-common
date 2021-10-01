@@ -1,8 +1,7 @@
-FROM drupal:8.7.8-apache
+FROM drupal:8.9.16-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
-	echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | tee /etc/apt/sources.list.d/postgresql.list && \
 	apt-get update && apt-get install -y --allow-unauthenticated \
 	curl \
 	git \
@@ -15,7 +14,7 @@ RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
 	optipng \
 	jpegoptim \
 	pngquant \
-	postgresql-client-10 && \
+	postgresql-client && \
 	rm -rf /usr/share/man/man*
 
 # Configure PHP-LDAP
