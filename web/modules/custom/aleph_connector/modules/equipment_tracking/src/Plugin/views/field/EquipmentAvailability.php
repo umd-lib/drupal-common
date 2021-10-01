@@ -1,22 +1,17 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\equipment_tracking\Plugin\views\field\EquipmentAvailability
- */
-
 namespace Drupal\equipment_tracking\Plugin\views\field;
 
-use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\aleph_connector\Controller\AlephController;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
-use Drupal\aleph_connector\Controller\AlephController;
+use Drupal\search_api\Plugin\views\field\SearchApiEntityField;
 use Drupal\Component\Datetime\DateTimePlus;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-
 /**
- * Field handler to flag the node type.
+ * Field handler for equipment availibility.
  *
  * @ingroup views_field_handlers
  *
@@ -32,7 +27,7 @@ class EquipmentAvailability extends FieldPluginBase {
   protected $logger;
 
   /**
-   * Constructs a PluginBase object.
+   * Constructs an EquipmentAvailability object.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -43,7 +38,7 @@ class EquipmentAvailability extends FieldPluginBase {
    * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
    *   The logger instance.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, $logger) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerChannelInterface $logger) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->definition = $plugin_definition + $configuration;
@@ -64,38 +59,14 @@ class EquipmentAvailability extends FieldPluginBase {
   }
 
   /**
-   * @{inheritdoc}
+   * {@inheritdoc}
    */
   public function query() {
     // Leave empty to avoid a query on this field.
   }
 
   /**
-   * Define the available options
-   * @return array
-   */
-  protected function defineOptions() {
-    $options = parent::defineOptions();
-    return $options;
-  }
-
-  /**
-   * Provide the options form.
-   *
-   * @note
-   *   More investigation needed to determine how to actually use these options.
-   */
-  public function buildOptionsForm(&$form, FormStateInterface $form_state) {
-    $form['unused'] = array(
-      '#title' => $this->t('Unused'),
-      '#description' => $this->t('A description can go here.'),
-      '#type' => 'textfield',
-    );
-    parent::buildOptionsForm($form, $form_state);
-  }
-
-  /**
-   * @{inheritdoc}
+   * {@inheritdoc}
    */
   public function render(ResultRow $values) {
     $bibnums = [];
@@ -103,7 +74,7 @@ class EquipmentAvailability extends FieldPluginBase {
 
     if (!$this->isValueEmpty($aleph->getQueryField(), TRUE)) {
       $field = $this->view->field[$aleph->getQueryField()];
-      if ($field instanceof \Drupal\search_api\Plugin\views\field\SearchApiEntityField) {
+      if ($field instanceof SearchApiEntityField) {
         $items = $field->getItems($values);
         foreach ($items as $item) {
           $bibnum = $item['value'];
@@ -125,7 +96,7 @@ class EquipmentAvailability extends FieldPluginBase {
    */
   public function availabilityField($bibnums, $availability_data) {
     $available_count = 0;
-    $earliest_raw_date = null;
+    $earliest_raw_date = NULL;
     $processed_date = NULL;
 
     foreach ($availability_data as $datum) {
@@ -157,4 +128,5 @@ class EquipmentAvailability extends FieldPluginBase {
       '#equipment_sysnum' => implode(',', $bibnums),
     ];
   }
+
 }
