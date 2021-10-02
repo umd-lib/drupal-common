@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Libraries search module install file.
+ */
+
+/**
+ * Install  configuration.
+ */
+function libraries_search_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'libraries_search');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function libraries_search_uninstall() {
+}

@@ -1,0 +1,5 @@
+llibraries_search.base_tab:
+  title: "Libraries' Search"
+  route_name: libraries_search.base_tab
+  base_route: libraries_search.base_tab
+  weight: 0
