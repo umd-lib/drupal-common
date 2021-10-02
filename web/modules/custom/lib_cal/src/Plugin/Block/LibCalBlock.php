@@ -31,6 +31,9 @@ class LibCalBlock extends BlockBase {
     return [
       '#theme' => 'lib_cal_block',
       '#events' => $events,
+      '#cache' => [
+        'max-age' => 60,
+      ]
     ];
   }
 
