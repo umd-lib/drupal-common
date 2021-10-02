@@ -6,3 +6,24 @@
  */
 
 // Intentionally empty.
+/**
+ * Implements hook_fullcalendar_api().
+ */
+function umd_libraries_hours_fullcalendar_api() {
+  return array(
+    'api' => fullcalendar_api_version(),
+  );
+}
+
+/**
+ * Implements hook_fullcalendar_options_info().
+ */
+function umd_libraries_hours_fullcalendar_options_info() {
+  return array(
+    'umd_libraries_hours' => array(
+      'js' => TRUE,
+      'no_fieldset' => TRUE,
+      'weight' => 5,
+    ),
+  );
+}

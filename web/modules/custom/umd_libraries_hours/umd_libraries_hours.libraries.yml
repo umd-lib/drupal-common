@@ -1,0 +1,4 @@
+umd-libraries-hours:
+  header: true
+  js:
+    js/umd_libraries_hours.fullcalendar.js: {}

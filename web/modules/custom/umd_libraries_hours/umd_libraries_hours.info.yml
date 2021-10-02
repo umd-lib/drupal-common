@@ -8,7 +8,10 @@ dependencies:
   - views
   - umd_taxonomy_locations
   - fullcalendar_view
+  - fullcalendar_api
   - cshs
+libraries:
+  - umd_libraries_hours/umd-libraries-hours
 type: module
 
 core_version_requirement: ^8.9 || ^9
