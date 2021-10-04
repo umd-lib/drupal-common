@@ -1,10 +1,14 @@
 <?php
 
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\Sql;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+
 /**
 * Implements hook_views_query_alter().
 */
 
-function umd_libraries_hours_views_query_alter(\Drupal\views\ViewExecutable $view, \Drupal\views\Plugin\views\query\QueryPluginBase $query) {
+function umd_libraries_hours_views_query_alter($view, $query) {
   if ($view->id() == 'hours_today' && ($query instanceof \Drupal\views\Plugin\views\query\Sql)) {
     $start = strtotime('today 00:10');
     $end = strtotime('tomorrow 00:10');
