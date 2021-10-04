@@ -69,21 +69,27 @@ class EquipmentAvailability extends FieldPluginBase {
    * {@inheritdoc}
    */
   public function render(ResultRow $values) {
-    $bibnums = [];
+    // Get the field to query from the configuration.
     $aleph = new AlephController();
+    $equipment_query_field = $aleph->getQueryField();
+    if ($this->isValueEmpty($equipment_query_field, TRUE)) {
+      // Exit if value has not been configured.
+      return FALSE;
+    }
 
-    if (!$this->isValueEmpty($aleph->getQueryField(), TRUE)) {
-      $field = $this->view->field[$aleph->getQueryField()];
-      if ($field instanceof SearchApiEntityField) {
-        $items = $field->getItems($values);
-        foreach ($items as $item) {
-          $bibnum = $item['value'];
-          $bibnums[] = $bibnum;
-        }
+    // Retrieve the list of bibnums for the item in the row.
+    $bibnums = [];
+    $field = $this->view->field[$equipment_query_field];
+    if ($field instanceof SearchApiEntityField) {
+      $items = $field->getItems($values);
+      foreach ($items as $item) {
+        $bibnum = $item['value'];
+        $bibnums[] = $bibnum;
       }
     }
 
     if (count($bibnums) > 0) {
+      // Generate the render array from the availability data.
       if ($bibnum_data = $aleph->getBibnumData($bibnums)) {
         return $this->availabilityField($bibnums, $bibnum_data);
       }
@@ -92,9 +98,18 @@ class EquipmentAvailability extends FieldPluginBase {
   }
 
   /**
-   * Generate sample page content for umd-examples page.
+   * Returns a render array containing availability data for the given bibnums.
+   *
+   * @param array $bibnums
+   *   An array of bibnums for a single equipment record.
+   * @param array $availability_data
+   *   The equipment availability data from Aleph.
+   *
+   * @return array
+   *   A render array containing availability data for the given
+   *   bibnums.
    */
-  public function availabilityField($bibnums, $availability_data) {
+  public function availabilityField(array $bibnums, array $availability_data) {
     $available_count = 0;
     $earliest_raw_date = NULL;
     $processed_date = NULL;
