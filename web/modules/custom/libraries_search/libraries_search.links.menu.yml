@@ -1,0 +1,6 @@
+libraries_search.base_tab:
+  title: "Libraries' Search"
+  description: "Configuration of the Libraries' search modules."
+  parent: 'system.admin_config_search'
+  weight: 99
+  route_name: libraries_search.base_tab
