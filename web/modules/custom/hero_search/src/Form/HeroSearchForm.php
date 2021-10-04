@@ -2,6 +2,7 @@
 
 namespace Drupal\hero_search\Form;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
@@ -62,22 +63,19 @@ class HeroSearchForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['search_query'] = [
-      '#type' => 'textfield',
-      '#name' => 'search_query',
-      '#placeholder' => $this->configHelper->getSearchPlaceholder(),
-      '#size' => 50,
-      '#maxlength' => 60,
-      '#required' => TRUE,
-    ];
+    $search_targets = $this->configHelper->getSearchTargets();
+    foreach ($search_targets as $search_target_config) {
+      $this->buildSearchQueryTextField($form, $search_target_config);
+    }
+
     $form['search_target'] = [
       '#type' => 'radios',
       '#name' => 'search_target',
       '#default_value' => array_key_first($this->configHelper->getSearchTargetOptions()),
       '#options' => $this->configHelper->getSearchTargetOptions(),
     ];
-    $alternate_searches = $this->configHelper->getAlternateSearches();
 
+    $alternate_searches = $this->configHelper->getAlternateSearches();
     foreach ($alternate_searches as $alternate_search) {
       $id = 'alternate_search_' . $alternate_search['search_target'];
       $url = $alternate_search['url'];
@@ -108,6 +106,41 @@ class HeroSearchForm extends FormBase {
   }
 
   /**
+   * Constructs a search query textfield for the given configuration.
+   *
+   * @param array $form
+   *   The form to add the search query textfield to.
+   * @param array $search_target_config
+   *   The search target configuration.
+   */
+  protected function buildSearchQueryTextField(array &$form, array $search_target_config) {
+    $search_target_name = $search_target_config['search_target'];
+    $id = Html::getId('search_query_input_' . $search_target_name);
+
+    $form['search_query'][] = [
+      '#type' => 'textfield',
+      '#name' => 'search_query',
+      '#placeholder' => $search_target_config['placeholder'] ?? $this->configHelper->getDefaultSearchPlaceholder(),
+      '#size' => 50,
+      '#maxlength' => 60,
+      '#attributes' => [
+        'id' => $id,
+      ],
+      '#states' => [
+        'enabled' => [
+          ':input[name="search_target"]' => ['value' => $search_target_name],
+        ],
+        'visible' => [
+          ':input[name="search_target"]' => ['value' => $search_target_name],
+        ],
+        'required' => [
+          ':input[name="search_target"]' => ['value' => $search_target_name],
+        ],
+      ],
+    ];
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
@@ -118,8 +151,14 @@ class HeroSearchForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $query = $form_state->getValue('search_query');
+    // Can't seem to retreive the query text from the "search_query" textbox via
+    // the "getValue" or "getValues" method, so pulling the raw value using the
+    // "getUserInput" method.
+    $user_input = $form_state->getUserInput();
+    $query = $user_input['search_query'];
+
     $target = $form_state->getValue('search_target');
+
     $target_base_url = $this->configHelper->getSearchTargetUrl($target);
     $url = '/';
     if ($target_base_url == NULL) {
