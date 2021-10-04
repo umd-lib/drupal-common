@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * newsroom module install file.
+ */
+
+/**
+ * Install newsroom configuration.
+ */
+function newsroom_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'newsroom');
+}
+
+/**
+ * Implements hook_uninstall
+ */
+function newsroom_uninstall() {
+}
