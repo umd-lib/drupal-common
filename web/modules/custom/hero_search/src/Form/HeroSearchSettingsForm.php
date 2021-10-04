@@ -93,8 +93,8 @@ class HeroSearchSettingsForm extends ConfigFormBase {
 
     $form['placeholder'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Placeholder'),
-      '#default_value' => $config->get('placeholder'),
+      '#title' => $this->t('Default Placeholder'),
+      '#default_value' => $config->get('default_placeholder'),
       '#size' => 50,
       '#maxlength' => 60,
       '#required' => TRUE,

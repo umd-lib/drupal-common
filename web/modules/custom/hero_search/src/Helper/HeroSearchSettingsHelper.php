@@ -52,11 +52,27 @@ class HeroSearchSettingsHelper {
   }
 
   /**
-   * An associative array of search targets.
+   * An associative array of configuration information for search targets.
    *
    * @return array
-   *   An associative array of search targets, suitable for use in the "options"
-   *   property of a "radios" form element.
+   *   An associative array of configuration information for search targets.
+   */
+  public function getSearchTargets() {
+    $search_targets = $this->config->get('search_targets');
+    foreach ($search_targets as $search_target => &$val) {
+      // Append the search_target to the associative array, so that the
+      // configuration can be associated with one of the search options.
+      $val['search_target'] = $search_target;
+    }
+    return $search_targets;
+  }
+
+  /**
+   * An associative array of search target names.
+   *
+   * @return array
+   *   An associative array of search target names, suitable for use in the
+   *   "options" property of a "radios" form element.
    */
   public function getSearchTargetOptions() {
     $target_names = array_keys($this->config->get('search_targets'));
@@ -88,13 +104,13 @@ class HeroSearchSettingsHelper {
   }
 
   /**
-   * Returns the text to display in the search textfield.
+   * Returns the default placeholder text to display in the search textfield.
    *
    * @return string
-   *   The text to display in the search textfield.
+   *   The default placeholder text to display in the search textfield.
    */
-  public function getSearchPlaceholder() {
-    return $this->config->get('placeholder');
+  public function getDefaultSearchPlaceholder() {
+    return $this->config->get('default_placeholder');
   }
 
   /**
