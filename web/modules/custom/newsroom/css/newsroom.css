@@ -39,19 +39,19 @@
  Put the first article in the featured grid area;
  the rest will flow into the "item" slots
  */
-.news-article-1 {
+.news-article:first-child {
   grid-area: featured;
 }
-.news-article-1 .news-article-image {
+.news-article:first-child .news-article-image {
   display: block;
   float: none;
   margin-top: 0;
 }
-.news-article-1 .news-article-image img {
+.news-article:first-child .news-article-image img {
   max-height: none;
   height: content-box;
 }
-.news-article-1 .news-article-subtitle {
+.news-article:first-child .news-article-subtitle {
   display: block;
 }
 
