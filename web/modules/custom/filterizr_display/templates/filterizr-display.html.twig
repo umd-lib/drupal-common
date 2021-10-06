@@ -26,7 +26,7 @@
     <div class="filterizr-control">
       <ul class="filterizr-filter">
         <!-- For filtering controls add -->
-        <li data-filter="all"> All items </li>
+        <li data-filter="all"> Everyone </li>
         {% for key, term in header_terms %}
           <li data-filter="{{ key }}"> {{ term }} </li>
         {% endfor %}
@@ -34,7 +34,7 @@
       <input type="text" name="search" placeholder="Search" data-search />
     </div>
 
-    <!-- Results -->
+  <!-- Results -->
     <div class="filter-container">
       {% if rows|length %}
         {% for row in rows %}
