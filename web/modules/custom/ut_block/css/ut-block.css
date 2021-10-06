@@ -1,0 +1,4 @@
+.ut-block-2cols-wrapper {
+  display: grid;
+  grid-template-columns: [left] minmax(auto,100%) [right] auto;
+}

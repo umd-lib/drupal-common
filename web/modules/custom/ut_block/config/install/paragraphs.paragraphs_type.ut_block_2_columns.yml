@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: ut_block_2_columns
+label: 'Block - 2 Columns​'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }
