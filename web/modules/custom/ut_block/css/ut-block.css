@@ -1,8 +1,14 @@
 .ut-block-2cols-wrapper {
   display: grid;
-  grid-template-columns: [left] minmax(auto,100%) [right] auto;
+  grid-template-columns: 1fr;
 }
 
-.ut-block-2cols-col2 {
-  border-left: 4px solid lightgrey
+@media (min-width: 768px) {
+  .ut-block-2cols-wrapper {
+    grid-template-columns: [left] minmax(auto,100%) [right] auto;
+  }
+
+  .ut-block-2cols-col2 {
+    border-left: 4px solid lightgray;
+  }
 }
