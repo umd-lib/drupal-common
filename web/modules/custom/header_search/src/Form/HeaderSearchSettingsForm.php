@@ -80,6 +80,15 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
       '#markup' => '<h3>' . $this->t('Configuration for the Header Search block') . '</h3>',
     ];
 
+    $form['default_placeholder'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Placeholder'),
+      '#default_value' => $this->configHelper->getDefaultSearchPlaceholder(),
+      '#size' => 50,
+      '#maxlength' => 60,
+      '#required' => TRUE,
+    ];
+
     $form['search_targets'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Search Targets'),
@@ -145,6 +154,8 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->configFactory->getEditable(static::SETTINGS);
+
+    $config->set('default_placeholder', $form_state->getValue('default_placeholder'));
 
     $search_targets_str = $form_state->getValue('search_targets');
     try {

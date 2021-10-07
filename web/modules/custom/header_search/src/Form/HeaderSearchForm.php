@@ -65,6 +65,7 @@ class HeaderSearchForm extends FormBase {
     $form['search_query'] = [
       '#type' => 'textfield',
       '#name' => 'search_query',
+      '#placeholder' => $this->configHelper->getDefaultSearchPlaceholder(),
       '#size' => 25,
       '#maxlength' => 30,
       '#required' => TRUE,

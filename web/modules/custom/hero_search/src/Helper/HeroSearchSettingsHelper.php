@@ -110,7 +110,7 @@ class HeroSearchSettingsHelper {
    *   The default placeholder text to display in the search textfield.
    */
   public function getDefaultSearchPlaceholder() {
-    return $this->config->get('default_placeholder');
+    return $this->config->get('default_placeholder') ?? "";
   }
 
   /**

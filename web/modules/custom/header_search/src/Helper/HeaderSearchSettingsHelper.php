@@ -67,4 +67,14 @@ class HeaderSearchSettingsHelper {
     return $targets[$target]['url'];
   }
 
+  /**
+   * Returns the default placeholder text to display in the search textfield.
+   *
+   * @return string
+   *   The default placeholder text to display in the search textfield.
+   */
+  public function getDefaultSearchPlaceholder() {
+    return $this->config->get('default_placeholder') ?? "";
+  }
+
 }
