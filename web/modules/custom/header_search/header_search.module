@@ -1,10 +1,11 @@
 <?php
+
 /**
  * @file
- * Module file for the header_search module
+ * Module file for the header_search module.
  */
 
- /**
+/**
  * Implements hook_theme().
  */
 function header_search_theme() {

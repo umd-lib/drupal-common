@@ -1,35 +1,46 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\header_search\Controller\HeaderSearchSettingsHelper
- */
-
 namespace Drupal\header_search\Helper;
 
 /**
- * Helper class for retrieving search target settings
+ * Helper class for retrieving search target settings.
  */
 class HeaderSearchSettingsHelper {
 
+  /**
+   * The module configuration.
+   *
+   * @var Drupal\Core\Config\ImmutableConfig
+   */
   protected $config;
 
+  /**
+   * The singleton instance.
+   *
+   * @var Drupal\header_search\Helper\HeaderSearchSettingsHelper
+   */
   private static $instance;
 
+  /**
+   * Constructor.
+   */
   private function __construct() {
     $this->config = \Drupal::config('header_search.settings');
   }
 
-  public static function getInstance()
-  {
-    if ( is_null( self::$instance ) )
-    {
+  /**
+   * Returns the single instance of this class.
+   *
+   * @return HeaderSearchSettingsHelper
+   *   Tthe singleton instance of this class.
+   */
+  public static function getInstance() {
+    if (is_null(self::$instance)) {
       self::$instance = new self();
     }
     return self::$instance;
   }
 
-  // 
   public function parseSearchTargets($multiline_str) {
     $values = [];
 
@@ -37,7 +48,7 @@ class HeaderSearchSettingsHelper {
     $list = array_map('trim', $list);
     $list = array_filter($list, 'strlen');
 
-    foreach ($list as $position => $text) {
+    foreach ($list as $position => $text) { // phpcs:ignore
       // Check for an explicit key.
       $matches = [];
       if (preg_match('/(.*)\|(.*)/', $text, $matches)) {
@@ -57,7 +68,7 @@ class HeaderSearchSettingsHelper {
 
   public function convertSearchTargetsToString($targets) {
     $target_str = '';
-    foreach($targets as $name => $url) {
+    foreach ($targets as $name => $url) {
       $target_str = $target_str . "$name|$url\n";
     }
     return $target_str;
@@ -72,4 +83,5 @@ class HeaderSearchSettingsHelper {
     $targets = $this->config->get('search_targets');
     return $targets[$target];
   }
-} 
+
+}

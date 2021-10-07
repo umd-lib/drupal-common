@@ -1,4 +1,5 @@
 <?php
+
 namespace Drupal\header_search\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
@@ -13,6 +14,11 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
 
   const SETTINGS = 'header_search.settings';
 
+  /**
+   * The HeaderSearchSettingsHelper instance.
+   *
+   * @var Drupal\header_search\Helper\HeaderSearchSettingsHelper
+   */
   protected $configHelper;
 
   public function __construct() {
@@ -26,7 +32,7 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
     return 'header-search-settings-form';
   }
 
-  /** 
+  /**
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
@@ -44,18 +50,17 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
     $config = $this->config(static::SETTINGS);
 
     // @see samlauth_attrib module for an example of field to array (and reverse)
-
     $form['header_search_settings'] = [
       '#type' => 'item',
-      '#markup' => '<h3>' . t('Configure the base search urls for the search targets. ' .
+      '#markup' => '<h3>' . $this->t('Configure the base search urls for the search targets. ' .
           'The url should include the search parameter as the last url query parameter key. ' .
           'Example: https://www.example.com/search?query=') . '</h3>',
     ];
 
     $form['search_targets'] = [
       '#type' => 'textarea',
-      '#title' => t('Search Targets'),
-      '#description' => t('One mapping per line with the format <strong>Searcher Name|Searcher URL</strong>.'),
+      '#title' => $this->t('Search Targets'),
+      '#description' => $this->t('One mapping per line with the format <strong>Searcher Name|Searcher URL</strong>.'),
       '#default_value' => $this->configHelper->convertSearchTargetsToString($config->get('search_targets')),
       '#rows' => 10,
       '#cols' => 100,
@@ -73,10 +78,11 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
     $search_targets_str = $form_state->getValue('search_targets');
     $search_targets = $this->configHelper->parseSearchTargets($search_targets_str);
     $error_urls = [];
-    foreach($search_targets as $name => $url) {
-      if (filter_var($url, FILTER_VALIDATE_URL) == false) {
+    foreach($search_targets as $name => $url) { // phpcs:ignore
+      if (filter_var($url, FILTER_VALIDATE_URL) == FALSE) {
         array_push($error_urls, $url);
-      } elseif (!str_ends_with($url, '=')) {
+      }
+      elseif (!str_ends_with($url, '=')) {
         array_push($error_urls, $url);
       }
     }
@@ -99,4 +105,5 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
     $config->save();
     parent::submitForm($form, $form_state);
   }
+
 }
