@@ -6,6 +6,7 @@ dependencies:
   - easy_install
   - paragraphs
   - umd_terp_base
+  - block_field
 type: module
 
 core_version_requirement: ^8.9 || ^9
