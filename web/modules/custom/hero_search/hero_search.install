@@ -23,7 +23,7 @@ function hero_search_update_8002() {
   $hero_search_settings->set('search_targets',
       [
         "All" => [
-          "url" => "https://foobar.lib.umd.edu/results?search&query=",
+          "url" => "https://searchnew.lib.umd.edu/results?search&query=",
         ],
         "UMD Catalog" => [
           "url" => "https://catalog.umd.edu/cgi-bin/direct?searchtype=F1_WRD&base=CP&search=&searchrequest=",
@@ -44,4 +44,37 @@ function hero_search_update_8002() {
   $hero_search_settings->clear('advanced_search_text');
   $hero_search_settings->clear('advanced_search_title');
   $hero_search_settings->save();
+}
+
+/**
+ * LIBWEB-5457 - Replace "placeholder" key with "default_placeholder" key.
+ *
+ * Also configures placeholders for known search targets.
+ */
+function hero_search_update_8003() {
+  $config_factory = \Drupal::configFactory();
+  $hero_search_settings = $config_factory->getEditable('hero_search.settings');
+  $current_placeholder = $hero_search_settings->get('placeholder');
+  $hero_search_settings->set('default_placeholder', $current_placeholder);
+  $hero_search_settings->clear('placeholder');
+
+  // Added "placeholder" setting to individual search targets.
+  $placeholders = [
+    'All' => 'Find books, journals, articles, media & more',
+    'UMD Catalog' => 'Search for items held at UMD',
+    'WorldCat' => 'Search books, articles, journals, and website',
+  ];
+
+  $search_targets = $hero_search_settings->get('search_targets');
+  if ($search_targets) {
+    foreach ($search_targets as $key => $values) {
+      $placeholder = $placeholders[$key];
+      if (isset($placeholder) && !isset($values['placeholder'])) {
+        $search_targets[$key]['placeholder'] = $placeholder;
+      }
+    }
+    $hero_search_settings->set('search_targets', $search_targets);
+  }
+
+  $hero_search_settings->save(TRUE);
 }

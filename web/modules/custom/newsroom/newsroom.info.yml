@@ -1,0 +1,10 @@
+name: Newsroom
+description: Enables "Newsroom"
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+  - scheduler
+type: module
+
+core_version_requirement: ^8.9 || ^9

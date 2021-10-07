@@ -7,5 +7,6 @@ type: module
 dependencies:
   - drupal:easy_install
   - libraries_configuration:libraries_configuration
+  - libraries_search:libraries_search
 
 core_version_requirement: ^8.8 || ^9

@@ -1,5 +1,5 @@
 header_search.header_search_tab:
-  title: "Header Search"
+  title: 'Header Search'
   route_name: header_search.admin_settings_form
-  base_route: header_search.admin_settings_form
+  base_route: libraries_search.base_tab
   weight: 99

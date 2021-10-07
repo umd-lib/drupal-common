@@ -1,0 +1,9 @@
+libraries_search.base_tab:
+  path: '/admin/config/search/libraries_search'
+  defaults:
+    _controller: '\Drupal\libraries_search\Controller\LibrariesSearchController::content'
+    _title: "Libraries' Search"
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

@@ -28,6 +28,7 @@ The YAML format is the following:
 <SEARCH_TARGET_NAME>:
   url: '<URL>'
   alternate: { url: '<ALTERNATE_URL>', text: 'ALTERNATE_LINK_TEXT', title: 'ALTERNATE_TOOLTIP_TEXT' }
+  placeholder: '<PLACEHOLDER_TEXT>'
 ```
 
 where:
@@ -40,19 +41,27 @@ where:
     to a vendor search page.
 * ALTERNATE_LINK_TEXT - The text to display for the link
 * ALTERNATE_TOOLTIP_TEXT - The tooltip to display when hovering over the link.
+* PLACEHOLDER_TEXT - The placeholder text to display in the search textfield
 
 Sample configuration:
 
 ```
 All:
     url: 'https://searchnew.lib.umd.edu/results?search&query='
+    placeholder: 'Find books, journals, articles, media & more'
 'UMD Catalog':
     url: 'https://catalog.umd.edu/cgi-bin/direct?searchtype=F1_WRD&base=CP&search=&searchrequest='
+    placeholder: 'Search for items held at UMD'
 WorldCat:
     url: 'https://umaryland.on.worldcat.org/search?databaseList=&umdlib=&queryString='
     alternate: { url: 'https://umaryland.on.worldcat.org/advancedsearch', text: 'Advanced Search', title: tooltip }
+    placeholder: 'Search books, articles, journals, and website'
 ```
 
 Provides three search option, "All", "UMD Catalog", and "WorldCat".
+
 When the "WorldCat" option is selected in the GUI, the "alternate" link will
 also be displayed.
+
+The "placeholder" value is optional -- if not provided, default placeholder text
+will be used.
