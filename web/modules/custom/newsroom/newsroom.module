@@ -47,3 +47,17 @@ function newsroom_views_pre_render(ViewExecutable $view) {
     $view->element['#attached']['library'][] = 'newsroom/newsroom';
   }
 }
+
+/**
+ * Implements hook_preprocess_views_view_unformatted.
+ */
+function newsroom_preprocess_views_view_unformatted(&$variables) {
+  $view = $variables["view"];
+  $viewId = $view->id();
+
+  if ($viewId == 'news_events_block') {
+    if (!empty($variables['rows'][0])) {
+      $variables['rows'][0]['attributes']->addClass('news-featured');
+    }
+  }
+}

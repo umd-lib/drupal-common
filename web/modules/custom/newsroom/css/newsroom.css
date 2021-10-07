@@ -1,15 +1,15 @@
 .news-articles {
   display: grid;
   grid-template-areas:
-    "featured item2 events"
-    "featured item3 events"
-    "featured item4 events"
-    "featured item5 events"
-    "featured item6 events"
+    "featured item2"
+    "featured item3"
+    "featured item4"
+    "featured item5"
+    "featured item6"
   ;
   grid-row-gap: 1em;
   grid-column-gap: 2em;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: auto auto;
 }
 
 .news-article-image {
@@ -39,80 +39,22 @@
  Put the first article in the featured grid area;
  the rest will flow into the "item" slots
  */
-.news-article:first-child {
+.news-featured {
   grid-area: featured;
 }
-.news-article:first-child .news-article-image {
+.news-featured .news-article-image {
   display: block;
   float: none;
   margin-top: 0;
 }
-.news-article:first-child .news-article-image img {
+.news-featured .news-article-image img {
   max-height: none;
   height: content-box;
 }
-.news-article:first-child .news-article-subtitle {
+.news-featured .news-article-subtitle {
   display: block;
 }
 
-.news-articles footer {
-  grid-area: events;
-}
 .news-articles footer .feed-item-date {
   border: 1px solid;
-}
-
-.news-event
-{
-  display: grid;
-  grid-template-areas: "date info" "time .";
-  grid-column-gap: 1em;
-}
-.news-event-start-date {
-  grid-area: date;
-  text-align: center;
-  line-height: 1;
-  border-style: solid;
-  border-color: lightgrey;
-  border-width: 2px;
-  border-bottom-width: 0;
-  padding: .5em 1em 0 1em;
-}
-.news-event-start-date .month {
-  text-transform: uppercase;
-  font-size: .8em;
-}
-.news-event-start-date .day {
-  font-size: 2.5em;
-  font-weight: bold;
-  color: #e21833;
-}
-.news-event-time {
-  grid-area: time;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: .8em;
-  line-height: 1;
-  border-style: solid;
-  border-color: lightgrey;
-  border-width: 2px;
-  border-top-width: 0;
-  padding: 0 1em .5em 1em;
-}
-.news-event-time:before {
-  content: "—";
-}
-.news-event-location {
-  grid-area: info;
-  text-transform: uppercase;
-  font-size: .8em;
-}
-.news-event-title {
-  grid-area: info;
-  position: relative;
-  top: 1.33em;
-  font-weight: bold;
-}
-.news-event-title a {
-  color: black;
 }

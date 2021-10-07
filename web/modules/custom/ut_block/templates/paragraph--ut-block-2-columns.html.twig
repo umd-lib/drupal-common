@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override to display a UMD Terp Two column block Paragraph.
+ */
+#}
+
+{{ attach_library('ut_block/ut-block') }}
+{% block paragraph %}
+	<div{{attributes}}>
+		{% block content %}
+			<div class="container-fluid" id="umd_terp_paragraph--{{ paragraph.id() }}">
+				<div class="ut-block-2cols-wrapper">
+					<div class="ut-block-2cols-col1">
+						{{ content.field_ut_block_2_columns_column1|field_value }}
+					</div>
+					<div class="ut-block-2cols-col2">
+						{{ content.field_ut_block_2_columns_column2|field_value }}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		{{ content|without('field_ut_block_2_columns_column1', 'field_ut_block_2_columns_column2') }}
+	</div>
+{% endblock paragraph %}
