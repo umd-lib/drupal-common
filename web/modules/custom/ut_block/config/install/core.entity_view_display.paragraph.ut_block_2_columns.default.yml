@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ut_block_2_columns.field_ut_block_2_columns_column1
+    - field.field.paragraph.ut_block_2_columns.field_ut_block_2_columns_column2
+    - paragraphs.paragraphs_type.ut_block_2_columns
+  module:
+    - block_field
+id: paragraph.ut_block_2_columns.default
+targetEntityType: paragraph
+bundle: ut_block_2_columns
+mode: default
+content:
+  field_ut_block_2_columns_column1:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: block_field
+    region: content
+  field_ut_block_2_columns_column2:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: block_field
+    region: content
+hidden:
+  search_api_excerpt: true
