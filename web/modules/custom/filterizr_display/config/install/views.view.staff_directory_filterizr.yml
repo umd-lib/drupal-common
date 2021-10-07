@@ -266,6 +266,59 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        view_node:
+          id: view_node
+          table: node
+          field: view_node
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: view
+          output_url_as_text: true
+          absolute: false
+          entity_type: node
+          plugin_id: entity_link
         field_library_unit:
           id: field_library_unit
           table: node__field_library_unit
@@ -339,8 +392,8 @@ display:
           label: ''
           exclude: true
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<a href="{{ view_node }} " class="card-cta">{{ title }} </a>'
             make_link: false
             path: ''
             absolute: false
@@ -380,7 +433,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -531,7 +584,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "    <div class=\"filtr-item\" data-category=\"{{ field_library_division }}\" data-sort=\"{{ title_1 }}\">\r\n      <div class=\"profile-card card\">\r\n        <div class=\"card-img card-img-top\">{{ field_umdt_ct_person_photo }}</div>\r\n        <div class=\"card-body\">\r\n          <h2 class=\"card-title\">{{ title }}</h2>\r\n          <div class=\"profile-card-title\">{{ field_umdt_ct_person_title }}</div>\r\n        </div>\r\n      </div>\r\n    </div>"
+            text: "<div class=\"filtr-item col-600-4 col-1000-3\" data-category=\"{{ field_library_division }}\" data-sort=\"{{ title_1 }}\">      \r\n    <div class=\"profile-card card\">\r\n          <div class=\"card-img card-img-top\">{{ field_umdt_ct_person_photo }}</div>\r\n          <div class=\"card-body\">\r\n              <h2 class=\"card-title\">{{ title }}</h2>\r\n              <div class=\"profile-card-title\">{{ field_umdt_ct_person_title }}</div>\r\n          </div>\r\n     </div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -641,7 +694,7 @@ display:
         description: ''
         expanded: false
         parent: 'menu_link_content:55278605-a227-4998-832a-b60e7f0eeb68'
-        weight: 0
+        weight: -47
         context: '0'
         menu_name: main
     cache_metadata:

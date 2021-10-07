@@ -64,3 +64,34 @@
    background-color: #f27f2b;
    color: #fff; 
 }
+
+/*********************** */
+/* Overwrite Filterizr styles LIBWEB- */
+/*********************** */
+
+.filterizr-filter li {
+   background-color: #fff;
+   border: 2px solid #e21833;
+   color: #e21833;
+   margin: 0 0.5rem 0.7rem 0;
+}
+.filterizr-filter li:hover {
+   background-color: #e21833;
+   color: #fff;
+}
+
+.filtr-item {
+   min-height: 430px;
+}
+.filterizr-control> input[type="text"]{
+    margin: 0 0 1rem 0.7rem;
+ }
+.profile-card-title {
+    margin-top: 0.5rem;
+    line-height: 1.3rem;
+    font-size: 1rem;
+}
+.port-gallery ul li.filtr-active {
+   background-color: #e21833;
+   color: #fff;
+}
