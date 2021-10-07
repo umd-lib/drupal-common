@@ -41,47 +41,30 @@ class HeaderSearchSettingsHelper {
     return self::$instance;
   }
 
-  public function parseSearchTargets($multiline_str) {
-    $values = [];
-
-    $list = explode("\n", $multiline_str);
-    $list = array_map('trim', $list);
-    $list = array_filter($list, 'strlen');
-
-    foreach ($list as $position => $text) { // phpcs:ignore
-      // Check for an explicit key.
-      $matches = [];
-      if (preg_match('/(.*)\|(.*)/', $text, $matches)) {
-        // Trim key and value to avoid unwanted spaces issues.
-        $key = trim($matches[1]);
-        $value = trim($matches[2]);
-      }
-      else {
-        return;
-      }
-
-      $values[$key] = $value;
-    }
-
-    return $values;
-  }
-
-  public function convertSearchTargetsToString($targets) {
-    $target_str = '';
-    foreach ($targets as $name => $url) {
-      $target_str = $target_str . "$name|$url\n";
-    }
-    return $target_str;
-  }
-
+  /**
+   * An associative array of search target names.
+   *
+   * @return array
+   *   An associative array of search target names, suitable for use in the
+   *   "options" property of a "radios" form element.
+   */
   public function getSearchTargetOptions() {
     $target_names = array_keys($this->config->get('search_targets'));
     return array_combine($target_names, $target_names);
   }
 
+  /**
+   * Returns the URL for the given search target.
+   *
+   * @param string $target
+   *   The search target to return the URL of.
+   *
+   * @return string
+   *   The URL for the given search target.
+   */
   public function getSearchTargetUrl($target) {
     $targets = $this->config->get('search_targets');
-    return $targets[$target];
+    return $targets[$target]['url'];
   }
 
 }
