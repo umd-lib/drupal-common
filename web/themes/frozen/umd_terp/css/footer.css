@@ -46,6 +46,14 @@
   left: -2.5rem;
 }
 
+/* LibChat embed https://issues.umd.edu/browse/LIBWEB-5425 */
+iframe#iframe_fe53f3bc15d10c1fe704c59be49661b0 {
+  max-height: 360px;
+} 
+.s-lch-widget-float-btn {
+  right: 50px!important;
+}
+
 /* @media (min-width: 800px) {
       .umdlib-site-footer-nav:after {
         right: 0;
