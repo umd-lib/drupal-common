@@ -91,7 +91,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
-    $form['placeholder'] = [
+    $form['default_placeholder'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Default Placeholder'),
       '#default_value' => $config->get('default_placeholder'),
@@ -198,7 +198,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     $config = $this->configFactory->getEditable(static::SETTINGS);
 
     $config->set('title', $form_state->getValue('title'));
-    $config->set('placeholder', $form_state->getValue('placeholder'));
+    $config->set('default_placeholder', $form_state->getValue('default_placeholder'));
     $search_targets_str = $form_state->getValue('search_targets');
 
     try {

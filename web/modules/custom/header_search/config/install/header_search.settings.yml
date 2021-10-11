@@ -1,0 +1,8 @@
+search_targets:
+  All:
+    url: 'https://searchnew.lib.umd.edu/results?search&query='
+  'UMD Catalog':
+    url: 'https://catalog.umd.edu/cgi-bin/direct?searchtype=F1_WRD&base=CP&search=&searchrequest='
+  WorldCat:
+    url: 'https://umaryland.on.worldcat.org/search?databaseList=&umdlib=&queryString='
+default_placeholder: ''
