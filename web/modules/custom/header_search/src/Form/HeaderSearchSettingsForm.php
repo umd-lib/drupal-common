@@ -86,7 +86,6 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
       '#default_value' => $this->configHelper->getDefaultSearchPlaceholder(),
       '#size' => 50,
       '#maxlength' => 60,
-      '#required' => TRUE,
     ];
 
     $form['search_targets'] = [
