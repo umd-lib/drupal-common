@@ -8,7 +8,8 @@ libraries:
   - umd_terp/global
 regions:
   header_alerts: 'Header Alerts'
-  main_menu: 'Main Menu'
+  main_menu: 'Utility Nav'
+  header_search: 'Header Search'
   hero_block: 'Hero Block'
   help: 'Help'
   breadcrumbs: 'Breadcrumbs'
