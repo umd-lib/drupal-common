@@ -2,7 +2,7 @@ type: module
 name: Hippo Migrations 
 description: 'Migrate data from Hippo over Content Rest API.'
 package: Migration
-core: 8.x
+core_version_requirement: ^8.9 || ^9
 dependencies:
   - drupal:migrate
   - migrate_plus:migrate_plus

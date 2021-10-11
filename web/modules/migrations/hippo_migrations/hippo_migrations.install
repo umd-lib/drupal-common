@@ -1,8 +1,3 @@
 <?php
-/**
- * Implements hook_uninstall().
- */
-function test_migrate_uninstall() {
-  db_query("DELETE FROM {config} WHERE name LIKE 'migrate_plus.migration.hippo_%'");
-  drupal_flush_all_caches();
-}
+
+// Intentionally empty
