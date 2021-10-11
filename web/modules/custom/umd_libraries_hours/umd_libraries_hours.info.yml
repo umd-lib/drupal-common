@@ -9,6 +9,10 @@ dependencies:
   - umd_taxonomy_locations
   - fullcalendar_view
   - cshs
+  - date_popup
 type: module
+
+libraries:
+  - umd_libraries_hours/umd_libraries_hours
 
 core_version_requirement: ^8.9 || ^9

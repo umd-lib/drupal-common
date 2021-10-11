@@ -1,0 +1,7 @@
+umd_libraries_hours:
+  js:
+    js/hours-weekly-nav.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupalSettings

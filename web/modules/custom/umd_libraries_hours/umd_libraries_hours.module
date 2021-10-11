@@ -5,4 +5,34 @@
  * Module file for umd libraries hours..
  */
 
-// Intentionally empty.
+function umd_libraries_hours_form_views_exposed_form_alter(array &$form, $form_state, $form_id) {
+  $view = $form_state->getStorage('view');
+  if (($view['view']->id() == 'hours_weekly')) {
+    \Drupal::logger('hours_weekly')->notice("field_hours_end_value: " . var_export($form['field_hours_end_value'], true));
+    $form['#attached']['library'][] = 'umd_libraries_hours/umd_libraries_hours';
+    $prev_date='';
+    $next_date='';
+    $current_date = $form['field_hours_end_value']['#default_value'];
+    $reference_date = $current_date ? $current_date : "today";
+    $prev_date = date('Y-m-d', strtotime("$reference_date -1week"));
+    $next_date = date('Y-m-d', strtotime("$reference_date +1week"));
+    
+    
+    $form['prev'] = [
+      '#type' => 'button',
+      '#value' => t('previous'),
+      '#attributes' => array(
+        'class' => array('hours-weekly-nav'),
+        'data-navdate' => $prev_date,
+      ),
+    ];
+    $form['next'] = [
+      '#type' => 'button',
+      '#value' => t('next'),
+      '#attributes' => array(
+        'class' => array('hours-weekly-nav'),
+        'data-navdate' => $next_date,
+      ),
+    ];
+  }
+}
