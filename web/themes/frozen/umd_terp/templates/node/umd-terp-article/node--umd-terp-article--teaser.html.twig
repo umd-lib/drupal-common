@@ -13,6 +13,11 @@
           <a href="{{ link }}">{{ node.title.value }}</a>
         </h2>
         <div class="feed-item-description">
+          {% if content.field_umdt_ct_article_image|field_value %}
+            <div class="news-article-teaser-image">
+              <img src="{{ file_url(content.field_umdt_ct_article_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" alt="{{ content.field_umdt_ct_article_image[0]['#media'].field_media_image.alt }}"/>
+            </div>
+          {% endif %}
           <p>{{ content.body|render|striptags }}</p>
         </div>
       </div>

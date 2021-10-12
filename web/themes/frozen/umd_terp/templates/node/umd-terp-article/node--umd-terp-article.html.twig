@@ -11,7 +11,7 @@
 		{% if content.field_umdt_ct_article_author|field_value %}
 			{{ content.field_umdt_ct_article_author|field_value }}
 		{% endif %}
-		<span>
+		<span class="news-article-date">
 			{% if content.field_umdt_ct_article_date|field_value %}
 				{{ content.field_umdt_ct_article_date|field_value }}
 			{% else %}
@@ -20,7 +20,7 @@
 		</span>
 	</div>
 	{% if content.field_umdt_ct_article_image|field_value %}
-		<div class="section section-ut_image">
+		<div class="section section-ut_image news-article-image">
 			<div class="image-bg">
 				<figure>
 					<div class="image-media">

@@ -6,3 +6,8 @@ newsroom:
   css:
     component:
       css/newsroom.css: {}
+news_page:
+  version: 1.x
+  css:
+    component:
+      css/news_page.css: {}

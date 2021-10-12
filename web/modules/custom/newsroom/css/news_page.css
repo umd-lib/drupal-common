@@ -1,0 +1,21 @@
+.news-article {
+  margin-bottom: 2em;
+}
+.news-article-date {
+  color: #4a4a4a;
+  display: block;
+  font-size: 1rem;
+  letter-spacing: .07812rem;
+  line-height: 1;
+  margin-bottom: .625rem;
+  text-transform: uppercase;
+}
+.news-article-image {
+  float: right;
+  margin: 0 0 1em 1em;
+}
+.news-article-teaser-image {
+  float: right;
+  max-width: 33%;
+  margin: 0 0 1em 1em;
+}
