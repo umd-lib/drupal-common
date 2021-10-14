@@ -76,10 +76,36 @@ textarea {
   margin-left: auto;
   margin-bottom: 1rem;
 }
+.home-hero-content{
+  bottom: 0;
+  right: 200px;
+  position: absolute!important;
+  background: #fff;
+  opacity: 0.9;
+  width:  25%!important;
+}
+.outer-pad {
+  padding: .5rem!important;
+}
+.editor-content a.btn.btn-primary {
+  text-transform: none;
+  text-align: left;
+  border: none;
+  margin: 0;
+}
 
-@media (min-width: 1000px) {
+@media (min-width: 1025px) {
   .hero-block {
     margin-left: 12rem!important;
+  }
+}
+@media (max-width: 1024px) {
+  .hero-block {
+    margin-left: 1rem!important;
+  }
+  .home-hero-content{
+    bottom: 12rem;
+    right: 1rem;
   }
 }
 
@@ -88,5 +114,11 @@ textarea {
     margin-left: 0!important;
     border: 1px solid #ccc;
     padding: 1rem;
+  }
+  .home-hero-content{
+    bottom: 0;
+    left: 1rem;
+    position: relative!important;
+    width: 90%!important;
   }
 }
