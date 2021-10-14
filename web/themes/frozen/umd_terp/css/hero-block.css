@@ -42,3 +42,8 @@
 .embedded-heading {
   display: none;
 }
+
+/** CTA **/
+#cta-text {
+  color: black;
+}
