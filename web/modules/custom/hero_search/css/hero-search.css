@@ -92,8 +92,11 @@ textarea {
   text-align: left;
   border: none;
   margin: 0;
+  display: none;
 }
-
+#cta-text {
+  padding:  0.5rem 0.5rem 0 0.5rem;
+}
 @media (min-width: 1025px) {
   .hero-block {
     margin-left: 12rem!important;
