@@ -5,6 +5,7 @@ package: 'UMD Services'
 dependencies:
   - easy_install:easy_install
   - umd_terp_base:umd_terp_content_types
+  - umd_terp_person_extensions
 type: module
 
 core_version_requirement: ^8.9 || ^9
