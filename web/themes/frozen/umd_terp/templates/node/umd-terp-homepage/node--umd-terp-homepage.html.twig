@@ -48,6 +48,7 @@
 						<p>{{ content.field_umdt_ct_hero_text|field_value }}</p>
 					{% endif %}
 					{% if content.field_umdt_ct_hero_cta.0 %}
+						<p id="cta-text">{{ content.field_cta_text|field_value }}</p>
 						<p>{% include directory ~ '/templates/helpers/link.html.twig' with {'link': content.field_umdt_ct_hero_cta.0, 'classes': 'btn btn-primary' } %}</p>
 					{% endif %}
 				</div>
@@ -55,4 +56,4 @@
 		</div>
 	</div>
 </div>
-{{ content|without('field_umdt_ct_hero_video', 'field_umdt_ct_hero_dark', 'field_umdt_ct_hero_style', 'field_umdt_ct_hero_image', 'field_umdt_ct_hero_title', 'field_umdt_ct_hero_subtitle', 'field_umdt_ct_hero_text', 'field_umdt_ct_hero_cta') }}
+{{ content|without('field_umdt_ct_hero_video', 'field_umdt_ct_hero_dark', 'field_umdt_ct_hero_style', 'field_umdt_ct_hero_image', 'field_umdt_ct_hero_title', 'field_umdt_ct_hero_subtitle', 'field_umdt_ct_hero_text', 'field_umdt_ct_hero_cta', 'field_cta_text') }}
