@@ -7,6 +7,32 @@
 
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Symfony\Component\Yaml\Yaml;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\field\Entity\FieldConfig;
+
+/**
+ * Update for professional website field.
+ *
+ * Implements hook_update_8x.
+ */
+function umd_terp_person_extensions_update_8001() {
+  $config_path = drupal_get_path('module', 'umd_terp_person_extensions') . '/config/install';
+
+  $yml = Yaml::parse(file_get_contents($config_path . '/field.storage.node.field_professional_website.yml'));
+
+  // Verify storage first before adding field
+  if (!FieldStorageConfig::loadByName($yml['entity_type'], $yml['field_name'])) {
+    // Transform storage settings, if required.
+    FieldStorageConfig::create($yml)->save();
+
+    $f_yml = Yaml::parse(file_get_contents($config_path . '/field.field.node.umd_terp_person.field_professional_website.yml'));
+
+    if (!FieldConfig::loadByName($f_yml['entity_type'], $f_yml['bundle'], $f_yml['field_name'])) {
+      FieldConfig::create($f_yml)->save();
+    }
+  }
+}
 
 /**
  * Update the UMD Terp Person view and form for the fields added by this module.
