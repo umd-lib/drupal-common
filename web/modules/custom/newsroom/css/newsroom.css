@@ -7,11 +7,13 @@
     "featured item5"
     "featured item6"
   ;
-  grid-row-gap: 1em;
-  grid-column-gap: 2em;
-  grid-template-columns: auto auto;
+  grid-row-gap: 1.5rem;
+  grid-column-gap: 1rem;
+  grid-template-columns: 60% 40%;
 }
-
+.ut-block-2cols-wrapper {
+  grid-template-columns: [left] 70% [right] auto!important;
+}
 .news-article-image {
   display: none;
   float: right;
@@ -26,10 +28,14 @@
   margin-bottom: .625rem;
   text-transform: uppercase;
 }
+.news-article-title {
+  padding: 0 2rem 0.5rem 0;
+  line-height: 1.5rem;
+}
 .news-article-title > a {
   color: black;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1rem;
 }
 .news-article-subtitle {
   display: none;
