@@ -1,7 +1,11 @@
 /**
  * LibCal CSS
  */
-
+.lib-cal-block {
+  border-left: 3px solid #ccc;
+  padding-left: 1.5rem;
+  padding-bottom: 3rem;
+}
 .lib-cal-event {
   display: grid;
   grid-template-areas: "time detail";
@@ -75,6 +79,11 @@
   .lib-cal-event {
     grid-template-columns: 35% 65%;
   }
+  .lib-cal-block {
+    border-left: none;
+    padding-left: 0;
+    padding-bottom: 0;
+}
 }
 @media (max-width: 320px) { 
   .lib-cal-event {
