@@ -87,15 +87,9 @@ textarea {
 .outer-pad {
   padding: 0!important;
 }
-.editor-content a.btn.btn-primary {
-  text-transform: none;
-  text-align: left;
-  border: none;
-  margin: 0;
-  display: none;
-}
+
 #cta-text {
-  padding:  0.5rem 0.5rem 0 0.5rem;
+  padding:  0.5rem 0.5rem 0.5rem 0.5rem;
 }
 @media (min-width: 1025px) {
   .hero-block {
@@ -129,3 +123,12 @@ textarea {
     width: 90%!important;
   }
 }
+
+.home-hero-content h1 {
+  display: none;
+}
+
+.home-hero-content h2 {
+  display: none;
+}
+
