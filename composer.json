@@ -21,6 +21,7 @@
         "drupal/block_field": "^1.0@RC",
         "drupal/block_type_templates": "^1.0@alpha",
         "drupal/bootstrap": "^3.21",
+        "drupal/cache_control_override": "^1.0@alpha",
         "drupal/cas": "^1.6",
         "drupal/cas_attributes": "^1.0@beta",
         "drupal/ckeditor_entity_link": "^1.2",
