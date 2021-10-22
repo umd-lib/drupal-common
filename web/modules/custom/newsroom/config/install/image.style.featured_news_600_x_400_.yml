@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies: {  }
+name: featured_news_600_x_400_
+label: 'Featured news (600 x 400)'
+effects:
+  e0498778-d04a-49e3-9477-bdd9011cd7e1:
+    uuid: e0498778-d04a-49e3-9477-bdd9011cd7e1
+    id: image_scale
+    weight: 2
+    data:
+      width: 600
+      height: 400
+      upscale: false
+pipeline: ''
