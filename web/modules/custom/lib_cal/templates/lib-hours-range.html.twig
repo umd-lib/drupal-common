@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * lib-hours-today template
+ *
+ * Variables:
+ *   - hours
+ */
+#}
+{{ attach_library('lib_cal/lib-cal') }}
+<div class='lib-hours-today'>Hours
+  {% if hours %}
+  <ul>
+  {% for location in hours %}
+    <li>{{ location.name }}: 
+    {% if location.dates %}
+    <ul>
+    {% for date, location_info in location.dates %}
+      <li>{{ date }}</li>
+      <li>{{ location_info.status }}</li>
+      {% if location_info.hours %}
+      <ul>
+      {% for hours_info in location_info.hours %}
+        <li>{{ hours_info.from }} - {{ hours_info.to }}</li>
+      <!-- end hours_info -->
+      {% endfor %}
+      </ul>
+      {% endif %}
+      <!-- end date,location_info -->
+    {% endfor %}
+    </ul>
+    {% endif %}
+    </li>
+  <!-- end location -->
+  {% endfor %}
+  </ul>
+  {% endif %}
+</div>

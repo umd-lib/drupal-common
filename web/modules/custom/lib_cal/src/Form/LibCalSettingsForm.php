@@ -52,6 +52,15 @@ class LibCalSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
+    $form[LibCalSettingsHelper::HOURS_ENDPOINT] = [
+      '#type' => 'url',
+      '#title' => t('Hours Endpoint'),
+      '#default_value' => $config->get(LibCalSettingsHelper::HOURS_ENDPOINT),
+      '#size' => 50,
+      '#maxlength' => 50,
+      '#required' => FALSE,
+    ];
+
     $form[LibCalSettingsHelper::CLIENT_ID] = [
       '#type' => 'textfield',
       '#title' => t('Client ID'),
@@ -78,11 +87,25 @@ class LibCalSettingsForm extends ConfigFormBase {
       '#maxlength' => 50,
       '#required' => TRUE,
     ];
+    
+    $form[LibCalSettingsHelper::LIBRARIES] = [
+      '#type' => 'textarea',
+      '#title' => t('Library IDs'),
+      '#default_value' => $config->get(LibCalSettingsHelper::LIBRARIES),
+      '#description' => t('Pipe seperated list and one per line. ID|Branch Name.'),
+    ];
 
     $form['lib_cal_auth_test'] = [
       '#type' => 'textarea',
       '#title' => t('LibCal API Auth Test'),
       '#default_value' => $config->get('lib_cal_auth_test'),
+      '#disabled' => TRUE,
+    ];
+
+    $form['lib_cal_hours_test'] = [
+      '#type' => 'textarea',
+      '#title' => t('LibCal API Hours Test'),
+      '#default_value' => $config->get('lib_cal_hours_test'),
       '#disabled' => TRUE,
     ];
 
@@ -99,23 +122,33 @@ class LibCalSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $endpoint = rtrim($form_state->getValue(LibCalSettingsHelper::ENDPOINT), '/') . '/';  
+    $endpoint = rtrim($form_state->getValue(LibCalSettingsHelper::ENDPOINT), '/') . '/';
+    $hours_endpoint = rtrim($form_state->getValue(LibCalSettingsHelper::HOURS_ENDPOINT), '/') . '/';
     $client_id = $form_state->getValue(LibCalSettingsHelper::CLIENT_ID);
     $client_secret = $form_state->getValue(LibCalSettingsHelper::CLIENT_SECRET);
     $calendar_id = $form_state->getValue(LibCalSettingsHelper::CALENDAR_ID);
+    $libraries = $form_state->getValue(LibCalSettingsHelper::LIBRARIES);
 
     $settings = $this->configFactory->getEditable(LibCalSettingsHelper::SETTINGS);
 
     $settings->set(LibCalSettingsHelper::ENDPOINT, $endpoint)
+      ->set(LibCalSettingsHelper::HOURS_ENDPOINT, $hours_endpoint)
       ->set(LibCalSettingsHelper::CLIENT_ID, $client_id)
       ->set(LibCalSettingsHelper::CLIENT_SECRET, $client_secret)
       ->set(LibCalSettingsHelper::CALENDAR_ID, $calendar_id)
+      ->set(LibCalSettingsHelper::LIBRARIES, $libraries)
       ->save();
 
-    $apiHelper = LibCalApiHelper::getInstance($endpoint, $client_id, $client_secret);
+    $apiHelper = LibCalApiHelper::getInstance($endpoint, $endpoint, $client_id, $client_secret);
     $events = $apiHelper->getEvents($calendar_id);
     $settings->set('lib_cal_auth_test', var_export($events, true))
       ->save();
+
+    $apiHelper = LibCalApiHelper::getInstance($endpoint, $hours_endpoint, $client_id, $client_secret);
+    $hours = $apiHelper->getWeeksHours();
+    $settings->set('lib_cal_hours_test', var_export($hours, true))
+      ->save();
+
     parent::submitForm($form, $form_state);
   }
 } 

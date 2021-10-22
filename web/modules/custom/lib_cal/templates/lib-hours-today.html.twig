@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * lib-hours-today template
+ *
+ * Variables:
+ *   - hours
+ *   - branch_prefix
+ *   - branch_suffix
+ */
+#}
+{{ attach_library('lib_cal/lib-cal') }}
+<div class='lib-hours-today'>
+  <ul>
+  {% if hours %}
+  <ul>
+  {% for location in hours %}
+    <li>{{ branch_prefix }} {{ location.name }} {{ branch_suffix }}: 
+    {% if location.dates %}
+    {% for date, location_info in location.dates %}
+      {{ location_info.status|capitalize }}
+      {% if location_info.hours %}
+      {% for hours_info in location_info.hours %}
+        {{ hours_info.from }} - 
+        {{ hours_info.to }}
+      {% endfor %}
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+    </li>
+  {% endfor %}
+  {% endif %}
+  </ul>
+</div>

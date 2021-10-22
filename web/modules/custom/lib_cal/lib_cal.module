@@ -15,5 +15,19 @@ function lib_cal_theme() {
         'events' => '',
       ],
     ],
+    'lib_hours_today' => [
+      'variables' => [
+        'hours' => '',
+        'branch_prefix' => '',
+        'branch_suffix' => '',
+      ],
+    ],
+    'lib_hours_range' => [
+      'variables' => [
+        'hours' => '',
+        'branch_prefix' => '',
+        'branch_suffix' => '',
+      ],
+    ],
   ];
 }
