@@ -85,7 +85,7 @@ textarea {
   width:  25%!important;
 }
 .outer-pad {
-  padding: 0rem!important;
+  padding: 0!important;
 }
 
 #cta-text {
@@ -105,7 +105,11 @@ textarea {
     right: 1rem;
   }
 }
-
+@media (min-width: 800px) {
+  .outer-pad {
+  padding: 0!important;
+  }
+}
 @media (max-width: 768px) {
   .hero-block {
     margin-left: 0!important;

@@ -7,15 +7,17 @@
     "featured item5"
     "featured item6"
   ;
-  grid-row-gap: 1em;
-  grid-column-gap: 2em;
-  grid-template-columns: auto auto;
+  grid-row-gap: 1.5rem;
+  grid-column-gap: 1.5rem;
+  grid-template-columns: 65% 35%;
 }
-
 .news-article-image {
   display: none;
   float: right;
   margin-top: 2em;
+}
+.news-featured .news-article-image img {
+  margin-bottom: 1rem;
 }
 .news-article-date {
   color: #4a4a4a;
@@ -26,10 +28,14 @@
   margin-bottom: .625rem;
   text-transform: uppercase;
 }
+.news-article-title {
+  padding: 0 2rem 0.5rem 0;
+  line-height: 1.5rem;
+}
 .news-article-title > a {
   color: black;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1rem;
 }
 .news-article-subtitle {
   display: none;
@@ -57,4 +63,17 @@
 
 .news-articles footer .feed-item-date {
   border: 1px solid;
+}
+@media (max-width: 1024px) {
+  .news-articles {
+    grid-template-columns: 55% 45%;
+  }
+}
+@media (max-width: 810px) {
+  .news-articles {
+    display: block;
+  }
+  .news-article {
+    margin-bottom: 2rem;
+  }
 }
