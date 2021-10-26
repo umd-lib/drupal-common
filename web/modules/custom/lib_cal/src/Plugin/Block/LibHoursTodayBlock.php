@@ -39,11 +39,25 @@ class LibHoursTodayBlock extends BlockBase {
       $hours = $libHoursController->getToday($blockConfig['libraries']);
     }
 
+    $row_class = 'lib-hours-constrained';
+    $grid_class = null;
+    $current_date = null;
+    if ($blockConfig['grid_display']) {
+      $row_class = 'row';
+      $grid_class = 'col-800-4';
+    }
+    if ($blockConfig['date_display']) {
+      $current_date = date("c");
+    }
+
     return [
       '#theme' => $template,
       '#hours' => $hours,
       '#branch_prefix' => $blockConfig['branch_prefix'],
       '#branch_suffix' => $blockConfig['branch_suffix'],
+      '#row_class' => $row_class,
+      '#grid_class' => $grid_class,
+      '#current_date' => $current_date,
       '#cache' => [
         'max-age' => 0,
       ]
@@ -77,9 +91,20 @@ class LibHoursTodayBlock extends BlockBase {
     ];
     $form['weekly_display'] = [
       '#type' => 'checkbox',
-      '#title' => t('Weekly Display'),
-      '#description' => t('Disply the current week\'s hours'),
+      '#title' => t('Weekly Display?'),
+      '#description' => t('Disply the current week\'s hours. If unchecked, defaults to today display.'),
       '#default_value' => isset($config['weekly_display']) ? $config['weekly_display'] : NULL,
+    ];
+    $form['grid_display'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Grid Display?'),
+      '#description' => t('If unchecked, defaults to list display.'),
+      '#default_value' => isset($config['grid_display']) ? $config['grid_display'] : NULL,
+    ];
+    $form['date_display'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Show current date?'),
+      '#default_value' => isset($config['date_display']) ? $config['date_display'] : NULL,
     ];
     return $form;
   }
@@ -96,5 +121,7 @@ class LibHoursTodayBlock extends BlockBase {
     $this->setConfigurationValue('branch_prefix', $form_state->getValue('branch_prefix'));
     $this->setConfigurationValue('branch_suffix', $form_state->getValue('branch_suffix'));
     $this->setConfigurationValue('weekly_display', $form_state->getValue('weekly_display'));
+    $this->setConfigurationValue('grid_display', $form_state->getValue('grid_display'));
+    $this->setConfigurationValue('date_display', $form_state->getValue('date_display'));
   }
 }

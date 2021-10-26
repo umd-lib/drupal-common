@@ -20,6 +20,9 @@ function lib_cal_theme() {
         'hours' => '',
         'branch_prefix' => '',
         'branch_suffix' => '',
+        'row_class' => '',
+        'grid_class' => '',
+        'current_date' => '',
       ],
     ],
     'lib_hours_range' => [
@@ -27,6 +30,9 @@ function lib_cal_theme() {
         'hours' => '',
         'branch_prefix' => '',
         'branch_suffix' => '',
+        'row_class' => '',
+        'grid_class' => '',
+        'current_date' => '',
       ],
     ],
   ];

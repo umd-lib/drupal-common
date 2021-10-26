@@ -31,8 +31,7 @@
 .lib-cal-event-time span {
   display: block;
   text-transform: uppercase;
-}
-
+} 
 .lib-cal-event-time-day {
   font-size: 3em;
   color: #e21833;
@@ -89,4 +88,23 @@
   .lib-cal-event {
     grid-template-columns: 45% 55%;
   }
+}
+
+/**
+ * Hours
+ */
+.lib-hours-hour {
+  padding-left: 20px;
+}
+
+.lib-hours-location {
+  font-weight: bold;
+}
+
+.lib-hours-details {
+  float: right;
+}
+
+.lib-hours-constrained {
+  width: 450px;
 }

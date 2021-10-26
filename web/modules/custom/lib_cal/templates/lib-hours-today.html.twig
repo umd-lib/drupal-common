@@ -10,25 +10,34 @@
  */
 #}
 {{ attach_library('lib_cal/lib-cal') }}
-<div class='lib-hours-today'>
-  <ul>
+{% if current_date %}
+  <h3>{{ current_date|date("l, F j") }}</h3>
+{% endif %}
+<div class="lib-hours-today {{ row_class }}">
   {% if hours %}
-  <ul>
-  {% for location in hours %}
-    <li>{{ branch_prefix }} {{ location.name }} {{ branch_suffix }}: 
-    {% if location.dates %}
-    {% for date, location_info in location.dates %}
-      {{ location_info.status|capitalize }}
-      {% if location_info.hours %}
-      {% for hours_info in location_info.hours %}
-        {{ hours_info.from }} - 
-        {{ hours_info.to }}
-      {% endfor %}
-      {% endif %}
+    {% for location in hours %}
+      <div class="{{ grid_class }}">
+        <ul>
+          <li>{{ branch_prefix }} {{ location.name }} {{ branch_suffix }}:
+            <div class="lib-hours-details"> 
+              {% if location.dates %}
+                {% for date, location_info in location.dates %}
+                  {% if location_info.hours %}
+                    {% for hours_info in location_info.hours %}
+                      {{ hours_info.from }} - 
+                      {{ hours_info.to }}
+                    {% endfor %}
+                  {% elseif location_info.status %}
+                    {{ location_info.status|capitalize }}
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                n/a
+              {% endif %}
+            </div>
+          </li>
+        </ul>
+      </div>
     {% endfor %}
-    {% endif %}
-    </li>
-  {% endfor %}
   {% endif %}
-  </ul>
 </div>
