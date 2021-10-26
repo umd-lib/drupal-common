@@ -1,0 +1,4 @@
+newsroom.news_article:
+  route_name: newsroom.news
+  parent: views_view:views.news.page_1
+  class: Drupal\newsroom\Plugin\Menu\NewsMenuLink

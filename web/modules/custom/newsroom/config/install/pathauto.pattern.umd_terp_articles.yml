@@ -1,0 +1,24 @@
+uuid: caab6423-6401-47fa-9464-86e49c13b33d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: PMOb3MtuIWcQnD-Bi6PzzmtyUVxXov_SpR8O17vBiLQ
+id: umd_terp_articles
+label: 'UMD Terp Articles'
+type: 'canonical_entities:node'
+pattern: 'about/news/[current-date:html_month]/[node:title]'
+selection_criteria:
+  0e51f65d-b704-438a-be85-af3570c7f0da:
+    id: node_type
+    bundles:
+      umd_terp_article: umd_terp_article
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 0e51f65d-b704-438a-be85-af3570c7f0da
+selection_logic: and
+weight: -5
+relationships: {}

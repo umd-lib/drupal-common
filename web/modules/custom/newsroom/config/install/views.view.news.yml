@@ -4,9 +4,12 @@ dependencies:
   config:
     - field.storage.node.body
     - search_api.index.news
+    - system.menu.main
   module:
     - search_api
     - text
+_core:
+  default_config_hash: GIY2JhVTWuZKjDz3qgbSXmiHiB9hXSTBL2IAmDnW9QU
 id: news
 label: News
 module: views
@@ -276,6 +279,15 @@ display:
     display_options:
       display_extenders: {  }
       path: about/news
+      menu:
+        type: normal
+        title: News
+        description: ''
+        expanded: false
+        parent: 'menu_link_content:55278605-a227-4998-832a-b60e7f0eeb68'
+        weight: 0
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:

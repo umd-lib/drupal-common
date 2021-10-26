@@ -53,7 +53,7 @@ function umd_terp_content_types_preprocess_node(&$variables) {
   // Content type specific overrides.
   if ($bundle == 'umd_terp_article') {
     // Article.
-    if ($view_mode == 'full') {
+    if ($view_mode == 'full' || $view_mode == 'teaser') {
       $categories = $node->field_umdt_ct_article_categories->getValue();
       // See if the articles path was overwritten in theme settings.
       $articles_url = '/articles';

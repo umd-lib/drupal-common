@@ -19,6 +19,18 @@
             </div>
           {% endif %}
           <p>{{ content.body|render|striptags }}</p>
+          {% if categories %}
+            <div class="article-categories">
+              <ul class="tag-list">
+                <li class="tag-list-item tag-list-heading">Categories</li>
+                {% for category in categories %}
+                  <li class="tag-list-item">
+                    <a href="{{ category.link }}" class="tag-list-link">{{ category.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
