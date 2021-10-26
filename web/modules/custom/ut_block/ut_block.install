@@ -11,3 +11,7 @@
 function ut_block_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'ut_block');
 }
+
+function ut_block_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'ut_block');
+}
