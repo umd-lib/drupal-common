@@ -76,7 +76,7 @@ use Drupal\Core\Security\TrustedCallbackInterface;
         return FALSE;
       }
 
-      $apiHelper = LibCalApiHelper::getInstance($endpoint, $client_id, $client_secret);
+      $apiHelper = LibCalApiHelper::getInstance($endpoint, $endpoint, $client_id, $client_secret);
       $events = $apiHelper->getEvents($calendar_id, $limit);
       return $events;
     }

@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ut_block_text_2_columns.field_ut_block_text_block
+    - field.field.paragraph.ut_block_text_2_columns.field_ut_block_text_flip_display
+    - field.field.paragraph.ut_block_text_2_columns.field_ut_block_text_text
+    - paragraphs.paragraphs_type.ut_block_text_2_columns
+  module:
+    - block_field
+    - text
+id: paragraph.ut_block_text_2_columns.default
+targetEntityType: paragraph
+bundle: ut_block_text_2_columns
+mode: default
+content:
+  field_ut_block_text_block:
+    weight: 0
+    settings:
+      plugin_id: ''
+      settings: {  }
+      configuration_form: full
+    third_party_settings: {  }
+    type: block_field_default
+    region: content
+  field_ut_block_text_flip_display:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_ut_block_text_text:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+hidden:
+  created: true
+  status: true
