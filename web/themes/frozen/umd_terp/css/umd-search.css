@@ -28,3 +28,16 @@
 #header-search {
   float: left;
 }
+
+.site-header__nav {
+  border-top: 3px solid #ccc;
+  margin-bottom: 0.7rem;
+  padding-top: 0.7rem;
+}
+#header-search {
+  float: left;
+  margin: 1rem 2rem 1rem 4rem;
+}
+.site-header__logo {
+    height: 5rem!important;
+}
