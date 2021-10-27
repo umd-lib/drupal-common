@@ -1,16 +1,16 @@
 /**
  * LibCal CSS
  */
-
 .lib-cal-block {
-  width: 32rem;
+  border-left: 3px solid #ccc;
+  padding-left: 1.5rem;
+  padding-bottom: 3rem;
 }
-
 .lib-cal-event {
   display: grid;
   grid-template-areas: "time detail";
-  grid-template-columns: .2fr .8fr;
-  padding: .5rem;
+  grid-template-columns: 30% 70%;
+  padding: 0;
 }
 
 .lib-cal-event-time {
@@ -20,7 +20,7 @@
   width: 7rem;
   height: 7rem;
   text-align: center;
-  margin: 1rem;
+  margin: 0 1rem 2rem 0;
   font-size: .8em;
   color: darkgray;
   line-height: .8;
@@ -31,8 +31,7 @@
 .lib-cal-event-time span {
   display: block;
   text-transform: uppercase;
-}
-
+} 
 .lib-cal-event-time-day {
   font-size: 3em;
   color: #e21833;
@@ -42,7 +41,7 @@
   grid-area: detail;
   display: inline-block;
   padding-left: .5rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
   line-height: 1.25;
 }
 
@@ -53,10 +52,59 @@
 }
 
 .lib-cal-event-title {
-  padding-top: 1rem;
+  padding-top: 0;
+  font-size: 1rem;
 }
 
 .lib-cal-event-title a {
   font-weight: bold;
   color: black;
+}
+@media (max-width: 1024px) {
+  .lib-cal-event {
+    grid-template-columns: 35% 65%;
+  }
+}
+
+@media (max-width: 800px) {
+  .lib-cal-block {
+    margin-top: 2rem;
+  } 
+  .lib-cal-event {
+    grid-template-columns: 20% 75%;
+  }
+}
+@media (max-width: 576px) { 
+  .lib-cal-event {
+    grid-template-columns: 35% 65%;
+  }
+  .lib-cal-block {
+    border-left: none;
+    padding-left: 0;
+    padding-bottom: 0;
+}
+}
+@media (max-width: 320px) { 
+  .lib-cal-event {
+    grid-template-columns: 45% 55%;
+  }
+}
+
+/**
+ * Hours
+ */
+.lib-hours-hour {
+  padding-left: 20px;
+}
+
+.lib-hours-location {
+  font-weight: bold;
+}
+
+.lib-hours-details {
+  float: right;
+}
+
+.lib-hours-constrained {
+  width: 450px;
 }

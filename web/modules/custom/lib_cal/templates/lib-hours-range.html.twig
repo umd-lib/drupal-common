@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * lib-hours-today template
+ *
+ * Variables:
+ *   - hours
+ */
+#}
+{{ attach_library('lib_cal/lib-cal') }}
+{% if current_date %}
+  <h3>Week of {{ current_date|date("l, F j") }}</h3>
+{% endif %}
+<div class="lib-hours {{ row_class }}">
+  {% if hours %}
+    {% for location in hours %}
+      <div class="{{ grid_class }}">
+        <ul>
+          <li><span class="lib-hours-location">{{ location.name }}</span>: 
+            {% if location.dates %}
+              <ul>
+                {% for date, location_info in location.dates %}
+                  <li class="lib-hours-hour">{{ date|date("l, F j") }}: 
+                    {% if location_info.hours %}
+                      {% for hours_info in location_info.hours %}
+                        <div class="lib-hours-details">{{ hours_info.from }} - {{ hours_info.to }}</div>
+                      <!-- end hours_info -->
+                      {% endfor %}
+                    {% else %}
+                      <div class="lib-hours-details">{{ location_info.status|capitalize }}</div>
+                    {% endif %}
+                  </li>
+                <!-- end date,location_info -->
+                {% endfor %}
+              </ul>
+            {% else %}
+              <ul>
+                <li class="lib-hours-hour">Not Available</li>
+              </ul>
+            {% endif %}
+          </li>
+        <!-- end location -->
+        </ul>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>

@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * UMD Terp Homepage Extensions module install file.
+ */
+
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
+
+/**
+ * Update the UMD Terp Person view and form for the fields added by this module.
+ */
+function umd_terp_homepage_extensions_install() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_terp_homepage_extensions');
+  module_load_include('install', 'umd_terp_person_extensions', 'umd_terp_person_extensions');
+  $view_displays = \Drupal::entityTypeManager()->getStorage('entity_view_display')->loadByProperties(['bundle' => 'umd_terp_homepage']);
+  foreach ($view_displays as $view_display) {
+    add_field_to_view_display(
+      $view_display,
+      'field_cta_text',
+      ['type' => 'string', 'region' => 'content', 'label' => 'hidden']
+    );
+  }
+
+  $form_displays = \Drupal::entityTypeManager()->getStorage('entity_form_display')->loadByProperties(['bundle' => 'umd_terp_homepage']);
+  foreach ($form_displays as $form_display) {
+    add_field_to_form_display(
+      $form_display,
+      'field_cta_text',
+      [
+        'type' => 'string_textfield',
+        'region' => 'content',
+        'label' => 'hidden',
+        'settings' => ['size' => 60, 'placeholder' => ''],
+      ]
+    );
+  }
+}

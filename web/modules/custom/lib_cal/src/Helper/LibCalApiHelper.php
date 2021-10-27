@@ -7,12 +7,15 @@
 
 namespace Drupal\lib_cal\Helper;
 
+use Drupal\Component\Datetime\DateTimePlus;
+
 /**
  * Helper class for interacting with LibCal API
  */
 class LibCalApiHelper {
 
-  private $endpoint;
+  private $auth_endpoint;
+  private $data_endpoint;
   private $client_id;
   private $client_secret;
   private $token;
@@ -20,13 +23,14 @@ class LibCalApiHelper {
 
   static $instance;
 
-  public static function getInstance($endpoint, $client_id, $client_secret)
+  public static function getInstance($auth_endpoint, $data_endpoint, $client_id, $client_secret)
   {
     if (is_null( self::$instance) )
     {
       self::$instance = new self();
     }
-    self::$instance->endpoint = $endpoint;
+    self::$instance->auth_endpoint = $auth_endpoint;
+    self::$instance->data_endpoint = $data_endpoint;
     self::$instance->client_id = $client_id;
     self::$instance->client_secret = $client_secret;
     return self::$instance;
@@ -55,7 +59,7 @@ class LibCalApiHelper {
   }
 
   public function requestToken() {
-    $token_url = $this->endpoint . 'oauth/token';
+    $token_url = $this->auth_endpoint . 'oauth/token';
     $params = [
       'client_id' => $this->client_id,
       'client_secret' => $this->client_secret,
@@ -64,8 +68,45 @@ class LibCalApiHelper {
     return $this->curlRequest($token_url, false, $params);
   }
 
+  public function getWeeksHours($date = null, $libraries = '13231,17166,17167,17168,17964,17965,17966') {
+    if (empty($date)) {
+      $date = date("Y-m-d");
+    }
+    $dateTime = new DateTimePlus($date);
+    $weekNo = $dateTime->format("W");
+
+    $week = new DateTimePlus();
+    $week->setISODate($dateTime->format("Y"), $weekNo);
+    $from_date = $week->modify("-1 days")->format('Y-m-d');
+    $to_date = $week->modify("+6 days")->format('Y-m-d');
+    return $this->getHours($from_date, $to_date, $libraries);
+  }
+
+  public function getHours($from = null, $to = null, $libraries = '13231,17166,17167,17168,17964,17965,17966') {
+    if ($from = $this->validateDate($from)) {
+      $from = '&from=' . $from;
+    }
+    if ($to = $this->validateDate($to)) {
+      $to = '&to=' . $to;
+    }
+    $hours_url = $this->data_endpoint . $libraries . '?' . $from . $to;
+    $response = $this->curlRequest($hours_url, $this->getTokenString());
+    return $response;
+  }
+
+  function validateDate($date) {
+    if ($date != null) {
+      $format = 'Y-m-d';
+      $date = date_create_from_format($format, $date);
+      if ($date) {
+        return $date->format($format);
+      }
+    }
+    return null;
+  }
+
   public function getEvents($calendar_id, $limit=3) {
-    $events_url = $this->endpoint . "events?cal_id=$calendar_id&limit=$limit";
+    $events_url = $this->data_endpoint . "events?cal_id=$calendar_id&limit=$limit";
     $response = $this->curlRequest($events_url, $this->getTokenString());
     $processed_events = null;
     if ($response != null) {
@@ -111,7 +152,6 @@ class LibCalApiHelper {
       curl_setopt($curl, CURLOPT_POSTFIELDS, $this->arrayToParams($post_fields));
     }
     $output = curl_exec($curl);
-  
     if (curl_errno($curl)) {
       \Drupal::logger('lib_cal')->notice("The curl request to $url failed "
       . curl_errno($curl) . '. ' . curl_error($curl));
