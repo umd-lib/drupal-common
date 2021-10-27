@@ -11,16 +11,12 @@
 		{% if content.field_umdt_ct_article_author|field_value %}
 			{{ content.field_umdt_ct_article_author|field_value }}
 		{% endif %}
-		<span>
-			{% if content.field_umdt_ct_article_date|field_value %}
-				{{ content.field_umdt_ct_article_date|field_value }}
-			{% else %}
-				{{ node.createdtime|date('F j, Y') }}
-			{% endif %}
+		<span class="news-article-date">
+			{{ node.createdtime|date('F j, Y') }}
 		</span>
 	</div>
 	{% if content.field_umdt_ct_article_image|field_value %}
-		<div class="section section-ut_image">
+		<div class="section section-ut_image news-article-image">
 			<div class="image-bg">
 				<figure>
 					<div class="image-media">

@@ -11,7 +11,13 @@ use Drupal\views\ViewExecutable;
 * Implements hook_views_pre_render().
 */
 function newsroom_views_pre_render(ViewExecutable $view) {
-  if (!empty($view) && ($view->storage->id() == 'news_events_block')) {
+  if (empty($view)) {
+    return;
+  }
+  if ($view->storage->id() == 'news') {
+    $view->element['#attached']['library'][] = 'newsroom/news_page';
+  }
+  if ($view->storage->id() == 'news_events_block') {
     // reordered results with the first article with an image
     // promoted to the top of the list
     $results = array();

@@ -1,0 +1,10 @@
+newsroom.news:
+  path: '/about/news/{year_month}/{title}'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      year_month:
+        type: String
+      title:
+        type: String
