@@ -7,7 +7,6 @@ dependencies:
     - search_api
   config:
     - field.storage.node.body
-    - field.storage.node.field_umdt_ct_article_date
     - search_api.server.drupal
 third_party_settings:
   search_api_solr:
@@ -70,14 +69,6 @@ field_settings:
     dependencies:
       module:
         - node
-  field_umdt_ct_article_date:
-    label: Date
-    datasource_id: 'entity:node'
-    property_path: field_umdt_ct_article_date
-    type: date
-    dependencies:
-      config:
-        - field.storage.node.field_umdt_ct_article_date
   promote:
     label: 'Promoted to front page'
     datasource_id: 'entity:node'
