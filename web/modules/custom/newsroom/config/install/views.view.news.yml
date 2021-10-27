@@ -9,7 +9,7 @@ dependencies:
     - search_api
     - text
 _core:
-  default_config_hash: GIY2JhVTWuZKjDz3qgbSXmiHiB9hXSTBL2IAmDnW9QU
+  default_config_hash: IMfZ1HswBA0sPrGHRes6z7gJkskjgKERoL_eu-R6DnI
 id: news
 label: News
 module: views
@@ -237,10 +237,10 @@ display:
             - title
           plugin_id: search_api_fulltext
       sorts:
-        field_umdt_ct_article_date:
-          id: field_umdt_ct_article_date
+        created:
+          id: created
           table: search_api_index_news
-          field: field_umdt_ct_article_date
+          field: created
           relationship: none
           group_type: group
           admin_label: ''

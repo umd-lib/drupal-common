@@ -12,11 +12,7 @@
 			{{ content.field_umdt_ct_article_author|field_value }}
 		{% endif %}
 		<span class="news-article-date">
-			{% if content.field_umdt_ct_article_date|field_value %}
-				{{ content.field_umdt_ct_article_date|field_value }}
-			{% else %}
-				{{ node.createdtime|date('F j, Y') }}
-			{% endif %}
+			{{ node.createdtime|date('F j, Y') }}
 		</span>
 	</div>
 	{% if content.field_umdt_ct_article_image|field_value %}

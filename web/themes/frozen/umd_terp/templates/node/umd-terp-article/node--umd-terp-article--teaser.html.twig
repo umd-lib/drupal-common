@@ -8,7 +8,7 @@
   <div class="row no-gutters align-items-start">
     <div class="col">
       <div class="feed-item-body">
-        <div class="feed-item-date">{{ content.field_umdt_ct_article_date|field_value }}</div>
+        <div class="feed-item-date">{{ node.createdtime|date("F j, Y") }}</div>
         <h2 class="feed-item-title">
           <a href="{{ link }}">{{ node.title.value }}</a>
         </h2>
