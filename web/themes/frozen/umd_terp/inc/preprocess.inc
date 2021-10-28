@@ -68,6 +68,7 @@ function umd_terp_preprocess_page(&$variables) {
 function umd_terp_preprocess_breadcrumb(&$variables) {
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
+
   if (($node = $route_match->getParameter('node')) && $variables['breadcrumb']) {
     if (is_numeric($node)) {
       $node = Node::load($node);
@@ -75,8 +76,16 @@ function umd_terp_preprocess_breadcrumb(&$variables) {
     $variables['breadcrumb'][] = [
       'text' => $node->getTitle(),
     ];
-    $variables['#cache']['contexts'][] = 'url';
+  } else {
+    $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+
+    if (!empty($page_title)) {
+      $variables['breadcrumb'][] = [
+        'text' => $page_title,
+      ];
+    }
   }
+  $variables['#cache']['contexts'][] = 'url';
 }
 
 /**
