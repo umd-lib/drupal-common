@@ -106,5 +106,5 @@
 }
 
 .lib-hours-constrained {
-  width: 450px;
+  max-width: 375px;
 }
