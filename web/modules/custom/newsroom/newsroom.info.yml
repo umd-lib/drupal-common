@@ -5,6 +5,8 @@ package: 'UMD Services'
 dependencies:
   - easy_install
   - scheduler
+  - token_filter
+  - views_argument_token
 type: module
 
 core_version_requirement: ^8.9 || ^9
