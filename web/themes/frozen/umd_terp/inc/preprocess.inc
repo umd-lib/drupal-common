@@ -138,7 +138,9 @@ function umd_terp_add_regions_to_node($allowed_regions, &$variables) {
   foreach ($regions as $key => $region) {
  
     // Load region blocks
-    $blocks = entity_load_multiple_by_properties('block', array('theme' => $theme, 'region' => $region));
+    $blocks = \Drupal::entityTypeManager()
+      ->getStorage('block')
+      ->loadByProperties(array('theme' => $theme, 'region' => $region));
  
     // Sort ‘em
     uasort($blocks, 'Drupal\block\Entity\Block::sort');
@@ -147,7 +149,8 @@ function umd_terp_add_regions_to_node($allowed_regions, &$variables) {
     $build = array();
     foreach ($blocks as $key => $block) {
       if ($block->access('view')) {
-        $build[$key] = entity_view($block, 'block');
+        $block_builder = \Drupal::entityTypeManager()->getViewBuilder('block'); 
+        $build[$key] = $block_builder->view($block, 'block');
       }
     }
  
