@@ -87,6 +87,7 @@
         "drupal/twig_tweak": "^2.5",
         "drupal/upgrade_status": "^2.9",
         "drupal/varnish_purge": "^2.0",
+        "drupal/views_argument_token": "^2.0",
         "drupal/views_json_source": "^1.0",
         "drupal/viewsreference": "^1.7",
         "drupal/webform": "^6.0",
