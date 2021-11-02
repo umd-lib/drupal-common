@@ -11,3 +11,11 @@
 function equipment_tracking_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'equipment_tracking');
 }
+
+
+/**
+ * Detail page field for categories taxonomy.
+ */
+function equipment_tracking_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'equipment_tracking');
+}

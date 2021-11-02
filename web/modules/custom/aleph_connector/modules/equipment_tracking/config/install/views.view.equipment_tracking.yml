@@ -6,11 +6,13 @@ dependencies:
     - field.storage.node.field_bibnumber
     - field.storage.node.field_equipment_category
     - field.storage.node.field_library_location
+    - field.storage.taxonomy_term.field_location_details_page
     - search_api.index.equipment_tracking
     - system.menu.main
   module:
     - cshs
     - equipment_tracking
+    - link
     - search_api
     - text
 _core:
@@ -38,9 +40,9 @@ display:
       query:
         type: views_query
         options:
-          bypass_access: false
-          skip_access: false
-          preserve_facet_query_args: false
+          skip_access: 0
+          bypass_access: 0
+          preserve_facet_query_args: 1
       exposed_form:
         type: basic
         options:
@@ -431,6 +433,80 @@ display:
           empty_zero: false
           hide_alter_empty: true
           plugin_id: aleph_equipment_available
+        field_location_details_page:
+          id: field_location_details_page
+          table: search_api_index_equipment_tracking
+          field: field_location_details_page
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: true
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: uri
+          type: link
+          settings:
+            trim_length: null
+            url_only: true
+            url_plain: true
+            rel: '0'
+            target: '0'
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          plugin_id: search_api_field
         field_library_location:
           id: field_library_location
           table: search_api_datasource_equipment_tracking_entity_node
@@ -442,7 +518,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"row\">\r\n  <div class=\"col-800-9\">\r\n   <p><span class=\"equip-search-title\">{{ title }}</span>{{ body }}\r\n       <br /> \r\n       {{ field_equipment_category }} \r\n     </p>\r\n  </div>\r\n  <div class=\"col-800-3\">\r\n    {{ aleph_equipment_available }}\r\n    {{ field_library_location }}\r\n  </div>\r\n</div>"
+            text: "<div class=\"row\">\r\n  <div class=\"col-800-9\">\r\n   <p><span class=\"equip-search-title\">{{ title }}</span>{{ body }}\r\n       <br /> \r\n       {{ field_equipment_category }} \r\n     </p>\r\n  </div>\r\n  <div class=\"col-800-3\">\r\n    {{ aleph_equipment_available }}\r\n    {% if field_location_details_page %}\r\n      <a href=\"{{ field_location_details_page }}\">{{ field_library_location }}</a>\r\n    {% else %}\r\n      {{ field_library_location }}\r\n    {% endif %}\r\n  </div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -508,10 +584,14 @@ display:
                 display_method: label
               departments:
                 display_method: label
+              divisions:
+                display_method: label
+                view_mode: default
               equipment_category:
                 display_method: label
               library_locations:
                 display_method: label
+                view_mode: default
               tags:
                 display_method: label
           entity_type: node
@@ -636,6 +716,7 @@ display:
               administrator: '0'
               updater: '0'
               editor: '0'
+              facilitator: '0'
             placeholder: 'Search by keywords'
           is_grouped: false
           group_info:
@@ -661,7 +742,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          order: ASC
+          order: DESC
           exposed: true
           expose:
             label: Relevance
@@ -718,6 +799,7 @@ display:
         - 'config:field.storage.node.field_bibnumber'
         - 'config:field.storage.node.field_equipment_category'
         - 'config:field.storage.node.field_library_location'
+        - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.equipment_tracking'
   block_1:
     display_plugin: block
@@ -850,6 +932,7 @@ display:
         - 'config:field.storage.node.field_bibnumber'
         - 'config:field.storage.node.field_equipment_category'
         - 'config:field.storage.node.field_library_location'
+        - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.equipment_tracking'
   page_1:
     display_plugin: page
@@ -888,4 +971,5 @@ display:
         - 'config:field.storage.node.field_bibnumber'
         - 'config:field.storage.node.field_equipment_category'
         - 'config:field.storage.node.field_library_location'
+        - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.equipment_tracking'

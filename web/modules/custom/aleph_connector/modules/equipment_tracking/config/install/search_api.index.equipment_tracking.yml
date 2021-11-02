@@ -10,6 +10,7 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_equipment_category
     - field.storage.node.field_library_location
+    - field.storage.taxonomy_term.field_location_details_page
     - search_api.server.drupal
 third_party_settings:
   search_api_solr:
@@ -50,7 +51,7 @@ third_party_settings:
       collection: ''
       timezone: ''
 _core:
-  default_config_hash: OmRWI3C7jzAvvATF2uxI0U83ILFsGVyVsUbEQSD7CO8
+  default_config_hash: 1E33N_lNmjk5YMroovUjPcfir3NU6yM3hIkJhcN3CVI
 id: equipment_tracking
 name: 'Equipment Tracking'
 description: ''
@@ -65,6 +66,8 @@ field_settings:
       fields:
         - 'entity:node/body'
         - 'entity:node/field_bibnumber'
+        - 'entity:node/field_equipment_category'
+        - 'entity:node/field_library_location'
         - 'entity:node/title'
   body:
     label: Body
@@ -90,6 +93,28 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_library_location
+  field_location_details_page:
+    label: 'Library Location » Taxonomy term » Location Details Page'
+    datasource_id: 'entity:node'
+    property_path: 'field_library_location:entity:field_location_details_page'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_library_location
+        - field.storage.taxonomy_term.field_location_details_page
+      module:
+        - taxonomy
+  name:
+    label: 'Equipment Category » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_equipment_category:entity:name'
+    type: text
+    boost: !!float 2
+    dependencies:
+      config:
+        - field.storage.node.field_equipment_category
+      module:
+        - taxonomy
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
