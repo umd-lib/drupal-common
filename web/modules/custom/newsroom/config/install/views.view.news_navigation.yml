@@ -7,6 +7,8 @@ dependencies:
     - datetime
     - node
     - user
+_core:
+  default_config_hash: GvofkIQ3lbyzaoN7B_zWzPPwvjUcXorHlSljmwbU-cg
 id: news_navigation
 label: 'News Navigation'
 module: views
@@ -337,7 +339,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: 'Next Article: <a href="{{ path(''entity.node.canonical'', {''node'': nid}) }}">{{ title__value|length > 30 ? title__value|slice(0, 30) ~ ''...'' : title__value }}</a> >'
+            text: "<ul class=\"newsnav__items js-pager__items\">\r\n  <li class=\"newsnav__item newsnav__item--next\">\r\n    <a href=\"{{ path('entity.node.canonical', {'node': nid}) }}\" title=\"go to next article\">Next Article: {{ title__value|length > 60 ? title__value|slice(0, 60) ~ '...' : title__value }}\r\n    <span class=\"icon icon-fancy-link-arrow\" aria-hidden=\"true\"></span></a>\r\n  </li>\r\n</ul>"
             make_link: false
             path: ''
             absolute: false
@@ -547,7 +549,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '< Previous Article: <a href="{{ path(''entity.node.canonical'', {''node'': nid}) }}">{{ title__value|length > 30 ? title__value|slice(0, 30) ~ ''...'' : title__value }}</a>'
+            text: "<ul class=\"newsnav__items js-pager__items\">\r\n  <li class=\"newsnav__item newsnav__item--previous\">\r\n    <a href=\"{{ path('entity.node.canonical', {'node': nid}) }}\" title=\"go to previous article\">Previous Article: {{ title__value|length > 60 ? title__value|slice(0, 60) ~ '...' : title__value }}\r\n    <span class=\"icon icon-fancy-link-arrow\" aria-hidden=\"true\"></span></a>\r\n  </li>\r\n</ul>"
             make_link: false
             path: ''
             absolute: false

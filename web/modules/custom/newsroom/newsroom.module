@@ -11,10 +11,10 @@ use Drupal\views\ViewExecutable;
 * Implements hook_views_pre_render().
 */
 function newsroom_views_pre_render(ViewExecutable $view) {
-  if (empty($view)) {
+  if (empty($view) || empty($view->storage->id())) {
     return;
   }
-  if ($view->storage->id() == 'news') {
+  if ($view->storage->id() == 'news' || $view->storage->id() == 'news_navigation') {
     $view->element['#attached']['library'][] = 'newsroom/news_page';
   }
   if ($view->storage->id() == 'news_events_block') {

@@ -13,6 +13,13 @@ function newsroom_update_8001() {
 }
 
 /**
+ * News navigation view added.
+ */
+function newsroom_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'newsroom');
+}
+
+/**
  * Implements hook_uninstall
  */
 function newsroom_uninstall() {
