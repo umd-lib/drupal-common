@@ -21,7 +21,11 @@
 }
 
 .news-article-image {
-  width: 45%;
+  width: 50%;
+}
+
+.news-featured .news-article-image {
+  width: 100%;
 }
 
 /**

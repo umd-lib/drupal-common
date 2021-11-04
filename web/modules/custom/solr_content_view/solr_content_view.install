@@ -8,6 +8,6 @@
 /**
  * Solr_content_view configuration for Solr and Views.
  */
-function umd_terp_homepage_extensions_install() {
+function solr_content_view_install() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'solr_content_view');
 }
