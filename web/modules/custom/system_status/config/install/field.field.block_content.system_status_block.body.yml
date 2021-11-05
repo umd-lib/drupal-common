@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.system_status_block
+    - field.storage.block_content.body
+  module:
+    - text
+_core:
+  default_config_hash: Ef2E3eHsEZWxZ5JNpsHIewKTDiRv30zP8UnwMzdbD_g
+id: block_content.system_status_block.body
+field_name: body
+entity_type: block_content
+bundle: system_status_block
+label: Body
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    summary: ''
+    value: "<div class=\"system-status-block\">\r\n<div class=\"system-status-block-info\"><span class=\"system-status-date\">&nbsp;</span> <a href=\"/about/systems\">View All Status of Current Library Services</a></div>\r\n\r\n<div class=\"system-status-block-data\">\r\n<div class=\"system-status-operational\">OPERATIONAL\r\n<div class=\"status\">&nbsp;</div>\r\n</div>\r\n\r\n<div class=\"system-status-maintenance\">MAINTENANCE / ISSUES\r\n<div class=\"status\">&nbsp;</div>\r\n</div>\r\n\r\n<div class=\"system-status-outage\">OUTAGES\r\n<div class=\"status\">&nbsp;</div>\r\n</div>\r\n</div>\r\n</div>"
+    format: full_html
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary
