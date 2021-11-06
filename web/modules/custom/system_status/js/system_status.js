@@ -3,36 +3,44 @@
 
   Drupal.behaviors.systemStatusBehavior = {
     attach: function (context, settings) {
+
+      var systemStatusUrl = drupalSettings.system_status.system_status_url;
+      var utilityNavItem = $(context).find('.utility-nav-systems-status');
+      var systemStatusBlock = $(context).find('.systems-status-block');
+
       /**
        * Retrieves the systems status from the given endpoint, and updates
        * the "Systems Status" entry in the utility navigation menu, and the
        * system status block.
        */
       function retrieveStatus(systemStatusUrl) {
-        var utilityNavItem = $(context).find('.utility-nav-systems-status');
-        var systemStatusDate = $(context).find('.system-status-date');
-        var systemStatusOperational = $(context).find('.system-status-operational > .status');
-        var systemStatusProblem = $(context).find('.system-status-maintenance > .status');
-        var systemStatusOutage = $(context).find('.system-status-outage > .status');
+        var utilityNavItemStatus = $(context).find('.utility-nav-systems-status > .status');
+        var systemStatusDate = $(context).find('.systems-status-date');
+        var systemStatusOperational = $(context).find('.systems-status-operational > .status');
+        var systemStatusProblem = $(context).find('.systems-status-maintenance > .status');
+        var systemStatusOutage = $(context).find('.systems-status-outage > .status');
 
         if (utilityNavItem === undefined || utilityNavItem[0] === undefined) {
           // Status menu item not on page
           return;
         }
 
+        systemStatusDate.html(getFormattedDate());
+
         $.getJSON(systemStatusUrl, function (data) {
           if (data === undefined) {
+            return;
+          }
+          if (data['error']) {
+            console.log('Error retrieving system status!')
             return;
           }
 
           var nonNormalCount = data['non_normal']
           if (nonNormalCount > 0) {
-            var currentCaption = utilityNavItem[0].textContent
             var nonNormalCaption = '<span class="badge">' + nonNormalCount + '</span>';
-            utilityNavItem.html(currentCaption + " " + nonNormalCaption);
+            utilityNavItemStatus.html(nonNormalCaption);
           }
-
-          systemStatusDate.html(getFormattedDate());
           systemStatusOperational.html(`${data['normal']}/${data['total']}`);
           var problemHtml = "<ul>"
           data['non_normal_list'].forEach(element => problemHtml += `<li>${element}</li>`);
@@ -43,9 +51,14 @@
       }
 
       $('html').once('systemStatusBehavior').each(function () {
-        var systemStatusUrl = drupalSettings.system_status.system_status_url;
         retrieveStatus(systemStatusUrl);
       });
+
+      utilityNavItem.click(function (e) {
+        retrieveStatus(systemStatusUrl);
+        systemStatusBlock.toggle();
+        e.preventDefault();
+      })
 
       function getFormattedDate(date) {
         if (date == undefined) {

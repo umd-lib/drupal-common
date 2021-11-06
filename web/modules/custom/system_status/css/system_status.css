@@ -1,4 +1,11 @@
-.system-status-block-data {
+.systems-status-block {
+  display: none;
+  z-index: 10;
+  position: absolute;
+  background-color: gray;
+}
+
+.systems-status-block-data {
   display: grid;
   grid-template-areas: "operational maintenance outage";
   grid-template-rows: 1fr;
@@ -7,14 +14,14 @@
   padding: 0 2em 0 1em;
 }
 
-.system-status-operational {
+.systems-status-operational {
   grid-area: operational;
 }
 
-.system-status-maintenance {
+.systems-status-maintenance {
   grid-area: maintenance;
 }
 
-.system-status-outage {
+.systems-status-outage {
   grid-area: outage;
 }
