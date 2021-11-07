@@ -48,3 +48,16 @@ ul.utility-menus > li {
   background-color: #e74c3c;
   border-radius: 10px;
 }
+
+.utility-nav-accounts-menu {
+  display: none;
+  background-color: gray;
+  z-index: 10;
+  position: absolute;
+}
+.utility-nav-accounts-link {
+  padding-right: .3em;
+}
+.utility-nav-accounts-link-description {
+  float: right;
+}
