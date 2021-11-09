@@ -56,13 +56,13 @@ function umd_terp_content_types_preprocess_node(&$variables) {
     if ($view_mode == 'full' || $view_mode == 'teaser') {
       $categories = $node->field_umdt_ct_article_categories->getValue();
       // See if the articles path was overwritten in theme settings.
-      $articles_url = '/articles';
-      $articles_theme_url = theme_get_setting('umd_terp_articles_path');
-      if($articles_theme_url !== '') {
-        $articles_url = $articles_theme_url;
-      }
+      // $articles_url = '/articles';
+      // $articles_theme_url = theme_get_setting('umd_terp_articles_path');
+      // if($articles_theme_url !== '') {
+      //   $articles_url = $articles_theme_url;
+      // }
       if (!empty($categories)) {
-        $categories_formatted = _umd_terp_content_types_format_term_links($categories, $articles_url . '?field_umdt_ct_article_categories=');
+        $categories_formatted = _umd_terp_content_types_format_term_links($categories, '/taxonomy/term/');
         $variables['categories'] = $categories_formatted;
       }
     }
