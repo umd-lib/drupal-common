@@ -62,7 +62,7 @@ function umd_terp_content_types_preprocess_node(&$variables) {
       //   $articles_url = $articles_theme_url;
       // }
       if (!empty($categories)) {
-        $categories_formatted = _umd_terp_content_types_format_term_links($categories, '/taxonomy/term/');
+        $categories_formatted = _umd_terp_content_types_format_term_default_links($categories);
         $variables['categories'] = $categories_formatted;
       }
     }
@@ -117,6 +117,27 @@ function umd_terp_content_types_form_views_exposed_form_alter(&$form, FormStateI
  * CUSTOM FUNCTIONS.
  */
 
+/**
+ * Format taxonomy term links to go to default links.
+ */
+function _umd_terp_content_types_format_term_default_links(&$terms) {
+  if (count($terms)) {
+    $formatted = [];
+    foreach ($terms as $key => $item) {
+      $tid = $item['target_id'];
+      $term = Term::load($tid);
+      $cat = [
+        'title' => $term->getName(),
+        'link'  => $term->url(),
+      ];
+      $formatted[] = $cat;
+    }
+    return $formatted;
+  }
+  else {
+    return NULL;
+  }
+}
 /**
  * Format taxonomy term links to go to a views page and preformat it.
  */
