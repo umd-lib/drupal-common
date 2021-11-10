@@ -7,3 +7,12 @@ lib_cal.admin_settings_form:
     _permission: 'access libcal configuration'
   options:
     _admin_route: TRUE
+lib_cal_hours_augs.admin_settings_form:
+  path: '/admin/config/system/lib_cal_hours'
+  defaults:
+    _form: '\Drupal\lib_cal\Form\LibHoursAugmentationsForm'
+    _title: 'LibCal Hours'
+  requirements:
+    _permission: 'access libcal hours configuration'
+  options:
+    _admin_route: TRUE

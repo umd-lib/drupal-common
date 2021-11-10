@@ -23,6 +23,10 @@ function lib_cal_theme() {
         'row_class' => '',
         'grid_class' => '',
         'current_date' => '',
+        'augmentations' => '',
+        'shady_grove' => '',
+        'all_libraries' => '',
+        'display_extra' => '',
       ],
     ],
     'lib_hours_range' => [
@@ -33,6 +37,10 @@ function lib_cal_theme() {
         'row_class' => '',
         'grid_class' => '',
         'current_date' => '',
+        'augmentations' => '',
+        'shady_grove' => '',
+        'all_libraries' => '',
+        'display_extra' => '',
       ],
     ],
   ];

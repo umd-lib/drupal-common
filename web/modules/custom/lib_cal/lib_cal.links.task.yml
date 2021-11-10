@@ -3,3 +3,8 @@ lib_cal.admin_settings_form:
   route_name: lib_cal.admin_settings_form
   base_route: libraries_configuration.base_tab
   weight: 99
+lib_cal_hours_augs.admin_settings_form:
+  title: 'Lib Hours'
+  route_name: lib_cal_hours_augs.admin_settings_form
+  base_route: libraries_configuration.base_tab
+  weight: 1

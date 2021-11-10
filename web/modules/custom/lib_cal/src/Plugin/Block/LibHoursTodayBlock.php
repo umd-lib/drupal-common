@@ -50,6 +50,19 @@ class LibHoursTodayBlock extends BlockBase {
       $current_date = date("c");
     }
 
+    $this->configHelper = LibCalSettingsHelper::getInstance();
+    $libraries = $this->configHelper->getLibrariesOptions();
+    $augmentations = [];
+    foreach ($libraries as $key => $library) {
+      $libkey = 'libaug-' . $key;
+      if (!empty($this->configHelper->getOther($libkey))) {
+        $augmentations[$key] = ['#markup' => $this->configHelper->getOther($libkey)]; 
+      }
+    }
+
+    $shady = $this->configHelper->getShadyGrove();
+    $all_libraries = $this->configHelper->getAllLibraries();
+
     return [
       '#theme' => $template,
       '#hours' => $hours,
@@ -58,6 +71,10 @@ class LibHoursTodayBlock extends BlockBase {
       '#row_class' => $row_class,
       '#grid_class' => $grid_class,
       '#current_date' => $current_date,
+      '#augmentations' => $augmentations,
+      '#shady_grove' => ['#markup' => $shady],
+      '#all_libraries' => ['#markup' => $all_libraries],
+      '#display_extra' => $blockConfig['display_extra'],
       '#cache' => [
         'max-age' => 0,
       ]
@@ -106,6 +123,12 @@ class LibHoursTodayBlock extends BlockBase {
       '#title' => t('Show current date?'),
       '#default_value' => isset($config['date_display']) ? $config['date_display'] : NULL,
     ];
+    $form['display_extra'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Display Extra?'),
+      '#default_value' => isset($config['display_extra']) ? $config['display_extra'] : NULL,
+      '#description' => t('Display Shady Grove and All Libraries information'),
+    ];
     return $form;
   }
 
@@ -123,5 +146,6 @@ class LibHoursTodayBlock extends BlockBase {
     $this->setConfigurationValue('weekly_display', $form_state->getValue('weekly_display'));
     $this->setConfigurationValue('grid_display', $form_state->getValue('grid_display'));
     $this->setConfigurationValue('date_display', $form_state->getValue('date_display'));
+    $this->setConfigurationValue('display_extra', $form_state->getValue('display_extra'));
   }
 }

@@ -7,6 +7,7 @@
  *   - hours
  *   - branch_prefix
  *   - branch_suffix
+ *   - augmentations
  */
 #}
 {{ attach_library('lib_cal/lib-cal') }}
@@ -35,9 +36,24 @@
                 n/a
               {% endif %}
             </div>
+            {% if location.lid in augmentations|keys %}
+              <br /><em>{{ augmentations[location.lid] }}</em>
+            {% endif %}
           </li>
         </ul>
       </div>
     {% endfor %}
+    {% if display_extra %}
+      {% if shady_grove %}
+        <div class="{{ grid_class }}">
+          <ul><li>Shady Grove: <div class="lib-hours-details">{{ shady_grove }}</div></li></ul>
+        </div>
+      {% endif %}
+      {% if all_libraries %}
+        <div class="{{ grid_class }}">
+          <ul><li>All Libraries: <div class="lib-hours-details">{{ all_libraries }}</div></li></ul>
+        </div>
+      {% endif %}
+    {% endif %}
   {% endif %}
 </div>

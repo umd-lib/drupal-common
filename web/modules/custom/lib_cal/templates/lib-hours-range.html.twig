@@ -16,7 +16,10 @@
     {% for location in hours %}
       <div class="{{ grid_class }}">
         <ul>
-          <li><span class="lib-hours-location">{{ location.name }}</span>: 
+          <li><span class="lib-hours-location">{{ location.name }}</span>:
+            {% if location.lid in augmentations|keys %}
+              <br /><em>{{ augmentations[location.lid] }}</em>
+            {% endif %}
             {% if location.dates %}
               <ul>
                 {% for date, location_info in location.dates %}
@@ -39,9 +42,25 @@
               </ul>
             {% endif %}
           </li>
-        <!-- end location -->
+          <!-- end location -->
         </ul>
       </div>
     {% endfor %}
+    {% if display_extra %}
+      {% if shady_grove %}
+        <div class="{{ grid_class }}"><ul>
+          <li><span class="lib-hours-location">Shady Grove</span>:
+            <ul><li class="lib-hours-hour">{{ shady_grove }}</li></ul>
+          </li>
+        </ul></div>
+      {% endif %}
+      {% if all_libraries %}
+        <div class="{{ grid_class }}"><ul>
+          <li><span class="lib-hours-location">All Libraries</span>:
+            <ul><li class="lib-hours-hour">{{ all_libraries }}</li></ul>
+          </li>
+        </ul></div>
+      {% endif %} 
+    {% endif %}
   {% endif %}
 </div>

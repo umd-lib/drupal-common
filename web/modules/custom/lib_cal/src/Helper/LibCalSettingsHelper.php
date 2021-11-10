@@ -20,6 +20,8 @@ class LibCalSettingsHelper {
   const CLIENT_SECRET = 'lib_cal_client_secret';
   const CALENDAR_ID = 'lib_cal_calendar_id';
   const LIBRARIES = 'lib_hours_libraries';
+  const SHADY_GROVE = 'lib_hours_shady_grove';
+  const ALL_LIBRARIES = 'lib_hours_all_libraries';
 
   protected $config;
 
@@ -36,6 +38,10 @@ class LibCalSettingsHelper {
       self::$instance = new self();
     }
     return self::$instance;
+  }
+
+  public function getOther(String $key) {
+    return $this->config->get($key);
   }
 
   public function getEndpoint() {
@@ -56,6 +62,14 @@ class LibCalSettingsHelper {
 
   public function getCalendarID() {
     return $this->config->get(static::CALENDAR_ID);
+  }
+
+  public function getAllLibraries() {
+    return $this->config->get(static::ALL_LIBRARIES);
+  }
+
+  public function getShadyGrove() {
+    return $this->config->get(static::SHADY_GROVE);
   }
 
   public function getLibraries() {
