@@ -6,10 +6,13 @@
       var accountsNavItem = $(context).find('.utility-nav-accounts');
       var accountsMenuBlock = $(context).find('.utility-nav-accounts-menu');
 
-      accountsNavItem.click(function (e) {
-        accountsMenuBlock.toggle();
-        e.preventDefault();
-      })
+      /* The following section can be removed after incorporating
+       * the utility nav theming changes.
+       */
+      // accountsNavItem.click(function (e) {
+      //   accountsMenuBlock.toggle();
+      //   e.preventDefault();
+      // })
     }
   };
 })(jQuery, Drupal, drupalSettings);

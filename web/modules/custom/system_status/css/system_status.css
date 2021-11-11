@@ -1,7 +1,12 @@
-.systems-status-block {
+.systems-status-loading {
+  display: block;
+}
+
+.systems-status-loaded {
   display: none;
-  z-index: 10;
-  position: absolute;
+}
+
+.systems-status-block {
   background-color: gray;
 }
 

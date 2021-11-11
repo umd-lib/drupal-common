@@ -50,10 +50,7 @@ ul.utility-menus > li {
 }
 
 .utility-nav-accounts-menu {
-  display: none;
   background-color: gray;
-  z-index: 10;
-  position: absolute;
 }
 .utility-nav-accounts-link {
   padding-right: .3em;

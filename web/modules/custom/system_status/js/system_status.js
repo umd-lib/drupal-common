@@ -6,7 +6,8 @@
 
       var systemStatusUrl = drupalSettings.system_status.system_status_url;
       var utilityNavItem = $(context).find('.utility-nav-systems-status');
-      var systemStatusBlock = $(context).find('.systems-status-block');
+      var systemStatusLoading = $(context).find('.systems-status-loading');
+      var systemStatusLoaded = $(context).find('.systems-status-loaded');
 
       /**
        * Retrieves the systems status from the given endpoint, and updates
@@ -47,6 +48,8 @@
           problemHtml += "</ul>"
           systemStatusProblem.html(problemHtml);
           systemStatusOutage.html(`${data['outage']}/${data['total']}`);
+          systemStatusLoading.hide()
+          systemStatusLoaded.show()
         });
       }
 
@@ -54,11 +57,14 @@
         retrieveStatus(systemStatusUrl);
       });
 
-      utilityNavItem.click(function (e) {
-        retrieveStatus(systemStatusUrl);
-        systemStatusBlock.toggle();
-        e.preventDefault();
-      })
+      /* The following section can be removed after incorporating
+       * the utility nav theming changes.
+       */
+      // utilityNavItem.click(function (e) {
+      //   retrieveStatus(systemStatusUrl);
+      //   systemStatusBlock.toggle();
+      //   e.preventDefault();
+      // })
 
       function getFormattedDate(date) {
         if (date == undefined) {
