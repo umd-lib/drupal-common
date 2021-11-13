@@ -2,6 +2,8 @@ newsroom.news:
   path: '/about/news/{year_month}/{title}'
   requirements:
     _permission: 'access content'
+    year_month: '^$|[^/]++'
+    title: '^$|[^/]++'
   options:
     parameters:
       year_month:
