@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Module file for the ask_us module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function ask_us_theme() {
+  return [
+    'block__askalibrarian' => [
+       'template' => 'block--askalibrarian',
+       'base hook' => 'block'
+     ]
+  ];
+}
+

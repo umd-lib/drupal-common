@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Ask Us module install file.
+ */
+
+/**
+ * Install configuration.
+ */
+function ask_us_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'ask_us');
+}
