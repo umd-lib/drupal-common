@@ -1,0 +1,31 @@
+/**
+ * ask_us component CSS file.
+ */
+
+.ask-us-block {
+  background-color: gray;
+  padding: 1rem;
+}
+
+.ask-us-content {
+  display: grid;
+  grid-template-areas: "search social";
+}
+
+.ask-us-search-col {
+  grid-area: search;
+  padding: .75rem;
+}
+
+.ask-us-search {}
+
+.ask-us-links {}
+
+.ask-us-social-links {
+  grid-area: social;
+  padding: .75rem;
+}
+
+.ask-us-social-links .fontawesome-icons {
+  display: inline-block;
+}

@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Module file for the ask_us module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function ask_us_theme() {
+  return [
+    'block__fixed_block_content__ask_a_librarian' => [
+       'template' => 'block--fixed-block-content--ask-a-librarian',
+       'base hook' => 'block'
+     ]
+  ];
+}
+
