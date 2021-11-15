@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: news_categories
+label: 'News Categories'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/about/news/[term:vocabulary]/[term:name]'
+selection_criteria:
+  6a91a954-8e57-43b4-8b1e-d576ddc49cbf:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      categories: categories
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 6a91a954-8e57-43b4-8b1e-d576ddc49cbf
+selection_logic: and
+weight: -5
+relationships: {  }
