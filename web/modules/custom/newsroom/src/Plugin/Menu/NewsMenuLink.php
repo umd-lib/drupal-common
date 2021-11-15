@@ -37,7 +37,7 @@ class NewsMenuLink extends MenuLinkDefault {
       $title = $node->getTitle();
       return strlen($title) > 30 ? substr($title,0,27) . '...' : $title;
     } else {
-      return NULL;
+      return "Dynamic News Article Menu Placeholder";
     }
   }
 
@@ -57,6 +57,9 @@ class NewsMenuLink extends MenuLinkDefault {
         ];
       }
     }
-    return [];
+    return [
+      'year_month' => NULL,
+      'title' => NULL
+    ];
   }
 }
