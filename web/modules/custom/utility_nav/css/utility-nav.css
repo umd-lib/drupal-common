@@ -58,3 +58,12 @@ ul.utility-menus > li {
 .utility-nav-accounts-link-description {
   float: right;
 }
+
+.utility-nav-info-for-menu {
+  background-color: gray;
+}
+.utility-nav-info-for-menu ul {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
