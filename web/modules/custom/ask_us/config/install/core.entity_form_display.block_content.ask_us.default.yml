@@ -1,0 +1,117 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.ask_us
+    - field.field.block_content.ask_us.field_link1
+    - field.field.block_content.ask_us.field_link2
+    - field.field.block_content.ask_us.field_search
+    - field.field.block_content.ask_us.field_social_link1
+    - field.field.block_content.ask_us.field_social_link1_icon
+    - field.field.block_content.ask_us.field_social_link2
+    - field.field.block_content.ask_us.field_social_link2_icon
+    - field.field.block_content.ask_us.field_social_link3
+    - field.field.block_content.ask_us.field_social_link3_icon
+  module:
+    - fontawesome
+    - link
+    - text
+id: block_content.ask_us.default
+targetEntityType: block_content
+bundle: ask_us
+mode: default
+content:
+  field_link1:
+    weight: 0
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {}
+    type: link
+    region: content
+  field_link2:
+    weight: 1
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {}
+    type: link
+    region: content
+  field_search:
+    weight: 8
+    label: above
+    settings: {}
+    third_party_settings: {}
+    type: text_default
+    region: content
+  field_social_link1:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {}
+    type: link
+    region: content
+  field_social_link1_icon:
+    weight: 3
+    label: above
+    settings:
+      layers: false
+    third_party_settings: {}
+    type: fontawesome_icon_formatter
+    region: content
+  field_social_link2:
+    weight: 4
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {}
+    type: link
+    region: content
+  field_social_link2_icon:
+    weight: 5
+    label: above
+    settings:
+      layers: false
+    third_party_settings: {}
+    type: fontawesome_icon_formatter
+    region: content
+  field_social_link3:
+    weight: 6
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {}
+    type: link
+    region: content
+  field_social_link3_icon:
+    weight: 7
+    label: above
+    settings:
+      layers: false
+    third_party_settings: {}
+    type: fontawesome_icon_formatter
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

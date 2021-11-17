@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.ask_us
+    - field.storage.block_content.field_link1
+  module:
+    - link
+id: block_content.ask_us.field_link1
+field_name: field_link1
+entity_type: block_content
+bundle: ask_us
+label: Link1
+description: ''
+required: false
+translatable: false
+default_value:
+  - attributes: {}
+    uri: 'https://www.lib.umd.edu/directory/specialists/librarian'
+    title: 'Contact a Subject Specialist'
+    options: {}
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

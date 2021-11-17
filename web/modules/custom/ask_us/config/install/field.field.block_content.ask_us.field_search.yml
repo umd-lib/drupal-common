@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.ask_us
+    - field.storage.block_content.field_search
+  module:
+    - text
+id: block_content.ask_us.field_search
+field_name: field_search
+entity_type: block_content
+bundle: ask_us
+label: Search
+description: ''
+required: false
+translatable: false
+default_value:
+  - summary: ''
+    value: "<form action=\"https://umd.libanswers.com/search\" class=\"search-form\" id=\"ask-us-search-form\" method=\"get\">\r\n<div class=\"form-item\"><input class=\"input-text\" name=\"q\" placeholder=\"Try &quot;how to cite an article&quot; or &quot;course syllabus&quot;\" size=\"25\" type=\"text\" value=\"\" /> <input alt=\"Ask\" name=\"op\" title=\"Ask\" type=\"submit\" value=\"Ask\" /></div>\r\n</form>\r\n"
+    format: full_html
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary
