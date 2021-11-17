@@ -2,6 +2,9 @@ system_status-global:
   version: 1.0.0
   js:
     js/system_status.js: {}
+  css:
+    theme:
+      css/system_status.css: {}
   dependencies:
     - core/jquery
     - core/drupal

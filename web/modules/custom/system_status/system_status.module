@@ -10,7 +10,7 @@
 function system_status_preprocess_page(&$variables)
 {
   $system_status_url = Drupal\Core\Url::fromRoute('system_status.status_json')->toString();
-  //Add a JS library
+  //Add a JS/CSS library
   $variables['#attached']['library'][] = 'system_status/system_status-global';
   // pass variable to Drupal.Settings
   $variables['#attached']['drupalSettings']['system_status']['system_status_url'] = $system_status_url;
