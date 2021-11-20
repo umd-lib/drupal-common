@@ -7,6 +7,7 @@ dependencies:
   - scheduler
   - token_filter
   - views_argument_token
+  - umd_dynamic_menu_trail
 type: module
 
 core_version_requirement: ^8.9 || ^9
