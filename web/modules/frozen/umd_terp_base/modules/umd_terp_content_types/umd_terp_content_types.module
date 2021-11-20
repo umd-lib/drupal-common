@@ -48,7 +48,7 @@ function umd_terp_content_types_preprocess_node(&$variables) {
   $variables['nid'] = $nid;
   // Link URL for all teasers, as most need them.
   if ($view_mode !== 'full') {
-    $variables['link'] = \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $nid);
+    $variables['link'] = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $nid);
   }
   // Content type specific overrides.
   if ($bundle == 'umd_terp_article') {
@@ -128,7 +128,7 @@ function _umd_terp_content_types_format_term_default_links(&$terms) {
       $term = Term::load($tid);
       $cat = [
         'title' => $term->getName(),
-        'link'  => $term->url(),
+        'link'  => $term->toUrl(),
       ];
       $formatted[] = $cat;
     }
