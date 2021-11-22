@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\newsroom;
+namespace Drupal\umd_dynamic_menu_trail;
 
 use Drupal\context\ContextManager;
 use Drupal\Core\Cache\CacheBackendInterface;
@@ -11,13 +11,11 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 
 /**
- * Allow the active trail to be set manually.
  * 
- * This sets the active trail for the dynamically added news page 
- * menu links. For other pages, it defaults to the MenuActiveTrail
- * implementation.
  */
-class NewsLinkTrail extends MenuActiveTrail {
+class UmdDynamicActiveTrail extends MenuActiveTrail {
+  
+  private $config;
 
   /**
    * Constructor.
@@ -35,7 +33,8 @@ class NewsLinkTrail extends MenuActiveTrail {
    */
   public function __construct(MenuLinkManagerInterface $menu_link_manager, RouteMatchInterface $route_match, CacheBackendInterface $cache, LockBackendInterface $lock) {
     parent::__construct($menu_link_manager, $route_match, $cache, $lock);
-    $this->tags[] = 'news_link_trail';
+    $this->tags[] = 'umd_dynamic_active_trail';
+    $this->config = \Drupal::getContainer()->get('config.factory')->getEditable('umd_dynamic_menu_trail.mapping_config');
   }
 
   /**
@@ -44,12 +43,28 @@ class NewsLinkTrail extends MenuActiveTrail {
   public function getActiveLink($menu_name = NULL) {
     $node = \Drupal::routeMatch()->getParameter('node');
     if ($node instanceof \Drupal\node\NodeInterface) {
-      if ($node->getType() == 'umd_terp_article') {
-        $instance = $this->menuLinkManager->getInstance(['id' => 'newsroom.news_article']);
+      if ($menu_link_id = $this->getNodeTypeMenuMapping($node->getType())) {
+        $instance = $this->menuLinkManager->getInstance(['id' => $menu_link_id]);
         return $instance;
       }
     }
     return parent::getActiveLink($menu_name);
+  }
+  
+  private function getNodeTypeMenuMapping($node_type) {
+    if ($val = $this->config->get($node_type)) {
+      return $val;
+    }
+  }
+  
+  public function addNodeTypeMapping($node_type, $menu_link_id) {
+    \Drupal::logger('umd_dynamic_menu_trail')->notice("Adding mapping for $node_type -> $menu_link_id");
+    $this->config->set($node_type, $menu_link_id)->save();
+  }
+  
+  public function removeNodeTypeMapping($node_type) {
+    \Drupal::logger('umd_dynamic_menu_trail')->notice("Removing mapping for $node_type");
+    $this->config->clear($node_type)->save();
   }
 
 }

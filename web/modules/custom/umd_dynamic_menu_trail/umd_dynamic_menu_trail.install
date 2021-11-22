@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * umd_dynamic_menu_trail module install file.
+ */
+
+/**
+ * Install umd_dynamic_menu_trail configuration.
+ */
+function umd_dynamic_menu_trail_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_dynamic_menu_trail');
+}
+
+
+/**
+ * Implements hook_uninstall
+ */
+function umd_dynamic_menu_trail_uninstall() {
+  \Drupal::getContainer()
+    ->get('config.factory')
+    ->getEditable('umd_dynamic_menu_trail.mapping_config')
+    ->delete();
+}

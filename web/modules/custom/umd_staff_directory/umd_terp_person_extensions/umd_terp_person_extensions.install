@@ -135,6 +135,11 @@ function umd_terp_person_extensions_install() {
     add_field_to_field_group($form_display, 'group_contact', 'field_library_department');
     add_field_to_field_group($form_display, 'group_contact', 'field_library_unit');
   }
+
+  // Add Menu Active Trail Mapping
+  $node_type = 'umd_terp_person';
+  $menu_link_id = 'umd_terp_person_extensions.staff_member';
+  \Drupal::service('menu.active_trail')->addNodeTypeMapping($node_type, $menu_link_id);
 }
 
 /**
@@ -184,4 +189,13 @@ function add_field_to_field_group(EntityFormDisplay $form_display, string $field
   $field_group['children'] = $children;
   $form_display->setThirdPartySetting('field_group', $field_group_name, $field_group);
   $form_display->save();
+}
+
+/**
+ * Uninstall config for this module.
+ */
+function umd_terp_person_extensions_uninstall() {
+  // Remove Menu Active Trail Mapping
+  $node_type = 'umd_terp_person';
+  \Drupal::service('menu.active_trail')->removeNodeTypeMapping($node_type);
 }
