@@ -98,6 +98,7 @@ class AlephxController extends ControllerBase implements TrustedCallbackInterfac
 
   public function readValidItems($barcodes) {
     $items = [];
+    $invalid_items = [];
     foreach($barcodes as $barcode) {  
       $output = $this->readItem($barcode);
       if ($output == null) {
@@ -106,10 +107,14 @@ class AlephxController extends ControllerBase implements TrustedCallbackInterfac
       $item_map = $this->getZ30Vals($output);
       if ($item_map != null) {
         if (!$this->isValidLocation($item_map)) {
+          array_push($invalid_items, $item_map);
           continue;
         }
         array_push($items, $item_map);
       }
+    }
+    if (count($items) == 0 && count($invalid_items) > 0) {
+      \Drupal::logger('aleph_connector')->notice("No items found in desired location! Items: " . var_export($invalid_items, true));
     }
     return $items;
   }
