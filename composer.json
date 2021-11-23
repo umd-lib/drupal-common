@@ -84,6 +84,7 @@
         "drupal/tablefield": "^2.2",
         "drupal/token_filter": "^1.2",
         "drupal/twig_field_value": "^2.0",
+        "drupal/twig_htmlspecialchars_decode": "1.0.x-dev",
         "drupal/twig_tweak": "^2.5",
         "drupal/upgrade_status": "^2.9",
         "drupal/varnish_purge": "^2.0",
