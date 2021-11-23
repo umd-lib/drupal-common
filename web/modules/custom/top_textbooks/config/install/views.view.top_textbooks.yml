@@ -457,7 +457,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: "<span class=\"fas fa-info-circle red\"></span>&nbsp;{{ comment | convert_encoding('UTF-8', 'HTML-ENTITIES')  | raw }} \r\n"
+            text: '<span class="fas fa-info-circle red"></span>&nbsp;{{ comment | htmlspecialchars_decode  | raw }}'
             make_link: false
             path: ''
             absolute: false
