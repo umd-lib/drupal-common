@@ -61,9 +61,13 @@ class TextbookAvailabilityController extends ControllerBase implements TrustedCa
     $valid_barcodes = [];
     $aleph = new AlephxController();
     $items = $aleph->readValidItems($barcodes);
-    if (($items != null) && count($items) < 1) {
-      // \Drupal::logger('top_textbooks')->notice('No read-item results for: ' . var_export($barcodes, true));
-      return $this->emptyResult();
+    if ($items != null) {
+      if (count($items) < 1) {
+        // \Drupal::logger('top_textbooks')->notice('No read-item results for: ' . var_export($barcodes, true));
+        return $this->emptyResult();
+      }
+    } else {
+      \Drupal::logger('top_textbooks')->notice('No valid items for: ' . var_export($barcodes, true));
     }
     foreach($items as $item) {
       array_push($valid_barcodes, (string) $item->{'z30-barcode'});
@@ -78,6 +82,8 @@ class TextbookAvailabilityController extends ControllerBase implements TrustedCa
         return $this->emptyResult();
       }
       return $this->getTextbookAvailabilityData($items, $valid_barcodes);
+    } else {
+      \Drupal::logger('top_textbooks')->notice('Sys_No not found: Cannot retrieve circ-items without sys_no');
     }
     return FALSE;
   }

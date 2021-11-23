@@ -59,21 +59,37 @@ class TextbookAvailabilityField extends FieldPluginBase {
    */
   public function render(ResultRow $values) {
     $tvc = new TextbookAvailabilityController();
-    $barcode_objects = $this->view->field['bar_code']->getValue($values);
-    $barcodes = [];
-    foreach($barcode_objects as $barcode_object) {
-      array_push($barcodes, $barcode_object->getOriginalText());
-    }
-    \Drupal::logger('top_textbooks')->notice('Checking availability for barcodes: ' . var_export($barcodes, true));
+    $barcodes = $this->getFieldValues($values, 'bar_code');
+    // \Drupal::logger('top_textbooks')->notice('Checking availability for barcodes: ' . var_export($barcodes, true));
     if (count($barcodes) > 0) {
       if ($availability_data = $tvc->getAvailability($barcodes)) {
         return $this->renderableAvailabilityData($barcodes[0], $availability_data);
+      } else {
+        $title = $this->getFieldValueString($values, 'title');
+        \Drupal::logger('top_textbooks')->notice("Availability info not found for '$title' with barcode(s): " . implode(", ", $barcodes));
       }
+    } else {
+      $title = $this->getFieldValueString($values, 'title');
+      \Drupal::logger('top_textbooks')->notice("No barcodes available in Solr index for '$title'");
     }
     return [
       '#theme' => 'textbook_availability_field',
       '#error' => true,
     ];
+  }
+
+  private function getFieldValueString($values, $field_name) {
+    $field_values = $this->getFieldValues($values, $field_name);
+    return implode(", ", $field_values);
+  }
+
+  private function getFieldValues($values, $field_name) {
+    $field_values = [];
+    $objects = $this->view->field[$field_name]->getValue($values);
+    foreach($objects as $object) {
+      array_push($field_values, is_string($object) ? $object : $object->getOriginalText());
+    }
+    return $field_values;
   }
 
 }
