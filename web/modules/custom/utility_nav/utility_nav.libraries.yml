@@ -3,3 +3,5 @@ utility-nav:
   css:
     theme:
       css/utility-nav.css: {}
+  js:
+    js/utility-nav.js: {}

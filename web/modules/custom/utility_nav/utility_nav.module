@@ -13,3 +13,20 @@ function utility_nav_preprocess_page(&$variables)
   // Add CSS
   $variables['#attached']['library'][] = 'utility_nav/utility-nav';
 }
+
+function utility_nav_theme($existing, $type, $theme, $path) {
+  return [
+   'menu__accounts' => [
+      'template' => 'menu--accounts',
+      'base hook' => 'menu'
+    ],
+   'block__system_menu_block__accounts' => [
+      'template' => 'block--system-menu-block--accounts',
+      'base hook' => 'block'
+    ],
+   'block__system_menu_block__info_for' => [
+      'template' => 'block--system-menu-block--info-for',
+      'base hook' => 'block'
+    ],
+  ];
+}

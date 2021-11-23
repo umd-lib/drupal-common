@@ -8,6 +8,15 @@
 /**
  * Install newsroom configuration.
  */
+function newsroom_install() {
+  $node_type = 'umd_terp_article';
+  $menu_link_id = 'newsroom.news_article';
+  \Drupal::service('menu.active_trail')->addNodeTypeMapping($node_type, $menu_link_id);
+}
+
+/**
+ * Install newsroom configuration.
+ */
 function newsroom_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'newsroom');
 }
@@ -23,4 +32,6 @@ function newsroom_update_8002() {
  * Implements hook_uninstall
  */
 function newsroom_uninstall() {
+  $node_type = 'umd_terp_article';
+  \Drupal::service('menu.active_trail')->removeNodeTypeMapping($node_type);
 }

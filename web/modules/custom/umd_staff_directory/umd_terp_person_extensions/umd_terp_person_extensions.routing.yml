@@ -1,0 +1,9 @@
+umd_terp_person_extensions.staff:
+  path: '/about/staff-directory/{name}'
+  requirements:
+    _permission: 'access content'
+    name: '^$|[^/]++'
+  options:
+    parameters:
+      name:
+        type: String

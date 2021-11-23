@@ -48,3 +48,22 @@ ul.utility-menus > li {
   background-color: #e74c3c;
   border-radius: 10px;
 }
+
+.utility-nav-accounts-menu {
+  background-color: gray;
+}
+.utility-nav-accounts-link {
+  padding-right: .3em;
+}
+.utility-nav-accounts-link-description {
+  float: right;
+}
+
+.utility-nav-info-for-menu {
+  background-color: gray;
+}
+.utility-nav-info-for-menu ul {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}

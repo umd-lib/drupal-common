@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {}
+id: system_status_block
+label: 'System Status Block'
+revision: 0
+description: 'Block of static HTML representing the system status block.'

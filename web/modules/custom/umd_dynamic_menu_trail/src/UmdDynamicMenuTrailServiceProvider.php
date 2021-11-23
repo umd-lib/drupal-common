@@ -1,12 +1,13 @@
 <?php
 
-namespace Drupal\newsroom;
+namespace Drupal\umd_dynamic_menu_trail;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceModifierInterface;
 use Symfony\Component\DependencyInjection\Reference;
+use Drupal\umd_dynamic_menu_trail\UmdDynamicActiveTrail;
 
-class NewsroomServiceProvider implements ServiceModifierInterface {
+class UmdDynamicMenuTrailServiceProvider implements ServiceModifierInterface {
 
   /**
    * {@inheritdoc}
@@ -15,6 +16,6 @@ class NewsroomServiceProvider implements ServiceModifierInterface {
     // Get the service we want to modify.
     $definition = $container->getDefinition('menu.active_trail');
     // Make the active trail use our service.
-    $definition->setClass(NewsLinkTrail::class);
+    $definition->setClass(UmdDynamicActiveTrail::class);
   }
 }

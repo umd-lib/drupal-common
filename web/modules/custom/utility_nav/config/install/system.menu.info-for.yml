@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {}
+id: info-for
+label: 'Info For'
+description: 'Utility navigation "information for" menu'
+locked: false

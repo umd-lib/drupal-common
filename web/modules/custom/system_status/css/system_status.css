@@ -1,0 +1,32 @@
+.systems-status-loading {
+  display: block;
+}
+
+.systems-status-loaded {
+  display: none;
+}
+
+.systems-status-block {
+  background-color: gray;
+}
+
+.systems-status-block-data {
+  display: grid;
+  grid-template-areas: "operational maintenance outage";
+  grid-template-rows: 1fr;
+  grid-template-columns: .3fr .4fr .3fr;
+  column-gap: 1em;
+  padding: 0 2em 0 1em;
+}
+
+.systems-status-operational {
+  grid-area: operational;
+}
+
+.systems-status-maintenance {
+  grid-area: maintenance;
+}
+
+.systems-status-outage {
+  grid-area: outage;
+}

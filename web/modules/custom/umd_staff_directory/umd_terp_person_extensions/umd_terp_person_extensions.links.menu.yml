@@ -1,0 +1,4 @@
+umd_terp_person_extensions.staff_member:
+  route_name: umd_terp_person_extensions.staff
+  parent: views_view:views.staff_directory_filterizr.page_1
+  class: Drupal\umd_terp_person_extensions\Plugin\Menu\StaffMenuLink
