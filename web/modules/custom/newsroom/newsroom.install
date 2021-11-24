@@ -9,9 +9,9 @@
  * Install newsroom configuration.
  */
 function newsroom_install() {
-  $node_type = 'umd_terp_article';
-  $menu_link_id = 'newsroom.news_article';
-  \Drupal::service('menu.active_trail')->addNodeTypeMapping($node_type, $menu_link_id);
+  if ($service = get_umd_dynamic_menu_trail_service()) {
+    $service->addNodeTypeMapping('umd_terp_article', 'newsroom.news_article');
+  }
 }
 
 /**
@@ -32,6 +32,14 @@ function newsroom_update_8002() {
  * Implements hook_uninstall
  */
 function newsroom_uninstall() {
-  $node_type = 'umd_terp_article';
-  \Drupal::service('menu.active_trail')->removeNodeTypeMapping($node_type);
+  if ($service = get_umd_dynamic_menu_trail_service()) {
+    $service->removeNodeTypeMapping('umd_terp_article');
+  }
+}
+
+function get_umd_dynamic_menu_trail_service() {
+  $service = \Drupal::service('menu.active_trail');
+  if (get_class($service) == "Drupal\umd_dynamic_menu_trail\UmdDynamicActiveTrail") {
+    return $service;
+  }
 }
