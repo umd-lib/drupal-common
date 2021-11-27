@@ -13,25 +13,31 @@
  */
 #}
 {{ attach_library('ask_us/ask-us') }}
-<div class="ask-us-block">
-  <h3>{{ label }}</h3>
-  <div class="ask-us-content">
+<div id="showHelp" tabindex="0">
+  <div class="ask-us-block">
+    <h3>{{ label }}</h3>
     <div class="ask-us-content">
-      <div class="ask-us-search-col">
-        <div class="ask-us-search">
-          {{ content.field_search }}
-        </div>
-        <div class="ask-us-links">
-          {{ content.field_link1 }} | {{ content.field_link2 }}
+      <div class="ask-us-content">
+        <div class="ask-us-search-col">
+          <div class="ask-us-search">
+            {{ content.field_search }}
+          </div>
+          <div class="ask-us-links">
+            {{ content.field_link1 }} | {{ content.field_link2 }}
+          </div>
         </div>
       </div>
+      <div class="ask-us-social-links">
+        <ul>
+          <li>{{ content.field_social_link1_icon }}{{ content.field_social_link1 }}</li>
+          <li>{{ content.field_social_link2_icon }}{{ content.field_social_link2 }}</li>
+          <li>{{ content.field_social_link3_icon }}{{ content.field_social_link3 }}</li>
+        </ul>
+      </div>
     </div>
-    <div class="ask-us-social-links">
-      <ul>
-        <li>{{ content.field_social_link1_icon }}{{ content.field_social_link1 }}</li>
-        <li>{{ content.field_social_link2_icon }}{{ content.field_social_link2 }}</li>
-        <li>{{ content.field_social_link3_icon }}{{ content.field_social_link3 }}</li>
-      </ul>
-    </div>
+    <button onclick="exitHelp()" class="close-btn">
+      <span aria-hidden="true" class="fas fa-times"></span>
+      <span class="sr-only">Exit Help</span>
+    </button>
   </div>
 </div>
