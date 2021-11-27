@@ -1,9 +1,8 @@
 (function ($, Drupal, drupalSettings) {
   'use strict';
 
-  Drupal.behaviors.utilityNavBehavior = {
+  Drupal.behaviors.utilityNavThemeBehavior = {
     attach: function (context, settings) {
-
       function setDisplay(elem_id, val) {
         let elem = document.getElementById(elem_id)
         if (elem) {
@@ -99,7 +98,6 @@
       $(context).find('#showHelp .close-btn').click(exitHelp);
       $(context).find('#showInfo .close-btn').click(exitInfo);
       $(context).find('#showAccounts .close-btn').click(exitAccounts);
-
     }
   };
 })(jQuery, Drupal, drupalSettings);
