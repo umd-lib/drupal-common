@@ -18,12 +18,20 @@ function utility_nav_preprocess_page(&$variables)
 
 function utility_nav_theme($existing, $type, $theme, $path) {
   return [
-   'menu__accounts' => [
-      'template' => 'menu--accounts',
+   'menu__accounts__utility_menu_blocks' => [
+      'template' => 'menu--accounts--utility-menu-blocks',
       'base hook' => 'menu'
     ],
-   'block__system_menu_block__accounts' => [
-      'template' => 'block--system-menu-block--accounts',
+   'menu__accounts__utility_mobile_accounts' => [
+      'template' => 'menu--accounts--utility-mobile-accounts',
+      'base hook' => 'menu'
+    ],
+   'accounts__utility_menu_blocks' => [
+      'template' => 'accounts--utility-menu-blocks',
+      'base hook' => 'block'
+    ],
+   'accounts__utility_mobile_accounts' => [
+      'template' => 'accounts--utility-mobile-accounts',
       'base hook' => 'block'
     ],
    'block__system_menu_block__info_for' => [
