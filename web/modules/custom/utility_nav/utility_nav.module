@@ -5,6 +5,8 @@
  * Module file for the utility_nav module.
  */
 
+use Drupal\block\Entity\Block;
+
 /**
  * @param $variables
  */
@@ -29,4 +31,40 @@ function utility_nav_theme($existing, $type, $theme, $path) {
       'base hook' => 'block'
     ],
   ];
+}
+
+function utility_nav_preprocess_block(&$variables) {
+  $util_menus = array(
+    'system_menu_block:accounts',
+    'system_menu_block:info-for',
+  );
+  if (in_array($variables['plugin_id'], $util_menus)) {
+    $region = Block::load($variables['elements']['#id'])->getRegion();
+    $variables['content']['#attributes']['region'] = $region;
+  }
+}
+
+function utility_nav_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  $util_blocks = array(
+    'fixed_block_content:system_status_fixed_block',
+    'fixed_block_content:ask_a_librarian',
+    'system_menu_block:accounts',
+    'system_menu_block:info-for',
+  );
+  if (in_array($variables['elements']['#plugin_id'], $util_blocks)) {
+    if (isset($variables['elements']['#id'])) {
+      $plugin_id = $variables['elements']['#plugin_id'];
+      $block_name = substr($plugin_id, strpos($plugin_id, ':') + 1);
+      $region = Block::load($variables['elements']['#id'])->getRegion();
+      $suggestion = $block_name . '__' . $region;
+      $suggestions[] = str_replace('-', '_', $suggestion);
+    }
+  }
+}
+
+function utility_nav_theme_suggestions_menu_alter(&$suggestions, array $variables) {
+  if (isset($variables['attributes']['region'])) {
+    $suggestion = 'menu__' . $variables['menu_name'] . '__' . $variables['attributes']['region'];
+    $suggestions[] = str_replace('-', '_', $suggestion);
+  }
 }
