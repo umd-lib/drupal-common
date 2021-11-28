@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.system_status_fixed_block
+  module:
+    - fixed_block_content
+  theme:
+    - umd_terp
+id: systemstatusfixedblock_2
+theme: umd_terp
+region: utility_mobile_systems
+weight: 0
+provider: null
+plugin: 'fixed_block_content:system_status_fixed_block'
+settings:
+  id: 'fixed_block_content:system_status_fixed_block'
+  label: 'System Status Fixed Block'
+  provider: fixed_block_content
+  label_display: visible
+  view_mode: ''
+visibility: {  }
