@@ -10,10 +10,14 @@
  */
 function ask_us_theme() {
   return [
-    'block__fixed_block_content__ask_a_librarian' => [
-       'template' => 'block--fixed-block-content--ask-a-librarian',
+    'ask_a_librarian__utility_menu_blocks' => [
+       'template' => 'ask-a-librarian--utility-menu-blocks',
        'base hook' => 'block'
-     ]
+    ],
+    'ask_a_librarian__utility_mobile_help' => [
+       'template' => 'ask-a-librarian--utility-mobile-help',
+       'base hook' => 'block'
+    ],
   ];
 }
 
