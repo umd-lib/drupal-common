@@ -72,7 +72,8 @@ class UmdStaffDirectoryRestUpdater extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post(array $incoming_entries) {
+  public function post(array $data) {
+    $incoming_entries = $data;
     \Drupal::service('page_cache_kill_switch')->trigger();
     $this->logger->info(
       "Number of incoming entries: " . count($incoming_entries)

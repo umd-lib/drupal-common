@@ -1,4 +1,4 @@
-FROM drupal:8.9.16-apache
+FROM drupal:9.2.10-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
@@ -47,7 +47,7 @@ COPY . /app/web/app
 
 # Install dependcies, set ownership and delete the sync dir under /app/web/blog
 RUN cd /app/web/app && \
-	composer install --no-dev && \
+	composer install --no-dev --ignore-platform-reqs && \
 	chown -R www-data:www-data /app/web/app
 
 RUN echo 'php_value upload_max_filesize 15M' >> '/app/web/app/web/.htaccess'
