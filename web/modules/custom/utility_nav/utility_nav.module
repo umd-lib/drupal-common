@@ -5,6 +5,8 @@
  * Module file for the utility_nav module.
  */
 
+use Drupal\block\Entity\Block;
+
 /**
  * @param $variables
  */
@@ -16,17 +18,69 @@ function utility_nav_preprocess_page(&$variables)
 
 function utility_nav_theme($existing, $type, $theme, $path) {
   return [
-   'menu__accounts' => [
-      'template' => 'menu--accounts',
+   'menu__accounts__utility_menu_blocks' => [
+      'template' => 'menu--accounts--utility-menu-blocks',
       'base hook' => 'menu'
     ],
-   'block__system_menu_block__accounts' => [
-      'template' => 'block--system-menu-block--accounts',
+   'menu__accounts__utility_mobile_accounts' => [
+      'template' => 'menu--accounts--utility-mobile-accounts',
+      'base hook' => 'menu'
+    ],
+   'accounts__utility_menu_blocks' => [
+      'template' => 'accounts--utility-menu-blocks',
       'base hook' => 'block'
     ],
-   'block__system_menu_block__info_for' => [
-      'template' => 'block--system-menu-block--info-for',
+   'accounts__utility_mobile_accounts' => [
+      'template' => 'accounts--utility-mobile-accounts',
       'base hook' => 'block'
     ],
+   'info_for__utility_menu_blocks' => [
+      'template' => 'info-for--utility-menu-blocks',
+      'base hook' => 'block'
+    ],
+   'info_for__utility_mobile_info' => [
+      'template' => 'info-for--utility-mobile-info',
+      'base hook' => 'block'
+    ],
+    'menu__info_for__utility_mobile_info' => [
+       'template' => 'menu--info-for--utility-mobile-info',
+       'base hook' => 'menu'
+     ],
   ];
+}
+
+function utility_nav_preprocess_block(&$variables) {
+  $util_menus = array(
+    'system_menu_block:accounts',
+    'system_menu_block:info-for',
+  );
+  if (in_array($variables['plugin_id'], $util_menus)) {
+    $region = Block::load($variables['elements']['#id'])->getRegion();
+    $variables['content']['#attributes']['region'] = $region;
+  }
+}
+
+function utility_nav_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  $util_blocks = array(
+    'fixed_block_content:system_status_fixed_block',
+    'fixed_block_content:ask_a_librarian',
+    'system_menu_block:accounts',
+    'system_menu_block:info-for',
+  );
+  if (in_array($variables['elements']['#plugin_id'], $util_blocks)) {
+    if (isset($variables['elements']['#id'])) {
+      $plugin_id = $variables['elements']['#plugin_id'];
+      $block_name = substr($plugin_id, strpos($plugin_id, ':') + 1);
+      $region = Block::load($variables['elements']['#id'])->getRegion();
+      $suggestion = $block_name . '__' . $region;
+      $suggestions[] = str_replace('-', '_', $suggestion);
+    }
+  }
+}
+
+function utility_nav_theme_suggestions_menu_alter(&$suggestions, array $variables) {
+  if (isset($variables['attributes']['region'])) {
+    $suggestion = 'menu__' . $variables['menu_name'] . '__' . $variables['attributes']['region'];
+    $suggestions[] = str_replace('-', '_', $suggestion);
+  }
 }

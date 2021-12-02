@@ -1,0 +1,464 @@
+/* CSS Document for Utility Menus */
+
+.close-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 0;
+  color: #666
+}
+
+.close-btn-search {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 0;
+  color: #ccc;
+  background: #666;
+  padding: 3px;
+}
+
+.site-header__logo img {
+  height: auto;
+  width: 250px;
+}
+
+.site-header__bar {
+  margin-bottom: 1rem;
+}
+
+#block-utilitynavigation {
+  float: right;
+  text-align: right;
+}
+
+/*.site-header__nav, .site-header__nav>ul{
+  float: right;
+}
+*/
+
+ul.utility-menus>li {
+  display: inline-block;
+  text-align: center;
+  line-height: 1rem;
+  border-left: 2px #eee solid;
+  padding: 0 0.2rem;
+  margin: 0.7rem 0;
+  text-transform: uppercase;
+  max-width: 100px;
+  vertical-align: top;
+}
+
+.fa-big {
+  font-size: 1.3rem;
+}
+
+.utility-icon {
+  padding: 0.2rem 2rem;
+}
+
+.utility-label {
+  font-size: 0.8rem;
+}
+
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 2px 5px;
+  margin-left: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #e74c3c;
+  border-radius: 10px;
+}
+
+.search-utility {
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+
+#showSearch {
+  display: none;
+  position: absolute;
+  left: 80px;
+  top: 80px;
+  padding: 20px 20px;
+  width: 450px;
+  background: #666;
+  z-index: 2000;
+}
+
+#showHours, #showSystem, #showInfo, #showAccounts, #showHelp {
+  display: none;
+  text-align: left;
+  position: absolute;
+  right: 180px;
+  top: 40px;
+  margin-top: 2rem;
+  width: 1100px;
+  background: #eee;
+  color: #000;
+  z-index: 1000;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+#showSystem {
+  width: 450px;
+  right: 400px;
+}
+
+#showHelp {
+  width: 600px;
+}
+
+input[type=text]#search-faq {
+  padding: 10px;
+  margin: 0.7rem 0 1rem 0;
+  border: 1px #ccc solid;
+  width: auto;
+}
+
+.system-grid {
+  display: block;
+}
+
+.system-item {
+  background: #fff;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 90px auto;
+  margin-top: 1rem;
+}
+
+.system-item ol>li {
+  list-style-type: decimal;
+  margin-left: 1rem;
+}
+
+#showInfo, #showAccounts {
+  width: 600px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 1rem;
+}
+
+.hours-grid {
+  display: grid;
+  grid-template-columns: auto 40% auto;
+  grid-column-gap: 2rem;
+}
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: auto;
+  grid-column-gap: 1rem;
+}
+
+.hours-grid a, .system-grid a, .info-grid a {
+  text-decoration: underline;
+}
+
+/* grid-area: start row / start column / end row /end column */
+
+.hours-heading, .system-heading, .info-heading, .accounts-heading {
+  grid-area: 1 / 1 / 2/ 2;
+  font-size: 1.2rem;
+  color: #E21831;
+}
+
+.info-heading {
+  grid-area: 1 / 1/ 2 / 3;
+}
+
+.system-heading {
+  grid-area: 1 / 1/ 2/ 3;
+}
+
+.accounts-heading {
+  grid-area: 1 /1 / 2 / 2;
+}
+
+.hours-heading-note, .system-heading-note {
+  grid-area: 1 / span 2 / 2/ 4;
+  text-align: right;
+  font-style: italic;
+}
+
+.system-heading-note {
+  grid-area: 1 / 3 / 2 /4;
+}
+
+.hours1 {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.hours2 {
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.hours3 {
+  grid-area: 4 / 1 /5 / 2;
+}
+
+.hours4 {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.hours5 {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.hours6 {
+  grid-area: 4 / 2 / 5 / 3;
+}
+
+.hours7 {
+  grid-area: 2 / 3 / 3 / 4;
+}
+
+.hours8 {
+  grid-area: 3 / 3 / 4 / 4;
+}
+
+.hours9 {
+  grid-area: 4 / 3 / 5 / 4;
+}
+
+.utility-hours {
+  float: right;
+}
+
+.utility-hours-note {
+  text-align: right;
+  font-style: italic;
+  padding-top: 0.3rem;
+}
+
+.utility-location {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.utility-heading {
+  color: red;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.utility-border {
+  border-bottom: 1px solid #999;
+  margin: 0.5rem 0;
+}
+
+.form-select {
+  background: #fff;
+}
+
+.btn-noborder {
+  border: none;
+  background: #fff;
+}
+
+.btn-faq {
+  border: none;
+  background: #E21831;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  margin-left: -5px;
+}
+
+@media (min-width:1300px) {
+  .header-search-bt-mobile {
+    display: none;
+  }
+  #showSearch {
+    display: none;
+  }
+}
+
+@media (max-width:1299px) {
+  .site-header__logo {
+    display: none;
+  }
+  .search-utility {
+    grid-template-columns: 45% 55%;
+  }
+  .header-search-block {
+    display: none;
+  }
+  .header-search-bt-mobile {
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+  .search-mobile {
+    text-align: right;
+  }
+  #header-search {
+    margin: 1rem;
+  }
+  .site-header__logo-mobile img {
+    width: 200px;
+  }
+  #showHours {
+    right: 80px;
+    width: 900px;
+  }
+  #showInfo, #showSystem, #showAccounts {
+    right: 50px;
+  }
+  .hours-grid {
+    grid-template-columns: auto auto;
+  }
+  /* 2 columns instead of 3. grid-area: start row / start column / end row /end column */
+  .hours-heading {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .hours-heading-note {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+  .hours1 {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+  .hours2 {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+  .hours3 {
+    grid-area: 4 / 1 / 5 / 2;
+  }
+  .hours4 {
+    grid-area: 5 / 1 / 6 / 2;
+  }
+  .hours5 {
+    grid-area: 6 / 1 / 7 / 2;
+  }
+  .hours6 {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  .hours7 {
+    grid-area: 3 / 2 / 4 / 3;
+  }
+  .hours8 {
+    grid-area: 4 / 2 / 5 / 3;
+  }
+  .hours9 {
+    grid-area: 5 / 2 / 6 / 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .utility-nav-mobile {
+    display: none!important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .utility-menus {
+    display: none;
+  }
+  .header-search-bt-mobile {
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+  .utility-nav-mobile li>a {
+    background: #ccc!important;
+    padding: 1rem!important;
+  }
+  .search-utility {
+    display: block;
+  }
+  .navigations {
+    margin-left: 0;
+    width: 100%;
+  }
+  #header-search {
+    width: 100%;
+    margin: 0;
+  }
+  .site-header__bar {
+    margin-bottom: 0;
+  }
+  #showSearch {
+    left: 0;
+    top: 80px;
+    width: 100%;
+    padding: 20px;
+  }
+  .btn-search {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+  .utility-nav-mobile {
+    display: block;
+  }
+  .site-header__nav>ul>li ul {
+    background: #eee;
+  }
+  .hours-grid, .system-grid, .info-grid, .accounts-grid {
+    display: block;
+    padding: 1rem;
+  }
+  .site-header-light .site-header__nav>ul>li ul .info-grid a, .site-header-light .site-header__bar .system-grid a, .site-header-light .site-header__bar .hours-grid a, .site-header-light .site-header__bar .info-grid a .site-header-light .site-header__bar .accounts-grid a {
+    padding: 0;
+    background: transparent;
+    display: inline;
+  }
+  .hours-heading-note, .system-heading-note {
+    text-align: left;
+  }
+  .utility-border {
+    margin: 1rem 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .lib-info-bar-searchbox {
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  #header-search {
+    margin: 0;
+  }
+  .site-header__logo img {
+    width: 200px;
+  }
+  .site-header__nav-toggle {
+    margin-top: 0.7rem;
+  }
+  input[type=text], select, textarea {
+    margin-bottom: 5px;
+  }
+  .header-alert {
+    display: block;
+  }
+  .header-alert-title {
+    padding: 5px;
+  }
+  #showHours, #showInfo, #showSystem, #showAccounts {
+    display: none;
+  }
+  .utility-location {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .utility-hours {
+    float: none;
+  }
+  input[type=text]#search-faq {
+    width: 270px;
+  }
+}

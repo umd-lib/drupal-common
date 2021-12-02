@@ -1,60 +1,13 @@
-/* CSS Document for Utility Menus */
-
-.site-header__logo img {
-  height: auto;
-  width: 250px;
-}
-.site-header__bar {
-  margin-bottom: 1rem;
-}
-nav#block-utilitynavigation{
-  float: right;
-}
-.site-header__nav, .site-header__nav>ul{
-  float: right;
-}
-ul.utility-menus > li {
-  display: inline-block;
-  text-align: center;
-  line-height: 1rem;
-  border-left: 2px #eee solid;
-  padding: 0 0.5rem;
-  margin: 0.7rem 0;
-  text-transform: uppercase;
-  max-width: 100px;
-  vertical-align: top;
-}
-.fa-big {
-  font-size: 1.3rem;
-}
-.utility-icon {
-  padding: 0.2rem 2rem;
-}
-.utility-label {
-  font-size: 0.8rem;
-}
-.badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 2px 5px;
-  margin-left: 3px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  background-color: #e74c3c;
-  border-radius: 10px;
-}
+/* CSS Document for Utility Menu Blocks */
 
 .utility-nav-accounts-menu {
   background-color: gray;
 }
+
 .utility-nav-accounts-link {
   padding-right: .3em;
 }
+
 .utility-nav-accounts-link-description {
   float: right;
 }
@@ -62,6 +15,7 @@ ul.utility-menus > li {
 .utility-nav-info-for-menu {
   background-color: gray;
 }
+
 .utility-nav-info-for-menu ul {
   columns: 2;
   -webkit-columns: 2;

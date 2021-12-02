@@ -1,23 +1,28 @@
 core_version_requirement: ^8.9 || ^9
 type: theme
 name: UMD Terp
-description: 'UMD Terp (umd_terp), is a drupal 8 base theme suitable for all UMD projects.'
+description: "UMD Terp (umd_terp), is a drupal 8 base theme suitable for all UMD projects."
 package: UMD.EDU
 version: 8.1.102
 base theme: stable
 libraries:
   - umd_terp/global
 regions:
-  header_alerts: 'Header Alerts'
-  main_menu: 'Utility Nav'
-  header_search: 'Header Search'
-  hero_block: 'Hero Block'
-  help: 'Help'
-  breadcrumbs: 'Breadcrumbs'
-  sidebar: 'Sidebar'
-  content: 'Content'
-  footer_menu: 'Footer Menu'
-  footer_addon: 'Footer Addon'
+  header_alerts: "Header Alerts"
+  utility_menu_blocks: "Utility Nav Blocks"
+  utility_mobile_hours: "Utility Nav Mobile Locations & Hours"
+  utility_mobile_systems: "Utility Nav Mobile System Status"
+  utility_mobile_help: "Utility Nav Mobile Ask Us"
+  utility_mobile_info: "Utility Nav Mobile Info For"
+  utility_mobile_accounts: "Utility Nav Mobile My Accounts"
+  header_search: "Header Search"
+  hero_block: "Hero Block"
+  help: "Help"
+  breadcrumbs: "Breadcrumbs"
+  sidebar: "Sidebar"
+  content: "Content"
+  footer_menu: "Footer Menu"
+  footer_addon: "Footer Addon"
 dependencies:
   - twig_tweak
   - umd_terp_base

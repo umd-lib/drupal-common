@@ -9,7 +9,7 @@ dependencies:
     - umd_terp
 id: infofor
 theme: umd_terp
-region: main_menu
+region: utility_menu_blocks
 weight: 0
 provider: null
 plugin: 'system_menu_block:info-for'

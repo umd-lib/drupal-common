@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: utility_navigation_block
-label: 'Utility Navigation Block'
-revision: 0
-description: 'Block of static HTML representing the utility navigation menu.'

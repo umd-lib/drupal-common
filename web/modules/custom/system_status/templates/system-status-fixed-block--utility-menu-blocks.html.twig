@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * A system-status template
+ *
+ * Variables:
+ *   - content
+ */
+#}
+{{ attach_library('system_status/system_status-global') }}
+<div id="showSystem" tabindex="0">
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

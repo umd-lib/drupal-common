@@ -7,10 +7,10 @@ dependencies:
     - system
   theme:
     - umd_terp
-id: accounts
+id: accounts_2
 theme: umd_terp
-region: utility_menu_blocks
-weight: 20
+region: utility_mobile_accounts
+weight: 0
 provider: null
 plugin: 'system_menu_block:accounts'
 settings:
@@ -21,4 +21,4 @@ settings:
   level: 1
   depth: 0
   expand_all_items: false
-visibility: {}
+visibility: {  }
