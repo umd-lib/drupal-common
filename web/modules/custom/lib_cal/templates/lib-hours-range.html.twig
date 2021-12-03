@@ -23,11 +23,21 @@
                   <li class="lib-hours-hour">{{ date|date("l, F j") }}: 
                     {% if location_info.hours %}
                       {% for hours_info in location_info.hours %}
-                        <div class="lib-hours-details">{{ hours_info.from }} - {{ hours_info.to }}</div>
+                        <div class="lib-hours-details">{{ hours_info.from|replace({'12:00AM' : '24 Hours'}) }} 
+                          {%if hours_info.to %}
+                            - {{ hours_info.to|replace({'12:00AM' : '24 Hours'}) }}
+                          {% endif %}
+                        </div>
                       <!-- end hours_info -->
                       {% endfor %}
                     {% else %}
-                      <div class="lib-hours-details">{{ location_info.status|capitalize }}</div>
+                      {% if location_info.status == 'text' %}
+                        <div class="lib-hours-details">{{ location_info.text }}</div>
+                      {% elseif location_info.status == 'closed' %}
+                        <div class="lib-hours-details">Closed</div>
+                      {% elseif location_info.status == '24hours' %}
+                        <div class="lib-hours-details">24 Hours</div>
+                      {% endif %}
                     {% endif %}
                   </li>
                 <!-- end date,location_info -->
