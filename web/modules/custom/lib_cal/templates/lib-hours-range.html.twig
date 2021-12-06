@@ -23,9 +23,17 @@
                   <li class="lib-hours-hour">{{ date|date("l, F j") }}: 
                     {% if location_info.hours %}
                       {% for hours_info in location_info.hours %}
-                        <div class="lib-hours-details">{{ hours_info.from|replace({'12:00AM' : '24 Hours'}) }} 
-                          {%if hours_info.to %}
-                            - {{ hours_info.to|replace({'12:00AM' : '24 Hours'}) }}
+                        <div class="lib-hours-details">
+                          {% if location.name == 'McKeldin Library' %}
+                            {{ hours_info.from|replace({'12:00AM' : '24 Hours'}) }} 
+                            {%if hours_info.to %}
+                              - {{ hours_info.to|replace({'12:00AM' : '24 Hours'}) }}
+                            {% endif %}
+                          {% else %}
+                            {{ hours_info.from|replace({'12:00AM' : 'Midnight'}) }} 
+                            {%if hours_info.to %}
+                              - {{ hours_info.to|replace({'12:00AM' : 'Midnight'}) }}
+                            {% endif %}
                           {% endif %}
                         </div>
                       <!-- end hours_info -->

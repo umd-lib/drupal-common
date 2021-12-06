@@ -24,9 +24,16 @@
                 {% for date, location_info in location.dates %}
                   {% if location_info.hours %}
                     {% for hours_info in location_info.hours %}
-                      {{ hours_info.from|replace({'12:00AM' : '24 Hours'}) }}
-                      {%if hours_info.to %}
-                        - {{ hours_info.to|replace({'12:00AM' : '24 Hours'}) }}
+                      {% if location.name == 'McKeldin Library' %}
+                        {{ hours_info.from|replace({'12:00AM' : '24 Hours'}) }} 
+                        {%if hours_info.to %}
+                          - {{ hours_info.to|replace({'12:00AM' : '24 Hours'}) }}
+                        {% endif %}
+                      {% else %}
+                        {{ hours_info.from|replace({'12:00AM' : 'Midnight'}) }} 
+                        {%if hours_info.to %}
+                          - {{ hours_info.to|replace({'12:00AM' : 'Midnight'}) }}
+                        {% endif %}
                       {% endif %}
                     {% endfor %}
                   {% elseif location_info.status %}
