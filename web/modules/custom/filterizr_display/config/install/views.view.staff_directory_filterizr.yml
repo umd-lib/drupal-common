@@ -5,6 +5,7 @@ dependencies:
     - field.storage.node.field_library_department
     - field.storage.node.field_library_division
     - field.storage.node.field_library_unit
+    - field.storage.node.field_umdt_ct_person_email
     - field.storage.node.field_umdt_ct_person_photo
     - field.storage.node.field_umdt_ct_person_title
     - image.style.optimized
@@ -15,6 +16,8 @@ dependencies:
     - image
     - node
     - user
+_core:
+  default_config_hash: 9KSFzlokZleI-TpP9tFsFdIUqwz3QdyPDjzk2c7eMBk
 id: staff_directory_filterizr
 label: 'Staff Directory Filterizr'
 module: views
@@ -66,7 +69,13 @@ display:
           taxonomy_depth: ''
           taxonomy_parent: ''
           filter_field: ''
-          example: "    <div class=\"filtr-item\" data-category=\"TERM_ID\" data-sort=\"TITLE\">\n      PHOTO\n      <div class=\"desc\">\n        TITLE\n      </div>\n    </div>"
+          example: |2-
+                <div class="filtr-item" data-category="TERM_ID" data-sort="TITLE">
+                  PHOTO
+                  <div class="desc">
+                    TITLE
+                  </div>
+                </div>
       row:
         type: fields
         options:
@@ -573,6 +582,69 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_umdt_ct_person_email:
+          id: field_umdt_ct_person_email
+          table: node__field_umdt_ct_person_email
+          field: field_umdt_ct_person_email
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         nothing:
           id: nothing
           table: views
@@ -584,7 +656,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"filtr-item col-600-4 col-1000-3\" data-category=\"{{ field_library_division }}\" data-sort=\"{{ title_1 }}\">      \r\n    <div class=\"profile-card card\">\r\n          <div class=\"card-img card-img-top\">{{ field_umdt_ct_person_photo }}</div>\r\n          <div class=\"card-body\">\r\n              <h2 class=\"card-title\">{{ title }}</h2>\r\n              <div class=\"profile-card-title\">{{ field_umdt_ct_person_title }}</div>\r\n          </div>\r\n     </div>\r\n</div>"
+            text: "<div class=\"filtr-item col-600-4 col-1000-3\" data-category=\"{{ field_library_division }}\" data-sort=\"{{ title_1 }}\">      \r\n    <div class=\"profile-card card\">\r\n          <div class=\"card-img card-img-top\">{{ field_umdt_ct_person_photo }}</div>\r\n          <div class=\"card-body\">\r\n              <h2 class=\"card-title\">{{ title }}</h2>\r\n              <div class=\"profile-card-minitxt\">{{ field_umdt_ct_person_email }}</div>\r\n              <div class=\"profile-card-title\">{{ field_umdt_ct_person_title }}</div>\r\n          </div>\r\n     </div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -667,6 +739,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      title: 'Staff Directory'
     cache_metadata:
       max-age: -1
       contexts:
@@ -678,6 +751,7 @@ display:
         - 'config:field.storage.node.field_library_department'
         - 'config:field.storage.node.field_library_division'
         - 'config:field.storage.node.field_library_unit'
+        - 'config:field.storage.node.field_umdt_ct_person_email'
         - 'config:field.storage.node.field_umdt_ct_person_photo'
         - 'config:field.storage.node.field_umdt_ct_person_title'
   page_1:
@@ -694,7 +768,7 @@ display:
         description: ''
         expanded: false
         parent: 'menu_link_content:55278605-a227-4998-832a-b60e7f0eeb68'
-        weight: -47
+        weight: -88
         context: '0'
         menu_name: main
     cache_metadata:
@@ -708,5 +782,6 @@ display:
         - 'config:field.storage.node.field_library_department'
         - 'config:field.storage.node.field_library_division'
         - 'config:field.storage.node.field_library_unit'
+        - 'config:field.storage.node.field_umdt_ct_person_email'
         - 'config:field.storage.node.field_umdt_ct_person_photo'
         - 'config:field.storage.node.field_umdt_ct_person_title'
