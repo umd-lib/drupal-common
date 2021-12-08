@@ -11,3 +11,34 @@
 <div class="header-search-block">
   {{ header_search_form }}
 </div>
+<div class="header-search-bt-mobile">
+  <div class="logo-mobile">	
+    <a class="site-header__logo-mobile" href="http://www.docker.localhost:18080/"> 
+      <img src="./home_files/logo.svg" alt="University Libraries logo"> 
+    </a>
+  </div>
+  <div class="search-mobile">
+    <span class="btn-search">
+      <button onclick="searchToggle()" id="u-search-btn" class="btn-noborder" name="Search"  data-toggle="search-form">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <span class="sr-only">search</span>
+      </button>
+    </span>
+    <button id="site-header-nav-toggle" class="site-header__nav-toggle" aria-label="Main Menu" aria-controls="site-header-nav"> 
+      <span aria-hidden="true" class="site-header__nav-icon"> 
+        <span role="presentation"></span> 
+        <span role="presentation"></span> 
+        <span role="presentation"></span> 
+        <span role="presentation"></span> 
+      </span> 
+      <span class="sr-only">Main Menu</span> 
+    </button>
+  </div>
+</div>
+<div id="showSearch">
+  {{ header_search_form }}
+  <button onclick="exitSearch()" class="close-btn-search">
+    <span aria-hidden="true" class="fas fa-times"></span>
+    <span class="sr-only">Exit Search</span>
+  </button>
+</div>

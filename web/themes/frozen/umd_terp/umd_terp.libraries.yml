@@ -13,3 +13,4 @@ global:
   js:
     static/build/js/index.js: {}
     js/utility-nav.js: {}
+    js/toggled-search-bar.js: {}

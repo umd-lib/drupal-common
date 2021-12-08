@@ -9,6 +9,7 @@ use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
 use Drupal\header_search\Helper\HeaderSearchSettingsHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Utility\Html;
 
 /**
  * Implements search box suitable for display in header.
@@ -65,20 +66,23 @@ class HeaderSearchForm extends FormBase {
     $form['search_query'] = [
       '#type' => 'textfield',
       '#name' => 'search_query',
-      '#placeholder' => $this->configHelper->getDefaultSearchPlaceholder(),
+      '#placeholder' => Html::decodeEntities('&#xF002;') . ' ' . $this->configHelper->getDefaultSearchPlaceholder(),
       '#size' => 25,
       '#maxlength' => 30,
       '#required' => TRUE,
+      '#attributes' => array('class' => array('header-search-input')),
     ];
     $form['search_target'] = [
       '#type' => 'select',
       '#name' => 'search_target',
       '#options' => $this->configHelper->getSearchTargetOptions(),
+      '#attributes' => array('class' => array('header-search-options')),
     ];
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Search'),
+      '#attributes' => array('class' => array('header-search-submit')),
     ];
     return $form;
   }

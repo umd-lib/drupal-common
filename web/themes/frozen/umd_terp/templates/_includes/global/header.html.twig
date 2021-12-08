@@ -42,15 +42,6 @@
 				</nav>
 				<!-- End Utility Nav Region -->
 			</div>
-		  <a href="#site-header-nav" class="site-header__nav-toggle" id="site-header-nav-toggle" tabindex="0" role="button" aria-label="Main Menu" aria-controls="site-header-nav">
-			  <span aria-hidden="true" class="site-header__nav-icon">
-				  <span role="presentation"></span>
-				  <span role="presentation"></span>
-				  <span role="presentation"></span>
-				  <span role="presentation"></span>
-			  </span>
-			  <span class="sr-only">Main Menu</span>
-		  </a>
 		  <nav class="site-header__nav" id="site-header-nav" aria-labelledby="site-header-nav-toggle">
 			  {{ drupal_menu('main', 1, 2, TRUE) }}
     		{% include directory ~ '/templates/_includes/global/utility-nav-mobile.html.twig' %}

@@ -13,11 +13,29 @@ form#header-search-form .form-item, form#header-search-form .form-actions {
 }
 form#header-search-form {
   margin-bottom:  0;
+  width: 100%;
 }
 form#header-search-form .form-text, form#header-search-form .form-select   {
   padding: 0.3rem!important;
 }
-form#header-search-form .form-submit {
-  padding: 0.55rem 1rem!important;
-  margin-bottom: 0.2rem;
+
+/**
+ * form#header-search-form .form-submit {
+ *  padding: 0.55rem 1rem!important;
+ *  margin-bottom: 0.2rem;
+ * }
+ */
+
+.header-search-input {
+  font-family: Arial, 'Font Awesome 5 Free';
+  width: 100%;
+  font-weight: 600;
+}
+
+.header-search-submit {
+  display: none!important;
+}
+
+.header-search-options {
+  width: 6rem!important;
 }
