@@ -13,39 +13,83 @@
   ]
 %}
 <header class="{{ header_classes|join(' ') }}">
-	<a href="#main-content" class="visually-hidden focusable">
-		{{ 'Skip to main content'|t }}
-	</a>
-	<div class="max-bound">
-	</div>
-	<div class="site-header__bar max-bound">
-		<a class="site-header__logo" href="{{ path('<front>') }}">
-			{% if logo_path %}
-				<img src="{{ logo_path }}" alt="{{ site_name }} logo">
-			{% else %}
-				<span role="img" aria-label="{{ site_name }} logo" class="site-header__logo-text">
-					<span aria-hidden="true">{{ site_name }}</span>
-				</span>
-			{% endif %}
-		</a>
+  <a href="#main-content" class="visually-hidden focusable">
+    {{ 'Skip to main content'|t }}
+  </a>
+  <div class="max-bound">
+    <!-- Why is this here? -->
+  </div>
+  <div class="site-header__bar max-bound">
+    <a class="site-header__logo" href="{{ path('<front>') }}">
+      {% if logo_path %}
+        <img src="{{ logo_path }}" alt="{{ site_name }} logo">
+      {% else %}
+        <span role="img" aria-label="{{ site_name }} logo" class="site-header__logo-text">
+          <span aria-hidden="true">{{ site_name }}</span>
+        </span>
+      {% endif %}
+    </a>
     <div class="navigations">
-			<div class="search-utility">
-				<!-- Header Search Region -->
-				<div id="header-search">
-					{{ page.header_search }}
-				</div>
-				<!-- End Header Search Region -->
-				<!-- Utility Nav Region -->
-				<nav role="navigation" aria-labelledby="block-utilitynavigation-menu" id="block-utilitynavigation">
-					{% include directory ~ '/templates/_includes/global/utility-nav.html.twig' %}
-					{{ page.utility_menu_blocks }}
-				</nav>
-				<!-- End Utility Nav Region -->
-			</div>
-		  <nav class="site-header__nav" id="site-header-nav" aria-labelledby="site-header-nav-toggle">
-			  {{ drupal_menu('main', 1, 2, TRUE) }}
-    		{% include directory ~ '/templates/_includes/global/utility-nav-mobile.html.twig' %}
-		  </nav>
+      <div class="search-utility">
+        <!-- Header Search Region -->
+	<div id="header-search">
+          <div class="header-search-block">
+            {{ page.header_search }}
+          </div>
+          <div class="header-search-bt-mobile">
+            <div class="logo-mobile">
+              <a class="site-header__mlogo" href="{{ path('<front>') }}">
+                {% if logo_path %}
+                  <img src="{{ logo_path }}" alt="{{ site_name }} logo">
+                {% else %}
+                  <span role="img" aria-label="{{ site_name }} logo" class="site-header__logo-text">
+                    <span aria-hidden="true">{{ site_name }}</span>
+                  </span>
+                {% endif %}
+              </a>
+            </div>
+            <div class="search-mobile">
+              {% if page.header_mobile_search %}
+                <span class="btn-search">
+                  <button onclick="searchToggle()" id="u-search-btn" class="btn-noborder" name="Search"  data-toggle="search-form">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <span class="sr-only">search</span>
+                  </button>
+                </span>
+              {% endif %}
+              <button id="site-header-nav-toggle" class="site-header__nav-toggle" aria-label="Main Menu" aria-controls="site-header-nav">
+                <span aria-hidden="true" class="site-header__nav-icon">
+                  <span role="presentation"></span>
+                  <span role="presentation"></span>
+                  <span role="presentation"></span>
+                  <span role="presentation"></span>
+                </span>
+                <span class="sr-only">Main Menu</span>
+              </button>
+            </div>
+          </div>
+          <div id="showSearch">
+            {% if page.header_mobile_search %}
+              {{ page.header_mobile_search }}
+              <button onclick="exitSearch()" class="close-btn-search">
+                <span aria-hidden="true" class="fas fa-times"></span>
+                <span class="sr-only">Exit Search</span>
+              </button>
+            {% endif %}
+          </div>
+        </div>
+        <!-- End Header Search Region -->
+        <!-- Utility Nav Region -->
+        <nav role="navigation" aria-labelledby="block-utilitynavigation-menu" id="block-utilitynavigation">
+          {% include directory ~ '/templates/_includes/global/utility-nav.html.twig' %}
+          {{ page.utility_menu_blocks }}
+        </nav>
+        <!-- End Utility Nav Region -->
+      </div>
+      <nav class="site-header__nav" id="site-header-nav" aria-labelledby="site-header-nav-toggle">
+        {{ drupal_menu('main', 1, 2, TRUE) }}
+        {% include directory ~ '/templates/_includes/global/utility-nav-mobile.html.twig' %}
+      </nav>
     </div>
-	</div>
+  </div>
 </header>

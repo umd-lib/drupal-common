@@ -16,6 +16,7 @@ regions:
   utility_mobile_info: "Utility Nav Mobile Info For"
   utility_mobile_accounts: "Utility Nav Mobile My Accounts"
   header_search: "Header Search"
+  header_mobile_search: "Header Mobile Search"
   hero_block: "Hero Block"
   help: "Help"
   breadcrumbs: "Breadcrumbs"

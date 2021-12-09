@@ -27,19 +27,6 @@
 .header-search-block div {
   display: inline-block;
 }
-form#header-search-form .form-item, form#header-search-form .form-actions {
-  margin-bottom: 0.1rem!important;
-}
-form#header-search-form {
-  margin-bottom:  0;
-}
-form#header-search-form .form-text, form#header-search-form .form-select   {
-  padding: 0.3rem!important;
-}
-form#header-search-form .form-submit {
-  padding: 0.55rem 1rem!important;
-  margin-bottom: 0.2rem;
-}
 .site-header__nav {
   border-top:1px solid #ccc;
   margin-bottom: 0.7rem;

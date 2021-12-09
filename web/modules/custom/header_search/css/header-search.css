@@ -2,12 +2,6 @@
  * Header Search CSS
  */
 
-.navigations {
-  margin-left: 2rem;
-}
-.header-search-block div {
-  display: inline-block;
-}
 form#header-search-form .form-item, form#header-search-form .form-actions {
   margin-bottom: 0.1rem!important;
 }
@@ -17,6 +11,11 @@ form#header-search-form {
 }
 form#header-search-form .form-text, form#header-search-form .form-select   {
   padding: 0.3rem!important;
+}
+
+form#header-search-form .form-submit {
+  padding: 0.55rem 1rem!important;
+  margin-bottom: 0.2rem;
 }
 
 /**
