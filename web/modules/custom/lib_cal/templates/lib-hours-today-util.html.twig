@@ -1,0 +1,96 @@
+{#
+/**
+ * @file
+ * lib-hours-today template
+ *
+ * Variables:
+ *   - hours
+ *   - branch_prefix
+ *   - branch_suffix
+ */
+#}
+{{ attach_library('lib_cal/lib-cal') }}
+{% set twentyFourHrs = FALSE %}
+{% set increment = 0 %}
+<div id="showHours" tabindex="0">
+  <div class="hours-grid">
+    <!-- all hours -->
+    {% if hours %}
+      {% if current_date %}
+        <div class="hours-heading">{{ current_date|date("l, F j") }}</div>
+      {% endif %}
+      <div class="hours-heading-note">Library Hours are subject to change.</div>
+      <!-- locations -->
+      {% for location in hours %}
+        {% set increment = increment + 1 %}
+        <div class="utility-border hours{{ increment }}">
+          <span class="utility-location">{{ location.name }}</span>
+            {% if location.name == 'McKeldin Library' %}(MAIN){% endif %}
+            <span class="utility-hours"> 
+              <!-- location dates -->
+              {% if location.dates %}
+                <!-- location dates internal -->
+                {% for date, location_info in location.dates %}
+                  <! -- location hours or status -->
+                  {% if location_info.hours %}
+                    <!-- hours info -->
+                    {% for hours_info in location_info.hours %}
+                      <!-- Date stuff -->
+                      {% if location.name == 'McKeldin Library' %}
+                        {{ hours_info.from|replace({'12:00AM' : '* 24 Hours'}) }} 
+                        {% if hours_info.to %}
+                          - {{ hours_info.to|replace({'12:00AM' : '* 24 Hours'}) }}
+                        {% endif %}
+                        {% if hours_info.to == '12:00AM' %}
+                          {% set twentyFourHrs = TRUE %}
+                        {% endif %}
+                      {% else %}
+                        {{ hours_info.from }} 
+                        {%if hours_info.to %}
+                          - {{ hours_info.to }}
+                        {% endif %}
+                      {% endif %}
+                      <!-- End date stuff -->
+                    {% endfor %}
+                  <!-- end hours info -->
+                  {% elseif location_info.status %}
+                    {% if location_info.status == 'text' %}
+                      {{ location_info.text }}
+                    {% elseif location_info.status == 'closed' %}
+                      Closed
+                    {% elseif location_info.status == '24hours' %}
+                      {% set twentyFourHrs = TRUE %}
+                      * 24 Hours
+                    {% endif %}
+                  {% endif %}
+                  <!-- end location dates internal -->
+                {% endfor %}
+              {% else %}
+                --
+              {% endif %}
+              <!-- end location dates -->
+            </span>
+          </div>
+        {% endfor %}
+        {% set increment = increment + 1 %}
+        <div class="utility-border hours{{ increment }}">
+          <span class="utility-location">Shady Grove</span> <span class="utility-hours"><a href="">Show Hours</a></span>
+        </div>
+        {% set increment = increment + 1 %}
+        <div class="utility-border hours{{ increment }}">
+          <span class="utility-location">All libraries</span> <span class="utility-hours"><a href="">All libraries all days</a></span>
+        </div>
+        <!-- end locations -->
+      {% endif %}
+    <!-- end all hours -->
+  </div>
+  {% if twentyFourHrs == TRUE %}
+    <div class="hours-heading-note">
+      * Campus ID required 11pm-8am.
+    </div>
+  {% endif %}
+  <button onclick="exitHours()" class="close-btn">
+    <span aria-hidden="true" class="fas fa-times"></span>
+    <span class="sr-only">Exit Hours</span>
+  </button>
+</div>

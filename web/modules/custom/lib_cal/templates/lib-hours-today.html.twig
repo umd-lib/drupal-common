@@ -30,9 +30,9 @@
                           - {{ hours_info.to|replace({'12:00AM' : '24 Hours'}) }}
                         {% endif %}
                       {% else %}
-                        {{ hours_info.from|replace({'12:00AM' : 'Midnight'}) }} 
+                        {{ hours_info.from }} 
                         {%if hours_info.to %}
-                          - {{ hours_info.to|replace({'12:00AM' : 'Midnight'}) }}
+                          - {{ hours_info.to }}
                         {% endif %}
                       {% endif %}
                     {% endfor %}

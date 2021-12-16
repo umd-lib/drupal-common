@@ -6,3 +6,6 @@ ask-us:
   css:
     theme:
       css/ask-us.css: {}
+  js:
+    https://umd.libanswers.com/load_chat.php?hash=ab67389cbb5da9c30c6815f0c5527e7b: { type: external }
+    https://umd.libanswers.com/load_chat.php?hash=cf7cee7b231b23dd15b04cc264f1e25f: { type: external }

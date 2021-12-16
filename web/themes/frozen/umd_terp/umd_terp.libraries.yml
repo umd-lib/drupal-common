@@ -12,5 +12,5 @@ global:
      static/build/css/print.css: { media: print }
   js:
     static/build/js/index.js: {}
-    js/utility-nav.js: {}
-    js/toggled-search-bar.js: {}
+    js/utility-nav.js: { scope: header }
+    js/toggled-search-bar.js: { scope: header }

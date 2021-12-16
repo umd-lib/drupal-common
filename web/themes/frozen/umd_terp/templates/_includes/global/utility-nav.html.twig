@@ -9,34 +9,39 @@
 <h2 class="visually-hidden" id="block-utilitynavigation-menu">Utility Navigation</h2>
 
 <ul class="utility-menus">
-  <li>
-    <button id="u-hours-btn" class="btn-noborder">
-      <span class="fas fa-clock"></span><br />
+  <li> 
+    <button id="u-hours-btn" onclick="hoursToggle()" class="btn-noborder">
+      <span class="fas fa-clock"></span>
+      <br />
       <span class="utility-label utility-nav-locations">Locations &amp; Hours</span>
     </button>
   </li>
   <li>
-    <button id="u-system-btn" class="btn-noborder">
-      <span class="fas fa-exclamation-triangle"></span><br />
-      <span class="utility-label utility-nav-systems-status">Systems Status</span>
+    <button id="u-system-btn" onclick="systemToggle()" class="btn-noborder">
+      <span class="fas fa-exclamation-triangle"></span>
+      <br />
+      <span class="utility-label utility-nav-systems-status">System Status</span>
     </button>
   </li>
   <li>
-    <button id="u-help-btn" class="btn-noborder">
-      <span class="fas fa-question-circle"></span><br />
+    <button id="u-help-btn" onclick="helpToggle()" class="btn-noborder">
+      <span class="fas fa-question-circle"></span>
+      <br />
       <span class="utility-label utility-nav-help">Get Help</span>
     </button>
   </li>
   <li>
-    <button id="u-info-btn" class="btn-noborder">
-      <span class="fas fa-info-circle"></span><br />
+    <button id="u-info-btn" onclick="infoToggle()" class="btn-noborder">
+      <span class="fas fa-info-circle"></span>
+      <br />
       <span class="utility-label utility-nav-info">Info For</span>
     </button>
   </li>
   <li>
-    <button id="u-accounts-btn" class="btn-noborder">
-      <span class="fas fa-user"></span><br />
-      <span class="utility-label utility-nav-accounts">My Accounts</span>
-    </button>
+    <button id="u-accounts-btn" onclick="accountsToggle()" class="btn-noborder">
+      <span class="fas fa-user"></span>
+      <br />
+      <span class="utility-label utility-nav-accounts">Accounts<br/></span>
+    </button> 
   </li>
 </ul>

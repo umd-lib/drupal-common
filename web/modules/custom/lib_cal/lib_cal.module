@@ -25,6 +25,16 @@ function lib_cal_theme() {
         'current_date' => '',
       ],
     ],
+    'lib_hours_today_util' => [
+      'variables' => [
+        'hours' => '',
+        'branch_prefix' => '',
+        'branch_suffix' => '',
+        'row_class' => '',
+        'grid_class' => '',
+        'current_date' => '',
+      ],
+    ],
     'lib_hours_range' => [
       'variables' => [
         'hours' => '',

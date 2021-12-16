@@ -35,8 +35,23 @@ class LibHoursTodayBlock extends BlockBase {
       $template = 'lib_hours_range';
       $hours = $libHoursController->getThisWeek($blockConfig['libraries']);
     } else {
-      $template = 'lib_hours_today';
-      $hours = $libHoursController->getToday($blockConfig['libraries']);
+      switch ($blockConfig['display_type']) {
+        case 'today':
+          $template = 'lib_hours_today';
+          $hours = $libHoursController->getToday($blockConfig['libraries']);
+          break;
+        case 'weekly':
+          $template = 'lib_hours_range';
+          $hours = $libHoursController->getThisWeek($blockConfig['libraries']);
+          break;
+        case 'utility_nav':
+          $template = 'lib_hours_today_util';
+          $hours = $libHoursController->getToday($blockConfig['libraries']);
+          break;
+         default:
+          $template = 'lib_hours_today';
+          break;
+      }
     }
 
     $row_class = 'lib-hours-constrained';
@@ -91,9 +106,17 @@ class LibHoursTodayBlock extends BlockBase {
     ];
     $form['weekly_display'] = [
       '#type' => 'checkbox',
-      '#title' => t('Weekly Display?'),
-      '#description' => t('Disply the current week\'s hours. If unchecked, defaults to today display.'),
+      '#title' => t('Weekly Display? (Deprecated)'),
+      '#description' => t('Use the Display Type from now on. Will be removed after demo period is over.'),
       '#default_value' => isset($config['weekly_display']) ? $config['weekly_display'] : NULL,
+    ];
+    $display_types = ['today' => t('Today'), 'weekly' => t('Weekly'), 'utility_nav' => t('Utility Nav')];
+    $form['display_type'] = [
+      '#type' => 'select',
+      '#title' => t('Display Type'),
+      '#default_value' => isset($config['display_type']) ? $config['display_type'] : null,
+      '#required' => TRUE,
+      '#options' => $display_types,
     ];
     $form['grid_display'] = [
       '#type' => 'checkbox',
@@ -123,5 +146,6 @@ class LibHoursTodayBlock extends BlockBase {
     $this->setConfigurationValue('weekly_display', $form_state->getValue('weekly_display'));
     $this->setConfigurationValue('grid_display', $form_state->getValue('grid_display'));
     $this->setConfigurationValue('date_display', $form_state->getValue('date_display'));
+    $this->setConfigurationValue('display_type', $form_state->getValue('display_type'));
   }
 }
