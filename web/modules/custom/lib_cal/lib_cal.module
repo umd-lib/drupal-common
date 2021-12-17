@@ -33,6 +33,7 @@ function lib_cal_theme() {
         'row_class' => '',
         'grid_class' => '',
         'current_date' => '',
+        'is_mobile' => '',
       ],
     ],
     'lib_hours_range' => [

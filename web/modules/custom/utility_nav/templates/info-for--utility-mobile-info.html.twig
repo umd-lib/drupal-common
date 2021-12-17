@@ -32,16 +32,10 @@
  */
 #}
 <div class="info-grid">
-  <div class="utility-nav-info-for-menu">
-    <nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby') }}>
-      <div class="info-heading">
-        {{ configuration.label }}
-      </div>
-
-      {# Menu. #}
-      {% block content %}
-        {{ content }}
-      {% endblock %}
-    </nav>
+  <div class="info-heading">
+    {{ configuration.label }}
   </div>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
 </div>

@@ -46,6 +46,10 @@ function utility_nav_theme($existing, $type, $theme, $path) {
        'template' => 'menu--info-for--utility-mobile-info',
        'base hook' => 'menu'
      ],
+    'menu__info_for__utility_menu_blocks' => [
+       'template' => 'menu--info-for--utility-menu-blocks',
+       'base hook' => 'menu'
+     ],
   ];
 }
 

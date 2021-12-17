@@ -28,7 +28,7 @@ class BinariesPrepare extends ProcessPluginBase {
   public function transform($values, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $images = array();
     print_r($values);
-    if ($values['type'] == 'binary' && !empty($values['url'])) {
+    if (!empty($values['type']) && $values['type'] == 'binary' && !empty($values['url'])) {
       print($values['url']);
       return $values['url'];
     }

@@ -30,6 +30,7 @@ class LibHoursTodayBlock extends BlockBase {
   public function build() {
     $blockConfig = $this->getConfiguration();
     $libHoursController = new LibHoursController();
+    $is_mobile = false;
 
     if ($blockConfig['weekly_display']) {
       $template = 'lib_hours_range';
@@ -47,6 +48,7 @@ class LibHoursTodayBlock extends BlockBase {
         case 'utility_nav':
           $template = 'lib_hours_today_util';
           $hours = $libHoursController->getToday($blockConfig['libraries']);
+          $is_mobile = $blockConfig['is_mobile'];
           break;
          default:
           $template = 'lib_hours_today';
@@ -73,6 +75,7 @@ class LibHoursTodayBlock extends BlockBase {
       '#row_class' => $row_class,
       '#grid_class' => $grid_class,
       '#current_date' => $current_date,
+      '#is_mobile' => $is_mobile,
       '#cache' => [
         'max-age' => 0,
       ]
@@ -118,6 +121,12 @@ class LibHoursTodayBlock extends BlockBase {
       '#required' => TRUE,
       '#options' => $display_types,
     ];
+    $form['is_mobile'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Is Mobile Block?'),
+      '#description' => t('Note: Only affects Utility Nav displays. This option is otherwise ignored.'),
+      '#default_value' => isset($config['is_mobile']) ? $config['is_mobile'] : NULL,
+    ];
     $form['grid_display'] = [
       '#type' => 'checkbox',
       '#title' => t('Grid Display?'),
@@ -147,5 +156,6 @@ class LibHoursTodayBlock extends BlockBase {
     $this->setConfigurationValue('grid_display', $form_state->getValue('grid_display'));
     $this->setConfigurationValue('date_display', $form_state->getValue('date_display'));
     $this->setConfigurationValue('display_type', $form_state->getValue('display_type'));
+    $this->setConfigurationValue('is_mobile', $form_state->getValue('is_mobile'));
   }
 }
