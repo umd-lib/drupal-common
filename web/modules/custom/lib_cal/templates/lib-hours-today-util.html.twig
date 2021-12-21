@@ -48,6 +48,9 @@
                         {% if hours_info.to == '12:00AM' %}
                           {% set twentyFourHrs = TRUE %}
                         {% endif %}
+                        {% if hours_info.from == '12:00AM' %}
+                          {% set twentyFourHrs = TRUE %}
+                        {% endif %}
                       {% else %}
                         {{ hours_info.from }} 
                         {%if hours_info.to %}

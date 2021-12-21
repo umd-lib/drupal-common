@@ -6,6 +6,9 @@
 #}
 
 <div {{attributes}}>
+          {% if node.field_umdt_ct_article_subtitle.value %}
+            <h2>{{ node.field_umdt_ct_article_subtitle.value }}</h2>
+          {% endif %}
 	{{ title_suffix }}
 	<div class="article-byline">
 		{% if content.field_umdt_ct_article_author|field_value %}
