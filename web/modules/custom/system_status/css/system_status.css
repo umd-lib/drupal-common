@@ -2,12 +2,12 @@
   display: block;
 }
 
-.systems-status-loaded {
+.system-grid {
   display: none;
 }
 
-.systems-status-block {
-  background-color: gray;
+#systems-status-content-mobile, #systems-status-content {
+  display: none;
 }
 
 .systems-status-block-data {

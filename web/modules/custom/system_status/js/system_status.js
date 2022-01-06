@@ -6,8 +6,6 @@
 
       var systemStatusUrl = drupalSettings.system_status.system_status_url;
       var utilityNavItem = $(context).find('.utility-nav-systems-status');
-      var systemStatusLoading = $(context).find('.systems-status-loading');
-      var systemStatusLoaded = $(context).find('.systems-status-loaded');
 
       /**
        * Retrieves the systems status from the given endpoint, and updates
@@ -19,7 +17,6 @@
         var systemStatusDate = $(context).find('.systems-status-date');
         var systemStatusOperational = $(context).find('.systems-status-operational > .status');
         var systemStatusProblem = $(context).find('.systems-status-maintenance > .status');
-        var systemStatusOutage = $(context).find('.systems-status-outage > .status');
 
         if (utilityNavItem === undefined || utilityNavItem[0] === undefined) {
           // Status menu item not on page
@@ -38,33 +35,38 @@
           }
 
           var nonNormalCount = data['non_normal']
+          $("#systems-status-spinner").hide();
+          $("#systems-status-content").show();
+          $("#systems-status-spinner-mobile").hide();
+          $("#systems-status-content-mobile").show();
+          
           if (nonNormalCount > 0) {
             var nonNormalCaption = '<span class="badge">' + nonNormalCount + '</span>';
             utilityNavItemStatus.html(nonNormalCaption);
+            $("#system-no-issues").hide();
+            $("#system-issues").show();
+            $("#system-no-issues-mobile").hide();
+            $("#system-issues-mobile").show();
+          } else {
+            $("#system-issues").hide();
+            $("#system-no-issues").show();
+            $("#system-issues-mobile").hide();
+            $("#system-no-issues-mobile").show();
           }
-          systemStatusOperational.html(`${data['normal']}/${data['total']}`);
-          var problemHtml = "<ul>"
+          var problemHtml = "<ol>"
           data['non_normal_list'].forEach(element => problemHtml += `<li>${element}</li>`);
-          problemHtml += "</ul>"
+          problemHtml += "</ol>"
           systemStatusProblem.html(problemHtml);
-          systemStatusOutage.html(`${data['outage']}/${data['total']}`);
-          systemStatusLoading.hide()
-          systemStatusLoaded.show()
         });
       }
 
-      $('html').once('systemStatusBehavior').each(function () {
+      // $('body').once('systemStatusBehavior').each(function () {
+      //   retrieveStatus(systemStatusUrl);
+      // });
+
+      $(context).find("#showSystem").once('systemStatusBehavior').each(function() {
         retrieveStatus(systemStatusUrl);
       });
-
-      /* The following section can be removed after incorporating
-       * the utility nav theming changes.
-       */
-      // utilityNavItem.click(function (e) {
-      //   retrieveStatus(systemStatusUrl);
-      //   systemStatusBlock.toggle();
-      //   e.preventDefault();
-      // })
 
       function getFormattedDate(date) {
         if (date == undefined) {

@@ -9,7 +9,46 @@
 #}
 {{ attach_library('system_status/system_status-global') }}
 <div id="showSystem" tabindex="0">
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+  <div class="systems-status-block">
+
+  <div class="systems-status-loading" id="systems-status-spinner">
+    Loading systems data...<span class="fas fa-spinner fa-spin"></span>
+  </div>
+  <div class="system-grid" id="systems-status-content">
+    <div class="system-heading">
+      <span class="systems-status-date">&nbsp;</span> 
+    </div>
+    <div>
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+    </div>
+    <div class="system-item system-display" id="system-no-issues">
+      <div>  <!-- if no issues found, green checkmark -->
+        <span aria-hidden="true" class="fas fa-check-circle color-success font-4x"></span>
+        <span class="sr-only">green checkmark icon</span>  
+      </div>
+      <div class="utility-operational">
+        All Systems are Operational 
+      </div>
+    </div>
+    <div class="system-item system-hide" id="system-issues">
+      <div> <!-- if there's any issue, display warning -->
+        <span aria-hidden="true" class="fas fa-exclamation-triangle color-danger font-4x"></span>
+        <span class="sr-only">Warning icon</span>                     
+      </div>
+      <div>
+        <div class="utility-location">Issue(s)</div>
+          <ol class="systems-status-maintenance">
+            <span class="status">&nbsp;</span>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="exitSystem()" class="close-btn">
+      <span aria-hidden="true" class="fas fa-times"></span>
+      <span class="sr-only">Exit System Status</span>
+    </button>
+  </div>
 </div>

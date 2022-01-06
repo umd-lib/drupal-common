@@ -7,8 +7,37 @@
  *   - content
  */
 #}
-<div class="system-grid">
+<div class="systems-status-loading" id="systems-status-spinner-mobile">
+  Loading systems data...<span class="fas fa-spinner fa-spin"></span>
+</div>
+<div class="system-grid" id="systems-status-content-mobile">
+  <div class="system-heading">
+    <span class="systems-status-date">&nbsp;</span>
+  </div>
+  <div>
   {% block content %}
     {{ content }}
   {% endblock %}
-</div>
+  </div>
+  <div class="system-item system-display" id="system-no-issues-mobile">
+    <div>  <!-- if no issues found, green checkmark -->
+      <span aria-hidden="true" class="fas fa-check-circle color-success font-4x"></span>
+      <span class="sr-only">green checkmark icon</span>
+    </div>
+    <div class="utility-operational">
+      All Systems are Operational
+    </div>
+  </div>
+  <div class="system-item system-hide" id="system-issues-mobile">
+    <div> <!-- if there's any issue, display warning -->
+      <span aria-hidden="true" class="fas fa-exclamation-triangle color-danger font-4x"></span>
+      <span class="sr-only">Warning icon</span>
+    </div>
+    <div>
+      <div class="utility-location">Issue(s)</div>
+        <ol class="systems-status-maintenance">
+          <span class="status">&nbsp;</span>
+        </ol>
+      </div>
+    </div>
+  </div>
