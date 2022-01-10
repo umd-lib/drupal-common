@@ -29,3 +29,10 @@
 .ask-us-social-links .fontawesome-icons {
   display: inline-block;
 }
+
+input[type=text]#search-faq {
+  padding: 10px;
+  margin: .7rem 0 1rem 0;
+  border: 1px #ccc solid;
+  width: auto;
+}

@@ -10,13 +10,31 @@
  */
 function ask_us_theme() {
   return [
-    'ask_a_librarian__utility_menu_blocks' => [
-       'template' => 'ask-a-librarian--utility-menu-blocks',
-       'base hook' => 'block'
+    'ask_a_librarian_util' => [
+      'variables' => [
+        'libchat_id' => '',
+        'ask_title' => '',
+        'faq_form' => '',
+        'link_1_url' => '',
+        'link_1_text' => '',
+        'link_2_url' => '',
+        'link_2_text' => '',
+        'social_button_1' => '',
+        'social_button_2' => '',
+      ],
     ],
-    'ask_a_librarian__utility_mobile_help' => [
-       'template' => 'ask-a-librarian--utility-mobile-help',
-       'base hook' => 'block'
+    'ask_a_librarian_util_mobile' => [
+      'variables' => [
+        'libchat_id' => '',
+        'ask_title' => '',
+        'faq_form' => '',
+        'link_1_url' => '',
+        'link_1_text' => '',
+        'link_2_url' => '',
+        'link_2_text' => '',
+        'social_button_1' => '',
+        'social_button_2' => '',
+      ],
     ],
   ];
 }

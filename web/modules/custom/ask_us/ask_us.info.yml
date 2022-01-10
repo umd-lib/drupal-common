@@ -2,11 +2,9 @@ name: Ask Us
 description: Provides a custom ask us block for utility nav.
 
 package: 'UMD Services'
-configure: ask_us.admin_settings_form
 type: module
 dependencies:
   - drupal:easy_install
-  - libraries_configuration:libraries_configuration
   - fontawesome
   - fontawesome_iconpicker_widget
 

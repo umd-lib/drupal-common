@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * ask-us-block template
+ *
+ * Variables:
+ *   - ask_us_title
+ *   - ask_us_form
+ *   - ask_us_buttons
+ *   - ask_us_top_right_link
+ *   - ask_us_bottom_left_link
+ *   - ask_us_bottom_right_link
+ *   - mobile: libchat_cf7cee7b231b23dd15b04cc264f1e25f
+ */
+#}
+{{ attach_library('ask_us/ask-us') }}
+<div class="info-grid">
+  <div class="info-heading">
+    {{ ask_title }}
+  </div>
+<div>
+  <form method="get" class="navbar-form navbar-left" role="search" name="s-la-searchform" id="search-faq-mobile-form" action="https://umd.libanswers.com/search" aria-labelledby="search FAQ">
+    <label for="search-faq" class="sr-only">{{ faq_form }}</label>
+    <input type="text" id="search-faq-mobile-field" class="form-control" name="q" required placeholder="How to reserve a room?" size="25" value="" autocomplete="on" aria-describedby="search faq">
+    <button type="submit" class="btn-faq">{{ faq_form }}</button>
+  </form>
+  <div>
+    <div><a href="{{ link_1_url }}">{{ link_1_text }}</a> | <a href="{{ link_2_url }}">{{ link_2_text }}</a></div>
+  </div>
+  <div>
+    <div style="margin-top: 1rem" id="libchat_cf7cee7b231b23dd15b04cc264f1e25f"></div> <!-- chat button embed -->
+    <div class="utility-border">
+      <span aria-hidden="true" class="fab fa-twitter twitter-blue"></span>
+      <span class="sr-only">Twitter icon</span><span><a href="https://twitter.com/AskUMD">@ASKUMD</a></span>
+    </div>
+    <div class="utility-border">
+      <span aria-hidden="true" class="fas fa-book"></span>
+      <span class="sr-only">Book icon</span><span><a href="https://lib.guides.umd.edu/">RESEARCH GUIDES</a></span>
+    </div>
+  </div>
+</div>
