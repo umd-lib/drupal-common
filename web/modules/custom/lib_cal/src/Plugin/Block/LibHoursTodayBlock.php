@@ -76,6 +76,8 @@ class LibHoursTodayBlock extends BlockBase {
       '#grid_class' => $grid_class,
       '#current_date' => $current_date,
       '#is_mobile' => $is_mobile,
+      '#shady_grove_url' => $blockConfig['shady_grove_url'],
+      '#all_libraries_url' => $blockConfig['all_libraries_url'],
       '#cache' => [
         'max-age' => 0,
       ]
@@ -106,6 +108,16 @@ class LibHoursTodayBlock extends BlockBase {
       '#title' => t('Branch Suffix'),
       '#description' => t('E.g., Hours'),
       '#default_value' =>  isset($config['branch_suffix']) ? $config['branch_suffix'] : null,
+    ];
+    $form['all_libraries_url'] = [
+      '#type' => 'textfield',
+      '#title' => t('All Libraries URL'),
+      '#default_value' =>  isset($config['all_libraries_url']) ? $config['all_libraries_url'] : null,
+    ];
+    $form['shady_grove_url'] = [
+      '#type' => 'textfield',
+      '#title' => t('Shady Grove Hours URL'),
+      '#default_value' =>  isset($config['shady_grove_url']) ? $config['shady_grove_url'] : null,
     ];
     $form['weekly_display'] = [
       '#type' => 'checkbox',
@@ -151,6 +163,8 @@ class LibHoursTodayBlock extends BlockBase {
     $libraries = implode(',', $libraries);
     $this->setConfigurationValue('libraries', $libraries);
     $this->setConfigurationValue('branch_prefix', $form_state->getValue('branch_prefix'));
+    $this->setConfigurationValue('shady_grove_url', $form_state->getValue('shady_grove_url'));
+    $this->setConfigurationValue('all_libraries_url', $form_state->getValue('all_libraries_url'));
     $this->setConfigurationValue('branch_suffix', $form_state->getValue('branch_suffix'));
     $this->setConfigurationValue('weekly_display', $form_state->getValue('weekly_display'));
     $this->setConfigurationValue('grid_display', $form_state->getValue('grid_display'));

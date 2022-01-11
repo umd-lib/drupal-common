@@ -33,6 +33,8 @@ function lib_cal_theme() {
         'row_class' => '',
         'grid_class' => '',
         'current_date' => '',
+        'shady_grove_url' => '',
+        'all_libraries_url' => '',
         'is_mobile' => '',
       ],
     ],

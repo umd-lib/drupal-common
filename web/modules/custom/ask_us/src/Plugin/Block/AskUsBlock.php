@@ -63,7 +63,7 @@ class AskUsBlock extends BlockBase {
     ];
     $form['faq_form'] = [
       '#type' => 'textfield',
-      '#title' => t('FAQ Form Code'),
+      '#title' => t('FAQ Form Submit Text'),
       '#default_value' =>  isset($config['faq_form']) ? $config['faq_form'] : null,
       '#required' => TRUE,
     ];
