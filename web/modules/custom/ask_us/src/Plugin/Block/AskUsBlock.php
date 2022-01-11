@@ -35,6 +35,7 @@ class AskUsBlock extends BlockBase {
       '#theme' => $template,
       '#ask_title' => $blockConfig['ask_title'],
       '#faq_form' => $blockConfig['faq_form'],
+      '#faq_placeholder' => $blockConfig['faq_placeholder'],
       '#libchat_id' => $blockConfig['libchat_id'],
       '#link_1_url' => $blockConfig['link_1_url'],
       '#link_1_text' => $blockConfig['link_1_text'],
@@ -65,6 +66,12 @@ class AskUsBlock extends BlockBase {
       '#type' => 'textfield',
       '#title' => t('FAQ Form Submit Text'),
       '#default_value' =>  isset($config['faq_form']) ? $config['faq_form'] : null,
+      '#required' => TRUE,
+    ];
+    $form['faq_placeholder'] = [
+      '#type' => 'textfield',
+      '#title' => t('FAQ Form Placeholder'),
+      '#default_value' =>  isset($config['faq_placeholder']) ? $config['faq_placeholder'] : null,
       '#required' => TRUE,
     ];
     $form['link_1_url'] = [
@@ -106,6 +113,7 @@ class AskUsBlock extends BlockBase {
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->setConfigurationValue('libchat_id', $form_state->getValue('libchat_id'));
     $this->setConfigurationValue('faq_form', $form_state->getValue('faq_form'));
+    $this->setConfigurationValue('faq_placeholder', $form_state->getValue('faq_placeholder'));
     $this->setConfigurationValue('ask_title', $form_state->getValue('ask_title'));
     $this->setConfigurationValue('link_1_url', $form_state->getValue('link_1_url'));
     $this->setConfigurationValue('link_1_text', $form_state->getValue('link_1_text'));
