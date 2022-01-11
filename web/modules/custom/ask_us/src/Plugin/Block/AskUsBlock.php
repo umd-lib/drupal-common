@@ -40,8 +40,6 @@ class AskUsBlock extends BlockBase {
       '#link_1_text' => $blockConfig['link_1_text'],
       '#link_2_url' => $blockConfig['link_2_url'],
       '#link_2_text' => $blockConfig['link_2_text'],
-      '#social_button_1' => $blockConfig['social_button_1'],
-      '#social_button_2' => $blockConfig['social_button_2'],
       '#cache' => [
         'max-age' => 3600,
       ]
@@ -113,7 +111,6 @@ class AskUsBlock extends BlockBase {
     $this->setConfigurationValue('link_1_text', $form_state->getValue('link_1_text'));
     $this->setConfigurationValue('link_2_url', $form_state->getValue('link_2_url'));
     $this->setConfigurationValue('link_2_text', $form_state->getValue('link_2_text'));
-    $this->setConfigurationValue('social_button_1', $form_state->getValue('social_button_1'));
-    $this->setConfigurationValue('social_button_2', $form_state->getValue('social_button_2'));
+    $this->setConfigurationValue('is_mobile', $form_state->getValue('is_mobile'));
   }
 }

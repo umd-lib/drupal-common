@@ -4,20 +4,12 @@
  * ask-us-block template
  *
  * Variables:
- *   - ask_us_title
- *   - ask_us_form
- *   - ask_us_buttons
- *   - ask_us_top_right_link
- *   - ask_us_bottom_left_link
- *   - ask_us_bottom_right_link
-      '#libchat_id' => $blockConfig['libchat_id'],
-      '#link_1_url' => $blockConfig['link_1_url'],
-      '#link_1_text' => $blockConfig['link_1_text'],
-      '#link_2_url' => $blockConfig['link_2_url'],
-      '#link_2_text' => $blockConfig['link_2_text'],
-      '#social_button_1' => $blockConfig['social_button_1'],
-      '#social_button_2' => $blockConfig['social_button_2'],
-faq_form
+ *   libchat_id : springshare ask us button id
+ *   link_1_url : customizable link 1 url
+ *   link_1_text : customizable link 1 text
+ *   link_2_url
+ *   link_2_text
+ *   faq_form : misnamed key. Is used for search button text and label.
  */
 #}
 {{ attach_library('ask_us/ask-us') }}
