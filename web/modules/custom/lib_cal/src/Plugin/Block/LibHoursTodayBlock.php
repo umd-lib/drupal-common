@@ -40,6 +40,7 @@ class LibHoursTodayBlock extends BlockBase {
         case 'today':
           $template = 'lib_hours_today';
           $hours = $libHoursController->getToday($blockConfig['libraries']);
+          $hours = $this->sortLocationsHeirarchy($hours);
           break;
         case 'weekly':
           $template = 'lib_hours_range';
@@ -67,6 +68,11 @@ class LibHoursTodayBlock extends BlockBase {
       $current_date = date("c");
     }
 
+    $hours_class = 'hours-main-grid';
+    if (count($hours) == 1) {
+      $hours_class = 'hours-main';
+    }
+
     return [
       '#theme' => $template,
       '#hours' => $hours,
@@ -74,6 +80,7 @@ class LibHoursTodayBlock extends BlockBase {
       '#branch_suffix' => $blockConfig['branch_suffix'],
       '#row_class' => $row_class,
       '#grid_class' => $grid_class,
+      '#hours_class' => $hours_class,
       '#current_date' => $current_date,
       '#is_mobile' => $is_mobile,
       '#shady_grove_url' => $blockConfig['shady_grove_url'],
@@ -82,6 +89,28 @@ class LibHoursTodayBlock extends BlockBase {
         'max-age' => 0,
       ]
     ];
+  }
+
+  function sortLocationsHeirarchy($hours) {
+    $children = [];
+    foreach ($hours as $key => $loc) {
+      if (!empty($loc['parent_lid'])) {
+        $loc['name'] = '|chev| ' . $loc['name'];
+        $children[$loc['parent_lid']][] = $loc;
+        unset($hours[$key]);
+      }
+    }
+    $output = [];
+    foreach ($hours as $loc) {
+      $plid = $loc['lid'];
+      $output[] = $loc;
+      if (!empty($children[$plid])) {
+        foreach ($children[$plid] as $child) {
+          $output[] = $child;
+        }
+      }
+    }
+    return $output;
   }
 
   public function blockForm($form, FormStateInterface $form_state) {

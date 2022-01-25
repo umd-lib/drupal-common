@@ -8,58 +8,67 @@
  */
 #}
 {{ attach_library('lib_cal/lib-cal') }}
-{% if current_date %}
-  <h3>Week of {{ current_date|date("l, F j") }}</h3>
-{% endif %}
-<div class="lib-hours {{ row_class }}">
-  {% if hours %}
-    {% for location in hours %}
-      <div class="{{ grid_class }}">
-        <ul>
-          <li><span class="lib-hours-location">{{ location.name }}</span>: 
-            {% if location.dates %}
-              <ul>
-                {% for date, location_info in location.dates %}
-                  <li class="lib-hours-hour">{{ date|date("l, F j") }}: 
-                    {% if location_info.hours %}
-                      {% for hours_info in location_info.hours %}
-                        <div class="lib-hours-details">
-                          {% if location.name == 'McKeldin Library' %}
-                            {{ hours_info.from|replace({'12:00AM' : '24 Hours'}) }} 
-                            {%if hours_info.to %}
-                              - {{ hours_info.to|replace({'12:00AM' : '24 Hours'}) }}
-                            {% endif %}
-                          {% else %}
-                            {{ hours_info.from }} 
-                            {%if hours_info.to %}
-                              - {{ hours_info.to }}
-                            {% endif %}
-                          {% endif %}
-                        </div>
-                      <!-- end hours_info -->
-                      {% endfor %}
-                    {% else %}
-                      {% if location_info.status == 'text' %}
-                        <div class="lib-hours-details">{{ location_info.text }}</div>
-                      {% elseif location_info.status == 'closed' %}
-                        <div class="lib-hours-details">Closed</div>
-                      {% elseif location_info.status == '24hours' %}
-                        <div class="lib-hours-details">24 Hours</div>
-                      {% endif %}
-                    {% endif %}
-                  </li>
-                <!-- end date,location_info -->
-                {% endfor %}
-              </ul>
-            {% else %}
-              <ul>
-                <li class="lib-hours-hour">--</li>
-              </ul>
-            {% endif %}
-          </li>
-        <!-- end location -->
-        </ul>
-      </div>
-    {% endfor %}
+{% set increment = 0 %}
+<div class="hours-embed">
+  {% if current_date %}
+    <h3>Week of {{ current_date|date("l, F j") }}</h3>
   {% endif %}
+  <div class="{{ hours_class }}">
+    {% if hours %}
+      {% for location in hours %}
+        {% set increment = increment + 1 %}
+        <div class="hours{{ increment }}">
+          <div class="hours-heading">{{ location.name }}</div> 
+          {% if location.dates %}
+            {% for date, location_info in location.dates %}
+              <div class="utility-border">
+                <span class="utility-date">{{ date|date("l, F j") }}</span>
+                {% if location_info.hours %}
+                  {% for hours_info in location_info.hours %}
+                    <span class="utility-hours">
+                      {% if location.name == 'McKeldin Library' %}
+                        {{ hours_info.from|replace({'12:00AM' : '24 Hours'}) }} 
+                        {%if hours_info.to %}
+                          - {{ hours_info.to|replace({'12:00AM' : '24 Hours'}) }}
+                        {% endif %}
+                      {% else %}
+                        {{ hours_info.from }} 
+                        {%if hours_info.to %}
+                          - {{ hours_info.to }}
+                        {% endif %}
+                      {% endif %}
+                    </span>
+                  <!-- end hours_info -->
+                  {% endfor %}
+                {% else %}
+                  {% if location_info.status == 'text' %}
+                    <span class="utility-hours">{{ location_info.text }}</span>
+                  {% elseif location_info.status == 'closed' %}
+                    <span class="utility-hours">Closed</span>
+                  {% elseif location_info.status == '24hours' %}
+                    <span class="utility-hours">24 Hours</span>
+                  {% endif %}
+                {% endif %}
+              </div>
+            <!-- end date,location_info -->
+            {% endfor %}
+          {% else %}
+            <div class="utility-border">
+              <span class="utility-date">--</span>
+            </div>
+          {% endif %}
+        </div>
+        <!-- end location -->
+      {% endfor %}
+      {% if shady_grove_url %}
+        {% set increment = increment + 1 %}
+        <div class="hours{{ increment }}">
+          <div class="hours-heading">Shady Grove</div>
+          <div class="utility-border">
+            <span class="utility-date"><a href="{{ shady_grove_url }}">View Hours</a></span>
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
 </div>

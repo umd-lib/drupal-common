@@ -3,3 +3,4 @@ lib-cal:
   css:
     theme:
       css/lib-cal.css: {}
+      css/lib-hours.css: {}

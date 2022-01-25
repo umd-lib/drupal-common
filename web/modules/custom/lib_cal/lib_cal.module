@@ -23,6 +23,8 @@ function lib_cal_theme() {
         'row_class' => '',
         'grid_class' => '',
         'current_date' => '',
+        'shady_grove_url' => '',
+        'hours_class' => '',
       ],
     ],
     'lib_hours_today_util' => [
@@ -36,6 +38,7 @@ function lib_cal_theme() {
         'shady_grove_url' => '',
         'all_libraries_url' => '',
         'is_mobile' => '',
+        'hours_class' => '',
       ],
     ],
     'lib_hours_range' => [
@@ -46,6 +49,8 @@ function lib_cal_theme() {
         'row_class' => '',
         'grid_class' => '',
         'current_date' => '',
+        'shady_grove_url' => '',
+        'hours_class' => '',
       ],
     ],
   ];

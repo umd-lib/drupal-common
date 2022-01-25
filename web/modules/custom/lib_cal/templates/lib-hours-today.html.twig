@@ -10,16 +10,17 @@
  */
 #}
 {{ attach_library('lib_cal/lib-cal') }}
-{% if current_date %}
-  <h3>{{ current_date|date("l, F j") }}</h3>
-{% endif %}
-<div class="lib-hours-today {{ row_class }}">
-  {% if hours %}
-    {% for location in hours %}
-      <div class="{{ grid_class }}">
-        <ul>
-          <li>{{ branch_prefix }} {{ location.name }} {{ branch_suffix }}:
-            <div class="lib-hours-details"> 
+<div class="hours-embed">
+  {% if current_date %}
+    <h3>{{ current_date|date("l, F j") }}</h3>
+  {% endif %}
+  <div class="hours-main">
+    <div class="hours1">
+      {% if hours %}
+        {% for location in hours %}
+          <div class="utility-border">
+            <span class="utility-location">{{ location.name|replace({'|chev|' : '<i class="fas fa-chevron-right"></i>'})|raw }} {{ branch_suffix }}</span>
+            <span class="utility-hours"> 
               {% if location.dates %}
                 {% for date, location_info in location.dates %}
                   {% if location_info.hours %}
@@ -38,21 +39,21 @@
                     {% endfor %}
                   {% elseif location_info.status %}
                     {% if location_info.status == 'text' %}
-                      <div class="lib-hours-details">{{ location_info.text }}</div>
+                      {{ location_info.text }}
                     {% elseif location_info.status == 'closed' %}
-                      <div class="lib-hours-details">Closed</div>
+                      Closed
                     {% elseif location_info.status == '24hours' %}
-                      <div class="lib-hours-details">24 Hours</div>
+                      24 Hours
                     {% endif %}
                   {% endif %}
                 {% endfor %}
               {% else %}
                 --
               {% endif %}
-            </div>
-          </li>
-        </ul>
-      </div>
-    {% endfor %}
-  {% endif %}
+            </span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
 </div>
