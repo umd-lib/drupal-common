@@ -9,6 +9,7 @@
 #}
 {{ attach_library('lib_cal/lib-cal') }}
 {% set increment = 0 %}
+{% set twentyFourHrs = FALSE %}
 <div class="hours-embed">
   {% if current_date %}
     <h3>Week of {{ current_date|date("l, F j") }}</h3>
@@ -27,9 +28,15 @@
                   {% for hours_info in location_info.hours %}
                     <span class="utility-hours">
                       {% if location.name == 'McKeldin Library' %}
-                        {{ hours_info.from|replace({'12:00AM' : '24 Hours'}) }} 
+                        {{ hours_info.from|replace({'12:00AM' : '24 Hours *'}) }} 
                         {%if hours_info.to %}
-                          - {{ hours_info.to|replace({'12:00AM' : '24 Hours'}) }}
+                          - {{ hours_info.to|replace({'12:00AM' : '24 Hours *'}) }}
+                        {% endif %}
+                        {% if hours_info.to == '12:00AM' %}
+                          {% set twentyFourHrs = TRUE %}
+                        {% endif %}
+                        {% if hours_info.from == '12:00AM' %}
+                          {% set twentyFourHrs = TRUE %}
                         {% endif %}
                       {% else %}
                         {{ hours_info.from }} 
@@ -52,6 +59,12 @@
               </div>
             <!-- end date,location_info -->
             {% endfor %}
+            {% if twentyFourHrs == TRUE %}
+              <div class="hours-heading-note">
+                * Campus ID required 11pm-8am.
+              </div>
+              {% set twentyFourHrs = FALSE %}
+            {% endif %}
           {% else %}
             <div class="utility-border">
               <span class="utility-date">--</span>

@@ -53,5 +53,11 @@ function lib_cal_theme() {
         'hours_class' => '',
       ],
     ],
+    'lib_button' => [
+      'variables' => [
+        'button_text' => '',
+        'button_url' => '',
+      ],
+    ],
   ];
 }
