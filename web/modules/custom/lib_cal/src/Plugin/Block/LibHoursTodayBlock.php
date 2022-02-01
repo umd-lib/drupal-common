@@ -86,7 +86,7 @@ class LibHoursTodayBlock extends BlockBase {
       '#shady_grove_url' => $blockConfig['shady_grove_url'],
       '#all_libraries_url' => $blockConfig['all_libraries_url'],
       '#cache' => [
-        'max-age' => 0,
+        'max-age' => 3600,
       ]
     ];
   }
