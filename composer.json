@@ -65,6 +65,7 @@
         "drupal/purge": "^3.0",
         "drupal/queue_ui": "^2.1",
         "drupal/quick_node_clone": "^1.14",
+        "drupal/rebuild_cache_access": "^1.7",
         "drupal/redirect": "^1.6",
         "drupal/redis": "^1.4",
         "drupal/restui": "^1.20",
