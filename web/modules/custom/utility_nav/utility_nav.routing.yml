@@ -1,0 +1,14 @@
+# utility_nav.info_root:
+#   path: '/information-for'
+#   requirements:
+#     _permission: 'access content'
+#     name: '^$|[^/]++'
+# utility_nav.info_child:
+#   path: '/information-for/{name}'
+#   requirements:
+#     _permission: 'access content'
+#     name: '^$|[^/]++'
+#   options:
+#     parameters:
+#       name:
+#         type: String

@@ -50,6 +50,22 @@ function utility_nav_theme($existing, $type, $theme, $path) {
        'template' => 'menu--info-for--utility-menu-blocks',
        'base hook' => 'menu'
      ],
+   'main__utility_menu_blocks' => [
+      'template' => 'main--utility-menu-blocks',
+      'base hook' => 'block'
+    ],
+   'main__utility_mobile_main' => [
+      'template' => 'main--utility-mobile-main',
+      'base hook' => 'block'
+    ],
+    'menu__main__utility_mobile_main' => [
+       'template' => 'menu--main--utility-mobile-main',
+       'base hook' => 'menu'
+     ],
+    'menu__main__utility_menu_blocks' => [
+       'template' => 'menu--main--utility-menu-blocks',
+       'base hook' => 'menu'
+     ],
   ];
 }
 
@@ -57,6 +73,7 @@ function utility_nav_preprocess_block(&$variables) {
   $util_menus = array(
     'system_menu_block:accounts',
     'system_menu_block:info-for',
+    'system_menu_block:main',
   );
   if (in_array($variables['plugin_id'], $util_menus)) {
     $region = Block::load($variables['elements']['#id'])->getRegion();
@@ -70,6 +87,7 @@ function utility_nav_theme_suggestions_block_alter(array &$suggestions, array $v
     'fixed_block_content:ask_a_librarian',
     'system_menu_block:accounts',
     'system_menu_block:info-for',
+    'system_menu_block:main',
   );
   if (in_array($variables['elements']['#plugin_id'], $util_blocks)) {
     if (isset($variables['elements']['#id'])) {
