@@ -12,7 +12,7 @@ dependencies:
     - node
     - user
 _core:
-  default_config_hash: cJNPg7F_hGeXvDQl9QBnO8ujijPcOan_oX7m85_maCI
+  default_config_hash: Icn5vh1rxx2_wKM6lTqgcGJFk-ZgLORZd6Yg4Izvtr8
 id: news_events_block
 label: 'News & Events'
 module: views
@@ -32,7 +32,7 @@ display:
         options:
           perm: 'access content'
       cache:
-        type: none
+        type: tag
         options: {  }
       query:
         type: views_query
@@ -508,3 +508,4 @@ display:
       tags:
         - 'config:field.storage.node.field_umdt_ct_article_image'
         - 'config:field.storage.node.field_umdt_ct_article_subtitle'
+
