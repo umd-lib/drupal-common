@@ -13,14 +13,18 @@
 {{ attach_library('top_textbooks/top-textbooks') }}
 <div id="texbook-{{ textbook_sysnum }}">
   {%if textbook_count > 0 %}
-    <div class="textbook-request">
-      <a class="btn available-btn">Request Chapter Scan</a>
-    </div>
+    {#
+      <div class="textbook-request">
+        <a class="btn available-btn">Request Chapter Scan</a>
+      </div>
+    #}
     <div class="textbook-count">{{ textbook_count }} available now</div>
   {%else %}
-    <div class="textbook-request">
-      <a class="btn btn-disabled" disabled="true">Request Chapter Scan</a>
-    </div>
+    {#
+      <div class="textbook-request">
+        <a class="btn btn-disabled" disabled="true">Request Chapter Scan</a>
+      </div>
+    #}
     {%if error %}
       <div class="textbook-error">Error retrieving availability information.</div>
     {%elseif textbook_mindue %}
