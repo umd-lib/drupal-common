@@ -54,12 +54,12 @@ function utility_nav_theme($existing, $type, $theme, $path) {
       'template' => 'main--utility-menu-blocks',
       'base hook' => 'block'
     ],
-   'main__utility_mobile_main' => [
-      'template' => 'main--utility-mobile-main',
+   'main__utility_mobile_info' => [
+      'template' => 'main--utility-mobile-info',
       'base hook' => 'block'
     ],
-    'menu__main__utility_mobile_main' => [
-       'template' => 'menu--main--utility-mobile-main',
+    'menu__main__utility_mobile_info' => [
+       'template' => 'menu--main--utility-mobile-info',
        'base hook' => 'menu'
      ],
     'menu__main__utility_menu_blocks' => [

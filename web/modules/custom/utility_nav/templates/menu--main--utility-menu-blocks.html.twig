@@ -29,8 +29,13 @@
   {% import _self as menus %}
   {% if items %}
     {% for item in items %}
-      {% if '/information-for' in item.url|render %}
-        {% if '/information-for/' in item.url|render %}
+      {# exclude information root but display children.
+         this could be a little fragile and will need
+         some live testing. alternately it may be possible
+         to override this menu using PHP to only get
+         information children. #}
+      {% if '/information' in item.url|render %}
+        {% if '/information/' in item.url|render %}
           <div class="utility-border">
             <span class="utility-location">{{ link(item.title, item.url) }}</span>
           </div>

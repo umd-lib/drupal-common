@@ -33,7 +33,7 @@
 	{% if items %}
 		<ul>
 			{% for item in items %}
-				{% if '/information-for' in item.url|render %}
+				{% if '/information' in item.url|render %}
 				{% else %}
 					<li{{item.attributes}}>
 						{{ link(item.title, item.url) }}
