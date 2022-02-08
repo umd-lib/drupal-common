@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce30e084e7b86d3118424d90f2a7e42c",
+    "content-hash": "878c628756303b16250742e8e580f391",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2029,6 +2029,61 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/better_exposed_filters",
                 "issues": "https://www.drupal.org/project/issues/better_exposed_filters"
+            }
+        },
+        {
+            "name": "drupal/big_pipe_paragraphs",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/big_pipe_paragraphs.git",
+                "reference": "1.0.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/big_pipe_paragraphs-1.0.0-alpha1.zip",
+                "reference": "1.0.0-alpha1",
+                "shasum": "9846306c790e1dc817055b37cd0c0e0a8e45d196"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/paragraphs": "^1.6",
+                "drupal/preprocess": "^2.0"
+            },
+            "require-dev": {
+                "roave/security-advisories": "dev-master"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-alpha1",
+                    "datestamp": "1603666700",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "jefuri",
+                    "homepage": "https://www.drupal.org/user/2733365"
+                }
+            ],
+            "description": "Load paragraphs with big pipe.",
+            "homepage": "https://www.drupal.org/project/big_pipe_paragraphs",
+            "keywords": [
+                "Big Pipe",
+                "Drupal",
+                "Drupal 8",
+                "Paragraphs"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/big_pipe_paragraphs"
             }
         },
         {
@@ -5580,6 +5635,67 @@
                 "source": "https://cgit.drupalcode.org/pathauto",
                 "issues": "https://www.drupal.org/project/issues/pathauto",
                 "documentation": "https://www.drupal.org/docs/8/modules/pathauto"
+            }
+        },
+        {
+            "name": "drupal/preprocess",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/preprocess.git",
+                "reference": "2.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/preprocess-2.0.1.zip",
+                "reference": "2.0.1",
+                "shasum": "3247914139b4cadd013f3305cd93822ca033c470"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "php": "^7.1 || ^8"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.1",
+                    "datestamp": "1636632716",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Steven Buteneers",
+                    "homepage": "https://www.drupal.org/u/steven-buteneers",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "jefuri",
+                    "homepage": "https://www.drupal.org/user/2733365"
+                },
+                {
+                    "name": "sjerdo",
+                    "homepage": "https://www.drupal.org/user/3495403"
+                }
+            ],
+            "description": "Provides a plugin type for preprocessing.",
+            "homepage": "https://www.drupal.org/project/preprocess",
+            "keywords": [
+                "Content",
+                "Content Display",
+                "Drupal",
+                "Theming"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/preprocess",
+                "issues": "https://www.drupal.org/project/issues/preprocess?version=8.x"
             }
         },
         {
@@ -13810,6 +13926,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/better_exposed_filters": 10,
+        "drupal/big_pipe_paragraphs": 15,
         "drupal/block_field": 5,
         "drupal/block_type_templates": 15,
         "drupal/cache_control_override": 15,
