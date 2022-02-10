@@ -19,6 +19,7 @@
     <div class="hours1">
       {% if hours %}
         {% for location in hours %}
+          {% if location.name is not empty %}
           <div class="utility-border">
             <span class="utility-location">{{ location.name|replace({'|chev|' : '<i class="fas fa-chevron-right"></i>'})|raw }} {{ branch_suffix }}</span>
             <span class="utility-hours"> 
@@ -55,11 +56,12 @@
                     {% endif %}
                   {% endif %}
                 {% endfor %}
-              {% else %}
+              {% elseif location.name %}
                 --
               {% endif %}
             </span>
           </div>
+          {% endif %}
         {% endfor %}
       {% endif %}
       {% if twentyFourHrs == TRUE %}
