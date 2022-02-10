@@ -10,6 +10,7 @@
  */
 #}
 {{ attach_library('lib_cal/lib-cal') }}
+{% set twentyFourHrs = FALSE %}
 <div class="hours-embed">
   {% if current_date %}
     <h3>{{ current_date|date("l, F j") }}</h3>
@@ -43,7 +44,14 @@
                     {% elseif location_info.status == 'closed' %}
                       Closed
                     {% elseif location_info.status == '24hours' %}
-                      24 Hours
+                      24 Hours *
+                      {% set twentyFourHrs = TRUE %}
+                    {% endif %}
+                    {% if hours_info.to == '12:00AM' %}
+                      {% set twentyFourHrs = TRUE %}
+                    {% endif %}
+                    {% if hours_info.from == '12:00AM' %}
+                      {% set twentyFourHrs = TRUE %}
                     {% endif %}
                   {% endif %}
                 {% endfor %}
@@ -53,6 +61,11 @@
             </span>
           </div>
         {% endfor %}
+      {% endif %}
+      {% if twentyFourHrs == TRUE %}
+        <div class="hours-heading-note">
+          * Campus ID required 11pm-8am.
+        </div>
       {% endif %}
     </div>
   </div>

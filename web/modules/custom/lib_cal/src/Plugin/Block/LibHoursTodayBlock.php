@@ -10,6 +10,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\lib_cal\Controller\LibHoursController;
 use Drupal\lib_cal\Helper\LibCalSettingsHelper;
+use Drupal\Core\Routing;
 
 /**
  * Implements the LibHoursBlock
@@ -28,27 +29,28 @@ class LibHoursTodayBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
+    $debug_date = \Drupal::request()->query->get('debug_date');
     $blockConfig = $this->getConfiguration();
     $libHoursController = new LibHoursController();
     $is_mobile = false;
 
     if ($blockConfig['weekly_display']) {
       $template = 'lib_hours_range';
-      $hours = $libHoursController->getThisWeek($blockConfig['libraries']);
+      $hours = $libHoursController->getThisWeek($blockConfig['libraries'], $debug_date);
     } else {
       switch ($blockConfig['display_type']) {
         case 'today':
           $template = 'lib_hours_today';
-          $hours = $libHoursController->getToday($blockConfig['libraries']);
+          $hours = $libHoursController->getToday($blockConfig['libraries'], $debug_date);
           $hours = $this->sortLocationsHeirarchy($hours);
           break;
         case 'weekly':
           $template = 'lib_hours_range';
-          $hours = $libHoursController->getThisWeek($blockConfig['libraries']);
+          $hours = $libHoursController->getThisWeek($blockConfig['libraries'], $debug_date);
           break;
         case 'utility_nav':
           $template = 'lib_hours_today_util';
-          $hours = $libHoursController->getToday($blockConfig['libraries']);
+          $hours = $libHoursController->getToday($blockConfig['libraries'], $debug_date);
           $is_mobile = $blockConfig['is_mobile'];
           break;
          default:
@@ -60,13 +62,16 @@ class LibHoursTodayBlock extends BlockBase {
     $row_class = 'lib-hours-constrained';
     $grid_class = null;
     $current_date = null;
-    if ($blockConfig['grid_display']) {
-      $row_class = 'row';
-      $grid_class = 'col-800-4';
-    }
     if ($blockConfig['date_display']) {
-      $current_date = date("c");
+      if ($debug_date != null) {
+        $current_date = $debug_date;
+      } else {
+        $current_date = date("c");
+      }
+      $week_date = $hours['hours_from'];
     }
+
+    unset($hours['hours_from']);
 
     $hours_class = 'hours-main-grid';
     if (count($hours) == 1) {
@@ -82,6 +87,7 @@ class LibHoursTodayBlock extends BlockBase {
       '#grid_class' => $grid_class,
       '#hours_class' => $hours_class,
       '#current_date' => $current_date,
+      '#week_date' => $week_date,
       '#is_mobile' => $is_mobile,
       '#shady_grove_url' => $blockConfig['shady_grove_url'],
       '#all_libraries_url' => $blockConfig['all_libraries_url'],
@@ -148,12 +154,6 @@ class LibHoursTodayBlock extends BlockBase {
       '#title' => t('Shady Grove Hours URL'),
       '#default_value' =>  isset($config['shady_grove_url']) ? $config['shady_grove_url'] : null,
     ];
-    $form['weekly_display'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Weekly Display? (Deprecated)'),
-      '#description' => t('Use the Display Type from now on. Will be removed after demo period is over.'),
-      '#default_value' => isset($config['weekly_display']) ? $config['weekly_display'] : NULL,
-    ];
     $display_types = ['today' => t('Today'), 'weekly' => t('Weekly'), 'utility_nav' => t('Utility Nav')];
     $form['display_type'] = [
       '#type' => 'select',
@@ -168,15 +168,9 @@ class LibHoursTodayBlock extends BlockBase {
       '#description' => t('Note: Only affects Utility Nav displays. This option is otherwise ignored.'),
       '#default_value' => isset($config['is_mobile']) ? $config['is_mobile'] : NULL,
     ];
-    $form['grid_display'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Grid Display?'),
-      '#description' => t('If unchecked, defaults to list display.'),
-      '#default_value' => isset($config['grid_display']) ? $config['grid_display'] : NULL,
-    ];
     $form['date_display'] = [
       '#type' => 'checkbox',
-      '#title' => t('Show current date?'),
+      '#title' => t('Show current/weekly date?'),
       '#default_value' => isset($config['date_display']) ? $config['date_display'] : NULL,
     ];
     return $form;

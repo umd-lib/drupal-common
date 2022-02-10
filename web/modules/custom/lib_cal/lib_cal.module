@@ -49,6 +49,7 @@ function lib_cal_theme() {
         'row_class' => '',
         'grid_class' => '',
         'current_date' => '',
+        'week_date' => '',
         'shady_grove_url' => '',
         'hours_class' => '',
       ],

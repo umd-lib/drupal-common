@@ -15,7 +15,7 @@ use Drupal\lib_cal\Controller\LibCalController;
  * 
  * @Block(
  *   id = "lib_cal",
- *   admin_label = @Translation("LibCal"),
+ *   admin_label = @Translation("LibCal Events"),
  *   category = @Translation("custom"),
  * )
  */

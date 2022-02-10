@@ -10,9 +10,10 @@
 {{ attach_library('lib_cal/lib-cal') }}
 {% set increment = 0 %}
 {% set twentyFourHrs = FALSE %}
+{% set formattedDate = current_date|date("l, F j") %}
 <div class="hours-embed">
   {% if current_date %}
-    <h3>Week of {{ current_date|date("l, F j") }}</h3>
+    <h3>Week of {{ week_date|date("l, F j") }}</h3>
   {% endif %}
   <div class="{{ hours_class }}">
     {% if hours %}
@@ -22,8 +23,13 @@
           <div class="hours-heading">{{ location.name }}</div> 
           {% if location.dates %}
             {% for date, location_info in location.dates %}
-              <div class="utility-border">
-                <span class="utility-date">{{ date|date("l, F j") }}</span>
+                {% set thisDate = date|date("l, F j") %}
+                {% if thisDate == formattedDate %}
+                  <div class="utility-border util-current-date">
+                {% else %}
+                  <div class="utility-border">
+                {% endif %}
+                <span class="utility-date">{{ thisDate }}</span>
                 {% if location_info.hours %}
                   {% for hours_info in location_info.hours %}
                     <span class="utility-hours">
@@ -53,7 +59,8 @@
                   {% elseif location_info.status == 'closed' %}
                     <span class="utility-hours">Closed</span>
                   {% elseif location_info.status == '24hours' %}
-                    <span class="utility-hours">24 Hours</span>
+                    {% set twentyFourHrs = TRUE %}
+                    <span class="utility-hours">24 Hours *</span>
                   {% endif %}
                 {% endif %}
               </div>

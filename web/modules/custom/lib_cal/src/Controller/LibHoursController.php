@@ -22,12 +22,12 @@ use Drupal\Core\Security\TrustedCallbackInterface;
       $this->configHelper = LibCalSettingsHelper::getInstance();
     }
 
-    public function getThisWeek($libraries) {
-      return $this->getWeekFromAPI($libraries, null);
+    public function getThisWeek($libraries, $hours = null) {
+      return $this->getWeekFromAPI($libraries, $hours);
     }
 
-    public function getToday($libraries) {
-      return $this->getTodayFromAPI($libraries);
+    public function getToday($libraries, $hours = null) {
+      return $this->getTodayFromAPI($libraries, $hours);
     }
 
     private function getCachedEventsCount() {
@@ -55,7 +55,7 @@ use Drupal\Core\Security\TrustedCallbackInterface;
     }
 
     
-    public function getTodayFromApi($libraries) {
+    public function getTodayFromApi($libraries, $date = null) {
       $auth_endpoint = $this->configHelper->getEndpoint();
       $data_endpoint = $this->configHelper->getHoursEndpoint();
       $client_id = $this->configHelper->getClientID();
@@ -68,7 +68,7 @@ use Drupal\Core\Security\TrustedCallbackInterface;
       }
 
       $apiHelper = LibCalApiHelper::getInstance($auth_endpoint, $data_endpoint, $client_id, $client_secret);
-      $hours = $apiHelper->getHours(null, null, $libraries);
+      $hours = $apiHelper->getHours($date, $date, $libraries);
       return $hours;
     }
 

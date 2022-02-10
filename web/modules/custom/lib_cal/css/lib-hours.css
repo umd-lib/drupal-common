@@ -23,6 +23,10 @@
   font-size: 1.5rem;
 }
 
+.util-current-date {
+  background-color: pink;
+}
+
 @media (max-width: 1199px){
   .hours-main-grid{
     grid-template-columns: auto auto;

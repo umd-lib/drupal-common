@@ -83,7 +83,9 @@ class LibCalApiHelper {
   }
 
   public function getHours($from = null, $to = null, $libraries = '13231,17166,17167,17168,17964,17965,17966') {
+    $raw_from = $from;
     if ($from = $this->validateDate($from)) {
+      $raw_from = $from;
       $from = '&from=' . $from;
     }
     if ($to = $this->validateDate($to)) {
@@ -91,6 +93,7 @@ class LibCalApiHelper {
     }
     $hours_url = $this->data_endpoint . $libraries . '?' . $from . $to;
     $response = $this->curlRequest($hours_url, $this->getTokenString());
+    $response['hours_from'] = $raw_from;
     return $response;
   }
 
