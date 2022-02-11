@@ -11,6 +11,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\lib_cal\Controller\LibHoursController;
 use Drupal\lib_cal\Helper\LibCalSettingsHelper;
 use Drupal\Core\Routing;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Implements the LibHoursBlock
@@ -81,8 +82,6 @@ class LibHoursTodayBlock extends BlockBase {
     return [
       '#theme' => $template,
       '#hours' => $hours,
-      '#branch_prefix' => $blockConfig['branch_prefix'],
-      '#branch_suffix' => $blockConfig['branch_suffix'],
       '#row_class' => $row_class,
       '#grid_class' => $grid_class,
       '#hours_class' => $hours_class,
@@ -129,20 +128,8 @@ class LibHoursTodayBlock extends BlockBase {
       '#title' => t('Libraries'),
       '#default_value' =>  isset($config['libraries']) ? explode(',',$config['libraries']) : array(),
       '#required' => TRUE,
-      '#options' => $this->configHelper->getLibrariesOptions(),
+      '#options' => $this->getLibrariesOptions(),
       '#multiple' => TRUE,
-    ];
-    $form['branch_prefix'] = [
-      '#type' => 'textfield',
-      '#title' => t('Branch Prefix'),
-      '#description' => t('E.g., Today\'s'),
-      '#default_value' =>  isset($config['branch_prefix']) ? $config['branch_prefix'] : null,
-    ];
-    $form['branch_suffix'] = [
-      '#type' => 'textfield',
-      '#title' => t('Branch Suffix'),
-      '#description' => t('E.g., Hours'),
-      '#default_value' =>  isset($config['branch_suffix']) ? $config['branch_suffix'] : null,
     ];
     $form['all_libraries_url'] = [
       '#type' => 'textfield',
@@ -176,6 +163,23 @@ class LibHoursTodayBlock extends BlockBase {
     return $form;
   }
 
+  public function getLibrariesOptions() {
+    $vid = 'library_locations';
+    $terms =\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
+    $term_data = [];
+    foreach ($terms as $t) {
+      $term = Term::load($t->tid);
+      if (!empty($term->get('field_libcal_location_id'))) {
+        $libcal = $term->get('field_libcal_location_id')->value;
+        if ($libcal != null) {
+          $term_data[$libcal] = $term->getName();
+        }
+      }
+    }
+    dsm($term_data);
+    return $term_data;
+  }
+
   /**
    * {@inheritdoc}
    */
@@ -185,7 +189,6 @@ class LibHoursTodayBlock extends BlockBase {
     // the api wants a comma-seperated string.
     $libraries = implode(',', $libraries);
     $this->setConfigurationValue('libraries', $libraries);
-    $this->setConfigurationValue('branch_prefix', $form_state->getValue('branch_prefix'));
     $this->setConfigurationValue('shady_grove_url', $form_state->getValue('shady_grove_url'));
     $this->setConfigurationValue('all_libraries_url', $form_state->getValue('all_libraries_url'));
     $this->setConfigurationValue('branch_suffix', $form_state->getValue('branch_suffix'));

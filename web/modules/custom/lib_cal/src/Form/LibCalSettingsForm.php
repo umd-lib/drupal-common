@@ -5,6 +5,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\lib_cal\Helper\LibCalSettingsHelper;
 use Drupal\lib_cal\Helper\LibCalApiHelper;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Settings for LibCal target urls.
@@ -88,13 +89,6 @@ class LibCalSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
     
-    $form[LibCalSettingsHelper::LIBRARIES] = [
-      '#type' => 'textarea',
-      '#title' => t('Library IDs'),
-      '#default_value' => $config->get(LibCalSettingsHelper::LIBRARIES),
-      '#description' => t('Pipe seperated list and one per line. ID|Branch Name.'),
-    ];
-
     $form['lib_cal_auth_test'] = [
       '#type' => 'textarea',
       '#title' => t('LibCal API Auth Test'),
