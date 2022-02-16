@@ -1,0 +1,43 @@
+diff --git a/scheduler_content_moderation_integration.module b/scheduler_content_moderation_integration.module
+index b44b62a..a8dcb8e 100644
+--- a/scheduler_content_moderation_integration.module
++++ b/scheduler_content_moderation_integration.module
+@@ -207,7 +207,7 @@ function scheduler_content_moderation_integration_scheduler_hide_publish_on_fiel
+   $moderation_information = \Drupal::service('content_moderation.moderation_information');
+ 
+   $return = FALSE;
+-  if ($moderation_information->isModeratedEntity($node)) {
++  if ($moderation_information->isModeratedEntity($node) && isset($form['publish_state']['widget'][0]['#options'])) {
+     // If no moderation transitions are available for publish_state then hide
+     // the publish_on scheduler field.
+     $options_without_none = array_diff_key($form['publish_state']['widget'][0]['#options'], ['_none' => '']);
+@@ -227,7 +227,7 @@ function scheduler_content_moderation_integration_scheduler_hide_unpublish_on_fi
+   $moderation_information = \Drupal::service('content_moderation.moderation_information');
+ 
+   $return = FALSE;
+-  if ($moderation_information->isModeratedEntity($node)) {
++  if ($moderation_information->isModeratedEntity($node) && isset($form['unpublish_state']['widget'][0]['#options'])) {
+     // If no moderation transitions are available for unpublish_state then hide
+     // the unpublish_on scheduler field.
+     $options_without_none = array_diff_key($form['unpublish_state']['widget'][0]['#options'], ['_none' => '']);
+diff --git a/src/Plugin/Field/FieldWidget/SchedulerModerationWidget.php b/src/Plugin/Field/FieldWidget/SchedulerModerationWidget.php
+index 613f8dc..e124785 100644
+--- a/src/Plugin/Field/FieldWidget/SchedulerModerationWidget.php
++++ b/src/Plugin/Field/FieldWidget/SchedulerModerationWidget.php
+@@ -4,7 +4,6 @@ namespace Drupal\scheduler_content_moderation_integration\Plugin\Field\FieldWidg
+ 
+ use Drupal\content_moderation\ModerationInformationInterface;
+ use Drupal\Core\Entity\ContentEntityForm;
+-use Drupal\Core\Field\BaseFieldDefinition;
+ use Drupal\Core\Field\FieldDefinitionInterface;
+ use Drupal\Core\Field\FieldItemListInterface;
+ use Drupal\Core\Field\Plugin\Field\FieldWidget\OptionsSelectWidget;
+@@ -106,7 +105,7 @@ class SchedulerModerationWidget extends OptionsSelectWidget implements Container
+    * {@inheritdoc}
+    */
+   public static function isApplicable(FieldDefinitionInterface $field_definition) {
+-    if ($field_definition instanceof BaseFieldDefinition && $field_definition->getProvider() === 'scheduler_content_moderation_integration') {
++    if ($field_definition->getFieldStorageDefinition()->getProvider() === 'scheduler_content_moderation_integration') {
+       return TRUE;
+     }
+   }
