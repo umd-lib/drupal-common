@@ -22,7 +22,7 @@
   display: grid;
   grid-template-areas: ". title" "icon description" "icon link";
   grid-template-rows: .2fr .8fr .1fr;
-  grid-template-columns: .3fr .7fr;
+  grid-template-columns: .2fr .8fr;
   column-gap: 1em;
   padding: 0 2em 0 1em;
   border-left: 0.5px solid lightgrey;
@@ -37,7 +37,7 @@
 
 .service-icon {
   grid-area: icon;
-  font-size: 3em;
+  font-size: 2.5em;
   color: rgb(120, 120, 120);
   text-align: center;
 }
@@ -57,4 +57,25 @@
   grid-area: link;
   text-decoration: underline;
   font-size: .95em;
+}
+
+@media (max-width: 1199px){
+  .services-resources {
+    grid-auto-flow: row;
+    grid-template-columns: auto auto;
+    grid-row-gap: 2em;
+  }
+  .service-icon {
+    font-size: 2em;
+  }
+}
+@media (max-width: 991px){
+  .services-resources {
+    grid-template-columns: auto;
+    }
+}
+@media (max-width: 576px){
+  .service {
+    padding: 0 1em 0 0;
+  }
 }

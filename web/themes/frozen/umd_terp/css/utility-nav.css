@@ -459,12 +459,6 @@ input[type=text]#search-faq {
   input[type=text], select, textarea {
     margin-bottom: 5px;
   }
-  .header-alert{
-    display: block;
-  }
-  .header-alert-title{
-    padding: 5px;
-  }
   #showHours, #showInfo, #showSystem, #showAccounts {
     display: none;
   }
