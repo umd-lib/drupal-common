@@ -19,7 +19,9 @@
   transition: .25s color ease-in-out;
   text-decoration: underline;
 }
-
+.umdlib-site-footer-main a:hover {
+  text-decoration: none;
+}
 .umdlib-site-footer-main .umdlib-site-footer-social a:hover, .umdlib-site-footer-main .umdlib-site-footer-social a:focus {
   color: #E21833;
   text-decoration: none;
@@ -32,7 +34,7 @@
 }
 
 .umdlib-site-footer-nav {
-  margin: 1em 0 0 1.25em;
+  margin: 1em 1em 0 1.25em;
   position: relative;
 }
 
@@ -49,7 +51,7 @@
 /* LibChat embed https://issues.umd.edu/browse/LIBWEB-5425 */
 iframe#iframe_fe53f3bc15d10c1fe704c59be49661b0 {
   max-height: 360px;
-} 
+}
 .s-lch-widget-float-btn {
   right: 50px!important;
 }
@@ -67,7 +69,7 @@ iframe#iframe_fe53f3bc15d10c1fe704c59be49661b0 {
 
 .umdlib-site-footer-nav-title {
   font-weight: bold;
-  color: #4A4A4A;
+  color: #000;
 }
 
 /* @media (min-width: 600px) {
@@ -83,9 +85,9 @@ iframe#iframe_fe53f3bc15d10c1fe704c59be49661b0 {
 
 .umdlib-site-footer-about {
   color: #4A4A4A;
-  width: 32rem;
+  width: 28rem;
   margin-left: 3.5rem;
-  margin-right: 3.5rem;
+  margin-right: 2rem;
 }
 
 .umdlib-site-footer-addon {
@@ -172,11 +174,11 @@ iframe#iframe_fe53f3bc15d10c1fe704c59be49661b0 {
 }
 
 .umdlib-site-footer-social [class*="icon"] {
-  font-size: 1.0625rem;
+  font-size: 1.5rem;
 }
 
 .umdlib-site-footer-social .icon-youtube {
-  font-size: 0.8125rem;
+  font-size: 1.5rem;
 }
 
 .umdlib-site-footer-legal {
@@ -215,4 +217,33 @@ iframe#iframe_fe53f3bc15d10c1fe704c59be49661b0 {
 .umdlib-site-footer-legal span {
   color: #8E8E8E;
   line-height: 2.07143;
+}
+@media (max-width: 1200px) {
+  .umdlib-site-footer-main {
+    display: grid;
+    grid-template-columns: 55% auto;
+  }
+  .umdlib-site-footer-about {
+    width: auto;
+    margin-left: 0;
+  }
+  .umdlib-site-footer-logo {
+    width: 80%;
+    margin: 0;
+  }
+  .umdlib-site-footer-address {
+    margin: 1rem;
+  }
+  .umdlib-site-footer-social {
+    margin: 0;
+  }
+  .umdlib-site-footer-addon {
+    margin-left: 0;
+  }
+}
+@media (max-width: 576px) {
+  .umdlib-site-footer-main {
+    grid-template-columns: auto;
+    padding: 1rem;
+  }
 }
