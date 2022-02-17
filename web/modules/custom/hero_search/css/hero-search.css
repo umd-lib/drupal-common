@@ -84,12 +84,11 @@ textarea {
   opacity: 0.9;
   width:  25%!important;
 }
-.outer-pad {
-  padding: 0!important;
-}
-
 #cta-text {
   padding:  0.5rem 0.5rem 0.5rem 0.5rem;
+}
+.outer-pad {
+  padding: 0 1rem!important;
 }
 @media (min-width: 1025px) {
   .hero-block {
@@ -105,11 +104,7 @@ textarea {
     right: 1rem;
   }
 }
-@media (min-width: 800px) {
-  .outer-pad {
-  padding: 0!important;
-  }
-}
+
 @media (max-width: 768px) {
   .hero-block {
     margin-left: 0!important;
@@ -131,4 +126,3 @@ textarea {
 .home-hero-content h2 {
   display: none;
 }
-

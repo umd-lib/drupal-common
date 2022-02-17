@@ -3,7 +3,7 @@
  */
 
 #header-alerts {
-  background-color: #ecc000;
+  background-color: #ffd000;
   width: 100%;
 }
 
@@ -20,12 +20,11 @@
   margin-bottom: 0;
   display: grid;
   grid-template-areas: "title body";
-  grid-template-columns: .5fr .5fr;
+  grid-template-columns: auto auto;
 }
 
 .header-alert-title {
   grid-area: title;
-  padding-left: 12rem;
   margin-bottom: 0;
   font-size: 1.1em;
   font-weight: 600;
@@ -33,7 +32,7 @@
 
 .header-alert-body {
   grid-area: body;
-  padding-right: 15rem;
+  padding-right: 4rem;
   margin-bottom: 0;
   text-align: right;
   font-size: .8rem;
@@ -42,6 +41,7 @@
 
 .header-alert .fontawesome-icons {
   display: inline-block;
+  margin-right: 0.5rem;
 }
 
 .header-alert a {
@@ -65,3 +65,16 @@
 #header-alerts .type-emergency {}
 
 #header-alerts .type-alert {}
+
+@media (max-width: 991px){
+  .header-alert-body {
+    padding-right: 0;
+  }
+  .header-alert-title {
+    margin-bottom: 1em;
+    font-size: 1rem;
+  }
+  .header-alert{
+    display: block;
+  }
+}
