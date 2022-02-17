@@ -12,6 +12,7 @@ use Drupal\lib_cal\Controller\LibHoursController;
 use Drupal\lib_cal\Helper\LibCalSettingsHelper;
 use Drupal\Core\Routing;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Url;
 
 /**
  * Implements the LibHoursBlock
@@ -34,6 +35,10 @@ class LibHoursTodayBlock extends BlockBase {
     $blockConfig = $this->getConfiguration();
     $libHoursController = new LibHoursController();
     $is_mobile = false;
+    $librariesInfo = $this->getLibrariesLocations();
+
+    $urls = $librariesInfo['urls'];
+    $locations = $librariesInfo['locations'];
 
     if ($blockConfig['weekly_display']) {
       $template = 'lib_hours_range';
@@ -43,11 +48,13 @@ class LibHoursTodayBlock extends BlockBase {
         case 'today':
           $template = 'lib_hours_today';
           $hours = $libHoursController->getToday($blockConfig['libraries'], $debug_date);
-          $hours = $this->sortLocationsHeirarchy($hours);
+          $hours = $this->sortLocations($hours);
+          $hours = $this->sortLocationsHeirarchy($hours, $locations);
           break;
         case 'weekly':
           $template = 'lib_hours_range';
           $hours = $libHoursController->getThisWeek($blockConfig['libraries'], $debug_date);
+          $hours = $this->sortLocations($hours);
           break;
         case 'utility_nav':
           $template = 'lib_hours_today_util';
@@ -81,6 +88,8 @@ class LibHoursTodayBlock extends BlockBase {
 
     return [
       '#theme' => $template,
+      '#locations' => $locations,
+      '#urls' => $urls,
       '#hours' => $hours,
       '#row_class' => $row_class,
       '#grid_class' => $grid_class,
@@ -96,11 +105,42 @@ class LibHoursTodayBlock extends BlockBase {
     ];
   }
 
-  function sortLocationsHeirarchy($hours) {
+  function sortLocations($hours) {
+    $output = [];
+    $mckeldin = null;
+
+    $sortable = [];
+    foreach ($hours as $key => $loc) {
+      $name = strtolower($loc['name']);
+      if ($name != "mckeldin library") {
+        $sortable[$name] = $loc;
+      } else {
+        $mckeldin = $loc;
+      }
+    }
+    ksort($sortable);
+    if ($mckeldin != null) {
+      $output[] = $mckeldin;
+    }
+    foreach ($sortable as $key => $sorted) {
+      if (!empty($sorted['name'])) {
+        $output[] = $sorted;
+      }
+    }
+    return $output;
+  }
+
+  function sortLocationsHeirarchy($hours, &$locations) {
     $children = [];
+    $mckeldin = null;
     foreach ($hours as $key => $loc) {
       if (!empty($loc['parent_lid'])) {
+        $lid = $loc['lid'];
         $loc['name'] = '|chev| ' . $loc['name'];
+        if (!empty($locations[$lid])) {
+          $t_title = '|chev| ' . $locations[$lid];
+          $locations[$lid] = $t_title;
+        }
         $children[$loc['parent_lid']][] = $loc;
         unset($hours[$key]);
       }
@@ -122,13 +162,14 @@ class LibHoursTodayBlock extends BlockBase {
     $form = parent::blockForm($form, $form_state);
     $config = $this->getConfiguration();
     $this->configHelper = LibCalSettingsHelper::getInstance();
+    $librariesInfo = $this->getLibrariesLocations();
 
     $form['libraries'] = [
       '#type' => 'select',
       '#title' => t('Libraries'),
       '#default_value' =>  isset($config['libraries']) ? explode(',',$config['libraries']) : array(),
       '#required' => TRUE,
-      '#options' => $this->getLibrariesOptions(),
+      '#options' => $librariesInfo['locations'],
       '#multiple' => TRUE,
     ];
     $form['all_libraries_url'] = [
@@ -163,21 +204,34 @@ class LibHoursTodayBlock extends BlockBase {
     return $form;
   }
 
-  public function getLibrariesOptions() {
+  public function getLibrariesLocations() {
     $vid = 'library_locations';
     $terms =\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
-    $term_data = [];
+    $output = [];
+    $locations_data = [];
+    $url_data = [];
     foreach ($terms as $t) {
       $term = Term::load($t->tid);
       if (!empty($term->get('field_libcal_location_id'))) {
         $libcal = $term->get('field_libcal_location_id')->value;
         if ($libcal != null) {
-          $term_data[$libcal] = $term->getName();
+          $locations_data[$libcal] = $term->getName();
+          if (!empty($term->field_location_details_page->first())) {
+            $liburl = Url::fromUri($term->field_location_details_page->first()->uri);
+            if ($liburl != null) {
+              $url_data[$libcal] = $liburl->toString();
+            } 
+          }
         }
       }
     }
-    dsm($term_data);
-    return $term_data;
+    if (count($locations_data) > 0) {
+      $output['locations'] = $locations_data;
+    }
+    if (count($url_data) > 0) {
+      $output['urls'] = $url_data;
+    }
+    return $output;
   }
 
   /**

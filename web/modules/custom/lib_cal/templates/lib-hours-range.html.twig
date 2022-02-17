@@ -18,9 +18,21 @@
   <div class="{{ hours_class }}">
     {% if hours %}
       {% for location in hours %}
+        {% set lib_id = location.lid %}
         {% set increment = increment + 1 %}
         <div class="hours{{ increment }}">
-          <div class="hours-heading">{{ location.name }}</div> 
+          <div class="hours-heading">
+            {% if locations[lib_id] %}
+              {% if urls[lib_id] %}
+                <a href="{{urls[lib_id]}}">{{ locations[lib_id] }}</a>
+              {% else %}
+                {{ locations[lib_id] }}
+              {% endif %}
+            {% else %}
+              {{ location.name }}
+            {% endif %}
+            {% if location.name == 'McKeldin Library' %}(Main){% endif %}
+          </div> 
           {% if location.dates %}
             {% for date, location_info in location.dates %}
                 {% set thisDate = date|date("l, F j") %}

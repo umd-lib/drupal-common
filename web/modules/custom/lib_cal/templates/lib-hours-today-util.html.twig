@@ -27,8 +27,19 @@
       <!-- locations -->
       {% for location in hours %}
         {% set increment = increment + 1 %}
+        {% set lib_id = location.lid %}
         <div class="utility-border hours{{ increment }}">
-          <span class="utility-location">{{ location.name }}</span>
+          <span class="utility-location">
+            {% if locations[lib_id] %}
+              {% if urls[lib_id] %}
+                <a href="{{urls[lib_id]}}">{{ locations[lib_id] }}</a>
+              {% else %}
+                {{ locations[lib_id] }}
+              {% endif %}
+            {% else %}
+              {{ location.name }}
+            {% endif %}
+          </span>
             {% if location.name == 'McKeldin Library' %}(MAIN){% endif %}
             <span class="utility-hours"> 
               <!-- location dates -->
