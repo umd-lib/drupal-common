@@ -17,8 +17,8 @@
   grid-area: time;
   display: inline-block;
   border: .2rem solid lightgray;
-  width: 7rem;
-  height: 7rem;
+  width: 6.5rem;
+  height: 6.5rem;
   text-align: center;
   margin: 0 1rem 2rem 0;
   font-size: .8em;
@@ -31,7 +31,7 @@
 .lib-cal-event-time span {
   display: block;
   text-transform: uppercase;
-} 
+}
 .lib-cal-event-time-day {
   font-size: 3em;
   color: #e21833;
@@ -60,31 +60,31 @@
   font-weight: bold;
   color: black;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .lib-cal-event {
-    grid-template-columns: 35% 65%;
+    grid-template-columns: 15% 70%;
   }
-}
-
-@media (max-width: 800px) {
   .lib-cal-block {
     margin-top: 2rem;
-  } 
-  .lib-cal-event {
-    grid-template-columns: 20% 75%;
-  }
-}
-@media (max-width: 576px) { 
-  .lib-cal-event {
-    grid-template-columns: 35% 65%;
-  }
-  .lib-cal-block {
     border-left: none;
     padding-left: 0;
     padding-bottom: 0;
+  }
 }
+@media (max-width: 800px) {
+  .lib-cal-event {
+    grid-template-columns: 20% 75%;
+  }
+  .news-article {
+    margin-bottom: 2rem!important;
+  }
 }
-@media (max-width: 320px) { 
+@media (max-width: 576px) {
+  .lib-cal-event {
+    grid-template-columns: 35% 65%;
+  }
+}
+@media (max-width: 320px) {
   .lib-cal-event {
     grid-template-columns: 45% 55%;
   }

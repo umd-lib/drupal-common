@@ -70,12 +70,17 @@
   }
 }
 @media (max-width: 991px){
+  .service {
+    grid-template-columns: .1fr .6fr;
+    border: none;
+  }
   .services-resources {
     grid-template-columns: auto;
-    }
+  }
 }
 @media (max-width: 576px){
   .service {
     padding: 0 1em 0 0;
+    grid-template-columns: .2fr .8fr;
   }
 }

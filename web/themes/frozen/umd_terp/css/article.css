@@ -1,5 +1,5 @@
 .news-article {
-  margin-bottom: 2em;
+  margin-bottom: 0;
 }
 .news-article-date {
   color: #4a4a4a;
@@ -12,10 +12,18 @@
 }
 .news-article-teaser-image {
   float: right;
-  max-width: 33%;
-  margin: 0 0 1em 1em;
+  max-width: 43%;
+  margin: 0 0 1em 0;
 }
 .news-article-image {
   float: right;
-  margin: 2rem 0 1rem 1rem;
+  margin: 2rem 0 1rem 0;
+}
+
+@media (max-width: 576px) {
+  .news-article-teaser-image {
+    float: none;
+    max-width: 100%;
+    margin: 0 0 1em 0;
+  }
 }
