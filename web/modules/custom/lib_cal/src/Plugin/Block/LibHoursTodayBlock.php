@@ -54,6 +54,8 @@ class LibHoursTodayBlock extends BlockBase {
         case 'weekly':
           $template = 'lib_hours_range';
           $hours = $libHoursController->getThisWeek($blockConfig['libraries'], $debug_date);
+          $week_date = $hours['hours_from'];
+          unset($hours['hours_from']);
           $hours = $this->sortLocations($hours);
           break;
         case 'utility_nav':
@@ -76,10 +78,7 @@ class LibHoursTodayBlock extends BlockBase {
       } else {
         $current_date = date("c");
       }
-      $week_date = $hours['hours_from'];
     }
-
-    unset($hours['hours_from']);
 
     $hours_class = 'hours-main-grid';
     if (count($hours) == 1) {
@@ -111,11 +110,13 @@ class LibHoursTodayBlock extends BlockBase {
 
     $sortable = [];
     foreach ($hours as $key => $loc) {
-      $name = strtolower($loc['name']);
-      if ($name != "mckeldin library") {
-        $sortable[$name] = $loc;
-      } else {
-        $mckeldin = $loc;
+      if (!empty($loc['name'])) {
+        $name = strtolower($loc['name']);
+        if ($name != "mckeldin library") {
+          $sortable[$name] = $loc;
+        } else {
+          $mckeldin = $loc;
+        }
       }
     }
     ksort($sortable);
