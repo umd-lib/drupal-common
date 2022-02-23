@@ -61,6 +61,8 @@ class LibHoursTodayBlock extends BlockBase {
         case 'utility_nav':
           $template = 'lib_hours_today_util';
           $hours = $libHoursController->getToday($blockConfig['libraries'], $debug_date);
+          unset($hours['hours_from']);
+          $hours = $this->sortLocations($hours);
           $is_mobile = $blockConfig['is_mobile'];
           break;
          default:
