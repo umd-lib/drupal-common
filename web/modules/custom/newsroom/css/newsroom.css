@@ -9,7 +9,7 @@
   ;
   grid-row-gap: 1.5rem;
   grid-column-gap: 1.5rem;
-  grid-template-columns: 65% 35%;
+  grid-template-columns: 60% 40%;
 }
 .news-article-image {
   display: none;
