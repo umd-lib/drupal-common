@@ -1,6 +1,23 @@
 @charset "UTF-8";
 
 /*************************************
+ * General Styles for all webpages. Not for utility menu
+ */
+ /* When table heading becomes a link, improve the color contrast
+ */
+.table thead, .table.table-dark thead {
+    background-color: #FFFBE5;
+    color: #000;
+}
+.table.table-dark td a {
+    color: #e21833;
+}
+.table.table-stacked .tablesaw-cell-label {
+    background-color: #FFFBE5;
+    color: #000;
+}
+
+/*************************************
  * Header Search CSS
  */
 .color-success {
