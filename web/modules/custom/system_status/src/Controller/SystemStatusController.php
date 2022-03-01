@@ -44,7 +44,7 @@ use Drupal\system_status\Form\SystemStatusSettingsForm;
       } else {
         $data = json_decode($output, true);
         $data['#cache'] = [
-          'max-age' => 300, 
+          'max-age' => 0, 
           'contexts' => [
             'url',
           ],
