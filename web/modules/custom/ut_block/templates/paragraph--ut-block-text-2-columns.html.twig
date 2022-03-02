@@ -46,17 +46,17 @@
                                 <div class="row">
 					{%if content.field_ut_block_text_text|field_value %}
 						{% if "On" in content.field_ut_block_text_flip_display.0 %}
-                                        		<div class="col-800-8">
+                                        		<div class="col-1200-7 col-1024-6 col-999-12">
                                                			{{ content.field_ut_block_text_text|field_value }}
                                         		</div>
-                                        		<div class="col-800-4">
+                                        		<div class="col-1200-5 col-1024-6 col-999-12">
                                                			{{ content.field_ut_block_text_block|field_value }}
                                         		</div>
 						{% else %}
-                                        		<div class="col-800-4">
+                                        		<div class="col-1200-5 col-1024-6 col-999-12">
                                                			{{ content.field_ut_block_text_block|field_value }}
                                         		</div>
-                                        		<div class="col-800-8">
+                                        		<div class="col-1200-7 col-1024-6 col-999-12">
                                                			{{ content.field_ut_block_text_text|field_value }}
                                         		</div>
 						{% endif %}
