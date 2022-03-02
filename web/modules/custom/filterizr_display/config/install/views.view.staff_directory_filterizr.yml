@@ -175,14 +175,14 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 0
-            word_boundary: true
+            max_length: 45
+            word_boundary: false
             ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
             strip_tags: true
-            trim: false
+            trim: true
             preserve_tags: ''
             html: false
           element_type: ''
@@ -785,3 +785,4 @@ display:
         - 'config:field.storage.node.field_umdt_ct_person_email'
         - 'config:field.storage.node.field_umdt_ct_person_photo'
         - 'config:field.storage.node.field_umdt_ct_person_title'
+
