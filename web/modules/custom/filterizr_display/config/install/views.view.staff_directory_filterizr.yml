@@ -656,7 +656,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"filtr-item col-600-4 col-1000-3\" data-category=\"{{ field_library_division }}\" data-sort=\"{{ title_1 }}\">      \r\n    <div class=\"profile-card card\">\r\n          <div class=\"card-img card-img-top\">{{ field_umdt_ct_person_photo }}</div>\r\n          <div class=\"card-body\">\r\n              <h2 class=\"card-title\">{{ title }}</h2>\r\n              <div class=\"profile-card-minitxt\">{{ field_umdt_ct_person_email }}</div>\r\n              <div class=\"profile-card-title\">{{ field_umdt_ct_person_title }}</div>\r\n          </div>\r\n     </div>\r\n</div>"
+            text: "<div class=\"filtr-item col-500-6 col-800-6 col-1000-4  col-1200-4\"  data-category=\"{{ field_library_division }}\" data-sort=\"{{ title_1 }}\">      \r\n    <div class=\"profile-card card\">\r\n          <div class=\"card-img card-img-top\">{{ field_umdt_ct_person_photo }}</div>\r\n          <div class=\"card-body\">\r\n              <h2 class=\"card-title\">{{ title }}</h2>\r\n              <div>{{ field_umdt_ct_person_email }}</div>\r\n              <div class=\"profile-card-title\">{{ field_umdt_ct_person_title }}</div>\r\n          </div>\r\n     </div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
