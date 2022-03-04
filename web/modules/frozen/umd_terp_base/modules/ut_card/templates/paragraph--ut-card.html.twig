@@ -17,17 +17,24 @@
 			</div>
 		{% endif %}
 		<div class="card-body">
-			{% if content.field_ut_card_title|field_value %}
-				<h2 class="card-title">
+			{% set use_link = content.field_ut_use_link_as_title.0 %} 
+			{% if 'On' in use_link %}
 					{% if content.field_ut_card_link.0 %}
 						{% include directory ~ '/templates/helpers/link.html.twig' with {'link': content.field_ut_card_link.0, 'classes': 'card-cta fancy-link' } %}
 					{% else %}
-						{{ content.field_ut_card_title|field_value }}
+						<h2 class="card-title">{{ content.field_ut_card_title|field_value }}</h2>
 					{% endif %}
-				</h2>
+			{% else %}
+				<h2 class="card-title">{{ content.field_ut_card_title|field_value }}</h2>
 			{% endif %}
 			{% if content.field_ut_card_text|field_value %}
 				<div class="card-text">{{ content.field_ut_card_text|field_value }}</div>
+			{% endif %}
+			{% if 'On' in use_link %}
+			{% else %}
+				{% if content.field_ut_card_link.0 %}
+					{% include directory ~ '/templates/helpers/link.html.twig' with {'link': content.field_ut_card_link.0, 'classes': 'card-cta fancy-link' } %}
+				{% endif %}
 			{% endif %}
 		</div>
 	</div>
