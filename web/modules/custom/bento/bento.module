@@ -1,0 +1,117 @@
+<?php
+
+use Drupal\Core\Url;
+
+/**
+ * @file
+ * Module file for bento module.
+ */
+
+use Drupal\views\ViewExecutable;
+use Drupal\views\ResultRow;
+
+/**
+ * Implements hook_theme().
+ */
+function bento_theme() {
+  return [
+    'bento_search_block' => [
+      'variables' => [
+        'bento_search_form' => '',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_views_view_field().
+ */
+function bento_preprocess_views_view_field(&$variables) {
+  $view = $variables['view'];
+  if (!empty($view->id()) && str_contains($view->id(), 'bento_')) {
+    if (!empty($variables['field']->options['admin_label']) && $variables['field']->options['admin_label'] == 'Format') {
+      $field_id = $variables['field']->options['id'];
+      $raw_output = $variables['field']->getValue($variables['row']);
+      $variables['output'] = [
+        '#markup' => '<span class="' . bento_icon_map($raw_output). '"></span> ' . bento_format_map($raw_output),
+      ];
+    }
+  }
+}
+
+/**
+* Implements hook_views_pre_render().
+*/
+function bento_views_pre_render(ViewExecutable $view) {
+  if (empty($view) || empty($view->storage->id())) {
+    return;
+  }
+  if (str_contains($view->storage->id(), 'bento_') && false) {
+    $view->element['#attached']['library'][] = 'bento/bento';
+  }
+}
+
+function bento_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
+  if (!empty($view) && !empty($view->id()) && (str_contains($view->id(), 'bento_'))) {
+    $bento_search = \Drupal::request()->query->get('bento_search');
+    if (!empty($bento_search)) {
+      $args[0] = $bento_search;
+    }
+  }
+}
+
+function bento_icon_map($raw_name) {
+  $icon_map = [
+    "archival_material" => "result-icons fas fa-archive",
+    "article" => "result-icons far fa-file-alt",
+    "audio" => "result-icons fas fa-headphones",
+    "audio_book" => "result-icons fas fa-file-audio",
+    "book" => "result-icons fas fa-book",
+    "cd" => "result-icons fas fa-compact-disc",
+    "computer_file" => "result-icons far fa-file",
+    "dvd" => "result-icons fas fa-compact-disc",
+    "e_book" => "result-icons fas fa-tablet-alt",
+    "e_music" => "result-icons fas fa-headphones",
+    "e_video" => "result-icons fas fa-video",
+    "image" => "result-icons fas fa-image",
+    "journal" => "result-icons fas fa-book-open",
+    "lp" => "result-icons fas fa-compact-disc",
+    "map" => "result-icons fas fa-map-marked",
+    "newspaper" => "result-icons far fa-newspaper",
+    "score" => "result-icons fas fa-music",
+    "thesis" => "result-icons fas fa-graduation-cap",
+    "video_recording" => "result-icons fas fa-video",
+    "other" => "result-icons fas fa-question",
+    "database" => "result-icons fas fa-database margin-top-10",
+    "web_page" => "result-icons fas fa-link"
+  ];
+  return !empty($icon_map[$raw_name]) ? $icon_map[$raw_name] : $icon_map['other'];
+}
+
+function bento_format_map($raw_name) {
+  $format_map = [
+    "archival_material" => "Archival Material",
+    "article" => "Article",
+    "audio" => "Audio",
+    "audio_book" => "Audio Book",
+    "book" => "Book",
+    "cd" => "CD",
+    "computer_file" => "Computer File",
+    "dvd" => "DVD",
+    "e_book" => "eBook",
+    "e_music" => "eMusic",
+    "e_video" => "eVideo",
+    "image" => "Image",
+    "journal" => "Journal",
+    "lp" => "LP",
+    "map" => "Map",
+    "newspaper" => "Newspaper",
+    "score" => "Score",
+    "thesis" => "Thesis",
+    "video_recording" => "Video Recording",
+    "other" => "Other",
+    "database" => "Database",
+    "web_page" => "Webpage"
+  ];
+  return !empty($format_map[$raw_name]) ? $format_map[$raw_name] : "Other";
+}

@@ -1,0 +1,10 @@
+name: Bento Search
+description: Enables Bento Search core module 
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+  - views_json_source
+type: module
+
+core_version_requirement: ^8.9 || ^9
