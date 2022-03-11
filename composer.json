@@ -62,6 +62,7 @@
         "drupal/node_view_permissions": "^1.2",
         "drupal/override_node_options": "^2.5",
         "drupal/paragraphs": "^1.12",
+        "drupal/path_redirect_import": "^1.0@beta",
         "drupal/pathauto": "^1.8",
         "drupal/purge": "^3.0",
         "drupal/queue_ui": "^2.1",
