@@ -76,14 +76,65 @@ textarea {
   margin-left: auto;
   margin-bottom: 1rem;
 }
-.home-hero-content{
-  bottom: 0;
-  right: 200px;
-  position: absolute!important;
+
+.home-hero-cta {
+  position: relative;
+  opacity: .9;
+  width: 100%;
+  margin: 0px auto;
   background: #fff;
-  opacity: 0.9;
-  width:  25%!important;
+  min-height: 175px;
 }
+
+.home-hero-cta img {
+  max-height: 100px!important;
+  max-width: 100px!important;
+  transform: none!important;
+  position: relative!important;
+  top: 0px!important;
+  left: 0px!important;
+  float: left;
+  padding-right: 8px;
+}
+
+@media (min-width:1200px) {
+  .home-hero-cta {
+    bottom: 0;
+    right: 10px;
+    width: 350px!important;
+    position: absolute!important;
+    background: #fff;
+    opacity: 0.9;
+    display: block;
+  }
+
+  .home-hero-cta img {
+    max-height: 200px!important;
+    max-width: 200px!important;
+    float: none;
+  }
+}
+
+@media (min-width:1400px) {
+  .home-hero-cta {
+    bottom: 0;
+    right: 150px;
+    width: 450px!important;
+    position: absolute!important;
+    background: #fff;
+    opacity: 0.9;
+    display: block;
+  }
+
+  .home-hero-cta img {
+    max-height: 200px!important;
+    max-width: 200px!important;
+    float: none;
+  }
+}
+
+
+
 #cta-text {
   padding:  0.5rem 0.5rem 0.5rem 0.5rem;
 }

@@ -35,6 +35,9 @@
 						</div>
 					</div>
 				{% endif %}
+				{% if content.field_cta_text|field_value %}
+					<div class="home-hero-cta"><div id="cta-text">{{ content.field_cta_text|field_value }}</div></div>
+				{% endif %}
 			</div>
 		{% endif %}
 		<div class="home-hero-content">
@@ -50,9 +53,6 @@
 					{% endif %}
 					{% if content.field_umdt_ct_hero_text|field_value %}
 						<p>{{ content.field_umdt_ct_hero_text|field_value }}</p>
-					{% endif %}
-					{% if content.field_cta_text|field_value %}
-						<div id="cta-text">{{ content.field_cta_text|field_value }}</div>
 					{% endif %}
 				</div>
 			</div>
