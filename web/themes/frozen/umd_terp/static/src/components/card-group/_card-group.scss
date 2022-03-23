@@ -102,7 +102,7 @@
   }
 
   &--3 {
-    @include media-breakpoint-up(800) {
+    @include media-breakpoint-up(1200) {
       flex: 0 0 33.333%;
       max-width: 33.333%;
     }
