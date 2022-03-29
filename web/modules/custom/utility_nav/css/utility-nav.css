@@ -21,3 +21,8 @@
   -webkit-columns: 2;
   -moz-columns: 2;
 }
+
+.accounts-question {
+  font-weight: 800;
+  font-size: 1rem;
+}
