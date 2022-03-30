@@ -55,7 +55,7 @@
                       {% endfor %}
                     {% elseif location_info.status %}
                       {% if location_info.status == 'text' %}
-                        {{ location_info.text }}
+                        {{ location_info.text|raw }}
                       {% elseif location_info.status == 'closed' %}
                         Closed
                       {% elseif location_info.status == '24hours' %}

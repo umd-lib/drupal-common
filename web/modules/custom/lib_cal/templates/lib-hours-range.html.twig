@@ -67,7 +67,7 @@
                   {% endfor %}
                 {% else %}
                   {% if location_info.status == 'text' %}
-                    <span class="utility-hours">{{ location_info.text }}</span>
+                    <span class="utility-hours">{{ location_info.text|raw }}</span>
                   {% elseif location_info.status == 'closed' %}
                     <span class="utility-hours">Closed</span>
                   {% elseif location_info.status == '24hours' %}
