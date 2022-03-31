@@ -43,11 +43,24 @@ function bento_preprocess_views_view_field(&$variables) {
 * Implements hook_views_pre_render().
 */
 function bento_views_pre_render(ViewExecutable $view) {
-  if (empty($view) || empty($view->storage->id())) {
+  if (empty($view) || empty($view->id())) {
     return;
   }
-  if (str_contains($view->storage->id(), 'bento_') && false) {
+  if (str_contains($view->id(), 'bento_')) {
     $view->element['#attached']['library'][] = 'bento/bento';
+  }
+}
+
+function bento_views_post_execute(ViewExecutable $view) {
+  if (str_contains($view->storage->id(), 'bento_')) {
+    if (!empty($view->raw_data['total']) && !empty($view->raw_data['module_link'])) {
+      $real_total = $view->raw_data['total'];
+      $query_string = $view->raw_data['module_link'];
+      if ($real_total > 0) {
+        $footer_content = '<span class="fas fa-solid fa-chevron-right"></span> <a href="' . $query_string . '">See all ' . $real_total . ' ' . $view->getTitle() . ' results</a>';
+        $view->attachment_after = array('#markup' => $footer_content);
+      } 
+    }
   }
 }
 
