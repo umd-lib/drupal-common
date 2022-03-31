@@ -39,6 +39,7 @@ class LibHoursTodayBlock extends BlockBase {
 
     $urls = $librariesInfo['urls'];
     $locations = $librariesInfo['locations'];
+    $week_date = null;
 
     if ($blockConfig['weekly_display']) {
       $template = 'lib_hours_range';
