@@ -14,6 +14,8 @@ dependencies:
   module:
     - image
     - search_api
+_core:
+  default_config_hash: Zbb5tnNd92DmTeNOpZUpWxF0T-Qga_27JSdXojXS0-Y
 id: staff_directory_advanced
 label: 'Staff Directory Advanced'
 module: views
@@ -765,7 +767,19 @@ display:
           order: ASC
           exposed: true
           expose:
-            label: Name
+            label: 'Last Name'
+          plugin_id: search_api
+        field_umdt_ct_person_first_name:
+          id: field_umdt_ct_person_first_name
+          table: search_api_index_staff_directory
+          field: field_umdt_ct_person_first_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: 'First Name'
           plugin_id: search_api
       header: {  }
       footer: {  }
@@ -840,3 +854,4 @@ display:
         - 'config:field.storage.node.field_umdt_ct_person_photo'
         - 'config:field.storage.node.field_umdt_ct_person_title'
         - 'config:search_api.index.staff_directory'
+
