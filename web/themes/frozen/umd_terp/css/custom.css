@@ -26,3 +26,17 @@
 .article-categories {
   padding-bottom: 25px;
 }
+
+.staff-advanced {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 3px solid #bfbfbf;
+}
+
+.staff-advanced-photo {
+  float: left;
+}
+
+.staff-advanced-details {
+  padding-left: 120px;
+}

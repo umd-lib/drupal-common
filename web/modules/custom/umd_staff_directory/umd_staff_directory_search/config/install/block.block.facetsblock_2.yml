@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - facets_block
+    - system
+  theme:
+    - umd_terp
+id: facetsblock_2
+theme: umd_terp
+region: sidebar
+weight: 0
+provider: null
+plugin: facets_block
+settings:
+  id: facets_block
+  label: 'Staff Directory Advanced Block'
+  provider: facets_block
+  label_display: visible
+  show_title: true
+  exclude_empty_facets: true
+  facets_to_include:
+    'facet_block:division': 'facet_block:division'
+    'facet_block:department': 'facet_block:department'
+    'facet_block:unit': 'facet_block:unit'
+    'facet_block:library_location_taxonomy_term_term_parents_taxono': '0'
+    'facet_block:equipment_category': '0'
+    'facet_block:program': '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: "/about/contact/directory-advanced\r\n/about/contact/directory-advanced*"
+    negate: false

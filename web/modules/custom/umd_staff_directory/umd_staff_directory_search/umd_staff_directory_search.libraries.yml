@@ -1,0 +1,5 @@
+umd_staff_directory_search:
+  header: true
+  css:
+    theme:
+      css/umd_staff_directory_search.css: {}

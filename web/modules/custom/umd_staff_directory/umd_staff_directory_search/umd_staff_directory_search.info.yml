@@ -1,0 +1,12 @@
+name: Staff Directory Advanced Search
+description: Solr based advanced search for Staff Directory.
+
+package: 'UMD Custom'
+dependencies:
+  - easy_install
+  - views
+  - umd_staff_directory:umd_terp_person_extensions
+  - umd_solr_defaults
+type: module
+
+core_version_requirement: ^8.9 || ^9

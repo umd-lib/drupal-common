@@ -1,0 +1,101 @@
+/**
+ * Filterizr Display CSS
+ */
+.port-gallery {
+   margin:20px auto;
+   color: #fff;
+}
+.port-gallery ul {
+   padding: 0 10px;
+   margin: 0;
+   margin-bottom: 10px;
+   float: left;
+   display: inline-block;
+}
+.port-gallery ul li {
+   display: inline-block;
+   cursor: pointer;
+   padding: 5px 10px
+}
+.port-gallery ul li.filtr-active {
+   background-color: #f27f2b;
+   cursor: default;
+   color: #fff
+}
+.port-gallery ul.filterizr-sorting {
+   float: right;
+}
+.filtr-item {
+   width: 25%;
+   padding: 10px;
+   height: auto;
+}
+.filtr-item img {
+   border-radius: 3px;
+   width: 100%;
+   margin-bottom: 0;
+   height: 160px;
+   display:block;
+}
+.filtr-item p {
+   margin-bottom: 0
+}
+.filtr-item .desc {
+   display: block;
+   position: absolute;
+   bottom: 10px;
+   left: 10px;
+   right: 10px;
+   background-color: rgba(0, 0, 0, .7);
+   transition: ease .5s;
+   -moz-transition: ease .5s;
+   -webkit-transition: ease .5s;
+   color: #fff;
+   padding: 10px;
+   text-align: center;
+}
+.filtr-item .desc a {
+   color: #fff;
+   text-decoration: none;
+   cursor: pointer
+}
+
+.filterizr-filter li {
+   background-color: #f27f2b;
+   color: #fff; 
+}
+
+/*********************** */
+/* Overwrite Filterizr styles LIBWEB- */
+/*********************** */
+
+.filterizr-filter li {
+   background-color: #fff;
+   border: 2px solid #e21833;
+   color: #e21833;
+   margin: 0 0.5rem 0.7rem 0;
+}
+.filterizr-filter li:hover {
+   background-color: #e21833;
+   color: #fff;
+}
+
+.filtr-item {
+   min-height: 430px;
+}
+.filterizr-control> input[type="text"]{
+    margin: 0 0 1rem 0.7rem;
+ }
+.profile-card-title {
+    margin-top: 0.5rem;
+    line-height: 1.3rem;
+    font-size: 1rem;
+}
+.port-gallery ul li.filtr-active {
+   background-color: #e21833;
+   color: #fff;
+}
+
+.profile-card-minitxt {
+  font-size: .8rem;
+}

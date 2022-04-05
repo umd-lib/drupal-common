@@ -65,10 +65,6 @@ class LinksWidget extends WidgetPluginBase {
       $url_processor = $urlProcessorManager->createInstance($facet->getFacetSourceConfig()->getUrlProcessorName(), ['facet' => $facet]);
       $active_filters = $url_processor->getActiveFilters();
 
-      if (isset($active_filters[''])) {
-        unset($active_filters['']);
-      }
-
       unset($active_filters[$facet->id()]);
 
       // Only if there are still active filters, use url generator.
@@ -81,6 +77,11 @@ class LinksWidget extends WidgetPluginBase {
         $url = Url::createFromRequest($request);
         $params = $request->query->all();
         unset($params[$url_processor->getFilterKey()]);
+        if (\array_key_exists('page', $params)) {
+          // Go back to the first page on reset.
+          unset($params['page']);
+        }
+        $url->setRouteParameter('facets_query', '');
         $url->setOption('query', $params);
       }
 
@@ -91,7 +92,7 @@ class LinksWidget extends WidgetPluginBase {
       // Check if any other facet is in use.
       $none_active = TRUE;
       foreach ($results as $result) {
-        if ($result->isActive()) {
+        if ($result->isActive() || $result->hasActiveChildren()) {
           $none_active = FALSE;
           break;
         }

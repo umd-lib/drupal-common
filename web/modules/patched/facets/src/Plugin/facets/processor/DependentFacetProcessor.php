@@ -3,7 +3,6 @@
 namespace Drupal\facets\Plugin\facets\processor;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Routing\RouteMatch;
 use Drupal\facets\FacetInterface;
 use Drupal\facets\Processor\BuildProcessorInterface;
 use Drupal\facets\Processor\ProcessorPluginBase;
@@ -11,7 +10,6 @@ use Drupal\facets\FacetManager\DefaultFacetManager;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Provides a processor that makes a facet depend on the state of another facet.
@@ -169,70 +167,55 @@ class DependentFacetProcessor extends ProcessorPluginBase implements BuildProces
       return $results;
     }
 
-    $return = TRUE;
-
     foreach ($enabled_conditions as $facet_id => $condition_settings) {
 
       /** @var \Drupal\facets\Entity\Facet $current_facet */
       $current_facet = $this->facetStorage->load($facet_id);
-      $current_facet = $this->facetsManager->returnProcessedFacet($current_facet);
+      $current_facet = $this->facetsManager->returnBuiltFacet($current_facet);
 
-      if ($condition_settings['condition'] == 'not_empty') {
-        $return = !empty($current_facet->getActiveItems());
-      }
-
-      if ($condition_settings['condition'] == 'values') {
-        $return = FALSE;
-
-        $values = explode(',', $condition_settings['values']);
-        foreach ($current_facet->getResults() as $result) {
-          $isActive = $result->isActive();
-          $raw_value_in_expected = in_array($result->getRawValue(), $values);
-          $display_value_in_expected = in_array($result->getDisplayValue(), $values);
-          if ($isActive && ($raw_value_in_expected || $display_value_in_expected)) {
-            $return = TRUE;
-          }
-        }
-      }
-
-      if (!empty($condition_settings['negate'])) {
-        $return = !$return;
+      if (!$this->isConditionMet($condition_settings, $current_facet)) {
+        return [];
       }
     }
 
-    // If the facet parameter is still present in the query string but the facet
-    // is not visible redirect to reset the facet.
-    // @TODO: fix ajax enabled search pages.
-    if (!$return && !empty($facet->getActiveItems())) {
-      $params = \Drupal::request()->query->get('f');
-      if (!empty($params)) {
-        foreach ($params as $param) {
-          if (substr_count($param, $facet->getUrlAlias())) {
-            $uri = \Drupal::request()->getRequestUri();
-            $uri = str_replace(urlencode($param), '', $uri);
-          }
-        }
-        $this->redirect($uri);
-      }
-    }
-
-    return $return ? $results : [];
+    return $results;
   }
 
   /**
-   * Redirect to an internal uri so we can reset this facet.
+   * Check if the condition for a given facet is met.
    *
-   * @param string $uri
+   * @param array $condition_settings
+   *   The condition settings for the facet to check.
+   * @param \Drupal\facets\FacetInterface $facet
+   *   The facet to check.
+   *
+   * @return bool
+   *   TRUE if the condition is met.
    */
-  private function redirect($uri) {
-    $response = new RedirectResponse($uri);
-    $request = \Drupal::request();
-    // Save the session so things like messages get saved.
-    $request->getSession()->save();
-    $response->prepare($request);
-    // Make sure to trigger kernel events.
-    \Drupal::service('kernel')->terminate($request, $response);
-    $response->send();
+  public function isConditionMet(array $condition_settings, FacetInterface $facet) {
+    $return = TRUE;
+
+    if ($condition_settings['condition'] === 'not_empty') {
+      $return = !empty($facet->getActiveItems());
+    }
+
+    if ($condition_settings['condition'] === 'values') {
+      $return = FALSE;
+
+      $values = explode(',', $condition_settings['values']);
+      foreach ($facet->getActiveItems() as $value) {
+        if (in_array($value, $values)) {
+          $return = TRUE;
+          break;
+        }
+      }
+    }
+
+    if (!empty($condition_settings['negate'])) {
+      $return = !$return;
+    }
+
+    return $return;
   }
 
 }
