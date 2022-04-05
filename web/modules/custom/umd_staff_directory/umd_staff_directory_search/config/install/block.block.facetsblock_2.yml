@@ -6,6 +6,8 @@ dependencies:
     - system
   theme:
     - umd_terp
+_core:
+  default_config_hash: xjfNoG20-fZJ0nm7RsuYVjiUYpeOaiywWS_39DxGbKQ
 id: facetsblock_2
 theme: umd_terp
 region: sidebar
@@ -29,5 +31,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "/about/contact/directory-advanced\r\n/about/contact/directory-advanced*"
+    pages: "/about/contact/directory/advanced-search\r\n/about/contact/directory/advanced-search*"
     negate: false
+
