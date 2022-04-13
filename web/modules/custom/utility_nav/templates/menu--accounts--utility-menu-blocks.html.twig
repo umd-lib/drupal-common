@@ -31,7 +31,11 @@
   {% if items %}
     {% for item in items %}
       <div class="utility-border">
-        <span class="utility-location">{{ link(item.title, item.url) }}</span>
+        <span class="utility-location">{{ link(item.title, item.url) }}
+          {% if item.title == "My Account" %}
+            <a href="/find/borrow/books/account-help" title="accounts help information" class="accounts-question">(?)</a>
+          {% endif %}
+        </span> 
         <span class="utility-hours">{{ item.original_link.pluginDefinition.description }}</span>
       </div>
     {% endfor %}
