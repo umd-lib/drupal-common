@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Url;
+use Drupal\views\Plugin\views\display;
 
 /**
  * @file
@@ -53,11 +54,20 @@ function bento_views_pre_render(ViewExecutable $view) {
 
 function bento_views_post_execute(ViewExecutable $view) {
   if (str_contains($view->storage->id(), 'bento_')) {
+    $display = $view->getDisplay();
+    $result_id = null;
+    if (!empty($display->display['display_options']['css_class'])) {
+      $result_id = str_replace('_', '-',  $display->display['display_options']['css_class']) . '-total';
+    }
     if (!empty($view->raw_data['total']) && !empty($view->raw_data['module_link'])) {
       $real_total = $view->raw_data['total'];
       $query_string = $view->raw_data['module_link'];
       if ($real_total > 0) {
-        $footer_content = '<span class="fas fa-solid fa-chevron-right"></span> <a href="' . $query_string . '">See all ' . $real_total . ' ' . $view->getTitle() . ' results</a>';
+        $footer_content = '
+          <div id="' . $result_id . '" data-total="' . $real_total . '">
+            <span class="fas fa-solid fa-chevron-right"></span> 
+            <a href="' . $query_string . '">See all ' . $real_total . ' ' . $view->getTitle() . ' results</a>
+          </div>';
         $view->attachment_after = array('#markup' => $footer_content);
       } 
     }
