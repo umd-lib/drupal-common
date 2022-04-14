@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: xqkejDYztIWU6858V4vSVHtWClIXxXeEjZ8FPGF6tmA
+id: best_bets
+label: 'Best Bets'
+type: 'canonical_entities:node'
+pattern: '/system/bentobb/[random:hash:md4]'
+selection_criteria:
+  1f4dfda5-8ccc-427f-916b-662e7f0760e0:
+    id: node_type
+    bundles:
+      bento_best_bets: bento_best_bets
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 1f4dfda5-8ccc-427f-916b-662e7f0760e0
+selection_logic: and
+weight: -5
+relationships: {  }
+

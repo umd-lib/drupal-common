@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_display_name
+    - node.type.bento_best_bets
+id: node.bento_best_bets.field_display_name
+field_name: field_display_name
+entity_type: node
+bundle: bento_best_bets
+label: 'Display Name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
+

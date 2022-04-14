@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_use_ezproxy
+    - node.type.bento_best_bets
+id: node.bento_best_bets.field_use_ezproxy
+field_name: field_use_ezproxy
+entity_type: node
+bundle: bento_best_bets
+label: 'Use EZProxy'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
+

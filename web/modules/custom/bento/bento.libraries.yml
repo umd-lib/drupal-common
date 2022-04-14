@@ -6,3 +6,5 @@ bento:
   css:
     component:
       css/bento.css: {}
+  js:
+    js/bento.js: {}

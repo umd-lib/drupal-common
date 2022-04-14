@@ -3,3 +3,17 @@
   font-family: "Font Awesome 5 Free";
   content: "\f110";
 }
+
+#bento-search-targets li {
+  display: inline;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+.bento-no-results {
+  color: black;
+}
+
+#bento-best-bets-block {
+  padding: 5px;
+}

@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * bento-summary-block template
+ *
+ * Variables:
+ *   - search_targets
+ */
+#}
+{{ attach_library('bento/bento') }}
+<strong>Results Found in: </strong>
+<ul id="bento-search-targets">
+{% for id, name in search_targets %}
+  <li><a class="" href="#{{ id|replace({'-summary': ''}) }}">{{ name }} <span id="{{ id }}">(0)</span></a></li>
+  {% if not loop.last %} {% endif %}
+{% endfor %}
+</ul>

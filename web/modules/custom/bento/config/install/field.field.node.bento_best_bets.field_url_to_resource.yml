@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_url_to_resource
+    - node.type.bento_best_bets
+  module:
+    - link
+id: node.bento_best_bets.field_url_to_resource
+field_name: field_url_to_resource
+entity_type: node
+bundle: bento_best_bets
+label: 'URL To Resource'
+description: 'The URL to the resource.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link
+

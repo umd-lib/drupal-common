@@ -21,6 +21,11 @@ function bento_theme() {
         'bento_search_form' => '',
       ],
     ],
+    'bento_summary_block' => [
+      'variables' => [
+        'search_targets' => '',
+      ],
+    ],
   ];
 }
 
@@ -56,6 +61,7 @@ function bento_views_post_execute(ViewExecutable $view) {
   if (str_contains($view->storage->id(), 'bento_')) {
     $display = $view->getDisplay();
     $result_id = null;
+    $footer_content = null;
     if (!empty($display->display['display_options']['css_class'])) {
       $result_id = str_replace('_', '-',  $display->display['display_options']['css_class']) . '-total';
     }
@@ -68,9 +74,15 @@ function bento_views_post_execute(ViewExecutable $view) {
             <span class="fas fa-solid fa-chevron-right"></span> 
             <a href="' . $query_string . '">See all ' . $real_total . ' ' . $view->getTitle() . ' results</a>
           </div>';
-        $view->attachment_after = array('#markup' => $footer_content);
+      } else {
+        $footer_content = '
+          <div id="' . $result_id . '" data-total="0"></div>';
       } 
+    } elseif (!empty($result_id)) {
+      $footer_content = '
+        <div id="' . $result_id . '" data-total="0"></div>';
     }
+    $view->attachment_after = array('#markup' => $footer_content);
   }
 }
 

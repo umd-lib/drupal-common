@@ -65,7 +65,6 @@ display:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          uses_fields: false
       row:
         type: fields
         options:
@@ -240,7 +239,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<span class="result-icons fas fa-user"></span> {{ value_2 }}'
+            text: '<span class="result-icons fas fa-user"></span> {{ value_2|raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -270,9 +269,9 @@ display:
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -321,9 +320,9 @@ display:
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -372,8 +371,8 @@ display:
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
           element_default_classes: false
           empty: ''
           hide_empty: false
@@ -488,6 +487,7 @@ display:
       display_extenders: {  }
       use_ajax: false
       title: WorldCat
+      css_class: world_cat_discovery_api
     cache_metadata:
       max-age: -1
       contexts:
@@ -509,6 +509,8 @@ display:
         query: false
         footer: false
         header: false
+        empty: false
+        css_class: false
       query:
         type: views_query
         options:
@@ -517,20 +519,7 @@ display:
           headers: ''
           single_payload: 0
           show_errors: 1
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: true
-          content:
-            value: "<span class=\"fas fa-solid fa-chevron-right\"></span> <a href=\"https://umaryland.on.worldcat.org/search?queryString={{ arguments.param }}\">See all Books and More results</a>\r\n"
-            format: full_html
-          plugin_id: text
+      footer: {  }
       header:
         area:
           id: area
@@ -546,6 +535,21 @@ display:
             format: full_html
           plugin_id: text
       block_category: 'Bento Quick Search'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Books and More</a>'
+            format: full_html
+          plugin_id: text
+      css_class: bento_world_cat_discovery_api
     cache_metadata:
       max-age: -1
       contexts:
@@ -567,6 +571,8 @@ display:
         query: false
         footer: false
         header: false
+        empty: false
+        css_class: false
       query:
         type: views_query
         options:
@@ -575,20 +581,7 @@ display:
           headers: ''
           single_payload: 0
           show_errors: 1
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: true
-          content:
-            value: "<span class=\"fas fa-solid fa-chevron-right\"></span> <a href=\"https://umaryland.on.worldcat.org/search?format=Artchap&queryString={{ arguments.param }}\">See all Article results</a>\r\n"
-            format: full_html
-          plugin_id: text
+      footer: {  }
       header:
         area:
           id: area
@@ -604,6 +597,21 @@ display:
             format: full_html
           plugin_id: text
       block_category: 'Bento Quick Search'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Articles</a>'
+            format: full_html
+          plugin_id: text
+      css_class: bento_world_cat_discovery_api_article
     cache_metadata:
       max-age: -1
       contexts:
@@ -626,6 +634,8 @@ display:
         footer: false
         fields: true
         header: false
+        empty: false
+        css_class: false
       query:
         type: views_query
         options:
@@ -634,20 +644,7 @@ display:
           headers: ''
           single_payload: 0
           show_errors: 1
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: true
-          content:
-            value: "<span class=\"fas fa-solid fa-chevron-right\"></span> <a href=\"https://lib.guides.umd.edu/az.php?q={{ arguments.param }}\">See all Database results</a>\r\n"
-            format: full_html
-          plugin_id: text
+      footer: {  }
       header:
         area:
           id: area
@@ -663,6 +660,21 @@ display:
             format: full_html
           plugin_id: text
       block_category: 'Bento Quick Search'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Databases</a>'
+            format: full_html
+          plugin_id: text
+      css_class: bento_database_finder
     cache_metadata:
       max-age: -1
       contexts:
@@ -684,6 +696,8 @@ display:
         query: false
         footer: false
         header: false
+        empty: false
+        css_class: false
       query:
         type: views_query
         options:
@@ -692,20 +706,7 @@ display:
           headers: ''
           single_payload: 0
           show_errors: 1
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: true
-          content:
-            value: "<span class=\"fas fa-solid fa-chevron-right\"></span> <a href=\"http://lib.guides.umd.edu/srch.php?q={{ arguments.param }}\">See all Research Guides results</a>\r\n"
-            format: full_html
-          plugin_id: text
+      footer: {  }
       header:
         area:
           id: area
@@ -721,6 +722,21 @@ display:
             format: full_html
           plugin_id: text
       block_category: 'Bento Quick Search'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Research Guides</a>'
+            format: full_html
+          plugin_id: text
+      css_class: bento_lib_guides
     cache_metadata:
       max-age: -1
       contexts:
@@ -742,6 +758,8 @@ display:
         query: false
         footer: false
         header: false
+        empty: false
+        css_class: false
       query:
         type: views_query
         options:
@@ -750,20 +768,7 @@ display:
           headers: ''
           single_payload: 0
           show_errors: 1
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: true
-          content:
-            value: "<span class=\"fas fa-solid fa-chevron-right\"></span> <a href=\"http://umd.libanswers.com/search?q={{ arguments.param }}\">See all FAQs from Ask Us! results</a>\r\n"
-            format: full_html
-          plugin_id: text
+      footer: {  }
       header:
         area:
           id: area
@@ -779,6 +784,21 @@ display:
             format: full_html
           plugin_id: text
       block_category: 'Bento Quick Search'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from FAQs</a>'
+            format: full_html
+          plugin_id: text
+      css_class: bento_lib_answers
     cache_metadata:
       max-age: -1
       contexts:
@@ -800,20 +820,9 @@ display:
         footer: false
         fields: false
         header: false
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: true
-          content:
-            value: "<span class=\"fas fa-solid fa-chevron-right\"></span> <a href=\"https://search.lib.umd.edu/website?query={{ arguments.param }}\">See all Website results</a>\r\n"
-            format: full_html
-          plugin_id: text
+        empty: false
+        css_class: false
+      footer: {  }
       fields:
         value_1:
           id: value_1
@@ -1138,6 +1147,21 @@ display:
             format: full_html
           plugin_id: text
       block_category: 'Bento Quick Search'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search</a>'
+            format: full_html
+          plugin_id: text
+      css_class: bento_libraries_website
     cache_metadata:
       max-age: -1
       contexts:
@@ -1145,3 +1169,4 @@ display:
         - url
         - url.query_args
       tags: {  }
+
