@@ -81,6 +81,7 @@
         "drupal/smart_date_calendar_kit": "^2.0",
         "drupal/smart_read_more_link": "^1.7",
         "drupal/tablefield": "^2.2",
+        "drupal/taxonomy_path_breadcrumb": "^1.0@beta",
         "drupal/token_filter": "^1.2",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_htmlspecialchars_decode": "1.0.x-dev",
