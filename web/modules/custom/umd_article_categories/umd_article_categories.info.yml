@@ -1,0 +1,9 @@
+name: UMD Article Category Blocks
+description: Provides reusuable blocks for a default set of Article categories.
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+type: module
+
+core_version_requirement: ^8.9 || ^9
