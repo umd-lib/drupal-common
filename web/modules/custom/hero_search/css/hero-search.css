@@ -63,6 +63,10 @@ textarea {
   display: inline-block;
 }
 
+.hero-search-advanced {
+  height: 15px;
+}
+
 .hero-search-block .row {
   margin-right: 15px;
   margin-left: 15px;
