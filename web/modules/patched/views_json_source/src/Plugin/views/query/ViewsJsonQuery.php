@@ -381,7 +381,11 @@ class ViewsJsonQuery extends QueryPluginBase {
       // Deal with offset & limit.
       $offset = !empty($this->offset) ? intval($this->offset) : 0;
       $limit = !empty($this->limit) ? intval($this->limit) : 0;
-      $ret = $limit ? array_slice($ret, $offset, $limit) : array_slice($ret, $offset);
+      if (!empty($raw_data['total']) && !empty($raw_data['per_page']) && (!empty($raw_data['page']) && $raw_data['page'] > 0)) {
+        // Customization for bento searchers
+      } else {
+        $ret = $limit ? array_slice($ret, $offset, $limit) : array_slice($ret, $offset);
+      }
 
       $result = [];
       if ($this->options['single_payload']) {

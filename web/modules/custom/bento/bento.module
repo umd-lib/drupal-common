@@ -54,11 +54,23 @@ function bento_views_pre_render(ViewExecutable $view) {
   }
   if (str_contains($view->id(), 'bento_')) {
     $view->element['#attached']['library'][] = 'bento/bento';
+    if (!empty($view->raw_data)) {
+      $raw_data = $view->raw_data;
+      $result_count = !empty($raw_data['total']) ? $raw_data['total'] : null;
+      if (!empty($result_count)) {
+        if ($result_count > 100 && $view->id() == 'bento_website_search') {
+          $result_count = 100;
+        }
+        $view->pager->total_items = $result_count;
+        $view->total_rows = $result_count;
+        $view->pager->updatePageInfo();
+      }
+    }
   }
 }
 
 function bento_views_post_execute(ViewExecutable $view) {
-  if (str_contains($view->storage->id(), 'bento_')) {
+  if (str_contains($view->storage->id(), 'bento_') && $view->id() != 'bento_website_search') {
     $display = $view->getDisplay();
     $result_id = null;
     $footer_content = null;
@@ -91,6 +103,17 @@ function bento_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
     $bento_search = \Drupal::request()->query->get('bento_search');
     if (!empty($bento_search)) {
       $args[0] = $bento_search;
+    }
+    $page = \Drupal::request()->query->get('page');
+    if (!empty($page)) {
+      $page_raw = (int)$page;
+      if ($page_raw > 0) {
+        $args[1] = $page_raw;
+      } else {
+        $args[1] = "0";
+      }
+    } else {
+      $args[1] = "0";
     }
   }
 }
