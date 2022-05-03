@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - views_fieldsets
     - views_json_source
 id: bento_search
 label: 'Bento Search'
@@ -21,8 +22,12 @@ display:
         type: none
         options: {  }
       cache:
-        type: none
-        options: {  }
+        type: time
+        options:
+          results_lifespan: 518400
+          results_lifespan_custom: 0
+          output_lifespan: 518400
+          output_lifespan_custom: 0
       query:
         type: views_query
         options:
@@ -42,23 +47,10 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: mini
+        type: some
         options:
-          items_per_page: 10
+          items_per_page: 3
           offset: 0
-          id: 0
-          total_pages: null
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
       style:
         type: default
         options:
@@ -228,18 +220,18 @@ display:
           key: description
           trusted_html: 1
           plugin_id: views_json_source_field
-        value_2:
-          id: value_2
-          table: json
-          field: value
+        fieldset:
+          id: fieldset
+          table: views
+          field: fieldset
           relationship: none
           group_type: group
-          admin_label: Author
+          admin_label: ''
           label: ''
           exclude: false
           alter:
-            alter_text: true
-            text: '<span class="result-icons fas fa-user"></span> {{ value_2|raw }}'
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -268,17 +260,24 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: div
-          element_wrapper_class: bento-field
-          element_default_classes: false
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          key: author
-          trusted_html: 0
-          plugin_id: views_json_source_field
+          fields:
+            - value_3
+            - value_2
+            - value_4
+          wrapper: div
+          legend: ''
+          classes: bento-fields
+          collapsible: 1
+          collapsed: 0
+          plugin_id: fieldset
         value_3:
           id: value_3
           table: json
@@ -290,7 +289,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<span class="result-icons fas fa-calendar-alt"></span> {{ value_3 }}'
+            text: '<span class="result-icons fas fa-calendar-alt"></span> <span class="bento-value">{{ value_3 }}</span>'
             make_link: false
             path: ''
             absolute: false
@@ -324,10 +323,61 @@ display:
           element_wrapper_class: bento-field
           element_default_classes: false
           empty: ''
-          hide_empty: false
+          hide_empty: true
           empty_zero: false
           hide_alter_empty: true
           key: date
+          trusted_html: 0
+          plugin_id: views_json_source_field
+        value_2:
+          id: value_2
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Author
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<span class="result-icons fas fa-user"></span> <span class="bento-value">{{ value_2|raw }}</span>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          key: author
           trusted_html: 0
           plugin_id: views_json_source_field
         value_4:
@@ -375,7 +425,7 @@ display:
           element_wrapper_class: bento-field
           element_default_classes: false
           empty: ''
-          hide_empty: false
+          hide_empty: true
           empty_zero: false
           hide_alter_empty: true
           key: item_format
@@ -493,7 +543,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
       tags: {  }
   block_1:
     display_plugin: block
@@ -546,7 +595,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Books and More</a>'
+            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Books and More</a></div>'
             format: full_html
           plugin_id: text
       css_class: bento_world_cat_discovery_api
@@ -555,7 +604,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
       tags: {  }
   block_2:
     display_plugin: block
@@ -608,7 +656,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Articles</a>'
+            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Articles</a></div>'
             format: full_html
           plugin_id: text
       css_class: bento_world_cat_discovery_api_article
@@ -617,7 +665,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
       tags: {  }
   block_3:
     display_plugin: block
@@ -671,7 +718,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Databases</a>'
+            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Databases</a></div>'
             format: full_html
           plugin_id: text
       css_class: bento_database_finder
@@ -680,7 +727,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
       tags: {  }
   block_4:
     display_plugin: block
@@ -733,7 +779,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Research Guides</a>'
+            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from Research Guides</a></div>'
             format: full_html
           plugin_id: text
       css_class: bento_lib_guides
@@ -742,7 +788,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
       tags: {  }
   block_5:
     display_plugin: block
@@ -795,7 +840,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from FAQs</a>'
+            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search from FAQs</a></div>'
             format: full_html
           plugin_id: text
       css_class: bento_lib_answers
@@ -804,7 +849,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
       tags: {  }
   block_6:
     display_plugin: block
@@ -979,18 +1023,18 @@ display:
           key: extra/htmlSnippet
           trusted_html: 1
           plugin_id: views_json_source_field
-        value_2:
-          id: value_2
-          table: json
-          field: value
+        fieldset:
+          id: fieldset
+          table: views
+          field: fieldset
           relationship: none
           group_type: group
-          admin_label: Author
+          admin_label: ''
           label: ''
           exclude: false
           alter:
-            alter_text: true
-            text: '<span class="result-icons fas fa-user"></span> {{ value_2 }}'
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -1019,7 +1063,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1027,9 +1071,16 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          key: author
-          trusted_html: 0
-          plugin_id: views_json_source_field
+          fields:
+            - value_3
+            - value_2
+            - value_4
+          wrapper: div
+          legend: ''
+          classes: bento-fields
+          collapsible: 1
+          collapsed: 0
+          plugin_id: fieldset
         value_3:
           id: value_3
           table: json
@@ -1041,7 +1092,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<span class="result-icons fas fa-calendar-alt"></span> {{ value_3 }}'
+            text: '<span class="result-icons fas fa-calendar-alt"></span> <span class="bento-value">{{ value_3 }}</span>'
             make_link: false
             path: ''
             absolute: false
@@ -1079,6 +1130,57 @@ display:
           empty_zero: false
           hide_alter_empty: true
           key: date
+          trusted_html: 0
+          plugin_id: views_json_source_field
+        value_2:
+          id: value_2
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Author
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<span class="result-icons fas fa-user"></span> <span class="bento-value">{{ value_2 }}</span>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          key: author
           trusted_html: 0
           plugin_id: views_json_source_field
         value_4:
@@ -1158,7 +1260,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search</a>'
+            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="">Try a different search</a></div>'
             format: full_html
           plugin_id: text
       css_class: bento_libraries_website
@@ -1167,6 +1269,4 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
       tags: {  }
-

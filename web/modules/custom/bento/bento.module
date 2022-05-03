@@ -2,6 +2,9 @@
 
 use Drupal\Core\Url;
 use Drupal\views\Plugin\views\display;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\block\Entity\Block;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * @file
@@ -39,7 +42,7 @@ function bento_preprocess_views_view_field(&$variables) {
       $field_id = $variables['field']->options['id'];
       $raw_output = $variables['field']->getValue($variables['row']);
       $variables['output'] = [
-        '#markup' => '<span class="' . bento_icon_map($raw_output). '"></span> ' . bento_format_map($raw_output),
+        '#markup' => '<span class="' . bento_icon_map($raw_output). '"></span> <span class="bento-value">' . bento_format_map($raw_output) . '</span>',
       ];
     }
   }
@@ -69,6 +72,59 @@ function bento_views_pre_render(ViewExecutable $view) {
   }
 }
 
+/**
+ * Implements hook_entity_type_presave().
+function bento_paragraph_presave($entity) {
+  if (!empty($entity->bundle()) && $bundle_id = $entity->bundle()) {
+    switch ($bundle_id) {
+      case "bento_search_2_columns":
+        $block1 = $this->bento_ajaxify_block('field_ut_block_2_columns_column1', $entity);
+        if ($block1 != null) {
+          $entity->set('field_ut_block_2_columns_column1', $block1);
+        }
+        $block2 = $this->bento_ajaxify_block('field_ut_block_2_columns_column2', $entity);
+        if ($block2 != null) {
+          $entity->set('field_ut_block_2_columns_column2', $block2);
+        }
+        break;
+      case "bento_search_3_columns":
+        $block1 = bento_ajaxify_block('field_ut_block_2_columns_column1', $entity);
+        if ($block1 != null) {
+          $entity->set('field_ut_block_2_columns_column1', $block1);
+        }
+        $block2 = bento_ajaxify_block('field_ut_block_2_columns_column2', $entity);
+        if ($block2 != null) {
+          $entity->set('field_ut_block_2_columns_column2', $block2);
+        }
+        $block3 = bento_ajaxify_block('field_ut_block_2_columns_column3', $entity);
+        if ($block3 != null) {
+          $entity->set('field_ut_block_2_columns_column3', $block3);
+        }
+        break;
+      case "bento_search_block":
+        break;
+      default:
+        // do nothing
+        break;
+    }
+  }
+}
+
+function bento_ajaxify_block($key, $entity) {
+  $block = $entity->get($key)->first()->getValue();
+  if ($block == null) {
+    return null;
+  }
+  $settings = $block['settings'];
+  $settings['block_ajax']['is_ajax'] = TRUE;
+  $settings['block_ajax']['max_age'] = 0;
+  $settings['block_ajax']['show_spinner'] = TRUE;
+  $block['settings'] = $settings;
+
+  return $block; 
+}
+ */
+
 function bento_views_post_execute(ViewExecutable $view) {
   if (str_contains($view->storage->id(), 'bento_') && $view->id() != 'bento_website_search') {
     $display = $view->getDisplay();
@@ -82,9 +138,9 @@ function bento_views_post_execute(ViewExecutable $view) {
       $query_string = $view->raw_data['module_link'];
       if ($real_total > 0) {
         $footer_content = '
-          <div id="' . $result_id . '" data-total="' . $real_total . '">
+          <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
             <span class="fas fa-solid fa-chevron-right"></span> 
-            <a href="' . $query_string . '">See all ' . $real_total . ' ' . $view->getTitle() . ' results</a>
+            <a href="' . $query_string . '">See all ' . number_format($real_total, 0, ".", ",") . ' ' . $view->getTitle() . ' results</a>
           </div>';
       } else {
         $footer_content = '
@@ -104,16 +160,18 @@ function bento_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
     if (!empty($bento_search)) {
       $args[0] = $bento_search;
     }
-    $page = \Drupal::request()->query->get('page');
-    if (!empty($page)) {
-      $page_raw = (int)$page;
-      if ($page_raw > 0) {
-        $args[1] = $page_raw;
+    if ($view->id() == 'bento_website_search') {
+      $page = \Drupal::request()->query->get('page');
+      if (!empty($page)) {
+        $page_raw = (int)$page;
+        if ($page_raw > 0) {
+          $args[1] = $page_raw;
+        } else {
+          $args[1] = "0";
+        }
       } else {
         $args[1] = "0";
       }
-    } else {
-      $args[1] = "0";
     }
   }
 }

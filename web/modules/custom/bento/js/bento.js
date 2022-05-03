@@ -1,7 +1,7 @@
 // bento.js
 
 // Select the node that will be observed for mutations
-var targetNode = document.getElementById("terp-page-content");
+var targetNode = document.getElementById("bento-blocks");
 
 // Options for the observer (which mutations to observe)
 var config = { attributes: false, childList: true, subtree: true };

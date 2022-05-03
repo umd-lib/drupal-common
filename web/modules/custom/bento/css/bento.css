@@ -1,9 +1,3 @@
-[data-big-pipe-placeholder-id] {
-  /* Loading animation CSS */
-  font-family: "Font Awesome 5 Free";
-  content: "\f110";
-}
-
 #bento-search-targets li {
   display: inline;
   padding-right: 10px;
@@ -16,4 +10,74 @@
 
 #bento-best-bets-block {
   padding: 5px;
+}
+
+.bento-result .views-row {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+}
+
+.bento-result {
+  margin-bottom: 10px;
+}
+
+.bento-result .views-row .bento-fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bento-result .views-row .bento-value {
+  padding-right: 10px;
+}
+
+.bento-result .views-row .bento-field {
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+.bento-result .bento-attachment {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-bottom: 2px solid #a04040;
+}
+
+.bento-result header {
+  background-color: #f1f1f1;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+}
+
+#bento-best-bets-block .views-row {
+  padding: 15px;
+  margin: -5px;
+  background-color: cornsilk;
+  border: 1px solid #f1f1f1;
+}
+
+#bento-best-bets-block .bento-best-bets-content a {
+  font-size: 20px;
+}
+
+#bento-best-bets-block .field-content {
+  display: flex;
+}
+
+#bento-best-bets-block .fas {
+  margin-top: 5px;
+  font-size: 1.5rem;
+  color: silver;
+}
+
+#bento-best-bets-block .bento-best-bets-content {
+  padding-left: 15px;
+}
+
+.bento-outer-pad {
+  padding: 4rem 2.25rem;
+}
+
+@media (min-width: 800px) {
+  .bento-outer-pad {
+    padding: 1.25rem 7.5rem;
+  }
 }

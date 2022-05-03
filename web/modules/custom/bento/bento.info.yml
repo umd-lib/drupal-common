@@ -6,6 +6,8 @@ dependencies:
   - easy_install
   - views_json_source
   - umd_solr_defaults
+  - views_fieldsets
+  - block_ajax
 type: module
 
 core_version_requirement: ^8.9 || ^9

@@ -62,10 +62,18 @@
                 // Add Ajax progress throbber.
                 if (drupalSettings.block_ajax.blocks[blockId].block_ajax.placeholder) {
                   // Add throbber with message.
-                  $block.after(Drupal.theme.ajaxProgressThrobber(Drupal.t(drupalSettings.block_ajax.blocks[blockId].block_ajax.placeholder)));
+                  // $block.after(Drupal.theme.ajaxProgressThrobber(Drupal.t(drupalSettings.block_ajax.blocks[blockId].block_ajax.placeholder)));
+                  $block.after(Drupal.theme.ajaxProgressThrobber = function () {
+                     return "<div class=\"ajax-spinner ajax-spinner---inline\"><span class=\"fas fa-spinner fa-spin fa-2xl\"></span> " + 
+                       Drupal.t(drupalSettings.block_ajax.blocks[blockId].block_ajax.placeholder)
+                     + "</div>";
+                  });
                 } else {
                   // Add throbber with no message.
-                  $block.after(Drupal.theme.ajaxProgressThrobber());
+                  // $block.after(Drupal.theme.ajaxProgressThrobber());
+                  $block.after(Drupal.theme.ajaxProgressThrobber = function () {
+                     return "<div class=\"ajax-spinner ajax-spinner---inline\"><span class=\"fas fa-spinner fa-spin fa-2xl\"></span></div>";
+                   });
                 }
               }
             }
