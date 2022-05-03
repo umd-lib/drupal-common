@@ -44,5 +44,11 @@ function ut_block_theme($existing, $type, $theme, $path) {
     'paragraph__ut_block_text_2_columns' => [
       'base hook' => 'paragraph',
     ],
+    'paragraph__block_2_even_columns' => [
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__single_block' => [
+      'base hook' => 'paragraph',
+    ],
   ];
 }

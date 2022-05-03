@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: block_2_even_columns
+label: 'Block - 2 Even Columns'
+icon_uuid: null
+icon_default: null
+description: '50/50 width blocks on monitor-width displays.'
+behavior_plugins: {  }
