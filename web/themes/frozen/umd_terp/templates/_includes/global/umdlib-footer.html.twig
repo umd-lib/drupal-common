@@ -6,12 +6,12 @@
 */
 #}
 
-<footer class="umdlib-site-footer" aria-label="Main">
+<footer class="umdlib-site-footer" aria-label="footer menus and social links">
 	<div class="umdlib-site-footer-main">
 		<div class="umdlib-site-footer-about">
 			<div class="umdlib-site-footer-logo">
 				{% if umd_terp_footer_logo_svg %}
-					<div style="background-image: url('data:image/svg+xml;utf8,{{ umd_terp_footer_logo_svg|raw }}')" role="img" alt="{{ site_name }} logo"></div>
+					<div style="background-image: url('data:image/svg+xml;utf8,{{ umd_terp_footer_logo_svg|raw }}')" role="img" alt="{{ site_name }} logo" aria-label="Libraries Logo"></div>
 				{% else %}
 					<div style="background-image: url({{ footer_logo_path }})" role="img" alt="{{ site_name }} logo"></div>
 				{% endif %}
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		<div class="umdlib-site-footer-nav-container">
-			<nav class="umdlib-site-footer-nav" aria-label="Footer Menu 1">
+			<nav class="umdlib-site-footer-nav" aria-label="Our Libraries menu">
 				{% if umd_terp_footer_menu1_title %}
 					<span class="umdlib-site-footer-nav-title">{{ umd_terp_footer_menu1_title }}</span>
 				{% endif %}
@@ -53,7 +53,7 @@
 			</nav>
 		</div>
 		<div class="umdlib-site-footer-nav-container">
-			<nav class="umdlib-site-footer-nav" aria-label="Footer Menu 2">
+			<nav class="umdlib-site-footer-nav" aria-label="Our Community menu">
 					{% if umd_terp_footer_menu2_title %}
 					<span class="umdlib-site-footer-nav-title">{{ umd_terp_footer_menu2_title }}</span>
 				{% endif %}

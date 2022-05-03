@@ -44,3 +44,24 @@
 .facet-block {
   font-size: 1rem;
 }
+
+.form-text {
+  color: black;
+  font-weight: 800;
+}
+
+.form-text::placeholder {
+  color: gray;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.form-text:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: gray;
+  font-weight: 700;
+}
+
+.form-text::-ms-input-placeholder { /* Microsoft Edge */
+  color: gray;
+  font-weight: 700;
+}

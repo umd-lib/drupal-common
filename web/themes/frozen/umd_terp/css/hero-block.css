@@ -47,3 +47,8 @@
 #cta-text {
   color: black;
 }
+
+.home-hero.home-hero-bg form, .home-hero.home-hero-dark form {
+  background-color: #ffffff;
+  color: dimgray;
+}

@@ -13,12 +13,6 @@
   ]
 %}
 <header class="{{ header_classes|join(' ') }}">
-  <a href="#main-content" class="visually-hidden focusable">
-    {{ 'Skip to main content'|t }}
-  </a>
-  <div class="max-bound">
-    <!-- Why is this here? -->
-  </div>
   <div class="site-header__bar max-bound">
     <a class="site-header__logo" href="{{ path('<front>') }}">
       {% if logo_path %}

@@ -199,7 +199,7 @@ iframe#iframe_fe53f3bc15d10c1fe704c59be49661b0 {
 }
 
 .umdlib-site-footer-legal li {
-  color: #8E8E8E;
+  color: dimgray;
   display: inline-block;
   line-height: 2.07143;
 }
@@ -215,7 +215,7 @@ iframe#iframe_fe53f3bc15d10c1fe704c59be49661b0 {
 }
 
 .umdlib-site-footer-legal span {
-  color: #8E8E8E;
+  color: dimgray;
   line-height: 2.07143;
 }
 @media (max-width: 1200px) {
