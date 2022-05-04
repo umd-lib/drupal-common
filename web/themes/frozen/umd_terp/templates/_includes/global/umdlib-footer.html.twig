@@ -11,9 +11,9 @@
 		<div class="umdlib-site-footer-about">
 			<div class="umdlib-site-footer-logo">
 				{% if umd_terp_footer_logo_svg %}
-					<div style="background-image: url('data:image/svg+xml;utf8,{{ umd_terp_footer_logo_svg|raw }}')" role="img" alt="{{ site_name }} logo" aria-label="Libraries Logo"></div>
+					<div style="background-image: url('data:image/svg+xml;utf8,{{ umd_terp_footer_logo_svg|raw }}')" role="presentation" alt="{{ site_name }} logo" aria-label="Libraries Logo"></div>
 				{% else %}
-					<div style="background-image: url({{ footer_logo_path }})" role="img" alt="{{ site_name }} logo"></div>
+					<div style="background-image: url({{ footer_logo_path }})" role="presentation" alt="{{ site_name }} logo"></div>
 				{% endif %}
 			</div>
 			<div class="umdlib-site-footer-address">

@@ -70,13 +70,13 @@ class HeaderSearchForm extends FormBase {
       '#size' => 25,
       '#maxlength' => 30,
       '#required' => TRUE,
-      '#attributes' => array('class' => array('header-search-input')),
+      '#attributes' => array('class' => array('header-search-input'), 'aria-label' => t('Search library resources')),
     ];
     $form['search_target'] = [
       '#type' => 'select',
       '#name' => 'search_target',
       '#options' => $this->configHelper->getSearchTargetOptions(),
-      '#attributes' => array('class' => array('header-search-options')),
+      '#attributes' => array('class' => array('header-search-options'), 'aria-label' => t('library resources options dropdown')),
     ];
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
