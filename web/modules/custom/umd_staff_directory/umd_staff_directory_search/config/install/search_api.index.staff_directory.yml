@@ -59,8 +59,6 @@ third_party_settings:
       index_prefix: ''
       collection: ''
       timezone: ''
-_core:
-  default_config_hash: bKjCIkKN5GTK6v9uy76ImiDGqyzhmPshutBxLQjE5TM
 id: staff_directory
 name: 'Staff Directory'
 description: ''
@@ -75,8 +73,8 @@ field_settings:
       fields:
         - 'entity:node/field_directory_id'
         - 'entity:node/field_library_department'
+        - 'entity:node/field_library_division'
         - 'entity:node/field_library_unit'
-        - 'entity:node/field_umdt_ct_person_bio'
         - 'entity:node/field_umdt_ct_person_email'
         - 'entity:node/field_umdt_ct_person_first_name'
         - 'entity:node/field_umdt_ct_person_last_name'
@@ -187,3 +185,4 @@ options:
   track_changes_in_references: true
   cron_limit: 50
 server: drupal
+

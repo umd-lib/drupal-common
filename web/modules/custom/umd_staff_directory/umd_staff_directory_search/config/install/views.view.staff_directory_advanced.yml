@@ -14,8 +14,6 @@ dependencies:
   module:
     - image
     - search_api
-_core:
-  default_config_hash: Zbb5tnNd92DmTeNOpZUpWxF0T-Qga_27JSdXojXS0-Y
 id: staff_directory_advanced
 label: 'Staff Directory Advanced'
 module: views
@@ -53,26 +51,10 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: full
+        type: some
         options:
-          items_per_page: 25
+          items_per_page: 999
           offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-            first: '« First'
-            last: 'Last »'
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 9
       style:
         type: default
         options:
@@ -668,7 +650,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"staff-advanced\">\r\n<div class=\"staff-advanced-photo\">{{ field_umdt_ct_person_photo }}</div>\r\n<div class=\"staff-advanced-details\">\r\n{{ title }}\r\n{{ field_umdt_ct_person_title }}\r\n{{ field_library_unit }}\r\n{{ field_umdt_ct_person_email }}\r\n{{ field_umdt_ct_person_phone }}\r\n{{ field_umdt_ct_person_location }}\r\n</div>\r\n</div>"
+            text: "<div class=\"staff-advanced\">\r\n<div class=\"staff-advanced-photo\">{{ field_umdt_ct_person_photo }}</div>\r\n<div class=\"staff-advanced-details\">\r\n{{ title }}\r\n{{ field_umdt_ct_person_title }}\r\n{{ field_library_unit }}\r\n{{ field_umdt_ct_person_email }}\r\n{{ field_umdt_ct_person_phone }}\r\n</div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -765,21 +747,9 @@ display:
           group_type: group
           admin_label: ''
           order: ASC
-          exposed: true
+          exposed: false
           expose:
-            label: 'Last Name'
-          plugin_id: search_api
-        field_umdt_ct_person_first_name:
-          id: field_umdt_ct_person_first_name
-          table: search_api_index_staff_directory
-          field: field_umdt_ct_person_first_name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: true
-          expose:
-            label: 'First Name'
+            label: Name
           plugin_id: search_api
       header: {  }
       footer: {  }
@@ -803,16 +773,13 @@ display:
       filter_groups:
         operator: AND
         groups: {  }
-      title: 'Staff Directory Search (advanced)'
+      title: 'Staff Directory'
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
-        - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.field_library_department'
@@ -830,7 +797,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: about/contact/directory/advanced-search
+      path: about/contact/directory
       cache:
         type: none
       defaults:
@@ -841,9 +808,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
-        - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.field_library_department'
@@ -854,4 +818,3 @@ display:
         - 'config:field.storage.node.field_umdt_ct_person_photo'
         - 'config:field.storage.node.field_umdt_ct_person_title'
         - 'config:search_api.index.staff_directory'
-
