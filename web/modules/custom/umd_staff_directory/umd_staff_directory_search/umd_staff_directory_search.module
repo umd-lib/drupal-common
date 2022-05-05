@@ -1,6 +1,35 @@
 <?php
 
+use Drupal\views\Plugin\views\display;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+
 /**
  * @file
  * Module file for umd_staff_directory_search module.
  */
+
+/**
+* Implements hook_views_pre_render().
+*/
+function umd_staff_directory_search_views_pre_render(\Drupal\views\ViewExecutable $view) {
+  if (empty($view) || empty($view->id())) {
+    return;
+  }
+  $current_lname = [];
+  if (str_contains($view->id(), 'staff_directory_advanced')) {
+    for ($i = 0; $i < count($view->result); $i++) {
+      $lname = $view->result[$i]->_entity->get('field_umdt_ct_person_last_name')->value;
+      $fletter = substr($lname, 0, 1);
+      $current_lname[$fletter] = $fletter;
+    }
+
+    $links = [];
+    foreach ($current_lname as $key => $value) {
+      $links[$key] = '<a href="#view-group-id-' . $value . '">'. $value . '</a>';
+    }
+
+    $links_str = implode(' | ', $links);
+
+    $view->attachment_before = array('#markup' => '<div class="staff-glossary">' . $links_str . '</div>');
+  }
+}
