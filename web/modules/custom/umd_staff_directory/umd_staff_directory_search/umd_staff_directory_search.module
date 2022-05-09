@@ -15,20 +15,50 @@ function umd_staff_directory_search_views_pre_render(\Drupal\views\ViewExecutabl
   if (empty($view) || empty($view->id())) {
     return;
   }
-  $current_lname = [];
+
   if (str_contains($view->id(), 'staff_directory_advanced')) {
+    $current_lname = [];
+
+    $alph = [
+      'A' => 'A',
+      'B' => 'B',
+      'C' => 'C',
+      'D' => 'D',
+      'E' => 'E',
+      'F' => 'F',
+      'G' => 'G',
+      'H' => 'H',
+      'I' => 'I',
+      'J' => 'J',
+      'K' => 'K',
+      'L' => 'L',
+      'M' => 'M',
+      'N' => 'N',
+      'O' => 'O',
+      'P' => 'P',
+      'Q' => 'Q',
+      'R' => 'R',
+      'S' => 'S',
+      'T' => 'T',
+      'U' => 'U',
+      'V' => 'V',
+      'W' => 'W',
+      'X' => 'X',
+      'Y' => 'Y',
+      'Z' => 'Z'
+    ];
+    $view->element['#attached']['library'][] = 'umd_staff_directory_search/umd_staff_directory_search';
     for ($i = 0; $i < count($view->result); $i++) {
       $lname = $view->result[$i]->_entity->get('field_umdt_ct_person_last_name')->value;
       $fletter = substr($lname, 0, 1);
       $current_lname[$fletter] = $fletter;
     }
 
-    $links = [];
     foreach ($current_lname as $key => $value) {
-      $links[$key] = '<a href="#view-group-id-' . $value . '">'. $value . '</a>';
+      $alph[$key] = '<a href="#view-group-id-' . $value . '">'. $value . '</a>';
     }
 
-    $links_str = implode(' | ', $links);
+    $links_str = implode(' | ', $alph);
 
     $view->attachment_before = array('#markup' => '<div class="staff-glossary">' . $links_str . '</div>');
   }

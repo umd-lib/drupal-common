@@ -371,7 +371,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<span class=\"fas fa-solid fa-thumbtack\"></span> \r\n{%if field_use_ezproxy %}\r\n  <a href=\"https://proxy-um.researchport.umd.edu/login?url={{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% else %}\r\n  <a href=\"{{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% endif %}\r\n<br />\r\n{{ body }}"
+            text: "<span class=\"fas fa-solid fa-thumbtack\"></span>\r\n<div class=\"bento-best-bets-content\">\r\n{%if field_use_ezproxy %}\r\n  <a href=\"https://proxy-um.researchport.umd.edu/login?url={{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% else %}\r\n  <a href=\"{{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% endif %}\r\n<br />\r\n{{ body }}\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -405,9 +405,9 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
-          hide_empty: false
+          hide_empty: true
           empty_zero: false
-          hide_alter_empty: false
+          hide_alter_empty: true
           plugin_id: custom
       filters: {  }
       sorts:
@@ -497,4 +497,3 @@ display:
         - 'config:field.storage.node.field_url_to_resource'
         - 'config:field.storage.node.field_use_ezproxy'
         - 'config:search_api.index.bento_best_bets'
-

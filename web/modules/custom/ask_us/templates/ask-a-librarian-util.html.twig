@@ -21,9 +21,9 @@
     </div>
     <div>
       {% if faq_form %}
-        <form method="get" class="navbar-form navbar-left" role="search" name="s-la-searchform" action="https://umd.libanswers.com/search" aria-label="Search frequently asked questions">
+        <form method="get" class="navbar-form navbar-left" role="search" name="s-la-searchform" action="https://umd.libanswers.com/search">
           <label for="search-faq" class="sr-only">{{ faq_form }}</label>
-          <input type="text" id="search-faq" class="form-control" name="q" required placeholder="{{ faq_placeholder }}" size="25" value="" autocomplete="on">
+          <input type="text" id="search-faq" class="form-control" name="q" required placeholder="{{ faq_placeholder }}" size="25" value="" autocomplete="on" aria-label="Search frequently asked questions">
           <button type="submit" class="btn-faq">{{ faq_form }}</button>
         </form>
       {% endif %}
