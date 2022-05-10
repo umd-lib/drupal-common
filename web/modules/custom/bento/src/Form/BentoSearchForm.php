@@ -33,9 +33,9 @@ class BentoSearchForm extends FormBase {
 
     $form['bento_search'] = array(
       '#type' => 'textfield',
-      '#title' => t('Quick Search'),
+      '#title' => t('Search'),
       '#required' => TRUE,
-      '#placeholder' => t('Stuff'),
+      '#placeholder' => !empty($defaults['search_placeholder']) ? $defaults['search_placeholder'] : t('Search books, articles, journals, and the website...'),
     );
     $form['search_results'] = array(
       '#type' => 'value',

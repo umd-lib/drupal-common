@@ -69,8 +69,10 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
   public function build() {
     $blockConfig = $this->getConfiguration();
     $search_action = $blockConfig['search_page'];
+    $search_placeholder = $blockConfig['search_placeholder'];
     $form_defaults = array();
     $form_defaults['default_action'] = null;
+    $form_defaults['search_placeholder'] = null;
     if (!empty($search_action)) {
       $nid = EntityAutocomplete::extractEntityIdFromAutocompleteInput($search_action);
       if (!empty($nid) && $nid > 0) {
@@ -80,6 +82,9 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
           $form_defaults['default_action'] = $action_url;
         }
       }
+    }
+    if (!empty($search_placeholder)) {
+      $form_defaults['search_placeholder'] = $search_placeholder;
     }
     $form = $this->formBuilder->getForm('Drupal\bento\Form\BentoSearchForm', $form_defaults);
     return [
@@ -99,6 +104,12 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
       '#description' => t('Leave blank to use block page.'),
       '#autocomplete_route_name' => 'bento.autocomplete.urls',
     ];
+    $form['search_placeholder'] = [
+      '#type' => 'textfield',
+      '#title' => t('Search Placeholder'),
+      '#default_value' =>  isset($config['search_placeholder']) ? $config['search_placeholder'] : null,
+      '#description' => t('E.g., Search books and more!'),
+    ];
     return $form;
   }
 
@@ -107,5 +118,6 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->setConfigurationValue('search_page', $form_state->getValue('search_page'));
+    $this->setConfigurationValue('search_placeholder', $form_state->getValue('search_placeholder'));
   }
 }
