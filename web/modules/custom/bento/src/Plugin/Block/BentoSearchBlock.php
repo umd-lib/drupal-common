@@ -90,6 +90,14 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
     return [
       '#theme' => 'bento_search_block',
       '#bento_search_form' => $form,
+      '#cache' => [
+        'max-age' => 3600,
+      ],
+      '#attached' => [
+        'library' => [
+          'bento/form_util',
+        ],
+      ],
     ];
   }
 

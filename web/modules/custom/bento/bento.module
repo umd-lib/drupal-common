@@ -56,7 +56,6 @@ function bento_views_pre_render(ViewExecutable $view) {
     return;
   }
   if (str_contains($view->id(), 'bento_')) {
-    $view->element['#attached']['library'][] = 'bento/bento';
     if (!empty($view->raw_data)) {
       $raw_data = $view->raw_data;
       $result_count = !empty($raw_data['total']) ? $raw_data['total'] : null;
@@ -71,59 +70,6 @@ function bento_views_pre_render(ViewExecutable $view) {
     }
   }
 }
-
-/**
- * Implements hook_entity_type_presave().
-function bento_paragraph_presave($entity) {
-  if (!empty($entity->bundle()) && $bundle_id = $entity->bundle()) {
-    switch ($bundle_id) {
-      case "bento_search_2_columns":
-        $block1 = $this->bento_ajaxify_block('field_ut_block_2_columns_column1', $entity);
-        if ($block1 != null) {
-          $entity->set('field_ut_block_2_columns_column1', $block1);
-        }
-        $block2 = $this->bento_ajaxify_block('field_ut_block_2_columns_column2', $entity);
-        if ($block2 != null) {
-          $entity->set('field_ut_block_2_columns_column2', $block2);
-        }
-        break;
-      case "bento_search_3_columns":
-        $block1 = bento_ajaxify_block('field_ut_block_2_columns_column1', $entity);
-        if ($block1 != null) {
-          $entity->set('field_ut_block_2_columns_column1', $block1);
-        }
-        $block2 = bento_ajaxify_block('field_ut_block_2_columns_column2', $entity);
-        if ($block2 != null) {
-          $entity->set('field_ut_block_2_columns_column2', $block2);
-        }
-        $block3 = bento_ajaxify_block('field_ut_block_2_columns_column3', $entity);
-        if ($block3 != null) {
-          $entity->set('field_ut_block_2_columns_column3', $block3);
-        }
-        break;
-      case "bento_search_block":
-        break;
-      default:
-        // do nothing
-        break;
-    }
-  }
-}
-
-function bento_ajaxify_block($key, $entity) {
-  $block = $entity->get($key)->first()->getValue();
-  if ($block == null) {
-    return null;
-  }
-  $settings = $block['settings'];
-  $settings['block_ajax']['is_ajax'] = TRUE;
-  $settings['block_ajax']['max_age'] = 0;
-  $settings['block_ajax']['show_spinner'] = TRUE;
-  $block['settings'] = $settings;
-
-  return $block; 
-}
- */
 
 function bento_views_post_execute(ViewExecutable $view) {
   if (str_contains($view->storage->id(), 'bento_') && $view->id() != 'bento_website_search') {
@@ -156,7 +102,7 @@ function bento_views_post_execute(ViewExecutable $view) {
 
 function bento_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
   if (!empty($view) && !empty($view->id()) && (str_contains($view->id(), 'bento_'))) {
-    $bento_search = \Drupal::request()->query->get('bento_search');
+    $bento_search = \Drupal::request()->query->get('query');
     if (!empty($bento_search)) {
       $args[0] = $bento_search;
     }

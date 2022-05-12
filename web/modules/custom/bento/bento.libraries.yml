@@ -1,10 +1,11 @@
 # Add CSS or JS to any module with a libraries file.
 # See: https://www.drupal.org/docs/creating-custom-modules/adding-stylesheets-css-and-javascript-js-to-a-drupal-module
 #   for usage and attachment information.
-bento:
+results_util:
   version: 1.x
-  css:
-    component:
-      css/bento.css: {}
   js:
     js/bento.js: {}
+form_util:
+  version: 1.x
+  js:
+    js/form_util.js: {}

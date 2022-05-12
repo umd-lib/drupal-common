@@ -25,12 +25,6 @@ class BentoSearchForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $defaults = array()) {
-    $bento_search = \Drupal::request()->query->get('bento_search');
-    $default_search = null;
-    if (!empty($bento_search)) {
-      $default_search = $bento_search;
-    }
-
     $form['bento_search'] = array(
       '#type' => 'textfield',
       '#title' => t('Search'),
@@ -63,7 +57,7 @@ class BentoSearchForm extends FormBase {
       $redir_page = $search_action;
     }
     $search_str = $form_state->getValue('bento_search');
-    $options = [ 'query' => ['bento_search' => $search_str]];
+    $options = [ 'query' => ['query' => $search_str]];
     $url = Url::fromUri('internal:' . $redir_page, $options);
     $response = new TrustedRedirectResponse($url->toString());
     $form_state->setResponse($response);

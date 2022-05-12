@@ -76,6 +76,11 @@ class BentoSummaryBlock extends BlockBase implements ContainerFactoryPluginInter
     return [
       '#theme' => 'bento_summary_block',
       '#search_targets' => $search_targets,
+      '#attached' => [
+        'library' => [
+          'bento/results_util',
+        ],
+      ],
     ];
   }
 

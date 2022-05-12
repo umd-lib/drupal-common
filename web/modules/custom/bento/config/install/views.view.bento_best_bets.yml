@@ -444,7 +444,7 @@ display:
           title: ''
           default_argument_type: query_parameter
           default_argument_options:
-            query_param: bento_search
+            query_param: query
             fallback: ''
             multiple: and
           default_argument_skip_url: false
@@ -497,3 +497,4 @@ display:
         - 'config:field.storage.node.field_url_to_resource'
         - 'config:field.storage.node.field_use_ezproxy'
         - 'config:search_api.index.bento_best_bets'
+

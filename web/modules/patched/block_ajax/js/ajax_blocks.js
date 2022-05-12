@@ -40,9 +40,9 @@
           // UMD Bento search.
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
-          const bentoSearch = urlParams.get('bento_search');
+          const bentoSearch = urlParams.get('query');
           if (bentoSearch) {
-            ajaxUrlParams.bento_search = bentoSearch;
+            ajaxUrlParams.query = bentoSearch;
           }
 
           // Setup request.

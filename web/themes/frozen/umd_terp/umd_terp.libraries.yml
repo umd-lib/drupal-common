@@ -10,6 +10,7 @@ global:
      css/sections.css: { media: screen }
      css/article.css: { media: screen }
      css/custom.css: { media: screen }
+     css/bento.css: { media: screen }
      static/build/css/print.css: { media: print }
   js:
     static/build/js/index.js: {}
