@@ -20,7 +20,6 @@ class LibCalSettingsHelper {
   const CLIENT_SECRET = 'lib_cal_client_secret';
   const CALENDAR_ID = 'lib_cal_calendar_id';
   const LIBRARIES = 'lib_hours_libraries';
-  const NO_EVENTS = 'no_events_text';
 
   protected $config;
 
