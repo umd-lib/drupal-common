@@ -121,6 +121,7 @@ class LibCalSettingsForm extends ConfigFormBase {
     $client_id = $form_state->getValue(LibCalSettingsHelper::CLIENT_ID);
     $client_secret = $form_state->getValue(LibCalSettingsHelper::CLIENT_SECRET);
     $calendar_id = $form_state->getValue(LibCalSettingsHelper::CALENDAR_ID);
+
     $libraries = $form_state->getValue(LibCalSettingsHelper::LIBRARIES);
 
     $settings = $this->configFactory->getEditable(LibCalSettingsHelper::SETTINGS);

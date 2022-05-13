@@ -5,26 +5,31 @@
  *
  * Variables:
  *   - events
+ *   - no_events
  */
 #}
 {{ attach_library('lib_cal/lib-cal') }}
 <div class='lib-cal-block'>
-  {% for event in events %}
-    <div class='lib-cal-event'>
-      <div class='lib-cal-event-time'>
-        <span>{{ event.month }}</span>
-        <span class="lib-cal-event-time-day">{{ event.day }}</span>
-        <span>—</span>
-        <span>{{ event.hour }}</span>
-      </div>
-      <div class='lib-cal-event-detail'>
-        {# <div class='lib-cal-event-category'>
-          {{ event.category.0 }}
-        </div> #}
-        <div class='lib-cal-event-title'>
-          <a href='{{ event.url }}' title='{{ event.title }}'>{{ event.title }}</a>
+  {% if events.count > 0 %}
+    {% for event in events %}
+      <div class='lib-cal-event'>
+        <div class='lib-cal-event-time'>
+          <span>{{ event.month }}</span>
+          <span class="lib-cal-event-time-day">{{ event.day }}</span>
+          <span>—</span>
+          <span>{{ event.hour }}</span>
+        </div>
+        <div class='lib-cal-event-detail'>
+          {# <div class='lib-cal-event-category'>
+            {{ event.category.0 }}
+          </div> #}
+          <div class='lib-cal-event-title'>
+            <a href='{{ event.url }}' title='{{ event.title }}'>{{ event.title }}</a>
+          </div>
         </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  {% else %}
+    {{ no_events }}
+  {% endif %}
 </div>
