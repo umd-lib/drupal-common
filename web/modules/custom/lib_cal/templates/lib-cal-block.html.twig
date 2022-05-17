@@ -30,6 +30,10 @@
       </div>
     {% endfor %}
   {% else %}
-    {{ no_events }}
+    <h4>Upcoming Events</h4>
+    <div class='lib-cal-no-events'>
+      <span class="fas fa-solid fa-calendar"></span>
+      <span>{{ no_events }}</span>
+    </div>
   {% endif %}
 </div>
