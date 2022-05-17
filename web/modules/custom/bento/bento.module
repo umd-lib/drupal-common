@@ -79,7 +79,7 @@ function bento_views_post_execute(ViewExecutable $view) {
     if (!empty($display->display['display_options']['css_class'])) {
       $result_id = str_replace('_', '-',  $display->display['display_options']['css_class']) . '-total';
     }
-    if (!empty($view->raw_data['total']) && !empty($view->raw_data['module_link'])) {
+    if (!empty($view->raw_data['total']) && !empty($view->raw_data['module_link']) && count($view->raw_data['results']) > 0) {
       $real_total = $view->raw_data['total'];
       $query_string = $view->raw_data['module_link'];
       if ($real_total > 0) {
