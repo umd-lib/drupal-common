@@ -11,6 +11,8 @@ dependencies:
     - link
     - search_api
     - text
+_core:
+  default_config_hash: iZXzZNRC8nrKtzt8cgFyDBw-fowaDmq7-B1qZq9F-KU
 id: bento_best_bets
 label: 'Bento Best Bets'
 module: views
@@ -371,7 +373,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<span class=\"fas fa-solid fa-thumbtack\"></span>\r\n<div class=\"bento-best-bets-content\">\r\n{%if field_use_ezproxy %}\r\n  <a href=\"https://proxy-um.researchport.umd.edu/login?url={{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% else %}\r\n  <a href=\"{{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% endif %}\r\n<br />\r\n{{ body }}\r\n</div>"
+            text: "<span class=\"fas fa-solid fa-thumbtack\" role=\"presentation\"></span>\r\n<div class=\"bento-best-bets-content\">\r\n{%if field_use_ezproxy %}\r\n  <a href=\"https://proxy-um.researchport.umd.edu/login?url={{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% else %}\r\n  <a href=\"{{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% endif %}\r\n<br />\r\n{{ body }}\r\n</div>"
             make_link: false
             path: ''
             absolute: false
