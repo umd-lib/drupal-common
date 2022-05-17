@@ -79,3 +79,7 @@
     padding-bottom: 1.125rem;
   }
 }
+
+.news-article-full h2 {
+  font-size: 1.75rem;
+}
