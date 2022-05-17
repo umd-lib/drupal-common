@@ -65,3 +65,17 @@
   color: gray;
   font-weight: 700;
 }
+
+.views-exposed-form {
+  border-bottom: 0px solid #eaeaea;
+  margin-bottom: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+@media (min-width: 1000px) {
+  .views-exposed-form {
+    flex-wrap: nowrap;
+    margin-bottom: 0.125rem;
+    padding-bottom: 1.125rem;
+  }
+}
