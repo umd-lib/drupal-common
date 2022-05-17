@@ -16,7 +16,7 @@ dependencies:
     - search_api
     - text
 _core:
-  default_config_hash: Fo9Obo-3rnZu5J-VbhYUVZ6T3NNvpb1j_MmGYxjm3A4
+  default_config_hash: j1zq2aXW3MB1rCgpSU88SIxSMibXpReJXpfk5Qqp-kE
 id: equipment_tracking
 label: 'Equipment Tracking'
 module: views
@@ -68,8 +68,8 @@ display:
           expose:
             items_per_page: true
             items_per_page_label: 'Results per'
-            items_per_page_options: '10, 25, 50, 100'
-            items_per_page_options_all: true
+            items_per_page_options: '10, 25, 50'
+            items_per_page_options_all: false
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
@@ -783,7 +783,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      title: 'Equipment Loan'
+      title: 'Borrow Equipment'
     cache_metadata:
       max-age: -1
       contexts:
@@ -949,11 +949,11 @@ display:
       exposed_block: true
       menu:
         type: normal
-        title: 'Equipment Loan'
+        title: 'Borrow Equipment'
         description: ''
         expanded: false
-        parent: 'menu_link_content:a84eabd6-e109-486e-a55a-3e801fbff58d'
-        weight: 0
+        parent: 'menu_link_content:c245e441-03d2-4752-a6ac-aed67956df66'
+        weight: 2
         context: '0'
         menu_name: main
     cache_metadata:
@@ -973,3 +973,4 @@ display:
         - 'config:field.storage.node.field_library_location'
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.equipment_tracking'
+
