@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.people_two_columns.field_person_two_columns
+    - field.field.paragraph.people_two_columns.field_ut_text_text
+    - paragraphs.paragraphs_type.people_two_columns
+  module:
+    - text
+id: paragraph.people_two_columns.default
+targetEntityType: paragraph
+bundle: people_two_columns
+mode: default
+content:
+  field_person_two_columns:
+    weight: 0
+    label: above
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_ut_text_text:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  search_api_excerpt: true
+

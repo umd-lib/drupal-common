@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * ut_person_extensions module file.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function ut_people_extension_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__people_two_columns' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}

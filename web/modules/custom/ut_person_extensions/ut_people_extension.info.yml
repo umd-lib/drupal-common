@@ -1,0 +1,11 @@
+name: 'UMD Terp Paragraphs: People - extended'
+description: Extensions and modifications to the ut_persons module.
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+  - paragraphs
+  - umd_terp_base
+type: module
+
+core_version_requirement: ^8.9 || ^9

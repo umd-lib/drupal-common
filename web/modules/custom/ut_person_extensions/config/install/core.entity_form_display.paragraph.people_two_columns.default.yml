@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.people_two_columns.field_person_two_columns
+    - field.field.paragraph.people_two_columns.field_ut_text_text
+    - paragraphs.paragraphs_type.people_two_columns
+  module:
+    - text
+id: paragraph.people_two_columns.default
+targetEntityType: paragraph
+bundle: people_two_columns
+mode: default
+content:
+  field_person_two_columns:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_ut_text_text:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+hidden:
+  created: true
+  status: true
+
