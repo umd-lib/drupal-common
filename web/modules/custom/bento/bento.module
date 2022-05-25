@@ -29,6 +29,12 @@ function bento_theme() {
         'search_targets' => '',
       ],
     ],
+    'bento_more_block' => [
+      'variables' => [
+        'search_options' => '',
+        'query' => '',
+      ],
+    ],
   ];
 }
 

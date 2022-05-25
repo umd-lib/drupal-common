@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * bento-search-block template
+ *
+ * Variables:
+ *   - search_options
+ *   - query
+ */
+#}
+{% if query and search_options %}
+  <header>
+    <h2>Other search options</h2>
+  </header>
+  {% for name, url in search_options %}
+    <div class="views-row"><a href="{{ url }}{{ query }}">{{ name }}</a></div>
+  {% endfor %}
+{% endif %}
