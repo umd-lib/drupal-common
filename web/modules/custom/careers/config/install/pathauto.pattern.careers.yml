@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - node
+id: careers
+label: Careers
+type: 'canonical_entities:node'
+pattern: 'careers/[node:title]'
+selection_criteria:
+  97570287-3360-4ddf-81f2-6ee06e5e303c:
+    id: 'entity_bundle:node'
+    bundles:
+      careers: careers
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 97570287-3360-4ddf-81f2-6ee06e5e303c
+selection_logic: and
+weight: -5
+relationships: {  }
+

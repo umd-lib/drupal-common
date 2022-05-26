@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * @file
+ * careers module install file.
+ */
+
+function careers_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'careers');
+}
