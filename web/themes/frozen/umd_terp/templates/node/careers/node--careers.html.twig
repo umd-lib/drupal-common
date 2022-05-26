@@ -18,6 +18,9 @@
 				{% if content.field_closing_date|field_value %}
 					<div><strong>Closes:</strong> {{ content.field_closing_date|field_value }}</div>
 				{% endif %}
+				{% if content.field_best_consideration_date|field_value %}
+					<div><strong>Best Consideration By:</strong> {{ content.field_best_consideration_date|field_value }}</div>
+				{% endif %}
 			</div>
         		<div class="col-1200-4 col-900-5 col-600-12">
 				<h3>Contact</h3>
@@ -33,7 +36,10 @@
 		{% if content.field_closing_date|field_value %}
 			<div><strong>Closes:</strong> {{ content.field_closing_date|field_value }}</div>
 		{% endif %}
+		{% if content.field_best_consideration_date|field_value %}
+			<div><strong>Best Consideration By:</strong> {{ content.field_best_consideration_date|field_value }}</div>
+		{% endif %}
 	{% endif %}
 
 </div>
-{{ content|without('body', 'field_job_internal_notes', 'field_closing_date', 'field_main_contact') }}
+{{ content|without('body', 'field_job_internal_notes', 'field_closing_date', 'field_main_contact', 'field_best_consideration_date') }}
