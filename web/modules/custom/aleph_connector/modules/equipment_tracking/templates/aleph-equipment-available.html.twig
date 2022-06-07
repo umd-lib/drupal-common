@@ -8,6 +8,7 @@
  *   - equipment_count
  *   - equipment_sysnum
  *   - equipment_mindue
+ *   - error
  */
 #}
 {{ attach_library('equipment_tracking/equipment-tracking') }}
@@ -15,6 +16,8 @@
   {% if equipment_count <= 0 %}
     {%if equipment_mindue %}
       <div class="equipment-available">Next Available: {{ equipment_mindue }}</div>
+    {% elseif error %}
+      <div class="equipment-available"><span class="error">Error retrieving availability information.</span></div>
     {% endif %}
   {% else %}
     <div class="equipment-count"><span class="fa fa-check dark-green"></span> {{ equipment_count }} available now</div>

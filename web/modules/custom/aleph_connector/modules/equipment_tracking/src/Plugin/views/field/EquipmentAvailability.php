@@ -74,7 +74,10 @@ class EquipmentAvailability extends FieldPluginBase {
     $equipment_query_field = $aleph->getQueryField();
     if ($this->isValueEmpty($equipment_query_field, TRUE)) {
       // Exit if value has not been configured.
-      return FALSE;
+      return [
+        '#theme' => 'aleph_equipment_available',
+        '#error' => true,
+      ];
     }
 
     // Retrieve the list of bibnums for the item in the row.
@@ -94,7 +97,10 @@ class EquipmentAvailability extends FieldPluginBase {
         return $this->availabilityField($bibnums, $bibnum_data);
       }
     }
-    return FALSE;
+    return [
+      '#theme' => 'aleph_equipment_available',
+      '#error' => true,
+    ];
   }
 
   /**
@@ -113,7 +119,7 @@ class EquipmentAvailability extends FieldPluginBase {
     $available_count = 0;
     $earliest_raw_date = NULL;
     $processed_date = NULL;
-
+    $errors = false;
     foreach ($availability_data as $datum) {
       $available_count += $datum['available'];
 
@@ -127,9 +133,11 @@ class EquipmentAvailability extends FieldPluginBase {
             $processed_date = $datetime_p->format('g:i A \o\n F j, Y');
           }
           catch (\InvalidArgumentException $e) {
+            $errors = true;
             $this->logger->error("InvalidArgumentException: Error parsing date: '$raw_date'.");
           }
           catch (\UnexpectedValueException $e) {
+            $errors = true;
             $this->logger->error("UnexpectedValueException: Error parsing date: '$raw_date'.", $e);
           }
         }
@@ -141,6 +149,7 @@ class EquipmentAvailability extends FieldPluginBase {
       '#equipment_count' => $available_count,
       '#equipment_mindue' => $processed_date,
       '#equipment_sysnum' => implode(',', $bibnums),
+      '#error' => $available_count <= 0 && errors == true ? true : false,
     ];
   }
 

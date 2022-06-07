@@ -15,6 +15,7 @@ function equipment_tracking_theme() {
         'equipment_count' => '',
         'equipment_sysnum' => '',
         'equipment_mindue' => '',
+        'error' => '',
       ],
     ],
   ];
