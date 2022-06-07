@@ -14,24 +14,23 @@ source:
   data_fetcher_plugin: http
   data_parser_plugin: json
   urls:
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=25&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=50&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=75&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=100&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=125&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=150&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=175&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=200&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=225&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=250&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=275&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=300&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=325&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=350&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=375&_max=25
-    - https://www.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=400&_max=25
-    # - http://host.docker.internal:8080/site/api/documents?_nodetype=public:textdocument&_query=migrateme&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=50
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=0&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=25&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=50&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=75&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=100&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=125&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=150&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=175&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=200&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=225&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=250&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=275&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=300&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=325&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=350&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=375&_max=25
+    - https://wwwold.lib.umd.edu/h2dapi/documents?_nodetype=public:textdocument&_query=UMDMIGRATE&_attributes=public:body,public:migrate_flag,public:title,pubwfLastModificationDate,pubwfCreationDate&_offset=400&_max=25
 
   item_selector: items/
 

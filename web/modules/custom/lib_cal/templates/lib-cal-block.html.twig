@@ -10,7 +10,7 @@
 #}
 {{ attach_library('lib_cal/lib-cal') }}
 <div class='lib-cal-block'>
-  {% if events.count > 0 %}
+  {% if events|length > 0 %}
     {% for event in events %}
       <div class='lib-cal-event'>
         <div class='lib-cal-event-time'>
