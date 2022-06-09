@@ -149,7 +149,7 @@ class EquipmentAvailability extends FieldPluginBase {
       '#equipment_count' => $available_count,
       '#equipment_mindue' => $processed_date,
       '#equipment_sysnum' => implode(',', $bibnums),
-      '#error' => $available_count <= 0 && errors == true ? true : false,
+      '#error' => $available_count <= 0 && $errors == true ? true : false,
     ];
   }
 

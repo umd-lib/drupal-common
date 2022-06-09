@@ -37,7 +37,7 @@ example will use "drupal", but that is arbitrary:
 ```
 > git clone https://github.com/umd-lib/drupal-common.git common-www
 > cd common-www
-> git checkout feature/LIBWEB-5305   # (temporary development branch)
+> git checkout www/main
 ```
 
 3) Install the site using Composer. This will download all dependencies and prep
