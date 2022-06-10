@@ -1,0 +1,22 @@
+header .navigations,
+.header-alert,
+nav,
+footer .umdlib-site-footer-main,
+footer .umdlib-site-footer-legal .max-bound ul,
+#s-lch-widget-15842,
+.facet-block,
+.back-to-top {
+  display: none;
+}
+
+header .site-header__logo img, footer .umdlib-site-footer-legal .max-bound span {
+  display: block;
+}
+
+#terp-page-content {
+  display: block;
+}
+
+header .site-header__logo img {
+  width: 400px;
+}
