@@ -16,3 +16,7 @@ header .site-header__logo img, footer .umdlib-site-footer-legal .max-bound span 
 #terp-page-content {
   display: block;
 }
+
+header .site-header__logo img {
+  width: 400px;
+}
