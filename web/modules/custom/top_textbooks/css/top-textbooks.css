@@ -35,3 +35,7 @@ span.facet-item__count {
 .red {
     color: #e21833;
 }
+
+.textbook-error {
+  font-variant: small-caps;  
+}
