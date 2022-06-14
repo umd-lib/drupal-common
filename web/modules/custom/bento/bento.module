@@ -85,6 +85,12 @@ function bento_views_post_execute(ViewExecutable $view) {
     if (!empty($display->display['display_options']['css_class'])) {
       $result_id = str_replace('_', '-',  $display->display['display_options']['css_class']) . '-total';
     }
+
+    $title = $view->getTitle();
+    $header_content = '
+      <header>
+        <h2>' . $title . '</h2>
+      </header>';
     if (!empty($view->raw_data['total']) && !empty($view->raw_data['module_link']) && count($view->raw_data['results']) > 0) {
       $real_total = $view->raw_data['total'];
       $query_string = $view->raw_data['module_link'];
@@ -92,8 +98,12 @@ function bento_views_post_execute(ViewExecutable $view) {
         $footer_content = '
           <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
             <span class="fas fa-solid fa-chevron-right"></span> 
-            <a href="' . $query_string . '">See all ' . number_format($real_total, 0, ".", ",") . ' ' . $view->getTitle() . ' results</a>
+            <a href="' . $query_string . '">See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results</a>
           </div>';
+        $header_content = '
+          <header>
+            <h2><a href="'. $query_string . '">' . $title . ' <span class="fas fa-link"></span></a></h2>
+          </header>';
       } else {
         $footer_content = '
           <div id="' . $result_id . '" data-total="0"></div>';
@@ -103,6 +113,7 @@ function bento_views_post_execute(ViewExecutable $view) {
         <div id="' . $result_id . '" data-total="0"></div>';
     }
     $view->attachment_after = array('#markup' => $footer_content);
+$view->attachment_before = array('#markup' => $header_content);
   }
 }
 
