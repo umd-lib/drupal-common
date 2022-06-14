@@ -68,7 +68,7 @@ class HeaderSearchForm extends FormBase {
       '#name' => 'search_query',
       '#placeholder' => Html::decodeEntities('&#xF002;') . ' ' . $this->configHelper->getDefaultSearchPlaceholder(),
       '#size' => 25,
-      '#maxlength' => 30,
+      '#maxlength' => 128,
       '#required' => TRUE,
       '#attributes' => array('class' => array('header-search-input'), 'aria-label' => t('Search library resources')),
     ];

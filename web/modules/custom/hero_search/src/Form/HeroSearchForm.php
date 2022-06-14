@@ -122,7 +122,7 @@ class HeroSearchForm extends FormBase {
       '#name' => 'search_query',
       '#placeholder' => $search_target_config['placeholder'] ?? $this->configHelper->getDefaultSearchPlaceholder(),
       '#size' => 50,
-      '#maxlength' => 60,
+      '#maxlength' => 128,
       '#attributes' => [
         'id' => $id,
         'aria-label' => t('Search resources in @resource', ['@resource' => $search_target_name]),
