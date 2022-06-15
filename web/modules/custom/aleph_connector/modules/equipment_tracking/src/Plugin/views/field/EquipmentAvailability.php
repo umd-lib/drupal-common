@@ -144,6 +144,10 @@ class EquipmentAvailability extends FieldPluginBase {
       }
     }
 
+    if (empty($processed_date) && $available_count  <= 0) {
+      $errors = true;
+    }
+
     return [
       '#theme' => 'aleph_equipment_available',
       '#equipment_count' => $available_count,
