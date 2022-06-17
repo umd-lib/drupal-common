@@ -3,8 +3,9 @@
  */
 
 #header-alerts {
-  background-color: #ffd000;
   width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .header-alert {
@@ -12,8 +13,6 @@
 }
 
 .header-alerts .views-row {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .header-alert {
@@ -56,15 +55,26 @@
  Status Types
  */
 
-#header-alerts .type-info {}
+.header-alerts .type-info {
+  background-color: #bdf4d8;
+}
 
-#header-alerts .type-closure {}
+.header-alerts .type-closure {
+  background-color: #ffd000;
 
-#header-alerts .type-status {}
+}
 
-#header-alerts .type-emergency {}
+.header-alerts .type-status {
+  background-color: #ffd000;
+}
 
-#header-alerts .type-alert {}
+.header-alerts .type-emergency {
+  background-color: #ffd000; 
+}
+
+.header-alerts .type-alert {
+  background-color: #ffd000; 
+}
 
 @media (max-width: 991px){
   .header-alert-body {

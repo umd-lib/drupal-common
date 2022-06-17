@@ -12,6 +12,8 @@ dependencies:
     - options
     - text
     - user
+_core:
+  default_config_hash: lZ9JRpq00LQ9XR6wkaU_WpBTEq30iXmhu9j37ytjkeQ
 id: sitewide_header_alerts
 label: 'Sitewide Header Alerts'
 module: views
@@ -334,7 +336,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<div class="header-alert type-{{ field_alert_type }}"> <div class="header-alert-title">{{ field_icon }} {{ title }}</div><div class="header-alert-body"> {{ body }}</div></div>'
+            text: "<div id=\"header-alerts\" class=\"type-{{ field_alert_type}}\">\r\n  <div class=\"container\">\r\n    <div class=\"header-alert\"><div class=\"header-alert-title\">{{ field_icon }} {{ title }}</div><div class=\"header-alert-body\"> {{ body }}</div></div>\r\n  </div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -453,3 +455,4 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_alert_type'
         - 'config:field.storage.node.field_icon'
+

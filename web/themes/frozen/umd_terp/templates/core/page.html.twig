@@ -13,11 +13,7 @@
 
 <main id="main-content">
 	{% block header_alert %}
-		<div id="header-alerts">
-      <div class="container">
-			   {{ page.header_alerts }}
-      </div>
-		</div>
+		{{ page.header_alerts }}
 	{% endblock %}
 	{% block hero %}
 		{% if hero_image %}
