@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_space_activity
+field_name: field_space_activity
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Individual Study'
+      label: 'Individual Study'
+    -
+      value: 'Group study'
+      label: 'Group study'
+    -
+      value: 'Virtual meeting / interview'
+      label: 'Virtual meeting / interview'
+    -
+      value: 'In-person meeting / interview'
+      label: 'In-person meeting / interview'
+    -
+      value: 'Host event'
+      label: 'Host event'
+    -
+      value: 'Media creation / editing'
+      label: 'Media creation / editing'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
+

@@ -1,0 +1,193 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+    - taxonomy
+    - node
+    - search_api
+  config:
+    - field.storage.node.field_space_activity
+    - field.storage.node.body
+    - field.storage.node.field_space_featured
+    - field.storage.node.field_space_features
+    - field.storage.node.field_space_image
+    - field.storage.node.field_space_library_location
+    - field.storage.taxonomy_term.field_location_details_page
+    - field.storage.node.field_space_noise_level
+    - search_api.server.drupal
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    term_modifiers:
+      slop: 3
+      fuzzy: 1
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+id: spaces
+name: Spaces
+description: ''
+read_only: false
+field_settings:
+  aggregated_field:
+    label: 'Aggregated field'
+    property_path: aggregated_field
+    type: text
+    configuration:
+      type: concat
+      fields:
+        - 'entity:node/body'
+        - 'entity:node/field_space_activity'
+        - 'entity:node/field_space_features'
+        - 'entity:node/field_space_noise_level'
+        - 'entity:node/title'
+  description:
+    label: 'Description » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'body:processed'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.body
+  field_location_details_page:
+    label: 'Library Location » Taxonomy term » Location Details Page'
+    datasource_id: 'entity:node'
+    property_path: 'field_space_library_location:entity:field_location_details_page'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_space_library_location
+        - field.storage.taxonomy_term.field_location_details_page
+      module:
+        - taxonomy
+  field_space_activity:
+    label: Activity
+    datasource_id: 'entity:node'
+    property_path: field_space_activity
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_space_activity
+  field_space_featured:
+    label: Featured
+    datasource_id: 'entity:node'
+    property_path: field_space_featured
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_space_featured
+  field_space_features:
+    label: Features
+    datasource_id: 'entity:node'
+    property_path: field_space_features
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_space_features
+  field_space_image:
+    label: Image
+    datasource_id: 'entity:node'
+    property_path: field_space_image
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_space_image
+  field_space_library_location:
+    label: 'Library Location'
+    datasource_id: 'entity:node'
+    property_path: field_space_library_location
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_space_library_location
+  field_space_noise_level:
+    label: 'Noise Level'
+    datasource_id: 'entity:node'
+    property_path: field_space_noise_level
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_space_noise_level
+  location_root:
+    label: 'Library Location » Taxonomy term » Term Parents » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_space_library_location:entity:parent:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_space_library_location
+      module:
+        - taxonomy
+  status:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - space
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+  solr_date_range: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  track_changes_in_references: true
+  cron_limit: 50
+server: drupal
+
