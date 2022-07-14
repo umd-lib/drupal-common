@@ -83,3 +83,12 @@
 .news-article-full h2 {
   font-size: 1.75rem;
 }
+
+.umd-spaces {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.space-featured-Yes {
+  background-color: aliceblue;
+}
