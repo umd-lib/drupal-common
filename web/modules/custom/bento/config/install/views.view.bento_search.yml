@@ -4,6 +4,8 @@ dependencies:
   module:
     - views_fieldsets
     - views_json_source
+_core:
+  default_config_hash: '-TovfHdAv4ypwhr9LlmEZQz0mcBNBsiLCZKoJNAaHI4'
 id: bento_search
 label: 'Bento Search'
 module: views
@@ -559,26 +561,13 @@ display:
       query:
         type: views_query
         options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=world_cat_discovery_api&q=%'
+          json_file: 'http://searchumd-app:3000/xhr_search.json?endpoint=world_cat_discovery_api&q=%'
           row_apath: results
           headers: ''
           single_payload: 0
           show_errors: 1
       footer: {  }
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<h2>Books and More</h2>'
-            format: full_html
-          plugin_id: text
+      header: {  }
       block_category: 'Bento Quick Search'
       empty:
         area:
@@ -620,26 +609,13 @@ display:
       query:
         type: views_query
         options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=world_cat_discovery_api_article&q=%'
+          json_file: 'http://searchumd-app:3000/xhr_search.json?endpoint=world_cat_discovery_api_article&q=%'
           row_apath: results
           headers: ''
           single_payload: 0
           show_errors: 1
       footer: {  }
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<h2>Articles</h2>'
-            format: full_html
-          plugin_id: text
+      header: {  }
       block_category: 'Bento Quick Search'
       empty:
         area:
@@ -682,26 +658,13 @@ display:
       query:
         type: views_query
         options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=lib_guides_database&q=%'
+          json_file: 'http://searchumd-app:3000/xhr_search.json?endpoint=lib_guides_database&q=%'
           row_apath: results
           headers: ''
           single_payload: 0
           show_errors: 1
       footer: {  }
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<h2>Databases</h2>'
-            format: full_html
-          plugin_id: text
+      header: {  }
       block_category: 'Bento Quick Search'
       empty:
         area:
@@ -743,26 +706,13 @@ display:
       query:
         type: views_query
         options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=lib_guides&q=%'
+          json_file: 'http://searchumd-app:3000/xhr_search.json?endpoint=lib_guides&q=%'
           row_apath: results
           headers: ''
           single_payload: 0
           show_errors: 1
       footer: {  }
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<h2>Research Guides</h2>'
-            format: full_html
-          plugin_id: text
+      header: {  }
       block_category: 'Bento Quick Search'
       empty:
         area:
@@ -804,26 +754,13 @@ display:
       query:
         type: views_query
         options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=lib_answers&q=%'
+          json_file: 'http://searchumd-app:3000/xhr_search.json?endpoint=lib_answers&q=%'
           row_apath: results
           headers: ''
           single_payload: 0
           show_errors: 1
       footer: {  }
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<h2>FAQs from Ask Us!</h2>'
-            format: full_html
-          plugin_id: text
+      header: {  }
       block_category: 'Bento Quick Search'
       empty:
         area:
@@ -862,6 +799,7 @@ display:
         header: false
         empty: false
         css_class: false
+        query: false
       footer: {  }
       fields:
         value_1:
@@ -1230,20 +1168,7 @@ display:
           key: item_format
           trusted_html: 0
           plugin_id: views_json_source_field
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<h2>Libraries'' Website</h2>'
-            format: full_html
-          plugin_id: text
+      header: {  }
       block_category: 'Bento Quick Search'
       empty:
         area:
@@ -1260,9 +1185,18 @@ display:
             format: full_html
           plugin_id: text
       css_class: bento_libraries_website
+      query:
+        type: views_query
+        options:
+          json_file: 'http://bento-website-searcher:5000/search?q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_interface'
         - url
       tags: {  }
+
