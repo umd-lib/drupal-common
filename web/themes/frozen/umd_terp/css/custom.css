@@ -89,6 +89,10 @@
   border-bottom: 1px solid black;
 }
 
+.umd-spaces .accordion > .card .card-header .btn {
+  padding: 0rem 0rem 0rem 2.75rem;
+}
+
 .space-featured-Yes {
   background-color: aliceblue;
 }

@@ -1038,7 +1038,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: visit-and-study/find-space-3
+      path: visit-and-study/find-space-search
       menu:
         type: normal
         title: 'Find a Space'
