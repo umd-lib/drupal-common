@@ -30,7 +30,6 @@ dependencies:
     - 'taxonomy_term:library_locations:74f70c2e-d03f-4e99-991c-5598a265129d'
     - 'taxonomy_term:library_locations:7db7b2a3-710b-422b-ab88-c5c1b34140fb'
     - 'taxonomy_term:library_locations:8ce4d280-e55c-47dc-950b-e8746fc57a27'
-    - 'taxonomy_term:library_locations:98959f1c-2d20-484d-b11c-8afc619280fa'
     - 'taxonomy_term:library_locations:98ca1ca0-3422-40f3-8e5a-835ef25148e9'
     - 'taxonomy_term:library_locations:e464284b-2f1e-4168-97b4-4c336749aca4'
     - 'taxonomy_term:library_locations:f38c7b95-f831-4100-859f-eddf29e92f9b'
@@ -52,51 +51,12 @@ base_table: search_api_index_spaces
 base_field: search_api_id
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Default
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: none
-        options: {  }
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          bypass_access: false
-          skip_access: false
-          preserve_facet_query_args: false
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: none
-        options:
-          offset: 0
-      style:
-        type: default
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          uses_fields: false
-      row:
-        type: fields
-        options:
-          inline: {  }
-          separator: ''
-          hide_empty: false
-          default_field_elements: true
+      title: 'Find a Space'
       fields:
         field_space_featured:
           id: field_space_featured
@@ -105,6 +65,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -150,8 +112,8 @@ display:
           type: boolean
           settings:
             format: default
-            format_custom_true: ''
             format_custom_false: ''
+            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -173,8 +135,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         field_space_image:
           id: field_space_image
           table: search_api_datasource_spaces_entity_node
@@ -182,6 +142,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -226,8 +188,8 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: spaces_thumbnail
             image_link: ''
+            image_style: spaces_thumbnail
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -245,8 +207,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         nid:
           id: nid
           table: search_api_datasource_spaces_entity_node
@@ -254,6 +214,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -328,8 +290,6 @@ display:
             format_plural_values:
               - '1'
               - '@count'
-          entity_type: node
-          plugin_id: search_api_field
         title:
           id: title
           table: search_api_datasource_spaces_entity_node
@@ -337,6 +297,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -399,8 +361,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         field_location_details_page:
           id: field_location_details_page
           table: search_api_index_spaces
@@ -408,6 +368,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -474,7 +435,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          plugin_id: search_api_field
         field_space_library_location:
           id: field_space_library_location
           table: search_api_datasource_spaces_entity_node
@@ -482,6 +442,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -562,8 +524,6 @@ display:
                 view_mode: default
               tags:
                 display_method: label
-          entity_type: node
-          plugin_id: search_api_field
         body:
           id: body
           table: search_api_datasource_spaces_entity_node
@@ -571,6 +531,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -632,8 +594,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         field_space_features:
           id: field_space_features
           table: search_api_datasource_spaces_entity_node
@@ -641,6 +601,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -702,8 +664,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         field_space_activity:
           id: field_space_activity
           table: search_api_datasource_spaces_entity_node
@@ -711,6 +671,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -772,8 +734,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         nothing_1:
           id: nothing_1
           table: views
@@ -781,6 +741,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Activity / Features'
+          plugin_id: custom
           label: ''
           exclude: true
           alter:
@@ -822,7 +783,6 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
-          plugin_id: custom
         field_space_noise_level:
           id: field_space_noise_level
           table: search_api_datasource_spaces_entity_node
@@ -830,6 +790,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -891,8 +853,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         nothing:
           id: nothing
           table: views
@@ -900,6 +860,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: custom
           label: ''
           exclude: false
           alter:
@@ -941,7 +902,68 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
-          plugin_id: custom
+      pager:
+        type: none
+        options:
+          offset: 0
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: none
+        options: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'No results.'
+            format: full_html
+          tokenize: false
+      sorts:
+        field_space_featured:
+          id: field_space_featured
+          table: search_api_index_spaces
+          field: field_space_featured
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: field_space_featured
+          exposed: false
+        title:
+          id: title
+          table: search_api_index_spaces
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: title
+          exposed: false
+      arguments: {  }
       filters:
         aggregated_field:
           id: aggregated_field
@@ -950,6 +972,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_text
           operator: '='
           value:
             min: ''
@@ -958,16 +981,16 @@ display:
           group: 1
           exposed: true
           expose:
+            label: 'Aggregated field'
+            description: null
             use_operator: false
             operator: aggregated_field_op
             operator_limit_selection: false
             operator_list: {  }
             identifier: aggregated_field
-            label: 'Aggregated field'
-            description: null
+            required: false
             remember: false
             multiple: false
-            required: false
             min_placeholder: null
             max_placeholder: null
             placeholder: null
@@ -983,52 +1006,30 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_text
-      sorts:
-        field_space_featured:
-          id: field_space_featured
-          table: search_api_index_spaces
-          field: field_space_featured
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
-        title:
-          id: title
-          table: search_api_index_spaces
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      query:
+        type: search_api_query
+        options:
+          bypass_access: false
+          skip_access: false
+          preserve_facet_query_args: false
+      relationships: {  }
       header: {  }
       footer: {  }
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: 'No results.'
-            format: full_html
-          plugin_id: text
-      relationships: {  }
-      arguments: {  }
       display_extenders: {  }
-      title: 'Find a Space'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1047,12 +1048,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_1:
-    display_plugin: block
     id: block_1
     display_title: 'MCK 1st'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1061,6 +1062,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             21: 21
@@ -1094,24 +1096,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'McKeldin 1st Floor'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1130,12 +1131,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_10:
-    display_plugin: block
     id: block_10
     display_title: Special
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1144,6 +1145,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             2: 2
@@ -1177,24 +1179,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: Special
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1213,12 +1214,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_12:
-    display_plugin: block
     id: block_12
     display_title: 'MSPAL SD'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1227,6 +1228,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             34: 34
@@ -1260,24 +1262,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'MSPAL SD'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1296,12 +1297,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_13:
-    display_plugin: block
     id: block_13
     display_title: 'MSPAL 1st'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1310,6 +1311,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             12: 12
@@ -1343,24 +1345,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'MSPAL 1st'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1379,12 +1380,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_14:
-    display_plugin: block
     id: block_14
     display_title: 'MSPAL 2nd'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1393,6 +1394,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             15: 15
@@ -1426,24 +1428,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'MSPAL 2nd'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1462,12 +1463,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_15:
-    display_plugin: block
     id: block_15
     display_title: Severn
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1476,6 +1477,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             1: 1
@@ -1509,24 +1511,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: Severn
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1545,12 +1546,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_16:
-    display_plugin: block
     id: block_16
     display_title: 'STEM SD'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1559,6 +1560,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             16: 16
@@ -1592,24 +1594,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'STEM SD'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1628,12 +1629,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_17:
-    display_plugin: block
     id: block_17
     display_title: 'STEM 2nd'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1642,6 +1643,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             17: 17
@@ -1675,24 +1677,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'STEM 2nd'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1711,12 +1712,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_18:
-    display_plugin: block
     id: block_18
     display_title: 'STEM 1st'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1725,6 +1726,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             19: 19
@@ -1758,24 +1760,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'STEM 1st'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1794,12 +1795,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_19:
-    display_plugin: block
     id: block_19
     display_title: 'STEM 3rd'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1808,6 +1809,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             10: 10
@@ -1841,24 +1843,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'STEM 3rd'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1877,12 +1878,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_2:
-    display_plugin: block
     id: block_2
     display_title: 'MCK 2nd'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1891,6 +1892,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             20: 20
@@ -1924,24 +1926,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'McKeldin 2nd Floor - TD'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -1960,12 +1961,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_20:
-    display_plugin: block
     id: block_20
     display_title: Priddy
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -1974,6 +1975,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             4: 4
@@ -2007,24 +2009,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: Priddy
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -2043,12 +2044,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_21:
-    display_plugin: block
     id: block_21
     display_title: 'Art 1st'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -2057,6 +2058,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             11: 11
@@ -2090,24 +2092,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'Art 1st'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -2126,12 +2127,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_3:
-    display_plugin: block
     id: block_3
     display_title: 'MCK 3rd'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -2140,6 +2141,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             14: 14
@@ -2173,24 +2175,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'McKeldin 3rd Floor'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -2209,12 +2210,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_4:
-    display_plugin: block
     id: block_4
     display_title: 'MCK 4th'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -2223,6 +2224,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             23: 23
@@ -2256,24 +2258,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'McKeldin 4th Floor'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -2292,12 +2293,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_5:
-    display_plugin: block
     id: block_5
     display_title: 'MCK 5th'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -2306,6 +2307,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             13: 13
@@ -2339,24 +2341,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'McKeldin 5th Floor'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -2375,12 +2376,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_6:
-    display_plugin: block
     id: block_6
     display_title: 'MCK 6th'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -2389,6 +2390,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             18: 18
@@ -2422,24 +2424,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'McKeldin 6th Floor'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -2458,12 +2459,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_7:
-    display_plugin: block
     id: block_7
     display_title: 'MCK 7th'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -2472,6 +2473,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             24: 24
@@ -2505,24 +2507,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: 'McKeldin 7th Floor'
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -2541,12 +2542,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_8:
-    display_plugin: block
     id: block_8
     display_title: Hornbake
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -2555,6 +2556,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             9: 9
@@ -2588,24 +2590,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: Hornbake
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -2624,12 +2625,12 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   block_9:
-    display_plugin: block
     id: block_9
     display_title: Arch
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
+      empty: {  }
       filters:
         field_space_library_location:
           id: field_space_library_location
@@ -2638,6 +2639,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value:
             8: 8
@@ -2671,24 +2673,23 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: library_locations
+          type: select
           hierarchy: true
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      defaults:
-        filters: false
-        filter_groups: false
-        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        empty: false
+        filters: false
+        filter_groups: false
       display_description: ''
-      block_category: Spaces
+      display_extenders: {  }
       block_description: Arch
-      empty: {  }
+      block_category: Spaces
     cache_metadata:
       max-age: -1
       contexts:
@@ -2707,29 +2708,13 @@ display:
         - 'config:field.storage.taxonomy_term.field_location_details_page'
         - 'config:search_api.index.spaces'
   page_1:
-    display_plugin: page
     id: page_1
     display_title: Page
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: visit-and-study/find-space
-      menu:
-        type: normal
-        title: 'Find a Space'
-        description: ''
-        expanded: false
-        parent: 'menu_link_content:72195289-eeb1-4d45-a3de-9e52e0d353db'
-        weight: 0
-        context: '0'
-        menu_name: main
       cache:
         type: none
-      defaults:
-        cache: false
-        filters: false
-        filter_groups: false
-      exposed_block: true
       filters:
         aggregated_field:
           id: aggregated_field
@@ -2738,6 +2723,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_text
           operator: '='
           value:
             min: ''
@@ -2764,9 +2750,9 @@ display:
               updater: '0'
               editor: '0'
               facilitator: '0'
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -2779,11 +2765,26 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_text
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        cache: false
+        filters: false
+        filter_groups: false
+      exposed_block: true
+      display_extenders: {  }
+      path: visit/space
+      menu:
+        type: normal
+        title: 'Find a Space'
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: main
+        parent: 'menu_link_content:72195289-eeb1-4d45-a3de-9e52e0d353db'
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
