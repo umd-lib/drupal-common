@@ -93,6 +93,10 @@
   padding: 0rem 0rem 0rem 2.75rem;
 }
 
+.umd-spaces .space-image {
+  text-align: center;
+}
+
 .space-featured-Yes {
   background-color: aliceblue;
 }
