@@ -166,7 +166,7 @@ class HeroSearchForm extends FormBase {
       $this->logger->notice("The base search Url configuration for '$target' is missing!");
     }
     else {
-      $url = Url::fromUri($target_base_url . $query)->toString();
+      $url = Url::fromUri($target_base_url . urlencode($query))->toString();
     }
     $response = new TrustedRedirectResponse($url);
     $form_state->setResponse($response);

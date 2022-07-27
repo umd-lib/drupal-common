@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_space_library_location
+    - node.type.space
+    - taxonomy.vocabulary.library_locations
+id: node.space.field_space_library_location
+field_name: field_space_library_location
+entity_type: node
+bundle: space
+label: 'Library Location'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      library_locations: library_locations
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
+

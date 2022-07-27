@@ -12,6 +12,7 @@
 web/core
 web/modules/contrib
 web/themes/contrib
+web/libraries
 
 # Ignore dependencies that are managed with Composer.
 # Generally you should only ignore the root vendor directory. It's important

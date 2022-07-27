@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_space_features
+field_name: field_space_features
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Reservable
+      label: Reservable
+    -
+      value: 'Electrical Outlets'
+      label: 'Electrical Outlets'
+    -
+      value: Whiteboard
+      label: Whiteboard
+    -
+      value: 'Food / drink allowed'
+      label: 'Food / drink allowed'
+    -
+      value: 'Monitor with HDMI connection'
+      label: 'Monitor with HDMI connection'
+    -
+      value: Computers
+      label: Computers
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
+

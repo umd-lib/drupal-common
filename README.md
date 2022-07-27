@@ -213,6 +213,11 @@ To create a local Solr core with through docker-compose, do the following:
 For UMD users, see the "drupal-common SAML Setup" page in Confluence
 (<https://confluence.umd.edu/display/ULDW/drupal-common+SAML+Setup>).
 
+### BENTO Search Integration
+
+For UMD users, see the "drupal-common Bento Search Setup in Local" page in Confluence
+(<https://confluence.umd.edu/display/ULDW/drupal-common%3A+Bento+Search+Setup+in+Local>).
+
 ## Tools
 
 ### PHP CodeSniffer

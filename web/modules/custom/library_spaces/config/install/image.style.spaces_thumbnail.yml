@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+name: spaces_thumbnail
+label: 'Spaces Thumbnail'
+effects:
+  89261108-733e-453c-b601-a5c833e63b03:
+    uuid: 89261108-733e-453c-b601-a5c833e63b03
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 400
+      height: 285
+      anchor: center-center
+pipeline: local_binaries
+

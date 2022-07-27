@@ -83,3 +83,20 @@
 .news-article-full h2 {
   font-size: 1.75rem;
 }
+
+.umd-spaces {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.umd-spaces .accordion > .card .card-header .btn {
+  padding: 0rem 0rem 0rem 2.75rem;
+}
+
+.umd-spaces .space-image {
+  text-align: center;
+}
+
+.space-featured-Yes {
+  background-color: aliceblue;
+}
