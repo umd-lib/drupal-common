@@ -42,6 +42,7 @@ dependencies:
     - options
     - search_api
     - text
+    - views_fieldsets
 id: find_a_space_simplified
 label: 'Find a space - Simplified'
 module: views
@@ -135,78 +136,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-        field_space_image:
-          id: field_space_image
-          table: search_api_datasource_spaces_entity_node
-          field: field_space_image
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: search_api_field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: image
-          settings:
-            image_link: ''
-            image_style: spaces_thumbnail
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
         nid:
           id: nid
           table: search_api_datasource_spaces_entity_node
@@ -290,77 +219,6 @@ display:
             format_plural_values:
               - '1'
               - '@count'
-        title:
-          id: title
-          table: search_api_datasource_spaces_entity_node
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: search_api_field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: true
-            text: "{% if field_space_featured == \"Yes\" %}\r\n  Featured: {{ title }}\r\n{% else %}\r\n  {{ title }}\r\n{% endif %}"
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
         field_location_details_page:
           id: field_location_details_page
           table: search_api_index_spaces
@@ -435,6 +293,322 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
+        fieldset:
+          id: fieldset
+          table: views
+          field: fieldset
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: fieldset
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          fields:
+            - title
+            - fieldset_1
+          wrapper: div
+          legend: ''
+          classes: 'umd-spaces  space-featured-{{ field_space_featured }}'
+          collapsible: 0
+          collapsed: 0
+        title:
+          id: title
+          table: search_api_datasource_spaces_entity_node
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{% if field_space_featured == \"Yes\" %}\r\n  Featured: {{ title }}\r\n{% else %}\r\n  {{ title }}\r\n{% endif %}"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: h3
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+        fieldset_1:
+          id: fieldset_1
+          table: views
+          field: fieldset
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: fieldset
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          fields:
+            - fieldset_2
+            - fieldset_3
+          wrapper: div
+          legend: ''
+          classes: row
+          collapsible: 0
+          collapsed: 0
+        fieldset_2:
+          id: fieldset_2
+          table: views
+          field: fieldset
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: fieldset
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          fields:
+            - field_space_image
+            - field_space_library_location
+          wrapper: div
+          legend: ''
+          classes: col-800-5
+          collapsible: 0
+          collapsed: 0
+        field_space_image:
+          id: field_space_image
+          table: search_api_datasource_spaces_entity_node
+          field: field_space_image
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: image
+          settings:
+            image_link: ''
+            image_style: spaces_thumbnail
+            image_loading:
+              attribute: lazy
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
         field_space_library_location:
           id: field_space_library_location
           table: search_api_datasource_spaces_entity_node
@@ -445,7 +619,7 @@ display:
           entity_type: node
           plugin_id: search_api_field
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -499,8 +673,8 @@ display:
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
-          multi_type: ul
-          separator: ', '
+          multi_type: separator
+          separator: '; '
           field_api_classes: false
           field_rendering: true
           fallback_handler: search_api_entity
@@ -524,6 +698,66 @@ display:
                 view_mode: default
               tags:
                 display_method: label
+        fieldset_3:
+          id: fieldset_3
+          table: views
+          field: fieldset
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: fieldset
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          fields:
+            - body
+            - field_space_features
+            - field_space_activity
+            - nothing_1
+            - field_space_noise_level
+          wrapper: div
+          legend: ''
+          classes: col-800-7
+          collapsible: 0
+          collapsed: 0
         body:
           id: body
           table: search_api_datasource_spaces_entity_node
@@ -743,7 +977,7 @@ display:
           admin_label: 'Activity / Features'
           plugin_id: custom
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: true
             text: "{{ body }}\r\n<p><strong>Activities:</strong> {{ field_space_activity }}</p>\r\n<p><strong>Features:</strong> {{ field_space_features }}</p>"
@@ -793,7 +1027,7 @@ display:
           entity_type: node
           plugin_id: search_api_field
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: true
             text: "<div id=\"accordion-{{ nid }}\" class=\"accordion\">\r\n  <div class=\"card\">\r\n    <div id=\"accordion-{{ nid }}-header-1\" class=\"card-header\">\r\n      <div class=\"btn collapsed\" data-toggle=\"collapse\" data-target=\"#accordion-{{ nid }}-content-1\" aria-expanded=\"false\" aria-controls=\"accordion-{{ nid }}-content-1\">\r\n        Noise Level: {{ field_space_noise_level__value }}\r\n      </div>\r\n    </div>\r\n    <div id=\"accordion-{{ nid }}-content-1\" class=\"collapse\" aria-labelledby=\"accordion-{{ nid }}-header-1\" data-parent=\"#accordion-{{ nid }}\">\r\n      <div class=\"card-body\">\r\n{% if field_space_noise_level__value == \"Silent\" %}\r\n<ul>\r\n  <li>Users can engage in individual, quiet study</li>\r\n  <li>Talking is prohibited</li>\r\n  <li>No cell phone conversations</li>\r\n  <li>Headphone volume should be a personal listening level</li>\r\n</ul>\r\n{% endif %}\r\n{% if field_space_noise_level__value == \"Quiet\" %}\r\n<ul>\r\n  <li>Occasional quiet conversations are okay</li>\r\n  <li>Brief, quiet cell phone conversations okay</li>\r\n  <li>Headphone volume should be a personal listening level</li>\r\n</ul>\r\n{% endif %}\r\n{% if field_space_noise_level__value == \"Collaborative\" %}\r\n<ul>\r\n  <li>Group work is encouraged</li>\r\n  <li>Attend virtual meetings and events</li>\r\n  <li>Energetic group conversation volume is expected</li>\r\n  <li>Cell phone conversations at a normal volume okay</li>\r\n</ul>\r\n{% endif %}\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
@@ -853,55 +1087,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: custom
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: "<div class=\"umd-spaces space-featured-{{ field_space_featured }}\">\r\n<h3>{{ title }}</h3>\r\n<div class=\"row\">\r\n  <div class=\"col-800-5\">\r\n    <p>{{ field_space_image }}</p>\r\n    {{ field_space_library_location }}\r\n  </div>\r\n  <div class=\"col-800-7\">\r\n    {{ nothing_1 }}\r\n    {{ field_space_noise_level }}\r\n  </div>\r\n</div>\r\n</div>"
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
       pager:
         type: none
         options:
@@ -1016,7 +1201,7 @@ display:
       row:
         type: fields
         options:
-          default_field_elements: true
+          default_field_elements: false
           inline: {  }
           separator: ''
           hide_empty: false
@@ -2733,7 +2918,7 @@ display:
           exposed: true
           expose:
             operator_id: aggregated_field_op
-            label: 'Aggregated field'
+            label: Search
             description: ''
             use_operator: false
             operator: aggregated_field_op
@@ -2752,7 +2937,7 @@ display:
               facilitator: '0'
             min_placeholder: ''
             max_placeholder: ''
-            placeholder: ''
+            placeholder: spaces...
           is_grouped: false
           group_info:
             label: ''

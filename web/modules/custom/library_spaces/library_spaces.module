@@ -1,8 +1,50 @@
 <?php
 
+use \Drupal\Core\Url;
+use Drupal\views\Plugin\views\display;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\block\Entity\Block;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+
 /**
  * @file
  * Module file for library_spaces module.
  */
 
-// Intentionally blank
+/**
+ * Implements hook_preprocess_views_view_field()
+ */
+function library_spaces_preprocess_views_view_field(&$variables) {
+  $view = $variables['view'];
+  $field = $variables['field'];
+  if ($view != null && $field != null && $view->storage->id() == 'find_a_space_simplified' && $field->field == 'field_space_library_location') {
+    if (!empty($variables['output'])) {
+      $old_raw = $variables['output']->__toString();
+      $old_output = explode('; ', $old_raw);
+    }
+
+    $field_id = $variables['field']->options['id'];
+    $raw_output = $variables['field']->getValue($variables['row']);
+    
+    $new_output = null;
+    $i = 0;
+    foreach ($raw_output as $a => $b) {
+      if ($b > 0) {
+        if ($term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($b)) {
+          if ($term != null && $uri = $term->get('field_location_details_page')->getString()) {
+            $url = Url::fromUri($uri);
+            if ($url != null) {
+              $new_output .= '<li><a href="' . $url->toString() . '">' . $old_output[$i] . '</a></li>';
+            }
+          } else {
+            $new_output .= '<li>' . $old_output[$i] . '</li>';
+          }
+        }
+        $i++;
+      }
+    }
+    if (!empty($new_output)) {
+      $variables['output'] = \Drupal\Core\Render\Markup::create('<ul>' . $new_output . '</ul>');
+    }
+  }
+}
