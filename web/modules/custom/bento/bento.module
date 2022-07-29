@@ -113,7 +113,7 @@ function bento_views_post_execute(ViewExecutable $view) {
         <div id="' . $result_id . '" data-total="0"></div>';
     }
     $view->attachment_after = array('#markup' => $footer_content);
-$view->attachment_before = array('#markup' => $header_content);
+    $view->attachment_before = array('#markup' => $header_content);
   }
 }
 
