@@ -665,7 +665,7 @@ display:
             linked: 0
             reverse: 0
             format: 'At [term:parents:join: - ] - [term:name]'
-            clear: 0
+            clear: 1
           group_column: target_id
           group_columns: {  }
           group_rows: true
