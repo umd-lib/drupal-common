@@ -1,0 +1,5 @@
+homepage_feature:
+  version: 1.x
+  css:
+    component:
+      css/homepage_feature.css: {}

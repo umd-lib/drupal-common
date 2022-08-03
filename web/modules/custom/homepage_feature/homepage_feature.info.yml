@@ -1,0 +1,10 @@
+name: Homepage Feature
+description: CT and Views for Homepage Feature.
+
+package: 'UMD Custom'
+dependencies:
+  - easy_install
+  - views
+type: module
+
+core_version_requirement: ^8.9 || ^9

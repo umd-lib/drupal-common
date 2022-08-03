@@ -1,0 +1,24 @@
+<?php
+
+use Drupal\Core\Url;
+use Drupal\views\Plugin\views\display;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\block\Entity\Block;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+
+/**
+ * @file
+ * Module file for homepage_feature module.
+ */
+
+/**
+* Implements hook_views_pre_render().
+*/
+function homepage_feature_views_pre_render(Drupal\views\ViewExecutable $view) {
+  if (empty($view) || empty($view->storage->id())) {
+    return;
+  }
+  if ($view->storage->id() == 'homepage_feature') {
+    $view->element['#attached']['library'][] = 'homepage_feature/homepage_feature';
+  }
+}

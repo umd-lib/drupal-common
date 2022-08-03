@@ -1,0 +1,48 @@
+.homepage-feature {
+  background-image: url("/modules/custom/homepage_feature/images/background.png");
+  background-size: 50%;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+.homepage-feature .row {
+  background: rgba(255, 255, 255, .75);  
+}
+
+.homepage-feature .content-container {
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+}
+
+.homepage-feature .content-container p {
+  margin-bottom: .5rem;
+  line-height: 1.25;
+}
+
+.homepage-feature .thumbnail-container {
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  text-align: center;
+}
+
+.homepage-feature .thumbnail-container .image-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.homepage-feature .thumbnail-container img {
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .homepage-feature .thumbnail-container {
+    display: none;
+  }
+
+  .homepage-feature .content-container {
+    padding-left: 25px;
+  }
+}

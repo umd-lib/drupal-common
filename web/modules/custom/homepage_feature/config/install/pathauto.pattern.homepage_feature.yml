@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: homepage_feature
+label: 'Homepage Feature'
+type: 'canonical_entities:node'
+pattern: '/system/feature/[random:hash:md4]'
+selection_criteria:
+  e9dae975-5a75-4a40-82e0-6ff149c1afa6:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: e9dae975-5a75-4a40-82e0-6ff149c1afa6
+    context_mapping:
+      node: node
+    bundles:
+      homepage_feature: homepage_feature
+selection_logic: and
+weight: -5
+relationships: {  }
+
