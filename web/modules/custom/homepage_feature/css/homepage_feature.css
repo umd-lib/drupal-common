@@ -3,15 +3,21 @@
   background-size: 50%;
   border-top: 2px solid white;
   border-bottom: 2px solid white;
+  padding: 5px;
 }
 
 .homepage-feature .row {
-  background: rgba(255, 255, 255, .75);  
+  background: rgba(255, 255, 255, .75);
+  padding: 5px;
 }
 
 .homepage-feature .content-container {
   border-left: 2px solid white;
   border-right: 2px solid white;
+}
+
+.homepage-feature .content-container h6 {
+  text-transform: capitalize;
 }
 
 .homepage-feature .content-container p {
@@ -20,15 +26,31 @@
 }
 
 .homepage-feature .thumbnail-container {
-  height: 100%;
   display: flex;
-  align-items: stretch;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+}
+
+.homepage-feature .button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+}
+
+.homepage-feature .button-container a {
+  padding: .5rem 2rem;
+  color: black;
+  border: .1rem solid black;
+  font-weight: bold;
+  text-decoration: none !important;
 }
 
 .homepage-feature .thumbnail-container .image-wrapper {
   width: 100%;
   overflow: hidden;
+  max-height: 120px;
 }
 
 .homepage-feature .thumbnail-container img {

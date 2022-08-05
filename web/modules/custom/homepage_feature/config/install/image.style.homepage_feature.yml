@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+name: homepage_feature
+label: 'Homepage Feature'
+effects:
+  14a8fce0-2ad8-498f-ad6a-f29aaca222e7:
+    uuid: 14a8fce0-2ad8-498f-ad6a-f29aaca222e7
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 500
+      height: 150
+      anchor: center-center
+pipeline: local_binaries
+
