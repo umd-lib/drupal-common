@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * @file
+ * Ut_button module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function ut_button_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.ut_button':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Lets us define our paragraphs templates in this module.
+ */
+function ut_button_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__ut_button' => [
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__ut_button_set' => [
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__ut_link' => [
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__ut_link_set' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_field_WIDGET_TYPE_paragraphs_form_alter().
+ *
+ * Adds "Content Tips" helper text to the paragraph.
+ */
+function ut_button_field_widget_paragraphs_form_alter(&$element, &$form_state, $context) {
+  if ($element['#paragraph_type'] == 'ut_button_set') {
+    // Tips text.
+    $markup = '<ul>';
+    $markup .= '<li><strong>Limit the set to one, two or three buttons.</strong> And use buttons sparingly throughout each page.</li>';
+    $markup .= '<li>Define and prioritize the action(s) you want users to take. Use concise, meaningful language to define the Call to Action and what will happen when the user clicks the button.</li>';
+    $markup .= '<li>Avoid generic language, such as "Click Here."</li>';
+    $markup .= '<li><a target="_blank" href="/admin/help/ut_button">Buttons and Links Help</a></li>';
+    $markup .= '</ul>';
+
+    $element['ut_button_tips'] = [
+      '#type' => 'details',
+      '#title' => t('Button Content Tips'),
+      '#weight' => -1000,
+    ];
+    $element['ut_button_tips']['#markup'] = $markup;
+  }
+  elseif ($element['#paragraph_type'] == 'ut_link_set') {
+    // Tips text.
+    $markup = '<ul>';
+    $markup .= '<li><strong>Limit the set to one, two or three links.</strong> And use links sparingly throughout each page.</li>';
+    $markup .= '<li>Define and prioritize the action(s) you want users to take. Use concise, meaningful language to define the Call to Action and what will happen when the user clicks the link.</li>';
+    $markup .= '<li>Avoid generic language, such as "Click Here."</li>';
+    $markup .= '<li><a target="_blank" href="/admin/help/ut_button">Buttons and Links Help</a></li>';
+    $markup .= '</ul>';
+
+    $element['ut_link_tips'] = [
+      '#type' => 'details',
+      '#title' => t('Link Content Tips'),
+      '#weight' => -1000,
+    ];
+    $element['ut_link_tips']['#markup'] = $markup;
+  }
+}

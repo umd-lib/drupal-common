@@ -1,0 +1,9 @@
+<div class="card-group-bg card-group-bg-dark">
+  <div class="card-group">
+    {% for card in cards %}
+      <div class="card-wrap">
+        {% include "@card" with card %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

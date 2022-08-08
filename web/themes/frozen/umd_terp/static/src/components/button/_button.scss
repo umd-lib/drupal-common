@@ -1,0 +1,42 @@
+.btn {
+  background-color: transparent;
+  border-color: $gray-400;
+  color: #777474;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: rem(1.04);
+  text-decoration: none;
+  text-transform: uppercase;
+  &:hover,
+  &:focus {
+    background-color: $white;
+    border-color: $yellow;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .33);
+    color: $black;
+  }
+  &:focus,
+  &.focus {
+    outline: 1px auto -webkit-focus-ring-color !important;
+  }
+  &.btn-primary {
+    @extend %btn-red;
+  }
+  &.btn-secondary {
+    @extend %btn-yellow;
+  }
+  &.btn-link {
+    @extend %fancy-link;
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    font-size: inherit;
+    letter-spacing: normal;
+    padding: 0;
+    text-transform: none;
+    &:hover,
+    &:focus {
+      box-shadow: none;
+      text-decoration: none;
+    }
+  }
+}

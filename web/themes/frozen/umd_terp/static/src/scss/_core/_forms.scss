@@ -1,0 +1,111 @@
+.views-exposed-form {
+  border-bottom: 1px solid $gray-200;
+  margin-bottom: rem(40);
+  padding-bottom: rem(16);
+  @include media-breakpoint-up(800) {
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  @include media-breakpoint-up(1000) {
+    flex-wrap: nowrap;
+    margin-bottom: rem(50);
+    padding-bottom: rem(18);
+  }
+  .form-item {
+    @include media-breakpoint-up(800) {
+      flex-grow: 0;
+      flex-shrink: 1;
+      margin: 0 rem(24) rem(24) 0;
+      width: calc(50% - #{rem(12)});
+    }
+    @include media-breakpoint-up(1000) {
+      flex: 1 1 0px;
+      margin: 0 rem(35) rem(32) 0;
+    }
+    &:nth-child(even) {
+      @include media-breakpoint-up(800) {
+        margin-right: 0;
+      }
+      @include media-breakpoint-up(1000) {
+        margin-right: rem(35);
+      }
+    }
+  }
+  .form-text,
+  .form-select,
+  .button {
+    height: rem(57);
+  }
+  .form-actions {
+    flex: 0;
+  }
+}
+
+.form-item,
+.form-actions {
+  margin: 0 0 rem(24);
+  @include media-breakpoint-up(1000) {
+    margin: 0 0 rem(32);
+  }
+}
+
+.form-item {
+  label {
+    @extend %form-label;
+  }
+}
+
+.form-text,
+.form-select,
+.form-textarea {
+  @extend %form-text-input;
+  .form-item-search & {
+    background-image: url("../../img/Search_Input_Icon.png");
+    background-position: right 20px center;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    padding-right: rem(48);
+  }
+}
+.form-select {
+  padding-right: 25px;
+  background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+}
+
+.login {
+  &__cas {
+    h2 {
+      color: $red;
+    }
+
+    border: 2px solid $gray-300;
+    padding: 30px;
+  }
+
+  &__drupal {
+    padding-top: 30px;
+
+    @include media-breakpoint-up(800) {
+      padding-left: 30px;
+      padding-top: 0px;
+    }
+
+    .form-item label {
+      color: #000;
+      font-size: .8rem;
+      line-height: 1;
+    }
+
+    .form-actions {
+      margin-bottom: 0px;
+
+      .btn-secondary {
+        border: 1px solid $gray-300
+      }
+    }
+
+  }
+}

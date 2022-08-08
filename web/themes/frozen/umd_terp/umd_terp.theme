@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * @file
+ * Umd_terp Theme.
+ */
+
+require_once 'inc/functions.inc';
+require_once 'inc/preprocess.inc';
+require_once 'inc/alter.inc';

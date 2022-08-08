@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override to display a UMD Terp Person node Teaser.
+ */
+#}
+
+<div class="profile-card card">
+  <div class="card-img card-img-top">
+    {% set photo = assets_path ~ '/img/Profiles_Photo_Placeholder.svg' %}
+    {% if content.field_umdt_ct_person_photo|field_value %}
+      {% set photo = file_url(content.field_umdt_ct_person_photo|field_target_entity.uri.value | image_style('optimized')) %}
+    {% endif %}
+    <img src="{{ photo }}" alt="Portrait of {{ node.title.value }}">
+  </div>
+  <div class="card-body">
+    <h2 class="card-title">{{ node.title.value }}</h2>
+    {% if content.field_umdt_ct_person_title|field_value %}
+      <div class="profile-card-title">{{ content.field_umdt_ct_person_title|field_value }}</div>
+    {% endif %}
+    <div>
+      <a href="{{ link }}" class="card-cta">View Profile<span class="sr-only"> for {{ node.title.value }}</span></a>
+    </div>
+  </div>
+</div>

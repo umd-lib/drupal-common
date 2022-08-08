@@ -1,0 +1,370 @@
+%card-dark {
+  &[role="link"] {
+
+    &:hover,
+    &:focus {
+      .card-body {
+        background-color: $white;
+      }
+
+      .card-title {
+        color: $black;
+      }
+
+      .card-text {
+        color: $gray-700;
+
+        a {
+          color: $red;
+
+          &:hover,
+          &:focus {
+            border-bottom-color: $red;
+          }
+        }
+      }
+
+      .card-cta {
+        color: $red;
+      }
+    }
+  }
+
+  .card-body {
+    background-color: $gray-1000;
+  }
+
+  .card-title {
+    color: $white;
+
+    &:after {
+      background-color: $yellow;
+    }
+  }
+
+  .card-text {
+    color: $white;
+
+    a {
+      color: $yellow;
+
+      &:hover,
+      &:focus {
+        border-bottom-color: $yellow;
+      }
+    }
+  }
+
+  .card-cta {
+    color: $yellow;
+  }
+}
+
+%card-hz {
+  @include media-breakpoint-up(800) {
+    border: 1px solid $gray-500;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &[role="link"] {
+    &:hover {
+      @include media-breakpoint-up(800) {
+        border: 3px solid $red;
+        transform: scale(1.025);
+
+        .card-body {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .card-img {
+    @include media-breakpoint-up(800) {
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 36%;
+    }
+  }
+
+  .card-img-text {
+    @include media-breakpoint-up(800) {
+      background-color: transparent;
+    }
+  }
+
+  .card-body {
+    @include media-breakpoint-up(800) {
+      align-items: flex-start;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: rem(24) rem(40);
+    }
+
+    @include media-breakpoint-up(1000) {
+      padding: rem(32) rem(60)
+    }
+
+    @include media-breakpoint-up(1200) {
+      padding: rem(42) rem(95);
+    }
+  }
+
+  .card-title {
+    width: 100%;
+  }
+
+  .card-text {
+    @include media-breakpoint-up(800) {
+      width: 100%;
+    }
+  }
+
+  .card-cta {
+    @include media-breakpoint-up(800) {
+      align-self: flex-start;
+    }
+  }
+}
+
+%stat-dark {
+  .stat-number {
+    color: $yellow;
+
+    &:after {
+      background-color: $red;
+    }
+  }
+
+  .stat-text {
+    color: $white;
+  }
+}
+
+%carousel-nav-button--minimal {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  height: rem(44);
+  width: rem(44);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .icon {
+    color: $red;
+    display: inline-block;
+    font-size: rem(22);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  [class*="-bg-dark"] & {
+    .icon {
+      color: $yellow;
+    }
+  }
+
+  &[class*="prev"] {
+    left: 0;
+
+    .icon {
+      transform: translate(-50%, -50%) scale(-1);
+    }
+  }
+
+  &[class*="next"] {
+    right: 0;
+  }
+}
+
+%event-dark {
+  background-color: $gray-900;
+  border-color: #5D5D5D;
+
+  &[role="link"] {
+    &:hover {
+      background-color: $white;
+      border-color: $yellow;
+
+      .event-date,
+      .event-title,
+      .event-description,
+      .event-time-location {
+        color: $black;
+      }
+
+      .event-frequency {
+        border-color: $gray-200;
+        color: $red;
+      }
+
+      .event-cta {
+        &.fancy-link {
+          color: $red;
+        }
+      }
+
+      .event-time-location {
+        >span {
+          &:not(:last-child) {
+            &:after {
+              color: $red;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .event-frequency {
+    border-color: $gray-700;
+    color: $yellow;
+  }
+
+  .event-date,
+  .event-title,
+  .event-description,
+  .event-time-location {
+    color: $white;
+  }
+
+  .event-time-location {
+    >span {
+      &:not(:last-child) {
+        &:after {
+          color: $yellow;
+        }
+      }
+    }
+  }
+
+  .event-cta {
+    &.fancy-link {
+      color: $yellow;
+    }
+  }
+}
+
+%btn-red {
+  border-color: $red;
+  color: $red;
+
+  &:hover,
+  &:focus {
+    background-color: $red;
+    border-color: $red;
+    color: $white;
+  }
+}
+
+%btn-yellow {
+  border-color: $yellow;
+  color: $black;
+
+  &:hover,
+  &:focus {
+    background-color: $yellow;
+    border-color: $yellow;
+    color: $black;
+  }
+}
+
+%label {
+  color: $gray-700;
+  display: inline-block;
+  font-size: rem(14);
+  font-weight: 700;
+  letter-spacing: rem(1.05);
+  line-height: (16 / 14);
+  margin-bottom: rem(8);
+  text-transform: uppercase;
+}
+
+%form-label {
+  color: $red;
+  display: block;
+  font-size: rem(16);
+  font-weight: 700;
+  line-height: (26 / 16);
+  margin-bottom: rem(10);
+  text-transform: uppercase;
+}
+
+%form-text-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: $white;
+  border: 2px solid $gray-300;
+  border-radius: 0;
+  font-size: rem(16);
+  line-height: (26 / 16);
+  padding: rem(14) rem(20) rem(13);
+  width: 100%;
+
+  &::placeholder {
+    color: $gray-500;
+    opacity: 1;
+  }
+}
+
+%form-select {
+  background-image: url("../../img/Dropdown_Chevron.svg");
+  background-position: right rem(16) center;
+  background-repeat: no-repeat;
+  background-size: rem(19) rem(10);
+  padding-right: rem(56);
+}
+
+%link {
+  border-bottom: 1px solid transparent;
+  color: $red;
+  transition: .25s border-color ease-in-out;
+
+  &:hover {
+    border-bottom-color: $red;
+  }
+}
+
+%fancy-link {
+  border-bottom: 1px solid transparent;
+  color: $red;
+  font-weight: 700;
+  margin-right: rem(36);
+  position: relative;
+  transition: .25s border-color ease-in-out,
+    .25s color ease-in-out;
+
+  &:hover,
+  &:focus {
+    border-bottom: 1px solid $dark-red;
+    color: $dark-red;
+
+    &:after {
+      opacity: 1;
+      transform: translate(#{rem(4)}, -50%);
+    }
+  }
+
+  &:after {
+    @extend %icomoon;
+    content: "\e901";
+    display: inline-block;
+    font-size: rem(4);
+    opacity: 0;
+    bottom: rem(6);
+    position: absolute;
+    transform: translate(0, -50%);
+    transition: .25s opacity ease-in-out,
+      .25s transform ease-in-out;
+  }
+}

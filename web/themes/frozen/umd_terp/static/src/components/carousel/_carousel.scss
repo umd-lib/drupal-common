@@ -1,0 +1,120 @@
+.section.section-ut_carousel {
+  margin: rem(14) 0;
+  @include media-breakpoint-up(800) {
+    margin: rem(24) 0;
+  }
+  .page-content & {
+    @include media-breakpoint-down(799) {
+      margin-right: rem(-24);
+      margin-left: rem(-24);
+    }
+  }
+}
+
+.carousel-bg {
+  background-color: $white;
+  padding: 0 rem(52);
+  position: relative;
+  &-dark {
+    background-color: $gray-900;
+    padding: rem(36) rem(52);
+  }
+}
+
+.lightbox-carousel {
+  position: relative;
+}
+
+.carousel-nav {
+  .lightbox-carousel & {
+    @include media-breakpoint-down(799) {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      top: calc((50vw - #{rem(30)}) + #{rem(16)});
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+
+.carousel-nav-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: $red;
+  border: none;
+  border-radius: 0;
+  color: $white;
+  display: inline-block;
+  height: rem(50);
+  width: rem(50);
+  position: relative;
+  transition: .2s background-color ease-in-out;
+  z-index: 10;
+  .carousel-bg & {
+    box-shadow: 0 0 10px rgba(#000, .5);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .lightbox-carousel & {
+    @include media-breakpoint-up(800) {
+      position: absolute;
+      top: calc(25vw - #{rem(45)});
+    }
+    @include media-breakpoint-up(1440) {
+      top: calc(#{rem(315)});
+    }
+  }
+  .icon {
+    fill: $white;
+    height: rem(22);
+    width: rem(12);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &:hover {
+    background-color: $black;
+  }
+  .carousel-bg-dark & {
+    background-color: $yellow;
+    color: $black;
+    &:hover {
+      background-color: $white;
+    }
+    .icon {
+      fill: $black;
+    }
+  }
+}
+
+.carousel-nav-prev {
+  .carousel-bg & {
+    left: rem(25);
+  }
+  .lightbox-carousel & {
+    margin-right: rem(3.5);
+    @include media-breakpoint-up(800) {
+      left: rem(-17);
+      margin: 0;
+      transform: translate(-100%, -50%);
+    }
+  }
+}
+
+.carousel-nav-next {
+  .carousel-bg & {
+    right: rem(25);
+  }
+  .lightbox-carousel & {
+    margin-left: rem(3.5);
+    @include media-breakpoint-up(800) {
+      margin: 0;
+      right: rem(-17);
+      transform: translate(100%, -50%);
+    }
+  }
+}
