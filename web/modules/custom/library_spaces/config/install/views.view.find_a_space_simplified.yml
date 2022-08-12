@@ -44,8 +44,6 @@ dependencies:
     - search_api
     - text
     - views_fieldsets
-_core:
-  default_config_hash: fODDVCc0GMRqgtCB88W7Ux4IDhxhb3DM1Oo-UBAVNxw
 id: find_a_space_simplified
 label: 'Find a space - Simplified'
 module: views
@@ -3055,7 +3053,7 @@ display:
         filter_groups: false
       exposed_block: true
       display_extenders: {  }
-      path: visit/space-poc
+      path: visit/space
       menu:
         type: normal
         title: 'Find a Space'

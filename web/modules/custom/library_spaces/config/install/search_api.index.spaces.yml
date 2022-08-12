@@ -58,8 +58,6 @@ third_party_settings:
     multilingual:
       limit_to_content_language: false
       include_language_independent: true
-_core:
-  default_config_hash: 9m57Eh4wxXfH8Xc63XnpisSCWc4Eu1qp27rv0GhRwvI
 id: spaces
 name: Spaces
 description: ''
