@@ -11,23 +11,32 @@ type: list_string
 settings:
   allowed_values:
     -
+      value: Caregiving
+      label: Caregiving
+    -
+      value: 'Group Study'
+      label: 'Group Study'
+    -
+      value: 'Host Event'
+      label: 'Host Event'
+    -
+      value: 'In-person Meeting / Interview'
+      label: 'In-person Meeting / Interview'
+    -
       value: 'Individual Study'
       label: 'Individual Study'
     -
-      value: 'Group study'
-      label: 'Group study'
+      value: 'Media Creation / Editing'
+      label: 'Media Creation / Editing'
     -
-      value: 'Virtual meeting / interview'
-      label: 'Virtual meeting / interview'
+      value: 'Media Viewing'
+      label: 'Media Viewing'
     -
-      value: 'In-person meeting / interview'
-      label: 'In-person meeting / interview'
+      value: 'Presentation Practice'
+      label: 'Presentation Practice'
     -
-      value: 'Host event'
-      label: 'Host event'
-    -
-      value: 'Media creation / editing'
-      label: 'Media creation / editing'
+      value: 'Virtual Meeting / Interview'
+      label: 'Virtual Meeting / Interview'
   allowed_values_function: ''
 module: options
 locked: false
