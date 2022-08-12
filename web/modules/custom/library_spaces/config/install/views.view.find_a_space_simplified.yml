@@ -3053,7 +3053,7 @@ display:
         filter_groups: false
       exposed_block: true
       display_extenders: {  }
-      path: visit/space
+      path: visit/space-poc
       menu:
         type: normal
         title: 'Find a Space'
