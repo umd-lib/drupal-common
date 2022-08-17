@@ -49,13 +49,15 @@
 
 .homepage-feature .thumbnail-container .image-wrapper {
   width: 100%;
-  overflow: hidden;
+  overflow-y: hidden;
   max-height: 120px;
 }
 
 .homepage-feature .thumbnail-container img {
   border-left: 2px solid white;
   border-right: 2px solid white;
+  max-width: 500px;
+  min-width: 150px;
   width: 100%;
 }
 
@@ -66,5 +68,19 @@
 
   .homepage-feature .content-container {
     padding-left: 25px;
+    padding-right: 25px;
   }
+
+  .homepage-feature .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+  }
+
+  .homepage-feature .content-container p {
+    /* text-align: justify;
+    text-justify: inter-word; */ 
+  }
+  
 }

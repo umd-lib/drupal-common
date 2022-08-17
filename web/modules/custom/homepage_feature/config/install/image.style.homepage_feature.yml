@@ -10,7 +10,7 @@ effects:
     weight: 1
     data:
       width: 500
-      height: 150
+      height: 120
       anchor: center-center
 pipeline: local_binaries
 
