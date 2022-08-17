@@ -48,7 +48,8 @@ COPY . /app/web/app
 # Install dependcies, set ownership and delete the sync dir under /app/web/blog
 RUN cd /app/web/app && \
 	composer install --no-dev --ignore-platform-reqs && \
-	chown -R www-data:www-data /app/web/app
+	chown -R www-data:www-data /app/web/app && \
+        rm -R postgres-init/
 
 RUN echo 'php_value upload_max_filesize 15M' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value max_input_vars 3000' >> '/app/web/app/web/.htaccess'
