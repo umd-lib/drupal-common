@@ -8,6 +8,7 @@
 namespace Drupal\lib_cal\Helper;
 
 use Drupal\Component\Datetime\DateTimePlus;
+use DateInterval;
 
 /**
  * Helper class for interacting with LibCal API
@@ -73,13 +74,25 @@ class LibCalApiHelper {
       $date = date("Y-m-d");
     }
     $dateTime = new DateTimePlus($date);
-    $weekNo = $dateTime->format("W");
-
+    $weekNo = $this->getWeekOfYear($dateTime);
+    $weekDebug = $dateTime->format("W");
+dsm($weekNo);
+dsm($weekDebug);
     $week = new DateTimePlus();
-    $week->setISODate($dateTime->format("Y"), $weekNo);
-    $from_date = $week->modify("-1 days")->format('Y-m-d');
+    $week->setISODate($dateTime->format("Y"), $weekNo, 0);
+    // $from_date = $week->modify("-1 days")->format('Y-m-d');
+    $from_date = $week->format('Y-m-d');
+    // $to_date = $week->modify("+6 days")->format('Y-m-d');
     $to_date = $week->modify("+6 days")->format('Y-m-d');
     return $this->getHours($from_date, $to_date, $libraries);
+  }
+
+  function getWeekOfYear(DateTimePlus $date) {
+    $dayOfWeek = intval($date->format('w'));
+    if ($dayOfWeek == 0) {
+      $date->add(new DateInterval('P1D'));
+    }
+    return intval($date->format('W'));
   }
 
   public function getHours($from = null, $to = null, $libraries = '13231,17166,17167,17168,17964,17965,17966') {
