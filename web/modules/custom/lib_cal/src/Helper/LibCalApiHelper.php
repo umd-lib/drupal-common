@@ -76,8 +76,6 @@ class LibCalApiHelper {
     $dateTime = new DateTimePlus($date);
     $weekNo = $this->getWeekOfYear($dateTime);
     $weekDebug = $dateTime->format("W");
-dsm($weekNo);
-dsm($weekDebug);
     $week = new DateTimePlus();
     $week->setISODate($dateTime->format("Y"), $weekNo, 0);
     // $from_date = $week->modify("-1 days")->format('Y-m-d');
