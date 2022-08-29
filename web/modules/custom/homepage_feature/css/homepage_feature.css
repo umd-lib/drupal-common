@@ -18,6 +18,8 @@
 
 .homepage-feature .content-container h6 {
   text-transform: capitalize;
+  margin-bottom: 0px;
+  padding-top: 10px;
 }
 
 .homepage-feature .content-container p {
@@ -51,6 +53,7 @@
   width: 100%;
   overflow-y: hidden;
   max-height: 120px;
+  text-align: right;
 }
 
 .homepage-feature .thumbnail-container img {
