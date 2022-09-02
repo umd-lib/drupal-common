@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - umd_terp
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: umd_terp_page_title
+theme: umd_terp
+region: content
+weight: -23
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+  block_ajax:
+    is_ajax: 0
+    max_age: '0'
+    show_spinner: 0
+    placeholder: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    context_mapping: {  }
+    pages: "<front>\r\n/find\r\n/visit\r\n/research\r\n/collections\r\n/about\r\n/locations\r\n/help\r\n/info\r\n/accounts\r\n/node/841\r\n/hours\r\n/search"
+

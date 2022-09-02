@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.accounts
+  module:
+    - system
+  theme:
+    - umd_terp
+_core:
+  default_config_hash: IBQLFV9jcOEFpXu4DcA4KPin5eBD4_iX9KPQcJMz3pg
+id: accounts
+theme: umd_terp
+region: utility_menu_blocks
+weight: 20
+provider: null
+plugin: 'system_menu_block:accounts'
+settings:
+  id: 'system_menu_block:accounts'
+  label: Accounts
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }
+

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ut_sidebar_menu
+  theme:
+    - umd_terp
+id: umdterpsidebarmenublock
+theme: umd_terp
+region: sidebar
+weight: -6
+provider: null
+plugin: umd_terp_sidebar_menu
+settings:
+  id: umd_terp_sidebar_menu
+  label: 'UMD Terp Sidebar Menu Block'
+  label_display: visible
+  provider: ut_sidebar_menu
+  menu_name: main
+  show_parent: 1
+visibility: {  }
+
