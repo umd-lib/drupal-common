@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: umd_terp_articles
+label: 'UMD Terp Articles'
+type: 'canonical_entities:node'
+pattern: 'about/news/[current-date:html_month]/[node:title]'
+selection_criteria:
+  0e51f65d-b704-438a-be85-af3570c7f0da:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 0e51f65d-b704-438a-be85-af3570c7f0da
+    context_mapping:
+      node: node
+    bundles:
+      umd_terp_article: umd_terp_article
+selection_logic: and
+weight: -5
+relationships: {  }
+

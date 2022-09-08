@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: optimized
+label: optimized
+effects: {  }
+pipeline: local_binaries

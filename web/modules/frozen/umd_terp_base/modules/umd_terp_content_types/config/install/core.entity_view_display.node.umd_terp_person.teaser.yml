@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.umd_terp_person.field_umdt_ct_metatags
     - field.field.node.umd_terp_person.field_umdt_ct_person_author_stat
     - field.field.node.umd_terp_person.field_umdt_ct_person_bio
-    - field.field.node.umd_terp_person.field_umdt_ct_person_departments
     - field.field.node.umd_terp_person.field_umdt_ct_person_email
     - field.field.node.umd_terp_person.field_umdt_ct_person_first_name
     - field.field.node.umd_terp_person.field_umdt_ct_person_last_name
@@ -74,7 +73,6 @@ hidden:
   field_umdt_ct_metatags: true
   field_umdt_ct_person_author_stat: true
   field_umdt_ct_person_bio: true
-  field_umdt_ct_person_departments: true
   field_umdt_ct_person_email: true
   field_umdt_ct_person_first_name: true
   field_umdt_ct_person_last_name: true
