@@ -37,7 +37,11 @@ class GrouperSettingsForm extends ConfigFormBase {
 
     $rolesMarkup = '';
     foreach ($roles as $role) {
-      $rolesMarkup .= '<li>' . $role->id() . '</li>';
+      if (!empty($role)) {
+        if (trim(strtolower($role->id())) != 'authenticated') {
+          $rolesMarkup .= '<li>' . $role->id() . '</li>';
+        }
+      }
     }
 
     $form['drupal_roles'] = [
@@ -49,13 +53,27 @@ class GrouperSettingsForm extends ConfigFormBase {
     $form['grouper_map'] = [
       '#type' => 'textarea',
       '#title' => t('Grouper Mappings'),
-      '#description' => t('One mapping per line with the format <strong>Grouper Group|Drupal Role</strong>. Note, upon submission the Grouper groups will be converted to lowercase.'),
+      '#description' => t('One mapping per line with the format <strong>Grouper Group|Drupal Role</strong>. Note, upon submission the Grouper groups will be converted to lowercase. Do not include a role for basic authenticated as this will produce an error.'),
       '#default_value' => $this->allowedValuesString($grouperMap),
+    ];
+
+    $form['autoprovision_role'] = [
+      '#type' => 'textfield',
+      '#title' => t('Autoprovision Grouper Group'),
+      '#description' => t('This group should not be included in the Grouper Mappings field above.'),
+      '#default_value' => $config->get('autoprovision_role'),
+    ];
+
+    $form['should_autoprovision'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Autoprovision Accounts'),
+      '#default_value' => $config->get('should_autoprovision'),
+      '#description' => t('Autoprovision enabled for new Drupal accounts Grouper role is set.'),
     ];
 
     $form['grouper_attrib'] = [
       '#type' => 'textfield',
-      '#title' => t('Grouper Attribute'),
+      '#title' => t('Grouper Attribute Field'),
       '#default_value' => $config->get('grouper_attrib'),
       '#description' => t('This should not be the FriendlyName but the Name.'),
     ];
@@ -77,6 +95,8 @@ class GrouperSettingsForm extends ConfigFormBase {
     $grouperAttrib = $form_state->getValue('grouper_attrib');
     $this->configFactory->getEditable(static::SETTINGS)->set('grouper_map', $grouperMap)->save();
     $this->configFactory->getEditable(static::SETTINGS)->set('grouper_attrib', $grouperAttrib)->save();
+    $this->configFactory->getEditable(static::SETTINGS)->set('should_autoprovision', $form_state->getValue('should_autoprovision'))->save();
+    $this->configFactory->getEditable(static::SETTINGS)->set('autoprovision_role', $form_state->getValue('autoprovision_role'))->save();
     parent::submitForm($form, $form_state);
   }
 

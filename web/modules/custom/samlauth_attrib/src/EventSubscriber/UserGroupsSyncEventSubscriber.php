@@ -59,27 +59,60 @@ class UserGroupsSyncEventSubscriber implements EventSubscriberInterface {
    *   The event.
    */
   public function onUserGroupsSync(SamlauthUserSyncEvent $event) {
+    $this->logger->notice('samlauth_attrib.');
     $attributes = $event->getAttributes();
     if (!$grouper_attrib = $this->config->get('grouper_attrib')) {
       $this->logger->warning(t('Grouper Attribute not set'));
       return;
     }
-    if (!empty($attributes[$grouper_attrib][0])) {
+    $account = $event->getAccount();
+    if (empty($attributes[$grouper_attrib][0])) {
+      $this->resetRoles($account);
+      $account->block();
+    } else {
       $groups = $attributes[$grouper_attrib];
-      $account = $event->getAccount();
 
-      if (!$account->id() > 0) {
+      if ($account->isNew()) {
+        $this->logger->notice('Account is new.');
+      }
+
+      if (!empty($account->id()) && $account->id() > 2) {
+        $this->logger->notice('Account number:' . $account->id());
+      }
+
+      if (!$account->isNew() && $account->id() < 2) {
         $this->logger->notice('Bad or anonymous account. No roles provisioned.');
         return;
       }
 
-      $roles = $this->config->get('grouper_map');
+      // Can't prevent account creation (as the samlauth module handles this)  but can block the account
+      // if not set to autoprovision.
+      if ($account->isNew() && empty($this->config->get('should_autoprovision'))) {
+        $account->block();
+        $this->logger->notice('Blocking account as autoprovisioning is not enabled.');
+        // Will need a means for purging these blocked accounts.
+        return;
+      }
 
-      $allRoles = $account->getRoles(TRUE);
+      $groups = array_map('strtolower', $groups);
+
+      if (empty($this->config->get('autoprovision_role'))) {
+        $this->logger->warning('No autoprovisioning role set. This is a grouper role which, when present, indicates whether or not a user should be added to the Drupal site. If other grouper groups are set, these will be updated, but there will be no blocking of users.');
+      } else {
+        $auto_role = strtolower($this->config->get('autoprovision_role'));
+        if (!in_array($auto_role, $groups)) {
+          $this->logger->notice('Account ID: ' . $account->id() . ' missing autoprovision role and will be blocked.');
+          $account->block();
+          return; 
+        }
+      }
+
+      $roles = $this->config->get('grouper_map');
 
       $updated_roles = [];
       foreach ($groups as $group) {
-        if ($role = $roles[strtolower($group)]) {
+        $this->logger->notice('Group: ' . $group);
+        if (!empty($roles[$group]) && $role = $roles[$group]) {
           array_push($updated_roles, $role);
         }
       }
@@ -95,7 +128,9 @@ class UserGroupsSyncEventSubscriber implements EventSubscriberInterface {
         $this->resetRoles($account);
         $account->block();
       }
-      $account->save();
+      if (!$account->isNew()) {
+        $account->save();
+      }
     }
   }
 
