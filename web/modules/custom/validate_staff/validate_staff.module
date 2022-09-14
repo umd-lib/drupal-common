@@ -75,3 +75,15 @@ function validate_staff_form_alter(&$form, &$form_state, $form_id) {
     }
   }
 }
+
+
+/**
+ * Implements hook_user_format_name_alter().
+ */
+function validate_staff_user_format_name_alter(&$name, $account) {
+  $member = \Drupal\user\Entity\User::load($account->id());
+  if (!empty($member->field_custom_name->value)) {
+    $custom_name = $member->field_custom_name->value;
+    $name = t('@custom_name', ['@custom_name' => $custom_name]);
+  }
+}
