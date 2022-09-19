@@ -3,3 +3,4 @@ description: 'Staff Blog configuration options'
 core: 8.x
 package: 'UMD'
 type: module
+core_version_requirement: ^8 || ^9

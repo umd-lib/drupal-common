@@ -1,16 +1,19 @@
 <?php
 
-namespace Drupal\ultimate_cron\Tests;
+namespace Drupal\Tests\ultimate_cron\Functional;
 
-use Drupal\simpletest\WebTestBase;
+use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\Listeners\DeprecationListenerTrait;
+use Drupal\Tests\Traits\Core\CronRunTrait;
 
 /**
  * Tests that scheduler plugins are discovered correctly.
  *
  * @group ultimate_cron
  */
-class LoggerWebTest extends WebTestBase {
+class LoggerWebTest extends BrowserTestBase {
+
+  use CronRunTrait;
 
   /**
    * Modules to enable.
@@ -22,7 +25,7 @@ class LoggerWebTest extends WebTestBase {
   /**
    * A user with permissions to administer and run cron jobs.
    *
-   * @var \Drupal\user\Entity\User $user
+   * @var \Drupal\user\Entity\User
    */
   protected $user;
 
@@ -32,6 +35,11 @@ class LoggerWebTest extends WebTestBase {
    * @var bool
    */
   protected $ignoreErrors = FALSE;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
 
   /**
    * {@inheritdoc}
@@ -96,9 +104,9 @@ class LoggerWebTest extends WebTestBase {
 
     // Check that the long log message is properly trimmed.
     $this->drupalGet('admin/config/system/cron/jobs/logs/ultimate_cron_logger_test_cron');
-    $xpath = version_compare(\Drupal::VERSION, '8.5', '>=') ? '/html/body/div/div/main/div/div/table/tbody/tr/td[4]' : '/html/body/div/main/div/div/table/tbody/tr/td[4]';
+    $xpath = $this->xpath('//table/tbody/tr/td[4]');
     // The last 2 chars from xpath are not related to the message.
-    $this->assertTrue(strlen(substr($this->xpath($xpath)[0], 0, -2)) == 5000);
+    $this->assertTrue(strlen(substr($xpath[0]->getText(), 0, -2)) == 5000);
     $this->assertRaw('This is a v…');
   }
 

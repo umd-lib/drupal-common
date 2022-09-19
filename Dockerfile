@@ -1,8 +1,7 @@
-FROM drupal:8.7.8-apache
+FROM drupal:8.9.20-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
-	echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | tee /etc/apt/sources.list.d/postgresql.list && \
 	apt-get update && apt-get install -y --allow-unauthenticated \
 	curl \
 	git \
@@ -15,7 +14,7 @@ RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
 	optipng \
 	jpegoptim \
 	pngquant \
-	postgresql-client-10 && \
+	postgresql-client && \
 	rm -rf /usr/share/man/man*
 
 # Configure PHP-LDAP
@@ -51,7 +50,8 @@ RUN ln -sd /app/web/staff-blog/web /app/web/staff-blog/blog
 
 # Install dependcies, set ownership and delete the sync dir under /app/web/blog
 RUN cd /app/web/staff-blog && \
-	composer install --no-dev && \
-	chown -R www-data:www-data /app/web/staff-blog
+	composer install --no-dev --ignore-platform-reqs && \
+	chown -R www-data:www-data /app/web/staff-blog && \
+	rm -R postgres-init/
 
 WORKDIR /app/web/staff-blog
