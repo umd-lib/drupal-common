@@ -52,7 +52,7 @@ function validate_staff_user_presave (UserInterface $account) {
     }
 
     // If no results, assume ou != LIBR-*
-    if ($result == null || $result.count() < 1) {
+    if ($result == null || $result->count() < 1) {
       $message = t('This blog is available only to UMD Library Staff and Faculty');
       $currentUser = \Drupal::currentUser();
       if ($currentUser->isAuthenticated()) {
