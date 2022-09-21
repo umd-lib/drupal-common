@@ -54,6 +54,28 @@ abstract class ElementBase extends FormElement {
   }
 
   /**
+   * @param array $element
+   *   The element to check for enabled state.
+   *
+   * @return bool
+   *   Whether or not the element is disabled.
+   */
+  private static function elementIsDisabled($element) {
+    return isset($element['#disabled']) && $element['#disabled'];
+  }
+
+  /**
+   * @param array $element
+   *   The element to check for access.
+   *
+   * @return bool
+   *   Whether or not the element may be accessed.
+   */
+  private static function noElementAccess($element) {
+    return isset($element['#access']) && !$element['#access'];
+  }
+
+  /**
    * {@inheritdoc}
    *
    * @codeCoverageIgnore
@@ -78,8 +100,8 @@ abstract class ElementBase extends FormElement {
    * Expands the select or other element to have a 'select' and 'other' field.
    */
   public static function processSelectOrOther(&$element, FormStateInterface $form_state, &$complete_form) {
-    self::addSelectField($element);
-    self::addOtherField($element);
+    static::addSelectField($element);
+    static::addOtherField($element);
     return $element;
   }
 
@@ -90,11 +112,19 @@ abstract class ElementBase extends FormElement {
    *   The select or other element.
    */
   protected static function addSelectField(array &$element) {
+    if (!empty($element['#other_options'])) {
+      // Add "Other" to default values if "Other" was selected.
+      $element['#default_value'][] = "select_or_other";
+    }
+
     $element['select'] = [
       '#default_value' => $element['#default_value'],
       '#required' => $element['#required'],
       '#multiple' => $element['#multiple'],
-      '#options' => self::addOtherOption($element['#options']),
+      '#options' => static::addOtherOption($element['#original_options'] ?? $element['#options']),
+      '#attributes' => [
+        'aria-label' => isset($element['#title']) ? $element['#title'] : $element['#name'],
+      ],
       '#weight' => 10,
     ];
   }
@@ -108,14 +138,29 @@ abstract class ElementBase extends FormElement {
   protected static function addOtherField(array &$element) {
     $element['other'] = [
       '#type' => 'textfield',
+      '#attributes' => [
+        'aria-label' => isset($element['#title']) ? $element['#title'] . ' Other' : $element['#name'] . ' Other',
+      ],
       '#weight' => 20,
+      '#attributes' => [
+        'placeholder' => t('Other: please specify here'),
+      ],
     ];
+
+    if (isset($element['#other_options'])) {
+      $element['other']['#default_value'] = $element['#other_options'];
+    }
   }
 
   /**
    * {@inheritdoc}
    */
   public static function valueCallback(&$element, $input, FormStateInterface $form_state) {
+    if (self::elementIsDisabled($element) || self::noElementAccess($element)) {
+      unset($element['#value']);
+      return NULL;
+    }
+
     $values = [];
     if ($input !== FALSE && !empty($input['select'])) {
 
@@ -134,13 +179,20 @@ abstract class ElementBase extends FormElement {
 
         if (isset($element['#merged_values']) && $element['#merged_values']) {
           if (!empty($values['other'])) {
-            $values = array_merge($values['select'], $values['other']);
+            if (is_array($values['select']) && array_key_exists('select_or_other', $values['select'])) {
+              $select = array_pop($values['select']) !== NULL ? array_pop($values['select']) : [];
+              $values = array_values(array_merge($select, $values['other']));
+            }
+            else {
+              $values = array_values(array_merge($values['select'], $values['other']));
+            }
             // Add the other option to the available options to prevent
             // validation errors.
             $element['#options'][$input['other']] = $input['other'];
           }
           else {
-            $values = $values['select'];
+            $select = array_filter($values['select']);
+            $values = array_values($select);
           }
         }
 

@@ -158,7 +158,9 @@ abstract class TestBase extends BrowserTestBase {
             ->create($instance_info);
           $instance->save();
 
-          entity_get_form_display('node', $bundle, 'default')
+          \Drupal::entityTypeManager()
+            ->getStorage('entity_form_display')
+            ->load('node' . '.' . $bundle . '.' . 'default')
             ->setComponent($field_name, [
               'type' => $widget,
               'settings' => [
@@ -187,10 +189,12 @@ abstract class TestBase extends BrowserTestBase {
   protected function setFieldValue($field_name, $select, $other = '') {
     $edit = array();
 
-    // A node requires a title.
-    $edit["title[0][value]"] = $this->randomMachineName(8);
+    if ($select !== '') {
+      // A node requires a title.
+      $edit["title[0][value]"] = $this->randomMachineName(8);
 
-    $this->drupalGet('node/add/' . $this->getFieldContentType($field_name));
+      $this->drupalGet('node/add/' . $this->getFieldContentType($field_name));
+    }
 
     // Set the select value.
     if ($this->fields[$field_name]['cardinality'] == 1) {
@@ -211,8 +215,13 @@ abstract class TestBase extends BrowserTestBase {
     // Set the other value.
     $edit["{$field_name}[other]"] = $other;
 
-    // Create the node.
-    $this->drupalPostForm(NULL, $edit, t('Save'));
+    if ($select !== '') {
+      // Create the node.
+      $this->drupalPostForm(NULL, $edit, t('Save'));
+    }
+    else {
+      $this->drupalPostForm(NULL, $edit, t('Preview'));
+    }
   }
 
   /**

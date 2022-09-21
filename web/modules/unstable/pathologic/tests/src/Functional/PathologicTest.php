@@ -1,21 +1,31 @@
 <?php
 
-namespace Drupal\pathologic\Tests;
+namespace Drupal\Tests\pathologic\Functional;
 
-use Drupal\Component\Utility\SafeMarkup;
-use Drupal\simpletest\WebTestBase;
-use Drupal\pathologic\Plugin\Filter\FilterPathologic;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Url;
+use Drupal\Tests\BrowserTestBase;
+use Drupal\filter\Entity\FilterFormat;
+use Drupal\pathologic\Plugin\Filter\FilterPathologic;
 
 /**
  * Tests Pathologic functionality.
  *
  * @group filter
  */
-class PathologicTest extends WebTestBase {
+class PathologicTest extends BrowserTestBase {
 
-  public static $modules = ['filter', 'pathologic', 'pathologic_test'];
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['filter', 'pathologic', 'pathologic_test'];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
+
 
   function testPathologic() {
     global $script_path;
@@ -183,12 +193,12 @@ class PathologicTest extends WebTestBase {
     );
     $this->assertEqual(
       check_markup('<a href="files:image.jpeg">look</a>', $format_id),
-      '<a href="' . _pathologic_content_url(file_create_url(file_default_scheme() . '://image.jpeg'), ['absolute' => TRUE]) . '">look</a>',
+      '<a href="' . _pathologic_content_url(file_create_url( \Drupal::config('system.file')->get('default_scheme') . '://image.jpeg'), ['absolute' => TRUE]) . '">look</a>',
       t('Path Filter compatibility (files:)')
     );
     $this->assertEqual(
-      check_markup('<a href="http://example.com/qux/foo"><img src="http://example.org/bar.jpeg" longdesc="/bananas/baz" /></a>', $format_id),
-      '<a href="' . _pathologic_content_url('foo', ['absolute' => TRUE]) . '"><img src="' . _pathologic_content_url('bar.jpeg', ['absolute' => TRUE]) . '" longdesc="' . _pathologic_content_url('baz', ['absolute' => TRUE]) . '" /></a>',
+      check_markup('<a href="http://example.com/qux/foo"><picture><source srcset="http://example.org/bar.jpeg" /><img src="http://example.org/bar.jpeg" longdesc="/bananas/baz" /></picture></a>', $format_id),
+      '<a href="' . _pathologic_content_url('foo', ['absolute' => TRUE]) . '"><picture><source srcset="' . _pathologic_content_url('bar.jpeg', ['absolute' => TRUE]) . '" /><img src="' . _pathologic_content_url('bar.jpeg', ['absolute' => TRUE]) . '" longdesc="' . _pathologic_content_url('baz', ['absolute' => TRUE]) . '" /></picture></a>',
       t('"All base paths for this site" functionality')
     );
     $this->assertEqual(
@@ -206,6 +216,10 @@ class PathologicTest extends WebTestBase {
       check_markup('<a href="bar?test=use_original">', $format_id),
       '<a href="bar?test=use_original">',
       t('hook_pathologic_alter(): Passthrough with use_original option')
+    );
+    $this->assertEquals(
+      '<a href="http://cdn.example.com/bar?test=external">',
+      check_markup('<a href="bar?test=external">', $format_id),
     );
 
     // Test paths to existing files when clean URLs are disabled.
@@ -236,17 +250,11 @@ class PathologicTest extends WebTestBase {
     // Test really broken URLs.
     // @see https://www.drupal.org/node/2602312
     $original = '<a href="/Epic:failure">foo</a>';
-    $message = t('Fails sensibly when \Drupal\Core\Url::fromUri() throws exception');
     try {
       $filtered = check_markup($original, $format_id);
-      $this->assertEqual(
-        $original,
-        $filtered,
-        $message
-      );
     }
     catch (\Exception $e) {
-      $this->fail($message);
+      $this->fail('Fails miserably when \Drupal\Core\Url::fromUri() throws exception');
     }
 
   }
@@ -276,11 +284,11 @@ function _pathologic_content_url($path, $options) {
 
   if (parse_url($path, PHP_URL_SCHEME) === NULL) {
     if ($path == '<front>') {
-      return SafeMarkup::checkPlain(Url::fromRoute('<front>', [], $options)->toString());
+      return Html::escape(Url::fromRoute('<front>', [], $options)->toString());
     }
     $path = 'base://' . $path;
   }
-  return SafeMarkup::checkPlain(Url::fromUri(htmlspecialchars_decode($path), $options)->toString());
+  return Html::escape(Url::fromUri(htmlspecialchars_decode($path), $options)->toString());
 }
 
 
@@ -294,7 +302,7 @@ function _pathologic_content_url($path, $options) {
  */
 function _pathologic_build_format($settings) {
   $format_id = user_password();
-  $format = entity_create('filter_format', [
+  $format = FilterFormat::create([
     'format' => $format_id,
     'name' => $format_id,
   ]);
