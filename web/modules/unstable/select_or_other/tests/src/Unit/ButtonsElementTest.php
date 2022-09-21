@@ -45,11 +45,20 @@ namespace Drupal\Tests\select_or_other\Unit {
             '#required' => $element['#required'],
             '#multiple' => $element['#multiple'],
             '#options' => $method->invoke(NULL, $element['#options']),
+            '#attributes' => [
+              'aria-label' => isset($element['#title']) ? $element['#title'] : $element['#name'],
+            ],
             '#weight' => 10,
           ],
           'other' => [
             '#type' => 'textfield',
+            '#attributes' => [
+              'aria-label' => isset($element['#title']) ? $element['#title'] . ' Other' : $element['#name'] . ' Other',
+            ],
             '#weight' => 20,
+            '#attributes' => [
+              'placeholder' => "Other: please specify here",
+            ],
           ]
         ];
 
@@ -58,6 +67,7 @@ namespace Drupal\Tests\select_or_other\Unit {
       $expected_element = array_merge_recursive($base_expected_element, [
         'select' => [
           '#type' => 'checkboxes',
+          '#value' => [],
         ],
         'other' => [
           '#states' => [
@@ -75,7 +85,10 @@ namespace Drupal\Tests\select_or_other\Unit {
       // Test multiple cardinality Buttons.
       $element = $original_element;
       $expected_element = array_merge_recursive($base_expected_element, [
-        'select' => ['#type' => 'radios'],
+        'select' => [
+          '#type' => 'radios',
+          '#value' => [],
+        ],
         'other' => [
           '#states' => [
             'visible' => [
@@ -131,6 +144,7 @@ namespace Drupal\Tests\select_or_other\Unit {
         '#required' => TRUE,
         'select' => [
           '#options' => [],
+          '#value' => [],
         ],
       ];
       $arguments = [ & $element];

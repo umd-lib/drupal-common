@@ -4,6 +4,7 @@ name: UMD Libraries
 description: 'UMD Libraries (umd_libraries), is a umd_terp child theme intended for library projects.'
 package: LIB.UMD.EDU
 base theme: umd_terp
+core_version_requirement: ^8 || ^9
 
 libraries:
   - umd_libraries/global-styling

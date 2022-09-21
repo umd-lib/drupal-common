@@ -11,6 +11,10 @@ use Drupal\user\UserInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Field\FieldItemListInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\ldap_servers\Entity\Server;
+use Drupal\ldap_servers\LdapGroupManager;
+use Symfony\Component\Ldap\Entry;
+use Symfony\Component\Ldap\Exception\LdapException;
 
 /**
  * Implements hook_ENTITY_TYPE_presave() for user entities.
@@ -29,13 +33,26 @@ function validate_staff_user_presave (UserInterface $account) {
 
     $name = $account->getAccountName();
 
-    $factory = \Drupal::service('ldap.servers');
-    $server = $factory->getServerByIdEnabled('umd');
-    $filter = "(&(uid=" . $name . ")(ou=LIBR-*))";
-    $result = $server->search(NULL, $filter);
+    $ldap_bridge = \Drupal::service('ldap.bridge');
+    $server = Server::load('umd');
+    $ldap_bridge->setServerById('umd');
+    $result = null;
+    if ($ldap_bridge->bind()) {
+      $ldap = $ldap_bridge->get();
+      $filter = "(&(uid=" . $name . ")(ou=LIBR-*))";
+      $dn = $server->getBaseDn();
+
+      try {
+        $result = $ldap->query(reset($dn), $filter)->execute();
+      }
+      catch (LdapException $e) {
+        \Drupal::logger('validate_staff')
+              ->error($e->getMessage());
+      }
+    }
 
     // If no results, assume ou != LIBR-*
-    if ($result['count'] < 1) {
+    if ($result == null || $result->count() < 1) {
       $message = t('This blog is available only to UMD Library Staff and Faculty');
       $currentUser = \Drupal::currentUser();
       if ($currentUser->isAuthenticated()) {
@@ -44,7 +61,9 @@ function validate_staff_user_presave (UserInterface $account) {
         $response = new RedirectResponse(\Drupal::request()->getRequestUri());
       } else {
         // In this event, the process is automated likely via CAS
-        $response = new RedirectResponse(\Drupal::url('<front>'));
+        // $response = new RedirectResponse(\Drupal::url('<front>'));
+        $url = \Drupal\Core\Url::fromRoute('<front>')->toString();
+        $response = new RedirectResponse($url);
         $tokens = ['%drupal_username' => $name];
         \Drupal::logger('validate_staff')
           ->error('Drupal account %drupal_username is blocked because not found LIBR-*.', $tokens);

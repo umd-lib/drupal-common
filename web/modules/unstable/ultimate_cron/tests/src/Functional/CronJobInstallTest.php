@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\ultimate_cron\Tests;
+namespace Drupal\Tests\ultimate_cron\Functional;
 
 use Drupal\Core\Url;
-use Drupal\simpletest\WebTestBase;
+use Drupal\Tests\BrowserTestBase;
 use Drupal\ultimate_cron\CronRule;
 use Drupal\ultimate_cron\Entity\CronJob;
 
@@ -12,7 +12,7 @@ use Drupal\ultimate_cron\Entity\CronJob;
  *
  * @group ultimate_cron
  */
-class CronJobInstallTest extends WebTestBase {
+class CronJobInstallTest extends BrowserTestBase {
 
   /**
    * Modules to enable.
@@ -24,17 +24,22 @@ class CronJobInstallTest extends WebTestBase {
   /**
    * A user with permission to create and edit books and to administer blocks.
    *
-   * @var object
+   * @var \Drupal\user\Entity\User
    */
-  protected $admin_user;
+  protected $adminUser;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
 
   /**
    * Tests adding and editing a cron job.
    */
-  function testManageJob() {
+  public function testManageJob() {
     // Create user with correct permission.
-    $this->admin_user = $this->drupalCreateUser(array('administer ultimate cron'));
-    $this->drupalLogin($this->admin_user);
+    $this->adminUser = $this->drupalCreateUser(array('administer ultimate cron'));
+    $this->drupalLogin($this->adminUser);
 
     // Check default modules
     \Drupal::service('module_installer')->install(array('field'));
@@ -80,7 +85,7 @@ class CronJobInstallTest extends WebTestBase {
     $scheduled_cron_time = $cron->getLastSchedule();
     // Generate a new start time by adding two seconds to the initial scheduled cron time.
     $log_entry_past = $scheduled_cron_time - 10000;
-    db_update('ultimate_cron_log')
+      \Drupal::database()->update('ultimate_cron_log')
       ->fields([
         'start_time' => $log_entry_past,
       ])
@@ -89,7 +94,7 @@ class CronJobInstallTest extends WebTestBase {
 
     // Check run counter, at this point there should be 0 run.
     $this->assertEqual(1, \Drupal::state()->get('ultimate_cron.cron_run_counter'), 'Job has run once.');
-    $this->assertTrue($job->isBehindSchedule(), 'Job is behind schedule.');
+    $this->assertNotEmpty($job->isBehindSchedule(), 'Job is behind schedule.');
 
     $element = ultimate_cron_requirements('runtime')['cron_jobs'];
     $this->assertEqual($element['value'], '1 job is behind schedule', '"1 job is behind schedule." is displayed');

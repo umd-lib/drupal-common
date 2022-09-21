@@ -1,17 +1,25 @@
 <?php
 
-namespace Drupal\pathologic\Tests;
+namespace Drupal\Tests\pathologic\Functional;
 
-use Drupal\simpletest\WebTestBase;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * Tests for the Pathologic UI.
  *
  * @group pathologic
  */
-class PathologicUITest extends WebTestBase {
+class PathologicUITest extends BrowserTestBase {
 
-  public static $modules = ['pathologic', 'node'];
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['pathologic', 'node'];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
 
   /**
    * {@inheritdoc}
