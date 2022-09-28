@@ -77,4 +77,8 @@ class HeaderSearchSettingsHelper {
     return $this->config->get('default_placeholder') ?? "";
   }
 
+  public function getHelpUrl() {
+    return $this->config->get('help_url') ?? "";
+  }
+
 }

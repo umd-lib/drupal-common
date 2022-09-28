@@ -63,6 +63,7 @@ class HeaderSearchForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $help_url = $this->configHelper->getHelpUrl();
     $form['search_query'] = [
       '#type' => 'textfield',
       '#name' => 'search_query',
@@ -78,6 +79,13 @@ class HeaderSearchForm extends FormBase {
       '#options' => $this->configHelper->getSearchTargetOptions(),
       '#attributes' => array('class' => array('header-search-options'), 'aria-label' => t('library resources options dropdown')),
     ];
+    if (!empty($help_url)) {
+      $form['help_url'] = [
+        '#title' => $this->t('What does this search?'),
+        '#type' => 'link',
+        '#url' => \Drupal\Core\Url::fromUserInput($help_url),
+      ];
+    }
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',

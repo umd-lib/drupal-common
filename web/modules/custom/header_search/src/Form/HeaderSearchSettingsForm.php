@@ -88,6 +88,14 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
       '#maxlength' => 60,
     ];
 
+    $form['help_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Help URL'),
+      '#default_value' => $this->configHelper->getHelpUrl(),
+      '#size' => 50,
+      '#maxlength' => 60,
+    ];
+
     $form['search_targets'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Search Targets'),
@@ -155,6 +163,7 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
     $config = $this->configFactory->getEditable(static::SETTINGS);
 
     $config->set('default_placeholder', $form_state->getValue('default_placeholder'));
+    $config->set('help_url', $form_state->getValue('help_url'));
 
     $search_targets_str = $form_state->getValue('search_targets');
     try {

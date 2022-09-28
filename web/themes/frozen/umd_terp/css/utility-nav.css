@@ -44,6 +44,11 @@
 .header-search-block div {
   display: inline-block;
 }
+
+#showSearch div {
+  width: 100%;
+}
+
 .site-header__nav {
   border-top:1px solid #ccc;
   margin-bottom: 0.7rem;
@@ -51,7 +56,8 @@
 }
 #header-search {
   float: left;
-  margin: 1rem 0 1rem 4rem;
+  /* margin: 1rem 0 1rem 4rem; */
+  margin: .5rem 0 0rem 4rem;
 }
 .site-header__logo {
   height: 5rem!important;
@@ -88,9 +94,9 @@
   right: 0;
   top: 0;
   border: 0;
-  color: #ccc;
-  background: #666;
-  padding: 3px;
+  color: #666;
+  /* background: #eee;
+  padding: 3px;*/
 }
 .site-header__logo img {
   height: auto;
@@ -160,9 +166,14 @@ ul.utility-menus > li {
   top: 80px;
   padding: 20px 20px;
   width: 450px;
-  background: #666;
+  background: #eee;
   z-index: 2000;
 }
+
+#showSearch a {
+  text-decoration: underline;
+}
+
 #showHours, #showSystem, #showInfo, #showAccounts, #showHelp {
   display: none;
   text-align: left;
@@ -340,6 +351,7 @@ input[type=text]#search-faq {
   }
   #header-search {
     margin: 1rem;
+    font-size: .9rem;
   }
   .site-header__mlogo img {
     width: 200px;
