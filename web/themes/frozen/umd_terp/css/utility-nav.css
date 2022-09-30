@@ -58,6 +58,7 @@
   float: left;
   /* margin: 1rem 0 1rem 4rem; */
   margin: .5rem 0 0rem 4rem;
+  width: 24rem;
 }
 .site-header__logo {
   height: 5rem!important;
@@ -341,6 +342,10 @@ input[type=text]#search-faq {
 }
     .header-search-block {
     display: none;
+  }
+
+  .header-search-input {
+    margin-top: 6px;
   }
   .header-search-bt-mobile {
     display: grid;
