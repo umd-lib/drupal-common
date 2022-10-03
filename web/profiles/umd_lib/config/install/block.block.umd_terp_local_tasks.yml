@@ -3,8 +3,6 @@ status: false
 dependencies:
   theme:
     - umd_terp
-_core:
-  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
 id: umd_terp_local_tasks
 theme: umd_terp
 region: content

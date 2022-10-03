@@ -1,16 +1,19 @@
-name: UMD Lib
+name: UMD Libraries Profile
 type: profile
 description: 'A UMD Terp focused install customized by the libraries.'
-version: VERSION
+core_version_requirement: ^8.8 || ^9
 install:
   - node
   - block
   - dblog
+  - taxonomy
+  - twig_tweak
   - page_cache
   - dynamic_page_cache
   - automated_cron
   - big_pipe
   - block
+  - imageapi_optimize_binaries
   - breakpoint
   - ckeditor
   - config
@@ -70,5 +73,19 @@ install:
   - twig_htmlspecialchars_decode
   - samlauth_attrib
   - linkit
+  - umd_terp_base
+  - umd_terp_content_types
+  - ut_accordion
+  - ut_button
+  - ut_card
+  - ut_divider
+  - ut_images
+  - ut_video
+  - ut_sidebar_menu
+  - ut_tabs
+  - ut_text
+  - token_filter
+  - twig_field_value
 themes:
   - umd_terp
+  - seven

@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.umd_terp_person.field_umdt_ct_metatags
     - field.field.node.umd_terp_person.field_umdt_ct_person_author_stat
     - field.field.node.umd_terp_person.field_umdt_ct_person_bio
-    - field.field.node.umd_terp_person.field_umdt_ct_person_departments
     - field.field.node.umd_terp_person.field_umdt_ct_person_email
     - field.field.node.umd_terp_person.field_umdt_ct_person_first_name
     - field.field.node.umd_terp_person.field_umdt_ct_person_last_name
@@ -51,7 +50,6 @@ third_party_settings:
         - field_umdt_ct_person_photo
         - field_umdt_ct_person_title
         - field_umdt_ct_person_author_stat
-        - field_umdt_ct_person_departments
         - field_umdt_ct_person_bio
         - body
       parent_name: ''
@@ -131,16 +129,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-    region: content
-  field_umdt_ct_person_departments:
-    weight: 20
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
     region: content
   field_umdt_ct_person_email:
     weight: 13

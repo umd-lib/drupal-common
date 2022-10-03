@@ -5,8 +5,6 @@ dependencies:
     - system
   theme:
     - umd_terp
-_core:
-  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
 id: umd_terp_page_title
 theme: umd_terp
 region: content
