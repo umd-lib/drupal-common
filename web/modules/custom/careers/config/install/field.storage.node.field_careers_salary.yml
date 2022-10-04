@@ -3,13 +3,14 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_main_contact
-field_name: field_main_contact
+    - text
+id: node.field_careers_salary
+field_name: field_careers_salary
 entity_type: node
-type: entity_reference
+type: text
 settings:
-  target_type: node
-module: core
+  max_length: 255
+module: text
 locked: false
 cardinality: 1
 translatable: true

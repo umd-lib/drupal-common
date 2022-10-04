@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_careers_salary
+    - node.type.umd_library_careers
+  module:
+    - text
+id: node.umd_library_careers.field_careers_salary
+field_name: field_careers_salary
+entity_type: node
+bundle: umd_library_careers
+label: Salary
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text
+

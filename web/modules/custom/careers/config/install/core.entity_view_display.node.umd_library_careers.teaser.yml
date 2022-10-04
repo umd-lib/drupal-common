@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.umd_library_careers.body
+    - field.field.node.umd_library_careers.field_careers_application_link
+    - field.field.node.umd_library_careers.field_careers_closing_date
+    - field.field.node.umd_library_careers.field_careers_division
+    - field.field.node.umd_library_careers.field_careers_position_descrip
+    - field.field.node.umd_library_careers.field_careers_position_type
+    - field.field.node.umd_library_careers.field_careers_salary
+    - node.type.umd_library_careers
+  module:
+    - text
+    - user
+id: node.umd_library_careers.teaser
+targetEntityType: node
+bundle: umd_library_careers
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed

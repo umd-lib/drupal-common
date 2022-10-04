@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - text
-id: node.field_closing_date
-field_name: field_closing_date
+id: node.field_careers_closing_date
+field_name: field_careers_closing_date
 entity_type: node
 type: text
 settings:
@@ -17,4 +17,3 @@ translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false
-

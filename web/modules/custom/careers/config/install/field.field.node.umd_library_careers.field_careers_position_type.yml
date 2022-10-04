@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_careers_position_type
+    - node.type.umd_library_careers
+  module:
+    - options
+id: node.umd_library_careers.field_careers_position_type
+field_name: field_careers_position_type
+entity_type: node
+bundle: umd_library_careers
+label: 'Position Type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
+

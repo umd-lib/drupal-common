@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   module:
+    - link
     - node
-    - text
-id: node.field_job_internal_notes
-field_name: field_job_internal_notes
+id: node.field_careers_application_link
+field_name: field_careers_application_link
 entity_type: node
-type: text_long
+type: link
 settings: {  }
-module: text
+module: link
 locked: false
 cardinality: 1
 translatable: true

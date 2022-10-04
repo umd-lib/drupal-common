@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Theme override to display a careers node.
+ */
+#}
+
+<div {{attributes}}>
+	{{ title_suffix }}
+	{% if content.body|field_value %}
+		{{ content.body|field_value }}
+	{% endif %}
+	
+	{% if content.field_careers_division|field_value %}
+		<div><strong>Division:</strong> {{ content.field_careers_division|render|striptags }}</div>
+	{% endif %}
+	{% if content.field_careers_position_descrip|field_value %}
+		<div><strong>Position Description:</strong> {{ content.field_careers_position_descrip|field_value }}</div>
+	{% endif %}
+	{% if content.field_careers_position_type|field_value %}
+		<div><strong>Position Type:</strong> {{ content.field_careers_position_type|field_value }}</div>
+	{% endif %}
+	{% if content.field_careers_salary|field_value %}
+		<div><strong>Salary Range:</strong> {{ content.field_careers_salary|field_value }}</div>
+	{% endif %}
+	{% if content.field_careers_closing_date|field_value %}
+		<div><strong>Closing Date:</strong> {{ content.field_careers_closing_date|field_value }}</div>
+	{% endif %}
+	<br />
+	{% if content.field_careers_application_link|field_value %}
+		<div class="btn-set"><a class="btn btn-primary" href="{{ content.field_careers_application_link|field_value }}">Apply for this position</a></div>
+	{% endif %}
+
+</div>
+{{ content|without('body', 'field_careers_application_link', 'field_careers_closing_date', 'field_careers_salary', 'field_careers_position_type', 'field_careers_position_descrip', 'field_careers_division') }}

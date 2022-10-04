@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_careers_position_type
+field_name: field_careers_position_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Staff / Faculty Position'
+      label: 'Staff / Faculty Position'
+    -
+      value: 'Graduate Assistantship'
+      label: 'Graduate Assistantship'
+    -
+      value: 'Hourly Student Job'
+      label: 'Hourly Student Job'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
+

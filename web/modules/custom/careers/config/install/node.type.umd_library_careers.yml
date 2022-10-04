@@ -15,14 +15,14 @@ third_party_settings:
     publish_past_date: error
     publish_past_date_created: false
     publish_required: false
-    publish_revision: false
+    publish_revision: true
     publish_touch: true
     show_message_after_update: true
     unpublish_enable: true
     unpublish_required: false
-    unpublish_revision: false
-name: Careers
-type: careers
+    unpublish_revision: true
+name: 'UMD Library Careers'
+type: umd_library_careers
 description: ''
 help: ''
 new_revision: true
