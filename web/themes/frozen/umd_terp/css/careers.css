@@ -1,0 +1,25 @@
+#umd-careers-node ul {
+  margin: 2rem 0;
+  padding: 0 0 0 2rem;
+}
+
+#umd-careers-node ol {
+  list-style: none;
+}
+
+#umd-careers-node ul li {
+  margin: 0 0 .75rem;
+}
+
+#umd-careers-node ul > li::before {
+  content: "";
+  display: inline-block;
+  border-top: 3px solid transparent;
+  border-left: 6px solid #e21833;
+  border-bottom: 3px solid transparent;
+  height: 0;
+  width: 0;
+  margin-right: .375rem;
+  margin-left: -.75rem;
+  transform: translateY(-50%);
+}

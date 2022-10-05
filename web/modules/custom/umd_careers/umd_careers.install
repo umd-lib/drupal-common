@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Careers module install file.
+ */
+
+/**
+ * Install configuration.
+ */
+function umd_careers_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_careers');
+}
+
+function umd_careers_install() {
+  ## Fixes:
+  ## A non-existent config entity name returned by FieldStorageConfigInterface::getBundles(): entity type: paragraph, bundle: text, field name: field_image
+  $entity_type = 'node';
+  $bundle = 'careers';
+  $field_name = 'body';
+
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $map = $field_map_kv_store->get($entity_type);
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  if (!empty($map[$field_name]['bundles'][$bundle])) {
+    unset($map[$field_name]['bundles'][$bundle]);
+    $field_map_kv_store->set($entity_type, $map);
+  }
+  $entity_type = 'node';
+  $bundle = 'library_hours';
+  $field_name = 'body';
+
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $map = $field_map_kv_store->get($entity_type);
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  if (!empty($map[$field_name]['bundles'][$bundle])) {
+    unset($map[$field_name]['bundles'][$bundle]);
+    $field_map_kv_store->set($entity_type, $map);
+  }
+}

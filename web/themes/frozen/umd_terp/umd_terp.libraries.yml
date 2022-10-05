@@ -11,6 +11,7 @@ global:
      css/article.css: { media: screen }
      css/custom.css: { media: screen }
      css/bento.css: { media: screen }
+     css/careers.css: { media: screen }
      css/umd-print.css: { media: print }
   js:
     static/build/js/index.js: {}
