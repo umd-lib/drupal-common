@@ -2,23 +2,8 @@
 
 ## Prerequisites
 
-Install the latest **Composer** <https://getcomposer.org/download/> if not already
+Install the latest **Composer** globally <https://getcomposer.org/download/> if not already
 installed.
-
-(Recommended only if your executable is *composer.phar*) Add the following to
-your **~/.profile**:
-
-```
-alias composer="composer.phar"
-```
-
-Add the following to your /etc/hosts (customized if you wish):
-
-```
-127.0.0.1		www.docker.localhost
-127.0.0.1		portainer.drupal.docker.localhost
-127.0.0.1		solr.drupal.docker.localhost
-```
 
 ## Local Deploy
 
@@ -57,7 +42,7 @@ for the Postgres and Solr data (used in the next steps):
 > mkdir solr_data
 ```
 
-5) Clone the drupal-projects-env repository locally and copy the demo/env file
+5) Clone the drupal-projects-env repository locally and copy the www/env file
 into your web root (i.e., common-demo) as .env:
 
 ```
@@ -102,7 +87,7 @@ to common-demo/web/sites/default/:
 
 ```
 > cd common-www
-> docker-compose up -d
+> docker compose up -d
 ```
 
 Note that it is very likely you will need to flush cache before the site will
