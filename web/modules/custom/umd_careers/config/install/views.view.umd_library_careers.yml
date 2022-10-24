@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.storage.node.body
     - node.type.umd_library_careers
-    - system.menu.main
     - taxonomy.vocabulary.divisions
   content:
     - 'taxonomy_term:divisions:532d283c-efa4-464b-9ae0-79319b8c47ae'
@@ -249,7 +248,20 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'No listings of this type available at this time. Visit our <a href="/about/careers">careers page</a> for other opportunities.'
+            format: full_html
+          tokenize: false
       sorts:
         created:
           id: created
@@ -473,6 +485,8 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
+      block_description: 'Dean''s Office Block'
+      block_category: 'Careers Blocks'
     cache_metadata:
       max-age: -1
       contexts:
@@ -626,6 +640,8 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
+      block_description: 'ASD Block'
+      block_category: 'Careers Blocks'
     cache_metadata:
       max-age: -1
       contexts:
@@ -779,6 +795,8 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
+      block_description: 'DST Block'
+      block_category: 'Careers Blocks'
     cache_metadata:
       max-age: -1
       contexts:
@@ -932,6 +950,8 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
+      block_description: 'CSS Block'
+      block_category: 'Careers Blocks'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1085,6 +1105,8 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
+      block_description: 'RAS Block'
+      block_category: 'Careers Blocks'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1095,29 +1117,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  page_1:
-    id: page_1
-    display_title: 'All Jobs'
-    display_plugin: page
-    position: 1
-    display_options:
-      display_description: ''
-      display_extenders: {  }
-      path: about/careers/all
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url.query_args
-        - 'user.node_grants:view'
-        - user.permissions
-      tags:
-        - 'config:field.storage.node.body'
-  page_2:
-    id: page_2
-    display_title: 'Staff / Faculty'
-    display_plugin: page
+  block_6:
+    id: block_6
+    display_title: 'Staff / Faculty Block'
+    display_plugin: block
     position: 2
     display_options:
       title: 'Staff and Faculty Positions'
@@ -1198,16 +1201,8 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
-      path: about/careers/staff-faculty
-      menu:
-        type: normal
-        title: 'Staff and Faculty Positions'
-        description: ''
-        weight: 0
-        expanded: false
-        menu_name: main
-        parent: 'menu_link_content:efe1630b-ae30-4109-b44f-7fb30bf3fa57'
-        context: '0'
+      block_description: 'Staff / Faculty Block'
+      block_category: 'Careers Blocks'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1218,10 +1213,11 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.body'
-  page_3:
-    id: page_3
-    display_title: GAs
-    display_plugin: page
+    deleted: false
+  block_7:
+    id: block_7
+    display_title: 'GAs Block'
+    display_plugin: block
     position: 3
     display_options:
       title: 'Graduate Assistantships'
@@ -1302,16 +1298,8 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
-      path: about/careers/graduate-assistantships
-      menu:
-        type: normal
-        title: 'Graduate Assistantships'
-        description: ''
-        weight: 0
-        expanded: false
-        menu_name: main
-        parent: 'menu_link_content:efe1630b-ae30-4109-b44f-7fb30bf3fa57'
-        context: '0'
+      block_description: 'GAs Block'
+      block_category: 'Careers Blocks'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1322,10 +1310,10 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.body'
-  page_4:
-    id: page_4
-    display_title: Student
-    display_plugin: page
+  block_8:
+    id: block_8
+    display_title: 'Student Block'
+    display_plugin: block
     position: 4
     display_options:
       title: 'Student Employment'
@@ -1406,16 +1394,8 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
-      path: about/career/student
-      menu:
-        type: normal
-        title: 'Student Employment'
-        description: ''
-        weight: 0
-        expanded: false
-        menu_name: main
-        parent: 'menu_link_content:efe1630b-ae30-4109-b44f-7fb30bf3fa57'
-        context: '0'
+      block_description: 'Student Block'
+      block_category: 'Careers Blocks'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1426,4 +1406,22 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.body'
-
+  page_1:
+    id: page_1
+    display_title: 'All Jobs'
+    display_plugin: page
+    position: 1
+    display_options:
+      display_description: ''
+      display_extenders: {  }
+      path: about/careers/all
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.body'
