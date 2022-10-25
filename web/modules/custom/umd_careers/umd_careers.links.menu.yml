@@ -1,0 +1,5 @@
+umd_careers.career_item:
+  route_name: umd_careers.career
+  menu_name: main
+  parent: 'views_view:views.umd_library_careers.page_1'
+  class: Drupal\umd_careers\Plugin\Menu\CareersMenuLink

@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.node.body
     - node.type.umd_library_careers
+    - system.menu.main
     - taxonomy.vocabulary.divisions
   content:
     - 'taxonomy_term:divisions:532d283c-efa4-464b-9ae0-79319b8c47ae'
@@ -1412,9 +1413,21 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      title: 'All Career Listings'
+      defaults:
+        title: false
       display_description: ''
       display_extenders: {  }
       path: about/careers/all
+      menu:
+        type: normal
+        title: 'All Career Listings'
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: main
+        parent: 'menu_link_content:efe1630b-ae30-4109-b44f-7fb30bf3fa57'
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1425,3 +1438,4 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.body'
+

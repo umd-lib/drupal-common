@@ -1,0 +1,12 @@
+umd_careers.career:
+  path: '/about/careers/listing/{year_month}/{title}'
+  requirements:
+    _permission: 'access content'
+    year_month: '^$|[^/]++'
+    title: '^$|[^/]++'
+  options:
+    parameters:
+      year_month:
+        type: String
+      title:
+        type: String
