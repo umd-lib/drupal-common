@@ -1,0 +1,95 @@
+/**
+ * For overriding existing CSS keys
+ */
+.brand {
+  color: #000;
+  padding-left: 5px;
+  font-size: 34px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.site-slogan {
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+.form-select {
+  background-image: url('../../src/img/select-arrows.svg');
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.hero-attribution {
+  padding: 0rem 7.5rem;
+}
+
+/** For Announcement block in sidebar **/ 
+.announcement h2 {
+	font-family: Source Sans Pro, sans-serif;
+  font-size: 1.85rem;
+  font-weight: 600;
+}
+
+.announcement {
+  border-left: 3px solid #e21833;
+  padding: 10px 10px 10px 15px;
+  margin: 20px 0;
+}
+
+blockquote {
+  padding: 14px 28px;
+  border-left: 5px solid #e21833;
+}
+
+#views-exposed-form-solr-search-content-page-1 #edit-keys {
+  display: inline;
+}
+
+#views-exposed-form-solr-search-content-page-1 .form-item-keys {
+  display: inline;
+}
+
+#views-exposed-form-solr-search-content-page-1 .form-actions {
+  padding-top: 10px;
+}
+
+#views-exposed-form-solr-search-content-page-1 #edit-submit-solr-search-content {
+  font-weight: normal;
+  color: white;
+  background-color: #e21833;
+  border: 2px solid #e21833;
+  display: inline-block;
+  border-radius: 2px;
+  overflow: hidden;
+  text-align: center;
+}
+
+#views-exposed-form-solr-search-content-page-1 #edit-submit-solr-search-content:hover {
+  font-weight: 500;
+  color: #fff;
+  background-color: #222;
+  border: 2px solid #222;
+}
+
+/** for external link icon **/
+svg.ext {
+  width: 22px;
+  height: 22px;
+  padding-right: 0;
+  margin-left: 2px;
+  fill: #e21833;
+}
+
+img, svg {
+  vertical-align: baseline;
+}
+
+svg.ext path, svg.mailto path {
+  stroke: #e21833;
+  stroke-width: 3;
+}
+
+a.navbar-brand img {
+  height: 75px;
+  margin-top: 10px;
+}

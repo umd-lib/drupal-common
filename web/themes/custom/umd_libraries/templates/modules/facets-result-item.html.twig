@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Default theme implementation of a facet result item.
+ *
+ * Available variables:
+ * - value: The item value.
+ * - raw_value: The raw item value.
+ * - show_count: If this facet provides count.
+ * - count: The amount of results.
+ * - is_active: The item is active.
+ * - facet: The facet for this result item.
+ *   - id: the machine name for the facet.
+ *   - label: The facet label.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if is_active %}
+  <span class="facet-item__status js-facet-deactivate">(-)</span>
+{% endif %}
+{% if '::' in value %}
+  {% set valueArray = value|split('::') %}
+  {% if valueArray[1] %}
+    {% set value = valueArray[1] %}
+  {% endif %}
+{% endif %}
+<span class="facet-item__value">&nbsp;{{ value }}</span>
+{% if show_count %}
+  <span class="facet-item__count">({{ count }})</span>
+{% endif %}

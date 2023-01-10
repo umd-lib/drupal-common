@@ -1,0 +1,54 @@
+{# {{ site_slogan }} #}
+{# {{ "now"|date("Y") }} #}
+{# {{ page.footer_menu }} #}
+
+<footer class="site-footer" aria-label="Main">
+  <div class="site-footer-main">
+    <div class="max-bound">
+      <nav class="site-footer-nav" aria-label="Footer">
+        {{ drupal_menu('footer') }}
+      </nav>
+      <div class="site-footer-about">
+        <div class="site-footer-logo">
+          {% if link_footer_logo %}
+            <a href="https://www.lib.umd.edu" title="Libraries Home Page">
+              <img src="{{ footer_logo_path }}" alt="{{ site_name }} logo">
+            </a>
+          {% else %}
+            <img src="{{ footer_logo_path }}" alt="{{ site_name }} logo">
+          {% endif %}
+        </div>
+        <div class="site-footer-address">
+          <strong>{{ site_name }}</strong><br>
+          <span>{{ umd_terp_address }} </span><br>
+          {% if umd_terp_phone %}
+            <a href="tel:+{{ umd_terp_phone|preg_replace('/[^0-9]/', '') }}">{{ umd_terp_phone }}</a><br />
+          {% endif %}
+          {% if umd_terp_email %}
+            {% if exclude_mailto %}
+              <a href="{{ umd_terp_email }}">
+            {% else %}
+              <a href="mailto:{{ umd_terp_email }}">
+            {% endif %}
+            {% if replace_email_text %}
+              Contact Us
+            {% else %}
+              {{ umd_terp_email }}
+            {% endif %}
+            </a>
+          {% endif %}
+        </div>
+        {% if hide_social_icons != TRUE %}
+        <div class="site-footer-social">
+          {% include directory ~ '/templates/partials/social-links.html.twig' %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="site-footer-legal">
+    <div class="max-bound">
+      {{ drupal_menu('global') }}
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,7 @@
+global:
+  version: VERSION
+  css:
+    base:
+     static/custom/css/overrides.css: {}
+  js:
+    static/custom/js/overrides.js: {}

@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Theme override to display a UMD Terp Article node.
+ */
+#}
+
+<div class="article-byline">
+  {% if content.field_umdt_ct_article_author|field_value %}
+    {{ content.field_umdt_ct_article_author|field_value }}
+  {% endif %}
+  <span>{% if content.field_umdt_ct_article_date|field_value %}{{ content.field_umdt_ct_article_date|field_value }}{% else %}{{ node.createdtime|date('F j, Y') }}{% endif %}</span>
+</div>
+
+{% if content.field_umdt_ct_article_image|field_value %}
+  {% if "On" in content.field_float_image_right.0 %}
+  {% else %}
+    <div class="section section-ut_image">
+      <div class="image-bg">
+        <figure>
+          <div class="image-media">
+            <img src="{{ file_url(content.field_umdt_ct_article_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" alt="{{ content.field_umdt_ct_article_image[0]['#media'].field_media_image.alt }}" />
+          </div>
+          {% if content.field_umdt_ct_article_caption|field_value %}
+            <figcaption>{{ content.field_umdt_ct_article_caption|field_value }}</figcaption>
+          {% endif %}
+        </figure>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+
+{% if content.body|field_value %}
+  <div class="section">
+    {% if "On" in content.field_float_image_right.0 %}
+      <div class="float-right" style="margin-left: 10px;">
+        <img src="{{ file_url(content.field_umdt_ct_article_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" alt="{{ content.field_umdt_ct_article_image[0]['#media'].field_media_image.alt }}" />
+      </div>
+    {% endif %}
+    <div class="editor-content">
+      {{ content.body|field_value }}
+    </div>
+  </div>
+{% endif %}
+
+{{ content.field_umdt_ct_sections }}
+
+{% if categories %}
+  <div class="article-categories">
+    <ul class="tag-list">
+      <li class="tag-list-item tag-list-heading">Categories</li>
+      {% for term in node.field_umdt_ct_article_categories %}
+        <li class="tag-list-item">
+          <a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': term.entity.id}) }}" class="tag-list-link">{{ term.entity.label }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+

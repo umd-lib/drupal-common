@@ -1,0 +1,18 @@
+core: 8.x
+core_version_requirement: ^8 || ^9
+type: theme
+name: UMD Libraries
+description: 'UMD Libraries (umd_libraries), is a umd_terp child theme intended for library projects.'
+package: LIB.UMD.EDU
+base theme: umd_terp
+
+libraries:
+  - umd_libraries/global
+  - umd_libraries/color
+regions:
+   main_menu: 'Main Menu'
+   help: 'Help'
+   breadcrumbs: 'Breadcrumbs'
+   sidebar: 'Sidebar'
+   content: 'Content'
+   footer_menu: 'Footer Menu'

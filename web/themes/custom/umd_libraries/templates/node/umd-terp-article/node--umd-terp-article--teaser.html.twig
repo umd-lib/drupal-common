@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override to display a UMD Terp Article node Teaser.
+ */
+#}
+<div class="feed-item">
+  <div class="row no-gutters align-items-start">
+    <div class="col">
+      <div class="feed-item-body">
+        <div class="feed-item-date">{{ content.field_umdt_ct_article_date|field_value }}</div>
+        <h2 class="feed-item-title">
+          <a href="{{ link }}">{{ node.title.value }}</a>
+        </h2>
+        <div class="feed-item-description">
+          {{ content.body }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,7 @@ web/sites/*/settings*.php
 web/sites/*/services*.yml
 web/sites/*/default.services.yml
 web/sites/*/default.settings.php
+web/sites/*/settings*.loc
 
 # Ignore paths that contain user-generated content.
 web/sites/*/files
@@ -51,5 +52,8 @@ postgres-init/*.sql
 
 sync/
 .env
-web/themes/custom/umd_libraries
 certs/
+web/.htaccess
+web/robots.txt
+web/sites/example.settings.local.php
+web/web.config
