@@ -119,8 +119,8 @@ class LibCalApiHelper {
     return null;
   }
 
-  public function getEvents($calendar_id, $limit=3) {
-    $events_url = $this->data_endpoint . "events?cal_id=$calendar_id&limit=$limit";
+  public function getEvents($calendar_id, $limit=3, $days_out=90) {
+    $events_url = $this->data_endpoint . "events?cal_id=$calendar_id&limit=$limit&days=$days_out";
     $response = $this->curlRequest($events_url, $this->getTokenString());
     $processed_events = null;
     if ($response != null) {
@@ -137,7 +137,7 @@ class LibCalApiHelper {
           'category' => array_values(
             array_filter(
               array_map(
-                function ($category) { 
+                function ($category) {
                   if (!str_contains($category['name'], '>')) return $category['name']; 
                 },
                 $event['category']
