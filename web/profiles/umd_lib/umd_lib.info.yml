@@ -15,7 +15,7 @@ install:
   - block
   - imageapi_optimize_binaries
   - breakpoint
-  - ckeditor
+  - ckeditor5
   - config
   - contextual
   - block_content
