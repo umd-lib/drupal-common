@@ -15,5 +15,6 @@ global:
      css/umd-print.css: { media: print }
   js:
     static/build/js/index.js: {}
+    js/paragraph-utils.js: {}
     js/utility-nav.js: { scope: header }
     js/toggled-search-bar.js: { scope: header }
