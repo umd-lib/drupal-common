@@ -5,8 +5,12 @@
   margin-bottom: .7rem;
 }
 
+.facet-item {
+  display: flex;
+  align-items: baseline;
+}
+
 .facets-widget-checkbox label {
-  width: 35%;
   margin-left: .5rem;
 }
 

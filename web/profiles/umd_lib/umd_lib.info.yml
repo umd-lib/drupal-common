@@ -88,4 +88,4 @@ install:
   - twig_field_value
 themes:
   - umd_terp
-  - seven
+  - claro

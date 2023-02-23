@@ -8,10 +8,9 @@
 <div {{attributes}}>
 	{{ title_suffix }}
 	<div class="editor-content">
-		<h1>{{ node.title.value }}</h1>
-		{% if content.body|field_value %}
-			{{ content.body|field_value }}
-		{% endif %}
+		<div{{ content_attributes.addClass('node__content', layout) }}>
+			{# Comments not part of content, so they won't inherit .text-content styles. #}
+			{{ content|without('comment') }}
+		</div>
 	</div>
 </div>
-{{ content|without('body') }}
