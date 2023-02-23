@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override to display a IRRoC Resource node.
+ */
+#}
+
+<div {{attributes}}>
+	{{ title_suffix }}
+	<div class="editor-content">
+		<h1>{{ node.title.value }}</h1>
+		{% if content.body|field_value %}
+			{{ content.body|field_value }}
+		{% endif %}
+	</div>
+</div>
+{{ content|without('body') }}
