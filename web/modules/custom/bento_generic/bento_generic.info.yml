@@ -1,0 +1,12 @@
+name: Bento Generic Search
+description: Enables Bento Search generic module. This module takes the www Bento and tries to make it generic and more easily deployable. 
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+  - views_json_source
+  - views_fieldsets
+  - block_ajax
+type: module
+
+core_version_requirement: ^8.9 || ^9

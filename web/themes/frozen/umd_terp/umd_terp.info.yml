@@ -8,12 +8,21 @@ version: 8.1.105
 libraries:
   - umd_terp/global
 regions:
-   main_menu: 'Main Menu'
-   help: 'Help'
-   breadcrumbs: 'Breadcrumbs'
-   sidebar: 'Sidebar'
-   content: 'Content'
-   footer_menu: 'Footer Menu'
+  main_menu: 'Main Menu'
+  help: 'Help'
+  breadcrumbs: 'Breadcrumbs'
+  sidebar: 'Sidebar'
+  content: 'Content'
+  footer_menu: 'Footer Menu'
+  bento_1: "Bento Search 1"
+  bento_2: "Bento Search 2"
+  bento_3: "Bento Search 3"
+  bento_4: "Bento Search 4"
+  bento_5: "Bento Search 5"
+  bento_6: "Bento Search 6"
+  bento_7: "Bento Search 7"
+  bento_8: "Bento Search 8"
+  bento_9: "Bento Search 9"
 dependencies:
   - twig_tweak
   - umd_terp_base

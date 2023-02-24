@@ -1,0 +1,590 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - views_fieldsets
+    - views_json_source
+id: bento_generic_search
+label: 'Bento Generic Search'
+module: views
+description: ''
+tag: ''
+base_table: json
+base_field: ''
+display:
+  default:
+    display_plugin: default
+    id: default
+    display_title: Default
+    position: 0
+    display_options:
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: none
+        options: {  }
+      query:
+        type: views_query
+        options:
+          json_file: 'http://docker.for.mac.localhost:5000/search?q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        type: some
+        options:
+          items_per_page: 3
+          offset: 0
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+      row:
+        type: fields
+        options:
+          inline: {  }
+          separator: ''
+          hide_empty: false
+          default_field_elements: true
+      fields:
+        value_1:
+          id: value_1
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: URL
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          key: link
+          trusted_html: 1
+          plugin_id: views_json_source_field
+        value:
+          id: value
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Title
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<a href="{{ value_1 }}">{{ value|raw }}</a>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          key: title
+          trusted_html: 0
+          entity_type: null
+          entity_field: null
+          plugin_id: views_json_source_field
+        value_5:
+          id: value_5
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Description
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 100
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: true
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          key: description
+          trusted_html: 1
+          plugin_id: views_json_source_field
+        fieldset:
+          id: fieldset
+          table: views
+          field: fieldset
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          fields:
+            - value_3
+            - value_2
+            - value_4
+          wrapper: div
+          legend: ''
+          classes: bento-fields
+          collapsible: 1
+          collapsed: 0
+          plugin_id: fieldset
+        value_3:
+          id: value_3
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Date
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<span class="result-icons fas fa-calendar-alt"></span> <span class="bento-value">{{ value_3 }}</span>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          key: date
+          trusted_html: 0
+          plugin_id: views_json_source_field
+        value_2:
+          id: value_2
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Author
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<span class="result-icons fas fa-user"></span> <span class="bento-value">{{ value_2|raw }}</span>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          key: author
+          trusted_html: 0
+          plugin_id: views_json_source_field
+        value_4:
+          id: value_4
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Format
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          key: item_format
+          trusted_html: 0
+          plugin_id: views_json_source_field
+      filters: {  }
+      sorts: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<h2>Search Results</h2>'
+            format: full_html
+          plugin_id: text
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: true
+          content:
+            value: "<span class=\"fa-solid fa-chevron-right\"></span> <a href=\"http://umd.libanswers.com/search?q={{ arguments.param }}\">See all FAQs from Ask Us! results</a>\r\n"
+            format: full_html
+          plugin_id: text
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No results found.'
+            format: full_html
+          plugin_id: text
+      relationships: {  }
+      arguments:
+        param:
+          id: param
+          table: json
+          field: param
+          relationship: none
+          group_type: group
+          admin_label: ''
+          default_action: ignore
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options: null
+          default_argument_skip_url: false
+          summary_options: null
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          plugin_id: views_json_source_uri_param
+        value:
+          id: value
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          default_action: ignore
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options: null
+          default_argument_skip_url: false
+          summary_options: null
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          key: total
+          plugin_id: views_json_source_argument
+      display_extenders: {  }
+      use_ajax: false
+      title: WorldCat
+      css_class: world_cat_discovery_api
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_1:
+    display_plugin: block
+    id: block_1
+    display_title: 'Books and More'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: 'Bento Search: Books and More'
+      title: 'Books and More'
+      defaults:
+        title: false
+        query: false
+        footer: false
+        header: false
+        empty: false
+        css_class: false
+      query:
+        type: views_query
+        options:
+          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=world_cat_discovery_api&q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      footer: {  }
+      header: {  }
+      block_category: 'Bento Quick Search'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<div class="bento-generic-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="https://umaryland.on.worldcat.org/discovery">Try a different search from Books and More</a></div>'
+            format: full_html
+          plugin_id: text
+      css_class: bento_world_cat_discovery_api
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
