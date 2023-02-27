@@ -270,7 +270,7 @@ display:
             - value_4
           wrapper: div
           legend: ''
-          classes: bento-fields
+          classes: bento-generic-fields
           collapsible: 1
           collapsed: 0
           plugin_id: fieldset
@@ -285,7 +285,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<span class="result-icons fas fa-calendar-alt"></span> <span class="bento-value">{{ value_3 }}</span>'
+            text: '<span class="result-icons fas fa-calendar-alt"></span> <span class="bento-generic-value">{{ value_3 }}</span>'
             make_link: false
             path: ''
             absolute: false
@@ -316,7 +316,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: div
-          element_wrapper_class: bento-field
+          element_wrapper_class: bento-generic-field
           element_default_classes: false
           empty: ''
           hide_empty: true
@@ -336,7 +336,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<span class="result-icons fas fa-user"></span> <span class="bento-value">{{ value_2|raw }}</span>'
+            text: '<span class="result-icons fas fa-user"></span> <span class="bento-generic-value">{{ value_2|raw }}</span>'
             make_link: false
             path: ''
             absolute: false
@@ -367,7 +367,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: div
-          element_wrapper_class: bento-field
+          element_wrapper_class: bento-generic-field
           element_default_classes: false
           empty: ''
           hide_empty: true
@@ -418,7 +418,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: div
-          element_wrapper_class: bento-field
+          element_wrapper_class: bento-generic-field
           element_default_classes: false
           empty: ''
           hide_empty: true
