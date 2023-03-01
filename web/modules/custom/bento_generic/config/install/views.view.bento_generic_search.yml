@@ -4,6 +4,8 @@ dependencies:
   module:
     - views_fieldsets
     - views_json_source
+_core:
+  default_config_hash: WCpDjoR94NtOqCfO2z33bTL43YcteWEyB4xNRD_7CVo
 id: bento_generic_search
 label: 'Bento Generic Search'
 module: views
@@ -13,53 +15,12 @@ base_table: json
 base_field: ''
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Default
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: none
-        options: {  }
-      cache:
-        type: none
-        options: {  }
-      query:
-        type: views_query
-        options:
-          json_file: 'http://docker.for.mac.localhost:5000/search?q=%'
-          row_apath: results
-          headers: ''
-          single_payload: 0
-          show_errors: 1
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: some
-        options:
-          items_per_page: 3
-          offset: 0
-      style:
-        type: default
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-      row:
-        type: fields
-        options:
-          inline: {  }
-          separator: ''
-          hide_empty: false
-          default_field_elements: true
+      title: Search
       fields:
         value_1:
           id: value_1
@@ -68,6 +29,7 @@ display:
           relationship: none
           group_type: group
           admin_label: URL
+          plugin_id: views_json_source_field
           label: ''
           exclude: true
           alter:
@@ -111,7 +73,6 @@ display:
           hide_alter_empty: true
           key: link
           trusted_html: 1
-          plugin_id: views_json_source_field
         value:
           id: value
           table: json
@@ -119,6 +80,9 @@ display:
           relationship: none
           group_type: group
           admin_label: Title
+          entity_type: null
+          entity_field: null
+          plugin_id: views_json_source_field
           label: ''
           exclude: false
           alter:
@@ -162,9 +126,6 @@ display:
           hide_alter_empty: true
           key: title
           trusted_html: 0
-          entity_type: null
-          entity_field: null
-          plugin_id: views_json_source_field
         value_5:
           id: value_5
           table: json
@@ -172,6 +133,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Description
+          plugin_id: views_json_source_field
           label: ''
           exclude: false
           alter:
@@ -215,7 +177,6 @@ display:
           hide_alter_empty: true
           key: description
           trusted_html: 1
-          plugin_id: views_json_source_field
         fieldset:
           id: fieldset
           table: views
@@ -223,6 +184,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: fieldset
           label: ''
           exclude: false
           alter:
@@ -273,7 +235,6 @@ display:
           classes: bento-generic-fields
           collapsible: 1
           collapsed: 0
-          plugin_id: fieldset
         value_3:
           id: value_3
           table: json
@@ -281,6 +242,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Date
+          plugin_id: views_json_source_field
           label: ''
           exclude: false
           alter:
@@ -324,7 +286,6 @@ display:
           hide_alter_empty: true
           key: date
           trusted_html: 0
-          plugin_id: views_json_source_field
         value_2:
           id: value_2
           table: json
@@ -332,6 +293,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Author
+          plugin_id: views_json_source_field
           label: ''
           exclude: false
           alter:
@@ -375,7 +337,6 @@ display:
           hide_alter_empty: true
           key: author
           trusted_html: 0
-          plugin_id: views_json_source_field
         value_4:
           id: value_4
           table: json
@@ -383,6 +344,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Format
+          plugin_id: views_json_source_field
           label: ''
           exclude: false
           alter:
@@ -426,37 +388,27 @@ display:
           hide_alter_empty: true
           key: item_format
           trusted_html: 0
-          plugin_id: views_json_source_field
-      filters: {  }
-      sorts: {  }
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<h2>Search Results</h2>'
-            format: full_html
-          plugin_id: text
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: true
-          content:
-            value: "<span class=\"fa-solid fa-chevron-right\"></span> <a href=\"http://umd.libanswers.com/search?q={{ arguments.param }}\">See all FAQs from Ask Us! results</a>\r\n"
-            format: full_html
-          plugin_id: text
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 3
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: none
+        options: {  }
       empty:
         area:
           id: area
@@ -465,13 +417,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: true
-          tokenize: false
           content:
             value: 'No results found.'
             format: full_html
-          plugin_id: text
-      relationships: {  }
+          tokenize: false
+      sorts: {  }
       arguments:
         param:
           id: param
@@ -480,6 +432,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_json_source_uri_param
           default_action: ignore
           exception:
             value: all
@@ -500,7 +453,6 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
-          plugin_id: views_json_source_uri_param
         value:
           id: value
           table: json
@@ -508,6 +460,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_json_source_argument
           default_action: ignore
           exception:
             value: all
@@ -529,45 +482,32 @@ display:
             fail: 'not found'
           validate_options: {  }
           key: total
-          plugin_id: views_json_source_argument
-      display_extenders: {  }
-      use_ajax: false
-      title: WorldCat
-      css_class: world_cat_discovery_api
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - url
-      tags: {  }
-  block_1:
-    display_plugin: block
-    id: block_1
-    display_title: 'Books and More'
-    position: 1
-    display_options:
-      display_extenders: {  }
-      display_description: 'Bento Search: Books and More'
-      title: 'Books and More'
-      defaults:
-        title: false
-        query: false
-        footer: false
-        header: false
-        empty: false
-        css_class: false
+      filters: {  }
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       query:
         type: views_query
         options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=world_cat_discovery_api&q=%'
+          json_file: 'http://docker.for.mac.localhost:5000/search?q=%'
           row_apath: results
           headers: ''
           single_payload: 0
           show_errors: 1
-      footer: {  }
-      header: {  }
-      block_category: 'Bento Quick Search'
-      empty:
+      relationships: {  }
+      css_class: world_cat_discovery_api
+      use_ajax: false
+      header:
         area:
           id: area
           table: views
@@ -575,16 +515,63 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<div class="bento-generic-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="https://umaryland.on.worldcat.org/discovery">Try a different search from Books and More</a></div>'
-            format: full_html
           plugin_id: text
-      css_class: bento_world_cat_discovery_api
+          empty: true
+          content:
+            value: '<h2>Search Results</h2>'
+            format: full_html
+          tokenize: false
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: "<span class=\"fa-solid fa-chevron-right\"></span> <a href=\"http://umd.libanswers.com/search?q={{ arguments.param }}\">See all FAQs from Ask Us! results</a>\r\n"
+            format: full_html
+          tokenize: true
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_interface'
         - url
       tags: {  }
+  block_1:
+    id: block_1
+    display_title: Search
+    display_plugin: block
+    position: 1
+    display_options:
+      query:
+        type: views_query
+        options:
+          json_file: 'http://bento-fedora2:5000/search?q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      defaults:
+        empty: true
+        query: false
+        title: true
+        css_class: false
+        header: true
+        footer: false
+      css_class: bento_world_cat_discovery_api
+      display_description: 'Bento Search: Search'
+      footer: {  }
+      display_extenders: {  }
+      block_category: 'Bento Quick Search'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+

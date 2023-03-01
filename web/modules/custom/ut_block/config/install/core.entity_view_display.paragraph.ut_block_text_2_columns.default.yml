@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ut_block_text_2_columns.field_ut_block_text_block
+    - field.field.paragraph.ut_block_text_2_columns.field_ut_block_text_flip_display
+    - field.field.paragraph.ut_block_text_2_columns.field_ut_block_text_text
+    - paragraphs.paragraphs_type.ut_block_text_2_columns
+  module:
+    - block_field
+    - text
+id: paragraph.ut_block_text_2_columns.default
+targetEntityType: paragraph
+bundle: ut_block_text_2_columns
+mode: default
+content:
+  field_ut_block_text_block:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: block_field
+    region: content
+  field_ut_block_text_flip_display:
+    weight: 2
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_ut_block_text_text:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  search_api_excerpt: true

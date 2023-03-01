@@ -86,7 +86,7 @@ class BentoGenericSearchBlock extends BlockBase implements ContainerFactoryPlugi
     if (!empty($search_placeholder)) {
       $form_defaults['search_placeholder'] = $search_placeholder;
     }
-    $form = $this->formBuilder->getForm('Drupal\bento_generic\Form\BentoSearchForm', $form_defaults);
+    $form = $this->formBuilder->getForm('Drupal\bento_generic\Form\BentoGenericSearchForm', $form_defaults);
     return [
       '#theme' => 'bento_generic_search_block',
       '#bento_generic_search_form' => $form,
@@ -95,7 +95,7 @@ class BentoGenericSearchBlock extends BlockBase implements ContainerFactoryPlugi
       ],
       '#attached' => [
         'library' => [
-          'bento/form_util',
+          'bento_generic/form_util',
         ],
       ],
     ];

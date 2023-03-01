@@ -7,10 +7,11 @@ var targetNode = document.getElementById("bento-blocks");
 var config = { attributes: false, childList: true, subtree: true };
 
 var searchers = [];
-var raw_searchers = document.getElementsByClassName('bento-generic-attachment');
-for (var i = 0; i < raw_searchers.length; i++) {
+const raw_searchers = document.getElementsByClassName("bento-generic-summary");
+for (let i = 0; i < raw_searchers.length; i++) {
+  console.log("searchers debug");
   if (raw_searchers[i].id) {
-    searchers.push(raw_searchers[i].id);
+    searchers.push(raw_searchers[i].id.replace("-summary", ""));
   }
 }
 

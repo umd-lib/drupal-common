@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override to display a UMD Terp Two column block Paragraph. The first column doubles the size of the second column (8:4).
+ * It's used for News & Events display on home page. Could be used for other display as well.
+ */
+#}
+
+{{ attach_library('ut_block/ut-block') }}
+{% block paragraph %}
+	<div{{attributes}}>
+		{% block content %}
+			<div class="container-fluid" id="umd_terp_paragraph--{{ paragraph.id() }}">
+				<div class="row">
+					<div class="col-1200-6 col-800-12">
+						{{ content.field_ut_block_2_columns_column1|field_value }}
+					</div>
+					<div class="col-1200-6 col-800-12">
+						{{ content.field_ut_block_2_columns_column2|field_value }}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		{{ content|without('field_ut_block_2_columns_column1', 'field_ut_block_2_columns_column2') }}
+	</div>
+{% endblock paragraph %}

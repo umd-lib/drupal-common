@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: single_block
+label: 'Block - Single'
+icon_uuid: null
+icon_default: null
+description: 'Section for a single block, which will span the width of the row (if theming allows).'
+behavior_plugins: {  }

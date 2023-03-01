@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_block_2_columns_column1
+    - paragraphs.paragraphs_type.single_block
+  module:
+    - block_field
+id: paragraph.single_block.field_ut_block_2_columns_column1
+field_name: field_ut_block_2_columns_column1
+entity_type: paragraph
+bundle: single_block
+label: Block
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  selection: blocks
+  selection_settings:
+    plugin_ids: {  }
+field_type: block_field

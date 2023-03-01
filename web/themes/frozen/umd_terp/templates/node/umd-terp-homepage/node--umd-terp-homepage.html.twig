@@ -16,6 +16,7 @@
 
 <div {{attributes.addClass(hero_classes)}}>
 	{{ title_suffix }}
+        {% if content.field_umdt_ct_hero_title|field_value or content.field_umdt_ct_hero_subtitle|field_value or content.field_umdt_ct_hero_text|field_value or content.field_umdt_ct_hero_image|field_value or content.field_umdt_ct_hero_video|field_value %}
 	<div class="max-bound">
 		{% if content.field_umdt_ct_hero_image|field_value or content.field_umdt_ct_hero_video|field_value%}
 			<div class="home-hero-media">
@@ -48,5 +49,6 @@
 			</div>
 		</div>
 	</div>
+        {% endif %}
 </div>
 {{ content|without('field_umdt_ct_hero_video', 'field_umdt_ct_hero_dark', 'field_umdt_ct_hero_style', 'field_umdt_ct_hero_image', 'field_umdt_ct_hero_title', 'field_umdt_ct_hero_subtitle', 'field_umdt_ct_hero_text', 'field_umdt_ct_hero_cta') }}

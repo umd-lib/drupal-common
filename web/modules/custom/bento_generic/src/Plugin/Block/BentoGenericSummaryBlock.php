@@ -78,7 +78,7 @@ class BentoGenericSummaryBlock extends BlockBase implements ContainerFactoryPlug
       '#search_targets' => $search_targets,
       '#attached' => [
         'library' => [
-          'bento/results_util',
+          'bento_generic/results_util',
         ],
       ],
     ];

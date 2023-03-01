@@ -124,6 +124,7 @@ function bento_generic_views_pre_view(ViewExecutable $view, $display_id, array &
 }
 
 function bento_generic_icon_map($raw_name) {
+  $raw_name = strtolower($raw_name);
   $icon_map = [
     "archival_material" => "result-icons fas fa-archive",
     "article" => "result-icons far fa-file-alt",
@@ -156,6 +157,7 @@ function bento_generic_icon_map($raw_name) {
 }
 
 function bento_generic_format_map($raw_name) {
+  $raw_name = strtolower($raw_name);
   $format_map = [
     "archival_material" => "Archival Material",
     "article" => "Article",
