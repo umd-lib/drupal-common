@@ -26,33 +26,3 @@ function mirador_viewer_theme() {
   ];
 }
 
-/**
- * Alter a search query before it gets executed.
- *
- * The hook is invoked after all enabled processors have preprocessed the query.
- *
- * @param \Drupal\search_api\Query\QueryInterface $query
- *   The query that will be executed.
- *
- * @deprecated in search_api:8.x-1.14 and will be removed in search_api:9.x-1.0.
- *   Please use the "search_api.query_pre_execute" event instead.
- *
- * @see https://www.drupal.org/node/3059866
- */
-function mirador_viewer_search_api_query_alter(\Drupal\search_api\Query\QueryInterface $query) {
-// dsm($query->getOptions());
-  // Do not run for queries with a certain tag.
-  /*if ($query->hasTag('example_tag')) {
-    return;
-  }
-  // Otherwise, exclude the node with ID 10 from the search results.
-  $fields = $query->getIndex()->getFields();
-  foreach ($query->getIndex()->getDatasources() as $datasource_id => $datasource) {
-    if ($datasource->getEntityTypeId() == 'node') {
-      if (isset($fields['nid'])) {
-        $query->addCondition('nid', 10, '<>');
-      }
-    }
-  }*/
-}
-
