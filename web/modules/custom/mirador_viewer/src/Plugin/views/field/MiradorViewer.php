@@ -58,8 +58,24 @@ class MiradorViewer extends FieldPluginBase {
   public function render(ResultRow $values) {
     $entity = $values->_item;
     $id = $entity->getId();
+dsm($id);
+$param = \Drupal::routeMatch()->getParameters();
+dsm($parameters);
+
+    $raw_param = \Drupal::routeMatch()->getParameter('arg_0');
+
+    parse_str($raw_param, $url_array);
+    if (!empty($url_array['relpath'])) {
+      // $id = array_key_first($url_array);
+      $collection_prefix = $url_array['relpath'];
+    } else {
+      // $collection_prefix = $this->getCollectionPrefix();
+    }
+
+
+
     $c = new DisplayMiradorController();
-    $render = $c->viewMiradorObject($id);
+    $render = $c->viewMiradorObject($id, $collection_prefix);
     if (!empty($render)) {
       return $render;
     }

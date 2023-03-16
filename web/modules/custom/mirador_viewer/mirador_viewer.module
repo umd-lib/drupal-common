@@ -12,6 +12,7 @@ function mirador_viewer_theme() {
         'iiif_server' => '',
         'iiif_viewer' => '',
         'object_id' => '',
+        'collection_id' => '',
         'error_message' => '',
         'attributes' => [],
       ],
