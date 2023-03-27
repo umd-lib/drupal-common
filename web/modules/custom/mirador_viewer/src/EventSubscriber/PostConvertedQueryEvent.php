@@ -37,7 +37,6 @@ class PostConvertedQueryEvent implements EventSubscriberInterface {
     // This needs to check that it only applies to particular indexes so as not to affect
     // other searches that use this module.
     $build = $event->getBuild();
-    dsm($event);
     $solarium_query = $event->getSolariumQuery();
   }
 }

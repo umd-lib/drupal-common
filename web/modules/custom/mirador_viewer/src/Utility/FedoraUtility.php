@@ -97,7 +97,6 @@ class FedoraUtility {
       $pcdm_prefix = $this->getCollectionPrefix();
     }
     $pcdm_path = trim($pcdm_prefix, '/') . '/' . $this->addPairTreePrefix($id);
-dsm($fc_base . $pcdm_path);
     return $fc_base . $pcdm_path;
   }
 }
