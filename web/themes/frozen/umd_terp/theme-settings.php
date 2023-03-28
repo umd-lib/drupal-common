@@ -26,6 +26,12 @@ function umd_terp_form_system_theme_settings_alter(&$form, FormStateInterface $f
   ];
 
   // Footer.
+  $form['umd_terp_footer_hide'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Hide Logo / Address / Social Footer'),
+    '#description' => t('If Checked, this will hide the Logo, Address, and Social links footer from display.. even if these fields have content.'),
+    '#default_value' => theme_get_setting('umd_terp_footer_hide'),
+  ];
   $form['umd_terp_footer_settings'] = [
     '#type' => 'details',
     '#title' => t('UMD Terp Footer Settings'),
