@@ -1,6 +1,4 @@
 services:
-  mirador_viewer.event_subscriber:
-    # This is for Archelon search.. specifically Student Newspapers
-    class: Drupal\mirador_viewer\EventSubscriber\PostConvertedQueryEvent
+  Drupal\mirador_viewer\EventSubscriber\SolrQueryAlterEventSubscriber:
     tags:
-      - {name: 'event_subscriber'}
+    - { name: 'event_subscriber' }
