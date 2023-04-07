@@ -35,7 +35,7 @@
         "drupal/ctools": "^3.7",
         "drupal/default_content": "^2.0@alpha",
         "drupal/devel": "^4.1",
-        "drupal/dropdown_language": "2.7",
+        "drupal/dropdown_language": "^3.2",
         "drupal/easy_email": "^1.0@beta",
         "drupal/easy_install": "^10.5",
         "drupal/entity_reference_revisions": "^1.9",
