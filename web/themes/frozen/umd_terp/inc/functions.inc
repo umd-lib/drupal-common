@@ -58,7 +58,11 @@ function _umd_terp_get_node_by_route() {
 
     case 'entity.node.revision':
       $revision_id = \Drupal::routeMatch()->getParameter('node_revision');
-      $node = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($revision_id);
+      if (is_numeric($revision_id)) {
+        $node = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($revision_id);
+      } else {
+        $node = $revision_id;
+      }
       break;
 
     case 'entity.node.latest_version':
