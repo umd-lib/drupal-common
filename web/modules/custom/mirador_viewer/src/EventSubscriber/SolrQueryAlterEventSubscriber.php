@@ -2,7 +2,9 @@
 
 namespace Drupal\mirador_viewer\EventSubscriber;
 
+use Drupal\search_api_solr\Event\PostConvertedQueryEvent;
 use Drupal\search_api_solr\Event\PreQueryEvent;
+use Drupal\search_api_solr\Event\PostExtractResultsEvent;
 use Drupal\search_api_solr\Event\SearchApiSolrEvents;
 use Drupal\search_api\Query\QueryInterface as SapiQueryInterface;
 use Solarium\Core\Query\QueryInterface as SolariumQueryInterface;
@@ -19,6 +21,8 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents(): array {
     return [
+      SearchApiSolrEvents::POST_CONVERT_QUERY => 'postConvQuery',
+      SearchApiSolrEvents::POST_EXTRACT_RESULTS => 'postExtractResults',
       SearchApiSolrEvents::PRE_QUERY => 'preQuery',
     ];
   }
@@ -26,22 +30,35 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
+  public function postExtractResults(PostExtractResultsEvent $event): void {
+    $results = $event->getSolariumResult();
+    dsm($results);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function preQuery(PreQueryEvent $event): void {
+    $query = $event->getSolariumQuery();
+    $query->addField('annotation_source_type:[component]');
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
+  public function postConvQuery(PostConvertedQueryEvent $event): void {
     $query = $event->getSearchApiQuery();
     $solarium_query = $event->getSolariumQuery();
-    $keys = $query->getKeys();
-
+    $raw_query = $solarium_query->getQuery();
     $query_str = "{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND} ";
-    if (!empty($keys)) {
-      if (!empty($keys['#conjunction'])) {
-        $conjunction = $keys['#conjunction'];
-dsm($conjunction);
-        // unset($keys['#conjunction']);
-        $query_str = $query_str . implode(" " . $conjunction . " ", $keys);
-dsm($query_str);
-      }
+
+    if (!empty($raw_query)) {
+      $query_str .= $raw_query;
     }
-//     $solarium_query->setQuery($query_str);
-// dsm($solarium_query);
+
+    dsm($query_str);
+    $solarium_query->setQuery($query_str);
+    // dsm($solarium_query);
   }
 }
