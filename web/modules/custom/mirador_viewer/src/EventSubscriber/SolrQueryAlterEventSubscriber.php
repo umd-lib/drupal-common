@@ -40,7 +40,7 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
    */
   public function preQuery(PreQueryEvent $event): void {
     $query = $event->getSolariumQuery();
-    $query->addField('annotation_source_type:[component]');
+    $query->addField('annotation_source_type:[subquery]');
   }
 
 

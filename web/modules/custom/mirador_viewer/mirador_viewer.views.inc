@@ -18,6 +18,14 @@ function mirador_viewer_views_data_alter(array &$data) {
         'id' => 'fcrepo_id_hash',
        ),
     );
+    $data[$index_key]['fc_annotation'] = array(
+      'title' => t('FCAnnotation'),
+      'help' => t('Fedora annotation output using the extracted_text_source field'),
+      'field' => array(
+        'title' => t('FCAnnotation'),
+        'id' => 'fc_annotation',
+       ),
+    );
     $data[$index_key]['mirador_viewer'] = array(
       'title' => t('Mirador Viewer'),
       'field' => array(
