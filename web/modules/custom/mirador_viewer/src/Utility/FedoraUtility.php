@@ -90,8 +90,6 @@ class FedoraUtility {
   public function generateFedoraDatabaseDocumentID($id) {
     parse_str($id, $url_array);
     $full_uri = \Drupal::request()->getRequestUri();
-dsm("documentID");
-    dsm($full_uri);
 
     $fc_base = $this->getFcrepoServer();
     if (!empty($url_array['relpath'])) {

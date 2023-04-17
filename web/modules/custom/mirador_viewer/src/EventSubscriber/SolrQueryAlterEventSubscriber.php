@@ -32,7 +32,6 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
    */
   public function postExtractResults(PostExtractResultsEvent $event): void {
     $results = $event->getSolariumResult();
-    dsm($results);
   }
 
   /**

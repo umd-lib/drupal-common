@@ -87,29 +87,33 @@ class FcAnnotation extends FieldPluginBase {
     $query = $connector->getSelectQuery();
     $query->setFields(array('id', 'extracted_text', 'extracted_text_source'));
     $query->addParam('rows', '100');
-    $query->addParam('hl', 'true');
-    $query->addParam('hl.fragsize', '500');
-    $query->addParam('hl.fl', 'extracted_text');
-    $query->addParam('hl.simple.pre', '<b>');
-    $query->addParam('hl.simple.post', '</b>');
     $query->createFilterQuery('rdf_type')->setQuery('rdf_type:oa\:Annotation');
     $query->createFilterQuery('source')->setQuery($id_str);
     $query->setQuery($q);
+    $hl = $query->getHighlighting();
+    $hl->setFields('extracted_text');
+    $hl->setSimplePrefix('<strong>');
+    $hl->setSimplePostfix('</strong>');
+    $hl->setFragSize('500');
 
     $results = $connector->execute($query);
+    $highlighting = $results->getHighlighting();
 
     $output = null;
-    if ($results->count() > 0) {
-      // Copy to different variable to avoid pass-by-ref notice.
-      $docs = $results->getDocuments();
-      $doc = reset($docs);
-      foreach ($doc as $field => $value) {
-         if ($field == 'members' && !empty($value['docs'])) {
-           $members = $value['docs'];
-           $output .= 'ding';
-         }
+    $extracts = [];
+    $pattern = '/\|\d+,\d+,\d+,\d+/i';
+
+    if ($highlighting->count() > 0) {
+      foreach ($highlighting as $highDoc) {
+        foreach ($highDoc as $f => $v) {
+          if ($f == 'extracted_text') {
+            foreach ($v as $highlight) {
+              $extracts[] = preg_replace($pattern, '', $highlight);
+            }
+          }
+        }
       }
     }
-    return $output;
+    return count($extracts) > 0 ? implode("...", $extracts) : null;
   }
 }

@@ -61,10 +61,7 @@ class MiradorViewer extends FieldPluginBase {
     $entity = $values->_item;
     $id = $entity->getId();
     $param = \Drupal::routeMatch()->getParameters();
-dsm($param);
     $raw_param = \Drupal::routeMatch()->getParameter('arg_0');
-dsm($raw_param);
-dsm("render");
     parse_str($raw_param, $url_array);
     $full_uri = \Drupal::request()->getRequestUri();
     if (!empty($url_array['relpath'])) {
