@@ -48,6 +48,13 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
    */
   public function postConvQuery(PostConvertedQueryEvent $event): void {
     $query = $event->getSearchApiQuery();
+    $search_index = $query->getIndex();
+    if ($search_index) {
+      $index_id = $search_index->id();
+      if ($index_id != 'fcrepo') {
+        return;
+      }
+    }
     $solarium_query = $event->getSolariumQuery();
     $raw_query = $solarium_query->getQuery();
     $query_str = "{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND} ";
@@ -56,8 +63,6 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
       $query_str .= $raw_query;
     }
 
-    dsm($query_str);
     $solarium_query->setQuery($query_str);
-    // dsm($solarium_query);
   }
 }

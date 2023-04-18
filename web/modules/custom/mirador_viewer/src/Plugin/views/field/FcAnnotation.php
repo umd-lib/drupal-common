@@ -56,7 +56,6 @@ class FcAnnotation extends FieldPluginBase {
    */
   public function render(ResultRow $values) {
     $full_uri = \Drupal::request()->getRequestUri();
-    dsm($full_uri);
     $query_array = explode('?', $full_uri);
     $render = null;
     if (!empty($query_array[1])) {
