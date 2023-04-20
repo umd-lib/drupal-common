@@ -15,6 +15,7 @@ function mirador_viewer_theme() {
         'object_id' => '',
         'collection_id' => '',
         'error_message' => '',
+        'query' => '',
         'attributes' => [],
       ],
     ],

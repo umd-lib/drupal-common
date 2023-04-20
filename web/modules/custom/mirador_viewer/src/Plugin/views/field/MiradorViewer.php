@@ -63,6 +63,7 @@ class MiradorViewer extends FieldPluginBase {
     $param = \Drupal::routeMatch()->getParameters();
     $raw_param = \Drupal::routeMatch()->getParameter('arg_0');
     parse_str($raw_param, $url_array);
+    $query_str = !empty($url_array['query']) ? trim($url_array['query']) : null;
     $full_uri = \Drupal::request()->getRequestUri();
     if (!empty($url_array['relpath'])) {
       $collection_prefix = str_replace('/', ':', $url_array['relpath']);
@@ -77,7 +78,7 @@ class MiradorViewer extends FieldPluginBase {
       $collection_prefix = $fc->getCollectionPrefix();
     }
     $c = new DisplayMiradorController();
-    $render = $c->viewMiradorObject($id, $collection_prefix);
+    $render = $c->viewMiradorObject($id, $collection_prefix, $query_str);
     if (!empty($render)) {
       return $render;
     }

@@ -78,32 +78,53 @@ class FcThumbnails extends FieldPluginBase {
     if (!empty($component_field)) {
       $component = reset($component_field->getValues());
     }
-    $title_field = $entity->getField('display_title');
-    $dis_title = null;
-    if (!empty($title_field)) {
-      $dis_title = reset($title_field->getValues());
+    $page_field = $entity->getField('page_number');
+    $page_no = null;
+    if (!empty($page_field)) {
+      $page_no = reset($page_field->getValues());
+    }
+    $collection_field = $entity->getField('collection');
+    if (!empty($collection_field)) {
+      $collection = $this->getCollectionId(reset($collection_field->getValues()));
+    } else {
+      $collection = "pcdm";
     }
     if ($component == "Article" && !empty($issue_id)) {
       $short_id = $this->fc->getFedoraItemHash($issue_id);
     } else {
       $short_id = $this->fc->getFedoraItemHash($id);
     }
-    $pcdm_link = $iiif . "manifests/fcrepo:pcdm::" . $short_id . "/manifest";
+    $pcdm_link = $iiif . "manifests/fcrepo:" . $collection . "::" . $short_id . "/manifest";
     if (!empty($pcdm_link)) {
 dsm($pcdm_link);
-      return $this->getThumbnailUrl($pcdm_link, $dis_title);
+      return $this->getThumbnailUrl($pcdm_link, $page_no);
     }
   }
 
-  protected function getThumbnailUrl($pcdm_link, $dis_title) {
+  protected function getThumbnailUrl($pcdm_link, $page_no) {
     $json = file_get_contents($pcdm_link);
     $obj = json_decode($json, true);
     if (!empty($obj['sequences'])) {
       $sequence = reset($obj['sequences']);
-      if (!empty($sequence['canvases'][0]['thumbnail']['@id'])) {
-        return $sequence['canvases'][0]['thumbnail']['@id'];
+      $page_number = is_numeric($page_no) && $page_no - 1 > 0 ? $page_no - 1 : (int) 0;
+      if (!empty($sequence['canvases'][$page_number]['thumbnail']['@id'])) {
+        return $sequence['canvases'][$page_number]['thumbnail']['@id'];
       }
     }
     return null;
+  }
+
+  protected function getCollectionId($collection_id) {
+    if (empty($collection_id)) {
+      return null;
+    }
+    $collection_array = explode("/rest/", $collection_id);
+    if (!empty($collection_array[1])) {
+      $pcdm_check = explode("/", $collection_array[1]);
+      if ($pcdm_check[0] == "dc") {
+        return str_replace("/", ":", $collection_array[1]);
+      }
+      return "pcdm";
+    }
   }
 }
