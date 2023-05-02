@@ -106,25 +106,25 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
       '#type' => 'textfield',
       '#title' => t('Search Page Override'),
       '#default_value' =>  isset($config['search_page']) ? $config['search_page'] : null,
-      '#description' => t('Leave blank to use block page.'),
+      '#description' => t('Which URL to search including preceeding slash. Local searches should use relative paths. For example /searchnew. This supports fully qualified URLs, but these should only be used when creating search forms for external websites.'),
     ];
     $form['search_param'] = [
       '#type' => 'textfield',
       '#title' => t('Search Parameter'),
       '#default_value' =>  isset($config['search_param']) ? $config['search_param'] : 'query',
-      '#description' => t('Leave this as the default (query) in most cases.'),
+      '#description' => t('Set this to the query parameter name. This should be whatever the search results page expects. Leave this as the default (query) for any digital searches.'),
     ];
     $form['search_facet'] = [
       '#type' => 'textfield',
       '#title' => t('Search Facet'),
       '#default_value' =>  isset($config['search_facet']) ? $config['search_facet'] : null,
-      '#description' => t('Filter on which facet (if any)'),
+      '#description' => t('Filter on which facet (if any). Find this value by performing a faceted query on the search page and copying the "collection:" facet name from the URL.'),
     ];
     $form['search_placeholder'] = [
       '#type' => 'textfield',
       '#title' => t('Search Placeholder'),
       '#default_value' =>  isset($config['search_placeholder']) ? $config['search_placeholder'] : null,
-      '#description' => t('E.g., Search collection...'),
+      '#description' => t('This text displays in the textfield before user values are entered. E.g., Search collection...'),
     ];
     return $form;
   }

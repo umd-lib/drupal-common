@@ -58,11 +58,15 @@ class ReusableSearchbarForm extends FormBase {
     $redir_page = null;
     $search_action = $form_state->getValue('search_results');
     $search_param = $form_state->getValue('search_param');
+    $is_absolute = false;
     if (empty($search_action)) {
       $current_path = \Drupal::service('path.current')->getPath();
       $current_page = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
       $redir_page = $current_page;
     } else {
+      if (!empty(parse_url($search_action)['host'])) {
+        $is_absolute = true;
+      }
       $redir_page = $search_action;
     }
     $search_str = $form_state->getValue('searchbar_search');
@@ -72,8 +76,14 @@ class ReusableSearchbarForm extends FormBase {
     if (!empty($search_facet)) {
       $params["f[0]"] = "collection:" . $search_facet;
     }
-    $options = [ 'query' => $params];
-    $url = Url::fromUri('internal:' . $redir_page, $options);
+    $options = [];
+    $options['query'] = $params;
+    if (!$is_absolute) {
+      $url = Url::fromUri('internal:' . $redir_page, $options);
+    } else {
+      $options['absolute'] = true;
+      $url = Url::fromUri($redir_page, $options);
+    } 
     $response = new TrustedRedirectResponse($url->toString());
     $form_state->setResponse($response);
   }
