@@ -42,7 +42,7 @@ class FcThumbnails extends FieldPluginBase {
    */
   protected function defineOptions() {
     $options = parent::defineOptions();
-    $options['id_field'] = array('default' => 'id');
+    $options['thumbnail_dimensions'] = ['default' => '150,250'];
  
     return $options;
   }
@@ -51,9 +51,10 @@ class FcThumbnails extends FieldPluginBase {
    * Provide the options form.
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
-    $form['unused'] = array(
-      '#title' => $this->t('Temporarily Unused'),
+    $form['thumbnail_dimensions'] = array(
+      '#title' => $this->t('Thumbnail Dimensions'),
       '#type' => 'textfield',
+      '#description' => t('Use format WWW,HHH. For example, 250,350 equals 250w x 350h.'),
     );
  
     parent::buildOptionsForm($form, $form_state);
@@ -70,6 +71,7 @@ class FcThumbnails extends FieldPluginBase {
     if (empty($id)) {
       return;
     }
+    $dimensions = !empty($this->options['thumbnail_dimensions']) ? $this->options['thumbnail_dimensions'] : '75,150';
     $issue_field = $entity->getField('containing_issue');
     if (!empty($issue_field)) {
       $issue_id = reset($issue_field->getValues());
@@ -96,22 +98,29 @@ class FcThumbnails extends FieldPluginBase {
     }
     $pcdm_link = $iiif . "manifests/fcrepo:" . $collection . "::" . $short_id . "/manifest";
     if (!empty($pcdm_link)) {
-dsm($pcdm_link);
-      return $this->getThumbnailUrl($pcdm_link, $page_no);
+      return $this->getThumbnailUrl($pcdm_link, $page_no, $dimensions);
     }
   }
 
-  protected function getThumbnailUrl($pcdm_link, $page_no) {
+  protected function getThumbnailUrl($pcdm_link, $page_no, $dimensions) {
     $json = file_get_contents($pcdm_link);
     $obj = json_decode($json, true);
     if (!empty($obj['sequences'])) {
       $sequence = reset($obj['sequences']);
       $page_number = is_numeric($page_no) && $page_no - 1 > 0 ? $page_no - 1 : (int) 0;
       if (!empty($sequence['canvases'][$page_number]['thumbnail']['@id'])) {
-        return $sequence['canvases'][$page_number]['thumbnail']['@id'];
+        return $this->injectThumbnailDimensions($sequence['canvases'][$page_number]['thumbnail']['@id'], $dimensions);
       }
     }
     return null;
+  }
+
+  protected function injectThumbnailDimensions($link_id, $dimensions) {
+    $link_arr = explode('/', $link_id);
+    $total = count($link_arr);
+    $dim_index = $total - 3;
+    $link_arr[$dim_index] = $dimensions;
+    return implode('/', $link_arr);
   }
 
   protected function getCollectionId($collection_id) {
