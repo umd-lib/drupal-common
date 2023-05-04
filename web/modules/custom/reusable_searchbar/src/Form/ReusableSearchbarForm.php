@@ -28,7 +28,6 @@ class ReusableSearchbarForm extends FormBase {
     $form['searchbar_search'] = array(
       '#type' => 'textfield',
       '#title' => t('Search'),
-      '#required' => TRUE,
       '#placeholder' => !empty($defaults['search_placeholder']) ? $defaults['search_placeholder'] : t('Search collection holdings...'),
     );
     $form['search_results'] = array(
@@ -72,7 +71,9 @@ class ReusableSearchbarForm extends FormBase {
     $search_str = $form_state->getValue('searchbar_search');
     $search_facet = $form_state->getValue('search_facet');
     $params = [];
-    $params[$search_param] = $search_str;
+    if (!empty($search_str)) {
+      $params[$search_param] = $search_str;
+    }
     if (!empty($search_facet)) {
       $params["f[0]"] = "collection:" . $search_facet;
     }
