@@ -1,7 +1,0 @@
-bento_generic.autocomplete.urls:
-  path: '/admin/bento_generic/autocomplete/nodes'
-  defaults:
-    _controller: '\Drupal\bento_generic\Controller\NodesAutoCompleteController::handleAutocomplete'
-    _format: json
-  requirements:
-    _permission: 'access content'
