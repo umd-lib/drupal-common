@@ -1,0 +1,4 @@
+services:
+  Drupal\mirador_viewer\EventSubscriber\SolrQueryAlterEventSubscriber:
+    tags:
+    - { name: 'event_subscriber' }

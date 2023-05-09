@@ -12,6 +12,7 @@ use Drupal\node\Entity\NodeType;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
 use Drupal\mirador_viewer\Controller\DisplayMiradorController;
+use Drupal\mirador_viewer\Utility\FedoraUtility;
  
 /**
  * Field handler to flag the node type.
@@ -56,10 +57,28 @@ class MiradorViewer extends FieldPluginBase {
    * @{inheritdoc}
    */
   public function render(ResultRow $values) {
+    $fc = new FedoraUtility();
     $entity = $values->_item;
     $id = $entity->getId();
+    $param = \Drupal::routeMatch()->getParameters();
+    $raw_param = \Drupal::routeMatch()->getParameter('arg_0');
+    parse_str($raw_param, $url_array);
+    $query_str = !empty($url_array['query']) ? trim($url_array['query']) : null;
+    $full_uri = \Drupal::request()->getRequestUri();
+    if (!empty($url_array['relpath'])) {
+      $collection_prefix = str_replace('/', ':', $url_array['relpath']);
+    } elseif (!empty($full_uri) && str_contains($full_uri, 'relpath=')) {
+      $uri_split = explode('relpath=', $full_uri);
+      if (!empty($uri_split[1])) {
+        $collection_prefix = str_replace('/', ':', $uri_split[1]);
+      } else {
+        $collection_prefix = $fc->getCollectionPrefix();
+      }
+    } else {
+      $collection_prefix = $fc->getCollectionPrefix();
+    }
     $c = new DisplayMiradorController();
-    $render = $c->viewMiradorObject($id);
+    $render = $c->viewMiradorObject($id, $collection_prefix, $query_str);
     if (!empty($render)) {
       return $render;
     }

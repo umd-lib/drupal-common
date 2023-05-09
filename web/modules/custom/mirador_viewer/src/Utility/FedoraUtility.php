@@ -88,11 +88,25 @@ class FedoraUtility {
    * @return String
    */
   public function generateFedoraDatabaseDocumentID($id) {
+    parse_str($id, $url_array);
+    $full_uri = \Drupal::request()->getRequestUri();
+
     $fc_base = $this->getFcrepoServer();
-    $pcdm_prefix = $this->getCollectionPrefix();
-    $pcdm_path = $pcdm_prefix . $this->addPairTreePrefix($id);    
+    if (!empty($url_array['relpath'])) {
+      $id = array_key_first($url_array);
+      $pcdm_prefix = str_replace(':', '/', $url_array['relpath']);
+    } elseif (!empty($full_uri) && str_contains($full_uri, 'relpath=')) {
+      $uri_split = explode('relpath=', $full_uri);
+      if (!empty($uri_split[1])) {
+        $pcdm_prefix = str_replace(':', '/', $uri_split[1]);
+      } else {
+        $pcdm_prefix = $this->getCollectionPrefix();
+      }
+    } else {
+      $pcdm_prefix = $this->getCollectionPrefix();
+    }
+    $pcdm_path = trim($pcdm_prefix, '/') . '/' . $this->addPairTreePrefix($id);
     return $fc_base . $pcdm_path;
   }
-
 }
 

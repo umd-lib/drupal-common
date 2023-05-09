@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\mirador_viewer\Controller\DisplayMiradorController;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_theme().
@@ -12,7 +13,9 @@ function mirador_viewer_theme() {
         'iiif_server' => '',
         'iiif_viewer' => '',
         'object_id' => '',
+        'collection_id' => '',
         'error_message' => '',
+        'query' => '',
         'attributes' => [],
       ],
     ],
@@ -26,3 +29,33 @@ function mirador_viewer_theme() {
   ];
 }
 
+/**
+ * Implements hook_views_post_render().
+ *
+ * This should probably be moved into a more generic module.
+ */
+function mirador_viewer_views_post_render($view) {
+  if ($view->id() == 'fcrepo_detail_page' && count($view->result) > 0) {
+    $results = $view->result[0];
+    $d_title = $results->_item->getField('display_title')->getValues();
+  }
+
+  if ($view->id() == 'plant_patents_detail' && count($view->result) > 0) {
+    $results = $view->result[0];
+    $d_title = $results->_item->getField('display_title')->getValues();
+  }
+
+  if ($view->id() == 'scores_detail' && count($view->result) > 0) {
+    $results = $view->result[0];
+    $d_title = $results->_item->getField('title')->getValues();
+  }
+
+  if (!empty($d_title) && !empty($d_title[0])) {
+    $new_title = $d_title[0];
+    $view->setTitle($new_title);
+    $route = \Drupal::routeMatch()->getCurrentRouteMatch()->getRouteObject();
+    $route->setDefault('_title_callback', function() use ($new_title) {
+      return $new_title;
+    });
+  }
+}

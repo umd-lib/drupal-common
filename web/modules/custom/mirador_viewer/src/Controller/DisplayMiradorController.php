@@ -17,7 +17,7 @@ class DisplayMiradorController extends ControllerBase implements TrustedCallback
     $this->fc = new FedoraUtility();
   }
 
-  public function viewMiradorObject($object_id, $derive = true) {
+  public function viewMiradorObject($object_id, $collection_id, $query_str = null, $derive = true) {
     $object_id = $derive ? $this->fc->getFedoraItemHash($object_id) : $object_id;
     if (empty($object_id)) {
       return NULL;
@@ -28,6 +28,8 @@ class DisplayMiradorController extends ControllerBase implements TrustedCallback
       '#iiif_viewer' => $this->fc->getIIIFViewer(),
       '#error_message' => $this->fc->getIIIFError(),
       '#object_id' => $object_id,
+      '#collection_id' => $collection_id,
+      '#query' => $query_str,
     ];
   }
 
