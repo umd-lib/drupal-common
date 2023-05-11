@@ -3,6 +3,6 @@ description: Display Fedora object in Mirador viewer
 package: Fcrepo
 
 type: module
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ">=8"
 
 configure: mirador_viewer.settings

@@ -1,5 +1,6 @@
 core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ">=8"
+
 type: theme
 name: UMD Libraries
 description: 'UMD Libraries (umd_libraries), is a umd_terp child theme intended for library projects.'
