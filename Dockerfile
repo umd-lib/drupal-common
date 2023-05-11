@@ -1,4 +1,4 @@
-FROM drupal:9.3.19-apache
+FROM drupal:9.5.9-php8.1-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
