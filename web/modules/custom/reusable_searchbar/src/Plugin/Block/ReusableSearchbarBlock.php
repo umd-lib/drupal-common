@@ -71,12 +71,18 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
     $search_action = $blockConfig['search_page'];
     $search_placeholder = $blockConfig['search_placeholder'];
     $search_param = $blockConfig['search_param'];
+    $search_custom_param = !empty($blockConfig['search_custom_param']) ? $blockConfig['search_custom_param'] : null;
+    $search_custom_param_value = !empty($blockConfig['search_custom_param_value']) ? $blockConfig['search_custom_param_value'] : null;
     $search_facet = !empty($blockConfig['search_facet']) ? $blockConfig['search_facet'] : null;
     $form_defaults = array();
     $form_defaults['default_action'] = null;
     $form_defaults['search_placeholder'] = null;
     $form_defaults['search_param'] = $search_param;
     $form_defaults['search_facet'] = $search_facet;
+    if (!empty($search_custom_param) && !empty($search_custom_param_value)) {
+      $form_defaults['search_custom_param'] = $search_custom_param;
+      $form_defaults['search_custom_param_value'] = $search_custom_param_value;
+    }
     if (!empty($search_action)) {
       $form_defaults['default_action'] = $search_action;
     }
@@ -120,6 +126,18 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
       '#default_value' =>  isset($config['search_facet']) ? $config['search_facet'] : null,
       '#description' => t('Filter on which facet (if any). Find this value by performing a faceted query on the search page and copying the "collection:" facet name from the URL.'),
     ];
+    $form['search_custom_param'] = [
+      '#type' => 'textfield',
+      '#title' => t('Custom Parameter'),
+      '#default_value' => isset($config['search_custom_param']) ? $config['search_custom_param'] : null,
+      '#description' => t('Define a custom parameter to pass. This will only work if the Custom Parameter Value field is also filled. Find the parameter name by performing a search and plucking the name from the url.'),
+    ];
+    $form['search_custom_param_value'] = [
+      '#type' => 'textfield',
+      '#title' => t('Custom Parameter Value'),
+      '#default_value' => isset($config['search_custom_param_value']) ? $config['search_custom_param_value'] : null,
+      '#description' => t('The value to pass for the Custom Parameter field above.'),
+    ];
     $form['search_placeholder'] = [
       '#type' => 'textfield',
       '#title' => t('Search Placeholder'),
@@ -136,6 +154,8 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
     $this->setConfigurationValue('search_page', $form_state->getValue('search_page'));
     $this->setConfigurationValue('search_param', $form_state->getValue('search_param'));
     $this->setConfigurationValue('search_facet', $form_state->getValue('search_facet'));
+    $this->setConfigurationValue('search_custom_param', $form_state->getValue('search_custom_param'));
+    $this->setConfigurationValue('search_custom_param_value', $form_state->getValue('search_custom_param_value'));
     $this->setConfigurationValue('search_placeholder', $form_state->getValue('search_placeholder'));
   }
 }

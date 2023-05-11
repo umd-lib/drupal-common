@@ -42,6 +42,14 @@ class ReusableSearchbarForm extends FormBase {
       '#type' => 'value',
       '#value' => !empty($defaults['search_facet']) ? $defaults['search_facet'] : null,
     );
+    $form['search_custom_param_value'] = array(
+      '#type' => 'value',
+      '#value' => !empty($defaults['search_custom_param_value']) ? $defaults['search_custom_param_value'] : null,
+    );
+    $form['search_custom_param'] = array(
+      '#type' => 'value',
+      '#value' => !empty($defaults['search_custom_param']) ? $defaults['search_custom_param'] : null,
+    );
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -57,6 +65,7 @@ class ReusableSearchbarForm extends FormBase {
     $redir_page = null;
     $search_action = $form_state->getValue('search_results');
     $search_param = $form_state->getValue('search_param');
+    $search_custom_param = $form_state->getValue('search_custom_param');
     $is_absolute = false;
     if (empty($search_action)) {
       $current_path = \Drupal::service('path.current')->getPath();
@@ -76,6 +85,12 @@ class ReusableSearchbarForm extends FormBase {
     }
     if (!empty($search_facet)) {
       $params["f[0]"] = "collection:" . $search_facet;
+    }
+    if (!empty($search_custom_param)) {
+      $search_custom_param_value = $form_state->getValue('search_custom_param_value');
+      if (!empty($search_custom_param_value)) {
+        $params[$search_custom_param] = $search_custom_param_value;
+      } 
     }
     $options = [];
     $options['query'] = $params;
