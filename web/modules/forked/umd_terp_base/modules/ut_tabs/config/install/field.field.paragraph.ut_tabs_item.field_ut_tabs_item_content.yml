@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_tabs_item_content
+    - paragraphs.paragraphs_type.ut_button
+    - paragraphs.paragraphs_type.ut_image
+    - paragraphs.paragraphs_type.ut_tabs_item
+    - paragraphs.paragraphs_type.ut_text
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: 4vmTr_ZYVJEX4daX-bLrTBFtk4GA4jbVZa-67buujow
+id: paragraph.ut_tabs_item.field_ut_tabs_item_content
+field_name: field_ut_tabs_item_content
+entity_type: paragraph
+bundle: ut_tabs_item
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      ut_text: ut_text
+      ut_button: ut_button
+      ut_image: ut_image
+    target_bundles_drag_drop:
+      ut_text:
+        enabled: true
+        weight: -45
+      ut_button:
+        enabled: true
+        weight: -43
+      ut_image:
+        enabled: true
+        weight: -42
+      ut_tabs:
+        weight: -27
+        enabled: false
+      ut_tabs_item:
+        weight: -26
+        enabled: false
+      ut_text_2_columns:
+        weight: -25
+        enabled: false
+      ut_text_3_columns:
+        weight: -24
+        enabled: false
+field_type: entity_reference_revisions

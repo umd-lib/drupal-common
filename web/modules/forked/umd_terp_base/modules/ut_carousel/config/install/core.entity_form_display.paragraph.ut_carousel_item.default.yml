@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ut_carousel_item.field_ut_carousel_item_image
+    - paragraphs.paragraphs_type.ut_carousel_item
+  module:
+    - media_library
+_core:
+  default_config_hash: FwLmIsukeV-aiIV6bM8flym5_JdgNPVOwxCSOeE_qxg
+id: paragraph.ut_carousel_item.default
+targetEntityType: paragraph
+bundle: ut_carousel_item
+mode: default
+content:
+  field_ut_carousel_item_image:
+    type: media_library_widget
+    weight: 0
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

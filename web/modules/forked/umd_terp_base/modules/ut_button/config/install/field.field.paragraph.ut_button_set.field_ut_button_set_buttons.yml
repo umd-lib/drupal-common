@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_button_set_buttons
+    - paragraphs.paragraphs_type.ut_button
+    - paragraphs.paragraphs_type.ut_button_set
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: BGVj4im9jyQ4Oe0ZlYzFiOg_v3MEFjU9BWO07Vu5Bgs
+id: paragraph.ut_button_set.field_ut_button_set_buttons
+field_name: field_ut_button_set_buttons
+entity_type: paragraph
+bundle: ut_button_set
+label: Buttons
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      ut_button: ut_button
+    target_bundles_drag_drop:
+      ut_button:
+        enabled: true
+        weight: -61
+      ut_button_set:
+        weight: -60
+        enabled: false
+field_type: entity_reference_revisions

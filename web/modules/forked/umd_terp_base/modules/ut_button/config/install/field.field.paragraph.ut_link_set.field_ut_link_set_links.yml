@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_link_set_links
+    - paragraphs.paragraphs_type.ut_link
+    - paragraphs.paragraphs_type.ut_link_set
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: 9AdVtpWNIsNykkURwC3VOrAd2nPrHwmIw8FqtN9wKmU
+id: paragraph.ut_link_set.field_ut_link_set_links
+field_name: field_ut_link_set_links
+entity_type: paragraph
+bundle: ut_link_set
+label: Links
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      ut_link: ut_link
+    target_bundles_drag_drop:
+      ut_button:
+        weight: -58
+        enabled: false
+      ut_button_set:
+        weight: -57
+        enabled: false
+field_type: entity_reference_revisions

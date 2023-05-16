@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_accordion_item_content
+    - paragraphs.paragraphs_type.ut_accordion_item
+    - paragraphs.paragraphs_type.ut_button
+    - paragraphs.paragraphs_type.ut_divider
+    - paragraphs.paragraphs_type.ut_text
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: 8R9OHbjHBxt4Y3MMEpX08rkxPW0oQZDDiouIB-56h2g
+id: paragraph.ut_accordion_item.field_ut_accordion_item_content
+field_name: field_ut_accordion_item_content
+entity_type: paragraph
+bundle: ut_accordion_item
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      ut_text: ut_text
+      ut_blockquote: ut_blockquote
+      ut_divider: ut_divider
+      ut_button: ut_button
+      ut_table: ut_table
+      ut_webform: ut_webform
+    target_bundles_drag_drop:
+      ut_text:
+        enabled: true
+        weight: -45
+      ut_divider:
+        enabled: true
+        weight: -43
+      ut_button:
+        enabled: true
+        weight: -42
+      ut_accordion:
+        weight: -38
+        enabled: false
+      ut_accordion_item:
+        weight: -37
+        enabled: false
+      ut_card:
+        weight: -36
+        enabled: false
+      ut_card_group:
+        weight: -35
+        enabled: false
+      ut_image:
+        weight: -26
+        enabled: false
+      ut_text_2_columns:
+        weight: -25
+        enabled: false
+      ut_text_3_columns:
+        weight: -24
+        enabled: false
+field_type: entity_reference_revisions

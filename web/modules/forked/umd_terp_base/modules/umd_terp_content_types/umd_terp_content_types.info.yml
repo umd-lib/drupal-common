@@ -1,0 +1,18 @@
+name: 'UMD Terp Content Types'
+type: module
+description: 'Provides various customizations and configurations for content types used in the "UMD Terp" theme.'
+core_version_requirement: ">=8"
+package: UMD.EDU
+dependencies:
+  - taxonomy
+  - umd_terp_base
+  - ut_video
+  - ut_images
+  - entity_reference_revisions
+  - taxonomy_path_breadcrumb
+  - ut_accordion
+  - ut_button
+  - ut_card
+  - ut_divider
+  - ut_text
+  - metatag
