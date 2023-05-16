@@ -2,6 +2,7 @@
 
 namespace Drupal\facets\Plugin\facets\processor;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Config\ConfigManagerInterface;
@@ -9,6 +10,7 @@ use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\facets\FacetInterface;
+use Drupal\facets\FacetSource\SearchApiFacetSourceInterface;
 use Drupal\facets\Plugin\facets\facet_source\SearchApiDisplay;
 use Drupal\facets\Processor\BuildProcessorInterface;
 use Drupal\facets\Processor\ProcessorPluginBase;
@@ -166,7 +168,7 @@ class TranslateEntityAggregatedFieldProcessor extends ProcessorPluginBase implem
                 if ($entity instanceof TranslatableInterface && $entity->hasTranslation($language_interface->getId())) {
                   $entity = $entity->getTranslation($language_interface->getId());
                 }
-
+                $facet->addCacheableDependency($entity);
                 // Overwrite the result's display value.
                 $results[$i]->setDisplayValue($entity->label());
               }
@@ -178,6 +180,7 @@ class TranslateEntityAggregatedFieldProcessor extends ProcessorPluginBase implem
       // bundle field.
       foreach ($entity_type_ids as $entity) {
         $list_bundles = $this->entityTypeBundleInfo->getBundleInfo($entity);
+        $facet->addCacheTags(['entity_bundles']);
         if (!empty($list_bundles)) {
           foreach ($list_bundles as $key => $bundle) {
             $allowed_values[$key] = $bundle['label'];
@@ -216,17 +219,35 @@ class TranslateEntityAggregatedFieldProcessor extends ProcessorPluginBase implem
    * {@inheritdoc}
    */
   public function supportsFacet(FacetInterface $facet) {
-    $field_identifier = $facet->getFieldIdentifier();
-    /** @var \Drupal\search_api\Entity\Index $index */
-    $index = $facet->getFacetSource()->getIndex();
-    /** @var \Drupal\search_api\Item\Field $field */
-    $field = $index->getField($field_identifier);
+    $facet_source = $facet->getFacetSource();
 
-    if ($field->getPropertyPath() === 'aggregated_field') {
-      return TRUE;
+    if ($facet_source instanceof SearchApiFacetSourceInterface) {
+      /** @var \Drupal\search_api\Item\Field $field */
+      $field_identifier = $facet->getFieldIdentifier();
+      $field = $facet_source->getIndex()->getField($field_identifier);
+
+      if ($field->getPropertyPath() === 'aggregated_field') {
+        return TRUE;
+      }
     }
-
     return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    return Cache::mergeContexts(parent::getCacheContexts(), ['languages:language_interface']);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    // This will work unless the Search API Query uses "wrong" caching. Ideally
+    // we would set a cache tag to invalidate the cache whenever a translatable
+    // entity is added or changed. But there's no tag in drupal yet.
+    return Cache::PERMANENT;
   }
 
 }

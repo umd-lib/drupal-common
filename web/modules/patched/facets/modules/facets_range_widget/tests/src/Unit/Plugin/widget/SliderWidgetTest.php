@@ -21,7 +21,7 @@ class SliderWidgetTest extends WidgetTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
     $this->widget = new SliderWidget([], 'slider_widget', []);
   }
@@ -30,7 +30,7 @@ class SliderWidgetTest extends WidgetTestBase {
    * {@inheritdoc}
    */
   public function testGetQueryType() {
-    $result = $this->widget->getQueryType($this->queryTypes);
+    $result = $this->widget->getQueryType();
     $this->assertEquals(NULL, $result);
   }
 

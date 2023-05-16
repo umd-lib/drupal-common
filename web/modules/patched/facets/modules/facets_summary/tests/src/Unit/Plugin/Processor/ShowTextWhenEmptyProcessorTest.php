@@ -2,20 +2,20 @@
 
 namespace Drupal\Tests\facets_summary\Unit\Plugin\Processor;
 
+use Drupal\Tests\facets\Unit\Drupal10CompatibilityUnitTestCase;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\facets_summary\Entity\FacetsSummary;
 use Drupal\facets_summary\Plugin\facets_summary\processor\ShowTextWhenEmptyProcessor;
-use Drupal\Tests\UnitTestCase;
 
 /**
- * Class ShowTextWhenEmptyProcessorTest.
+ * Provides the ShowTextWhenEmptyProcessorTest class.
  *
  * @group facets
  * @coversDefaultClass \Drupal\facets_summary\Plugin\facets_summary\processor\ShowTextWhenEmptyProcessor
  */
-class ShowTextWhenEmptyProcessorTest extends UnitTestCase {
+class ShowTextWhenEmptyProcessorTest extends Drupal10CompatibilityUnitTestCase {
 
   /**
    * The processor we're testing.
@@ -27,7 +27,7 @@ class ShowTextWhenEmptyProcessorTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
     $string_translation = $this->prophesize(TranslationInterface::class);
 
@@ -112,7 +112,12 @@ class ShowTextWhenEmptyProcessorTest extends UnitTestCase {
     $summary->setFacetSourceId('foo');
 
     $build = ['#items' => []];
-    $this->processor->setConfiguration(['text' => ['value' => 'Owl', 'format' => 'llama']]);
+    $this->processor->setConfiguration([
+      'text' => [
+        'value' => 'Owl',
+        'format' => 'llama',
+      ],
+    ]);
     $result = $this->processor->build($summary, $build, []);
     $this->assertSame('array', gettype($result));
     $this->assertArrayHasKey('#text', $result['#message']);

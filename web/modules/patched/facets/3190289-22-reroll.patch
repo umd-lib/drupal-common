@@ -1,0 +1,99 @@
+diff --git a/src/Plugin/facets/processor/DependentFacetProcessor.php b/src/Plugin/facets/processor/DependentFacetProcessor.php
+index 4027b8a..f68f1a3 100644
+--- a/src/Plugin/facets/processor/DependentFacetProcessor.php
++++ b/src/Plugin/facets/processor/DependentFacetProcessor.php
+@@ -137,6 +137,17 @@ class DependentFacetProcessor extends ProcessorPluginBase implements BuildProces
+         ],
+       ];
+ 
++      $build[$facet->id()]['reset_on_change'] = [
++        '#title' => $this->t('Reset facet when dependant facet is changed.'),
++        '#type' => 'checkbox',
++        '#default_value' => !empty($config[$facet->id()]['reset_on_change']),
++        '#states' => [
++          'visible' => [
++            ':input[name="facet_settings[' . $this->getPluginId() . '][settings][' . $facet->id() . '][enable]"]' => ['checked' => TRUE],
++          ],
++        ],
++      ];
++
+       $build[$facet->id()]['negate'] = [
+         '#title' => $this->t('Negate condition'),
+         '#type' => 'checkbox',
+diff --git a/src/Plugin/facets/url_processor/QueryString.php b/src/Plugin/facets/url_processor/QueryString.php
+index 63a8901..cebb1d9 100644
+--- a/src/Plugin/facets/url_processor/QueryString.php
++++ b/src/Plugin/facets/url_processor/QueryString.php
+@@ -9,6 +9,7 @@ use Drupal\facets\Event\ActiveFiltersParsed;
+ use Drupal\facets\Event\QueryStringCreated;
+ use Drupal\facets\Event\UrlCreated;
+ use Drupal\facets\FacetInterface;
++use Drupal\facets\FacetManager\DefaultFacetManager;
+ use Drupal\facets\UrlProcessor\UrlProcessorPluginBase;
+ use Drupal\facets\Utility\FacetsUrlGenerator;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+@@ -49,13 +50,21 @@ class QueryString extends UrlProcessorPluginBase {
+    */
+   protected $urlGenerator;
+ 
++  /**
++   * The facet manager.
++   *
++   * @var \Drupal\facets\FacetManager\DefaultFacetManager
++   */
++  protected $facetManager;
++
+   /**
+    * {@inheritdoc}
+    */
+-  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, EntityTypeManagerInterface $entity_type_manager, EventDispatcherInterface $eventDispatcher, FacetsUrlGenerator $urlGenerator) {
++  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, EntityTypeManagerInterface $entity_type_manager, EventDispatcherInterface $eventDispatcher, FacetsUrlGenerator $urlGenerator, DefaultFacetManager $facets_manager) {
+     parent::__construct($configuration, $plugin_id, $plugin_definition, $request, $entity_type_manager);
+     $this->eventDispatcher = $eventDispatcher;
+     $this->urlGenerator = $urlGenerator;
++    $this->facetManager = $facets_manager;
+     $this->initializeActiveFilters();
+   }
+ 
+@@ -70,7 +79,8 @@ class QueryString extends UrlProcessorPluginBase {
+       $container->get('request_stack')->getCurrentRequest(),
+       $container->get('entity_type.manager'),
+       $container->get('event_dispatcher'),
+-      $container->get('facets.utility.url_generator')
++      $container->get('facets.utility.url_generator'),
++      $container->get('facets.manager')
+     );
+   }
+ 
+@@ -102,13 +112,30 @@ class QueryString extends UrlProcessorPluginBase {
+     $request = $this->getRequestByFacetSourcePath($facet_source_path);
+     $requestUrl = $this->getUrlForRequest($facet_source_path, $request);
+ 
++    // Get dependent facets that have to be removed with active values.
++    $reset_dependent_facets = [];
++    $this->facetManager->processFacets($facet->getFacetSourceId());
++    $facets = $this->facetManager->getFacetsByFacetSourceId($facet->getFacetSourceId());
++    foreach ($facets as $other_facet) {
++      $config = $other_facet->getProcessorConfigs();
++      if (empty($config['dependent_processor']['settings'][$facet->id()]['enable'])) {
++        continue;
++      }
++      // Check if the dependent facet should be reset.
++      if ($config['dependent_processor']['settings'][$facet->id()]['reset_on_change'] ?? FALSE) {
++        $reset_dependent_facets[] = $other_facet->id();
++      }
++    }
++
+     $original_filter_params = [];
+     foreach ($this->getActiveFilters() as $facet_id => $values) {
+       $values = array_filter($values, static function ($it) {
+         return $it !== NULL;
+       });
+       foreach ($values as $value) {
+-        $original_filter_params[] = $this->getUrlAliasByFacetId($facet_id, $facet->getFacetSourceId()) . $this->getSeparator() . $value;
++        if (!in_array($facet_id, $reset_dependent_facets, TRUE)) {
++          $original_filter_params[] = $this->getUrlAliasByFacetId($facet_id, $facet->getFacetSourceId()) . $this->getSeparator() . $value;
++        }
+       }
+     }
+ 

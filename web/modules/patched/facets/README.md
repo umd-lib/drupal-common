@@ -1,45 +1,40 @@
-CONTENTS OF THIS FILE
----------------------
+## CONTENTS OF THIS FILE
 
- * Requirements
- * Recommended Modules
- * Installation
- * Configuration
- * Features
- * Extension modules
- * FAQ
- * Maintainers
-
-
-INTRODUCTION
-------------
-
-The Facets module allows site builders to easily create and manage faceted search
-interfaces.
+  - Requirements
+  - Recommended Modules
+  - Installation
+  - Configuration
+  - Features
+  - Extension modules
+  - FAQ
+  - Maintainers
 
 
-REQUIREMENTS
-------------
+## INTRODUCTION
 
-No other modules required; we're supporting Drupal Core's search as a source for
-creating facets.
-
-
-RECOMMENDED MODULES
--------------------
-
- * Search API - https://www.drupal.org/project/search_api
+The Facets module allows site builders to easily create and manage faceted
+search interfaces.
 
 
-INSTALLATION
-------------
+## REQUIREMENTS
+
+No other modules are required; we're supporting Drupal Core's search as a
+source for creating facets.
+
+
+## RECOMMENDED MODULES
+
+  - Search API - https://www.drupal.org/project/search_api
+
+
+## INSTALLATION
 
  * Install as you would normally install a contributed Drupal module. Visit:
-   https://www.drupal.org/node/1897420 for further information.
+   https://www.drupal.org/docs/extending-drupal/installing-modules
+   for further information.
 
 
-CONFIGURATION
--------------
+## CONFIGURATION
 
 Before adding a facet, there should be a facet source. Facet sources can be:
 - Drupal core's search.
@@ -51,19 +46,18 @@ After adding one of those, you can add a facet on the facets configuration page:
 admin/config/search/facets/add-facet. Use that page to add the facet by
 selecting the correct facet source and field from that source.
 
-If you're using Search API views, make sure to disable views cache when using
-facets for that view.
+If you're using Search API views, make sure to disable the views cache when
+using facets for that view.
 
 
-KNOWN ISSUES
-------------
+## KNOWN ISSUES
 
 When choosing the "Hard limit" option on a search_api_db backend, be aware that
 the limitation is done internally after sorting on the number of results ("num")
 first and then sorting by the raw value of the facet (e.g. entity-id) in the
 second dimension. This can lead to edge cases when there is an equal amount of
 results on facets that are exactly on the threshold of the hard limit. In this
-case the raw facet value with the lower value is preferred:
+case, the raw facet value with the lower value is preferred:
 
 | num | value | label |
 |-----|-------|-------|
@@ -76,15 +70,13 @@ case the raw facet value with the lower value is preferred:
 further details see: https://www.drupal.org/node/2834730
 
 
-FEATURES
---------
+## FEATURES
 
 If you are the developer of a search API backend implementation and want
 to support facets with your service class, too, you'll have to support the
-"search_api_facets" feature. In short, you'll just have to return facet terms
-and counts according to the query's "search_api_facets" option, when executing
-a query.
-For the module to be able to tell that your server supports facets,
+"search_api_facets" feature. In short, when executing a query, you'll have to
+return facet terms and counts according to the query's "search_api_facets"
+option. For the module to be able to tell that your server supports facets,
 you will also have to change your service's supportsFeature() method to
 something like the following:
 
@@ -107,7 +99,7 @@ $query->setOption('search_api_facets', [
     'limit' => (int),
     // The facet operator: "and" or "or".
     'operator' => (string),
-    // The minimum count a filter/value must have to be returned.
+    // The minimum count a filter/value must have been returned.
     'min_count' => (int),
     // Whether to retrieve a facet for "missing" values.
     'missing' => (bool),
@@ -142,8 +134,7 @@ A filter is a string with one of the following forms:
   facet).
 
 
-EXTENSION MODULES
------------------
+## EXTENSION MODULES
 
 - https://www.drupal.org/project/entity_reference_facet_link
   Provides a link to a facet through an entity reference field.
@@ -158,10 +149,9 @@ EXTENSION MODULES
 - https://www.drupal.org/project/facets_range_input
   Provides an input range form (min and max) as a processor and widget.
 - https://www.drupal.org/project/facets_range_dropdowns
-  Provides an dropdown widget that works with the range processor.
+  Provides a dropdown widget that works with the range processor.
 
-FAQ
----
+## FAQ
 
 Q: Why do the facets disappear after a refresh?
 A: We don't support cached views, change the view to disable caching.
@@ -177,7 +167,7 @@ See https://www.drupal.org/node/2853121 for more information.
 Q: Why are facets results links from another language showing in the facet
 results?
 A: Facets use the same limitations as the query object passed, so when using
-views, add a filter to the view to limit to one language.
+views, add a filter to the view to limit it to one language.
 Otherwise, this is solved by adding a `hook_search_api_query_alter()` that
 limits the results to the current language.
 
@@ -195,8 +185,7 @@ This should only happen if you're not using the default node access framework
 provided by Core, though. You need to use a combination of hook_node_grants and
 hook_node_access_records instead of hook_node_access.
 
-MAINTAINERS
------------
+## MAINTAINERS
 
  * Joris Vercammen (borisson_) - https://www.drupal.org/u/borisson_
  * Jimmy Henderickx (StryKaizer) - https://www.drupal.org/u/strykaizer

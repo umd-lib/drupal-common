@@ -2,16 +2,19 @@
 
 namespace Drupal\facets\Plugin\facets\url_processor;
 
+use Drupal\Core\Cache\UnchangingCacheableDependencyTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
-use Drupal\Core\Url;
+use Drupal\facets\Event\ActiveFiltersParsed;
 use Drupal\facets\Event\QueryStringCreated;
+use Drupal\facets\Event\UrlCreated;
 use Drupal\facets\FacetInterface;
+use Drupal\facets\FacetManager\DefaultFacetManager;
 use Drupal\facets\UrlProcessor\UrlProcessorPluginBase;
+use Drupal\facets\Utility\FacetsUrlGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 /**
  * Query string URL processor.
@@ -23,6 +26,8 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
  * )
  */
 class QueryString extends UrlProcessorPluginBase {
+
+  use UnchangingCacheableDependencyTrait;
 
   /**
    * A string of how to represent the facet in the url.
@@ -39,11 +44,27 @@ class QueryString extends UrlProcessorPluginBase {
   protected $eventDispatcher;
 
   /**
+   * The URL generator.
+   *
+   * @var \Drupal\facets\Utility\FacetsUrlGenerator
+   */
+  protected $urlGenerator;
+
+  /**
+   * The facet manager.
+   *
+   * @var \Drupal\facets\FacetManager\DefaultFacetManager
+   */
+  protected $facetManager;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, EntityTypeManagerInterface $entity_type_manager, EventDispatcherInterface $eventDispatcher) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, EntityTypeManagerInterface $entity_type_manager, EventDispatcherInterface $eventDispatcher, FacetsUrlGenerator $urlGenerator, DefaultFacetManager $facets_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $request, $entity_type_manager);
     $this->eventDispatcher = $eventDispatcher;
+    $this->urlGenerator = $urlGenerator;
+    $this->facetManager = $facets_manager;
     $this->initializeActiveFilters();
   }
 
@@ -55,9 +76,11 @@ class QueryString extends UrlProcessorPluginBase {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('request_stack')->getMasterRequest(),
+      $container->get('request_stack')->getCurrentRequest(),
       $container->get('entity_type.manager'),
-      $container->get('event_dispatcher')
+      $container->get('event_dispatcher'),
+      $container->get('facets.utility.url_generator'),
+      $container->get('facets.manager')
     );
   }
 
@@ -83,10 +106,36 @@ class QueryString extends UrlProcessorPluginBase {
     // Set the url alias from the facet object.
     $this->urlAlias = $facet->getUrlAlias();
 
+    // In case of a view page display, the facet source has a path, If the
+    // source is a block, the path is null.
     $facet_source_path = $facet->getFacetSource()->getPath();
     $request = $this->getRequestByFacetSourcePath($facet_source_path);
     $requestUrl = $this->getUrlForRequest($facet_source_path, $request);
-    $routeParameters = $this->getUrlRouteParameters();
+
+    // Get dependent facets that have to be removed with active values.
+    $reset_dependent_facets = [];
+    $this->facetManager->processFacets($facet->getFacetSourceId());
+    $facets = $this->facetManager->getFacetsByFacetSourceId($facet->getFacetSourceId());
+    foreach ($facets as $other_facet) {
+      $config = $other_facet->getProcessorConfigs();
+      if (empty($config['dependent_processor']['settings'][$facet->id()]['enable'])) {
+        continue;
+      }
+      // Check if the dependent facet should be reset.
+      if ($config['dependent_processor']['settings'][$facet->id()]['reset_on_change'] ?? FALSE) {
+        $reset_dependent_facets[] = $other_facet->id();
+      }
+    }
+
+    // UMD Customization
+    if (in_array("month", $reset_dependent_facets)) {
+      $reset_dependent_facets[] = "day";
+    }
+    if (in_array("year", $reset_dependent_facets)) {
+      $reset_dependent_facets[] = "month";
+      $reset_dependent_facets[] = "day";
+    }
+    // End UMD Customization
 
     $original_filter_params = [];
     foreach ($this->getActiveFilters() as $facet_id => $values) {
@@ -94,7 +143,9 @@ class QueryString extends UrlProcessorPluginBase {
         return $it !== NULL;
       });
       foreach ($values as $value) {
-        $original_filter_params[] = $this->getUrlAliasByFacetId($facet_id, $facet->getFacetSourceId()) . ":" . $value;
+        if (!in_array($facet_id, $reset_dependent_facets, TRUE)) {
+          $original_filter_params[] = $this->getUrlAliasByFacetId($facet_id, $facet->getFacetSourceId()) . $this->getSeparator() . $value;
+        }
       }
     }
 
@@ -108,8 +159,13 @@ class QueryString extends UrlProcessorPluginBase {
         $this->buildUrls($facet, $children);
       }
 
+      $filter_missing = '';
       if ($result->getRawValue() === NULL) {
         $filter_string = NULL;
+      }
+      elseif ($result->isMissing()) {
+        $filter_missing = $this->urlAlias . $this->getSeparator() . '!(';
+        $filter_string = $filter_missing . implode($this->getDelimiter(), $result->getMissingFilters()) . ')';
       }
       else {
         $filter_string = $this->urlAlias . $this->getSeparator() . $result->getRawValue();
@@ -121,29 +177,37 @@ class QueryString extends UrlProcessorPluginBase {
       // If the value is active, remove the filter string from the parameters.
       if ($result->isActive()) {
         foreach ($filter_params as $key => $filter_param) {
-          if ($filter_param == $filter_string) {
+          if ($filter_param === $filter_string || ($filter_missing && str_starts_with($filter_param, $filter_missing))) {
             unset($filter_params[$key]);
           }
         }
-        if ($facet->getEnableParentWhenChildGetsDisabled() && $facet->getUseHierarchy()) {
-          // Enable parent id again if exists.
-          $parent_ids = $facet->getHierarchyInstance()->getParentIds($result->getRawValue());
-          if (isset($parent_ids[0]) && $parent_ids[0]) {
-            // Get the parents children.
-            $child_ids = $facet->getHierarchyInstance()->getNestedChildIds($parent_ids[0]);
+        if ($facet->getUseHierarchy() && !$result->isMissing()) {
+          $id = $result->getRawValue();
 
-            // Check if there are active siblings.
-            $active_sibling = FALSE;
-            if ($child_ids) {
-              foreach ($results as $result2) {
-                if ($result2->isActive() && $result2->getRawValue() != $result->getRawValue() && in_array($result2->getRawValue(), $child_ids)) {
-                  $active_sibling = TRUE;
-                  continue;
+          // Disable child filters.
+          foreach ($facet->getHierarchyInstance()->getNestedChildIds($id) as $child_id) {
+            $filter_params = array_diff($filter_params, [$this->urlAlias . $this->getSeparator() . $child_id]);
+          }
+          if ($facet->getEnableParentWhenChildGetsDisabled()) {
+            // Enable parent id again if exists.
+            $parent_ids = $facet->getHierarchyInstance()->getParentIds($id);
+            if (isset($parent_ids[0]) && $parent_ids[0]) {
+              // Get the parents children.
+              $child_ids = $facet->getHierarchyInstance()->getNestedChildIds($parent_ids[0]);
+
+              // Check if there are active siblings.
+              $active_sibling = FALSE;
+              if ($child_ids) {
+                foreach ($results as $result2) {
+                  if ($result2->isActive() && $result2->getRawValue() != $id && in_array($result2->getRawValue(), $child_ids)) {
+                    $active_sibling = TRUE;
+                    continue;
+                  }
                 }
               }
-            }
-            if (!$active_sibling) {
-              $filter_params[] = $this->urlAlias . $this->getSeparator() . $parent_ids[0];
+              if (!$active_sibling) {
+                $filter_params[] = $this->urlAlias . $this->getSeparator() . $parent_ids[0];
+              }
             }
           }
         }
@@ -155,25 +219,33 @@ class QueryString extends UrlProcessorPluginBase {
           $filter_params[] = $filter_string;
         }
 
+        $parents_and_child_ids = [];
         if ($facet->getUseHierarchy()) {
-          // If hierarchy is active, unset parent trail and every child when
-          // building the enable-link to ensure those are not enabled anymore.
           $parent_ids = $facet->getHierarchyInstance()->getParentIds($result->getRawValue());
           $child_ids = $facet->getHierarchyInstance()->getNestedChildIds($result->getRawValue());
           $parents_and_child_ids = array_merge($parent_ids, $child_ids);
-          foreach ($parents_and_child_ids as $id) {
-            $filter_params = array_diff($filter_params, [$this->urlAlias . $this->getSeparator() . $id]);
+
+          if (!$facet->getKeepHierarchyParentsActive()) {
+            // If hierarchy is active, unset parent trail and every child when
+            // building the enable-link to ensure those are not enabled anymore.
+            foreach ($parents_and_child_ids as $id) {
+              $filter_params = array_diff($filter_params, [$this->urlAlias . $this->getSeparator() . $id]);
+            }
           }
         }
+
         // Exclude currently active results from the filter params if we are in
         // the show_only_one_result mode.
         if ($facet->getShowOnlyOneResult()) {
           foreach ($results as $result2) {
             if ($result2->isActive()) {
-              $active_filter_string = $this->urlAlias . $this->getSeparator() . $result2->getRawValue();
-              foreach ($filter_params as $key2 => $filter_param2) {
-                if ($filter_param2 == $active_filter_string) {
-                  unset($filter_params[$key2]);
+              $id = $result2->getRawValue();
+              if (!in_array($id, $parents_and_child_ids)) {
+                $active_filter_string = $this->urlAlias . $this->getSeparator() . $id;
+                foreach ($filter_params as $key2 => $filter_param2) {
+                  if ($filter_param2 == $active_filter_string) {
+                    unset($filter_params[$key2]);
+                  }
                 }
               }
             }
@@ -181,30 +253,37 @@ class QueryString extends UrlProcessorPluginBase {
         }
       }
 
-      // Allow other modules to alter the result url built.
-      $this->eventDispatcher->dispatch(QueryStringCreated::NAME, new QueryStringCreated($result_get_params, $filter_params, $result, $this->activeFilters, $facet));
+      // Allow other modules to alter the result url query string built.
+      $event = new QueryStringCreated($result_get_params, $filter_params, $result, $this->activeFilters, $facet);
+      $this->eventDispatcher->dispatch($event);
+      $filter_params = $event->getFilterParameters();
 
       asort($filter_params, \SORT_NATURAL);
       $result_get_params->set($this->filterKey, array_values($filter_params));
-      if (!empty($routeParameters)) {
-        $url->setRouteParameters($routeParameters);
-      }
 
       if ($result_get_params->all() !== [$this->filterKey => []]) {
         $new_url_params = $result_get_params->all();
+
+        if (empty($new_url_params[$this->filterKey])) {
+          unset($new_url_params[$this->filterKey]);
+        }
 
         // Facet links should be page-less.
         // See https://www.drupal.org/node/2898189.
         unset($new_url_params['page']);
 
-        // Remove core wrapper format (e.g. render-as-ajax-response) paremeters.
+        // Remove core wrapper format (e.g. render-as-ajax-response) parameters.
         unset($new_url_params[MainContentViewSubscriber::WRAPPER_FORMAT]);
 
         // Set the new url parameters.
         $url->setOption('query', $new_url_params);
       }
 
-      $result->setUrl($url);
+      // Allow other modules to alter the result url built.
+      $event = new UrlCreated($url, $result, $facet);
+      $this->eventDispatcher->dispatch($event);
+
+      $result->setUrl($event->getUrl());
     }
 
     // Restore page parameter again. See https://www.drupal.org/node/2726455.
@@ -245,37 +324,10 @@ class QueryString extends UrlProcessorPluginBase {
   }
 
   /**
-   * Gets the route parameters from the original request.
-   *
-   * This method statically caches the route parameters for the request, so that
-   * subsequent calls to this processor do not re-run Url::createFromRequest for
-   * the same request.
-   *
-   * @return array
-   *   The route parameters.
-   */
-  protected function getUrlRouteParameters() {
-    $routeParameters = &drupal_static(__CLASS__ . __FUNCTION__, []);
-    if ($routeParameters) {
-      return $routeParameters;
-    }
-
-    // Grab any route params from the original request.
-    try {
-      $routeParameters = Url::createFromRequest($this->request)->getRouteParameters();
-    }
-    catch (ResourceNotFoundException $e) {
-      $routeParameters = [];
-    }
-    return $routeParameters;
-  }
-
-  /**
    * Gets the URL object for a request.
    *
-   * This method statically caches the URL object for a request based on the
-   * facet source path. This reduces subsequent calls to the processor from
-   * having to regenerate the URL object.
+   * This method delegates to the URL generator service. But we keep it for
+   * backward compatibility for custom implementations that extend this class.
    *
    * @param string $facet_source_path
    *   The facet source path.
@@ -286,37 +338,7 @@ class QueryString extends UrlProcessorPluginBase {
    *   The URL.
    */
   protected function getUrlForRequest($facet_source_path, Request $request) {
-    /** @var \Drupal\Core\Url[] $requestUrlsByPath */
-    $requestUrlsByPath = &drupal_static(__CLASS__ . __FUNCTION__, []);
-
-    if (array_key_exists($facet_source_path, $requestUrlsByPath)) {
-      return $requestUrlsByPath[$facet_source_path];
-    }
-
-    // Try to grab any route params from the original request.
-    // In case of request path not having a matching route, Url generator will
-    // fail with.
-    try {
-      $requestUrl = Url::createFromRequest($request);
-    }
-    catch (ResourceNotFoundException $e) {
-      // Bypass exception if no path available.
-      // Should be unreachable in default FacetSource implementations,
-      // but you never know.
-      if (!$facet_source_path) {
-        throw $e;
-      }
-
-      $requestUrl = Url::fromUserInput($facet_source_path, [
-        'query' => [
-          '_format' => $this->request->get('_format'),
-        ],
-      ]);
-    }
-
-    $requestUrl->setOption('attributes', ['rel' => 'nofollow']);
-    $requestUrlsByPath[$facet_source_path] = $requestUrl;
-    return $requestUrl;
+    return $this->urlGenerator->getUrlForRequest($request, $facet_source_path);
   }
 
   /**
@@ -330,7 +352,7 @@ class QueryString extends UrlProcessorPluginBase {
     $url_parameters = $this->request->query;
 
     // Get the active facet parameters.
-    $active_params = $url_parameters->get($this->filterKey, [], TRUE);
+    $active_params = $url_parameters->all()[$this->filterKey] ?? "";
     $facet_source_id = $this->configuration['facet']->getFacetSourceId();
 
     // When an invalid parameter is passed in the url, we can't do anything.
@@ -338,25 +360,32 @@ class QueryString extends UrlProcessorPluginBase {
       return;
     }
 
+    $active_filters = [];
     // Explode the active params on the separator.
     foreach ($active_params as $param) {
       $explosion = explode($this->getSeparator(), $param);
       $url_alias = array_shift($explosion);
-      $facet_id = $this->getFacetIdByUrlAlias($url_alias, $facet_source_id);
-      $value = '';
-      while (count($explosion) > 0) {
-        $value .= array_shift($explosion);
-        if (count($explosion) > 0) {
-          $value .= $this->getSeparator();
+      if ($facet_id = $this->getFacetIdByUrlAlias($url_alias, $facet_source_id)) {
+        $value = '';
+        while (count($explosion) > 0) {
+          $value .= array_shift($explosion);
+          if (count($explosion) > 0) {
+            $value .= $this->getSeparator();
+          }
+        }
+        if (!isset($active_filters[$facet_id])) {
+          $active_filters[$facet_id] = [$value];
+        }
+        else {
+          $active_filters[$facet_id][] = $value;
         }
       }
-      if (!isset($this->activeFilters[$facet_id])) {
-        $this->activeFilters[$facet_id] = [$value];
-      }
-      else {
-        $this->activeFilters[$facet_id][] = $value;
-      }
     }
+
+    // Allow other modules to alter the parsed active filters.
+    $event = new ActiveFiltersParsed($facet_source_id, $active_filters, $url_parameters, $this->filterKey);
+    $this->eventDispatcher->dispatch($event);
+    $this->activeFilters = $event->getActiveFilters();
   }
 
   /**
@@ -374,7 +403,12 @@ class QueryString extends UrlProcessorPluginBase {
     $mapping = &drupal_static(__FUNCTION__);
     if (!isset($mapping[$facet_source_id][$url_alias])) {
       $storage = $this->entityTypeManager->getStorage('facets_facet');
-      $facet = current($storage->loadByProperties(['url_alias' => $url_alias, 'facet_source_id' => $facet_source_id]));
+      $facet = current($storage->loadByProperties(
+        [
+          'url_alias' => $url_alias,
+          'facet_source_id' => $facet_source_id,
+        ]
+      ));
       if (!$facet) {
         return NULL;
       }
@@ -398,13 +432,25 @@ class QueryString extends UrlProcessorPluginBase {
     $mapping = &drupal_static(__FUNCTION__);
     if (!isset($mapping[$facet_source_id][$facet_id])) {
       $storage = $this->entityTypeManager->getStorage('facets_facet');
-      $facet = current($storage->loadByProperties(['id' => $facet_id, 'facet_source_id' => $facet_source_id]));
+      $facet = current($storage->loadByProperties(
+        [
+          'id' => $facet_id,
+          'facet_source_id' => $facet_source_id,
+        ]
+      ));
       if (!$facet) {
         return FALSE;
       }
       $mapping[$facet_source_id][$facet_id] = $facet->getUrlAlias();
     }
     return $mapping[$facet_source_id][$facet_id];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    return ['url.query_args'];
   }
 
 }

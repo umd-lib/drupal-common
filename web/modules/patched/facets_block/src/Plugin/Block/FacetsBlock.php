@@ -5,12 +5,15 @@ namespace Drupal\facets_block\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\BlockManagerInterface;
 use Drupal\Core\Cache\UncacheableDependencyTrait;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\Core\Template\Attribute;
 use Drupal\facets\FacetInterface;
 use Drupal\facets\FacetManager\DefaultFacetManager;
+use Drupal\facets_summary\FacetsSummaryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -54,6 +57,13 @@ class FacetsBlock extends BlockBase implements ContainerFactoryPluginInterface {
   protected $currentUser;
 
   /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * FacetsBlock constructor.
    *
    * @param array $configuration
@@ -70,13 +80,16 @@ class FacetsBlock extends BlockBase implements ContainerFactoryPluginInterface {
    *   The Plugin manager block.
    * @param \Drupal\Core\Session\AccountProxyInterface $current_user
    *   Current user.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, DefaultFacetManager $facets_manager, ModuleHandlerInterface $module_handler, BlockManagerInterface $plugin_manager_block, AccountProxyInterface $current_user) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, DefaultFacetManager $facets_manager, ModuleHandlerInterface $module_handler, BlockManagerInterface $plugin_manager_block, AccountProxyInterface $current_user, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->facetsManager = $facets_manager;
     $this->moduleHandler = $module_handler;
     $this->pluginManagerBlock = $plugin_manager_block;
     $this->currentUser = $current_user;
+    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -90,7 +103,8 @@ class FacetsBlock extends BlockBase implements ContainerFactoryPluginInterface {
       $container->get('facets.manager'),
       $container->get('module_handler'),
       $container->get('plugin.manager.block'),
-      $container->get('current_user')
+      $container->get('current_user'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -115,6 +129,19 @@ class FacetsBlock extends BlockBase implements ContainerFactoryPluginInterface {
       '#default_value' => isset($this->configuration['exclude_empty_facets']) ? $this->configuration['exclude_empty_facets'] : TRUE,
     ];
 
+    $form['block_settings']['hide_empty_block'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Hide empty block'),
+      '#description' => $this->t("Don't render the Facets Block if no facets are available (for instance when no search results are found)."),
+      '#default_value' => isset($this->configuration['hide_empty_block']) ? $this->configuration['hide_empty_block'] : FALSE,
+    ];
+
+    $form['block_settings']['add_js_classes'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Add JS classes for Facets block'),
+      '#default_value' => $this->configuration['add_js_classes'] ?? FALSE,
+    ];
+
     $form['block_settings']['facets_to_include'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Facets to include'),
@@ -132,52 +159,55 @@ class FacetsBlock extends BlockBase implements ContainerFactoryPluginInterface {
    *   An array of enabled facets.
    */
   protected function getAvailableFacets() {
-    $enabled_facets = $this->facetsManager->getEnabledFacets();
-    uasort($enabled_facets, [$this, 'sortFacetsByWeight']);
-
     $available_facets = [];
 
-    if ($this->moduleHandler->moduleExists('facets_summary')) {
-      $available_facets['facets_summary_block:summary'] = $this->t('Summary');
-    }
-
-    foreach ($enabled_facets as $facet) {
-      /** @var \Drupal\facets\Entity\Facet $facet */
-      $available_facets['facet_block:' . $facet->id()] = $facet->getName();
+    /** @var \Drupal\facets\FacetListBuilder $list_builder */
+    $list_builder = $this->entityTypeManager->getHandler('facets_facet', 'list_builder');
+    $facet_groups = $list_builder->loadGroups();
+    foreach ($facet_groups['facet_source_groups'] as $facet_data) {
+      foreach ($facet_data['facets'] as $facet) {
+        if ($facet instanceof FacetInterface) {
+          $available_facets['facet_block:' . $facet->id()] = $this->t('@facet_source: @facet_name', [
+            '@facet_source' => $facet_data['facet_source']['label'],
+            '@facet_name' => $facet->getName(),
+          ]);
+        }
+        if ($facet instanceof FacetsSummaryInterface) {
+          $available_facets['facets_summary_block:' . $facet->id()] = $this->t('@facet_source: @facet_name', [
+            '@facet_source' => $facet_data['facet_source']['label'],
+            '@facet_name' => $facet->getName(),
+          ]);
+        }
+      }
     }
 
     return $available_facets;
   }
 
   /**
-   * Sorts array of objects by object weight property.
-   *
-   * @param \Drupal\facets\FacetInterface $a
-   *   A facet.
-   * @param \Drupal\facets\FacetInterface $b
-   *   A facet.
-   *
-   * @return int
-   *   Sort value.
-   */
-  protected function sortFacetsByWeight(FacetInterface $a, FacetInterface $b) {
-    $a_weight = $a->getWeight();
-    $b_weight = $b->getWeight();
-
-    if ($a_weight == $b_weight) {
-      return 0;
-    }
-
-    return ($a_weight < $b_weight) ? -1 : 1;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->configuration['show_title'] = $form_state->getValue(['block_settings', 'show_title']);
-    $this->configuration['exclude_empty_facets'] = $form_state->getValue(['block_settings', 'exclude_empty_facets']);
-    $this->configuration['facets_to_include'] = $form_state->getValue(['block_settings', 'facets_to_include']);
+    $this->configuration['show_title'] = $form_state->getValue([
+      'block_settings',
+      'show_title',
+    ]);
+    $this->configuration['exclude_empty_facets'] = $form_state->getValue([
+      'block_settings',
+      'exclude_empty_facets',
+    ]);
+    $this->configuration['hide_empty_block'] = $form_state->getValue([
+      'block_settings',
+      'hide_empty_block',
+    ]);
+    $this->configuration['facets_to_include'] = array_values(array_filter($form_state->getValue([
+      'block_settings',
+      'facets_to_include',
+    ])));
+    $this->configuration['add_js_classes'] = $form_state->getValue([
+      'block_settings',
+      'add_js_classes',
+    ]);
   }
 
   /**
@@ -196,38 +226,42 @@ class FacetsBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
     $available_facets = $this->getAvailableFacets();
 
-    foreach ($available_facets as $plugin_id => $facet_title) {
-      if (isset($facets_to_include[$plugin_id]) && $facets_to_include[$plugin_id] === $plugin_id) {
-        $block_plugin = $this->pluginManagerBlock->createInstance($plugin_id, []);
+    foreach (array_intersect_key($available_facets, array_combine($facets_to_include, $facets_to_include)) as $plugin_id => $facet_title) {
+      $block_plugin = $this->pluginManagerBlock->createInstance($plugin_id, []);
 
-        if ($block_plugin && $block_plugin->access($this->currentUser)) {
-          $build = $block_plugin->build();
+      if ($block_plugin && $block_plugin->access($this->currentUser)) {
+        $build = $block_plugin->build();
 
-          $exclude_empty_facets = !isset($this->configuration['exclude_empty_facets']) ? TRUE : $this->configuration['exclude_empty_facets'];
+        $exclude_empty_facets = !isset($this->configuration['exclude_empty_facets']) ? TRUE : $this->configuration['exclude_empty_facets'];
 
-          // Skip empty facets.
-          $is_empty = FALSE;
+        // Skip empty facets.
+        $is_empty = FALSE;
 
-          if (!$build) {
-            $is_empty = TRUE;
-          }
-          elseif (isset($build[0]['#attributes']['class']) && in_array('facet-empty', $build[0]['#attributes']['class'])) {
-            $is_empty = TRUE;
-          }
-          // Check if Summary Facet is empty.
-          elseif (isset($build['#items']) && count($build['#items']) == 0) {
-            $is_empty = TRUE;
-          }
-
-          if ($exclude_empty_facets && $is_empty) {
-            continue;
-          }
-
-          $facets[] = [
-            'title' => $facet_title,
-            'content' => $build,
-          ];
+        if (!$build) {
+          $is_empty = TRUE;
         }
+        elseif (isset($build[0]['#attributes']['class']) && in_array('facet-empty', $build[0]['#attributes']['class'])) {
+          $is_empty = TRUE;
+        }
+        // Check if Summary Facet is empty.
+        elseif (isset($build['#items']) && count($build['#items']) == 0) {
+          $is_empty = TRUE;
+        }
+
+        if ($exclude_empty_facets && $is_empty) {
+          continue;
+        }
+
+        if (empty($build['#attributes'])) {
+          $build['#attributes'] = [];
+        }
+
+        $facets[] = [
+          '#block_plugin' => $block_plugin,
+          'title' => $facet_title,
+          'content' => $build,
+          'attributes' => new Attribute($build['#attributes']),
+        ];
       }
     }
 
@@ -240,11 +274,15 @@ class FacetsBlock extends BlockBase implements ContainerFactoryPluginInterface {
   public function build() {
     $show_title = !isset($this->configuration['show_title']) ? TRUE : $this->configuration['show_title'];
     $facets_to_include = !isset($this->configuration['facets_to_include']) ? [] : $this->configuration['facets_to_include'];
+    $facets = $this->buildFacets($facets_to_include);
+
+    // Allow other modules to alter the facets array.
+    $this->moduleHandler->alter('facets_block_facets', $facets);
 
     return [
       '#theme' => 'facets_block',
       '#show_title' => $show_title,
-      '#facets' => $this->buildFacets($facets_to_include),
+      '#facets' => $facets,
     ];
   }
 
