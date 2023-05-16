@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69ce38cf3ea6d139782659f351b11f96",
+    "content-hash": "1c5ddf159b7472f9cfbf8c47c859594c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5269,47 +5269,6 @@
             "homepage": "https://www.drupal.org/project/twig_field_value",
             "support": {
                 "source": "https://git.drupalcode.org/project/twig_field_value"
-            }
-        },
-        {
-            "name": "drupal/twig_htmlspecialchars_decode",
-            "version": "dev-1.0.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/twig_htmlspecialchars_decode.git",
-                "reference": "6b1b14cf6ec09ea1f30fbd6026a32173dcae26c0"
-            },
-            "require": {
-                "drupal/core": "^9"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.0.x": "1.0.x-dev"
-                },
-                "drupal": {
-                    "version": "1.0.x-dev",
-                    "datestamp": "1635869989",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Alex Bukach",
-                    "homepage": "https://www.drupal.org/user/1958006"
-                }
-            ],
-            "description": "Provides Twig filter to decode HTML entities.",
-            "homepage": "https://www.drupal.org/project/twig_htmlspecialchars_decode",
-            "support": {
-                "source": "https://git.drupalcode.org/project/twig_htmlspecialchars_decode"
             }
         },
         {
@@ -11914,7 +11873,6 @@
         "drupal/imageapi_optimize_binaries": 15,
         "drupal/message_digest": 5,
         "drupal/taxonomy_path_breadcrumb": 10,
-        "drupal/twig_htmlspecialchars_decode": 20,
         "drupal/viewsreference": 10,
         "drupal/webform": 10
     },
