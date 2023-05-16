@@ -124,18 +124,18 @@ class QueryString extends UrlProcessorPluginBase {
       // Check if the dependent facet should be reset.
       if ($config['dependent_processor']['settings'][$facet->id()]['reset_on_change'] ?? FALSE) {
         $reset_dependent_facets[] = $other_facet->id();
+        // UMD Customization
+        if (!empty($config['dependent_processor']['settings'][$facet->id()]['reset_additional_facets'])) {
+          $additional_facets = explode(",", $config['dependent_processor']['settings'][$facet->id()]['reset_additional_facets']);
+          foreach ($additional_facets as $add_fac) {
+            if (!empty(trim($add_fac))) {
+              $reset_dependent_facets[] = trim($add_fac);
+            }
+          }
+        }
+        // End UMD Customization
       }
     }
-
-    // UMD Customization
-    if (in_array("month", $reset_dependent_facets)) {
-      $reset_dependent_facets[] = "day";
-    }
-    if (in_array("year", $reset_dependent_facets)) {
-      $reset_dependent_facets[] = "month";
-      $reset_dependent_facets[] = "day";
-    }
-    // End UMD Customization
 
     $original_filter_params = [];
     foreach ($this->getActiveFilters() as $facet_id => $values) {

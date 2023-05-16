@@ -148,6 +148,20 @@ class DependentFacetProcessor extends ProcessorPluginBase implements BuildProces
         ],
       ];
 
+      // UMD Customization
+      $build[$facet->id()]['reset_additional_facets'] = [
+        '#title' => $this->t('Reset Additional Facets'),
+        '#type' => 'textfield',
+        '#default_value' => empty($config[$facet->id()]['reset_additional_facets']) ? '' : $config[$facet->id()]['reset_additional_facets'],
+        '#description' => $this->t('Enter a comma-separated list of additional facets to reset on change. For example, in the case of multiple layers of dependencies. Example: month,day'),
+        '#states' => [
+          'visible' => [
+            ':input[name="facet_settings[' . $this->getPluginId() . '][settings][' . $facet->id() . '][enable]"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+      // End UMD Customization
+
       $build[$facet->id()]['negate'] = [
         '#title' => $this->t('Negate condition'),
         '#type' => 'checkbox',
