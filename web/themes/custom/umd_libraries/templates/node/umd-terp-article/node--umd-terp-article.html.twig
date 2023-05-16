@@ -51,7 +51,11 @@
       <li class="tag-list-item tag-list-heading">Categories</li>
       {% for term in node.field_umdt_ct_article_categories %}
         <li class="tag-list-item">
-          <a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': term.entity.id}) }}" class="tag-list-link">{{ term.entity.label }}</a>
+          {% if term.entity.field_alternate_url.0 %}
+            <a href="{{ term.entity.field_alternate_url.0.url }}" class="tag-list-link">{{ term.entity.label }}</a>
+          {% else %}
+            <a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': term.entity.id}) }}" class="tag-list-link">{{ term.entity.label }}</a>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
