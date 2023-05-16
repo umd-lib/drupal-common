@@ -1,7 +1,7 @@
 name: UMD Libraries Profile
 type: profile
 description: 'A UMD Terp focused install customized by the libraries.'
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ">=8"
 install:
   - node
   - block
