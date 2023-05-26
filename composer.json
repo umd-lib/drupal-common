@@ -21,6 +21,7 @@
         "drupal/block_field": "^1.0@RC",
         "drupal/bootstrap": "^3.21",
         "drupal/ckeditor": "^1.0",
+        "drupal/colorbox": "^2.0",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
@@ -40,6 +41,7 @@
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
         "drupal/link_attributes": "^1.11",
         "drupal/linkit": "^6.0",
+        "drupal/masonry": "^2.0",
         "drupal/masquerade": "^2.0",
         "drupal/masquerade_log": "^1.0",
         "drupal/node_view_permissions": "^1.2",
@@ -67,7 +69,8 @@
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.2@beta",
         "drush/drush": "^10.2",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "wikimedia/composer-merge-plugin": "^2.1"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -80,10 +83,16 @@
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
-            "drupal/core-project-message": true
+            "drupal/core-project-message": true,
+            "wikimedia/composer-merge-plugin": true
         }
     },
     "extra": {
+        "merge-plugin": {
+          "include": [
+            "web/modules/contrib/masonry/composer.libraries.json"
+          ]
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"

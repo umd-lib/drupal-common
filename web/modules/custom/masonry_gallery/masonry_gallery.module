@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Module file for masonry_gallery module.
+ */
+
+
+/**
+ * Implements hook_preprocess_node()
+ */
+function masonry_gallery_preprocess_node(&$variables) {
+  $type = $variables['node']->getType();
+  dsm($type);
+
+  if ($type == "umd_terp_basic_page") {
+    // Check for gallery field
+    $node = $variables['node'];
+
+    if (!empty($node->get('field_gallery_content')) && !empty($node->get('field_gallery_content')->getValue())) {
+      $moduleHandler = \Drupal::service('module_handler');
+      if ($moduleHandler->moduleExists('masonry')) {
+        $container = ".umd-gallery-wrapper";
+        $item_selector = "div.umd-gallery-content";
+        \Drupal::service('masonry.service')->applyMasonryDisplay($variables, $container, $item_selector);
+        $variables['#attached']['library'][] = 'masonry_gallery/masonry_gallery';
+      }
+    }
+  }
+}

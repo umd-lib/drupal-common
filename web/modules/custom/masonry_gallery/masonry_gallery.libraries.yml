@@ -1,0 +1,6 @@
+# Add CSS or JS to any module with a libraries file.
+masonry_gallery:
+  version: 1.x
+  css:
+    theme:
+      css/masonry_gallery.css: {}

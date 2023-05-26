@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override to display a gallery content item.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if content %}
+  <div class="umd-gallery-content">
+    {{ content }}
+  </div>
+{% endif %}

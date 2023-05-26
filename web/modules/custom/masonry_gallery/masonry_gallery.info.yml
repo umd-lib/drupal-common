@@ -1,0 +1,10 @@
+name: Masonry Gallery Override Module 
+description: Apply Masonry plugin to gallery field. 
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+  - masonry
+type: module
+
+core_version_requirement: ">=8"

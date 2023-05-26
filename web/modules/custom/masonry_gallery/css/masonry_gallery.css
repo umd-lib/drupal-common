@@ -1,0 +1,19 @@
+.masonry-item {
+  margin: 10px;
+  width: 250px;
+  box-shadow: 0 0 0 1px #979797;
+}
+
+.masonry-item[role="link"] {
+  transition: border .25s ease-in-out,box-shadow .25s ease-in-out,transform .25s ease-in-out;
+}
+
+.masonry-item div.umd-gallery-image {
+  padding: 0px;
+}
+
+.masonry-item div.inner-field-content {
+  padding: 0px 10px 0px 10px;
+  font-size: 1.0625rem;
+  color: #4a4a4a;
+}

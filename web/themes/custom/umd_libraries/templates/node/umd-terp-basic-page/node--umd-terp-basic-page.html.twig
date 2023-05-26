@@ -12,3 +12,9 @@
 </div>
 
 {{ content.field_umdt_ct_sections }}
+
+{% if content.field_gallery_content|field_value %}
+  <div class="umd-gallery-wrapper">
+    {{ content.field_gallery_content|field_value }}
+  </div>
+{% endif %}
