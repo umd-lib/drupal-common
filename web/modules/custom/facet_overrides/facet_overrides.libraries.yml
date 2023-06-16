@@ -1,0 +1,6 @@
+# Add CSS or JS to any module with a libraries file.
+facet_overrides:
+  version: 1.x
+  css:
+    theme:
+      css/facet_overrides.css: {}

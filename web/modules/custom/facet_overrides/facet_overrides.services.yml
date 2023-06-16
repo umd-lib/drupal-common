@@ -1,0 +1,4 @@
+services:
+  Drupal\facet_overrides\EventSubscriber\SolrQueryAlterEventSubscriber:
+    tags:
+    - { name: 'event_subscriber' }
