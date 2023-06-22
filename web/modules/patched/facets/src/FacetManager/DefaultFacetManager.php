@@ -199,10 +199,6 @@ class DefaultFacetManager {
             $facet_source->setDisplayEditInProgress(TRUE);
           }
         }
-if (!$dsming) {
-dsm($facet);
-$dsming = true;
-}
         $query->addCacheableDependency($facet);
       }
     }

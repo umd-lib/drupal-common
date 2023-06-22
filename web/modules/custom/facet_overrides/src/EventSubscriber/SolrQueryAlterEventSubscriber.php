@@ -8,9 +8,13 @@ use Drupal\search_api\Event\QueryPreExecuteEvent;
 use Drupal\search_api_solr\Event\PostExtractResultsEvent;
 use Drupal\search_api_solr\Event\SearchApiSolrEvents;
 use Drupal\search_api\Event\SearchApiEvents;
+use Drupal\search_api_solr\Event\PostExtractFacetsEvent;
 use Drupal\search_api\Query\QueryInterface as SapiQueryInterface;
 use Solarium\Core\Query\QueryInterface as SolariumQueryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Solarium\QueryType\Select\Query\FilterQuery;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Alters the query where necessary to implement business logic.
@@ -18,6 +22,26 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  * @package Drupal\facet_overrides\EventSubscriber
  */
 class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
+
+  const SETTINGS = 'facet_overrides.settings';
+
+  /**
+   * A configuration object containing samlauth settings.
+   *
+   * @var \Drupal\Core\Config\ImmutableConfig
+   */
+  protected $config;
+
+  /**
+   * Construct a new UserGroupsSyncEventSubscriber.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory) {
+    $this->config = $config_factory->get(static::SETTINGS);
+  }
+
   /**
    * {@inheritdoc}
    */
@@ -41,7 +65,6 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
 
     if ($query->getIndex()->getServerInstance()->supportsFeature('search_api_facets')) {
       $facet_source = 'search_api:' . str_replace(':', '__', $query->getSearchId());
-      dsm($query);
     }
   }
 
@@ -65,18 +88,25 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
    */
   public function postConvQuery(PostConvertedQueryEvent $event): void {
     $query = $event->getSearchApiQuery();
-    $search_index = $query->getIndex();
-    if ($search_index) {
-      $index_id = $search_index->id();
-      if ($index_id != 'fcrepo') {
-        return;
-      }
+
+    if (!$facet_overrides = $this->config->get('facet_overrides')) {
+      // Nothing to override. Just return.
+      return;
     }
+
+    $current_path = \Drupal::service('path.current')->getPath();
+    $current_uri = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+
+    if (empty($facet_overrides[$current_uri])) {
+      return; 
+    }
+
     $solarium_query = $event->getSolariumQuery();
-    $raw_query = $solarium_query->getQuery();
-
-    dsm($solarium_query);
-
-    // $solarium_query->setQuery($query_str);
+    $special_fq = new FilterQuery();
+    $special_fq->setKey('special_fq');
+    $special_fq->setQuery($facet_overrides[$current_uri]);
+    $solarium_query->addFilterQuery($special_fq);
+    
+    $fq = $solarium_query->getFilterQueries();
   }
 }

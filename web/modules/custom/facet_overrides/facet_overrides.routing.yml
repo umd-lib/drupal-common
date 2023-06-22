@@ -1,0 +1,9 @@
+facet_overrides.facet_overrides_settings_form:
+  path: '/admin/config/search/facet-overrides'
+  defaults:
+    _form: '\Drupal\facet_overrides\Form\FacetOverridesSettingsForm'
+    _title: 'Facet Browse Page Overrides'
+  requirements:
+    _permission: 'administer facets'
+  options:
+    _admin_route: TRUE

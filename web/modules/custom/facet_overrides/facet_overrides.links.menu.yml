@@ -1,0 +1,6 @@
+facet_overrides.facet_overrides_settings_form:
+  title: 'Browse Facet Overrides'
+  description: 'Inject facets queries on a per-page basis.'
+  parent: system.admin_config_search
+  weight: 99
+  route_name: facet_overrides.facet_overrides_settings_form
