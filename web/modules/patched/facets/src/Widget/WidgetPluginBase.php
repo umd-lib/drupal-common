@@ -178,7 +178,10 @@ abstract class WidgetPluginBase extends PluginBase implements WidgetPluginInterf
    */
   protected function buildListItems(FacetInterface $facet, ResultInterface $result) {
     $classes = ['facet-item'];
+
+    // UMD Customization
     $items = $this->prepareUMDLink($result);
+    // End UMD Customization
 
     $children = $result->getChildren();
     // Check if we need to expand this result.
@@ -236,6 +239,10 @@ abstract class WidgetPluginBase extends PluginBase implements WidgetPluginInterf
     return $item;
   }
 
+  /**
+   * UMD Customized version of prepareLink method above.
+   * All documentation applies.
+   */
   protected function prepareUMDLink(ResultInterface $result) {
     $item = $this->buildResultItem($result);
 
@@ -257,6 +264,7 @@ abstract class WidgetPluginBase extends PluginBase implements WidgetPluginInterf
     }
     return $item;
   }
+  // End UMD Customization
 
   /**
    * Builds a facet result item.

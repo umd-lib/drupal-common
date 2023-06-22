@@ -98,7 +98,7 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
     $current_uri = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
 
     if (empty($facet_overrides[$current_uri])) {
-      return; 
+      return;
     }
 
     $solarium_query = $event->getSolariumQuery();
@@ -106,7 +106,6 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
     $special_fq->setKey('special_fq');
     $special_fq->setQuery($facet_overrides[$current_uri]);
     $solarium_query->addFilterQuery($special_fq);
-    
     $fq = $solarium_query->getFilterQueries();
   }
 }

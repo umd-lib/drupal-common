@@ -30,40 +30,40 @@ class FacetOverridesSettingsForm extends ConfigFormBase {
     return 'facet_overrides_settings';
   }
 
-  /**  
-   * {@inheritdoc}  
-   */  
-  public function buildForm(array $form, FormStateInterface $form_state) {  
+  /**
+   * {@inheritdoc}
+   */
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config(static::SETTINGS);
 
     $facet_overrides_map = $config->get('facet_overrides');
     $search_overrides_map = $config->get('search_overrides');
 
-    $form['facet_overrides'] = [  
-      '#type' => 'textarea',  
-      '#title' => $this->t('Facet Overrides'),  
+    $form['facet_overrides'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Facet Overrides'),
       '#default_value' => $this->allowedValuesString($facet_overrides_map),
       '#description' => $this->t('This is the raw Solr query. It should be patterned as "/page|facet". For example, "/kaporter-correspondence|collection_title_facet:"Katherine Anne Porter".'),
     ];
-    $form['search_overrides'] = [  
-      '#type' => 'textarea',  
-      '#title' => $this->t('Search Overrides'),  
+    $form['search_overrides'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Search Overrides'),
       '#default_value' => $this->allowedValuesString($search_overrides_map),
       '#description' => $this->t('This is the Search API URL query parameter. It should be patterned as "/page|param". For example, "/kaporter-correspondence|collection=Katherine Anne Porter.'),
     ];
-    return parent::buildForm($form, $form_state);  
+    return parent::buildForm($form, $form_state);
   }
 
-  /**  
-   * {@inheritdoc}  
-   */  
-  public function submitForm(array &$form, FormStateInterface $form_state) {  
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     $facet_overrides_map = $this->extractAllowedValues($form_state->getValue('facet_overrides'));
     $this->configFactory->getEditable(static::SETTINGS)->set('facet_overrides', $facet_overrides_map)->save();
     $search_overrides_map = $this->extractAllowedValues($form_state->getValue('search_overrides'));
     $this->configFactory->getEditable(static::SETTINGS)->set('search_overrides', $search_overrides_map)->save();
     parent::submitForm($form, $form_state);
-  } 
+  }
 
   /**
    * Generates a string representation of an array of 'allowed values'.
