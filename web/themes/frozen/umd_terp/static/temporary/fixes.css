@@ -50,17 +50,7 @@ div.page-section-single_block .facet-block ul {
   grid-template-columns: auto auto auto auto;
 }
 
-div.page-section-single_block .facet-block ul li.facets-reset input {
-  display: none;
-}
-div.page-section-single_block .facet-block ul li.facets-reset label {
-  display: none;
-}
-div.page-section-single_block .facet-block ul li.facets-reset span {
-  display: none;
-}
 div.page-section-single_block .facets-widget-checkbox ul {
-  margin-top: -45px;
   padding-left: 15px;
 }
 
