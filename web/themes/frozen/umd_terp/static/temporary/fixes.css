@@ -47,17 +47,43 @@ div.fcrepo-result .views-field-component-not-tokenized .field-content {
 
 div.page-section-single_block .facet-block ul {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-flow: row dense;
+  grid-gap: .25rem;
 }
 
 div.page-section-single_block .facets-widget-checkbox ul {
   padding-left: 15px;
 }
 
+div.page-section-single_block .facets-soft-limit-link {
+  font-size: 1.12rem;
+}
+
+.facets-soft-limit-link {
+  font-weight: bold;
+}
+
+div.page-section-single_block .facet-inactive .facets-soft-limit-link:before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f13a ";
+  font-weight: 900;
+  padding-right: 5px;
+  font-size: .9rem;
+}
+
+div.page-section-single_block .facet-inactive .open:before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f139 ";
+  font-weight: 900;
+  padding-right: 5px;
+  font-size: .9rem;
+}
+
 @media (max-width: 992px) {
   div.page-section-single_block .facet-block ul {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   div.page-section-single_block .facet-block h3 {
     font-size: 1.25rem;
