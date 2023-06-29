@@ -46,7 +46,11 @@ abstract class WidgetPluginBase extends PluginBase implements WidgetPluginInterf
   public function __construct(array $configuration, $plugin_id, $plugin_definition) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->setConfiguration($configuration);
-    $this->umd_config = \Drupal::config('facet_overrides.settings');
+    // UMD Customization
+    if (\Drupal::moduleHandler()->moduleExists('facet_overrides')) {
+      $this->umd_config = \Drupal::config('facet_overrides.settings');
+    }
+    // End UMD Customization
     $current_path = \Drupal::service('path.current')->getPath();
     $this->current_uri = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
   }
@@ -180,7 +184,11 @@ abstract class WidgetPluginBase extends PluginBase implements WidgetPluginInterf
     $classes = ['facet-item'];
 
     // UMD Customization
-    $items = $this->prepareUMDLink($result);
+    if (\Drupal::moduleHandler()->moduleExists('facet_overrides')) {
+      $items = $this->prepareUMDLink($result);
+    } else {
+      $items = $this->prepareLink($result);
+    }
     // End UMD Customization
 
     $children = $result->getChildren();
