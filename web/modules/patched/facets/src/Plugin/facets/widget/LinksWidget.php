@@ -43,7 +43,14 @@ class LinksWidget extends WidgetPluginBase {
    */
   public function build(FacetInterface $facet) {
     $build = parent::build($facet);
-    $this->appendWidgetLibrary($build);
+
+    // UMD Customization
+    $is_facet_source = $this->isFacetSourceUrl($facet);
+    if ($is_facet_source) {
+      $this->appendWidgetLibrary($build);
+     }
+    // End UMD Customization
+
     $soft_limit = (int) $this->getConfiguration()['soft_limit'];
     if ($soft_limit !== 0) {
       $show_less_label = $this->getConfiguration()['soft_limit_settings']['show_less_label'];
@@ -59,8 +66,8 @@ class LinksWidget extends WidgetPluginBase {
 
     $results = $facet->getResults();
     // UMD Customization
-    // if ($this->getConfiguration()['show_reset_link'] && count($results) > 0 && (!$this->getConfiguration()['hide_reset_when_no_selection'] || $facet->getActiveItems()) && $this->isFacetSourceUrl($facet)) {
-    if ($this->getConfiguration()['show_reset_link'] && count($results) > 0 && (!$this->getConfiguration()['hide_reset_when_no_selection'] || $facet->getActiveItems()) && $this->isFacetSourceUrl($facet)) {
+    // if ($this->getConfiguration()['show_reset_link'] && count($results) > 0 && (!$this->getConfiguration()['hide_reset_when_no_selection'] || $facet->getActiveItems())) {
+    if ($this->getConfiguration()['show_reset_link'] && count($results) > 0 && (!$this->getConfiguration()['hide_reset_when_no_selection'] || $facet->getActiveItems()) && $is_facet_source) {
     // End UMD Customization
       // Add reset link.
       $max_items = array_sum(array_map(function ($item) {
