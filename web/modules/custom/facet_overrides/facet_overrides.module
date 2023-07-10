@@ -4,3 +4,17 @@
  * @file
  * Module file for facet overrides module.
  */
+
+/**
+ * Implements hook_theme().
+ */
+function facet_overrides_theme() {
+  return [
+    'facet_overrides_no_results' => [
+      'variables' => [
+        'no_results_message' => '',
+        'facet_search' => '',
+      ],
+    ],
+  ];
+}

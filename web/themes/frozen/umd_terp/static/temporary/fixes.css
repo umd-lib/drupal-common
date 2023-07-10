@@ -80,6 +80,12 @@ div.page-section-single_block .facet-inactive .open:before {
   font-size: .9rem;
 }
 
+div.pcdm-downloads span {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 @media (max-width: 992px) {
   div.page-section-single_block .facet-block ul {
     display: grid;
