@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.1",
         "drupal/autologout": "^1.4",
         "drupal/block_field": "^1.0@RC",
@@ -84,10 +85,17 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "wikimedia/composer-merge-plugin": true
+            "wikimedia/composer-merge-plugin": true,
+            "cweagans/composer-patches": true
         }
     },
     "extra": {
+        "enable-patching": true,
+        "patches": {
+          "drupal/core": {
+            "Allow exposed form to preserve URL query parameters": "https://www.drupal.org/files/issues/2023-04-18/2681953-42.patch"
+          }
+        },
         "merge-plugin": {
           "include": [
             "web/modules/contrib/masonry/composer.libraries.json"
