@@ -68,9 +68,9 @@ class MiradorViewer extends FieldPluginBase {
     $pcdm_prefix = null;
     if (!empty($url_array['relpath'])) {
       $pcdm_prefix = $url_array['relpath'];
-    } elseif (!empty($full_uri) && str_contains($full_uri, 'relpath=')) {
-
-      parse_str($full_uri, $uri_array);
+    } elseif (!empty($full_uri) && (str_contains($full_uri, 'relpath=') || str_contains($full_uri, 'query'))) {
+      $trunc_uri = explode('?', $full_uri);
+      parse_str(!empty($trunc_uri[1]) ? $trunc_uri[1] : $full_uri, $uri_array);
       foreach ($uri_array as $key => $value) {
         if (str_contains($key, 'relpath')) {
           $pcdm_prefix = $value;
@@ -80,9 +80,8 @@ class MiradorViewer extends FieldPluginBase {
         }
       }
       if ($pcdm_prefix == null) {
-        $pcdm_prefix = $this->getCollectionPrefix();
+        $pcdm_prefix = $fc->getCollectionPrefix();
       }
-
     } else {
       $pcdm_prefix = $fc->getCollectionPrefix();
     }
