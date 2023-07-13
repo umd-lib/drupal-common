@@ -106,7 +106,7 @@ class NoFacetResultsBlock extends BlockBase implements ContainerFactoryPluginInt
       '#no_results_message' => $rendered_message,
       '#facet_search' => $facet_search,
       '#cache' => [
-        'max-age' => 3600,
+        'max-age' => 0,
       ],
       '#attached' => [
         'library' => [
