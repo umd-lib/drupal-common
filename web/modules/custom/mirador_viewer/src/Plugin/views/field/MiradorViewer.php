@@ -65,20 +65,30 @@ class MiradorViewer extends FieldPluginBase {
     parse_str($raw_param, $url_array);
     $query_str = !empty($url_array['query']) ? trim($url_array['query']) : null;
     $full_uri = \Drupal::request()->getRequestUri();
+    $pcdm_prefix = null;
     if (!empty($url_array['relpath'])) {
-      $collection_prefix = str_replace('/', ':', $url_array['relpath']);
+      $pcdm_prefix = $url_array['relpath'];
     } elseif (!empty($full_uri) && str_contains($full_uri, 'relpath=')) {
-      $uri_split = explode('relpath=', $full_uri);
-      if (!empty($uri_split[1])) {
-        $collection_prefix = str_replace('/', ':', $uri_split[1]);
-      } else {
-        $collection_prefix = $fc->getCollectionPrefix();
+
+      parse_str($full_uri, $uri_array);
+      foreach ($uri_array as $key => $value) {
+        if (str_contains($key, 'relpath')) {
+          $pcdm_prefix = $value;
+        }
+        if ($key == 'query') {
+          $query_str = $value;
+        }
       }
+      if ($pcdm_prefix == null) {
+        $pcdm_prefix = $this->getCollectionPrefix();
+      }
+
     } else {
-      $collection_prefix = $fc->getCollectionPrefix();
+      $pcdm_prefix = $fc->getCollectionPrefix();
     }
+    $pcdm_prefix = str_replace('/', ':', $pcdm_prefix);
     $c = new DisplayMiradorController();
-    $render = $c->viewMiradorObject($id, $collection_prefix, $query_str);
+    $render = $c->viewMiradorObject($id, $pcdm_prefix, $query_str);
     if (!empty($render)) {
       return $render;
     }
