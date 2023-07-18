@@ -77,6 +77,12 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
     $query->addParam('files.q', '{!terms f=id v=$row.pcdm_files}');
     $query->addParam('files.fl', 'id,title,filename,mime_type');
     $query->addParam('files.fq', 'mime_type:application/pdf');
+    $keys = $search_query->getKeys();
+    if (!preg_match('/^(["\']).*\1$/m', $keys)) {
+      $replace_me = [ '[', ']', '{', '}', '*', '+', '(', ')', ':', '%' ];
+      $keys = str_replace($replace_me, '', $keys);
+      $search_query->keys($keys);
+    }
   }
 
 

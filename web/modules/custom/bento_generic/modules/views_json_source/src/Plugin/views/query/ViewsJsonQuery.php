@@ -196,6 +196,12 @@ class ViewsJsonQuery extends QueryPluginBase {
     if (!empty($view->id()) && $view->id() == 'bento_search' && empty($this->urlParams)) {
       return;
     }
+
+    $encoded_params = [];
+    foreach ($this->urlParams as $param) {
+      $encoded_params[] = urlencode($param);
+    }
+    $this->urlParams = $encoded_params;
     // END UMD Bento Tweak
 
     $data = new \stdClass();

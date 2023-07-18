@@ -88,7 +88,12 @@ class FcAnnotation extends FieldPluginBase {
     $query->addParam('rows', '100');
     $query->createFilterQuery('rdf_type')->setQuery('rdf_type:oa\:Annotation');
     $query->createFilterQuery('source')->setQuery($id_str);
-    $query->setQuery($q);
+    if (!preg_match('/^(["\']).*\1$/m', $q)) {
+      $replace_me = [ '[', ']', '{', '}', '*', '+', '(', ')', ':', '%' ];
+      $q = str_replace($replace_me, '', $q);
+    }
+    $full_query = "(text:(($q))^1 text_ja:(($q))^1 text_ja_latn:(($q))^1 title:(($q))^1)";
+    $query->setQuery($full_query);
     $hl = $query->getHighlighting();
     $hl->setFields('extracted_text');
     $hl->setSimplePrefix('<strong>');
