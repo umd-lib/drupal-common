@@ -151,6 +151,7 @@ function bento_generic_icon_map($raw_name) {
     "audio/video" => "result-icons fas fa-video",
     "moving image" => "result-icons fas fa-video",
     "page" => "result-icons far fa-file-alt",
+    "records (documents)" => "result-icons far fa-file-alt",
     "sound recording" => "result-icons fas fa-headphones"
   ];
   return !empty($icon_map[$raw_name]) ? $icon_map[$raw_name] : $icon_map['other'];
@@ -183,6 +184,7 @@ function bento_generic_format_map($raw_name) {
     "database" => "Database",
     "web_page" => "Webpage",
     "page" => "Page",
+    "records (documents)" => "Records (documents)",
     "sound recording" => "Sound Recording"
   ];
   return !empty($format_map[$raw_name]) ? $format_map[$raw_name] : "Other";
