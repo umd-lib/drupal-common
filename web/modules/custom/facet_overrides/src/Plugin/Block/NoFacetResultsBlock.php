@@ -81,8 +81,9 @@ class NoFacetResultsBlock extends BlockBase implements ContainerFactoryPluginInt
         parse_str($query_string, $query_array);
         if (!empty($query_array['query'])) {
           $rendered_message = str_replace('%query%', $query_array['query'], $rendered_message);
+        } else {
+          $rendered_message = "No results.";
         }
-        dsm($query_array);
         $collection = null;
         if (!empty($query_array['f'])) {
           $facets = $query_array['f'];
