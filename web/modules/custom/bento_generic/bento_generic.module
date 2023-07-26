@@ -126,33 +126,36 @@ function bento_generic_views_pre_view(ViewExecutable $view, $display_id, array &
 function bento_generic_icon_map($raw_name) {
   $raw_name = strtolower($raw_name);
   $icon_map = [
-    "archival_material" => "result-icons fas fa-archive",
-    "article" => "result-icons far fa-file-alt",
-    "audio" => "result-icons fas fa-headphones",
-    "audio_book" => "result-icons fas fa-file-audio",
-    "book" => "result-icons fas fa-book",
-    "cd" => "result-icons fas fa-compact-disc",
-    "computer_file" => "result-icons far fa-file",
-    "dvd" => "result-icons fas fa-compact-disc",
-    "e_book" => "result-icons fas fa-tablet-alt",
-    "e_music" => "result-icons fas fa-headphones",
-    "e_video" => "result-icons fas fa-video",
-    "image" => "result-icons fas fa-image",
-    "journal" => "result-icons fas fa-book-open",
-    "lp" => "result-icons fas fa-compact-disc",
-    "map" => "result-icons fas fa-map-marked",
-    "newspaper" => "result-icons far fa-newspaper",
-    "score" => "result-icons fas fa-music",
-    "thesis" => "result-icons fas fa-graduation-cap",
-    "video_recording" => "result-icons fas fa-video",
-    "other" => "result-icons fas fa-question",
-    "database" => "result-icons fas fa-database margin-top-10",
-    "web_page" => "result-icons fas fa-link",
-    "audio/video" => "result-icons fas fa-video",
-    "moving image" => "result-icons fas fa-video",
-    "page" => "result-icons far fa-file-alt",
+    "archival_material" => "result-icons fas fa-archive",	// "archival_material": "result-icons fas fa-archive",
+    "article" => "result-icons far fa-file-alt",		// "article": "result-icons far fa-file-alt",
+    "audio" => "result-icons fas fa-headphones",		// "audio": "result-icons fas fa-headphones",
+    "audio_book" => "result-icons fas fa-file-audio",		// "audio_book": "result-icons fas fa-file-audio",
+    "book" => "result-icons fas fa-book",			// "book": "result-icons fas fa-book",
+    "cd" => "result-icons fas fa-compact-disc",			// "cd": "result-icons fas fa-compact-disc",
+    "computer_file" => "result-icons far fa-file",		// "computer_file", "result-icons far fa-file",
+    "dvd" => "result-icons fas fa-compact-disc",		// "dvd": "result-icons fas fa-compact-disc",
+    "e_book" => "result-icons fas fa-tablet-alt",		// "e_book": "result-icons fas fa-tablet-alt",
+    "e_music" => "result-icons fas fa-headphones",		// "e_music": "result-icons fas fa-headphones",
+    "e_video" => "result-icons fas fa-video",			// "e_video": "result-icons fas fa-video",
+    "image" => "result-icons fas fa-image",			// "image": "result-icons fas fa-image",
+    "photographs" => "result-icons fas fa-image",
+    "journal" => "result-icons fas fa-book-open",		// "journal": "result-icons fas fa-book-open",
+    "lp" => "result-icons fas fa-compact-disc",			// "lp": "result-icons fas fa-compact-disc",
+    "map" => "result-icons fas fa-map-marked",			// "map": "result-icons fas fa-map-marked",
+    "newspaper" => "result-icons far fa-newspaper",		// "newspaper", "result-icons far fa-newspaper",
+    "score" => "result-icons fas fa-music",			// "score", "result-icons fas fa-music",
+    "thesis" => "result-icons fas fa-graduation-cap",		// "thesis", "result-icons fas fa-graduation-cap",
+    "video_recording" => "result-icons fas fa-video",		// "video_recording", "result-icons fas fa-video",
+    "other" => "result-icons fas fa-question",			// "other": "result-icons fas fa-question",
+    "database" => "result-icons fas fa-database margin-top-10",	// "database": "result-icons fas fa-database margin-top-10",
+    "web_page" => "result-icons fas fa-link",			// "web_page": "result-icons fas fa-link",
+    "audio/video" => "result-icons fas fa-video",		// "audio/video": "result-icons fas fa-video",
+    "moving image" => "result-icons fas fa-video",		// "moving image": "result-icons fas fa-video",
+    "page" => "result-icons far fa-file-alt",			// "page": "result-icons far fa-file-alt",
+    "letter" => "result-icons far fa-file-alt",	
+    "issue" => "result-icons far fa-file-alt",	
     "records (documents)" => "result-icons far fa-file-alt",
-    "sound recording" => "result-icons fas fa-headphones"
+    "sound recording" => "result-icons fas fa-headphones"	// "sound recording": "result-icons fas fa-headphones"
   ];
   return !empty($icon_map[$raw_name]) ? $icon_map[$raw_name] : $icon_map['other'];
 }
@@ -185,7 +188,10 @@ function bento_generic_format_map($raw_name) {
     "web_page" => "Webpage",
     "page" => "Page",
     "records (documents)" => "Records (documents)",
-    "sound recording" => "Sound Recording"
+    "sound recording" => "Sound Recording",
+    "photographs" => "Photograph",
+    "issue" => "Issue",
+    "letter" => "Letter"
   ];
   return !empty($format_map[$raw_name]) ? $format_map[$raw_name] : "Other";
 }
