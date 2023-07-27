@@ -98,9 +98,10 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
         return;
       }
     }
+    $keys = $query->getKeys();
     $solarium_query = $event->getSolariumQuery();
     $raw_query = $solarium_query->getQuery();
-    $query_str = "{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND} ";
+    $query_str = "_query_:{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND}" . $keys . " ";
 
     if (!empty($raw_query)) {
       $query_str .= $raw_query;
