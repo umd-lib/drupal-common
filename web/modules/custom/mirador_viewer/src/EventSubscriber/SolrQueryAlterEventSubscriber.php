@@ -79,10 +79,15 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
     $query->addParam('files.fq', 'mime_type:application/pdf');
     $keys = $search_query->getKeys();
     if (!preg_match('/^(["\']).*\1$/m', $keys)) {
-      $replace_me = [ '[', ']', '{', '}', '*', '+', '(', ')', ':', '%' ];
-      $keys = str_replace($replace_me, '', $keys);
+      $keys = $this->stripQueryChars($keys);
       $search_query->keys($keys);
     }
+  }
+
+  public function stripQueryChars($keys) {
+    $replace_me = [ '[', ']', '{', '}', '*', '+', '(', ')', ':', '%' ];
+    $keys = str_replace($replace_me, '', $keys);
+    return $keys;
   }
 
 
@@ -101,7 +106,7 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
     $keys = $query->getKeys();
     $solarium_query = $event->getSolariumQuery();
     $raw_query = $solarium_query->getQuery();
-    $query_str = "_query_:{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND}" . $keys . " ";
+    $query_str = "_query_:{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND}" . str_replace('"', '\"', $this->stripQueryChars($keys)) . " ";
 
     if (!empty($raw_query)) {
       $query_str .= $raw_query;
