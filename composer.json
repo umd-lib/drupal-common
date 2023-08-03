@@ -45,6 +45,7 @@
         "drupal/masonry": "^2.0",
         "drupal/masquerade": "^2.0",
         "drupal/masquerade_log": "^1.0",
+        "drupal/matomo": "^1.21",
         "drupal/node_view_permissions": "^1.2",
         "drupal/override_node_options": "^2.7",
         "drupal/paragraphs": "^1.14",
