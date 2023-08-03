@@ -89,6 +89,9 @@ div.pcdm-downloads span {
 #views-exposed-form-fcrepo-search-page-1 div.js-form-type-textfield {
   flex-basis: fit-content;
 }
+#views-exposed-form-fcrepo-search-page-1 div.js-form-item-sort-by {
+  flex-basis: min-content;
+}
 
 @media (max-width: 992px) {
   div.page-section-single_block .facet-block ul {
@@ -97,6 +100,9 @@ div.pcdm-downloads span {
   }
   div.page-section-single_block .facet-block h3 {
     font-size: 1.25rem;
+  }
+  #views-exposed-form-fcrepo-search-page-1 div.js-form-item-sort-by {
+    flex-basis: content;
   }
 }
 
