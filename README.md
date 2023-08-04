@@ -9,12 +9,6 @@ installed.
 
             alias composer="composer.phar"
 
-Add the following to your /etc/hosts (customized if you wish):
-
-            127.0.0.1		drupal.docker.localhost
-            127.0.0.1		portainer.drupal.docker.localhost
-            127.0.0.1		solr.drupal.docker.localhost
-
 ## Local Deploy (new site)
 
 ### Install
@@ -30,16 +24,6 @@ To deploy locally, clone the main branch:
             > git clone https://github.com/umd-lib/drupal-common.git common-demo
             > cd common-demo
             > git checkout main
-
-Assuming this site will run the UMD Libraries theme, you will need to clone this
-repo as well:
-
-            > cd web/themes
-            > mkdir custom	# If not already created
-            > cd custom
-            > git clone git@github.com:umd-lib/umd-libraries-theme.git umd_libraries
-            > cd umd_libraries
-            > git checkout develop
 
 Install the site using Composer. This will download all dependencies and prep
 for local deployment.
@@ -78,7 +62,8 @@ After a minute, the site should be available at:
 
 * http://drupal.docker.localhost:8000 (or wherever you deployed).
 
-For a new site, Drupal will launch the site setup wizard. Use whichever Postgres
+For a new site, Drupal will launch the site setup wizard. Use the UMD Profile
+to get the standard libraries configuration.Use whichever Postgres
 username/password/database combos you had set up in your .env file. Note that
 you will need to change host under  Advanced Operations in your database
 configuration. Change this to simply *postgres*.
@@ -88,56 +73,8 @@ configuration form.
 
 ## Basic Configuration
 
-### Install UMD Terp Stack
-
-Once the site is installed, open the *Extend* panel, which lists
-plugins--enabled and disabled.
-
-Install the following:
-
-* UMD Schoolwide Header
-* UMD Terp (all)
-* Twig Field Value
-* Twig Tweak
-* Image Optimize - Binaries
-* CAS (no need to install CAS Attributes)
-* Metatag
-* Google Tag Manager
-* SAMLAuth Attrib (to be used later)
-
-Some are necessary for UMD Terp to behave correctly. Others are just nice to
-have or intended for future-proofing.
-
-(Note that in local, this installation could take a while. To prevent PHP
-timeouts, consider enabling only five or so at a time as many also install
-dependencies.)
-
-UMD Terp also requires an *optimized* Image Style. For this, click
-*Configuration* and first ensure you have an *Image Optimize* pipeline for Local
-Binaries. Then, under *Image styles*, create a style called *optimized* using
-the *Local Binaries* pipeline.
-
-We can now enable the UMD Terp theme. Do this under *Appearance*. Note that it
-will not be used as the administration theme. Visit the site homepage and if all
-comes up without errors, you can now install the UMD Libraries theme.
-
-### Configure UMD Libraries theme
-
-If you haven't yet, install the UMD Libraries theme under *Appearance* as
-default. Again, this should not be used as the administration theme (which
-should be kept as Seven unless another admin theme is intentionally installed.)
-
-Once installed, click *Settings* for UMD Libraries.
-
-*Logo Image* and *Favicon* can be kept at defaults.
-
-*UMD Terp Header* should be set to *Light header style* (as dark is not
-currently supported).
-
-Under *UMD Terp Social Media Accounts*, click *Hide Social Icons*.
-
-*UMD Libraries Header Settings* has options if this is a digital branded site,
-but otherwise, all other options can be left empty/unchecked for now.
+The UMD Profile should prepare your site for basic functionality. If you
+encounter errors, please report them.
 
 #### Menu Configuration
 
