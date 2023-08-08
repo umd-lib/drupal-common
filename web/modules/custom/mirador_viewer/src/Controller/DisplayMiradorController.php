@@ -125,9 +125,13 @@ class DisplayMiradorController extends ControllerBase implements TrustedCallback
         }
         if (!empty($member['files'][0]['id'])) {
           $id = $member['files'][0]['id'];
+        } elseif (!empty($member['files']['docs'][0]['id'])) {
+          $id = $member['files']['docs'][0]['id'];
         }
         if (!empty($member['files'][0]['mime_type'])) {
           $mime = $member['files'][0]['mime_type'];
+        } elseif (!empty($member['files']['docs'][0]['mime_type'])) {
+          $mime = $member['files']['docs'][0]['mime_type'];
         }
 
         if (!empty($title) && !empty($id) && !empty($mime)) {
@@ -201,8 +205,12 @@ class DisplayMiradorController extends ControllerBase implements TrustedCallback
     $token = $this->fc->config->get('fcrepo_token');
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $uri);
-    $authorization = "Authorization: Bearer ". $token;
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: text/html' , $authorization ));
+    if (!empty($token)) {
+      $authorization = "Authorization: Bearer ". $token;
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: text/html' , $authorization ));
+    } else {
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: text/html'));
+    }
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
