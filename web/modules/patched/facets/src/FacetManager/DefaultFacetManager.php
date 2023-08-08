@@ -17,6 +17,10 @@ use Drupal\facets\Processor\ProcessorInterface;
 use Drupal\facets\Processor\ProcessorPluginManager;
 use Drupal\facets\QueryType\QueryTypePluginManager;
 
+// UMD Custom
+use Symfony\Component\HttpFoundation\Request;
+// End UMD Custom
+
 /**
  * The facet manager.
  *
@@ -116,8 +120,25 @@ class DefaultFacetManager {
     /** @var \Drupal\facets\FacetInterface[] $facets */
     $facets = $this->getFacetsByFacetSourceId($facetsource_id);
 
+    // UMD Customization
+    $current_path = \Drupal::service('path.current')->getPath();
+    $current_uri = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+    // UMD Customization
+
     foreach ($facets as $facet) {
       $processors = $facet->getProcessors();
+
+      // UMD Customizations
+      $ignore_dependencies = false;
+      $facet_source_path = $facet->getFacetSource()->getPath();
+      if (!empty($facet_source_path) && $facet_source_path != $current_uri) {
+        if (!empty($processors['dependent_processor'])) {
+          $facet->removeProcessor('dependent_processor');
+          unset($processors['dependent_processor']);
+          
+        }
+      }
+      // End UMD Customizations
 
       if (isset($processors['dependent_processor'])) {
         $conditions = $processors['dependent_processor']->getConfiguration();
@@ -178,7 +199,6 @@ class DefaultFacetManager {
             $facet_source->setDisplayEditInProgress(TRUE);
           }
         }
-
         $query->addCacheableDependency($facet);
       }
     }
@@ -532,5 +552,4 @@ class DefaultFacetManager {
 
     return $results;
   }
-
 }

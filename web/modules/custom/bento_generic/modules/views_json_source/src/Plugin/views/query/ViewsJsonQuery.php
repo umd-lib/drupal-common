@@ -196,6 +196,12 @@ class ViewsJsonQuery extends QueryPluginBase {
     if (!empty($view->id()) && $view->id() == 'bento_search' && empty($this->urlParams)) {
       return;
     }
+
+    $encoded_params = [];
+    foreach ($this->urlParams as $param) {
+      $encoded_params[] = urlencode($param);
+    }
+    $this->urlParams = $encoded_params;
     // END UMD Bento Tweak
 
     $data = new \stdClass();
@@ -212,14 +218,20 @@ class ViewsJsonQuery extends QueryPluginBase {
       $data->contents = $this->fetchFile($url);
     }
     catch (\Exception $e) {
-      \Drupal::messenger()->addMessage($e->getMessage(), 'error');
+      // UMD Customization
+      // \Drupal::messenger()->addMessage($e->getMessage(), 'error');
+      \Drupal::logger('views_json_source')->warning($e->getMessage());
+      // End UMD Customization
       return;
     }
 
     // When content is empty, parsing it is pointless.
     if (!$data->contents) {
       if ($this->options['show_errors']) {
-        \Drupal::messenger()->addMessage($this->t('Views JSON Backend: File is empty.'), 'warning');
+        // UMD Customization
+        // \Drupal::messenger()->addMessage($this->t('Views JSON Backend: File is empty.'), 'warning');
+        \Drupal::logger('views_json_source')->warning('Views JSON Backend: File is empty.');
+        // End UMD Customize
       }
       return;
     }
@@ -245,13 +257,19 @@ class ViewsJsonQuery extends QueryPluginBase {
           $this->t('Malformed UTF-8 characters, possibly incorrectly encoded'),
         ];
         $msg = $tmp[json_last_error()] . ' - ' . $this->options['json_file'];
-        \Drupal::messenger()->addMessage($msg, 'error');
+        // UMD Customization
+        // \Drupal::messenger()->addMessage($msg, 'error');
+        \Drupal::logger('views_json_source')->warning($e->getMessage());
+        // End UMD Customization
       }
       else {
-        \Drupal::messenger()->addMessage($this->t(
-          'Views JSON Backend: Parse error') .
-          ' - ' . $this->options['json_file'], 'error'
-        );
+        // UMD Customizations
+        // \Drupal::messenger()->addMessage($this->t(
+        //   'Views JSON Backend: Parse error') .
+        //   ' - ' . $this->options['json_file'], 'error'
+        // );
+        \Drupal::logger('views_json_source')->warning("JSON Backend: Parse Error - " . $this->options['json_file']);
+        // End UMD Customization
       }
     }
   }

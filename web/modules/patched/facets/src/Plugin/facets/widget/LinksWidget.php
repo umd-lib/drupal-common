@@ -7,6 +7,10 @@ use Drupal\facets\FacetInterface;
 use Drupal\facets\Result\Result;
 use Drupal\facets\Widget\WidgetPluginBase;
 
+// UMD Custom
+use Symfony\Component\HttpFoundation\Request;
+// End UMD Custom
+
 /**
  * The links widget.
  *
@@ -39,7 +43,14 @@ class LinksWidget extends WidgetPluginBase {
    */
   public function build(FacetInterface $facet) {
     $build = parent::build($facet);
-    $this->appendWidgetLibrary($build);
+
+    // UMD Customization
+    $is_facet_source = $this->isFacetSourceUrl($facet);
+    if ($is_facet_source) {
+      $this->appendWidgetLibrary($build);
+     }
+    // End UMD Customization
+
     $soft_limit = (int) $this->getConfiguration()['soft_limit'];
     if ($soft_limit !== 0) {
       $show_less_label = $this->getConfiguration()['soft_limit_settings']['show_less_label'];
@@ -54,7 +65,10 @@ class LinksWidget extends WidgetPluginBase {
     }
 
     $results = $facet->getResults();
-    if ($this->getConfiguration()['show_reset_link'] && count($results) > 0 && (!$this->getConfiguration()['hide_reset_when_no_selection'] || $facet->getActiveItems())) {
+    // UMD Customization
+    // if ($this->getConfiguration()['show_reset_link'] && count($results) > 0 && (!$this->getConfiguration()['hide_reset_when_no_selection'] || $facet->getActiveItems())) {
+    if ($this->getConfiguration()['show_reset_link'] && count($results) > 0 && (!$this->getConfiguration()['hide_reset_when_no_selection'] || $facet->getActiveItems()) && $is_facet_source) {
+    // End UMD Customization
       // Add reset link.
       $max_items = array_sum(array_map(function ($item) {
         return $item->getCount();
@@ -114,6 +128,24 @@ class LinksWidget extends WidgetPluginBase {
 
     return $build;
   }
+
+  // UMD Customization
+  /**
+   * UMD Customization function to verify if
+   * facet display is at search source URI
+   * @args
+   *  FacetInterface
+   * @return
+   *  bool
+   */
+  protected function isFacetSourceUrl(FacetInterface $facet) {
+      $current_path = \Drupal::service('path.current')->getPath();
+      $current_uri = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+      $facet_source_path = $facet->getFacetSource()->getPath();
+
+      return $current_uri == $facet_source_path;
+  }
+  // End UMD Customization
 
   /**
    * Appends widget library and relevant information for it to build array.

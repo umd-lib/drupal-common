@@ -12,6 +12,10 @@ use Drupal\facets\FacetInterface;
 use Drupal\facets\Result\Result;
 use Drupal\facets\Result\ResultInterface;
 
+// UMD Customization
+use Symfony\Component\HttpFoundation\Request;
+// End UMD Customization
+
 /**
  * A base class for widgets that implements most of the boilerplate.
  */
@@ -31,12 +35,24 @@ abstract class WidgetPluginBase extends PluginBase implements WidgetPluginInterf
    */
   protected $facet;
 
+  // UMD Customization
+  protected $umd_config;
+  protected $current_uri;
+  // End UMD Customization
+
   /**
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->setConfiguration($configuration);
+    // UMD Customization
+    if (\Drupal::moduleHandler()->moduleExists('facet_overrides')) {
+      $this->umd_config = \Drupal::config('facet_overrides.settings');
+    }
+    // End UMD Customization
+    $current_path = \Drupal::service('path.current')->getPath();
+    $this->current_uri = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
   }
 
   /**
@@ -166,7 +182,14 @@ abstract class WidgetPluginBase extends PluginBase implements WidgetPluginInterf
    */
   protected function buildListItems(FacetInterface $facet, ResultInterface $result) {
     $classes = ['facet-item'];
-    $items = $this->prepareLink($result);
+
+    // UMD Customization
+    if (\Drupal::moduleHandler()->moduleExists('facet_overrides')) {
+      $items = $this->prepareUMDLink($result);
+    } else {
+      $items = $this->prepareLink($result);
+    }
+    // End UMD Customization
 
     $children = $result->getChildren();
     // Check if we need to expand this result.
@@ -223,6 +246,33 @@ abstract class WidgetPluginBase extends PluginBase implements WidgetPluginInterf
 
     return $item;
   }
+
+  /**
+   * UMD Customized version of prepareLink method above.
+   * All documentation applies.
+   */
+  protected function prepareUMDLink(ResultInterface $result) {
+    $item = $this->buildResultItem($result);
+
+    if (!is_null($result->getUrl())) {
+      $item_url = $result->getUrl();
+      $item_options = $item_url->getOptions();
+      if (!empty($item_options['query']['f'])) {
+        if (!empty($this->current_uri)) {
+          if ($search_overrides = $this->umd_config->get('search_overrides')) {
+            if (!empty($search_overrides[$this->current_uri])) {
+              array_push($item_options['query']['f'], $search_overrides[$this->current_uri]);
+              $item_url->setOptions($item_options);
+              $result->setUrl($item_url);
+            }
+          }
+        }
+      }
+      $item = (new Link($item, $result->getUrl()))->toRenderable();
+    }
+    return $item;
+  }
+  // End UMD Customization
 
   /**
    * Builds a facet result item.

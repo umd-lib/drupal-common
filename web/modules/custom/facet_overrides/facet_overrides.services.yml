@@ -1,0 +1,6 @@
+services:
+  Drupal\facet_overrides\EventSubscriber\SolrQueryAlterEventSubscriber:
+    arguments: ['@config.factory']
+    tags:
+    - { name: 'event_subscriber' }
+

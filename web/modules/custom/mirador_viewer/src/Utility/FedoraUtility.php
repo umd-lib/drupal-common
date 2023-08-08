@@ -96,12 +96,17 @@ class FedoraUtility {
       $id = array_key_first($url_array);
       $pcdm_prefix = str_replace(':', '/', $url_array['relpath']);
     } elseif (!empty($full_uri) && str_contains($full_uri, 'relpath=')) {
-      $uri_split = explode('relpath=', $full_uri);
-      if (!empty($uri_split[1])) {
-        $pcdm_prefix = str_replace(':', '/', $uri_split[1]);
-      } else {
+      parse_str($full_uri, $uri_array);
+      $pcdm_prefix = null;
+      foreach ($uri_array as $key => $value) {
+        if (str_contains($key, 'relpath')) {
+          $pcdm_prefix = $value;
+        }
+      }
+      if ($pcdm_prefix == null) {
         $pcdm_prefix = $this->getCollectionPrefix();
       }
+      $pcdm_prefix = str_replace(':', '/', $pcdm_prefix);
     } else {
       $pcdm_prefix = $this->getCollectionPrefix();
     }

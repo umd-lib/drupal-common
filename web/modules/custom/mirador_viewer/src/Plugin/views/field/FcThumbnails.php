@@ -54,6 +54,7 @@ class FcThumbnails extends FieldPluginBase {
     $form['thumbnail_dimensions'] = array(
       '#title' => $this->t('Thumbnail Dimensions'),
       '#type' => 'textfield',
+      '#default_value' => !empty($this->options['thumbnail_dimensions']) ? $this->options['thumbnail_dimensions'] : null,
       '#description' => t('Use format WWW,HHH. For example, 250,350 equals 250w x 350h.'),
     );
  

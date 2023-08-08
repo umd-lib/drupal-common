@@ -25,6 +25,17 @@ function umd_terp_form_system_theme_settings_alter(&$form, FormStateInterface $f
     '#default_value' => theme_get_setting('umd_terp_header_light'),
   ];
 
+  $form['umd_terp_title_settings'] = [
+    '#type' => 'details',
+    '#title' => t('UMD Terp Title Settings'),
+  ];
+  $form['umd_terp_title_settings']['umd_terp_disable_title'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Disable title'),
+    '#default_value' => theme_get_setting('umd_terp_disable_title'),
+    '#description' => t('If checked, the theme will not render the title.'),
+  ];
+
   // Footer.
   $form['umd_terp_footer_hide'] = [
     '#type' => 'checkbox',
