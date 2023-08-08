@@ -69,11 +69,13 @@ class BentoGenericMoreBlock extends BlockBase implements ContainerFactoryPluginI
   public function build() {
     $blockConfig = $this->getConfiguration();
     $search_options = $blockConfig['more_search_options'];
+    $block_title = $blockConfig['block_title'];
     $query = \Drupal::request()->query->get('query');
 
     return [
       '#theme' => 'bento_generic_more_block',
       '#search_options' => $search_options,
+      '#block_title' => $block_title,
       '#query' => $query,
       '#cache' => [
         'max-age' => 3600,
@@ -84,6 +86,13 @@ class BentoGenericMoreBlock extends BlockBase implements ContainerFactoryPluginI
   public function blockForm($form, FormStateInterface $form_state) {
     $form = parent::blockForm($form, $form_state);
     $config = $this->getConfiguration();
+
+    $form['block_title'] = [
+      '#type' => 'textfield',
+      '#title' => t('Block Title'),
+      '#default_value' => isset($config['block_title']) ? $config['block_title'] : t('More Search Options'),
+      '#required' => TRUE,
+    ];
 
     $form['more_search_options'] = [
       '#type' => 'textarea',
@@ -100,6 +109,7 @@ class BentoGenericMoreBlock extends BlockBase implements ContainerFactoryPluginI
   public function blockSubmit($form, FormStateInterface $form_state) {
     $s_options = $this->extractAllowedValues($form_state->getValue('more_search_options'));
     $this->setConfigurationValue('more_search_options', $s_options);
+    $this->setConfigurationValue('block_title', $form_state->getValue('block_title'));
   }
 
   /**
