@@ -27,7 +27,7 @@ class BentoGenericSearchForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, $defaults = array()) {
     $form['bento_generic_search'] = array(
       '#type' => 'textfield',
-      '#title' => t('Search'),
+      '#title' => !empty($defaults['search_title']) ? $defaults['search_title'] : t('Search'),
       '#required' => TRUE,
       '#placeholder' => !empty($defaults['search_placeholder']) ? $defaults['search_placeholder'] : t('Search books, articles, journals, and the website...'),
     );

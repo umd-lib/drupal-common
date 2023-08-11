@@ -70,6 +70,7 @@ class BentoGenericSearchBlock extends BlockBase implements ContainerFactoryPlugi
     $blockConfig = $this->getConfiguration();
     $search_action = $blockConfig['search_page'];
     $search_placeholder = $blockConfig['search_placeholder'];
+    $search_title = $blockConfig['search_title'];
     $form_defaults = array();
     $form_defaults['default_action'] = null;
     $form_defaults['search_placeholder'] = null;
@@ -85,6 +86,9 @@ class BentoGenericSearchBlock extends BlockBase implements ContainerFactoryPlugi
     }
     if (!empty($search_placeholder)) {
       $form_defaults['search_placeholder'] = $search_placeholder;
+    }
+    if (!empty($search_title)) {
+      $form_defaults['search_title'] = $search_title;
     }
     $form = $this->formBuilder->getForm('Drupal\bento_generic\Form\BentoGenericSearchForm', $form_defaults);
     return [
@@ -118,6 +122,12 @@ class BentoGenericSearchBlock extends BlockBase implements ContainerFactoryPlugi
       '#default_value' =>  isset($config['search_placeholder']) ? $config['search_placeholder'] : null,
       '#description' => t('E.g., Search books and more!'),
     ];
+    $form['search_title'] = [
+      '#type' => 'textfield',
+      '#title' => t('Search Title'),
+      '#default_value' =>  isset($config['search_title']) ? $config['search_title'] : null,
+      '#description' => t('If empty, "Search" will be used.'),
+    ];
     return $form;
   }
 
@@ -127,5 +137,6 @@ class BentoGenericSearchBlock extends BlockBase implements ContainerFactoryPlugi
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->setConfigurationValue('search_page', $form_state->getValue('search_page'));
     $this->setConfigurationValue('search_placeholder', $form_state->getValue('search_placeholder'));
+    $this->setConfigurationValue('search_title', $form_state->getValue('search_title'));
   }
 }

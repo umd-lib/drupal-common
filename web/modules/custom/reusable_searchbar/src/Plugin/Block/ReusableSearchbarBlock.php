@@ -70,6 +70,7 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
     $blockConfig = $this->getConfiguration();
     $search_action = $blockConfig['search_page'];
     $search_placeholder = $blockConfig['search_placeholder'];
+    $search_title = $blockConfig['search_title'];
     $search_param = $blockConfig['search_param'];
     $search_custom_param = !empty($blockConfig['search_custom_param']) ? $blockConfig['search_custom_param'] : null;
     $search_custom_param_value = !empty($blockConfig['search_custom_param_value']) ? $blockConfig['search_custom_param_value'] : null;
@@ -88,6 +89,9 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
     }
     if (!empty($search_placeholder)) {
       $form_defaults['search_placeholder'] = $search_placeholder;
+    }
+    if (!empty($search_title)) {
+      $form_defaults['search_title'] = $search_title;
     }
     $form = $this->formBuilder->getForm('Drupal\reusable_searchbar\Form\ReusableSearchbarForm', $form_defaults);
     return [
@@ -144,6 +148,12 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
       '#default_value' =>  isset($config['search_placeholder']) ? $config['search_placeholder'] : null,
       '#description' => t('This text displays in the textfield before user values are entered. E.g., Search collection...'),
     ];
+    $form['search_title'] = [
+      '#type' => 'textfield',
+      '#title' => t('Search Title'),
+      '#default_value' =>  isset($config['search_title']) ? $config['search_title'] : null,
+      '#description' => t('If left empty, "Search" will be used.'),
+    ];
     return $form;
   }
 
@@ -157,5 +167,6 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
     $this->setConfigurationValue('search_custom_param', $form_state->getValue('search_custom_param'));
     $this->setConfigurationValue('search_custom_param_value', $form_state->getValue('search_custom_param_value'));
     $this->setConfigurationValue('search_placeholder', $form_state->getValue('search_placeholder'));
+    $this->setConfigurationValue('search_title', $form_state->getValue('search_title'));
   }
 }

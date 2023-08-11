@@ -27,7 +27,7 @@ class ReusableSearchbarForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, $defaults = array()) {
     $form['searchbar_search'] = array(
       '#type' => 'textfield',
-      '#title' => t('Search'),
+      '#title' => !empty($defaults['search_title']) ? $defaults['search_title'] :  t('Search'),
       '#placeholder' => !empty($defaults['search_placeholder']) ? $defaults['search_placeholder'] : t('Search collection holdings...'),
     );
     $form['search_results'] = array(
