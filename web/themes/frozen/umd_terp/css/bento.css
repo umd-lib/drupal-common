@@ -8,9 +8,10 @@
   color: black;
 }
 
-#bento-best-bets-block {
+/** no longer in use **/
+/* #bento-best-bets-block {
   padding: 5px;
-}
+} */
 
 .bento-result .views-row {
   padding: 10px 15px;
@@ -47,12 +48,13 @@
   border: 1px solid #ddd;
 }
 
-#bento-best-bets-block .views-row {
+/** no longer in use **/
+/* #bento-best-bets-block .views-row {
   padding: 15px;
   margin: -5px;
   background-color: cornsilk;
   border: 1px solid #f1f1f1;
-}
+} */
 
 #bento-best-bets-block .bento-best-bets-content a {
   font-size: 1.2rem;
@@ -66,7 +68,11 @@
 #bento-best-bets-block .fas {
   margin-top: 5px;
   font-size: 1.5rem;
-  color: silver;
+  color: #c0c0c0;
+}
+
+.bento-key-info-fas .fas {
+  color: #c0c0c0;
 }
 
 #bento-best-bets-block .bento-best-bets-content {
@@ -81,4 +87,82 @@
   .bento-outer-pad {
     padding: 1.25rem 7.5rem;
   }
+}
+
+/** top textbooks block **/
+
+.bento-key-info-content {
+  max-width: 1170px;
+  width: 100%;
+  border-radius: 4px;
+  background: #fffae5;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 24px 0;
+}
+
+.bento-top-textbook-result-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bento-key-info-title-text {
+  font-weight: 700;
+}
+
+.bento-key-info-content-p {
+  color: black;
+  margin: 0%;
+}
+
+.bento-key-info-content-p-bold {
+  font-weight: 700;
+}
+
+.bento-key-info-fas {
+  height: 32px;
+}
+
+.bento-key-info-title {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+.bento-top-textbook-bookcard {
+  display: grid;
+  grid-template-columns: 100px auto;
+  gap: 0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+}
+
+@media (min-width: 800px) {
+  .bento-top-textbook-bookcard {
+    display: grid;
+    grid-template-columns: 132px auto;
+    gap: 0;
+    padding: 12px 36px;
+    border-radius: 8px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+  }
+}
+
+/* target bento search page, test 919, qa 919 & production 952 */
+.page-node-919 :is(.section-id-3, .section-id-4) {
+  margin: 0;
+  background: #f7f8fc;
+}
+
+.page-node-952 :is(.section-id-3, .section-id-4) {
+  margin: 0;
+  background: #f7f8fc;
 }

@@ -44,7 +44,7 @@
       'page-section-' ~ item.content['#paragraph'].getType()
     ]
   %}
-  <div class="{{ classes|join(' ') }}">
+  <div class="{{ classes|join(' ') }} section-id-{{ loop.index }}">
     <div class="paragraph-section section-bound-{{ item.content['#paragraph'].getType() }}">
       <div class="outer-pad">
         {{ item.content }}

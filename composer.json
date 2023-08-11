@@ -23,6 +23,7 @@
         "drupal/big_pipe_sessionless": "^2.0",
         "drupal/block_field": "^1.0@RC",
         "drupal/block_type_templates": "^1.0@alpha",
+        "drupal/body_node_id_class": "^2.0",
         "drupal/bootstrap": "^3.21",
         "drupal/cache_control_override": "^1.0@alpha",
         "drupal/cas": "^1.6",
