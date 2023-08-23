@@ -94,7 +94,7 @@
         "drupal/twig_htmlspecialchars_decode": "1.0.x-dev",
         "drupal/twig_tweak": "^2.5",
         "drupal/typed_data": "^1.0@beta",
-        "drupal/upgrade_status": "^2.9",
+        "drupal/upgrade_status": "^4.0",
         "drupal/varnish_purge": "^2.0",
         "drupal/views_argument_token": "^2.0",
         "drupal/views_fieldsets": "^3.4",
