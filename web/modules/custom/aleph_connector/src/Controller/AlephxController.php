@@ -54,8 +54,27 @@ class AlephxController extends ControllerBase implements TrustedCallbackInterfac
   }
 
   private function isValidLocation($item) {
-    return ($this->config->getSubLibrary() == $item->{'z30-sub-library'}) && 
-            ($this->config->getCollection() == $item->{'z30-collection'});
+    $sublib = null;
+    $col = null;
+    if ($sublib_check = $this->checkStringCast($item->{'z30-sub-library'})) {
+      $sublib = $sublib_check;
+    }
+    if ($col_check = $this->checkStringCast($item->{'z30-collection'})) {
+      $col = $col_check;
+    }
+    return ($this->config->getSubLibrary() == $sublib) && 
+            ($this->config->getCollection() == $col);
+  }
+
+  public function checkStringCast($val) {
+    if (empty($val)) {
+      return null;
+    }
+
+    if (is_object($val) and method_exists($val, '__toString')) {
+      return (string)$val;
+    }
+    return null;
   }
 
   private function readItem($barcode) {
