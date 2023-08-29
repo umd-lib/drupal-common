@@ -1,0 +1,5 @@
+services:
+  fcrepo_breadcrumbs.breadcrumb_views:
+    class: Drupal\fcrepo_breadcrumbs\Breadcrumb\ViewsBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 1 }

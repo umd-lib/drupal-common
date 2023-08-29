@@ -1,0 +1,5 @@
+name: 'FCRepo Breadcrumbs'
+description: 'Add collection to breadcrumb trail'
+package: 'UMD Services'
+type: module
+core_version_requirement: ">=8"
