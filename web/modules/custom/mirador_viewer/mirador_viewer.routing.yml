@@ -1,9 +1,0 @@
-mirador_viewer.admin_settings_form:
-  path: '/admin/mirador'
-  defaults:
-    _form: '\Drupal\mirador_viewer\Form\SettingsForm'
-    _title: 'SettingsForm'
-  requirements:
-    _permission: 'access administration pages'
-  options:
-    _admin_route: TRUE

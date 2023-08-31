@@ -1,5 +1,0 @@
-prevnext:
-  version: 1.x
-  css:
-    component:
-      css/prevnext.css: {}
