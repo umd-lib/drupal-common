@@ -68,7 +68,6 @@
         "drupal/taxonomy_path_breadcrumb": "^1.0@beta",
         "drupal/token_filter": "^2.0",
         "drupal/twig_field_value": "^2.0",
-        "drupal/twig_htmlspecialchars_decode": "1.0.x-dev",
         "drupal/twig_tweak": "^3.2",
         "drupal/typed_data": "^1.0@beta",
         "drupal/upgrade_status": "^4.0",
