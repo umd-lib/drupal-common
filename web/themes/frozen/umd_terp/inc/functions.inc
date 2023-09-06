@@ -20,14 +20,20 @@ function _umd_terp_extend_theme_variables(&$variables) {
   $variables['site_name'] = \Drupal::config('system.site')->get('name');
   $variables['theme_name'] = \Drupal::theme()->getActiveTheme()->getName();
   $variables['site_slogan'] = \Drupal::config('system.site')->get('slogan');
-  $variables['theme_path'] = file_url_transform_relative(file_create_url(drupal_get_path('theme', $variables['theme_name'])));
+
+  $drupal_theme_path = \Drupal::service('extension.list.theme')->getPath($variables['theme_name']);
+  $tpath = \Drupal::service('file_url_generator')->generateString($drupal_theme_path);
+  $variables['theme_path'] = $tpath;
+
   $logo_path = theme_get_setting('logo.url');
   if (!empty($logo_path)) {
-    $variables['logo_path'] = file_url_transform_relative(file_create_url($logo_path));
+    $file_url_path = \Drupal::service('file_url_generator')->generateString($logo_path);
+    $variables['logo_path'] = $file_url_path;
   }
   $footer_logo = theme_get_setting('umd_terp_footer_logo_path');
   if (!empty($footer_logo)) {
-    $variables['footer_logo_path'] = file_url_transform_relative(file_create_url($footer_logo));
+    $footer_path = \Drupal::service('file_url_generator')->generateString($footer_logo);
+    $variables['footer_logo_path'] = $footer_path;
   }
 
   $theme_settings = \Drupal::config($variables['theme_name'] . '.settings');
