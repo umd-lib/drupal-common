@@ -3,7 +3,7 @@
 namespace Drupal\views_json_source\Event;
 
 use Drupal\views\ViewExecutable;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Class PreCacheEvent.
