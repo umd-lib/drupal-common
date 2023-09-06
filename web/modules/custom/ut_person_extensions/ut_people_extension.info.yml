@@ -8,4 +8,4 @@ dependencies:
   - umd_terp_base
 type: module
 
-core_version_requirement: ^8.9 || ^9
+core_version_requirement: ^8.9 || ^9 || ^10

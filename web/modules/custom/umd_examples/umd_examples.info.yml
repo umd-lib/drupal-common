@@ -16,4 +16,4 @@ dependencies:
 type: module
 
 # This module supports which core versions. Ideally we would test each module with core 9 in addition to 8.9.* to simplify future migrations but ensuring your module doesn't utilize any deprecated APIs either manually or using a tool like https://www.drupal.org/project/upgrade_status is probably enough.
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^8.9 || ^9 || ^10

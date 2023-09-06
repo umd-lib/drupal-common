@@ -9,4 +9,4 @@ dependencies:
   - libraries_configuration:libraries_configuration
   - libraries_search:libraries_search
 
-core_version_requirement: ^8.9 || ^9
+core_version_requirement: ^8.9 || ^9 || ^10
