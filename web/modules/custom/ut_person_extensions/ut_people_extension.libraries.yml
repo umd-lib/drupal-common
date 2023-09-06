@@ -1,5 +1,0 @@
-ut_people_extension:
-  version: 1.x
-  css:
-    theme:
-      css/ut-people-extension.css: {}
