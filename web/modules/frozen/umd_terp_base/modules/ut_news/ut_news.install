@@ -8,13 +8,13 @@
 /**
  * Reset all paragraph fields to match standard config.
  */
-function ut_news_update_8001() {
-  \Drupal::service('config.installer')->installDefaultConfig('module', 'ut_news');
-}
+// function ut_news_update_8001() {
+//   \Drupal::service('config.installer')->installDefaultConfig('module', 'ut_news');
+// }
 
 /**
  * Change filters to allow for multiple choices.
  */
-function ut_news_update_8002() {
-  \Drupal::service('config.installer')->installDefaultConfig('module', 'ut_news');
-}
+// function ut_news_update_8002() {
+//   \Drupal::service('config.installer')->installDefaultConfig('module', 'ut_news');
+// }

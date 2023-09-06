@@ -42,12 +42,12 @@
 										<div class="card-text">{{ news.summary|raw }}</div>
 									{% endif %}
 									{% if news.slug %}
-										{% spaceless %}
+										{% apply spaceless %}
 											<a href="https://today.umd.edu/articles/{{ news.slug }}-{{news.id}}" class="card-cta fancy-link">
 												View Article
 												<span class="sr-only">{{ news.title|raw }}</span>
 											</a>
-										{% endspaceless %}
+										{% endapply %}
 									{% endif %}
 								</div>
 							</div>

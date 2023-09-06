@@ -24,11 +24,16 @@ class UmdTerpSidebarMenu extends BlockBase {
 
     $form = parent::blockForm($form, $form_state);
 
+    $menus = array_map(function ($menu) {
+      return $menu->label();
+    }, Menu::loadMultiple());
+    asort($menus);
+
     $form['menu_name'] = [
       '#type' => 'select',
       '#title' => t('Menu'),
       '#default_value' => $config['menu_name'],
-      '#options' => menu_ui_get_menus(),
+      '#options' => $menus,
       '#description' => t('The menus available to place links in for this content type.'),
     ];
 
