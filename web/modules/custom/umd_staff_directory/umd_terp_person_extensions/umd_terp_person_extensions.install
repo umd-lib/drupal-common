@@ -17,7 +17,7 @@ use Drupal\field\Entity\FieldConfig;
  * Implements hook_update_8x.
  */
 function umd_terp_person_extensions_update_8001() {
-  $config_path = drupal_get_path('module', 'umd_terp_person_extensions') . '/config/install';
+  $config_path = \Drupal::service('extension.list.module')->getPath('umd_terp_person_extensions') . '/config/install';
 
   $yml = Yaml::parse(file_get_contents($config_path . '/field.storage.node.field_professional_website.yml'));
 

@@ -209,6 +209,7 @@ class DrupalGateway implements DrupalGatewayInterface {
   private static function getUmdTerpPersonsNodes(EntityTypeManagerInterface $entityTypeManager) {
     $query = $entityTypeManager->getStorage('node')->getQuery();
     $query->condition('type', 'umd_terp_person');
+    $query->accessCheck(FALSE);
     $ids = $query->execute();
     $nodes = $entityTypeManager->getStorage('node')->loadMultiple($ids);
     return $nodes;
@@ -224,6 +225,7 @@ class DrupalGateway implements DrupalGatewayInterface {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $query->condition('type', 'umd_terp_person');
     $query->condition('status', FALSE);
+    $query->accessCheck(FALSE);
     $ids = $query->execute();
     $nodes = $this->entityTypeManager->getStorage('node')->loadMultiple($ids);
 
