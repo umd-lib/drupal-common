@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b91f8978b3daff275741569566283526",
+    "content-hash": "ceb593dcbed650be3e9a54de5638d7bd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3165,77 +3165,6 @@
             }
         },
         {
-            "name": "drupal/google_analytics",
-            "version": "4.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/google_analytics.git",
-                "reference": "4.0.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/google_analytics-4.0.2.zip",
-                "reference": "4.0.2",
-                "shasum": "6deec511373e4659e42ff494c8729434728e37d7"
-            },
-            "require": {
-                "drupal/core": "^9.3 || ^10"
-            },
-            "require-dev": {
-                "drupal/token": "^1.7"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "4.0.2",
-                    "datestamp": "1662768595",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                },
-                "branch-alias": {
-                    "dev-4.x": "4.x-dev"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "See contributors",
-                    "homepage": "https://www.drupal.org/node/49388/committers"
-                },
-                {
-                    "name": "budda",
-                    "homepage": "https://www.drupal.org/user/13164"
-                },
-                {
-                    "name": "ixismark",
-                    "homepage": "https://www.drupal.org/user/3632333"
-                },
-                {
-                    "name": "japerry",
-                    "homepage": "https://www.drupal.org/user/45640"
-                },
-                {
-                    "name": "mglaman",
-                    "homepage": "https://www.drupal.org/user/2416470"
-                },
-                {
-                    "name": "roberto.rivera.ixis",
-                    "homepage": "https://www.drupal.org/user/3632325"
-                }
-            ],
-            "description": "Allows your site to be tracked by Google Analytics by adding a Javascript tracking code to every page.",
-            "homepage": "https://www.drupal.org/project/google_analytics",
-            "support": {
-                "source": "https://git.drupalcode.org/project/google_analytics",
-                "issues": "https://www.drupal.org/project/issues/google_analytics"
-            }
-        },
-        {
             "name": "drupal/hal",
             "version": "1.0.3",
             "source": {
@@ -5419,26 +5348,26 @@
         },
         {
             "name": "drupal/views_fieldsets",
-            "version": "3.4.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_fieldsets.git",
-                "reference": "8.x-3.4"
+                "reference": "4.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_fieldsets-8.x-3.4.zip",
-                "reference": "8.x-3.4",
-                "shasum": "fac5be9b5c4f421282947592400649c6a31ac92d"
+                "url": "https://ftp.drupal.org/files/projects/views_fieldsets-4.0.0.zip",
+                "reference": "4.0.0",
+                "shasum": "640e2ad1d38b5e507eff0da482df46705c49754d"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": ">=9"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.4",
-                    "datestamp": "1623608186",
+                    "version": "4.0.0",
+                    "datestamp": "1693927686",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5461,12 +5390,17 @@
                 {
                     "name": "rudiedirkx",
                     "homepage": "https://www.drupal.org/user/890274"
+                },
+                {
+                    "name": "smustgrave",
+                    "homepage": "https://www.drupal.org/user/3252890"
                 }
             ],
             "description": "Adds fieldsets to Views.",
-            "homepage": "https://www.drupal.org/project/views_fieldsets",
+            "homepage": "https://drupal.org/project/views_fieldsets",
             "support": {
-                "source": "https://git.drupalcode.org/project/views_fieldsets"
+                "source": "https://git.drupalcode.org/project/views_fieldsets",
+                "issues": "https://www.drupal.org/project/issues/views_fieldsets"
             }
         },
         {
