@@ -14,8 +14,6 @@ class InfoForRoot extends MenuLinkDefault {
     $node = \Drupal::routeMatch()->getParameter('node');
     if ($node instanceof \Drupal\node\NodeInterface) {
       $nid = $node->id();
-dsm($nid);
-dsm($node->getType());
       if ($node->getType() == 'umd_terp_basic_page') {
         return $node;
       }
@@ -37,7 +35,6 @@ dsm($node->getType());
     if ($node = $this->getInfoForRootNode()) {
       $nid = $node->id();
       $title = $node->getTitle();
-dsm($title);
       return strlen($title) > 30 ? substr($title,0,27) . '...' : $title;
     } else {
       return "Dynamic Information For Placeholder";

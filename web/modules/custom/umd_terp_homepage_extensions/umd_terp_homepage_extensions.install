@@ -13,7 +13,9 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
  */
 function umd_terp_homepage_extensions_install() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'umd_terp_homepage_extensions');
-  module_load_include('install', 'umd_terp_person_extensions', 'umd_terp_person_extensions');
+  // module_load_include('install', 'umd_terp_person_extensions', 'umd_terp_person_extensions');
+  $module_handler = \Drupal::moduleHandler();
+  $module_handler->loadInclude('umd_terp_person_extensions', 'install', 'umd_terp_person_extensions');
   $view_displays = \Drupal::entityTypeManager()->getStorage('entity_view_display')->loadByProperties(['bundle' => 'umd_terp_homepage']);
   foreach ($view_displays as $view_display) {
     add_field_to_view_display(
