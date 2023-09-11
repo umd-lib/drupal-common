@@ -70,11 +70,13 @@ function umd_terp_content_types_preprocess_node(&$variables) {
   elseif ($bundle == 'umd_terp_person') {
     // Person.
     if ($view_mode == 'full') {
-      $departments = $node->field_umdt_ct_person_departments->getValue();
-      if (!empty($departments)) {
-        // Keep link empty for now, as there is anot yet a view based by department.
-        $departments_formatted = _umd_terp_content_types_format_term_links($departments, NULL);
-        $variables['departments'] = $departments_formatted;
+      if (!empty($node->field_umdt_ct_person_departments)) {
+        $departments = $node->field_umdt_ct_person_departments->getValue();
+        if (!empty($departments)) {
+          // Keep link empty for now, as there is anot yet a view based by department.
+          $departments_formatted = _umd_terp_content_types_format_term_links($departments, NULL);
+          $variables['departments'] = $departments_formatted;
+        }
       }
     }
     if ($node->field_umdt_ct_person_phone->getValue()) {
