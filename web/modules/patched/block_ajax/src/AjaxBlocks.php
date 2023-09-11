@@ -239,17 +239,19 @@ class AjaxBlocks {
   /**
    * Get Ajax defaults for $.ajax().
    *
+   * @param array $blockConfig
+   *   The block configuration array.
+   *
    * @return array
    *   Returns an array of configuration for ajax method.
-   *
-   * @todo Make admin configurable.
    */
-  public function getAjaxDefaults(): array {
+  public function getAjaxDefaults(array $blockConfig): array {
     return [
-      'type' => 'POST',
-      'timeout' => 10000,
-      'async' => TRUE,
-      'cache' => FALSE,
+      'type' => $blockConfig['method'] ?? 'POST',
+      'timeout' => $blockConfig['timeout'] ?? 10000,
+      'async' => !isset($blockConfig['others']['async']) ||
+      !empty(($blockConfig['others']['async'] ?? TRUE)),
+      'cache' => !empty($blockConfig['others']['cache']),
       'dataType' => 'json',
     ];
   }

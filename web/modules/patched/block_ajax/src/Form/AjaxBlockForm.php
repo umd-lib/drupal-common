@@ -82,10 +82,10 @@ class AjaxBlockForm extends BlockForm {
 
     $form['settings']['block_ajax'] = [
       '#type' => 'details',
-      '#title' => $this->t('Ajax Block'),
+      '#title' => $this->t('Ajax block'),
       '#description' => $this->t('Configure settings for Ajax block.'),
       '#tree' => TRUE,
-      '#open' => TRUE,
+      '#open' => FALSE,
       '#access' => $this->ajaxBlocksService->hasAccess(),
     ];
 
@@ -98,7 +98,7 @@ class AjaxBlockForm extends BlockForm {
 
     $form['settings']['block_ajax']['max_age'] = [
       '#type' => 'select',
-      '#title' => $this->t('Max Age'),
+      '#title' => $this->t('Max age'),
       '#default_value' => $settings['block_ajax']['max_age'] ?? 0,
       '#options' => $this->ajaxBlocksService->getMaxAgeOptions(),
       '#description' => $this->t('The maximum time/age ajax block to be cached for.'),
@@ -126,6 +126,61 @@ class AjaxBlockForm extends BlockForm {
       '#title' => $this->t('Placeholder text'),
       '#description' => $this->t('Set placeholder text which appears before Ajax block is loaded.'),
       '#default_value' => $settings['block_ajax']['placeholder'] ?? '',
+      '#size' => 30,
+      '#states' => [
+        'visible' => [
+          ':input[name="settings[block_ajax][is_ajax]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
+    // Ajax defaults form elements.
+    $form['settings']['block_ajax']['ajax_defaults'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Ajax defaults'),
+      '#description' => $this->t('Configure settings for Ajax defaults.'),
+      '#open' => TRUE,
+      '#states' => [
+        'visible' => [
+          ':input[name="settings[block_ajax][is_ajax]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
+    $method = $settings["block_ajax"]["ajax_defaults"]["method"] ?? 'POST';
+    $form['settings']['block_ajax']['ajax_defaults']['method'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Method'),
+      '#default_value' => $method,
+      '#options' => ['POST' => 'POST', 'GET' => 'GET'],
+      '#description' => $this->t('The method which use ajax for request.'),
+      '#states' => [
+        'visible' => [
+          ':input[name="settings[block_ajax][is_ajax]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
+    $timeout = $settings["block_ajax"]["ajax_defaults"]["timeout"] ?? '10000';
+    $form['settings']['block_ajax']['ajax_defaults']['timeout'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Timeout'),
+      '#description' => $this->t('Set the timeout in millisecond for request.'),
+      '#default_value' => $timeout,
+      '#size' => 30,
+      '#states' => [
+        'visible' => [
+          ':input[name="settings[block_ajax][is_ajax]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
+    $others = $settings["block_ajax"]["ajax_defaults"]["others"] ?? ['async', 0];
+    $form['settings']['block_ajax']['ajax_defaults']['others'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Others'),
+      '#options' => ['async' => $this->t('Async'), 'cache' => $this->t('Cache')],
+      '#default_value' => $others,
       '#size' => 30,
       '#states' => [
         'visible' => [

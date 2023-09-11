@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   Drupal.behaviors.block_ajax = {
     attach: function (context, drupalSettings) {
       /**
@@ -62,18 +62,10 @@
                 // Add Ajax progress throbber.
                 if (drupalSettings.block_ajax.blocks[blockId].block_ajax.placeholder) {
                   // Add throbber with message.
-                  // $block.after(Drupal.theme.ajaxProgressThrobber(Drupal.t(drupalSettings.block_ajax.blocks[blockId].block_ajax.placeholder)));
-                  $block.after(Drupal.theme.ajaxProgressThrobber = function () {
-                     return "<div class=\"ajax-spinner ajax-spinner---inline\"><span class=\"fas fa-spinner fa-spin fa-2xl\"></span> " + 
-                       Drupal.t(drupalSettings.block_ajax.blocks[blockId].block_ajax.placeholder)
-                     + "</div>";
-                  });
+                  $block.after(Drupal.theme.ajaxProgressThrobber(Drupal.t(drupalSettings.block_ajax.blocks[blockId].block_ajax.placeholder)));
                 } else {
                   // Add throbber with no message.
-                  // $block.after(Drupal.theme.ajaxProgressThrobber());
-                  $block.after(Drupal.theme.ajaxProgressThrobber = function () {
-                     return "<div class=\"ajax-spinner ajax-spinner---inline\"><span class=\"fas fa-spinner fa-spin fa-2xl\"></span></div>";
-                   });
+                  $block.after(Drupal.theme.ajaxProgressThrobber());
                 }
               }
             }
@@ -127,7 +119,7 @@
       /**
        * Initialize and loop over Ajax blocks.
        */
-      $('[data-block-ajax-id]', context).once('block_ajax').each(function () {
+      $(once('block_ajax', '[data-block-ajax-id]', context)).each(function () {
         let $block = $(this);
 
         // Load in block via AJAX
@@ -149,4 +141,4 @@
   Drupal.AjaxCommands.prototype.AjaxBlockRefreshCommand = function (ajax, response, status) {
     $(response.selector).trigger('RefreshAjaxBlock');
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

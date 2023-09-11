@@ -106,9 +106,11 @@ function block_ajax_block_view_alter(array &$build, BlockPluginInterface $block)
           // Add in block id.
           $build['#block_ajax_id'] = $blockId;
 
+          $ajaxDefaults = $blockConfig['block_ajax']['ajax_defaults'] ?? [];
           // Add ajax block settings if Ajax block.
           $build['#attached']['library'][] = 'block_ajax/ajax_blocks';
-          $build['#attached']['drupalSettings']['block_ajax']['config'] = $ajaxBlocksService->getAjaxDefaults();
+          $build['#attached']['drupalSettings']['block_ajax']['config'] =
+            $ajaxBlocksService->getAjaxDefaults($ajaxDefaults);
           $build['#attached']['drupalSettings']['block_ajax']['blocks'][$blockId] = $blockConfig;
 
           // Set current node.
