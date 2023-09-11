@@ -87,7 +87,11 @@ class TransitionAccessTest extends BrowserTestBase {
       'title[0][value]' => $this->randomString(),
       'moderation_state[0][state]' => 'published',
     ];
-    $this->drupalPostForm('node/add/page', $edit, 'Save');
+
+    // UMD D10 Compat
+    $this->drupalGet('node/add/page');
+    $this->submitForm($edit, t('Save'));
+    // End UMD D10 Compat
 
     $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
     $publish_time = strtotime('+2 days');
@@ -100,7 +104,12 @@ class TransitionAccessTest extends BrowserTestBase {
       'publish_on[0][value][time]' => date('H:i:s', $publish_time),
       'publish_state[0]' => 'published',
     ];
-    $this->drupalPostForm('node/' . $node->id() . '/edit', $edit, 'Save');
+
+    // UMD D10 Compat
+    $this->drupalGet('node/' . $node->id() . '/edit');
+    $this->submitForm($edit, t('Save'));
+    // End UMD D10 Compat
+
     // It should fail because the user does not have access to the
     // "archived_published" transition.
     $this->assertSession()->pageTextContains('You do not have access to transition from Archived to Published');
@@ -112,7 +121,12 @@ class TransitionAccessTest extends BrowserTestBase {
       'publish_on[0][value][time]' => date('H:i:s', $publish_time),
       'publish_state[0]' => 'published',
     ];
-    $this->drupalPostForm('node/' . $node->id() . '/edit', $edit, 'Save');
+
+    // UMD D10 Compat
+    $this->drupalGet('node/' . $node->id() . '/edit');
+    $this->submitForm($edit, t('Save'));
+    // End UMD D10 Compat
+
     $date_formatter = \Drupal::service('date.formatter');
     $this->assertSession()->pageTextContains(sprintf('%s is scheduled to be published %s.', $node->getTitle(), $date_formatter->format($publish_time, 'long')));
   }
@@ -127,7 +141,11 @@ class TransitionAccessTest extends BrowserTestBase {
       'title[0][value]' => $this->randomString(),
       'moderation_state[0][state]' => 'draft',
     ];
-    $this->drupalPostForm('node/add/page', $edit, 'Save');
+
+    // UMD D10 Compat
+    $this->drupalGet('node/add/page');
+    $this->submitForm($edit, t('Save'));
+    // End UMD D10 Compat
 
     $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
     $publish_time = strtotime('+2 days');
@@ -141,19 +159,27 @@ class TransitionAccessTest extends BrowserTestBase {
       'publish_on[0][value][time]' => date('H:i:s', $publish_time),
       'publish_state[0]' => 'published',
     ];
-    $this->drupalPostForm('node/' . $node->id() . '/edit', $edit, 'Save');
+
+    // UMD D10 Compat
+    $this->drupalGet('node/' . $node->id() . '/edit');
+    $this->submitForm($edit, t('Save'));
+    // End UMD D10 Compat
 
     $this->assertSession()
       ->pageTextContains(sprintf('%s is scheduled to be published %s.', $node->getTitle(), $date_formatter->format($publish_time, 'long')));
 
     $this->drupalGet('node/' . $node->id() . '/edit');
-    $this->assertResponse(200, 'Scheduler user should be able to edit the node."');
+    // UMD D10 Compat
+    $this->assertSession()->statusCodeEquals(200);
+    // End UMD D10 Compat
 
     // Restricted user does not have permission to scheduled transition,
     // editing access should be denied.
     $this->drupalLogin($this->restrictedUser);
     $this->drupalGet('node/' . $node->id() . '/edit');
-    $this->assertResponse(403, 'Restricted user should not be able to edit the node."');
+    // UMD D10 Compat
+    $this->assertSession()->statusCodeEquals(403);
+    // End UMD D10 Compat
 
     // Remove scheduling info.
     $this->drupalLogin($this->schedulerUser);
@@ -163,13 +189,20 @@ class TransitionAccessTest extends BrowserTestBase {
       'publish_on[0][value][time]' => NULL,
       'publish_state[0]' => '_none',
     ];
-    $this->drupalPostForm('node/' . $node->id() . '/edit', $edit, 'Save');
+
+    // UMD D10 Compat
+    $this->drupalGet('node/' . $node->id() . '/edit');
+    $this->submitForm($edit, t('Save'));
+    // End UMD D10 Compat
 
     // Check if node is editable when there is no scheduling
     // (using 'create_new_draft' transition).
     $this->drupalLogin($this->restrictedUser);
     $this->drupalGet('node/' . $node->id() . '/edit');
-    $this->assertResponse(200, 'Restricted user should be able to edit the node."');
+
+    // UMD D10 Compat
+    $this->assertSession()->statusCodeEquals(200);
+    // End UMD D10 Compat
   }
 
 }
