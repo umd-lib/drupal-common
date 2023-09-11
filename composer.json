@@ -23,6 +23,7 @@
         "drupal/body_node_id_class": "^2.0",
         "drupal/bootstrap": "^3.21",
         "drupal/cache_control_override": "^1.0@alpha",
+        "drupal/ckeditor": "^1.0",
         "drupal/content_moderation_notifications": "^3.3",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
