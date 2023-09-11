@@ -1,0 +1,3 @@
+breadcrumb-update:
+  js:
+    js/breadcrumb-update.js: {}
