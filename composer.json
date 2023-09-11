@@ -44,7 +44,7 @@
         "drupal/linkit": "^6.0",
         "drupal/masonry": "^2.0",
         "drupal/masquerade": "^2.0",
-        "drupal/masquerade_log": "^1.0",
+        "drupal/masquerade_log": "^1.2",
         "drupal/matomo": "^1.21",
         "drupal/node_view_permissions": "^1.2",
         "drupal/override_node_options": "^2.7",
@@ -67,7 +67,7 @@
         "drupal/twig_tweak": "^3.2",
         "drupal/upgrade_status": "^4.0",
         "drupal/varnish_purge": "^2.2",
-        "drupal/views_fieldsets": "^3.4",
+        "drupal/views_fieldsets": "^4.0",
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.2@beta",
         "drush/drush": "^10.2",
@@ -95,6 +95,9 @@
         "patches": {
           "drupal/core": {
             "Allow exposed form to preserve URL query parameters": "https://www.drupal.org/files/issues/2023-04-18/2681953-42.patch"
+          },
+          "drupal/easy_install": {
+            "Allow exposed form to preserve URL query parameters": "https://www.drupal.org/files/issues/2023-04-12/easy_install_d10-3297022-9.patch"
           }
         },
         "merge-plugin": {
