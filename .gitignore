@@ -57,3 +57,5 @@ certs/
 
 local-db/
 local-solr/
+web/example.gitignore
+web/.ht.router.php
