@@ -36,15 +36,15 @@ ENV PATH="${PATH}:/app/web/app/vendor/bin"
 # Remove the default drupal codebase
 RUN rm -rf /var/www/html/*
 
-# We really don't need the built-in webserver available
-RUN rm /app/web/app/web/.ht.router.php
-
 COPY docker/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
 COPY docker/settings.php /app/settings.php
 
 # Copy the codebase to /app/web/app
 COPY . /app/web/app
+
+# We really don't need the built-in webserver available
+RUN rm /app/web/app/web/.ht.router.php
 
 # Install dependcies, set ownership and delete the sync dir under /app/web/blog
 RUN cd /app/web/app && \
