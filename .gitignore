@@ -57,3 +57,6 @@ web/.htaccess
 web/robots.txt
 web/sites/example.settings.local.php
 web/web.config
+
+web/.ht.router.php
+web/example.gitignore

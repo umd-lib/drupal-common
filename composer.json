@@ -23,9 +23,9 @@
         "drupal/bootstrap": "^3.21",
         "drupal/ckeditor": "^1.0",
         "drupal/colorbox": "^2.0",
-        "drupal/core-composer-scaffold": "^9",
-        "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9",
+        "drupal/core-composer-scaffold": "^10",
+        "drupal/core-project-message": "^10",
+        "drupal/core-recommended": "^10",
         "drupal/ctools": "^4.0",
         "drupal/devel": "^5.0",
         "drupal/easy_install": "^10.5",
@@ -70,7 +70,8 @@
         "drupal/views_fieldsets": "^4.0",
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.2@beta",
-        "drush/drush": "^10.2",
+        "drush/drush": "^12",
+        "mglaman/composer-drupal-lenient": "^1.0",
         "predis/predis": "^1.1",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
@@ -87,7 +88,8 @@
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "wikimedia/composer-merge-plugin": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "mglaman/composer-drupal-lenient": true
         }
     },
     "extra": {
@@ -97,7 +99,10 @@
             "Allow exposed form to preserve URL query parameters": "https://www.drupal.org/files/issues/2023-04-18/2681953-42.patch"
           },
           "drupal/easy_install": {
-            "Allow exposed form to preserve URL query parameters": "https://www.drupal.org/files/issues/2023-04-12/easy_install_d10-3297022-9.patch"
+            "Easy Install Compat for D10": "https://www.drupal.org/files/issues/2023-04-12/easy_install_d10-3297022-9.patch"
+          },
+          "drupal/fontawesome": {
+            "Fontawesome Compat for D10": "https://www.drupal.org/files/issues/2023-06-05/3274028-fontawesome-ckeditor5-compatibility-16.patch"
           }
         },
         "merge-plugin": {
@@ -156,6 +161,9 @@
                 "  * Remove the plugin that prints this message:",
                 "      composer remove drupal/core-project-message"
             ]
+        },
+        "drupal-lenient": {
+            "allowed-list": ["drupal/easy_install", "drupal/fontawesome"]
         }
     },
     "require-dev": {

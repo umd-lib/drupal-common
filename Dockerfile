@@ -30,13 +30,14 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 	mv composer.phar /usr/local/bin/composer && \
 	php -r "unlink('composer-setup.php');"
 
-# Install drush
-RUN wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/download/0.4.2/drush.phar && \
-	chmod +x drush.phar && \
-	mv drush.phar /usr/local/bin/drush
+# Add drush (and other vendor binaries) to path
+ENV PATH="${PATH}:/app/web/app/vendor/bin"
 
 # Remove the default drupal codebase
 RUN rm -rf /var/www/html/*
+
+# We really don't need the built-in webserver available
+RUN rm /app/web/app/web/.ht.router.php
 
 COPY docker/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
