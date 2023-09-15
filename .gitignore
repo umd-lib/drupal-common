@@ -50,3 +50,7 @@ postgres-init/*.sql
 sync/config
 
 .env
+web/.ht.router.php
+web/libraries/
+web/.htaccess
+web/sites/default/default.settings.php
