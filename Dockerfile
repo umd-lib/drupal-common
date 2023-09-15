@@ -1,4 +1,4 @@
-FROM drupal:8.9.20-apache
+FROM drupal:9.5.9-php8.1-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
@@ -30,10 +30,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 	mv composer.phar /usr/local/bin/composer && \
 	php -r "unlink('composer-setup.php');"
 
-# Install drush
-RUN wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/download/0.4.2/drush.phar && \
-	chmod +x drush.phar && \
-	mv drush.phar /usr/local/bin/drush
+# Add drush (and other vendor binaries) to path
+ENV PATH="${PATH}:/app/web/staff-blog/vendor/bin"
 
 # Remove the default drupal codebase
 RUN rm -rf /var/www/html/*
@@ -44,6 +42,9 @@ COPY docker/settings.php /app/settings.php
 
 # Copy the staff-blog codebase to /app/web/staff-blog
 COPY . /app/web/staff-blog
+
+# We really don't need the built-in webserver available
+RUN rm /app/web/staff-blog/web/.ht.router.php
 
 # Symbolic link to remap web/ to blog/, which is necessary to prevent CAS mismatch errors
 RUN ln -sd /app/web/staff-blog/web /app/web/staff-blog/blog
