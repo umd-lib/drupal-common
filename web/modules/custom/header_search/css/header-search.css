@@ -25,18 +25,28 @@ form#header-search-form .form-submit {
  * }
  */
 
+.header-search-input::placeholder {
+  font-family: 'Font Awesome 6 Free';
+  width: 12.5rem!important;
+  font-weight: 600;
+}
+
 .header-search-input {
-  font-family: Arial, 'Font Awesome 5 Free';
-  /* width: 100%; */
+  font-family: Arial;
   width: 12.5rem!important;
   font-weight: 600;
 }
 
 @media (max-width: 1299px){
   .header-search-input {
-    font-family: Arial, 'Font Awesome 5 Free';
-    /* width: 100%; */
+    font-family: Arial;
     width: 100%!important;
+    font-weight: 600;
+  }
+
+  .header-search-input::placeholder {
+    font-family: 'Font Awesome 6 Free';
+    width: 12.5rem!important;
     font-weight: 600;
   }
 }
