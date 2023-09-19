@@ -15,7 +15,7 @@ class UmdTerpBaseTest extends UnitTestCase {
    * Before a test method is run, setUp() is invoked.
    * Create new umdterpbase object.
    */
-  public function setUp() {
+  public function setUp(): void {
     $this->umdterpbase = new UmdTerpBase();
   }
 
@@ -44,7 +44,7 @@ class UmdTerpBaseTest extends UnitTestCase {
    * Once test method has finished running, whether it succeeded or failed, tearDown() will be invoked.
    * Unset the $umdterpbase object.
    */
-  public function tearDown() {
+  public function tearDown(): void {
     unset($this->umdterpbase);
   }
 
