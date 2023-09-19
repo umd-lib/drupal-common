@@ -89,7 +89,8 @@
             "drupal/core-project-message": true,
             "wikimedia/composer-merge-plugin": true,
             "cweagans/composer-patches": true,
-            "mglaman/composer-drupal-lenient": true
+            "mglaman/composer-drupal-lenient": true,
+            "phpstan/extension-installer": true
         }
     },
     "extra": {
