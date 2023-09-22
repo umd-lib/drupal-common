@@ -57,7 +57,7 @@ function message_digest_admin_recordhistory($title, $type, $uid, $content) {
   $database = \Drupal::database();
   $result = $database->insert('message_digest_admin')
     ->fields([
-      'timestamp' => REQUEST_TIME,
+      'timestamp' => Drupal::time()->getRequestTime(),
       'title' => $title,
       'type' => $type,
       'email' => message_digest_admin_checkuid($uid), 

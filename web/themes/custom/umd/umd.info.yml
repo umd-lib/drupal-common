@@ -4,7 +4,7 @@ description: 'Adapted from the UMD Lib website'
 core: 8.x
 base theme: bootstrap 
 logo: images/libi-logo.png
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 
 regions:
   header: Header
