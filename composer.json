@@ -27,6 +27,7 @@
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
+        "drupal/ctools": "^4.0",
         "drupal/devel": "^5.0",
         "drupal/easy_email": "^2.1@beta",
         "drupal/facets": "^2.0",
@@ -38,6 +39,7 @@
         "drupal/ldap": "^4.4",
         "drupal/message_digest": "^1.0@RC",
         "drupal/node_view_permissions": "^1.2",
+        "drupal/pathauto": "^1.11",
         "drupal/purge": "^3.0",
         "drupal/queue_ui": "^3.1",
         "drupal/redirect": "^1.6",
@@ -50,7 +52,6 @@
         "drupal/swiftmailer": "^2.2",
         "drupal/symfony_mailer": "^1.2",
         "drupal/twig_field_value": "^2.0",
-        "drupal/twig_tweak": "^2.5",
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/upgrade_rector": "^1.0@alpha",
         "drupal/upgrade_status": "^4.0",
@@ -59,8 +60,7 @@
         "npm-asset/ckeditor--ckeditor5-page-break": "35.4",
         "oomphinc/composer-installers-extender": "^2.0",
         "predis/predis": "^1.1",
-        "umd_digital/umd_terp": "^8.1",
-        "umd_digital/umd_terp_base": "^8.1"
+        "umd_digital/umd_schoolwide_header": "^8.1"
     },
     "conflict": {
         "drupal/drupal": "*"
