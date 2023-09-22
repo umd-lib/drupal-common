@@ -1,4 +1,4 @@
-FROM drupal:9.5.9-php8.1-apache
+FROM drupal:9.5.9-php8.2-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
@@ -19,10 +19,12 @@ RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
 
 # Configure PHP-LDAP
 RUN apt-get install -y libldap2-dev \
+    libldap-common \
+    ldap-utils \
+    libsasl2-modules \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
-    && docker-php-ext-install ldap \
-    && apt-get purge -y --auto-remove libldap2-dev
+    && docker-php-ext-install ldap
 
 # Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
