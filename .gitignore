@@ -54,3 +54,5 @@ web/.ht.router.php
 web/libraries/
 web/.htaccess
 web/sites/default/default.settings.php
+web/example.gitignore
+web/sites/example.settings.local.php
