@@ -56,3 +56,4 @@ web/.htaccess
 web/sites/default/default.settings.php
 web/example.gitignore
 web/sites/example.settings.local.php
+web/sites/default/default.services.yml
