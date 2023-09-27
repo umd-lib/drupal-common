@@ -169,7 +169,6 @@ textarea {
 @media (max-width: 768px) {
   .hero-block {
     margin-left: 0!important;
-    border: 1px solid #ccc;
     padding: 1rem;
   }
   .home-hero-content{
