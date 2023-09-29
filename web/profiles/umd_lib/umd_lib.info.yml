@@ -3,76 +3,38 @@ type: profile
 description: 'A UMD Terp focused install customized by the libraries.'
 core_version_requirement: ">=8"
 install:
-  - node
-  - block
-  - dblog
-  - taxonomy
-  - twig_tweak
-  - page_cache
-  - dynamic_page_cache
+  # Core
   - automated_cron
   - big_pipe
   - block
-  - imageapi_optimize_binaries
+  - block_content
   - breakpoint
   - ckeditor5
   - config
   - contextual
-  - block_content
-  - menu_link_content
   - dblog
+  - dynamic_page_cache
+  - editor
   - field
   - field_ui
+  - file
   - filter
   - media
   - media_library
+  - menu_link_content
   - menu_ui
+  - node
+  - page_cache
   - path
-  - pathauto
-  - rdf
-  - editor
   - system
+  - taxonomy
+  - text
   - toolbar
   - update
   - user
   - views
-  - simplei
-  - ctools
-  - devel
-  - field_group
-  - datetime
-  - entity_reference_revisions
-  - external_data_source
-  - file
-  - image
-  - link
-  - options
-  - tablefield
-  - tablefield_required
-  - text
-  - language
-  - autologout
-  - link_attributes
-  - masquerade
-  - masquerade_log
-  - pathauto
-  - redirect
-  - redirect_404
-  - purge
-  - purge_tokens
-  - purge_ui
-  - purge_processor_cron
-  - purge_queuer_coretags
-  - varnish_purger
-  - varnish_purge_tags
-  - metatag
-  - metatag_verification
-  - simple_sitemap
-  - google_analytics
-  - easy_install
-  - twig_htmlspecialchars_decode
-  - samlauth_attrib
-  - linkit
+
+  # UMD Terp
   - umd_terp_base
   - umd_terp_content_types
   - ut_accordion
@@ -84,8 +46,51 @@ install:
   - ut_sidebar_menu
   - ut_tabs
   - ut_text
+
+  # Contributed
+  - autologout
+  - ctools
+  - datetime
+  - devel
+  - easy_install
+  - entity_reference_revisions
+  - external_data_source
+  - field_group
+  - image
+  - imageapi_optimize_binaries
+  - language
+  - link
+  - link_attributes
+  - linkit
+  - masquerade
+  - masquerade_log
+  - metatag
+  - metatag_verification
+  - matomo
+  - options
+  - pathauto
+  - purge
+  - purge_tokens
+  - purge_ui
+  - purge_processor_cron
+  - purge_queuer_coretags
+  - redirect
+  - redirect_404
+  - simplei
+  - simple_sitemap
+  - tablefield
+  - tablefield_required
   - token_filter
   - twig_field_value
+  - twig_tweak
+  - varnish_purger
+  - varnish_purge_tags
+
+  # Libraries Custom
+  - samlauth_attrib
+
+  # Libraries Managed Forks
+  - twig_htmlspecialchars_decode
 themes:
   - umd_terp
   - claro
