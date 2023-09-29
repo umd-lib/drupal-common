@@ -56,17 +56,25 @@ All other values can stay the same.
 To bring up the site, use docker-compose:
 
             > cd common-demo
-            > docker-compose up -d
+            > docker compose up -d
 
 After a minute, the site should be available at:
 
 * http://drupal.docker.localhost:8000 (or wherever you deployed).
 
 For a new site, Drupal will launch the site setup wizard. Use the UMD Profile
-to get the standard libraries configuration.Use whichever Postgres
+to get the standard libraries configuration. Use whichever Postgres
 username/password/database combos you had set up in your .env file. Note that
 you will need to change host under  Advanced Operations in your database
 configuration. Change this to simply *postgres*.
+
+If this is a local install, you will need to enable the pg_trgm postgres
+plugin.
+
+Once the install page is up after docker compose up, do the following:
+
+            > docker compose exec postgres psql -U drupaluser drupaldb
+            drupaldb=# CREATE EXTENSION pg_trgm;
 
 If all values are correct, Drupal will install and provide you will an site
 configuration form.
