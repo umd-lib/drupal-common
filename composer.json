@@ -160,7 +160,7 @@
             ]
         },
         "drupal-lenient": {
-            "allowed-list": ["drupal/easy_install"]
+            "allowed-list": ["drupal/easy_install", "drupal/block_type_templates"]
         }
     },
     "require-dev": {
