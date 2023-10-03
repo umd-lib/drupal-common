@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ut_use_link_as_title
+    - paragraphs.paragraphs_type.ut_card
+id: paragraph.ut_card.field_ut_use_link_as_title
+field_name: field_ut_use_link_as_title
+entity_type: paragraph
+bundle: ut_card
+label: 'Use Link as Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
+

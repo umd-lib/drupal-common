@@ -18,3 +18,10 @@ function ut_card_update_8001() {
 function ut_card_update_8002() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'ut_card');
 }
+
+/**
+ * Update to add Use Title as Link field.
+ */
+function ut_card_update_8004() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'ut_card');
+}
