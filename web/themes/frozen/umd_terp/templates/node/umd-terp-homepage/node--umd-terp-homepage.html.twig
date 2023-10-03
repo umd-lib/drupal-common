@@ -27,12 +27,24 @@
 						<video aria-hidden="true" src="{{ file_url(content.field_umdt_ct_hero_video[0]['#media'].field_media_video_file.entity.uri.value) }}" poster="{{ file_url(content.field_umdt_ct_hero_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" autoplay muted loop webkit-playsinline playsinline></video>
 					</noscript>
 				{% elseif content.field_umdt_ct_hero_image|field_value %}
-					<img src="{{ file_url(content.field_umdt_ct_hero_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" alt="{{ content.field_umdt_ct_hero_image[0]['#media'].field_media_image.alt }}"/>
+
+
+            {% if node.field_umdt_ct_hero_style.value == 'home-hero-bg' %}
+              {% if content.field_umdt_ct_hero_image['#items']|length > 1 %}
+                {% set is_fullwidth_list = 'true' %}
+              {% endif %}
+              <img class="hero-block-container" id="hero-block-fullwidth" src="{{ file_url(content.field_umdt_ct_hero_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" alt="{{ content.field_umdt_ct_hero_image[0]['#media'].field_media_image.alt }}"/>
+            {% else %}
+              <img src="{{ file_url(content.field_umdt_ct_hero_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" alt="{{ content.field_umdt_ct_hero_image[0]['#media'].field_media_image.alt }}"/>
+            {% endif %}
+
 				{% endif %}
-				{% if content.field_hero_attribution.0 %}
-					<figcaption class="home-hero-cpation">
-						{{ content.field_hero_attribution|field_value }}
-					</figcaption>
+                                {% if is_fullwidth_list is empty %}
+				  {% if content.field_hero_attribution.0 %}
+				  	  <figcaption class="home-hero-cpation">
+						  {{ content.field_hero_attribution|field_value }}
+					  </figcaption>
+				  {% endif %}
 				{% endif %}
 				</figure>
 			</div>
@@ -59,3 +71,32 @@
         {% endif %}
 </div>
 {{ content|without('field_umdt_ct_hero_video', 'field_umdt_ct_hero_dark', 'field_umdt_ct_hero_style', 'field_umdt_ct_hero_image', 'field_umdt_ct_hero_title', 'field_umdt_ct_hero_subtitle', 'field_umdt_ct_hero_text', 'field_umdt_ct_hero_cta', 'field_hero_attribution') }}
+
+{% if is_fullwidth_list is not empty %}
+  <script>
+    const imageUrls = [
+      {% for item in content.field_umdt_ct_hero_image %}
+        {% set furl = file_url(item['#media'].field_media_image.entity.uri.value | image_style('optimized')) %}
+        {% if furl is not empty %}
+          "{{ furl }}",
+        {% endif %}
+      {% endfor %}
+    ];
+
+    function changeHeroBackground() {
+      const imgs = imageUrls.filter(Boolean);
+      let hero_image = document.getElementById("hero-block-fullwidth");
+
+      let randomIndex = Math.floor(
+        Math.random() * imgs.length
+      );
+      let randomImageUrl = imgs[randomIndex];
+
+      hero_image.src = randomImageUrl;
+    }
+
+    if (imageUrls.length > 0) {
+      changeHeroBackground();
+    }
+  </script>
+{% endif %}
