@@ -163,7 +163,7 @@ class ViewsJsonQuery extends QueryPluginBase {
 
       // Dispatch event before caching json_content.
       $event = new PreCacheEvent($this->view, $json_content);
-      $this->eventDispatcher->dispatch(PreCacheEvent::VIEWS_JSON_SOURCE_PRE_CACHE, $event);
+      $this->eventDispatcher->dispatch($event, PreCacheEvent::VIEWS_JSON_SOURCE_PRE_CACHE);
       $json_content = $event->getViewData();
 
       $this->cache->set($cache_id, $json_content, $cache_ttl);
