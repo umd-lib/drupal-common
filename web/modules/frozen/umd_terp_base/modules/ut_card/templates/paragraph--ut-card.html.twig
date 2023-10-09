@@ -20,7 +20,7 @@
 			{% set use_link = content.field_ut_use_link_as_title.0 %} 
 			{% if 'On' in use_link %}
 					{% if content.field_ut_card_link.0 %}
-						<h2 class="card-title">{% include directory ~ '/templates/helpers/link.html.twig' with {'link': content.field_ut_card_link.0, 'classes': 'card-cta fancy-link' } %}</h2>
+						<h2 class="card-title">{% include directory ~ '/templates/helpers/link.html.twig' with {'link': content.field_ut_card_link.0, 'classes': 'card-cta basic-link' } %}</h2>
 					{% else %}
 						<h2 class="card-title">{{ content.field_ut_card_title|field_value }}</h2>
 					{% endif %}
