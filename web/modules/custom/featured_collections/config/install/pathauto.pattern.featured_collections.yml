@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: df65rLlcBu25heM28tYWuqEx2zqkJCLNeqTS9DCdfD8
+id: featured_collections
+label: 'Featured Collections'
+type: 'canonical_entities:node'
+pattern: '/system/featured/collections/[random:hash:md4]'
+selection_criteria:
+  2692670f-97fe-4424-89ee-f4ed6f39c8c8:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 2692670f-97fe-4424-89ee-f4ed6f39c8c8
+    context_mapping:
+      node: node
+    bundles:
+      featured_collection: featured_collection
+selection_logic: and
+weight: -5
+relationships: {  }
+
