@@ -881,6 +881,7 @@ display:
     display_plugin: page
     position: 4
     display_options:
+      title: 'Featured Archive'
       fields:
         field_collection_image:
           id: field_collection_image
@@ -1229,8 +1230,8 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
-          element_class: ''
+          element_type: div
+          element_class: featured-collection-item
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
@@ -1301,12 +1302,15 @@ display:
           separator: ''
           hide_empty: false
       defaults:
+        title: false
+        css_class: false
         pager: false
         style: false
         row: false
         fields: false
         filters: false
         filter_groups: false
+      css_class: section
       display_extenders:
         matomo:
           enabled: false
