@@ -32,18 +32,42 @@
             {% if node.field_umdt_ct_hero_style.value == 'home-hero-bg' %}
               {% if content.field_umdt_ct_hero_image['#items']|length > 1 %}
                 {% set is_fullwidth_list = 'true' %}
+              {% else %}
+                {% if content.field_hero_attribution.0 %}
+                  <button onclick="descriptionToggle()" style="padding: 0%; border: none">
+                {% endif %}
               {% endif %}
               <img class="hero-block-container" id="hero-block-fullwidth" src="{{ file_url(content.field_umdt_ct_hero_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" alt="{{ content.field_umdt_ct_hero_image[0]['#media'].field_media_image.alt }}"/>
             {% else %}
+              {% if content.field_hero_attribution.0 %}
+                <button onclick="descriptionToggle()" style="padding: 0%; border: none">
+              {% endif %}
               <img src="{{ file_url(content.field_umdt_ct_hero_image[0]['#media'].field_media_image.entity.uri.value | image_style('optimized')) }}" alt="{{ content.field_umdt_ct_hero_image[0]['#media'].field_media_image.alt }}"/>
             {% endif %}
 
 				{% endif %}
                                 {% if is_fullwidth_list is empty %}
 				  {% if content.field_hero_attribution.0 %}
-				  	  <figcaption class="home-hero-cpation">
-						  {{ content.field_hero_attribution|field_value }}
+					  </button>
+				  	  <figcaption id="hero-caption" class="home-hero-cpation click-instruction">
+						  <span class="caption-visibility">{{ content.field_hero_attribution|field_value }}</span>
 					  </figcaption>
+					  <script>
+    						function descriptionToggle() {
+      							let elements = document.getElementsByClassName("caption-visibility");
+      							let caption = document.getElementById("hero-caption");
+
+      							for (let i = 0; i < elements.length; i++) {
+        						  if (elements[i].style.display === "none" || elements[i].style.display === "") {
+          						    elements[i].style.display = "block";
+          						    caption.classList.remove("click-instruction");
+        						  } else {
+          						    elements[i].style.display = "none";
+          						    caption.classList.add("click-instruction");
+        						  }
+      							}
+    						}
+					</script>
 				  {% endif %}
 				{% endif %}
 				</figure>
