@@ -7,6 +7,7 @@ RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
 	git \
 	vim \
 	wget \
+        rsync \
 	gettext-base \
 	pngcrush \
 	advancecomp \
@@ -57,5 +58,6 @@ RUN echo 'php_value max_input_vars 3000' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value suhosin.get.max_vars 3000' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value suhosin.post.max_vars 3000' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value suhosin.request.max_vars 3000' >> '/app/web/app/web/.htaccess'
+RUN echo 'php_value memory_limit 512M' >> '/app/web/app/web/.htaccess'
 
 WORKDIR /app/web/app
