@@ -1,9 +1,16 @@
-.services-resources {
+.services-resources .services-rows {
   display: grid;
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
-  padding: 1em 0em 3.5em 0em;
-  border-bottom: 14px solid rgb(236 236 236);
+  padding: .5em 0em .5em 0em;
+}
+
+.services-resources {
+  border-bottom: 30px solid rgb(236 236 236);
+}
+
+.services-resources .more-link {
+  float: right;
 }
 
 /* Grid layout for service elements:
