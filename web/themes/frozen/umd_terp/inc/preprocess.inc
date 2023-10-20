@@ -122,3 +122,16 @@ function umd_terp_preprocess_menu_local_task(&$variables) {
   }
   $variables['element']['#link']['url']->setOption('attributes', ['class' => $class]);
 }
+
+/**
+ * Prepares variables for media templates.
+ *
+ * Default template: media.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - media: An individual media for display.
+ */
+function umd_terp_preprocess_media(&$variables) {
+  $variables['media'] = $variables['elements']['#media'];
+}
