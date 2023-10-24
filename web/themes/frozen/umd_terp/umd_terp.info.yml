@@ -26,3 +26,4 @@ regions:
 dependencies:
   - twig_tweak
   - umd_terp_base
+  - umd_twig_filters
