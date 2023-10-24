@@ -52,7 +52,7 @@
 				  {% if 'On' in content.field_display_hero_attribution.0 %}
 				  	  <figcaption id="hero-caption" class="home-hero-cpation click-instruction">
 						  <span class="caption-visibility" id="hero-caption-content">
-						    {{ content.field_umdt_ct_hero_image[0]['#media'].field_image_attribution|view }}
+						    {{ content.field_umdt_ct_hero_image[0]['#media'].field_image_attribution.value|raw }}
 						  </span>
 					  </figcaption>
 					  <script>
@@ -104,8 +104,8 @@
       {% for item in content.field_umdt_ct_hero_image %}
         {% set furl = file_url(item['#media'].field_media_image.entity.uri.value | image_style('optimized')) %}
         {% if item['#media'].field_image_attribution.value %}
-          {% set fattrib = item['#media'].field_image_attribution|view %}
-          {% set fattrib_encode = fattrib|json_encode() %}
+          {% set fattrib = item['#media'].field_image_attribution.value|raw %}
+          {% set fattrib_encode = fattrib|base64_encode %}
         {% else %}
           {% set fattrib_encode = "" %}
         {% endif %}
@@ -132,7 +132,7 @@
 
       hero_image.src = randomImageUrl.url;
       if (randomImageUrl.description != "") {
-        hero_caption_content.innerHTML = JSON.parse(randomImageUrl.description);
+        hero_caption_content.innerHTML = atob(randomImageUrl.description);
       } else {
         hero_caption.classList.add("hidden");
         hero_button.disabled = true;
