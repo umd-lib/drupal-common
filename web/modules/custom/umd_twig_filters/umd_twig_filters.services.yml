@@ -1,0 +1,5 @@
+services:
+  umd_twig_filters.twig_extension:
+    class: Drupal\umd_twig_filters\TwigExtension\UMDTwigFilters
+    tags:
+      - { name: twig.extension }

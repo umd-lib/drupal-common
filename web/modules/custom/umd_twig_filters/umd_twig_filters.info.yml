@@ -1,0 +1,5 @@
+name: UMD Custom Twig Filters
+type: module
+description: 'Various additional filters needed by UMD'
+package: "UMD Services" 
+core_version_requirement: ">=8"
