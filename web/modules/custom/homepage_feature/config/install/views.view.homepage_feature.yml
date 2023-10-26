@@ -5,7 +5,6 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_feature_button_url
     - field.storage.node.field_feature_thumbnail
-    - image.style.homepage_feature
     - node.type.homepage_feature
   module:
     - image
@@ -15,7 +14,7 @@ dependencies:
     - user
     - views_fieldsets
 _core:
-  default_config_hash: lZ9JRpq00LQ9XR6wkaU_WpBTEq30iXmhu9j37ytjkeQ
+  default_config_hash: PqK0V7vPRu1D79sRosJSFpKk7gmQVJRDvS0iDtuz-qc
 id: homepage_feature
 label: 'Homepage Feature'
 module: views
@@ -86,8 +85,8 @@ display:
           wrapper: div
           legend: ''
           classes: homepage-feature
-          collapsible: 0
-          collapsed: 0
+          collapsible: false
+          collapsed: false
         fieldset_3:
           id: fieldset_3
           table: views
@@ -144,8 +143,8 @@ display:
           wrapper: div
           legend: ''
           classes: row
-          collapsible: 0
-          collapsed: 0
+          collapsible: false
+          collapsed: false
         fieldset_1:
           id: fieldset_1
           table: views
@@ -187,7 +186,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -197,11 +196,12 @@ display:
           hide_alter_empty: true
           fields:
             - fieldset_4
+            - field_feature_thumbnail
           wrapper: div
           legend: ''
-          classes: 'col-1200-4  thumbnail-container'
-          collapsible: 0
-          collapsed: 0
+          classes: 'col-1200-4,thumbnail-container'
+          collapsible: false
+          collapsed: false
         fieldset_4:
           id: fieldset_4
           table: views
@@ -251,13 +251,12 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          fields:
-            - field_feature_thumbnail
+          fields: {  }
           wrapper: div
           legend: ''
           classes: image-wrapper
-          collapsible: 0
-          collapsed: 0
+          collapsible: false
+          collapsed: false
         field_feature_thumbnail:
           id: field_feature_thumbnail
           table: node__field_feature_thumbnail
@@ -269,8 +268,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<div class="image-wrapper"><img src="{{ field_feature_thumbnail }}" />&nbsp;</div>'
             make_link: false
             path: ''
             absolute: false
@@ -302,18 +301,15 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: image
+          type: image_url
           settings:
-            image_link: ''
             image_style: homepage_feature
-            image_loading:
-              attribute: lazy
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -379,8 +375,8 @@ display:
           wrapper: div
           legend: ''
           classes: 'col-1200-5  content-container'
-          collapsible: 0
-          collapsed: 0
+          collapsible: false
+          collapsed: false
         title:
           id: title
           table: node_field_data
@@ -562,8 +558,8 @@ display:
           wrapper: div
           legend: ''
           classes: 'col-1200-3  button-container'
-          collapsible: 0
-          collapsed: 0
+          collapsible: false
+          collapsed: false
         field_feature_button_url:
           id: field_feature_button_url
           table: node__field_feature_button_url
