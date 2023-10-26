@@ -52,6 +52,8 @@ RUN cd /app/web/app && \
 	chown -R www-data:www-data /app/web/app && \
         rm -R postgres-init/
 
+RUN mkdir /app/web/app/sync/config
+
 RUN echo 'php_value upload_max_filesize 15M' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value max_input_vars 3000' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value suhosin.get.max_vars 3000' >> '/app/web/app/web/.htaccess'
