@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * homepage_feature module install file.
+ */
+
+/**
+ * Install homepage_feature configuration.
+ */
+function homepage_feature_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'homepage_feature');
+}
