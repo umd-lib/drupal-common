@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Definition of Drupal\aleph_connector\Controller\AlephController
+ * Definition of Drupal\aleph_connector\Controller\AlephxController
  */
 
 namespace Drupal\aleph_connector\Controller;
