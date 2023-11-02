@@ -14,25 +14,65 @@
 
 .ask-us-search-col {
   grid-area: search;
-  padding: .75rem;
+  padding: 0.75rem;
 }
 
-.ask-us-search {}
+.ask-us-search {
+}
 
-.ask-us-links {}
+.ask-us-links {
+}
 
 .ask-us-social-links {
   grid-area: social;
-  padding: .75rem;
+  padding: 0.75rem;
 }
 
 .ask-us-social-links .fontawesome-icons {
   display: inline-block;
 }
 
-input[type=text]#search-faq {
+input[type="text"]#search-faq {
   padding: 10px;
-  margin: .7rem 0 1rem 0;
+  margin: 0.7rem 0 1rem 0;
   border: 1px #ccc solid;
   width: auto;
+}
+
+/* chatwiget button */
+.cw-button {
+  display: flex;
+  width: 136px;
+  height: 38px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cw-color-main);
+
+  padding: 0px;
+  border: 3px solid var(--cw-color-main);
+  border-radius: 4px;
+}
+
+.cw-button .cw-button-content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cw-button .cw-text {
+  color: white;
+  font-family: Source Sans 3;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 171.429% */
+}
+
+.cw-button .cw-icon {
+  width: 24px;
+  height: 20px;
+
+  background-image: var(--cw-icon-hover);
+  background-size: 24px 20px;
+  background-position: center;
 }

@@ -79,6 +79,22 @@
 </footer>
 <a href="#" class="back-to-top">Back to Top</a>
 {% if umd_terp_enable_ask_us_chat %}
-	<script type="text/javascript" src="https://umd.libanswers.com/load_chat.php?hash=fe53f3bc15d10c1fe704c59be49661b0"></script>
+	<div class="cw closed" id="chatwidget">
+        <button class="cw-header" id="cw-service-status" onclick="expand()">
+        	<div class="cw-header-info">
+            	<div class="cw-icon" id="cw-icon"></div>
+            	<div class="cw-text"><p>Chat With Us!</p></div>
+            	<div class="cw-status" id="cw-status">offline</div>
+          	</div>
+          	<div class="cw-chevron chevron-ver" id="cw-chevron"></div>
+        </button>
+        <div class="cw-iframe">
+          	<iframe
+            	src="https://umd.libanswers.com/chat/widget/5cffd49b55d69387be9a6fa51e3c5fa59efa09ca025ffc7367db9b7d083f17ec"
+            	frameborder="0"
+            	id="cw-iframe"
+          	></iframe>
+        </div>
+    </div>
 {% endif %}
 

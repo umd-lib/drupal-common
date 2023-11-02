@@ -2,19 +2,20 @@ global:
   version: VERSION
   css:
     base:
-     static/build/css/index.css: { media: screen }
-     css/footer.css: { media: screen }
-     css/hero-block.css: { media: screen }
-     css/utility-nav.css: { media: screen }
-     css/umd-search.css: { media: screen }
-     css/sections.css: { media: screen }
-     css/article.css: { media: screen }
-     css/custom.css: { media: screen }
-     css/bento.css: { media: screen }
-     css/careers.css: { media: screen }
-     css/umd-print.css: { media: print }
+      static/build/css/index.css: { media: screen }
+      css/footer.css: { media: screen }
+      css/hero-block.css: { media: screen }
+      css/utility-nav.css: { media: screen }
+      css/umd-search.css: { media: screen }
+      css/sections.css: { media: screen }
+      css/article.css: { media: screen }
+      css/custom.css: { media: screen }
+      css/bento.css: { media: screen }
+      css/careers.css: { media: screen }
+      css/umd-print.css: { media: print }
   js:
     static/build/js/index.js: {}
     js/paragraph-utils.js: {}
     js/utility-nav.js: { scope: header }
     js/toggled-search-bar.js: { scope: header }
+    js/chatwidget.js: {}
