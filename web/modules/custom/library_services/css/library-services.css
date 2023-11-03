@@ -2,44 +2,50 @@
   display: grid;
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
-  padding: .5em 0em .5em 0em;
+  padding: 0.5em 0em 0.5em 0em;
 }
 
-.services-resources {
-  border-bottom: 14px solid rgb(236 236 236);
+.outer-pad .more-link {
+  max-width: 1440px;
+  text-align: right;
+  text-transform: lowercase;
+  padding: 1.5rem 0;
 }
 
-.services-resources .more-link {
-  float: right;
+.services-rows .service {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-shrink: 0;
+  gap: 12px;
+
+  height: 100%;
+  padding: 12px;
 }
 
-/* Grid layout for service elements:
-
-  +------+-------------+
-  |      | title       |
-  +------+-------------+
-  | icon | description |
-  +------+-------------+
-  |      | link        |
-  +------+-------------+
-
- */
-
-.service {
-  display: grid;
-  grid-template-areas: ". title" "icon description" "icon link";
-  grid-template-rows: .2fr .8fr .1fr;
-  grid-template-columns: .2fr .8fr;
-  column-gap: 1em;
-  padding: 0 2em 0 1em;
-  border-left: 0.5px solid lightgrey;
-  border-right: 0.5px solid lightgrey;
+.services-rows .service {
+  border-right: 1px solid #d3d3d3;
+  border-left: 1px solid #d3d3d3;
 }
 
-/* Remove left border for every .service class except first */
-
-.service~.service {
+/* Remove left border for every .views-field class except first */
+.service ~ .service {
   border-left: 0px;
+}
+
+.services-rows .service-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+
+.services-rows .service-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
 }
 
 .service-icon {
@@ -50,44 +56,86 @@
 }
 
 .service-title {
-  grid-area: title;
-  font-size: 1.125em;
+  font-size: 18px;
   font-weight: bold;
 }
 
 .service-description {
-  grid-area: description;
-  font-size: .9em;
+  font-size: 17px;
 }
 
-.service-link {
-  grid-area: link;
-  text-decoration: underline;
-  font-size: .95em;
+.services-rows .service-description div {
+  width: 100%;
+  height: 90px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-@media (max-width: 1199px){
-  .services-resources {
+.services-rows .service-link {
+  display: flex;
+  justify-content: end;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 10px;
+  font-size: 18px;
+}
+
+@media (max-width: 1199px) {
+  .services-resources .services-rows {
     grid-auto-flow: row;
     grid-template-columns: auto auto;
     grid-row-gap: 2em;
   }
+
   .service-icon {
     font-size: 2em;
   }
-}
-@media (max-width: 991px){
-  .service {
-    grid-template-columns: .1fr .6fr;
-    border: none;
+
+  .service:nth-of-type(3) {
+    border-left: 1px solid #d3d3d3;
   }
-  .services-resources {
+}
+@media (max-width: 991px) {
+  .service {
+    grid-template-columns: 0.1fr 0.6fr;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #d3d3d3;
+  }
+
+  .services-resources .services-rows {
     grid-template-columns: auto;
   }
+
+  .service-description div {
+    height: fit-content;
+  }
+
+  .services-rows .service {
+    border-left: 0px;
+    border-right: 0px;
+  }
 }
-@media (max-width: 576px){
+@media (max-width: 576px) {
   .service {
     padding: 0 1em 0 0;
-    grid-template-columns: .2fr .8fr;
+    grid-template-columns: 0.2fr 0.8fr;
   }
+}
+
+/* service & resources archive list */
+.service-list-item {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+
+  padding: 1.5rem;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.service-list-item .views-field-nothing {
+  display: none;
 }
