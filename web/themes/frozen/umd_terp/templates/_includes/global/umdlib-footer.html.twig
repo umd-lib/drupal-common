@@ -78,7 +78,7 @@
 	</div>
 </footer>
 <a href="#" class="back-to-top">Back to Top</a>
-{% if umd_terp_enable_ask_us_chat %}
+{% if umd_terp_libchat_url %}
 	<div class="cw closed" id="chatwidget">
         <button class="cw-header" id="cw-service-status" onclick="expand()">
         	<div class="cw-header-info">
@@ -90,7 +90,7 @@
         </button>
         <div class="cw-iframe">
           	<iframe
-            	src="https://umd.libanswers.com/chat/widget/5cffd49b55d69387be9a6fa51e3c5fa59efa09ca025ffc7367db9b7d083f17ec"
+            	src="{{ umd_terp_libchat_url }}"
             	frameborder="0"
             	id="cw-iframe"
           	></iframe>

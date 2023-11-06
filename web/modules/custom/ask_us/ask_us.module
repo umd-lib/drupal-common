@@ -12,7 +12,9 @@ function ask_us_theme() {
   return [
     'ask_a_librarian_util' => [
       'variables' => [
-        'libchat_id' => '',
+        'libchat_url' => '',
+        'libchat_width' => '',
+        'libchat_height' => '',
         'ask_title' => '',
         'faq_form' => '',
         'faq_placeholder' => '',
@@ -26,7 +28,9 @@ function ask_us_theme() {
     ],
     'ask_a_librarian_util_mobile' => [
       'variables' => [
-        'libchat_id' => '',
+        'libchat_url' => '',
+        'libchat_width' => '',
+        'libchat_height' => '',
         'ask_title' => '',
         'faq_form' => '',
         'faq_placeholder' => '',

@@ -36,7 +36,9 @@ class AskUsBlock extends BlockBase {
       '#ask_title' => $blockConfig['ask_title'],
       '#faq_form' => $blockConfig['faq_form'],
       '#faq_placeholder' => $blockConfig['faq_placeholder'],
-      '#libchat_id' => $blockConfig['libchat_id'],
+      '#libchat_url' => $blockConfig['libchat_url'],
+      '#libchat_height' => $blockConfig['libchat_height'],
+      '#libchat_width' => $blockConfig['libchat_width'],
       '#link_1_url' => $blockConfig['link_1_url'],
       '#link_1_text' => $blockConfig['link_1_text'],
       '#link_2_url' => $blockConfig['link_2_url'],
@@ -51,11 +53,23 @@ class AskUsBlock extends BlockBase {
     $config = $this->getConfiguration();
     $form = parent::blockForm($form, $form_state);
 
-    $form['libchat_id'] = [
+    $form['libchat_url'] = [
       '#type' => 'textfield',
-      '#title' => t('LibChat ID'),
-      '#description' => t('E.g., libchat_ab67...'),
-      '#default_value' =>  isset($config['libchat_id']) ? $config['libchat_id'] : null,
+      '#title' => t('LibChat URL'),
+      '#description' => t('E.g., https://umd.libanswers.com/chat/widget/5cffd...'),
+      '#default_value' =>  isset($config['libchat_url']) ? $config['libchat_url'] : null,
+    ];
+    $form['libchat_height'] = [
+      '#type' => 'textfield',
+      '#title' => t('LibChat Height'),
+      '#description' => t('The height of the LibChat window'),
+      '#default_value' =>  isset($config['libchat_height']) ? $config['libchat_height'] : null,
+    ];
+    $form['libchat_width'] = [
+      '#type' => 'textfield',
+      '#title' => t('LibChat Width'),
+      '#description' => t('The width of the LibChat window'),
+      '#default_value' =>  isset($config['libchat_width']) ? $config['libchat_width'] : null,
     ];
     $form['ask_title'] = [
       '#type' => 'textfield',
@@ -111,7 +125,9 @@ class AskUsBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->setConfigurationValue('libchat_id', $form_state->getValue('libchat_id'));
+    $this->setConfigurationValue('libchat_url', $form_state->getValue('libchat_url'));
+    $this->setConfigurationValue('libchat_height', $form_state->getValue('libchat_height'));
+    $this->setConfigurationValue('libchat_width', $form_state->getValue('libchat_width'));
     $this->setConfigurationValue('faq_form', $form_state->getValue('faq_form'));
     $this->setConfigurationValue('faq_placeholder', $form_state->getValue('faq_placeholder'));
     $this->setConfigurationValue('ask_title', $form_state->getValue('ask_title'));
