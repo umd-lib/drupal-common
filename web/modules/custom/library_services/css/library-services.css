@@ -8,17 +8,13 @@
 .outer-pad .more-link {
   max-width: 1440px;
   text-align: right;
-  text-transform: lowercase;
   padding: 1.5rem 0;
+  text-transform: capitalize;
 }
 
 .services-rows .service {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  flex-shrink: 0;
-  gap: 6px;
 
   height: 100%;
   padding: 12px 24px;
@@ -66,17 +62,16 @@
 
 .services-rows .service-description div {
   width: 100%;
-  height: 90px;
 
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .services-rows .service-link {
   display: flex;
-  justify-content: end;
+  justify-content: start;
   align-items: flex-start;
   align-self: stretch;
   gap: 10px;
