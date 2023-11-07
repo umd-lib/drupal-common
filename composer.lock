@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e9dd55be9c3bb8973e6abf39e62b314",
+    "content-hash": "0ca34363e1c4787931d0ed7494cc956a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1473,59 +1473,6 @@
                 }
             ],
             "time": "2023-05-17T18:32:04+00:00"
-        },
-        {
-            "name": "drupal/auto_entityqueue",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/auto_entityqueue.git",
-                "reference": "8.x-2.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/auto_entityqueue-8.x-2.1.zip",
-                "reference": "8.x-2.1",
-                "shasum": "74397dade5d18a1a3ce186ca45c57ef6c302f407"
-            },
-            "require": {
-                "drupal/core": "^8 || ^9 | ^10",
-                "drupal/entityqueue": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-2.1",
-                    "datestamp": "1681968280",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "mlanth",
-                    "homepage": "https://www.drupal.org/user/2843651"
-                },
-                {
-                    "name": "paboden",
-                    "homepage": "https://www.drupal.org/user/329794"
-                },
-                {
-                    "name": "shadcn",
-                    "homepage": "https://www.drupal.org/user/571032"
-                }
-            ],
-            "description": "Automatically adds entities to entityqueues.",
-            "homepage": "http://drupal.org/project/auto_entityqueue",
-            "support": {
-                "source": "https://git.drupalcode.org/project/auto_entityqueue"
-            }
         },
         {
             "name": "drupal/autologout",
