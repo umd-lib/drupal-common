@@ -59,3 +59,5 @@ local-db/
 local-solr/
 web/example.gitignore
 web/.ht.router.php
+web/sites/example.settings.local.php
+web/.htaccess

@@ -54,6 +54,7 @@
   overflow-y: hidden;
   max-height: 120px;
   text-align: right;
+  display: inherit;
 }
 
 .homepage-feature .thumbnail-container img {

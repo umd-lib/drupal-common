@@ -1,0 +1,9 @@
+name: Featured Collections
+description: Enables "Featured Collections" widgets
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+type: module
+
+core_version_requirement: ^9 || ^10

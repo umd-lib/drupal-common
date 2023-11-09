@@ -1,4 +1,4 @@
-(function ($, Drupal, drupalSettings) {
+(function ($, Drupal, drupalSettings, once) {
   'use strict';
 
   Drupal.behaviors.systemStatusBehavior = {
@@ -64,7 +64,11 @@
       //   retrieveStatus(systemStatusUrl);
       // });
 
-      $(context).find("#showSystem").once('systemStatusBehavior').each(function() {
+      // $(context).find("#showSystem").once('systemStatusBehavior').each(function() {
+      //   retrieveStatus(systemStatusUrl);
+      // });
+
+      once('systemStatusBehavior', '#showSystem', context).forEach(function() {
         retrieveStatus(systemStatusUrl);
       });
 
@@ -80,6 +84,5 @@
       }
     }
   };
-})(jQuery, Drupal, drupalSettings);
-
+})(jQuery, Drupal, drupalSettings, once);
 

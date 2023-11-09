@@ -23,25 +23,27 @@
         "drupal/block_type_templates": "^1.0@alpha",
         "drupal/body_node_id_class": "^2.0",
         "drupal/bootstrap": "^3.21",
-        "drupal/cache_control_override": "^1.0@alpha",
+        "drupal/cache_control_override": "^2.0",
         "drupal/ckeditor": "^1.0",
         "drupal/content_moderation_notifications": "^3.3",
-        "drupal/core-composer-scaffold": "^9",
-        "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9",
+        "drupal/core-composer-scaffold": "^10",
+        "drupal/core-project-message": "^10",
+        "drupal/core-recommended": "^10",
         "drupal/cshs": "^4.0",
         "drupal/ctools": "^3.7",
         "drupal/default_content": "^2.0@alpha",
         "drupal/devel": "^5.0",
-        "drupal/dropdown_language": "^3.2",
+        "drupal/dropdown_language": "4.0.x-dev@dev",
         "drupal/easy_install": "^10.5",
         "drupal/entity_reference_revisions": "^1.9",
         "drupal/entityqueue": "^1.2",
         "drupal/external_data_source": "^3.0",
         "drupal/extlink": "^1.3",
+        "drupal/facets_block": "^2.0@beta",
         "drupal/field_group": "^3.1",
         "drupal/fixed_block_content": "^1.2",
         "drupal/fontawesome": "^2.16",
+        "drupal/hal": "^2.0",
         "drupal/imageapi_optimize": "^4.0",
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
         "drupal/link_attributes": "^1.11",
@@ -77,7 +79,7 @@
         "drupal/views_fieldsets": "^4.0",
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.2@beta",
-        "drush/drush": "^10.2",
+        "drush/drush": "^12",
         "mglaman/composer-drupal-lenient": "^1.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "predis/predis": "^1.1",
@@ -97,7 +99,8 @@
             "drupal/core-project-message": true,
             "oomphinc/composer-installers-extender": true,
             "mglaman/composer-drupal-lenient": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "phpstan/extension-installer": true
         }
     },
     "extra": {
@@ -105,6 +108,12 @@
         "patches": {
           "drupal/easy_install": {
             "Easy Install Compat for D10": "https://www.drupal.org/files/issues/2023-04-12/easy_install_d10-3297022-9.patch"
+          },
+          "drupal/cshs": {
+            "Broken Once usage": "https://git.drupalcode.org/project/cshs/-/merge_requests/13.patch"
+          },
+          "drupal/core": {
+            "CKEditor width container issue": "https://www.drupal.org/files/issues/2023-09-06/ckeditor5-ckeditor5_toolbar_items_overflowing-3332416-25.patch"
           }
         },
         "drupal-scaffold": {
@@ -160,12 +169,16 @@
             ]
         },
         "drupal-lenient": {
-            "allowed-list": ["drupal/easy_install"]
+            "allowed-list": ["drupal/easy_install", "drupal/block_type_templates", "drupal/dropdown_language", "drupal/hal", "drupal/cache_control_override"]
         }
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
         "drupal/coder": "^8.3",
+        "mglaman/phpstan-drupal": "^1.2",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
         "squizlabs/php_codesniffer": "^3.6"
     }
 }

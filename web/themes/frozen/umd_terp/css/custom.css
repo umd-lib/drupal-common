@@ -100,3 +100,33 @@
 .space-featured-yes {
   background-color: aliceblue;
 }
+
+/** Card modifications **/
+
+a.basic-link {
+  font-family: Source Sans Pro, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.00125rem;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  position: relative;
+  color: black;
+  transition: color 0.25s ease-in-out;
+}
+
+.card[role="link"]:focus .basic-link,
+.card[role="link"]:hover .basic-link {
+  color: #e21833;
+}
+
+/** Facets **/
+.facet-item {
+  display: flex;
+  align-items: baseline;
+}
+
+.facets-widget-checkbox label {
+  margin-left: 0.5rem;
+}
