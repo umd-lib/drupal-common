@@ -233,3 +233,9 @@ a.basic-link {
 .card[role="link"]:hover .basic-link {
   color: #e21833;
 }
+
+/** Language Switcher **/
+ul#page-language-links .is-active {
+  color: black;
+  text-decoration: underline;
+}

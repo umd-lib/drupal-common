@@ -23,6 +23,7 @@
         "drupal/bootstrap": "^3.21",
         "drupal/ckeditor": "^1.0",
         "drupal/colorbox": "^2.0",
+        "drupal/content_translation_redirect": "^2.0@alpha",
         "drupal/core-composer-scaffold": "^10",
         "drupal/core-project-message": "^10",
         "drupal/core-recommended": "^10",
@@ -40,6 +41,8 @@
         "drupal/honeypot": "^2.1",
         "drupal/imageapi_optimize": "^4.0",
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
+        "drupal/language_neutral_aliases": "^3.1",
+        "drupal/language_switcher_extended": "^1.1",
         "drupal/link_attributes": "^1.11",
         "drupal/linkit": "^6.0",
         "drupal/masonry": "^2.0",
@@ -101,6 +104,12 @@
           },
           "drupal/easy_install": {
             "Easy Install Compat for D10": "https://www.drupal.org/files/issues/2023-04-12/easy_install_d10-3297022-9.patch"
+          },
+          "drupal/language_neutral_aliases": {
+            "Improper access check": "https://www.drupal.org/files/issues/2023-06-22/accesscheck-336829-4.patch"
+          },
+          "drupal/core": {
+            "URL neutral translations": "https://www.drupal.org/files/issues/2022-12-20/2689459-161.patch"
           },
           "drupal/fontawesome": {
             "Fontawesome Compat for D10": "https://www.drupal.org/files/issues/2023-06-05/3274028-fontawesome-ckeditor5-compatibility-16.patch"
