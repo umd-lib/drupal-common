@@ -60,3 +60,6 @@ web/web.config
 
 web/.ht.router.php
 web/example.gitignore
+web/modules/README.txt
+web/profiles/README.txt
+web/themes/README.txt
