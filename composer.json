@@ -26,6 +26,7 @@
         "drupal/cache_control_override": "^2.0",
         "drupal/ckeditor": "^1.0",
         "drupal/content_moderation_notifications": "^3.3",
+        "drupal/content_translation_redirect": "^2.0@alpha",
         "drupal/core-composer-scaffold": "^10",
         "drupal/core-project-message": "^10",
         "drupal/core-recommended": "^10",
