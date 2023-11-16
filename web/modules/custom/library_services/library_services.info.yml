@@ -6,6 +6,7 @@ dependencies:
   - easy_install
   - fontawesome_iconpicker_widget
   - scheduler
+  - auto_entityqueue
 type: module
 
 core_version_requirement: ^8.9 || ^9 || ^10
