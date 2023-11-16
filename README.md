@@ -9,46 +9,44 @@ installed.
 
 ### Install
 
-1) Create a base directory to hold each of the directories for the project. This
-example will use "drupal", but that is arbitrary:
+1) Create a base directory to hold each of the directories for the project. This example will use "drupal":
 
 ```
 > mkdir drupal
 > cd drupal
 ```
 
-2) To deploy locally, clone the main branch:
+2) To deploy locally, clone the desired branch. E.g.,:
 
 ```
 > git clone https://github.com/umd-lib/drupal-common.git common-www
 > cd common-www
 > git checkout www/main
 ```
+* All common sites use the main branch
+* Staff Blog uses the staff-blog/main branch
 
-3) Install the site using Composer. This will download all dependencies and prep
-for local deployment.
+3) Install the site using Composer. This will download all dependencies and prep for local deployment.
 
 ```
 # in common-www/
 > composer install
 ```
 
-4) Switch back to the base ("drupal") directory, and create empty directories
-for the Postgres and Solr data (used in the next steps):
+4) Switch back to the base ("drupal") directory, and create empty directories for the Postgres and Solr data (used in the next steps):
 
 ```
 > cd ..  # back to "drupal"
-> mkdir postgres_data
-> mkdir solr_data
+> mkdir www_postgres_data
+> mkdir www_solr_data
 ```
 
-5) Clone the drupal-projects-env repository locally and copy the www/env file
-into your web root (i.e., common-demo) as .env:
+5) Clone the drupal-projects-env repository locally and copy the env file into your web root (i.e., common-www) as .env:
 
 ```
 > git clone git@github.com:umd-lib/drupal-projects-env.git
-> cp drupal-projects-env/www/env common-www/.env
-> cp drupal-projects-env/www/settings.php common-www/web/sites/default/settings.php
+> cp drupal-projects-env/env common-www/.env
+> cp drupal-projects-env/web/sites/default/settings.php common-www/web/sites/default/settings.php
 ```
 
 6) Edit the "common-www/.env" file:
@@ -60,8 +58,11 @@ into your web root (i.e., common-demo) as .env:
 and customize the common-www/.env file for your environment. Specifically,
 modify the values for:
 
-* DB_DATA_DIR - the fully-qualified path to the "postgres_data" directory
-* SOLR_DATA_DIR - the fully-qualified path to the "solr_data" directory
+* PROJECT_NAME - Arbitrary site name. E.g., wwwsite
+* PROJECT_BASE_URL - Local site URL. E.g., www.docker.localhost
+* PROJECT_PORT - Can be arbitrary port unless [logging in using SAML](https://umd-dit.atlassian.net/wiki/spaces/LIB/pages/21432756/SAML)
+* DB_DATA_DIR - the fully-qualified path to the "www_postgres_data" directory
+* SOLR_DATA_DIR - the fully-qualified path to the "www_solr_data" directory
 
 All other values can stay the same.
 
@@ -73,11 +74,11 @@ and copy to postgres-init:
 > kubectl exec drupal-www-db-0 -- pg_dump -c --if-exists -O -U drupaldb -d drupaldb > common-www/postgres-init/wwwnew.sql
 ```
 
-8) (Optional - Local development only) Copy drupal-projects-env/services.yml
-to common-demo/web/sites/default/:
+8) (Optional - Local development only) Copy drupal-projects-env/web/sites/default/services.yml
+to common-www/web/sites/default/:
 
 ```
-> cp drupal-projects-env/services.yml common-www/web/sites/default/
+> cp drupal-projects-env/web/sites/default/services.yml common-www/web/sites/default/
 ```
 
 (See additional post-startup development steps in the
@@ -102,16 +103,17 @@ Unless clearing cache produces errors, the site should be available at:
 
 * <http://www.docker.localhost:18080>
 
+(Depending on your URL and PORT values set in .env)
 If the site fails to come up, kill the stack with:
 
 ```
-> docker-compose down
+> docker compose down
 ```
 
 And restart without the -d in order to pump logging to standard out.
 
 ```
-> docker-compose up
+> docker compose up
 ```
 
 10) If your work depends on having all images in place, you will want to
@@ -125,7 +127,7 @@ Be sure to flush cache after the file copy is complete.
 ### Local Development Configuration
 
 As mentioned in the optional step above for local development, copy the
-drupal-projects-env/services.yml file to common-demo/web/sites/default/.
+drupal-projects-env/services.yml file to common-www/web/sites/default/.
 This will preconfigure your site for dev mode and make theming much easier by
 injecting template information directly into the site markup. Note that we don't
 want this file included in production (which is a danger given that it isn't
