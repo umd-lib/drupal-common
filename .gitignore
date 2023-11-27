@@ -61,3 +61,6 @@ web/example.gitignore
 web/.ht.router.php
 web/sites/example.settings.local.php
 web/.htaccess
+web/modules/README.txt
+web/profiles/README.txt
+web/themes/README.txt
