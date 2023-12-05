@@ -131,17 +131,8 @@ a.basic-link {
   margin-left: 0.5rem;
 }
 
-.umdheader-main__logo {
-    border: 0!important;
-    margin: 1px 0 0!important;
-    padding: 0 0 0 10px!important;
-    font-family: Source Sans,Source Sans Pro,sans-serif!important;
-    font-size: 13px!important;
-    line-height: 1.3!important;
-    color: #fff!important;
-    font-family: Crimson Text,serif!important;
-    font-size: 1.076923076923077em!important;
-    font-weight: 400!important
+.umdheader-main__logo a[href^="https://umd.edu"]{
+     font-family: Crimson Text, Georgia, serif!important;
 }
 
 /* fix image overlap issue */
