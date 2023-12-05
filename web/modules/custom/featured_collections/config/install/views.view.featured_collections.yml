@@ -527,7 +527,7 @@ display:
           plugin_id: entity_queue
           required: false
           limit_queue: featured_collections_sort
-      css_class: card-group
+      css_class: featured-collections
       link_display: page_1
       link_url: ''
       header: {  }
@@ -996,7 +996,20 @@ display:
         row: false
         filters: false
         filter_groups: false
+        footer: false
       display_description: ''
+      footer:
+        display_link:
+          id: display_link
+          table: views
+          field: display_link
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: display_link
+          label: 'See all Featured Resources'
+          empty: false
+          display_id: page_1
       display_extenders:
         matomo:
           enabled: false
