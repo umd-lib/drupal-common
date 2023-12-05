@@ -9,20 +9,19 @@ handler: simple
 handler_configuration: {  }
 entity_settings:
   target_type: node
-  handler: 'default:node'
+  handler: views
   handler_settings:
-    target_bundles:
-      featured_collection: featured_collection
-    sort:
-      field: revision_timestamp
-      direction: DESC
-    auto_create: false
-    auto_create_bundle: ''
+    view:
+      view_name: entityreference_services_and_resources
+      display_name: entity_reference_2
+      arguments: {  }
     auto_entityqueue:
       auto_add: 1
       insert_front: 1
+      bundle_override: featured_collection
 queue_settings:
   min_size: 0
   max_size: 0
   act_as_queue: false
   reverse: false
+
