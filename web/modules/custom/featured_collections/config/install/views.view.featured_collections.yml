@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entityqueue.entity_queue.featured_collections_sort
     - field.storage.node.body
     - field.storage.node.field_collection_image
     - field.storage.node.field_collection_link
@@ -9,6 +10,7 @@ dependencies:
     - image.style.optimized
     - node.type.featured_collection
   module:
+    - entityqueue
     - link
     - media
     - node
@@ -328,8 +330,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: text_default
-          settings: {  }
+          type: text_summary_or_trimmed
+          settings:
+            trim_length: 600
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -390,10 +393,9 @@ display:
           empty_zero: false
           hide_alter_empty: false
       pager:
-        type: some
+        type: none
         options:
           offset: 0
-          items_per_page: 3
       exposed_form:
         type: basic
         options:
@@ -413,22 +415,20 @@ display:
         options: {  }
       empty: {  }
       sorts:
-        created:
-          id: created
+        entityqueue_relationship:
+          id: entityqueue_relationship
           table: node_field_data
-          field: created
+          field: entityqueue_relationship
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
-          entity_field: created
-          plugin_id: date
-          order: DESC
+          plugin_id: entity_queue_position
+          order: ASC
           expose:
             label: ''
             field_identifier: ''
           exposed: false
-          granularity: second
       arguments: {  }
       filters:
         status:
@@ -498,7 +498,7 @@ display:
         type: default
         options:
           grouping: {  }
-          row_class: 'card-wrap card-wrap--3'
+          row_class: 'card-wrap card-wrap--2'
           default_row_class: false
       row:
         type: fields
@@ -515,8 +515,19 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
-      css_class: card-group
+      relationships:
+        entityqueue_relationship:
+          id: entityqueue_relationship
+          table: node_field_data
+          field: entityqueue_relationship
+          relationship: none
+          group_type: group
+          admin_label: 'Content queue'
+          entity_type: node
+          plugin_id: entity_queue
+          required: false
+          limit_queue: featured_collections_sort
+      css_class: featured-collections
       link_display: page_1
       link_url: ''
       header: {  }
@@ -530,9 +541,12 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:entityqueue.entity_queue.featured_collections_sort'
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_collection_image'
         - 'config:field.storage.node.field_collection_link'
+        - entity_field_info
+        - views_data
   block_1:
     id: block_1
     display_title: 'Featured Initiatives'
@@ -638,9 +652,12 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:entityqueue.entity_queue.featured_collections_sort'
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_collection_image'
         - 'config:field.storage.node.field_collection_link'
+        - entity_field_info
+        - views_data
   block_2:
     id: block_2
     display_title: 'Featured Collections'
@@ -764,9 +781,12 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:entityqueue.entity_queue.featured_collections_sort'
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_collection_image'
         - 'config:field.storage.node.field_collection_link'
+        - entity_field_info
+        - views_data
   block_3:
     id: block_3
     display_title: 'Featured Guides'
@@ -872,9 +892,278 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:entityqueue.entity_queue.featured_collections_sort'
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_collection_image'
         - 'config:field.storage.node.field_collection_link'
+        - entity_field_info
+        - views_data
+  block_4:
+    id: block_4
+    display_title: 'Featured Combined (3)'
+    display_plugin: block
+    position: 5
+    display_options:
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 3
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            featured_collection: featured_collection
+        field_collection_type_value:
+          id: field_collection_type_value
+          table: node__field_collection_type
+          field: field_collection_type_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value:
+            Collections: Collections
+            'Research Guides': 'Research Guides'
+            Initiatives: Initiatives
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: 'card-wrap card-wrap--3'
+          default_row_class: false
+      row:
+        type: fields
+        options:
+          default_field_elements: false
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        pager: false
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+        footer: false
+      display_description: ''
+      footer:
+        display_link:
+          id: display_link
+          table: views
+          field: display_link
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: display_link
+          label: 'See all Featured Resources'
+          empty: false
+          display_id: page_1
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+      block_description: 'Featured Combined (3)'
+      block_category: 'Featured Widgets'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:entityqueue.entity_queue.featured_collections_sort'
+        - 'config:field.storage.node.body'
+        - 'config:field.storage.node.field_collection_image'
+        - 'config:field.storage.node.field_collection_link'
+        - entity_field_info
+        - views_data
+  block_5:
+    id: block_5
+    display_title: 'Featured Combined (All)'
+    display_plugin: block
+    position: 5
+    display_options:
+      pager:
+        type: none
+        options:
+          offset: 0
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            featured_collection: featured_collection
+        field_collection_type_value:
+          id: field_collection_type_value
+          table: node__field_collection_type
+          field: field_collection_type_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value:
+            Collections: Collections
+            'Research Guides': 'Research Guides'
+            Initiatives: Initiatives
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: 'card-wrap card-wrap--3'
+          default_row_class: false
+      row:
+        type: fields
+        options:
+          default_field_elements: false
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        pager: false
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+      display_description: ''
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+      block_description: 'Featured Combined (All)'
+      block_category: 'Featured Widgets'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:entityqueue.entity_queue.featured_collections_sort'
+        - 'config:field.storage.node.body'
+        - 'config:field.storage.node.field_collection_image'
+        - 'config:field.storage.node.field_collection_link'
+        - entity_field_info
+        - views_data
   page_1:
     id: page_1
     display_title: Page
@@ -1164,7 +1453,7 @@ display:
             more_link: false
             more_link_text: ''
             more_link_path: ''
-            strip_tags: true
+            strip_tags: false
             trim: false
             preserve_tags: ''
             html: false
@@ -1333,7 +1622,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:entityqueue.entity_queue.featured_collections_sort'
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_collection_image'
         - 'config:field.storage.node.field_collection_link'
+        - entity_field_info
+        - views_data
 

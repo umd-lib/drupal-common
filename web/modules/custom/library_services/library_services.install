@@ -2,13 +2,20 @@
 
 /**
  * @file
- * header alerts module install file.
+ * library services module install file.
  */
 
 /**
  * Install alerts configuration.
  */
 function library_services_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'library_services');
+}
+
+/**
+ * Install alerts configuration.
+ */
+function library_services_update_8002() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'library_services');
 }
 
