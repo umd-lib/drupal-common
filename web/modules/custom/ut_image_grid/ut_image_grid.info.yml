@@ -1,0 +1,10 @@
+name: 'UMD Terp Paragraphs: Image Grid'
+description: Provides a paragraphs for a grid of images.
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+  - paragraphs
+  - umd_terp_base
+type: module
+core_version_requirement: ">=8"

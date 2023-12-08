@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Theme override for field.
+ *
+ * Removes excess markup.
+ */
+#}
+
+{% if label_hidden %}
+  <div class="inner-field-content image-grid-field">
+  {% if multiple %}
+    {% for item in items %}
+      <span>{{ item.content }}</span>
+    {% endfor %}
+  {% else %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  {% endif %}
+  </div>
+{% else %}
+  <div class="inner-field-content image-grid-field">
+  <label><strong>{{ label }}:</strong></label>
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+    </div>
+{% endif %}
