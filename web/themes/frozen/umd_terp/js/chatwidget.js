@@ -63,7 +63,6 @@ function checkServiceStatus() {
       } else {
         console.log("chat widget is offline");
         updateStatusStyle(false);
-        åå;
         // reload the iframe to show correct chat widget page, only if the widget is already offline
         reloadIframe();
       }
