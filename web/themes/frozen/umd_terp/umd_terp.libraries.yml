@@ -18,4 +18,4 @@ global:
     js/paragraph-utils.js: {}
     js/utility-nav.js: { scope: header }
     js/toggled-search-bar.js: { scope: header }
-    js/chatwidget.js: {}
+    js/chatwidget.js: { preprocess: false }
