@@ -1,0 +1,10 @@
+name: 'UMD News Expansion'
+description: Replication of 1856 and WHPool news, which can be repurposed for other sites.
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+  - paragraphs
+  - umd_terp_base
+type: module
+core_version_requirement: ">=8"
