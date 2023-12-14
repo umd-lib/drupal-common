@@ -43,7 +43,7 @@
         {% for language in links %}
           <div class="multilang-item" {{ language.attributes }} aria-hidden="true">
             <div class="multilang-text" aria-hidden="true">
-            {{ lanugage.nationAbbreviation }} - {{ language.text }}
+            {{ language.nationAbbreviation }} - {{ language.nativeName }}
             </div>
           </div>
         {% endfor %}
@@ -56,7 +56,7 @@
               <a href="{{ language.href }}" aria-hidden="false" role="link" aria-label="{{ language.nation }}/{{ language.text }}">
                 <div class="multilang-divider" aria-hidden="true"></div>
                 <div class="multilang-text" aria-hidden="true">
-                {{ lanugage.nationAbbreviation }} - {{ language.text }}
+                {{ language.nationAbbreviation }} - {{ language.nativeName }}
                 </div>
               </a>
             </li>
