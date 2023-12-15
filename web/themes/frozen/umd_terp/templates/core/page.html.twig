@@ -23,6 +23,7 @@
 	{% endblock %}
 	{% block main %}
 		<div class="container page-content">
+			{{ page.local_utility }}
 			{{ page.help }}
 			{{ page.highlighted }}
 			<div {{sidebar_attribute.addClass(sidebar_classes)}}>
