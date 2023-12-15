@@ -168,7 +168,7 @@ function umd_terp_preprocess_links(&$variables) {
               $item['nativeName'] = "English";
               break;
             case "ja":
-              $item['nationAbbreviation'] = "JA";
+              $item['nationAbbreviation'] = "JP";
               $item['nation'] = "Japan";
               $item['nativeName'] = "日本語";
               break;
