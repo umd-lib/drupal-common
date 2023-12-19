@@ -64,3 +64,5 @@ web/.htaccess
 web/modules/README.txt
 web/profiles/README.txt
 web/themes/README.txt
+web/INSTALL.txt
+web/robots.txt
