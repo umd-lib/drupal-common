@@ -270,3 +270,13 @@ function umd_terp_form_system_theme_settings_submit(&$form, FormStateInterface $
     $form_state->unsetValue('umd_terp_footer_logo_upload');
   }
 }
+
+/**
+ * Implements hook_theme_suggestions_block_alter() for form templates.
+ */
+function umd_terp_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__block_content_' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
