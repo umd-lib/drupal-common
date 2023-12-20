@@ -10,32 +10,33 @@ function reloadIframe() {
   console.log("iframe reload");
 }
 
+// update chat widget's button style
 function setStyleProperty(status) {
   const root = document.documentElement;
   let name = status;
-  console.log(name);
+
   root.style.setProperty("--cw-color-main", `var(--${name}-primary-color)`);
   root.style.setProperty("--cw-color-sematic", `var(--${name}-sematic-color)`);
   root.style.setProperty("--cw-color-text", `var(--${name}-text-color)`);
-  root.style.setProperty("--cw-icon-default", `var(--${name}-icon-default)`);
-  root.style.setProperty("--cw-icon-hover", `var(--${name}-icon-hover)`);
-  root.style.setProperty("--cw-chevron-default", `var(--chevron-${name})`);
   root.style.setProperty(
     "--cw-color-background",
     `var(--${name}-background-color)`
   );
+  root.style.setProperty("--cw-icon-default", `var(--${name}-icon-default)`);
+  root.style.setProperty("--cw-icon-hover", `var(--${name}-icon-hover)`);
+  root.style.setProperty("--cw-chevron-default", `var(--chevron-${name})`);
 }
 
+// initiate style update based on the service status
 function updateStatusStyle(status) {
   let widgetStatus = document.getElementById("cw-status");
+
   if (status === true) {
     setStyleProperty("live");
     widgetStatus.innerText = "live";
-    console.log("widget style updated to live");
   } else {
     setStyleProperty("offline");
     widgetStatus.innerText = "offline";
-    console.log("widget style updated to offline");
   }
 }
 
@@ -45,10 +46,7 @@ function checkServiceStatus() {
     //   check the server status and get the service status
     .then((response) => {
       if (response.status === 200) {
-        console.log("server is live");
-        console.log(response);
         let data = response.json();
-        console.log(data);
         return data;
       } else {
         console.log("server is down");
@@ -58,25 +56,30 @@ function checkServiceStatus() {
     .then((data) => {
       const awayValue = data.away;
       if (typeof awayValue !== "undefined") {
-        console.log("chat widget is live");
         updateStatusStyle(true);
       } else {
-        console.log("chat widget is offline");
         updateStatusStyle(false);
         // reload the iframe to show correct chat widget page, only if the widget is already offline
         reloadIframe();
       }
     })
     .catch((error) => {
-      console.log("Error:", error);
+      console.log("Chat Service Error:", error);
     });
 }
 
-// initial check
-checkServiceStatus();
+// update chat service url to provide referer info
+function updateIframeUrl(elementId) {
+  let serviceSrc = document.getElementById(elementId);
 
-// set up a recurring check
-setInterval(checkServiceStatus, checkInterval);
+  if (serviceSrc) {
+    let currentUrl = document.URL;
+    serviceSrc.setAttribute(
+      "src",
+      serviceSrc.getAttribute("src") + "?referer=" + currentUrl
+    );
+  }
+}
 
 // expand/collapse the chatbox
 function expand() {
@@ -91,3 +94,36 @@ function expand() {
     chevron.classList.add("chevron-ver");
   }
 }
+
+// open chat widown in a new tab for chat with us! button in the navigation bar
+function openChatWindow() {
+  let serviceSrc = document.getElementById("cw-iframe-window");
+
+  if (serviceSrc) {
+    window.open(
+      serviceSrc.getAttribute("src"),
+      "pop-up",
+      "width=360, height=594"
+    );
+  } else {
+    // fallback to the chat widget without referer info
+    window.open(
+      "https://umd.libanswers.com/chat/widget/5cffd49b55d69387be9a6fa51e3c5fa59efa09ca025ffc7367db9b7d083f17ec",
+      "pop-up",
+      "width=360, height=594"
+    );
+  }
+
+  return false;
+}
+
+// initial check
+checkServiceStatus();
+
+// set up a recurring check
+setInterval(checkServiceStatus, checkInterval);
+
+// update chat service url to provide referer info
+document.addEventListener("DOMContentLoaded", function () {
+  updateIframeUrl("cw-iframe-window");
+});
