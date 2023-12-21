@@ -1,0 +1,37 @@
+block.settings.ask_us:
+  type: block_settings
+  label: 'Ask Us settings'
+  mapping:
+    libchat_url:
+      type: string
+      label: 'URL for libchat buttons'
+    libchat_height:
+      type: string
+      label: 'URL for libchat buttons'
+    libchat_width:
+      type: string
+      label: 'URL for libchat buttons'
+    faq_form:
+      type: string
+      label: 'URL for libchat buttons'
+    faq_placeholder:
+      type: string
+      label: 'URL for libchat buttons'
+    ask_title:
+      type: string
+      label: 'URL for libchat buttons'
+    link_1_url:
+      type: string
+      label: 'URL for libchat buttons'
+    link_1_text:
+      type: string
+      label: 'URL for libchat buttons'
+    link_2_url:
+      type: string
+      label: 'URL for libchat buttons'
+    link_2_text:
+      type: string
+      label: 'URL for libchat buttons'
+    is_mobile:
+      type: string
+      label: 'URL for libchat buttons'
