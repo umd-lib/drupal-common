@@ -104,9 +104,6 @@
           "drupal/easy_install": {
             "Easy Install Compat for D10": "https://www.drupal.org/files/issues/2023-04-12/easy_install_d10-3297022-9.patch"
           },
-          "drupal/core": {
-            "URL neutral translations": "https://www.drupal.org/files/issues/2022-12-20/2689459-161.patch"
-          },
           "drupal/fontawesome": {
             "Fontawesome Compat for D10": "https://www.drupal.org/files/issues/2023-06-05/3274028-fontawesome-ckeditor5-compatibility-16.patch"
           }
