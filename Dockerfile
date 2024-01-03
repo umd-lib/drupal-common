@@ -1,4 +1,4 @@
-FROM drupal:9.5.9-php8.1-apache
+FROM drupal:10.1.7-php8.2-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
