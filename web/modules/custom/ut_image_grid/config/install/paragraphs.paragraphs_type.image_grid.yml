@@ -1,6 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: hQKYJyWVykt3lVQCbPmCcdrsBmw5jt8QsG50nftv6lc
 id: image_grid
 label: 'Image Grid'
 icon_uuid: null

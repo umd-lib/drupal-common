@@ -5,6 +5,8 @@ dependencies:
     - field.storage.paragraph.field_image_gallery
     - media.type.image
     - paragraphs.paragraphs_type.image_grid
+_core:
+  default_config_hash: IsWRpkFWun7aihKqyp3Mhhhn3Fmd7eC1rWzxs3b8iC4
 id: paragraph.image_grid.field_image_gallery
 field_name: field_image_gallery
 entity_type: paragraph

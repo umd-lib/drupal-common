@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.field.paragraph.image_grid.field_image_gallery
     - paragraphs.paragraphs_type.image_grid
+_core:
+  default_config_hash: drm7xhQAxMlRDuH1licL1NsJ3rqYKhfUNjqIZOg-Ta8
 id: paragraph.image_grid.default
 targetEntityType: paragraph
 bundle: image_grid
@@ -20,4 +22,3 @@ content:
     region: content
 hidden:
   search_api_excerpt: true
-

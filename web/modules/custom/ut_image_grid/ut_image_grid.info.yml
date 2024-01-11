@@ -6,5 +6,6 @@ dependencies:
   - easy_install
   - paragraphs
   - umd_terp_base
+  - colorbox
 type: module
 core_version_requirement: ">=8"
