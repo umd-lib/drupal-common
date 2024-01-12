@@ -5,3 +5,17 @@
  * Module file for newsroom module.
  */
 
+use Drupal\views\ViewExecutable;
+
+/**
+* Implements hook_views_pre_render().
+*/
+function featured_collections_views_pre_render(ViewExecutable $view) {
+  if (empty($view) || empty($view->storage->id())) {
+    return;
+  }
+  if ($view->storage->id() == 'featured_collections') {
+    $view->element['#attached']['library'][] = 'featured_collections/featured_collections';
+  }
+}
+
