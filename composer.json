@@ -48,6 +48,7 @@
         "drupal/hal": "^2.0",
         "drupal/imageapi_optimize": "^4.0",
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
+        "drupal/language_switcher_extended": "^1.1",
         "drupal/link_attributes": "^1.11",
         "drupal/linkit": "^6.0@beta",
         "drupal/masquerade": "^2.0@beta",

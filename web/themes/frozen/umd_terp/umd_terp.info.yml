@@ -20,6 +20,7 @@ regions:
   hero_block: "Hero Block"
   help: "Help"
   breadcrumbs: "Breadcrumbs"
+  local_utility: "Local Utility"
   sidebar: "Sidebar"
   content: "Content"
   footer_menu: "Footer Menu"

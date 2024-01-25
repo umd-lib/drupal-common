@@ -8,6 +8,10 @@
 use Drupal\Component\Utility\Html;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\language\Entity\ConfigurableLanguage;
+use Drupal\Core\Language\Language;
 
 /**
  * Implements hook_preprocess_HOOK() for HTML document templates.
@@ -184,4 +188,53 @@ function umd_terp_preprocess_menu_local_task(&$variables) {
     $class[] = 'active';
   }
   $variables['element']['#link']['url']->setOption('attributes', ['class' => $class]);
+}
+
+/**
+ * Prepares links for menus
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - media: An individual media for display.
+ */
+function umd_terp_preprocess_links(&$variables) {
+  $links = $variables['links'];
+  if (!empty($links)) {
+    $variables['links'] = [];
+    $lang_man = \Drupal::service('language_manager');
+    foreach ($links as $key => $link) {
+      $item = $link;
+      if (!empty($item['link'])) {
+        if (!empty($item['link']['#options']['language'])) {
+          $lang = $item['link']['#options']['language'];
+          $lang_id = $lang->getId();
+          $lang_name = $lang->getName();
+          $item['lang_name'] = $lang_name;
+          $item['lang_id'] = $lang_id;
+          switch ($lang_id) {
+            case "en":
+              $item['nationAbbreviation'] = "US";
+              $item['nation'] = "USA";
+              $item['nativeName'] = "English";
+              break;
+            case "ja":
+              $item['nationAbbreviation'] = "JP";
+              $item['nation'] = "Japan";
+              $item['nativeName'] = "日本語";
+              break;
+          }
+          if (!empty($lang_id) && !empty($item['link']['#url'])) {
+            $current_lang = $lang_man->getLanguage($lang_id);
+            $url = $item['link']['#url'];
+            $uri_string = $url->toUriString();
+            $url_opts = ['language' => $current_lang];
+            $new_url = $url::fromUri($uri_string, $url_opts);
+            $item['href'] = $new_url->toString();
+          }
+        }
+      }
+      // Add the item to the list of links.
+      $variables['links'][$key] = $item;
+    }
+  }
 }

@@ -13,9 +13,11 @@ global:
       css/bento.css: { media: screen }
       css/careers.css: { media: screen }
       css/umd-print.css: { media: print }
+      css/multilang.css: { media: screen }
   js:
     static/build/js/index.js: {}
     js/paragraph-utils.js: {}
     js/utility-nav.js: { scope: header }
     js/toggled-search-bar.js: { scope: header }
     js/chatwidget.js: { preprocess: false }
+    js/language-block.js: {}
