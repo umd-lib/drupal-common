@@ -150,12 +150,29 @@ class LibHoursTodayBlock extends BlockBase {
       }
     }
     $output = [];
+    // Check parents for children
     foreach ($hours as $loc) {
       $plid = $loc['lid'];
       $output[] = $loc;
       if (!empty($children[$plid])) {
         foreach ($children[$plid] as $child) {
           $output[] = $child;
+        }
+        unset($children[$plid]);
+      }
+    }
+    // If there are orphans, add those but on top level.
+    if (!empty($children)) {
+      foreach ($children as $key => $orphans) {
+        foreach ($orphans as $orphan) {
+          // We no longer want chevs for these
+          if ($olid = $orphan['lid']) {
+            $orphan['name'] = str_replace('|chev| ', '', $orphan['name']);
+            if (!empty($locations[$olid])) {
+              $locations[$olid] = str_replace('|chev| ', '', $locations[$olid]);
+            }
+            $output[] = $orphan;
+          }
         }
       }
     }
