@@ -142,7 +142,7 @@ function bento_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
 function bento_icon_map($raw_name) {
   $icon_map = [
     "archival_material" => "result-icons fas fa-archive",
-    "article" => "result-icons far fa-file-alt",
+    "article" => "result-icons fas fa-file-alt",
     "audio" => "result-icons fas fa-headphones",
     "audio_book" => "result-icons fas fa-file-audio",
     "book" => "result-icons fas fa-book",
