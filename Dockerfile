@@ -1,4 +1,4 @@
-FROM drupal:10.1.7-php8.2-apache
+FROM drupal:10.2.2-php8.2-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
@@ -27,7 +27,7 @@ RUN apt-get install -y libldap2-dev \
 
 # Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-	php composer-setup.php && \
+	php composer-setup.php --version=2.6.6 && \
 	mv composer.phar /usr/local/bin/composer && \
 	php -r "unlink('composer-setup.php');"
 
