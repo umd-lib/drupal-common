@@ -1,8 +1,0 @@
-# utility_nav.info_root_menu:
-#   route_name: utility_nav.info_root
-#   menu_name: main
-#   class: Drupal\utility_nav\Plugin\Menu\InfoForRoot
-# utility_nav.info_child_menu:
-#   route_name: utility_nav.info_child
-#   parent: utility_nav.info_root_menu
-#   class: Drupal\utility_nav\Plugin\Menu\InfoForChild
