@@ -18,6 +18,7 @@ function hero_search_theme() {
         'hero_search_top_right_link' => '',
         'hero_search_bottom_left_link' => '',
         'hero_search_bottom_right_link' => '',
+        'hero_search_alert' => '',
       ],
     ],
     'hero_search_form' => [
