@@ -2,7 +2,6 @@
  * hero_search component CSS file.
  */
 
-
 .hero-search-title {
   color: #000;
   font-size: 1.5rem;
@@ -185,4 +184,44 @@ textarea {
 
 .home-hero-content h2 {
   display: none;
+}
+
+/* Search box alert */
+.bento-box-alert {
+  color: #000;
+  background-color: #fff9d5;
+
+  max-width: 625.938px;
+
+  display: flex;
+  flex-direction: row;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 8px;
+  border: 1px solid #ffd200;
+  margin: 16px 0;
+}
+
+.bento-box-alert .alert-icon {
+  width: 20px;
+  height: 20px;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cg clip-path='url(%23clip0_706_37038)'%3E%3Cpath d='M10 18.3333C14.6024 18.3333 18.3334 14.6023 18.3334 9.99996C18.3334 5.39759 14.6024 1.66663 10 1.66663C5.39765 1.66663 1.66669 5.39759 1.66669 9.99996C1.66669 14.6023 5.39765 18.3333 10 18.3333Z' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10 6.66663V9.99996' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10 13.3334H10.0083' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_706_37038'%3E%3Crect width='20' height='20' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.bento-box-alert .alert-text {
+  width: 100%;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.bento-box-alert a {
+  color: #e21833;
 }

@@ -88,6 +88,7 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
     $top_right_link = $configHelper->getLinkField('top_right_link');
     $bottom_left_link = $configHelper->getLinkField('bottom_left_link');
     $bottom_right_link = $configHelper->getLinkField('bottom_right_link');
+    $hero_search_alert = $configHelper->getAlert();
     $title = $configHelper->getSearchTitle();
     return [
       '#theme' => 'hero_search_block',
@@ -97,6 +98,7 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#hero_search_top_right_link' => $top_right_link,
       '#hero_search_bottom_left_link' => $bottom_left_link,
       '#hero_search_bottom_right_link' => $bottom_right_link,
+      '#hero_search_alert' => $hero_search_alert,
     ];
   }
 

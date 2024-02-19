@@ -141,6 +141,15 @@ class HeroSearchSettingsForm extends ConfigFormBase {
       ];
     }
 
+    $form['hero_search_alert'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Alert'),
+      '#default_value' => $config->get('hero_search_alert'),
+      '#rows' => 3,
+      '#cols' => 100,
+    ];
+
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -198,6 +207,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     $config = $this->configFactory->getEditable(static::SETTINGS);
 
     $config->set('title', $form_state->getValue('title'));
+    $config->set('hero_search_alert', $form_state->getValue('hero_search_alert'));
     $config->set('default_placeholder', $form_state->getValue('default_placeholder'));
     $search_targets_str = $form_state->getValue('search_targets');
 

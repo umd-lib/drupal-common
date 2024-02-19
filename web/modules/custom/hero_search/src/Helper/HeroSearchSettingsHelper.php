@@ -104,6 +104,16 @@ class HeroSearchSettingsHelper {
   }
 
   /**
+   * Returns the alert to display in the search block.
+   *
+   * @return string
+   *   The alert to display in the search block.
+   */
+  public function getAlert() {
+    return $this->config->get('hero_search_alert');
+  }
+
+  /**
    * Returns the default placeholder text to display in the search textfield.
    *
    * @return string
