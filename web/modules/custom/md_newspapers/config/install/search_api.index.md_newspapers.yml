@@ -1,0 +1,230 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.server.maryland_newspapers
+  module:
+    - search_api_solr
+    - search_api
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    debug_finalize: false
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    term_modifiers:
+      slop: 3
+      fuzzy: 1
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+      use_language_undefined_as_fallback_language: false
+      specific_languages:
+        en: '0'
+        ja: '0'
+      use_universal_collation: false
+id: md_newspapers
+name: 'MD Newspapers'
+description: ''
+read_only: true
+field_settings:
+  city:
+    label: City
+    datasource_id: solr_document
+    property_path: city
+    type: string
+  city_facet:
+    label: 'City facet'
+    datasource_id: solr_document
+    property_path: city_facet
+    type: string
+  comments:
+    label: Comments
+    datasource_id: solr_document
+    property_path: comments
+    type: string
+  county:
+    label: County
+    datasource_id: solr_document
+    property_path: county
+    type: string
+  county_facet:
+    label: 'County facet'
+    datasource_id: solr_document
+    property_path: county_facet
+    type: string
+  date_avail_end:
+    label: 'Date avail end'
+    datasource_id: solr_document
+    property_path: date_avail_end
+    type: string
+  date_avail_start:
+    label: 'Date avail start'
+    datasource_id: solr_document
+    property_path: date_avail_start
+    type: string
+  full_text_search:
+    label: 'Full text search'
+    datasource_id: solr_document
+    property_path: full_text_search
+    type: string
+  id:
+    label: Id
+    datasource_id: solr_document
+    property_path: id
+    type: integer
+  image_type:
+    label: 'Image type'
+    datasource_id: solr_document
+    property_path: image_type
+    type: string
+  issn:
+    label: Issn
+    datasource_id: solr_document
+    property_path: issn
+    type: string
+  issues:
+    label: Issues
+    datasource_id: solr_document
+    property_path: issues
+    type: integer
+  keyword:
+    label: Keyword
+    datasource_id: solr_document
+    property_path: keyword
+    type: text
+  lccn:
+    label: Lccn
+    datasource_id: solr_document
+    property_path: lccn
+    type: string
+  oclc:
+    label: Oclc
+    datasource_id: solr_document
+    property_path: oclc
+    type: string
+  owner_producer:
+    label: 'Owner producer'
+    datasource_id: solr_document
+    property_path: owner_producer
+    type: string
+  owner_producer_facet:
+    label: 'Owner producer facet'
+    datasource_id: solr_document
+    property_path: owner_producer_facet
+    type: string
+  range_avail:
+    label: 'Range avail'
+    datasource_id: solr_document
+    property_path: range_avail
+    type: string
+  range_pub:
+    label: 'Range pub'
+    datasource_id: solr_document
+    property_path: range_pub
+    type: string
+  state:
+    label: State
+    datasource_id: solr_document
+    property_path: state
+    type: string
+  subscription_req:
+    label: 'Subscription req'
+    datasource_id: solr_document
+    property_path: subscription_req
+    type: string
+  subscription_req_facet:
+    label: 'Subscription req facet'
+    datasource_id: solr_document
+    property_path: subscription_req_facet
+    type: string
+  title:
+    label: Title
+    datasource_id: solr_document
+    property_path: title
+    type: string
+  title_sort:
+    label: 'Title sort'
+    datasource_id: solr_document
+    property_path: title_sort
+    type: string
+  url:
+    label: Url
+    datasource_id: solr_document
+    property_path: url
+    type: string
+  year_facets_list:
+    label: 'Year facets list'
+    datasource_id: solr_document
+    property_path: year_facets_list
+    type: string
+  year_facets_list_facet:
+    label: 'Year facets list facet'
+    datasource_id: solr_document
+    property_path: year_facets_list_facet
+    type: string
+  year_pub_end:
+    label: 'Year pub end'
+    datasource_id: solr_document
+    property_path: year_pub_end
+    type: string
+  year_pub_start:
+    label: 'Year pub start'
+    datasource_id: solr_document
+    property_path: year_pub_start
+    type: string
+datasource_settings:
+  solr_document:
+    id_field: id
+    request_handler: ''
+    default_query: '*:*'
+    label_field: ''
+    language_field: ''
+    url_field: ''
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  auto_aggregated_fulltext_field: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+  solr_date_range: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: false
+  track_changes_in_references: false
+server: maryland_newspapers
+
