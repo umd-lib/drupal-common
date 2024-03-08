@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+name: news_feed
+label: 'News Feed'
+effects:
+  b459373d-09ce-4132-98ba-d5ae0b97e620:
+    uuid: b459373d-09ce-4132-98ba-d5ae0b97e620
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 250
+      height: 150
+      anchor: center-center
+pipeline: local_binaries
+
