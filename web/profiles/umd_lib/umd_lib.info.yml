@@ -88,6 +88,7 @@ install:
 
   # Libraries Custom
   - samlauth_attrib
+  - umd_twig_filters
 
   # Libraries Managed Forks
   - twig_htmlspecialchars_decode
