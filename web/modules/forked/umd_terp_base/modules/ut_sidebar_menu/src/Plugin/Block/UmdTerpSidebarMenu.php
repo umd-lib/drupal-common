@@ -5,6 +5,7 @@ namespace Drupal\ut_sidebar_menu\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\system\Entity\Menu;
 
 /**
  * UMD Terp Sidebar Menu Block.
