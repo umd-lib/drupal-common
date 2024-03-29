@@ -33,9 +33,7 @@
 
 .bento-result .views-row .bento-field {
   font-size: 1.05rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis ellipsis;
+  white-space: normal;
 }
 
 .bento-result .bento-attachment {

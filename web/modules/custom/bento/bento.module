@@ -162,7 +162,15 @@ function bento_icon_map($raw_name) {
     "video_recording" => "result-icons fas fa-video",
     "other" => "result-icons fas fa-question",
     "database" => "result-icons fas fa-database margin-top-10",
-    "web_page" => "result-icons fas fa-link"
+    "web_page" => "result-icons fas fa-link",
+    "book_chapter" => "result-icons fas fa-bookmark",
+    "conference_proceeding" => "result-icons fas fa-clipboard",
+    "dissertation" => "result-icons fas fa-book",
+    "kit" => "result-icons fas fa-box",
+    "manuscript" => "result-icons fas fa-file-lines",
+    "text_resource" => "result-icons fas fa-file-lines",
+    "video" => "result-icons fas fa-video",
+    "web_resource" => "result-icons fas fa-window-maximize",
   ];
   return !empty($icon_map[$raw_name]) ? $icon_map[$raw_name] : $icon_map['other'];
 }
@@ -190,7 +198,15 @@ function bento_format_map($raw_name) {
     "video_recording" => "Video Recording",
     "other" => "Other",
     "database" => "Database",
-    "web_page" => "Webpage"
+    "web_page" => "Webpage",
+    "book_chapter" => "Book Chapter",
+    "conference_proceeding" => "Conference Proceeding",
+    "dissertation" => "Dissertation",
+    "kit" => "Kit",
+    "manuscript" => "Manuscript",
+    "text_resource" => "Text Resource",
+    "video" => "Video",
+    "web_resource" => "Web Resource",
   ];
   return !empty($format_map[$raw_name]) ? $format_map[$raw_name] : "Other";
 }
