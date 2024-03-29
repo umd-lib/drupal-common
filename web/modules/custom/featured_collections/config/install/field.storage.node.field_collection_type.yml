@@ -19,6 +19,15 @@ settings:
     -
       value: Initiatives
       label: Initiatives
+    -
+      value: new_resources
+      label: 'New Resources'
+    -
+      value: exhibitions
+      label: Exhibitions
+    -
+      value: events
+      label: Events
   allowed_values_function: ''
 module: options
 locked: false
