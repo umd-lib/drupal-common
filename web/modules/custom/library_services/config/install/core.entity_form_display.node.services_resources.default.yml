@@ -13,6 +13,8 @@ dependencies:
     - path
     - scheduler
     - scheduler_content_moderation_integration
+_core:
+  default_config_hash: m6CLKZg7ojEjN2ZmJJu6foBsIzhvwKa7HuMLakvo2es
 id: node.services_resources.default
 targetEntityType: node
 bundle: services_resources
@@ -89,6 +91,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   status:
     type: boolean_checkbox
     settings:
@@ -133,4 +140,10 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    settings: {  }
+    third_party_settings: {  }
+    region: content
 hidden: {  }
+

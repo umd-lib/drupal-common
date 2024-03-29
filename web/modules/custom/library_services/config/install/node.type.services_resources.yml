@@ -22,6 +22,8 @@ third_party_settings:
     unpublish_enable: true
     unpublish_required: false
     unpublish_revision: false
+_core:
+  default_config_hash: a_qErQIbIlFWEave_0WmNAxf_4I6r23F1GfZPp2TsJ8
 name: 'Services & Resources'
 type: services_resources
 description: ''
@@ -29,3 +31,4 @@ help: ''
 new_revision: true
 preview_mode: 1
 display_submitted: false
+

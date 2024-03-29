@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: TkPPJvK7yTCwkvHAte7ggh5buQMnCk5WLZ2bWxxGazA
 id: featured_services_sort
 label: 'Featured Services Sort'
 handler: simple
@@ -24,3 +26,4 @@ queue_settings:
   max_size: 0
   act_as_queue: false
   reverse: false
+

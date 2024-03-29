@@ -4,7 +4,7 @@ dependencies:
   module:
     - node
 _core:
-  default_config_hash: j6YgzYhLIrMHRslGgOaKBWkFWbWg3uCD-KSnZasV1As
+  default_config_hash: pQT3LSjqmEIRFeUhApbCJ1zRs1Mu9n8bAlFjDkBIvWw
 id: services_resources
 label: 'Services & Resources'
 type: 'canonical_entities:node'
@@ -21,3 +21,4 @@ selection_criteria:
 selection_logic: and
 weight: -5
 relationships: {  }
+

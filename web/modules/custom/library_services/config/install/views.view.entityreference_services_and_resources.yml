@@ -7,6 +7,8 @@ dependencies:
   module:
     - node
     - user
+_core:
+  default_config_hash: 2dChJd6D3I4YRFQO0MNo7vLJVKfZQ8YzvEP45n9oK1c
 id: entityreference_services_and_resources
 label: 'EntityReference Services and Resources'
 module: views

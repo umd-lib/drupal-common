@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: Wcx8eyNodcyq3Vkf6xn091N8BeCW4JGUd0u4TXJqvus
 id: node.field_description
 field_name: field_description
 entity_type: node
@@ -18,3 +20,4 @@ translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false
+

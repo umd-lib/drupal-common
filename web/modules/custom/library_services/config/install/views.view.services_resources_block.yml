@@ -15,7 +15,7 @@ dependencies:
     - user
     - views_fieldsets
 _core:
-  default_config_hash: 1WmSUXYOQDgM8x90yuuDQKU2gfUNVrzL2uV1iXpmNiI
+  default_config_hash: PhrEixmsflsOqO5K9kaUKpjRmWD-fx_HyJzeTpb9exg
 id: services_resources_block
 label: 'Services & Resources'
 module: views

@@ -4,6 +4,8 @@ dependencies:
   module:
     - fontawesome
     - node
+_core:
+  default_config_hash: P5iaUsb5041T7EeCLBT2GXXtlwwI2Ev0sqMRwuk_91U
 id: node.field_icon
 field_name: field_icon
 entity_type: node
@@ -16,3 +18,4 @@ translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false
+
