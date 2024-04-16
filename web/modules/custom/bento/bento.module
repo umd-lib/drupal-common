@@ -98,7 +98,7 @@ function bento_views_post_execute(ViewExecutable $view) {
         $footer_content = '
           <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
             <span class="fas fa-solid fa-chevron-right"></span> 
-            <a href="' . str_replace('"', '%22', $query_string) . '">See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results</a>
+            <a href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See more results from the UMDiscover</a>
           </div>';
         $header_content = '
           <header>

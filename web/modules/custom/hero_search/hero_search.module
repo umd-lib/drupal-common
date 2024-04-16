@@ -14,11 +14,11 @@ function hero_search_theme() {
       'variables' => [
         'hero_search_title' => '',
         'hero_search_form' => '',
-        'hero_search_buttons' => '',
-        'hero_search_top_right_link' => '',
-        'hero_search_bottom_left_link' => '',
-        'hero_search_bottom_right_link' => '',
         'hero_search_alert' => '',
+        'hero_search_more_links' => '',
+        'hero_discover_links' => '',
+        'hero_top_content' => '',
+        'hero_bottom_content' => '',
       ],
     ],
     'hero_search_form' => [

@@ -110,36 +110,43 @@ class HeroSearchSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
-    foreach (HeroSearchSettingsHelper::LINK_FIELDS as $name => $title) {
-      $form[$name] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t($title),
-      ];
+    $form['discover_links'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Discover Links'),
+      '#description' => $this->t('YAML formatted Discover links. See the README.md file.'),
+      '#default_value' => Yaml::dump($config->get('discover_links')),
+      '#rows' => 7,
+      '#cols' => 100,
+      '#required' => TRUE,
+    ];
 
-      $form[$name][$name . '_url'] = [
-        '#type' => 'url',
-        '#title' => $this->t('URL'),
-        '#default_value' => $config->get($name . '_url'),
-        '#size' => 100,
-        '#maxlength' => 100,
-      ];
+    $form['search_more_links'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Search More Links'),
+      '#description' => $this->t('YAML formatted Search More links. See the README.md file.'),
+      '#default_value' => Yaml::dump($config->get('search_more_links')),
+      '#rows' => 7,
+      '#cols' => 100,
+      '#required' => TRUE,
+    ];
 
-      $form[$name][$name . '_text'] = [
-        '#type' => 'textfield',
-        '#title' => $this->t('Text'),
-        '#default_value' => $config->get($name . '_text'),
-        '#size' => 50,
-        '#maxlength' => 60,
-      ];
+    $form['top_content'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Top Content'),
+      '#description' => $this->t('Update the top content of the hero block'),
+      '#default_value' => $config->get('top_content'),
+      '#rows' => 7,
+      '#cols' => 100,
+    ];
 
-      $form[$name][$name . '_title'] = [
-        '#type' => 'textfield',
-        '#title' => $this->t('Title'),
-        '#default_value' => $config->get($name . '_title'),
-        '#size' => 50,
-        '#maxlength' => 60,
-      ];
-    }
+    $form['bottom_content'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Bottom Content'),
+      '#description' => $this->t('Update the bottom content of the hero block'),
+      '#default_value' => $config->get('bottom_content'),
+      '#rows' => 7,
+      '#cols' => 100,
+    ];
 
     $form['hero_search_alert'] = [
       '#type' => 'textarea',
@@ -157,46 +164,46 @@ class HeroSearchSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $search_targets_str = trim($form_state->getValue('search_targets'));
+    $yaml_fields = ['search_targets', 'discover_links', 'search_more_links'];
 
-    // A starting line with "---" is required by the YAML parser, so add it,
-    // if it is not present.
-    if (!str_starts_with($search_targets_str, "---")) {
-      $search_targets_str = "---\n" . $search_targets_str;
-    }
-
-    $decoded_search_targets = [];
-    try {
-      $decoded_search_targets = Yaml::parse($search_targets_str);
-    }
-    catch (ParseException $e) {
-      $error_message = $form['search_targets']['#title'] . " has missing or invalid YAML.";
-      $form_state->setErrorByName('search_targets', $error_message);
-      return;
-    }
-
-    if (count(array_keys($decoded_search_targets)) == 0) {
-      $error_message = $form['search_targets']['#title'] . " has missing or invalid YAML.";
-      $form_state->setErrorByName('search_targets', $error_message);
-      return;
-    }
-
-    // Targets with missing or bad URLs.
-    $targets_bad_urls = [];
-    $error_message = "The 'url' field is missing or invalid for the following search targets " .
-                     "(should have format 'https://DOMAIN/ENDPOINT?SEARCH_QUERY_PARAM='): ";
-    foreach ($decoded_search_targets as $name => $val) {
-      $url = $val['url'];
-      if (filter_var($url, FILTER_VALIDATE_URL) == FALSE) {
-        $targets_bad_urls[] = $name;
+    foreach ($yaml_fields as $yfield) {
+      $yfield_str = trim($form_state->getValue($yfield));
+    
+      // A starting line with "---" is required by the YAML parser, so add it,
+      // if it is not present.
+      if (!str_starts_with($yfield_str, "---")) {
+        $yfield_str = "---\n" . $yfield_str;
       }
-      elseif (!str_ends_with($url, '=')) {
-        $targets_bad_urls[] = $name;
+      $decoded_yfield = [];
+
+      try {
+        $decoded_yfield = Yaml::parse($yfield_str);
       }
-    }
-    if (count($targets_bad_urls) > 0) {
-      $targets_bad_urls_str = implode("'\n,'", $targets_bad_urls);
-      $form_state->setErrorByName('search_targets', $this->t($error_message) . "'$targets_bad_urls_str'");
+      catch (ParseException $e) {
+        $error_message = $form[$yfield]['#title'] . " has missing or invalid YAML.";
+        $form_state->setErrorByName($yfield, $error_message);
+        return;
+      }
+
+      if (count(array_keys($decoded_yfield)) == 0) {
+        $error_message = $form[$yfield]['#title'] . " has missing or invalid YAML.";
+        $form_state->setErrorByName($yfield, $error_message);
+        return;
+      }
+      // Targets with missing or bad URLs.
+      $targets_bad_urls = [];
+      $error_message = "The 'url' field is missing or invalid for the following values " .
+                       "(should have format 'https://DOMAIN/ENDPOINT?SEARCH_QUERY_PARAM='): ";
+      foreach ($decoded_yfield as $name => $val) {
+        $url = $val['url'];
+        if (filter_var($url, FILTER_VALIDATE_URL) == FALSE) {
+          $targets_bad_urls[] = $name;
+        }
+      }
+      if (count($targets_bad_urls) > 0) {
+        $targets_bad_urls_str = implode("'\n,'", $targets_bad_urls);
+        $form_state->setErrorByName($yfield, $this->t($error_message) . "'$targets_bad_urls_str'");
+      }
     }
   }
 
@@ -207,18 +214,24 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     $config = $this->configFactory->getEditable(static::SETTINGS);
 
     $config->set('title', $form_state->getValue('title'));
+    $config->set('top_content', $form_state->getValue('top_content'));
+    $config->set('bottom_content', $form_state->getValue('bottom_content'));
     $config->set('hero_search_alert', $form_state->getValue('hero_search_alert'));
     $config->set('default_placeholder', $form_state->getValue('default_placeholder'));
-    $search_targets_str = $form_state->getValue('search_targets');
 
-    try {
-      $search_targets = Yaml::parse($search_targets_str);
-      $config->set('search_targets', $search_targets);
-    }
-    catch (ParseException $pe) {
-      // Shouldn't happen, because invalid YAML should be caught by
-      // "validateForm" method.
-      $this->logger('hero_search')->error("Error parsing 'Search Targets' YAML: " . $pe);
+    $yaml_fields = ['search_targets', 'discover_links', 'search_more_links'];
+
+    foreach ($yaml_fields as $yfield) {
+      $yfield_str = $form_state->getValue($yfield);
+      try {
+        $yfield_values = Yaml::parse($yfield_str);
+        $config->set($yfield, $yfield_values);
+      }
+      catch (ParseException $pe) {
+        // Shouldn't happen, because invalid YAML should be caught by
+        // "validateForm" method.
+        $this->logger('hero_search')->error("Error parsing 'Hero Search' YAML: " . $pe);
+      }
     }
 
     foreach (HeroSearchSettingsHelper::LINK_FIELDS as $name => $title) {
@@ -230,5 +243,4 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     $config->save();
     parent::submitForm($form, $form_state);
   }
-
 }

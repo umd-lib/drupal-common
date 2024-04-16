@@ -25,6 +25,9 @@ regions:
   content: "Content"
   footer_menu: "Footer Menu"
   footer_addon: "Footer Addon"
+  bento_sidebar: "Bento Sidebar"
+  bento_utility_1: "Bento Utility 1"
+  bento_utility_2: "Bento Utility 2"
   bento_1: "Bento Search 1"
   bento_2: "Bento Search 2"
   bento_3: "Bento Search 3"
@@ -34,6 +37,7 @@ regions:
   bento_7: "Bento Search 7"
   bento_8: "Bento Search 8"
   bento_9: "Bento Search 9"
+  bento_10: "Bento Search 10"
 dependencies:
   - twig_tweak
   - umd_terp_base

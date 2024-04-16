@@ -79,26 +79,21 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
     $configHelper = HeroSearchSettingsHelper::getInstance();
     $form = $this->formBuilder->getForm('Drupal\hero_search\Form\HeroSearchForm');
     $rendered_form = $this->renderer->render($form);
-    $buttons = array_filter([
-      $configHelper->getLinkField('button1'),
-      $configHelper->getLinkField('button2'),
-      $configHelper->getLinkField('button3'),
-      $configHelper->getLinkField('button4'),
-    ]);
-    $top_right_link = $configHelper->getLinkField('top_right_link');
-    $bottom_left_link = $configHelper->getLinkField('bottom_left_link');
-    $bottom_right_link = $configHelper->getLinkField('bottom_right_link');
     $hero_search_alert = $configHelper->getAlert();
+    $discover_links = $configHelper->getDiscoverLinks();
+    $top_content = $configHelper->getTopContent();
+    $bottom_content = $configHelper->getBottomContent();
+    $search_more_links = $configHelper->getSearchMoreLinks();
     $title = $configHelper->getSearchTitle();
     return [
       '#theme' => 'hero_search_block',
       '#hero_search_title' => $title,
       '#hero_search_form' => $rendered_form,
-      '#hero_search_buttons' => $buttons,
-      '#hero_search_top_right_link' => $top_right_link,
-      '#hero_search_bottom_left_link' => $bottom_left_link,
-      '#hero_search_bottom_right_link' => $bottom_right_link,
       '#hero_search_alert' => $hero_search_alert,
+      '#hero_discover_links' => $discover_links,
+      '#hero_search_more_links' => $search_more_links,
+      '#hero_top_content' => $top_content,
+      '#hero_bottom_content' => $bottom_content,
     ];
   }
 
