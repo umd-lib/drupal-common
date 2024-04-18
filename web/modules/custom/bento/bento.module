@@ -29,6 +29,13 @@ function bento_theme() {
         'search_targets' => '',
       ],
     ],
+    'bento_looking_more_block' => [
+      'variables' => [
+        'looking_more_text' => '',
+        'looking_more_url' => '',
+        'looking_more_heading' => '',
+      ],
+    ],
     'bento_more_block' => [
       'variables' => [
         'search_options' => '',
@@ -78,7 +85,7 @@ function bento_views_pre_render(ViewExecutable $view) {
 }
 
 function bento_views_post_execute(ViewExecutable $view) {
-  if (str_contains($view->storage->id(), 'bento_') && $view->id() != 'bento_website_search') {
+  if (str_contains($view->storage->id(), 'bento_') && $view->id() != 'bento_website_search' && $view->id() != 'bento_best_bets') {
     $display = $view->getDisplay();
     $result_id = null;
     $footer_content = null;
@@ -86,10 +93,15 @@ function bento_views_post_execute(ViewExecutable $view) {
       $result_id = str_replace('_', '-',  $display->display['display_options']['css_class']) . '-total';
     }
 
-    $title = $view->getTitle();
+    $title_raw = $view->getTitle();
+    $title_array = explode('|', $title_raw);
+    $title = !empty($title_array[1]) ? $title_array[0] : $title_raw;
+    $subtitle = !empty($title_array[1]) ? $title_array[1] : $title_raw . ' results from UMD Libraries';
+    $fa_icons = !empty($title_array[2]) ? 'fas fa-solid ' . $title_array[2] : 'fas fa-regular fa-link';
     $header_content = '
       <header>
-        <h2>' . $title . '</h2>
+        <h2><span class="' . $fa_icons . '"></span>' . $title . '</h2>
+        <h3>' . $subtitle . '</h3>
       </header>';
     if (!empty($view->raw_data['total']) && !empty($view->raw_data['module_link']) && count($view->raw_data['results']) > 0) {
       $real_total = $view->raw_data['total'];
@@ -102,7 +114,8 @@ function bento_views_post_execute(ViewExecutable $view) {
           </div>';
         $header_content = '
           <header>
-            <h2><a href="'. str_replace('"', '%22', $query_string) . '">' . $title . ' <span class="fas fa-link"></span></a></h2>
+            <h2><a href="'. str_replace('"', '%22', $query_string) . '"><span class="' . $fa_icons . '"></span> ' . $title . '</a></h2>
+            <h3>' . $subtitle . '</h3>
           </header>';
       } else {
         $footer_content = '

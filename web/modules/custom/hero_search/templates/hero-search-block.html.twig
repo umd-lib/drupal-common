@@ -15,19 +15,19 @@
 #}
 {{ attach_library('hero_search/hero-search') }}
 <div class='hero-search-block'>
-  <div class='row'>
+  <div class='hero-search-top'>
     <span class="hero-search-title">{{ hero_search_title }}</span>
-    <span class='hero-search-left-align'>
+    <span class='hero-search-title-sub'>
       {% if hero_top_content %}
         {{ hero_top_content|raw }}
       {% endif %}
     </span>
   </div>
-  <div class='row'>
+  <div class='hero-search-box'>
     {{ hero_search_form }}
   </div>
   {% if hero_discover_links %}
-    <div class='row discover-links'>
+    <div class='discover-links'>
       <span class='discover-title'>Discover: </span>
       <ul>
         {% for disc_name, disc_value in hero_discover_links %}
@@ -37,7 +37,7 @@
     </div>
   {% endif %}
   {% if hero_search_more_links %}
-    <div class='row search-more-links'>
+    <div class='search-more-links'>
       <span class='search-more-title'>Search More: </span>
       <ul>
         {% for sm_name, sm_value in hero_search_more_links %}
@@ -47,20 +47,16 @@
     </div>
   {% endif %}
   {% if hero_search_alert %}
-    <div class="row">
-      <div class="bento-box-alert">
-        <div class="alert-icon"></div>
-        <div class="alert-text">
-          {{ hero_search_alert|raw }}
-        </div>
+    <div class="hero-search-alert">
+      <div class="alert-icon"></div>
+      <div class="alert-text">
+        {{ hero_search_alert|raw }}
       </div>
     </div>
   {% endif %}
-  <div class='row'>
-    <span>
-      {% if hero_bottom_content %}
-        {{ hero_bottom_content|raw }}
-      {% endif %}
-    </span>
+  <div class='hero-search-bottom'>
+    {% if hero_bottom_content %}
+      {{ hero_bottom_content|raw }}
+    {% endif %}
   </div>
 </div>

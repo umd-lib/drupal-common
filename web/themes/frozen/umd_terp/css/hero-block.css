@@ -14,7 +14,10 @@
 }
 
 .hero-block {
-  margin-left: 25px;
+  max-width: 1440px;
+  width: 100%;
+  height: auto;
+  margin-inline: auto;
 }
 
 /* home-hero-content z-index is 100 */
