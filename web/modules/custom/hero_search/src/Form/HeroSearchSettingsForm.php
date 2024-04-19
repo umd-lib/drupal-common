@@ -91,15 +91,6 @@ class HeroSearchSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
-    $form['default_placeholder'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Default Placeholder'),
-      '#default_value' => $config->get('default_placeholder'),
-      '#size' => 50,
-      '#maxlength' => 60,
-      '#required' => TRUE,
-    ];
-
     $form['search_targets'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Search Targets'),
@@ -217,7 +208,6 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     $config->set('top_content', $form_state->getValue('top_content'));
     $config->set('bottom_content', $form_state->getValue('bottom_content'));
     $config->set('hero_search_alert', $form_state->getValue('hero_search_alert'));
-    $config->set('default_placeholder', $form_state->getValue('default_placeholder'));
 
     $yaml_fields = ['search_targets', 'discover_links', 'search_more_links'];
 

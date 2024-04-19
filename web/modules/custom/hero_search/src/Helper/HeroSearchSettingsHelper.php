@@ -165,16 +165,6 @@ class HeroSearchSettingsHelper {
   }
 
   /**
-   * Returns the default placeholder text to display in the search textfield.
-   *
-   * @return string
-   *   The default placeholder text to display in the search textfield.
-   */
-  public function getDefaultSearchPlaceholder() {
-    return $this->config->get('default_placeholder') ?? "";
-  }
-
-  /**
    * Returns an assoc. array of configured link info for the given name or NULL.
    *
    * @param string $name

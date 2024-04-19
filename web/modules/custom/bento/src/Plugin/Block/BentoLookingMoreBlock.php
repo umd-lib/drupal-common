@@ -104,7 +104,7 @@ class BentoLookingMoreBlock extends BlockBase implements ContainerFactoryPluginI
       '#required' => true,
     ];
     $form['looking_more_url'] = [
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => t('Looking More URL'),
       '#default_value' =>  !empty($config['looking_more_url']) ? $config['looking_more_url'] : null,
       '#description' => t('URL for search. Use %placeholder% to indicate query placeholder.'),
@@ -121,7 +121,7 @@ class BentoLookingMoreBlock extends BlockBase implements ContainerFactoryPluginI
     $url = $form_state->getValue('looking_more_url');
     $text = $form_state->getValue('looking_more_text');
     $this->setConfigurationValue('looking_more_heading', $heading);
-    $this->setConfigurationValue('looking_more_url', $url);
+    $this->setConfigurationValue('looking_more_url', strip_tags($url));
     $this->setConfigurationValue('looking_more_text', $text);
   }
 }

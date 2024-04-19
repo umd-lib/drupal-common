@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * bento-search-categories-block template
+ *
+ * Variables:
+ *   - search_categories
+ *   - search_categories_heading
+ */
+#}
+<div id="bento-search-categories" class="bento-sidebar">
+  <div class="bento-sidebar-heading">{{ search_categories_heading }}</div>
+  <div class="bento-sidebar-content">
+    {% for id, group in search_categories %}
+      <ul>
+      {% for item in group %}
+        <li><a href="{{ item.url }}">{{ item.name }}</a><li>
+      {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+</div>

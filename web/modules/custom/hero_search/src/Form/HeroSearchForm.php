@@ -99,7 +99,7 @@ class HeroSearchForm extends FormBase {
     $form['search_query'][] = [
       '#type' => 'textfield',
       '#name' => 'search_query',
-      '#placeholder' => $search_target_config['placeholder'] ?? $this->configHelper->getDefaultSearchPlaceholder(),
+      '#placeholder' => $search_target_config['placeholder'] ?? '',
       '#size' => 50,
       '#maxlength' => 128,
       '#attributes' => [
@@ -111,9 +111,6 @@ class HeroSearchForm extends FormBase {
           ':input[name="search_target"]' => ['value' => $search_target_name],
         ],
         'visible' => [
-          ':input[name="search_target"]' => ['value' => $search_target_name],
-        ],
-        'required' => [
           ':input[name="search_target"]' => ['value' => $search_target_name],
         ],
       ],

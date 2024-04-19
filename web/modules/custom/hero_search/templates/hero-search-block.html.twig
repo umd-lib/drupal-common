@@ -28,7 +28,7 @@
   </div>
   {% if hero_discover_links %}
     <div class='discover-links'>
-      <span class='discover-title'>Discover: </span>
+      <span class='discover-title'>Discover </span>
       <ul>
         {% for disc_name, disc_value in hero_discover_links %}
           <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
@@ -38,7 +38,7 @@
   {% endif %}
   {% if hero_search_more_links %}
     <div class='search-more-links'>
-      <span class='search-more-title'>Search More: </span>
+      <span class='search-more-title'>Search More </span>
       <ul>
         {% for sm_name, sm_value in hero_search_more_links %}
           <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
