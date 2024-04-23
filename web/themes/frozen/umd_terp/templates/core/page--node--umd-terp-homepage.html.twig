@@ -8,88 +8,82 @@
   {{ page.content }}
   {% if page.bento_1 %}
     <div class="bento-outer-pad homepage-node">
-      <div class="container-fluid">
-        <div class="row">
-        <div class="bento-sidebar col-1200-2 col-900-4">
+      {% if page.bento_header %}
+        <div class="bento-header">
+          {{ page.bento_header }}
+        </div>
+      {% endif %}
+      <div class="bento-layout">
+        <div class="bento-sidebar">
           {{ page.bento_sidebar }} 
         </div>
-        <div class="bento-content col-1200-10 col-900-8">
- 
-      <div class="container-fluid" id="bento-blocks">
-	<div class="row bento-results bento-utility">
-          {% if page.bento_utility_2 %}
-	    <div id="bento-utility-1" class="col-900-6 col-600-12 bento-utility">
-              {{ page.bento_utility_1 }}
+        <div class="bento-content">
+          <div id="bento-blocks">
+	    <div class="bento-results bento-utility">
+              {% if page.bento_utility_2 %}
+	        <div id="bento-utility-1" class="bento-utility">
+                  {{ page.bento_utility_1 }}
+                </div>
+              {% endif %}
+              {% if page.bento_utility_2 %}
+                <div id="bento-utility-2" class="bento-utility">
+                  {{ page.bento_utility_2 }}
+                </div>
+              {% endif %}
             </div>
-          {% endif %}
-          {% if page.bento_utility_2 %}
-            <div id="bento-utility-2" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_utility_2 }}
+	    <div class="bento-results">
+	      <div id="bento-result-1" class="bento-result">
+                {{ page.bento_1 }}
+              </div>
+              {% if page.bento_2 %}
+                <div id="bento-result-2" class="bento-result">
+                  {{ page.bento_2 }}
+                </div>
+              {% endif %}
+              {% if page.bento_3 %}
+                <div id="bento-result-3" class="bento-result">
+                  {{ page.bento_3 }}
+                </div>
+              {% endif %}
+              {% if page.bento_4 %}
+                <div id="bento-result-4" class="bento-result">
+                  {{ page.bento_4 }}
+                </div>
+              {% endif %}
+              {% if page.bento_5 %}
+                <div id="bento-result-5" class="bento-result">
+                  {{ page.bento_5 }}
+                </div>
+              {% endif %}
+              {% if page.bento_6 %}
+                <div id="bento-result-6" class="bento-result">
+                  {{ page.bento_6 }}
+                </div>
+              {% endif %}
+              {% if page.bento_7 %}
+                <div id="bento-result-7" class="bento-result">
+                  {{ page.bento_7 }}
+                </div>
+              {% endif %}
+              {% if page.bento_8 %}
+                <div id="bento-result-8" class="bento-result">
+                  {{ page.bento_8 }}
+                </div>
+              {% endif %}
+              {% if page.bento_9 %}
+                <div id="bento-result-9" class="bento-result">
+                  {{ page.bento_9 }}
+                </div>
+              {% endif %}
+              {% if page.bento_10 %}
+                <div id="bento-result-10" class="bento-result">
+                  {{ page.bento_10 }}
+                </div>
+              {% endif %}
             </div>
-          {% endif %}
-        </div>
-	<div class="row bento-results">
-	  <div id="bento-result-1" class="col-900-6 col-600-12 bento-result">
-            {{ page.bento_1 }}
           </div>
-          {% if page.bento_2 %}
-            <div id="bento-result-2" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_2 }}
-            </div>
-          {% endif %}
-        </div>
-        <div class="row bento-results">
-          {% if page.bento_3 %}
-            <div id="bento-result-3" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_3 }}
-            </div>
-          {% endif %}
-          {% if page.bento_4 %}
-            <div id="bento-result-4" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_4 }}
-            </div>
-          {% endif %}
-        </div>
-        <div class="row bento-results">
-          {% if page.bento_5 %}
-            <div id="bento-result-5" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_5 }}
-            </div>
-          {% endif %}
-          {% if page.bento_6 %}
-            <div id="bento-result-6" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_6 }}
-            </div>
-          {% endif %}
-        </div>
-        <div class="row bento-results">
-          {% if page.bento_7 %}
-            <div id="bento-result-7" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_7 }}
-            </div>
-          {% endif %}
-          {% if page.bento_8 %}
-            <div id="bento-result-8" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_8 }}
-            </div>
-          {% endif %}
-        </div>
-        <div class="row bento-results">
-          {% if page.bento_9 %}
-            <div id="bento-result-9" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_9 }}
-            </div>
-          {% endif %}
-          {% if page.bento_10 %}
-            <div id="bento-result-10" class="col-900-6 col-600-12 bento-result">
-              {{ page.bento_10 }}
-            </div>
-          {% endif %}
         </div>
       </div>
-    </div>
-    </div>
-    </div>
     </div>
   {% endif %}
 {% endblock %}

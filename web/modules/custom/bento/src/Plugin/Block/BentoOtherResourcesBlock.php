@@ -15,15 +15,15 @@ use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
- * Provides the Bento Search block.
+ * Provides the Bento Resource Types block.
  *
  * @Block(
- *   id = "bento_search_categories",
- *   admin_label = @Translation("Bento: Search Categories"),
+ *   id = "bento_other_resources",
+ *   admin_label = @Translation("Bento: Other Resources"),
  *   category = @Translation("Bento Quick Search"),
  * )
  */
-class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPluginInterface {
+class BentoOtherResourcesBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * Form builder service.
@@ -70,13 +70,26 @@ class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPl
    */
   public function build() {
     $blockConfig = $this->getConfiguration();
-    $search_categories = $blockConfig['search_categories'];
-    $search_categories_heading = $blockConfig['search_categories_heading'];
+    $other_resources = $blockConfig['other_resources'];
+    $other_resources_heading = $blockConfig['other_resources_heading'];
+    $query = \Drupal::request()->query->get('query');
+
+    if (!empty($other_resources)) {
+      $replaced_resources = [];
+      foreach ($other_resources as $category => $resources) {
+        foreach ($resources as $resource) {
+          if (!empty($resource['url'])) {
+            $resource['url'] = str_replace('%placeholder%', $query, $resource['url']);
+            $replaced_resources['category'][] = $resource;
+          }
+        }
+      }
+    }
 
     return [
-      '#theme' => 'bento_search_categories_block',
-      '#search_categories' => $search_categories,
-      '#search_categories_heading' => $search_categories_heading,
+      '#theme' => 'bento_other_resources_block',
+      '#other_resources' => $replaced_resources,
+      '#other_resources_heading' => $other_resources_heading,
     ];
   }
 
@@ -84,15 +97,15 @@ class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPl
     $form = parent::blockForm($form, $form_state);
     $config = $this->getConfiguration();
  
-    $form['search_categories_heading'] = [
+    $form['other_resources_heading'] = [
       '#type' => 'textfield',
       '#title' => t('Block Header'),
-      '#default_value' =>  !empty($config['search_categories_header']) ? $config['search_categories_header'] : t('Search Categories'),
+      '#default_value' =>  !empty($config['other_resources_header']) ? $config['other_resources_header'] : t('Search Categories'),
     ];
-    $form['search_categories'] = [
+    $form['other_resources'] = [
       '#type' => 'textarea',
       '#title' => t('Search Categories'),
-      '#default_value' =>  Yaml::dump($config['search_categories']),
+      '#default_value' =>  Yaml::dump($config['other_resources']),
       '#description' => t('A YAML formatted list of searchers and their anchor links. See the README.md file.'),
       '#rows' => 7,
       '#cols' => 100,
@@ -105,7 +118,7 @@ class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function blockValidate($form, FormStateInterface $form_state) {
-    $yaml_fields = ['search_categories'];
+    $yaml_fields = ['other_resources'];
 
     foreach ($yaml_fields as $yfield) {
       $yfield_str = trim($form_state->getValue($yfield));
@@ -138,9 +151,9 @@ class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->setConfigurationValue('search_categories_heading', $form_state->getValue('search_categories_heading'));
+    $this->setConfigurationValue('other_resources_heading', $form_state->getValue('other_resources_heading'));
 
-    $yaml_fields = ['search_categories'];
+    $yaml_fields = ['other_resources'];
 
     foreach ($yaml_fields as $yfield) {
       $yfield_str = $form_state->getValue($yfield);

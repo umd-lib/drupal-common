@@ -25,6 +25,7 @@ regions:
   content: "Content"
   footer_menu: "Footer Menu"
   footer_addon: "Footer Addon"
+  bento_header: "Bento Header"
   bento_sidebar: "Bento Sidebar"
   bento_utility_1: "Bento Utility 1"
   bento_utility_2: "Bento Utility 2"
@@ -42,3 +43,4 @@ dependencies:
   - twig_tweak
   - umd_terp_base
   - footer_extend
+  - themable_forms

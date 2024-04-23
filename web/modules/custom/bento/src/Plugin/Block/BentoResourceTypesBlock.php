@@ -15,15 +15,15 @@ use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
- * Provides the Bento Search block.
+ * Provides the Bento Resource Types block.
  *
  * @Block(
- *   id = "bento_search_categories",
- *   admin_label = @Translation("Bento: Search Categories"),
+ *   id = "bento_resource_types",
+ *   admin_label = @Translation("Bento: Resource Types"),
  *   category = @Translation("Bento Quick Search"),
  * )
  */
-class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPluginInterface {
+class BentoResourceTypesBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * Form builder service.
@@ -70,13 +70,28 @@ class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPl
    */
   public function build() {
     $blockConfig = $this->getConfiguration();
-    $search_categories = $blockConfig['search_categories'];
-    $search_categories_heading = $blockConfig['search_categories_heading'];
+    $resource_types = $blockConfig['resource_types'];
+    $resource_types_heading = $blockConfig['resource_types_heading'];
+    $query = \Drupal::request()->query->get('query');
+    if (empty($query) || $query == '') {
+      return [
+        '#theme' => 'bento_empty_sidebar',
+      ];
+    }
+    if (!empty($resource_types)) {
+      $replaced_resources = [];
+      foreach ($resource_types as $type => $resource) {
+        if (!empty($resource['url'])) {
+          $resource['url'] = str_replace('%placeholder%', $query, $resource['url']);
+          $replaced_resources[$type] = $resource;
+        }
+      }
+    }
 
     return [
-      '#theme' => 'bento_search_categories_block',
-      '#search_categories' => $search_categories,
-      '#search_categories_heading' => $search_categories_heading,
+      '#theme' => 'bento_resource_types_block',
+      '#resource_types' => $replaced_resources,
+      '#resource_types_heading' => $resource_types_heading,
     ];
   }
 
@@ -84,15 +99,15 @@ class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPl
     $form = parent::blockForm($form, $form_state);
     $config = $this->getConfiguration();
  
-    $form['search_categories_heading'] = [
+    $form['resource_types_heading'] = [
       '#type' => 'textfield',
       '#title' => t('Block Header'),
-      '#default_value' =>  !empty($config['search_categories_header']) ? $config['search_categories_header'] : t('Search Categories'),
+      '#default_value' =>  !empty($config['resource_types_heading']) ? $config['resource_types_heading'] : t('Resource Types'),
     ];
-    $form['search_categories'] = [
+    $form['resource_types'] = [
       '#type' => 'textarea',
-      '#title' => t('Search Categories'),
-      '#default_value' =>  Yaml::dump($config['search_categories']),
+      '#title' => t('Resource Types'),
+      '#default_value' =>  Yaml::dump($config['resource_types']),
       '#description' => t('A YAML formatted list of searchers and their anchor links. See the README.md file.'),
       '#rows' => 7,
       '#cols' => 100,
@@ -105,7 +120,7 @@ class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function blockValidate($form, FormStateInterface $form_state) {
-    $yaml_fields = ['search_categories'];
+    $yaml_fields = ['resource_types'];
 
     foreach ($yaml_fields as $yfield) {
       $yfield_str = trim($form_state->getValue($yfield));
@@ -138,9 +153,9 @@ class BentoSearchCategoriesBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->setConfigurationValue('search_categories_heading', $form_state->getValue('search_categories_heading'));
+    $this->setConfigurationValue('resource_types_heading', $form_state->getValue('resource_types_heading'));
 
-    $yaml_fields = ['search_categories'];
+    $yaml_fields = ['resource_types'];
 
     foreach ($yaml_fields as $yfield) {
       $yfield_str = $form_state->getValue($yfield);

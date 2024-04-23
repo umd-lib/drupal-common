@@ -8,9 +8,9 @@
  *   - search_categories_heading
  */
 #}
-<div id="bento-search-categories" class="bento-sidebar">
-  <div class="bento-sidebar-heading">{{ search_categories_heading }}</div>
-  <div class="bento-sidebar-content">
+<div id="bento-search-categories" class="bento-sidebar accordion">
+  <button class="bento-sidebar-heading btn" data-toggle="collapse" data-target="#bento-search-categories-content">{{ search_categories_heading }}</button>
+  <div id="bento-search-categories-content" class="bento-sidebar-content collapse" data-parent="#bento-search-categories">
     {% for id, group in search_categories %}
       <ul>
       {% for item in group %}

@@ -25,18 +25,24 @@ class BentoSearchForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $defaults = array()) {
-    $form['bento_search'] = array(
+    $form['bento_search_heading'] = [
+      '#markup' => '<h2 for="edit-bento-search" class="js-form-required form-required">Search All</h2>',
+    ];
+    $form['bento_search_input'] = [
+      '#prefix' => '<div class="bento-search-input">',
+      '#suffix' => '</div>'
+    ];
+    $form['bento_search_input']['bento_search'] = array(
       '#type' => 'textfield',
-      '#title' => t('Search'),
       '#required' => TRUE,
       '#placeholder' => !empty($defaults['search_placeholder']) ? $defaults['search_placeholder'] : t('Search books, articles, journals, and the website...'),
     );
-    $form['search_results'] = array(
+    $form['bento_search_input']['search_results'] = array(
       '#type' => 'value',
       '#value' => !empty($defaults['default_action']) ? $defaults['default_action'] : null,
     );
-    $form['actions']['#type'] = 'actions';
-    $form['actions']['submit'] = [
+    $form['bento_search_input']['actions']['#type'] = 'actions';
+    $form['bento_search_input']['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Search'),
     ];

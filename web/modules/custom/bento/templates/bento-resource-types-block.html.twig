@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * bento-search-categories-block template
+ *
+ * Variables:
+ *   - resource_types 
+ *   - resource_types_heading
+ */
+#}
+<div id="bento-resource-types" class="bento-sidebar accordion">
+  <button class="bento-sidebar-heading btn collapsed" data-toggle="collapse" data-target="#bento-resource-types-content">{{ resource_types_heading }}</button>
+  <div id="bento-resource-types-content" class="bento-sidebar-content collapse" data-parent="#bento-resource-types">
+    <ul>
+      {% for name, item in resource_types %}
+        <li><a href="{{ item.url }}">{{ name }}</a><li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

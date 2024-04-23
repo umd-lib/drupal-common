@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * bento-search-categories-block template
+ *
+ * Variables:
+ *   - resource_types 
+ *   - resource_types_heading
+ */
+#}
+<div id="bento-resource-types" class="bento-sidebar">
+  <div class="bento-sidebar-heading">{{ resource_types_heading }}</div>
+  <div class="bento-sidebar-content">
+    {% for id, group in resource_types %}
+      <ul>
+      {% for item in group %}
+        <li><a href="{{ item.url }}">{{ item.name }}</a><li>
+      {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+</div>

@@ -19,6 +19,11 @@ use Drupal\views\ResultRow;
  */
 function bento_theme() {
   return [
+    'bento_empty_sidebar' => [
+      'variables' => [
+        'bento_empty_message' => '',
+      ],
+    ],
     'bento_search_block' => [
       'variables' => [
         'bento_search_form' => '',
@@ -33,6 +38,18 @@ function bento_theme() {
       'variables' => [
         'search_categories' => '',
         'search_categories_heading' => '',
+      ],
+    ],
+    'bento_resource_types_block' => [
+      'variables' => [
+        'resource_types' => '',
+        'resource_types_heading' => '',
+      ],
+    ],
+    'bento_other_resources_block' => [
+      'variables' => [
+        'other_resources' => '',
+        'other_resources_heading' => '',
       ],
     ],
     'bento_looking_more_block' => [
@@ -116,7 +133,7 @@ function bento_views_post_execute(ViewExecutable $view) {
         $footer_content = '
           <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
             <span class="fas fa-solid fa-chevron-right"></span> 
-            <a href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See more results from the UMDiscover</a>
+            <a href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See all ' . number_format($real_total, 0, ".", ",") . ' results from the UMDiscover</a>
           </div>';
         $header_content = '
           <header>

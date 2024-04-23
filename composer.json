@@ -73,6 +73,7 @@
         "drupal/stable": "^2.0",
         "drupal/tablefield": "^2.2",
         "drupal/taxonomy_path_breadcrumb": "^1.0@beta",
+        "drupal/themable_forms": "^1.0",
         "drupal/token_filter": "^2.0",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^3.2",
