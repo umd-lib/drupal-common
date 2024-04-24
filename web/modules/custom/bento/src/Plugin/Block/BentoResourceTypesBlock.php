@@ -73,16 +73,18 @@ class BentoResourceTypesBlock extends BlockBase implements ContainerFactoryPlugi
     $resource_types = $blockConfig['resource_types'];
     $resource_types_heading = $blockConfig['resource_types_heading'];
     $query = \Drupal::request()->query->get('query');
+    $has_query = TRUE;
     if (empty($query) || $query == '') {
-      return [
-        '#theme' => 'bento_empty_sidebar',
-      ];
+      $has_query = FALSE;
     }
     if (!empty($resource_types)) {
       $replaced_resources = [];
       foreach ($resource_types as $type => $resource) {
-        if (!empty($resource['url'])) {
+        if ($has_query) {
           $resource['url'] = str_replace('%placeholder%', $query, $resource['url']);
+          $replaced_resources[$type] = $resource;
+        } else {
+          $resource['url'] = $resource['url_empty'];
           $replaced_resources[$type] = $resource;
         }
       }

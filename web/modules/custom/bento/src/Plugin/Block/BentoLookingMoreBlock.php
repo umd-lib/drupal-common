@@ -68,16 +68,21 @@ class BentoLookingMoreBlock extends BlockBase implements ContainerFactoryPluginI
    */
   public function build() {
     $blockConfig = $this->getConfiguration();
-    $looking_more_text = $blockConfig['looking_more_text'];
-    $looking_more_url = $blockConfig['looking_more_url'];
     $looking_more_heading = $blockConfig['looking_more_heading'];
     $query = \Drupal::request()->query->get('query');
-    $url_with_query = str_replace('%placeholder%', $query, $looking_more_url);
+    if (empty($query) || trim($query) == '') {
+      $looking_more_text = $blockConfig['looking_more_empty_text'];
+      $url = $blockConfig['looking_more_empty_url'];
+    } else {
+      $looking_more_url = $blockConfig['looking_more_url'];
+      $looking_more_text = $blockConfig['looking_more_text'];
+      $url = str_replace('%placeholder%', $query, $looking_more_url);
+    }
 
     return [
       '#theme' => 'bento_looking_more_block',
       '#looking_more_text' => $looking_more_text,
-      '#looking_more_url' => $url_with_query,
+      '#looking_more_url' => $url,
       '#looking_more_heading' => $looking_more_heading,
       '#query' => $query,
       '#cache' => [
@@ -110,6 +115,20 @@ class BentoLookingMoreBlock extends BlockBase implements ContainerFactoryPluginI
       '#description' => t('URL for search. Use %placeholder% to indicate query placeholder.'),
       '#required' => true,
     ];
+    $form['looking_more_empty_text'] = [
+      '#type' => 'textfield',
+      '#title' => t('Looking More Empty Text'),
+      '#default_value' =>  !empty($config['looking_more_empty_text']) ? $config['looking_more_empty_text'] : null,
+      '#description' => t('Text to use for link text when empty query.'),
+      '#required' => true,
+    ];
+    $form['looking_more_empty_url'] = [
+      '#type' => 'textarea',
+      '#title' => t('Looking More Empty URL'),
+      '#default_value' =>  !empty($config['looking_more_empty_url']) ? $config['looking_more_empty_url'] : null,
+      '#description' => t('URL for search if empty query. Do not include a placeholder'),
+      '#required' => true,
+    ];
     return $form;
   }
 
@@ -123,5 +142,9 @@ class BentoLookingMoreBlock extends BlockBase implements ContainerFactoryPluginI
     $this->setConfigurationValue('looking_more_heading', $heading);
     $this->setConfigurationValue('looking_more_url', strip_tags($url));
     $this->setConfigurationValue('looking_more_text', $text);
+    $empty_url = $form_state->getValue('looking_more_empty_url');
+    $empty_text = $form_state->getValue('looking_more_empty_text');
+    $this->setConfigurationValue('looking_more_empty_url', strip_tags($empty_url));
+    $this->setConfigurationValue('looking_more_empty_text', $empty_text);
   }
 }

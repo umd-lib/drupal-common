@@ -73,16 +73,24 @@ class BentoOtherResourcesBlock extends BlockBase implements ContainerFactoryPlug
     $other_resources = $blockConfig['other_resources'];
     $other_resources_heading = $blockConfig['other_resources_heading'];
     $query = \Drupal::request()->query->get('query');
-
+dsm($other_resources);
+    $has_query = TRUE;
+    if (empty($query) || trim($query) == '') {
+      $has_query = FALSE;
+    }
     if (!empty($other_resources)) {
       $replaced_resources = [];
-      foreach ($other_resources as $category => $resources) {
-        foreach ($resources as $resource) {
-          if (!empty($resource['url'])) {
-            $resource['url'] = str_replace('%placeholder%', $query, $resource['url']);
-            $replaced_resources['category'][] = $resource;
+      foreach ($other_resources as $name => $values) {
+        if ($has_query) {
+          if (!empty($values['url'])) {
+            $values['url'] = str_replace('%placeholder%', $query, $values['url']);
+          }
+        } else {
+          if (!empty($values['url_empty'])) {
+            $values['url'] = $values['url_empty'];
           }
         }
+        $replaced_resources[$name] = $values;
       }
     }
 
@@ -100,11 +108,11 @@ class BentoOtherResourcesBlock extends BlockBase implements ContainerFactoryPlug
     $form['other_resources_heading'] = [
       '#type' => 'textfield',
       '#title' => t('Block Header'),
-      '#default_value' =>  !empty($config['other_resources_header']) ? $config['other_resources_header'] : t('Search Categories'),
+      '#default_value' =>  !empty($config['other_resources_heading']) ? $config['other_resources_heading'] : t('Other Resources'),
     ];
     $form['other_resources'] = [
       '#type' => 'textarea',
-      '#title' => t('Search Categories'),
+      '#title' => t('Other Resources'),
       '#default_value' =>  Yaml::dump($config['other_resources']),
       '#description' => t('A YAML formatted list of searchers and their anchor links. See the README.md file.'),
       '#rows' => 7,

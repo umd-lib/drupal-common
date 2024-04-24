@@ -1,22 +1,28 @@
 {#
 /**
  * @file
- * bento-search-categories-block template
+ * bento-other-resources-block template
  *
  * Variables:
- *   - resource_types 
- *   - resource_types_heading
+ *   - other_resources 
+ *   - other_resources_heading
  */
 #}
-<div id="bento-resource-types" class="bento-sidebar">
-  <div class="bento-sidebar-heading">{{ resource_types_heading }}</div>
-  <div class="bento-sidebar-content">
-    {% for id, group in resource_types %}
+<header>
+  <h2>{{ other_resources_heading }}</h2>
+</header>
+{% for name, values in other_resources %}
+  {% if values.url %}
+    <a class="other-resource" href="{{ values.url }}">
       <ul>
-      {% for item in group %}
-        <li><a href="{{ item.url }}">{{ item.name }}</a><li>
-      {% endfor %}
+        {% if values.type %}
+          <li class="resource-type">{{ values.type }}</li>
+        {% endif %}
+          <li class="resource-name">{{ name }}</li>
+        {% if values.description %}
+          <li class="resource-description">{{ values.description }}</li>
+        {% endif %}
       </ul>
-    {% endfor %}
-  </div>
-</div>
+    </a>
+  {% endif %}
+{% endfor %}
