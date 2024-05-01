@@ -1,0 +1,6 @@
+services:
+  bento.twig_extension:
+    arguments: ['@renderer']
+    class: Drupal\bento\TwigExtension\BentoTwigExtension
+    tags:
+      - { name: twig.extension }

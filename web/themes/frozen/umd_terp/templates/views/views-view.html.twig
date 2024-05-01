@@ -35,8 +35,12 @@
     dom_id ? 'js-view-dom-id-' ~ dom_id,
   ]
 %}
-{% if 'bento-' in css_class %}
-  <div id="{{ css_class }}" {{ attributes.addClass(classes) }}>
+{% set class_arr = css_class|split(' ') %}
+{% if 'bento-' in class_arr[0] %}
+  {% set css_block_id = class_arr[0] %}
+{% endif %}
+{% if css_block_id %}
+  <div id="{{ css_block_id }}" {{ attributes.addClass(classes) }}>
 {% else %}
   <div {{ attributes.addClass(classes) }}>
 {% endif %}

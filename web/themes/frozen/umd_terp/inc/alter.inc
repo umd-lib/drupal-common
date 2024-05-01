@@ -88,3 +88,21 @@ function umd_terp_theme_suggestions_field_alter(&$suggestions, $variables) {
   // Add ability to adjust fields per view mode.
   $suggestions[] = 'field__node__' . $variables['element']['#field_name'] . '__' . $variables['element']['#bundle'] . '__' . $variables['element']['#view_mode'];
 }
+
+/**
+ * Implements hook_theme_suggestions_alter() for contact form container.
+ */
+function umd_terp_theme_suggestions_container_alter(array &$suggestions, array &$variables)
+{
+  $name = '';
+  $type = '';
+  if (!empty($variables['element']['#name'])) {
+    $name = $variables['element']['#name'];
+  }
+
+  if (!empty($variables['element']['#type'])) {
+    $type = $variables['element']['#type'];
+  }
+
+  array_unshift($suggestions, 'container__' . $type . '__' . $name);
+}

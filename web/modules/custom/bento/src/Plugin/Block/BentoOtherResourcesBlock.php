@@ -73,7 +73,6 @@ class BentoOtherResourcesBlock extends BlockBase implements ContainerFactoryPlug
     $other_resources = $blockConfig['other_resources'];
     $other_resources_heading = $blockConfig['other_resources_heading'];
     $query = \Drupal::request()->query->get('query');
-dsm($other_resources);
     $has_query = TRUE;
     if (empty($query) || trim($query) == '') {
       $has_query = FALSE;

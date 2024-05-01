@@ -123,8 +123,8 @@ function bento_views_post_execute(ViewExecutable $view) {
     $fa_icons = !empty($title_array[2]) ? 'fas fa-solid ' . $title_array[2] : 'fas fa-regular fa-link';
     $header_content = '
       <header>
-        <h2><span class="' . $fa_icons . '"></span>' . $title . '</h2>
-        <h3>' . $subtitle . '</h3>
+        <h2>' . $title . '</h2>
+        <p>' . $subtitle . '</p>
       </header>';
     if (!empty($view->raw_data['total']) && !empty($view->raw_data['module_link']) && count($view->raw_data['results']) > 0) {
       $real_total = $view->raw_data['total'];
@@ -132,13 +132,12 @@ function bento_views_post_execute(ViewExecutable $view) {
       if ($real_total > 0) {
         $footer_content = '
           <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
-            <span class="fas fa-solid fa-chevron-right"></span> 
             <a href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See all ' . number_format($real_total, 0, ".", ",") . ' results from the UMDiscover</a>
           </div>';
         $header_content = '
           <header>
-            <h2><a href="'. str_replace('"', '%22', $query_string) . '"><span class="' . $fa_icons . '"></span> ' . $title . '</a></h2>
-            <h3>' . $subtitle . '</h3>
+            <h2><a href="'. str_replace('"', '%22', $query_string) . '">' . $title . '</a></h2>
+            <p>' . $subtitle . '</p>
           </header>';
       } else {
         $footer_content = '
