@@ -2,8 +2,9 @@ langcode: en
 status: true
 dependencies:
   module:
-    - views_fieldsets
     - views_json_source
+_core:
+  default_config_hash: '-TovfHdAv4ypwhr9LlmEZQz0mcBNBsiLCZKoJNAaHI4'
 id: bento_search
 label: 'Bento Search'
 module: views
@@ -13,53 +14,12 @@ base_table: json
 base_field: ''
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Default
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: none
-        options: {  }
-      cache:
-        type: none
-        options: {  }
-      query:
-        type: views_query
-        options:
-          json_file: 'http://docker.for.mac.localhost:5000/search?q=%'
-          row_apath: results
-          headers: ''
-          single_payload: 0
-          show_errors: 1
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: some
-        options:
-          items_per_page: 3
-          offset: 0
-      style:
-        type: default
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-      row:
-        type: fields
-        options:
-          inline: {  }
-          separator: ''
-          hide_empty: false
-          default_field_elements: true
+      title: WorldCat
       fields:
         value_1:
           id: value_1
@@ -68,6 +28,7 @@ display:
           relationship: none
           group_type: group
           admin_label: URL
+          plugin_id: views_json_source_field
           label: ''
           exclude: true
           alter:
@@ -111,7 +72,6 @@ display:
           hide_alter_empty: true
           key: link
           trusted_html: 1
-          plugin_id: views_json_source_field
         value:
           id: value
           table: json
@@ -119,11 +79,14 @@ display:
           relationship: none
           group_type: group
           admin_label: Title
+          entity_type: null
+          entity_field: null
+          plugin_id: views_json_source_field
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: true
-            text: '<a href="{{ value_1 }}">{{ value|raw }}</a>'
+            text: '{{ value|raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -162,9 +125,6 @@ display:
           hide_alter_empty: true
           key: title
           trusted_html: 0
-          entity_type: null
-          entity_field: null
-          plugin_id: views_json_source_field
         value_5:
           id: value_5
           table: json
@@ -172,8 +132,9 @@ display:
           relationship: none
           group_type: group
           admin_label: Description
+          plugin_id: views_json_source_field
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -215,65 +176,6 @@ display:
           hide_alter_empty: true
           key: description
           trusted_html: 1
-          plugin_id: views_json_source_field
-        fieldset:
-          id: fieldset
-          table: views
-          field: fieldset
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          fields:
-            - value_3
-            - value_2
-            - value_4
-          wrapper: div
-          legend: ''
-          classes: bento-fields
-          collapsible: 1
-          collapsed: 0
-          plugin_id: fieldset
         value_3:
           id: value_3
           table: json
@@ -281,11 +183,12 @@ display:
           relationship: none
           group_type: group
           admin_label: Date
+          plugin_id: views_json_source_field
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: true
-            text: '<span class="result-icons fas fa-calendar-alt"></span> <span class="bento-value">{{ value_3 }}</span>'
+            text: "{% if value_3 != 'null' %}\r\n  {{ value_3 }}\r\n{% endif %}"
             make_link: false
             path: ''
             absolute: false
@@ -324,7 +227,6 @@ display:
           hide_alter_empty: true
           key: date
           trusted_html: 0
-          plugin_id: views_json_source_field
         value_2:
           id: value_2
           table: json
@@ -332,11 +234,12 @@ display:
           relationship: none
           group_type: group
           admin_label: Author
+          plugin_id: views_json_source_field
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: true
-            text: '<span class="result-icons fas fa-user"></span> <span class="bento-value">{{ value_2|raw }}</span>'
+            text: "{% if value_2 != 'null' %}\r\n  {{ value_2|raw }}\r\n{% endif %}"
             make_link: false
             path: ''
             absolute: false
@@ -375,7 +278,6 @@ display:
           hide_alter_empty: true
           key: author
           trusted_html: 0
-          plugin_id: views_json_source_field
         value_4:
           id: value_4
           table: json
@@ -383,429 +285,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Format
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: div
-          element_wrapper_class: bento-field
-          element_default_classes: false
-          empty: ''
-          hide_empty: true
-          empty_zero: false
-          hide_alter_empty: true
-          key: item_format
-          trusted_html: 0
           plugin_id: views_json_source_field
-      filters: {  }
-      sorts: {  }
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<h2>Search Results</h2>'
-            format: full_html
-          plugin_id: text
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: true
-          content:
-            value: "<span class=\"fa-solid fa-chevron-right\"></span> <a href=\"http://umd.libanswers.com/search?q={{ arguments.param }}\">See all FAQs from Ask Us! results</a>\r\n"
-            format: full_html
-          plugin_id: text
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: 'No results found.'
-            format: full_html
-          plugin_id: text
-      relationships: {  }
-      arguments:
-        param:
-          id: param
-          table: json
-          field: param
-          relationship: none
-          group_type: group
-          admin_label: ''
-          default_action: ignore
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options: null
-          default_argument_skip_url: false
-          summary_options: null
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          plugin_id: views_json_source_uri_param
-        value:
-          id: value
-          table: json
-          field: value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          default_action: ignore
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options: null
-          default_argument_skip_url: false
-          summary_options: null
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          key: total
-          plugin_id: views_json_source_argument
-      display_extenders: {  }
-      use_ajax: false
-      title: WorldCat
-      css_class: world_cat_discovery_api
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - url
-      tags: {  }
-  block_1:
-    display_plugin: block
-    id: block_1
-    display_title: 'Books and More'
-    position: 1
-    display_options:
-      display_extenders: {  }
-      display_description: 'Bento Search: Books and More'
-      title: 'Books and More'
-      defaults:
-        title: false
-        query: false
-        footer: false
-        header: false
-        empty: false
-        css_class: false
-      query:
-        type: views_query
-        options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=world_cat_discovery_api&q=%'
-          row_apath: results
-          headers: ''
-          single_payload: 0
-          show_errors: 1
-      footer: {  }
-      header: {  }
-      block_category: 'Bento Quick Search'
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="https://umaryland.on.worldcat.org/discovery">Try a different search from Books and More</a></div>'
-            format: full_html
-          plugin_id: text
-      css_class: bento_world_cat_discovery_api
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - url
-      tags: {  }
-  block_2:
-    display_plugin: block
-    id: block_2
-    display_title: Articles
-    position: 2
-    display_options:
-      display_extenders: {  }
-      display_description: 'Bento Search: Articles'
-      title: Articles
-      defaults:
-        title: false
-        query: false
-        footer: false
-        header: false
-        empty: false
-        css_class: false
-      query:
-        type: views_query
-        options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=world_cat_discovery_api_article&q=%'
-          row_apath: results
-          headers: ''
-          single_payload: 0
-          show_errors: 1
-      footer: {  }
-      header: {  }
-      block_category: 'Bento Quick Search'
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="https://umaryland.on.worldcat.org/discovery">Try a different search from Articles</a></div>'
-            format: full_html
-          plugin_id: text
-      css_class: bento_world_cat_discovery_api_article
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - url
-      tags: {  }
-  block_3:
-    display_plugin: block
-    id: block_3
-    display_title: Databases
-    position: 3
-    display_options:
-      display_extenders: {  }
-      display_description: 'Bento Search: Databases'
-      title: Databases
-      defaults:
-        title: false
-        query: false
-        footer: false
-        fields: true
-        header: false
-        empty: false
-        css_class: false
-      query:
-        type: views_query
-        options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=lib_guides_database&q=%'
-          row_apath: results
-          headers: ''
-          single_payload: 0
-          show_errors: 1
-      footer: {  }
-      header: {  }
-      block_category: 'Bento Quick Search'
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="https://lib.guides.umd.edu/az.php">Try a different search from Databases</a></div>'
-            format: full_html
-          plugin_id: text
-      css_class: bento_database_finder
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - url
-      tags: {  }
-  block_4:
-    display_plugin: block
-    id: block_4
-    display_title: 'Research Guides'
-    position: 4
-    display_options:
-      display_extenders: {  }
-      display_description: 'Bento Search: Research Guides'
-      title: 'Research Guides'
-      defaults:
-        title: false
-        query: false
-        footer: false
-        header: false
-        empty: false
-        css_class: false
-      query:
-        type: views_query
-        options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=lib_guides&q=%'
-          row_apath: results
-          headers: ''
-          single_payload: 0
-          show_errors: 1
-      footer: {  }
-      header: {  }
-      block_category: 'Bento Quick Search'
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="http://lib.guides.umd.edu/srch.php">Try a different search from Research Guides</a></div>'
-            format: full_html
-          plugin_id: text
-      css_class: bento_lib_guides
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - url
-      tags: {  }
-  block_5:
-    display_plugin: block
-    id: block_5
-    display_title: 'FAQs from Ask Us!'
-    position: 5
-    display_options:
-      display_extenders: {  }
-      display_description: 'Bento Search: FAQs'
-      title: 'FAQs from Ask Us!'
-      defaults:
-        title: false
-        query: false
-        footer: false
-        header: false
-        empty: false
-        css_class: false
-      query:
-        type: views_query
-        options:
-          json_file: 'http://docker.for.mac.localhost:3000/xhr_search.json?endpoint=lib_answers&q=%'
-          row_apath: results
-          headers: ''
-          single_payload: 0
-          show_errors: 1
-      footer: {  }
-      header: {  }
-      block_category: 'Bento Quick Search'
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="http://umd.libanswers.com/search">Try a different search from FAQs</a></div>'
-            format: full_html
-          plugin_id: text
-      css_class: bento_lib_answers
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - url
-      tags: {  }
-  block_6:
-    display_plugin: block
-    id: block_6
-    display_title: Website
-    position: 6
-    display_options:
-      display_extenders: {  }
-      display_description: 'Bento Search: Website'
-      title: 'Libraries'' Website'
-      defaults:
-        title: false
-        footer: false
-        fields: false
-        header: false
-        empty: false
-        css_class: false
-      footer: {  }
-      fields:
-        value_1:
-          id: value_1
-          table: json
-          field: value
-          relationship: none
-          group_type: group
-          admin_label: URL
           label: ''
           exclude: true
           alter:
@@ -840,333 +320,85 @@ display:
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          key: link
-          trusted_html: 0
-          plugin_id: views_json_source_field
-        value:
-          id: value
-          table: json
-          field: value
-          relationship: none
-          group_type: group
-          admin_label: Title
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: '<a href="{{ value_1 }}">{{ value|raw }}</a>'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          key: title
-          trusted_html: 0
-          entity_type: null
-          entity_field: null
-          plugin_id: views_json_source_field
-        value_5:
-          id: value_5
-          table: json
-          field: value
-          relationship: none
-          group_type: group
-          admin_label: Description
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          key: extra/htmlSnippet
-          trusted_html: 1
-          plugin_id: views_json_source_field
-        fieldset:
-          id: fieldset
-          table: views
-          field: fieldset
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          fields:
-            - value_3
-            - value_2
-            - value_4
-          wrapper: div
-          legend: ''
-          classes: bento-fields
-          collapsible: 1
-          collapsed: 0
-          plugin_id: fieldset
-        value_3:
-          id: value_3
-          table: json
-          field: value
-          relationship: none
-          group_type: group
-          admin_label: Date
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: '<span class="result-icons fas fa-calendar-alt"></span> <span class="bento-value">{{ value_3 }}</span>'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          key: date
-          trusted_html: 0
-          plugin_id: views_json_source_field
-        value_2:
-          id: value_2
-          table: json
-          field: value
-          relationship: none
-          group_type: group
-          admin_label: Author
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: '<span class="result-icons fas fa-user"></span> <span class="bento-value">{{ value_2 }}</span>'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          key: author
-          trusted_html: 0
-          plugin_id: views_json_source_field
-        value_4:
-          id: value_4
-          table: json
-          field: value
-          relationship: none
-          group_type: group
-          admin_label: Format
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
           element_default_classes: false
           empty: ''
-          hide_empty: false
+          hide_empty: true
           empty_zero: false
           hide_alter_empty: true
           key: item_format
           trusted_html: 0
-          plugin_id: views_json_source_field
-      header: {  }
-      block_category: 'Bento Quick Search'
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: custom
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<a href=\"{{ value_1 }}\">\r\n  <!-- title -->\r\n  <h3>\r\n    {{ value }}\r\n  </h3>\r\n  <!-- description -->\r\n  <div class=\"bento-description\">\r\n     {{ value_5 }}\r\n  </div>\r\n  <div class=\"bento-fields\">\r\n    <!-- basic information -->\r\n    <div class=\"basic-info\">\r\n{% if value_4 %}\r\n      <div class=\"information-icon\"></div>\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_4|bento_format }}</span>\r\n        </span>\r\n      </div>\r\n{% endif %}\r\n{% if value_3 %}\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_3 }}</span>\r\n        </span>\r\n      </div>\r\n{% endif %}\r\n    </div>\r\n{% if value_2 %}\r\n    <!-- author information -->\r\n    <div class=\"author-info\">\r\n      <div class=\"author-icon\"></div>\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_2 }}</span>\r\n        </span>\r\n      </div>\r\n    </div>\r\n{% endif %}\r\n  </div>\r\n</a>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 3
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: none
+        options: {  }
       empty:
         area:
           id: area
@@ -1175,13 +407,479 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<div class="bento-attachment"><span class="fas fa-solid fa-chevron-right"></span> <a href="/search/website">Try a different search</a></div>'
-            format: full_html
           plugin_id: text
+          empty: true
+          content:
+            value: 'No results found.'
+            format: full_html
+          tokenize: false
+      sorts: {  }
+      arguments:
+        param:
+          id: param
+          table: json
+          field: param
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: views_json_source_uri_param
+          default_action: ignore
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options: null
+          summary_options: null
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+        value:
+          id: value
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: views_json_source_argument
+          default_action: ignore
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options: null
+          summary_options: null
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          key: total
+      filters: {  }
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      query:
+        type: views_query
+        options:
+          json_file: 'http://docker.for.mac.localhost:5000/search?q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      relationships: {  }
+      css_class: world_cat_discovery_api
+      use_ajax: false
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<h2>Search Results</h2>'
+            format: full_html
+          tokenize: false
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: "<span class=\"fa-solid fa-chevron-right\"></span> <a href=\"http://umd.libanswers.com/search?q={{ arguments.param }}\">See all FAQs from Ask Us! results</a>\r\n"
+            format: full_html
+          tokenize: true
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_1:
+    id: block_1
+    display_title: 'Books and More'
+    display_plugin: block
+    position: 1
+    display_options:
+      title: 'Books|Books from the UMDiscover|fa-book'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<div class="bento-attachment"><a href="https://umaryland.on.worldcat.org/discovery">Try a different search from Books and More</a></div>'
+            format: full_html
+          tokenize: false
+      query:
+        type: views_query
+        options:
+          json_file: 'http://bento-worldcat-searcher:5000/search?endpoint=books-and-more&per_page=3&page=0&q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      defaults:
+        empty: false
+        query: false
+        title: false
+        css_class: false
+        header: false
+        footer: false
+      css_class: bento_world_cat_discovery_api
+      display_description: 'Bento Search: Books and More'
+      header: {  }
+      footer: {  }
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+      block_category: 'Bento Quick Search'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_2:
+    id: block_2
+    display_title: Articles
+    display_plugin: block
+    position: 2
+    display_options:
+      title: 'Articles|Articles from the UMDiscover|fa-book-open'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<div class="bento-attachment"><a href="https://umaryland.on.worldcat.org/discovery">Try a different search from Articles</a></div>'
+            format: full_html
+          tokenize: false
+      query:
+        type: views_query
+        options:
+          json_file: 'http://bento-worldcat-searcher:5000/search?endpoint=articles&per_page=3&page=0&q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      defaults:
+        empty: false
+        query: false
+        title: false
+        css_class: false
+        header: false
+        footer: false
+      css_class: bento_world_cat_discovery_api_article
+      display_description: 'Bento Search: Articles'
+      header: {  }
+      footer: {  }
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+      block_category: 'Bento Quick Search'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_3:
+    id: block_3
+    display_title: Databases
+    display_plugin: block
+    position: 3
+    display_options:
+      title: 'Databases|Databases from DBFinder|fa-database'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<div class="bento-attachment"><a href="https://lib.guides.umd.edu/az.php">Try a different search from Databases</a></div>'
+            format: full_html
+          tokenize: false
+      query:
+        type: views_query
+        options:
+          json_file: 'http://bento-databases-searcher:5000/search?q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      defaults:
+        empty: false
+        query: false
+        title: false
+        css_class: false
+        fields: true
+        header: false
+        footer: false
+      css_class: bento_database_finder
+      display_description: 'Bento Search: Databases'
+      header: {  }
+      footer: {  }
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+      block_category: 'Bento Quick Search'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_4:
+    id: block_4
+    display_title: 'Research Guides'
+    display_plugin: block
+    position: 4
+    display_options:
+      title: 'Research Guides|Topical guides from subject specialist librarians|fa-file-lines'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<div class="bento-attachment"><a href="http://lib.guides.umd.edu/srch.php">Try a different search from Research Guides</a></div>'
+            format: full_html
+          tokenize: false
+      query:
+        type: views_query
+        options:
+          json_file: 'http://bento-guides-searcher:5000/search?q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      defaults:
+        empty: false
+        query: false
+        title: false
+        css_class: false
+        header: false
+        footer: false
+      css_class: bento_lib_guides
+      display_description: 'Bento Search: Research Guides'
+      header: {  }
+      footer: {  }
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+      block_category: 'Bento Quick Search'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_5:
+    id: block_5
+    display_title: 'FAQs from Ask Us!'
+    display_plugin: block
+    position: 5
+    display_options:
+      title: 'Ask Us!|Questions and answers from previous user inquiries|fa-circle-question'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<div class="bento-attachment"><a href="http://umd.libanswers.com/search">Try a different search from FAQs</a></div>'
+            format: full_html
+          tokenize: false
+      query:
+        type: views_query
+        options:
+          json_file: 'http://bento-faq-searcher:5000/search?q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      defaults:
+        empty: false
+        query: false
+        title: false
+        css_class: false
+        header: false
+        footer: false
+      css_class: bento_lib_answers
+      display_description: 'Bento Search: FAQs'
+      header: {  }
+      footer: {  }
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+      block_category: 'Bento Quick Search'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_6:
+    id: block_6
+    display_title: Website
+    display_plugin: block
+    position: 6
+    display_options:
+      title: "Libraries' Websites|Information on the Libraries' main website|fa-display"
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<div class="bento-attachment"><a href="/search/website">Try a different search</a></div>'
+            format: full_html
+          tokenize: false
+      query:
+        type: views_query
+        options:
+          json_file: 'http://bento-website-searcher:5000/search?q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      defaults:
+        empty: false
+        query: false
+        title: false
+        css_class: false
+        fields: true
+        header: false
+        footer: false
       css_class: bento_libraries_website
+      display_description: 'Bento Search: Website'
+      header: {  }
+      footer: {  }
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+      block_category: 'Bento Quick Search'
     cache_metadata:
       max-age: -1
       contexts:

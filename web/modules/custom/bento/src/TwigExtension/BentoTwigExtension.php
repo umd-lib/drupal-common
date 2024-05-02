@@ -36,12 +36,12 @@ class BentoTwigExtension extends AbstractExtension {
   /**
    * Returns the active language.
    *
-   * @param string $raw_value
+   * @param string $raw_name
    *   the value from the api.
    * @return string
    *   value of bento formatted string
    */
-  public function getBentoFormat(string $raw_value) {
+  public function getBentoFormat(string $raw_name) {
   $format_map = [
       "archival_material" => "Archival Material",
       "article" => "Article",

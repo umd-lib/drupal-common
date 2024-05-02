@@ -22,52 +22,11 @@ base_table: search_api_index_bento_best_bets
 base_field: search_api_id
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Default
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: none
-        options: {  }
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          bypass_access: false
-          skip_access: false
-          preserve_facet_query_args: false
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: some
-        options:
-          items_per_page: 1
-          offset: 0
-      style:
-        type: default
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          uses_fields: false
-      row:
-        type: fields
-        options:
-          inline: {  }
-          separator: ''
-          hide_empty: false
-          default_field_elements: true
       fields:
         field_display_name:
           id: field_display_name
@@ -76,6 +35,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -138,8 +99,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         field_url_to_resource:
           id: field_url_to_resource
           table: search_api_datasource_bento_best_bets_entity_node
@@ -147,6 +106,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -213,8 +174,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         body:
           id: body
           table: search_api_datasource_bento_best_bets_entity_node
@@ -222,6 +181,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -283,8 +244,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         field_use_ezproxy:
           id: field_use_ezproxy
           table: search_api_datasource_bento_best_bets_entity_node
@@ -292,6 +251,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: ''
           exclude: true
           alter:
@@ -337,8 +298,8 @@ display:
           type: boolean
           settings:
             format: default
-            format_custom_true: ''
             format_custom_false: ''
+            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -360,8 +321,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
         nothing:
           id: nothing
           table: views
@@ -369,11 +328,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: custom
           label: ''
           exclude: false
           alter:
             alter_text: true
-            text: "<span class=\"fas fa-solid fa-thumbtack\" role=\"presentation\"></span>\r\n<div class=\"bento-best-bets-content\">\r\n{%if field_use_ezproxy %}\r\n  <a href=\"https://proxy-um.researchport.umd.edu/login?url={{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% else %}\r\n  <a href=\"{{ field_url_to_resource }}\">{{ field_display_name }}</a>\r\n{% endif %}\r\n<br />\r\n{{ body }}\r\n</div>"
+            text: "<a\r\n    {%if field_use_ezproxy %}\r\n      href=\"https://proxy-um.researchport.umd.edu/login?url={{ field_url_to_resource }}\"\r\n    {% else %}\r\n      href=\"{{ field_url_to_resource }}\"\r\n    {% endif %}\r\n>\r\n  <span class=\"bento-key-info-content\">\r\n    <div class=\"bento-key-info-title\">\r\n      <div class=\"bento-key-info-fas\">\r\n        <span class=\"fas fa-solid fa-thumbtack\" role=\"presentation\"></span>\r\n      </div>\r\n      <div class=\"bento-key-info-title-text\">\r\n        {{ field_display_name }}\r\n      </div>\r\n    </div>\r\n    <div class=\"bento-key-info-content-p\">\r\n      <p>{{ body }}</p>\r\n    </div>\r\n  </span>\r\n</a>"
             make_link: false
             path: ''
             absolute: false
@@ -410,8 +370,28 @@ display:
           hide_empty: true
           empty_zero: false
           hide_alter_empty: true
-          plugin_id: custom
-      filters: {  }
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 1
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: none
+        options: {  }
+      empty: {  }
       sorts:
         search_api_relevance:
           id: search_api_relevance
@@ -420,15 +400,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           order: DESC
-          exposed: false
           expose:
             label: ''
-          plugin_id: search_api
-      header: {  }
-      footer: {  }
-      empty: {  }
-      relationships: {  }
+            field_identifier: search_api_relevance
+          exposed: false
       arguments:
         aggregated_field:
           id: aggregated_field
@@ -437,6 +414,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           default_action: default
           exception:
             value: all
@@ -449,7 +427,6 @@ display:
             query_param: query
             fallback: ''
             multiple: and
-          default_argument_skip_url: false
           summary_options: {  }
           summary:
             sort_order: asc
@@ -462,9 +439,31 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-          plugin_id: search_api
+      filters: {  }
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: best-bets
+          default_row_class: true
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      query:
+        type: search_api_query
+        options:
+          bypass_access: false
+          skip_access: false
+          preserve_facet_query_args: false
+      relationships: {  }
+      css_class: 'bento_best_bets_block bento-utility'
+      header: {  }
+      footer: {  }
       display_extenders: {  }
-      css_class: bento_best_bets_block
     cache_metadata:
       max-age: -1
       contexts:
@@ -478,13 +477,25 @@ display:
         - 'config:field.storage.node.field_url_to_resource'
         - 'config:field.storage.node.field_use_ezproxy'
         - 'config:search_api.index.bento_best_bets'
+        - 'search_api_list:bento_best_bets'
   block_1:
-    display_plugin: block
     id: block_1
     display_title: Block
+    display_plugin: block
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
       block_category: 'Bento Quick Search'
     cache_metadata:
       max-age: -1
@@ -499,4 +510,5 @@ display:
         - 'config:field.storage.node.field_url_to_resource'
         - 'config:field.storage.node.field_use_ezproxy'
         - 'config:search_api.index.bento_best_bets'
+        - 'search_api_list:bento_best_bets'
 
