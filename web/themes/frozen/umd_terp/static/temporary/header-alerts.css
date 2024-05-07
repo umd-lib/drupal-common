@@ -1,0 +1,51 @@
+/**
+ * header alerts module css
+ */
+
+#header-alerts .header-alert {
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: grid;
+  grid-template-areas: "title body";
+  grid-template-columns: auto auto;
+  background-color: #ffd000;
+}
+
+#header-alerts .header-alert .field-alert-header {
+  grid-area: title;
+  margin-bottom: 0;
+  margin-left: 1rem;
+  font-size: 1.1em;
+  font-weight: 600;
+  text-align: right;
+}
+
+#header-alerts .header-alert .field-alert-header::after {
+  content: ":";
+}
+
+#header-alerts .header-alert .field-body {
+  grid-area: body;
+  padding-left: 2rem;
+  margin-bottom: 0;
+  margin-right: 1rem;
+  font-size: 1rem;
+  align-self: center;
+  text-align: left;
+}
+
+@media (max-width: 991px){
+  #header-alerts .header-alert .field-body {
+    padding-right: 0;
+    text-align: center;
+  }
+  #header-alerts .header-alert .field-alert-header {
+    margin-bottom: 1em;
+    font-size: 1rem;
+    text-align: center;
+  }
+  #header-alerts .header-alert {
+    display: block;
+  }
+}

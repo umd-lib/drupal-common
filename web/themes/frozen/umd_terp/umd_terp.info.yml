@@ -8,6 +8,7 @@ version: 8.1.105
 libraries:
   - umd_terp/global
 regions:
+  header_alerts: "Header Alerts"
   main_menu: "Main Menu"
   help: "Help"
   local_utility: "Local Utility"

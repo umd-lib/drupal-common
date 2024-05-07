@@ -8,7 +8,7 @@
 #}
 
 {% if label_hidden %}
-  <div class="inner-field-content">
+  <div class="inner-field-content field-{{ label|clean_class }}">
   {% if multiple %}
     {% for item in items %}
       <span>{{ item.content }}</span>
@@ -20,7 +20,7 @@
   {% endif %}
   </div>
 {% else %}
-  <div class="inner-field-content">
+  <div class="inner-field-content field-{{ label|clean_class }}">
   <label><strong>{{ label }}:</strong></label>
     {% if multiple %}
       <div class="field__items">

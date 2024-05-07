@@ -1,0 +1,9 @@
+name: Basic Header Alerts
+description: Provides a block type for header alerts.
+
+package: 'UMD Services'
+dependencies:
+  - easy_install
+type: module
+
+core_version_requirement: ^8.9 || ^9 || ^10

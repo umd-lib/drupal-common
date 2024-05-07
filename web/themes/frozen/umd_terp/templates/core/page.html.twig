@@ -12,6 +12,11 @@
 {% include directory ~ '/templates/_includes/global/header.html.twig' %}
 
 <main id="main-content">
+        {% block header_alert %}
+		<div id="header-alerts">
+                	{{ page.header_alerts }}
+		</div>
+        {% endblock %}
 	{% block hero %}
 		{% if hero_image %}
 			<div class="hero">

@@ -4,6 +4,7 @@ global:
     base:
       static/build/css/index.css: { media: screen }
       static/temporary/fixes.css: { media: screen }
+      static/temporary/header-alerts.css: { media: screen }
       static/build/css/print.css: { media: print }
       static/temporary/multilang.css: {}
   js:

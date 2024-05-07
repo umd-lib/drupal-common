@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: header_alert
+label: 'Header Alert'
+revision: 0
+description: 'Use this block type to create header alerts.'
+
