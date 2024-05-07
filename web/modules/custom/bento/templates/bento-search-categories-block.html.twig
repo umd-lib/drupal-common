@@ -14,7 +14,7 @@
     {% for id, group in search_categories %}
       <ul>
       {% for item in group %}
-        <li><a href="{{ item.url }}">{{ item.name }}</a><li>
+        <li><a href="{{ item.url }}" id="bento-search-categories-{{ item.name|clean_id }}">{{ item.name }}</a><li>
       {% endfor %}
       </ul>
     {% endfor %}

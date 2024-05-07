@@ -13,7 +13,7 @@
   <div id="bento-resource-types-content" class="bento-sidebar-content collapse" data-parent="#bento-resource-types">
     <ul>
       {% for name, item in resource_types %}
-        <li><a href="{{ item.url }}">{{ name }}</a><li>
+        <li><a href="{{ item.url }}" id="bento-search-resource-types-{{ name|clean_id }}">{{ name }}</a><li>
       {% endfor %}
     </ul>
   </div>

@@ -5,6 +5,7 @@ use Drupal\views\Plugin\views\display;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Component\Utility\Html;
 
 /**
  * @file
@@ -132,11 +133,11 @@ function bento_views_post_execute(ViewExecutable $view) {
       if ($real_total > 0) {
         $footer_content = '
           <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
-            <a href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See all ' . number_format($real_total, 0, ".", ",") . ' results from the UMDiscover</a>
+            <a id="bento-search-footer-' . Html::getId($title) . '" href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See all ' . number_format($real_total, 0, ".", ",") . ' results from the UMDiscover</a>
           </div>';
         $header_content = '
           <header>
-            <h2><a href="'. str_replace('"', '%22', $query_string) . '">' . $title . '</a></h2>
+            <h2><a href="'. str_replace('"', '%22', $query_string) . '" id="bento-search-header-' . Html::getId($title) . '">' . $title . '</a></h2>
             <p>' . $subtitle . '</p>
           </header>';
       } else {
