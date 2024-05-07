@@ -80,15 +80,15 @@ div.fcrepo-result .views-field-component-not-tokenized .field-content {
 }
 
 /* Change to columns instead of grid */
-div.page-section-single_block .facet-block ul {
+div[class$="section-single_block"] .facet-block ul {
   columns: 191px 5;
 }
 
-div.page-section-single_block .facets-widget-checkbox ul {
+div[class$="section-single_block"] .facets-widget-checkbox ul {
   padding-left: 15px;
 }
 
-div.page-section-single_block .facets-soft-limit-link {
+div[class$="section-single_block"] .facets-soft-limit-link {
   font-size: 1.12rem;
 }
 
@@ -96,7 +96,7 @@ div.page-section-single_block .facets-soft-limit-link {
   font-weight: bold;
 }
 
-div.page-section-single_block .facet-inactive .facets-soft-limit-link:before {
+div[class$="section-single_block"] .facet-inactive .facets-soft-limit-link:before {
   font-family: "Font Awesome 6 Free";
   content: "\f13a ";
   font-weight: 900;
@@ -104,7 +104,7 @@ div.page-section-single_block .facet-inactive .facets-soft-limit-link:before {
   font-size: 0.9rem;
 }
 
-div.page-section-single_block .facet-inactive .open:before {
+div[class$="section-single_block"] .facet-inactive .open:before {
   font-family: "Font Awesome 6 Free";
   content: "\f139 ";
   font-weight: 900;
@@ -132,10 +132,10 @@ li.facets-reset .facet-item__count {
 
 /* Change to column-width instead of grid */
 @media (max-width: 992px) {
-  div.page-section-single_block .facet-block ul {
+  div[class$="section-single_block"] .facet-block ul {
     column-width: 191px;
   }
-  div.page-section-single_block .facet-block h3 {
+  div[class$="section-single_block"] .facet-block h3 {
     font-size: 1.25rem;
   }
   #views-exposed-form-fcrepo-search-page-1 div.js-form-item-sort-by {
@@ -149,23 +149,23 @@ li.facets-reset .facet-item__count {
     flex-direction: column;
   }
 
-  div.page-section-single_block .facet-block ul {
+  div[class$="section-single_block"] .facet-block ul {
     column-width: 191px;
   }
-  div.page-section-single_block .facet-block h3 {
+  div[class$="section-single_block"] .facet-block h3 {
     font-size: 1.15rem;
   }
 }
 
 /* Change to column-width instead of grid */
 @media (max-width: 600px) {
-  div.page-section-single_block .facet-block ul {
+  div[class$="section-single_block"] .facet-block ul {
     column-width: 191px;
   }
-  div.page-section-single_block .facet-block h3 {
+  div[class$="section-single_block"] .facet-block h3 {
     font-size: 1.75rem;
   }
-  div.page-section-single_block .facets-widget-checkbox ul {
+  div[class$="section-single_block"] .facets-widget-checkbox ul {
     margin-top: -20px;
   }
 }
