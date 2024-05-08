@@ -1,29 +1,27 @@
 langcode: en
 status: true
 dependencies:
+  config:
+    - search_api.server.top_textbooks
   module:
     - search_api_solr
     - search_api
-  config:
-    - search_api.server.top_textbooks
 third_party_settings:
   search_api_solr:
     finalize: false
     commit_before_finalize: false
     commit_after_finalize: false
-    multilingual:
-      limit_to_content_language: false
-      include_language_independent: true
+    debug_finalize: false
     highlighter:
       maxAnalyzedChars: 51200
       fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
       regex:
         slop: 0.5
         pattern: blank
         maxAnalyzedChars: 10000
-      usePhraseHighlighter: true
-      highlightMultiTerm: true
-      preserveMulti: false
       highlight:
         mergeContiguous: false
         requireFieldMatch: false
@@ -40,17 +38,28 @@ third_party_settings:
       maxntp: 2000
       boost: false
       interestingTerms: none
+    term_modifiers:
+      slop: 10000000
+      fuzzy: 2
     advanced:
-      index_prefix: ""
-      collection: ""
-      timezone: ""
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+      specific_languages: {  }
+      use_language_undefined_as_fallback_language: false
+      use_universal_collation: false
+_core:
+  default_config_hash: KnBTxf27ylDn_5zBTD1h5K550h-N3-U6-enynkUdIi0
 id: top_textbooks
-name: "Top Textbooks"
-description: ""
+name: 'Top Textbooks'
+description: ''
 read_only: true
 field_settings:
   alternate_isbns:
-    label: "Alternate ISBNs"
+    label: 'Alternate ISBNs'
     datasource_id: solr_document
     property_path: alternate_isbns
     type: text
@@ -65,7 +74,7 @@ field_settings:
     property_path: bar_code
     type: text
   call_number:
-    label: "Call Number"
+    label: 'Call Number'
     datasource_id: solr_document
     property_path: call_number
     type: string
@@ -104,6 +113,11 @@ field_settings:
     datasource_id: solr_document
     property_path: title
     type: string
+  uniqueid:
+    label: Uniqueid
+    datasource_id: solr_document
+    property_path: uniqueid
+    type: string
   year:
     label: Year
     datasource_id: solr_document
@@ -111,22 +125,26 @@ field_settings:
     type: integer
 datasource_settings:
   solr_document:
-    id_field: author
-    request_handler: ""
-    default_query: "*:*"
-    label_field: ""
-    language_field: ""
-    url_field: ""
+    id_field: uniqueid
+    request_handler: ''
+    default_query: '*:*'
+    label_field: ''
+    language_field: ''
+    url_field: ''
 processor_settings:
-  add_url: {}
-  aggregated_field: {}
-  language_with_fallback: {}
-  rendered_item: {}
-  solr_date_range: {}
+  add_url: {  }
+  aggregated_field: {  }
+  auto_aggregated_fulltext_field: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+  solr_date_range: {  }
 tracker_settings:
   default:
     indexing_order: fifo
 options:
-  index_directly: false
   cron_limit: 50
+  index_directly: false
+  track_changes_in_references: true
 server: top_textbooks
+

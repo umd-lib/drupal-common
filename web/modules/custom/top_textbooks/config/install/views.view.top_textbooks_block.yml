@@ -19,12 +19,11 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Top Textbooks Block'
       fields:
-        call_number:
-          id: call_number
+        title:
+          id: title
           table: search_api_index_top_textbooks
-          field: call_number
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
@@ -65,7 +64,60 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+        bar_code:
+          id: bar_code
+          table: search_api_index_top_textbooks
+          field: bar_code
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -118,7 +170,7 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -127,10 +179,10 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-        edition:
-          id: edition
+        call_number:
+          id: call_number
           table: search_api_index_top_textbooks
-          field: edition
+          field: call_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -171,7 +223,7 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -180,10 +232,10 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-        title:
-          id: title
+        author:
+          id: author
           table: search_api_index_top_textbooks
-          field: title
+          field: author
           relationship: none
           group_type: group
           admin_label: ''
@@ -224,7 +276,113 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+        alternate_isbns:
+          id: alternate_isbns
+          table: search_api_index_top_textbooks
+          field: alternate_isbns
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+        comment:
+          id: comment
+          table: search_api_index_top_textbooks
+          field: comment
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -277,7 +435,7 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -287,7 +445,7 @@ display:
           decimal: .
           separator: ''
           format_plural: false
-          format_plural_string: !!binary MQNAY291bnQ=
+          format_plural_string: !!binary Aw==
           prefix: ''
           suffix: ''
           link_to_item: false
@@ -295,10 +453,10 @@ display:
           multi_type: separator
           multi_separator: ', '
           format_plural_values: {  }
-        author:
-          id: author
+        edition:
+          id: edition
           table: search_api_index_top_textbooks
-          field: author
+          field: edition
           relationship: none
           group_type: group
           admin_label: ''
@@ -339,7 +497,60 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+        program:
+          id: program
+          table: search_api_index_top_textbooks
+          field: program
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -392,7 +603,7 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -413,7 +624,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<span class=\"bento-key-info-content\">\r\n  <div class=\"bento-key-info-title\">\r\n    <div class=\"bento-key-info-fas\">\r\n      <span\r\n      class=\"fas fa-solid fa-book-open\"\r\n      role=\"presentation\"\r\n      style=\"color: #c0c0c0\"></span>\r\n    </div>\r\n    <a class=\"bento-key-info-title-text\" href=\"/find/reserves/students/textbooks?search_api_textbook_fulltext={{ arguments.search_api_fulltext }}&sort_by=search_api_relevance&sort_order=DESC\">Top Textbook Collection</a>\r\n  </div>\r\n  <div class=\"bento-top-textbook-result-content\">\r\n    <p class=\"bento-key-info-content-p\">We found a related item in the Libraries’ Top Textbook collection.\r\n      <br />You can borrow this book for\r\n      <span class=\"bento-key-info-content-p-bold\">4 hours</span>\r\n      at a time from the\r\n      <span class=\"bento-key-info-content-p-bold\">McKeldin Library Services Desk</span>.\r\n    </p>\r\n    <a class=\"bento-top-textbook-bookcard bento-key-info-content-p\" href=\"/find/reserves/students/textbooks?search_api_textbook_fulltext={{ call_number }}&sort_by=search_api_relevance&sort_order=DESC\">\r\n      <div>\r\n        <p>Course ID:</p>\r\n      </div>\r\n      <div>\r\n        <p>{{ course }}</p>\r\n      </div>\r\n      <div>\r\n        <p>Book Title:</p>\r\n      </div>\r\n      <div>\r\n        <p><span class=\"bento-key-info-content-p-bold\">{{ title }}</span>, {{ edition }} edition, {{ year }}</p>\r\n      </div>\r\n      <div>\r\n        <p>Author:</p>\r\n      </div>\r\n      <div>\r\n        <p>{{ author }}</p>\r\n      </div>\r\n      <div>\r\n        <p>ISBN:</p>\r\n      </div>\r\n      <div>\r\n        <p>{{ isbn }}</p>\r\n      </div>\r\n    </a>\r\n  </div>\r\n</span>"
+            text: "<span class=\"bento-key-info-content\">\r\n  <div class=\"bento-key-info-title\">\r\n    <div class=\"bento-key-info-fas\">\r\n      <span class=\"fas fa-solid fa-book-open\" role=\"presentation\"></span>\r\n    </div>\r\n    <a id=\"bento-search-top-textbooks-more\" class=\"bento-key-info-title-text\" href=\"/find/reserves/students/textbooks?search_api_textbook_fulltext={{ arguments.text }}&sort_by=search_api_relevance&sort_order=DESC\">Top Textbook Collection</a>\r\n  </div>\r\n  <div class=\"bento-top-textbook-result-content\">\r\n    <p class=\"bento-key-info-content-p\">We found a related item in the Libraries’ Top Textbook collection.\r\n      <br />You can borrow this book for\r\n      <span class=\"bento-key-info-content-p-bold\">4 hours</span>\r\n      at a time from the\r\n      <span class=\"bento-key-info-content-p-bold\">McKeldin Library Services Desk</span>.\r\n    </p>\r\n    <a id=\"bento-search-top-textbooks\" class=\"bento-top-textbook-bookcard bento-key-info-content-p\" href=\"/find/reserves/students/textbooks?search_api_textbook_fulltext={{ call_number }}&sort_by=search_api_relevance&sort_order=DESC\">\r\n      <div>\r\n        <p>\r\n          <span class=\"bento-key-info-content-p-bold\">{{ title }}</span>{% if edition %}, edition, {{ edition }}{% endif %}\r\n        </p>\r\n      </div>\r\n      <div class=\"book-author\">\r\n        <div class=\"book-author-icon\"></div>\r\n        <p>{{ author }}</p>\r\n      </div>\r\n      <div class=\"course-id\">\r\n        <div class=\"course-id-icon\"></div>\r\n        <p>{{ course }}</p>\r\n      </div>\r\n    </a>\r\n  </div>\r\n</span>"
             make_link: false
             path: ''
             absolute: false
@@ -445,7 +656,7 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -487,14 +698,14 @@ display:
             field_identifier: ''
           exposed: false
       arguments:
-        search_api_fulltext:
-          id: search_api_fulltext
+        text:
+          id: text
           table: search_api_index_top_textbooks
-          field: search_api_fulltext
+          field: text
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api_fulltext
+          plugin_id: search_api
           default_action: default
           exception:
             value: all
@@ -507,7 +718,6 @@ display:
             query_param: query
             fallback: ''
             multiple: and
-          default_argument_skip_url: false
           summary_options: {  }
           summary:
             sort_order: asc
@@ -520,18 +730,13 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-          parse_mode: terms
-          conjunction: AND
-          fields:
-            - text
       filters: {  }
       style:
         type: default
         options:
           grouping: {  }
-          row_class: ''
+          row_class: top-textbooks
           default_row_class: true
-          uses_fields: false
       row:
         type: fields
         options:
@@ -547,6 +752,7 @@ display:
           preserve_facet_query_args: false
           query_tags: {  }
       relationships: {  }
+      css_class: 'bento-textbooks-block bento-utility'
       header: {  }
       footer: {  }
       display_extenders:
@@ -568,6 +774,7 @@ display:
         - url
       tags:
         - 'config:search_api.index.top_textbooks'
+        - 'search_api_list:top_textbooks'
   block_1:
     id: block_1
     display_title: Block
@@ -586,8 +793,6 @@ display:
           category_fallback: ''
           category_facets: {  }
           category_facets_concat_separator: ', '
-      block_description: 'Top Textbooks Block'
-      block_category: 'Bento Quick Search'
     cache_metadata:
       max-age: -1
       contexts:
@@ -595,4 +800,5 @@ display:
         - url
       tags:
         - 'config:search_api.index.top_textbooks'
+        - 'search_api_list:top_textbooks'
 

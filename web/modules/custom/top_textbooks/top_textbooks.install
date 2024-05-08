@@ -11,3 +11,10 @@
 function top_textbooks_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'top_textbooks');
 }
+
+/**
+ * Install Top Textbooks configuration.
+ */
+function top_textbooks_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'top_textbooks');
+}

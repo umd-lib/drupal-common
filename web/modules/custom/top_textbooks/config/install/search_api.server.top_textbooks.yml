@@ -26,15 +26,23 @@ dependencies:
     - search_api_solr.solr_request_handler.request_handler_tvrh_default_7_0_0
   module:
     - search_api_solr
+_core:
+  default_config_hash: LUJ3tCcwsFkzRQz92XMXTCeqJXJWBjZnMuUY6UVRcW4
 id: top_textbooks
 name: Textbook
-description: ""
+description: ''
 backend: search_api_solr
 backend_config:
+  retrieve_data: true
+  highlight_data: true
+  site_hash: false
+  server_prefix: ''
+  domain: generic
+  environment: default
   connector: standard
   connector_config:
     scheme: http
-    host: solr-textbook
+    host: solr-textbook-avail
     port: 8983
     path: /
     core: textbook
@@ -42,13 +50,16 @@ backend_config:
     index_timeout: 5
     optimize_timeout: 10
     finalize_timeout: 30
-    commit_within: 1000
-    solr_version: ""
+    skip_schema_check: true
+    solr_version: ''
     http_method: AUTO
+    commit_within: 1000
     jmx: false
-    solr_install_dir: ""
-  disabled_field_types: {}
-  disabled_caches: {}
+    solr_install_dir: ''
+  optimize: false
+  fallback_multiple: true
+  disabled_field_types: {  }
+  disabled_caches: {  }
   disabled_request_handlers:
     - request_handler_elevate_default_7_0_0
     - request_handler_replicationmaster_default_7_0_0
@@ -57,11 +68,4 @@ backend_config:
     - request_dispatcher_httpcaching_default_7_0_0
   rows: 10
   index_single_documents_fallback_count: 10
-  retrieve_data: true
-  highlight_data: true
-  skip_schema_check: true
-  server_prefix: ""
-  domain: generic
-  environment: default
-  optimize: false
-  site_hash: false
+
