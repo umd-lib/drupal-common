@@ -4,3 +4,17 @@
  * @file
  * bento module install file.
  */
+
+/**
+ * Install bento updates configuration.
+ */
+function bento_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'bento');
+}
+
+/**
+ * Install bento updates configuration.
+ */
+function bento_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'bento');
+}

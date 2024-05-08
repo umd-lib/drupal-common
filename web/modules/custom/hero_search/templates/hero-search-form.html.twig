@@ -3,14 +3,15 @@
 {{ form.form_id }}
 
 <div class="hero-search-form">
-  <div class="row hero-search-input">
+  <div class="hero-search-input">
+    <div class="search-icon"></div>
     {{ form.search_query }}
     {{ form.actions.submit }}
   </div>
-  <div class="row hero-search-options">
+  <div class="hero-search-options">
     {{ form.search_target }}
   </div>
-  <div class="row hero-search-advanced">
+  <div class="hero-search-advanced">
     <span class='hero-search-left-align darklinks'>
       {{ form.alternate_search }}
     </span>

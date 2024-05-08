@@ -6,6 +6,8 @@ dependencies:
     - system
   theme:
     - umd_terp
+_core:
+  default_config_hash: k0knfglj14oe2m48yMmtIGdfsmDj-U5WtTfh-m56RrA
 id: facetsblock_3
 theme: umd_terp
 region: sidebar
@@ -14,18 +16,30 @@ provider: null
 plugin: facets_block
 settings:
   id: facets_block
-  label: "Textbook Facets Block"
+  label: 'Textbook Facets Block'
+  label_display: '0'
   provider: facets_block
-  label_display: visible
-  show_title: true
+  show_title: false
   exclude_empty_facets: true
+  hide_empty_block: false
   facets_to_include:
-    "facet_block:program": "facet_block:program"
-    "facet_block:library_location_taxonomy_term_term_parents_taxono": "0"
-    "facet_block:equipment_category": "0"
+    - 'facet_block:program'
+  add_js_classes: true
+  block_ajax:
+    is_ajax: 0
+    max_age: '0'
+    show_spinner: 0
+    placeholder: ''
+    ajax_defaults:
+      method: POST
+      timeout: '10000'
+      others:
+        async: async
+        cache: 0
 visibility:
   request_path:
     id: request_path
-    pages: /find/reserves/top-textbooks
     negate: false
-    context_mapping: {}
+    context_mapping: {  }
+    pages: "/find/reserves/students/textbooks\r\n/find/reserves/students/textbooks*"
+

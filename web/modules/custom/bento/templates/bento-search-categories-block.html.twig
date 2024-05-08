@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * bento-search-categories-block template
+ *
+ * Variables:
+ *   - search_categories
+ *   - search_categories_heading
+ */
+#}
+<div id="bento-search-categories" class="bento-sidebar accordion">
+  <button class="bento-sidebar-heading btn" data-toggle="collapse" data-target="#bento-search-categories-content" aria-expanded="true">{{ search_categories_heading }}</button>
+  <div id="bento-search-categories-content" class="bento-sidebar-content collapse show" data-parent="#bento-search-categories">
+    {% for id, group in search_categories %}
+      <ul>
+      {% for item in group %}
+        <li><a href="{{ item.url }}" id="bento-search-categories-{{ item.name|clean_id }}">{{ item.name }}</a><li>
+      {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+</div>

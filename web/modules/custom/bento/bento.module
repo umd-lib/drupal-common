@@ -5,6 +5,7 @@ use Drupal\views\Plugin\views\display;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Component\Utility\Html;
 
 /**
  * @file
@@ -19,6 +20,11 @@ use Drupal\views\ResultRow;
  */
 function bento_theme() {
   return [
+    'bento_empty_sidebar' => [
+      'variables' => [
+        'bento_empty_message' => '',
+      ],
+    ],
     'bento_search_block' => [
       'variables' => [
         'bento_search_form' => '',
@@ -27,6 +33,31 @@ function bento_theme() {
     'bento_summary_block' => [
       'variables' => [
         'search_targets' => '',
+      ],
+    ],
+    'bento_search_categories_block' => [
+      'variables' => [
+        'search_categories' => '',
+        'search_categories_heading' => '',
+      ],
+    ],
+    'bento_resource_types_block' => [
+      'variables' => [
+        'resource_types' => '',
+        'resource_types_heading' => '',
+      ],
+    ],
+    'bento_other_resources_block' => [
+      'variables' => [
+        'other_resources' => '',
+        'other_resources_heading' => '',
+      ],
+    ],
+    'bento_looking_more_block' => [
+      'variables' => [
+        'looking_more_text' => '',
+        'looking_more_url' => '',
+        'looking_more_heading' => '',
       ],
     ],
     'bento_more_block' => [
@@ -78,7 +109,7 @@ function bento_views_pre_render(ViewExecutable $view) {
 }
 
 function bento_views_post_execute(ViewExecutable $view) {
-  if (str_contains($view->storage->id(), 'bento_') && $view->id() != 'bento_website_search') {
+  if (str_contains($view->storage->id(), 'bento_') && $view->id() != 'bento_website_search' && $view->id() != 'bento_best_bets') {
     $display = $view->getDisplay();
     $result_id = null;
     $footer_content = null;
@@ -86,10 +117,15 @@ function bento_views_post_execute(ViewExecutable $view) {
       $result_id = str_replace('_', '-',  $display->display['display_options']['css_class']) . '-total';
     }
 
-    $title = $view->getTitle();
+    $title_raw = $view->getTitle();
+    $title_array = explode('|', $title_raw);
+    $title = !empty($title_array[1]) ? $title_array[0] : $title_raw;
+    $subtitle = !empty($title_array[1]) ? $title_array[1] : $title_raw . ' results from UMD Libraries';
+    $fa_icons = !empty($title_array[2]) ? 'fas fa-solid ' . $title_array[2] : 'fas fa-regular fa-link';
     $header_content = '
       <header>
         <h2>' . $title . '</h2>
+        <p>' . $subtitle . '</p>
       </header>';
     if (!empty($view->raw_data['total']) && !empty($view->raw_data['module_link']) && count($view->raw_data['results']) > 0) {
       $real_total = $view->raw_data['total'];
@@ -97,12 +133,12 @@ function bento_views_post_execute(ViewExecutable $view) {
       if ($real_total > 0) {
         $footer_content = '
           <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
-            <span class="fas fa-solid fa-chevron-right"></span> 
-            <a href="' . str_replace('"', '%22', $query_string) . '">See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results</a>
+            <a id="bento-search-footer-' . Html::getId($title) . '" href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See all ' . number_format($real_total, 0, ".", ",") . ' results from the UMDiscover</a>
           </div>';
         $header_content = '
           <header>
-            <h2><a href="'. str_replace('"', '%22', $query_string) . '">' . $title . ' <span class="fas fa-link"></span></a></h2>
+            <h2><a href="'. str_replace('"', '%22', $query_string) . '" id="bento-search-header-' . Html::getId($title) . '">' . $title . '</a></h2>
+            <p>' . $subtitle . '</p>
           </header>';
       } else {
         $footer_content = '

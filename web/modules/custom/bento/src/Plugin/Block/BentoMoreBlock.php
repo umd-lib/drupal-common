@@ -76,7 +76,7 @@ class BentoMoreBlock extends BlockBase implements ContainerFactoryPluginInterfac
       '#search_options' => $search_options,
       '#query' => $query,
       '#cache' => [
-        'max-age' => 3600,
+        'max-age' => 0,
       ],
     ];
   }

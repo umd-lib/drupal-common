@@ -8,6 +8,7 @@
   background-color: #ffffff;
   border-top: 0.6rem solid #e21833;
   padding: 3.5rem 2.5rem;
+  justify-content: center;
 }
 
 .umdlib-site-footer-main .max-bound {

@@ -11,6 +11,7 @@ var searchers = [
   "bento-lib-guides",
   "bento-world-cat-discovery-api",
   "bento-world-cat-discovery-api-article",
+  "bento-world-cat-discovery-api-journal",
   "bento-libraries-website",
   "bento-database-finder"
   ];

@@ -69,31 +69,10 @@ class HeroSearchForm extends FormBase {
     }
 
     $form['search_target'] = [
-      '#type' => 'radios',
+      '#type' => 'hidden',
       '#name' => 'search_target',
       '#default_value' => array_key_first($this->configHelper->getSearchTargetOptions()),
-      '#options' => $this->configHelper->getSearchTargetOptions(),
     ];
-
-    $alternate_searches = $this->configHelper->getAlternateSearches();
-    foreach ($alternate_searches as $alternate_search) {
-      $id = 'alternate_search_' . $alternate_search['search_target'];
-      $url = $alternate_search['url'];
-      $title = $alternate_search['title'];
-      $text = $alternate_search['text'];
-      $form['alternate_search'][] = [
-        '#type' => 'item',
-        '#markup' => "<a href='{$url}' title='{$this->t($title)}'>{$this->t($text)}</a>",
-        '#attributes' => [
-          'id' => $id,
-        ],
-        '#states' => [
-          'visible' => [
-            ':input[name="search_target"]' => ['value' => $alternate_search['search_target']],
-          ],
-        ],
-      ];
-    }
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
@@ -120,7 +99,7 @@ class HeroSearchForm extends FormBase {
     $form['search_query'][] = [
       '#type' => 'textfield',
       '#name' => 'search_query',
-      '#placeholder' => $search_target_config['placeholder'] ?? $this->configHelper->getDefaultSearchPlaceholder(),
+      '#placeholder' => $search_target_config['placeholder'] ?? '',
       '#size' => 50,
       '#maxlength' => 128,
       '#attributes' => [
@@ -132,9 +111,6 @@ class HeroSearchForm extends FormBase {
           ':input[name="search_target"]' => ['value' => $search_target_name],
         ],
         'visible' => [
-          ':input[name="search_target"]' => ['value' => $search_target_name],
-        ],
-        'required' => [
           ':input[name="search_target"]' => ['value' => $search_target_name],
         ],
       ],

@@ -52,19 +52,49 @@ class HeroSearchSettingsHelper {
   }
 
   /**
+   * Generic array gathering class.
+   *
+   * @return array
+   *   An associative array of configuration information.
+   */
+  public function getConfigArray($field_name, $value_name) {
+    $field_values = $this->config->get($field_name);
+    foreach ($field_values as $field_value => &$val) {
+      // Append the search_target to the associative array, so that the
+      // configuration can be associated with one of the search options.
+      $val[$value_name] = $field_value;
+    }
+    return $field_values;
+  }
+
+  /**
    * An associative array of configuration information for search targets.
    *
    * @return array
    *   An associative array of configuration information for search targets.
    */
   public function getSearchTargets() {
-    $search_targets = $this->config->get('search_targets');
-    foreach ($search_targets as $search_target => &$val) {
-      // Append the search_target to the associative array, so that the
-      // configuration can be associated with one of the search options.
-      $val['search_target'] = $search_target;
-    }
-    return $search_targets;
+    return $this->getConfigArray('search_targets', 'search_target');
+  }
+
+  /**
+   * An associative array of configuration information for Discover links.
+   *
+   * @return array
+   *   An associative array of configuration information for Discover links.
+   */
+  public function getDiscoverLinks() {
+    return $this->getConfigArray('discover_links', 'discover_link');
+  }
+
+  /**
+   * An associative array of configuration information for Discover links.
+   *
+   * @return array
+   *   An associative array of configuration information for Discover links.
+   */
+  public function getSearchMoreLinks() {
+    return $this->getConfigArray('search_more_links', 'search_more_link');
   }
 
   /**
@@ -114,13 +144,24 @@ class HeroSearchSettingsHelper {
   }
 
   /**
-   * Returns the default placeholder text to display in the search textfield.
+   * Returns the top content to display in the search block.
    *
    * @return string
-   *   The default placeholder text to display in the search textfield.
+   *   Content to display in the search block.
    */
-  public function getDefaultSearchPlaceholder() {
-    return $this->config->get('default_placeholder') ?? "";
+  public function getTopContent() {
+    return $this->config->get('top_content');
+
+  }
+
+  /**
+   * Returns the bottom content to display in the search block.
+   *
+   * @return string
+   *   Content to display in the search block.
+   */
+  public function getBottomContent() {
+    return $this->config->get('bottom_content');
   }
 
   /**

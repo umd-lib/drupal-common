@@ -6,61 +6,57 @@
  * Variables:
  *   - hero_search_title
  *   - hero_search_form
- *   - hero_search_buttons
- *   - hero_search_top_right_link
- *   - hero_search_bottom_left_link
- *   - hero_search_bottom_right_link
  *   - hero_search_alert
+ *   - hero_discover_links
+ *   - hero_search_more_links
+ *   - hero_top_content
+ *   - hero_bottom_content
  */
 #}
 {{ attach_library('hero_search/hero-search') }}
 <div class='hero-search-block'>
-  <div class='row'>
+  <div class='hero-search-top'>
     <span class="hero-search-title">{{ hero_search_title }}</span>
-    <span class='hero-search-left-align'>
-      {% if hero_search_top_right_link %}
-        <a class="top-right-link" href='{{ hero_search_top_right_link.url }}' title='{{ hero_search_top_right_link.title }}'>
-          {{ hero_search_top_right_link.text }}
-        </a>
+    <span class='hero-search-title-sub'>
+      {% if hero_top_content %}
+        {{ hero_top_content|raw }}
       {% endif %}
     </span>
   </div>
-  <div class='row'>
+  <div class='hero-search-box'>
     {{ hero_search_form }}
   </div>
+  {% if hero_discover_links %}
+    <div class='discover-links'>
+      <span class='discover-title'>Discover </span>
+      <ul>
+        {% for disc_name, disc_value in hero_discover_links %}
+          <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  {% if hero_search_more_links %}
+    <div class='search-more-links'>
+      <span class='search-more-title'>Search More </span>
+      <ul>
+        {% for sm_name, sm_value in hero_search_more_links %}
+          <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
   {% if hero_search_alert %}
-    <div class="row">
-      <div class="bento-box-alert">
-        <div class="alert-icon"></div>
-        <div class="alert-text">
-          {{ hero_search_alert|raw }}
-        </div>
+    <div class="hero-search-alert">
+      <div class="alert-icon"></div>
+      <div class="alert-text">
+        {{ hero_search_alert|raw }}
       </div>
     </div>
   {% endif %}
-  <div class='row'>
-    <div class='hero_search_buttons_container'>
-      {% for button in hero_search_buttons %}
-        <span>
-          <a class="btn btn-success" href='{{ button.url }}' title='{{ button.title }}'>{{ button.text }}</a>
-        </span>
-      {% endfor %}
-    </div>
-  </div>
-  <div class='row'>
-    <span>
-      {% if hero_search_bottom_left_link %}
-        <a href='{{ hero_search_bottom_left_link.url }}' class="darklinks" title='{{ hero_search_bottom_left_link.title }}'>
-          {{ hero_search_bottom_left_link.text }}
-        </a>
-      {% endif %}
-    </span>
-    <span class='hero-search-left-align'>
-      {% if hero_search_bottom_right_link %}
-        <a href='{{ hero_search_bottom_right_link.url }}' class="darklinks" title='{{ hero_search_bottom_right_link.title }}'>
-          {{ hero_search_bottom_right_link.text }}
-        </a>
-      {% endif %}
-    </span>
+  <div class='hero-search-bottom'>
+    {% if hero_bottom_content %}
+      {{ hero_bottom_content|raw }}
+    {% endif %}
   </div>
 </div>

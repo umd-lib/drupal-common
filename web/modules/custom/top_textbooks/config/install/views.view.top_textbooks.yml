@@ -3,11 +3,12 @@ status: true
 dependencies:
   config:
     - search_api.index.top_textbooks
+    - system.menu.main
   module:
     - search_api
     - top_textbooks
 _core:
-  default_config_hash: FnUdcMwgQ-x7EHtJzErpAj3FODMNBciOMxXoe8668gE
+  default_config_hash: JDJWHO67P_7IVfEiOC9GmZYgnlv6_JPMWSQOOh6zKwg
 id: top_textbooks
 label: 'Top Textbooks'
 module: views
@@ -17,58 +18,12 @@ base_table: search_api_index_top_textbooks
 base_field: search_api_id
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: none
-        options: {  }
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          bypass_access: false
-          skip_access: false
-          preserve_facet_query_args: false
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: full
-        options:
-          items_per_page: 10
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-            first: '« First'
-            last: 'Last »'
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 9
-      style:
-        type: default
-      row:
-        type: fields
+      title: 'Top Textbooks'
       fields:
         course:
           id: course
@@ -77,6 +32,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           label: ''
           exclude: true
           alter:
@@ -122,7 +78,6 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          plugin_id: search_api
         title:
           id: title
           table: search_api_index_top_textbooks
@@ -130,6 +85,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           label: ''
           exclude: true
           alter:
@@ -175,7 +131,6 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          plugin_id: search_api
         edition:
           id: edition
           table: search_api_index_top_textbooks
@@ -183,6 +138,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           label: ''
           exclude: true
           alter:
@@ -228,7 +184,6 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          plugin_id: search_api
         year:
           id: year
           table: search_api_index_top_textbooks
@@ -236,6 +191,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_numeric
           label: ''
           exclude: true
           alter:
@@ -290,7 +246,6 @@ display:
           multi_type: separator
           multi_separator: ', '
           format_plural_values: {  }
-          plugin_id: search_api_numeric
         isbn:
           id: isbn
           table: search_api_index_top_textbooks
@@ -298,6 +253,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           label: ''
           exclude: true
           alter:
@@ -343,7 +299,6 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          plugin_id: search_api
         textbook_availability_field:
           id: textbook_availability_field
           table: search_api_index_top_textbooks
@@ -351,6 +306,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: textbook_availability_field
           label: ''
           exclude: true
           alter:
@@ -392,7 +348,6 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          plugin_id: textbook_availability_field
         author:
           id: author
           table: search_api_index_top_textbooks
@@ -400,6 +355,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           label: ''
           exclude: true
           alter:
@@ -445,7 +401,6 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          plugin_id: search_api
         comment:
           id: comment
           table: search_api_index_top_textbooks
@@ -453,11 +408,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           label: ''
           exclude: true
           alter:
             alter_text: true
-            text: '<span class="fas fa-info-circle red"></span>&nbsp;{{ comment | htmlspecialchars_decode  | raw }}'
+            text: "<span class=\"fas fa-info-circle red\"></span>&nbsp;{{ comment | htmlspecialchars_decode('UTF-8', 'HTML-ENTITIES')  | raw }} "
             make_link: false
             path: ''
             absolute: false
@@ -498,7 +454,6 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          plugin_id: search_api
         call_number:
           id: call_number
           table: search_api_index_top_textbooks
@@ -506,6 +461,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           label: ''
           exclude: false
           alter:
@@ -551,7 +507,6 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          plugin_id: search_api
         bar_code:
           id: bar_code
           table: search_api_index_top_textbooks
@@ -559,6 +514,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api
           label: ''
           exclude: true
           alter:
@@ -604,7 +560,6 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          plugin_id: search_api
         nothing:
           id: nothing
           table: views
@@ -612,6 +567,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Separator
+          plugin_id: custom
           label: ''
           exclude: false
           alter:
@@ -653,7 +609,98 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
-          plugin_id: custom
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 10
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: none
+        options: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<a href="https://umd.libanswers.com/faq/199575">How do I search for Top Textbooks?</a>.'
+            format: full_html
+          tokenize: false
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_top_textbooks
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: Relevance
+            field_identifier: search_api_relevance
+          exposed: true
+        course:
+          id: course
+          table: search_api_index_top_textbooks
+          field: course
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: ASC
+          expose:
+            label: Course
+            field_identifier: course
+          exposed: true
+        title:
+          id: title
+          table: search_api_index_top_textbooks
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: ASC
+          expose:
+            label: Title
+            field_identifier: title
+          exposed: true
+      arguments: {  }
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -662,6 +709,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_fulltext
           operator: and
           value: ''
           group: 1
@@ -701,50 +749,19 @@ display:
           min_length: null
           fields:
             - text
-          plugin_id: search_api_fulltext
-      sorts:
-        search_api_relevance:
-          id: search_api_relevance
-          table: search_api_index_top_textbooks
-          field: search_api_relevance
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: true
-          expose:
-            label: Relevance
-          plugin_id: search_api
-        course:
-          id: course
-          table: search_api_index_top_textbooks
-          field: course
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: true
-          expose:
-            label: Course
-          plugin_id: search_api
-        title:
-          id: title
-          table: search_api_index_top_textbooks
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: true
-          expose:
-            label: Title
-          plugin_id: search_api
-      title: 'Top Textbooks'
+      style:
+        type: default
+      row:
+        type: fields
+      query:
+        type: search_api_query
+        options:
+          bypass_access: false
+          skip_access: false
+          preserve_facet_query_args: false
+      relationships: {  }
       header: {  }
       footer: {  }
-      empty: {  }
-      relationships: {  }
-      arguments: {  }
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -757,13 +774,24 @@ display:
       tags:
         - 'config:search_api.index.top_textbooks'
   page_1:
-    display_plugin: page
     id: page_1
     display_title: Page
+    display_plugin: page
     position: 1
     display_options:
+      exposed_block: true
       display_extenders: {  }
-      path: find/reserves/top-textbooks
+      path: find/reserves/students/textbooks
+      menu:
+        type: normal
+        title: 'Top Textbooks'
+        description: ''
+        weight: 8
+        enabled: true
+        expanded: false
+        menu_name: main
+        parent: 'menu_link_content:5b8b8098-d1f8-48c4-b846-1e1441920fec'
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -774,3 +802,4 @@ display:
         - 'url.query_args:sort_order'
       tags:
         - 'config:search_api.index.top_textbooks'
+
