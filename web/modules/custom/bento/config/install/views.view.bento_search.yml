@@ -4,7 +4,7 @@ dependencies:
   module:
     - views_json_source
 _core:
-  default_config_hash: '-TovfHdAv4ypwhr9LlmEZQz0mcBNBsiLCZKoJNAaHI4'
+  default_config_hash: B30RPM71ZBrbsLZWA6zOoIywqVD3xYM5FVOzAlV9L2M
 id: bento_search
 label: 'Bento Search'
 module: views
@@ -329,6 +329,56 @@ display:
           hide_alter_empty: true
           key: item_format
           trusted_html: 0
+        counter:
+          id: counter
+          table: views
+          field: counter
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: counter
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          counter_start: 1
         nothing:
           id: nothing
           table: views
@@ -341,7 +391,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<a href=\"{{ value_1 }}\">\r\n  <!-- title -->\r\n  <h3>\r\n    {{ value }}\r\n  </h3>\r\n  <!-- description -->\r\n  <div class=\"bento-description\">\r\n     {{ value_5 }}\r\n  </div>\r\n  <div class=\"bento-fields\">\r\n    <!-- basic information -->\r\n    <div class=\"basic-info\">\r\n{% if value_4 %}\r\n      <div class=\"information-icon\"></div>\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_4|bento_format }}</span>\r\n        </span>\r\n      </div>\r\n{% endif %}\r\n{% if value_3 %}\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_3 }}</span>\r\n        </span>\r\n      </div>\r\n{% endif %}\r\n    </div>\r\n{% if value_2 %}\r\n    <!-- author information -->\r\n    <div class=\"author-info\">\r\n      <div class=\"author-icon\"></div>\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_2 }}</span>\r\n        </span>\r\n      </div>\r\n    </div>\r\n{% endif %}\r\n  </div>\r\n</a>"
+            text: "<a href=\"{{ value_1 }}\" id=\"bento-result\">\r\n  <!-- title -->\r\n  <h3>\r\n    {{ value }}\r\n  </h3>\r\n  <!-- description -->\r\n{% if value_5 %}\r\n  <div class=\"bento-description\">\r\n     {{ value_5 }}\r\n  </div>\r\n{% endif %}\r\n  <div class=\"bento-fields\">\r\n    <!-- basic information -->\r\n    <div class=\"basic-info\">\r\n{% if value_4 %}\r\n      <div class=\"information-icon\"></div>\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_4|bento_format }}</span>\r\n        </span>\r\n      </div>\r\n{% endif %}\r\n{% if value_3 %}\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_3 }}</span>\r\n        </span>\r\n      </div>\r\n{% endif %}\r\n    </div>\r\n{% if value_2 %}\r\n    <!-- author information -->\r\n    <div class=\"author-info\">\r\n      <div class=\"author-icon\"></div>\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_2 }}</span>\r\n        </span>\r\n      </div>\r\n    </div>\r\n{% endif %}\r\n  </div>\r\n</a>"
             make_link: false
             path: ''
             absolute: false
@@ -548,7 +598,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="https://umaryland.on.worldcat.org/discovery">Try a different search from Books and More</a></div>'
+            value: '<div class="bento-attachment"><a href="https://umaryland.on.worldcat.org/discovery" id="bento-search-footer-books-no-results">Try a different search from Books and More</a></div>'
             format: full_html
           tokenize: false
       query:
@@ -607,7 +657,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="https://umaryland.on.worldcat.org/discovery">Try a different search from Articles</a></div>'
+            value: '<div class="bento-attachment"><a href="https://umaryland.on.worldcat.org/discovery" id="bento-search-footer-articles-no-results">Try a different search from Articles</a></div>'
             format: full_html
           tokenize: false
       query:
@@ -666,7 +716,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="https://lib.guides.umd.edu/az.php">Try a different search from Databases</a></div>'
+            value: '<div class="bento-attachment"><a href="https://lib.guides.umd.edu/az.php" id="bento-search-footer-databases-no-results">Try a different search from Databases</a></div>'
             format: full_html
           tokenize: false
       query:
@@ -726,7 +776,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="http://lib.guides.umd.edu/srch.php">Try a different search from Research Guides</a></div>'
+            value: '<div class="bento-attachment"><a href="http://lib.guides.umd.edu/srch.php" id="bento-search-footer-research-guides-no-results">Try a different search from Research Guides</a></div>'
             format: full_html
           tokenize: false
       query:
@@ -774,6 +824,414 @@ display:
     position: 5
     display_options:
       title: 'Ask Us!|Questions and answers from previous user inquiries|fa-circle-question'
+      fields:
+        value_1:
+          id: value_1
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: URL
+          plugin_id: views_json_source_field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          key: link
+          trusted_html: 1
+        value:
+          id: value
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Title
+          entity_type: null
+          entity_field: null
+          plugin_id: views_json_source_field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: '{{ value|raw }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          key: title
+          trusted_html: 0
+        value_5:
+          id: value_5
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Description
+          plugin_id: views_json_source_field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 100
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: true
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          key: description
+          trusted_html: 1
+        value_3:
+          id: value_3
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Date
+          plugin_id: views_json_source_field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: "{% if value_3 != 'null' %}\r\n  {{ value_3 }}\r\n{% endif %}"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          key: date
+          trusted_html: 0
+        value_2:
+          id: value_2
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Author
+          plugin_id: views_json_source_field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: "{% if value_2 != 'null' %}\r\n  {{ value_2|raw }}\r\n{% endif %}"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          key: author
+          trusted_html: 0
+        value_4:
+          id: value_4
+          table: json
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: Format
+          plugin_id: views_json_source_field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: div
+          element_wrapper_class: bento-field
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          key: item_format
+          trusted_html: 0
+        counter:
+          id: counter
+          table: views
+          field: counter
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: counter
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          counter_start: 1
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: custom
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<a href=\"{{ value_1 }}\" id=\"bento-result\">\r\n  <!-- title -->\r\n  <h3>\r\n    {{ value }}\r\n  </h3>\r\n  <div class=\"bento-fields\">\r\n    <!-- basic information -->\r\n    <div class=\"basic-info\">\r\n{% if value_4 %}\r\n      <div class=\"information-icon\"></div>\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_4|bento_format }}</span>\r\n        </span>\r\n      </div>\r\n{% endif %}\r\n{% if value_3 %}\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_3 }}</span>\r\n        </span>\r\n      </div>\r\n{% endif %}\r\n    </div>\r\n{% if value_2 %}\r\n    <!-- author information -->\r\n    <div class=\"author-info\">\r\n      <div class=\"author-icon\"></div>\r\n      <div class=\"bento-field\">\r\n        <span>\r\n          <span class=\"bento-value\">{{ value_2 }}</span>\r\n        </span>\r\n      </div>\r\n    </div>\r\n{% endif %}\r\n  </div>\r\n</a>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
       empty:
         area:
           id: area
@@ -785,7 +1243,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="http://umd.libanswers.com/search">Try a different search from FAQs</a></div>'
+            value: '<div class="bento-attachment"><a href="http://umd.libanswers.com/search" id="bento-search-footer-ask-us-no-results">Try a different search from FAQs</a></div>'
             format: full_html
           tokenize: false
       query:
@@ -801,6 +1259,7 @@ display:
         query: false
         title: false
         css_class: false
+        fields: false
         header: false
         footer: false
       css_class: bento_lib_answers
@@ -844,7 +1303,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="/search/website">Try a different search</a></div>'
+            value: '<div class="bento-attachment"><a href="/search/website" id="bento-search-footer-libraries-websites-no-results">Try a different search</a></div>'
             format: full_html
           tokenize: false
       query:
