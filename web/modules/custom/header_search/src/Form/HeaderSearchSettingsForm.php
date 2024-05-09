@@ -146,9 +146,6 @@ class HeaderSearchSettingsForm extends ConfigFormBase {
       if (filter_var($url, FILTER_VALIDATE_URL) == FALSE) {
         $targets_bad_urls[] = $name;
       }
-      elseif (!str_ends_with($url, '=')) {
-        $targets_bad_urls[] = $name;
-      }
     }
     if (count($targets_bad_urls) > 0) {
       $targets_bad_urls_str = implode("'\n,'", $targets_bad_urls);

@@ -8,23 +8,21 @@
  *   - other_resources_heading
  */
 #}
-<div id="bento-other-resources">
+<div id="bento-search-other-resources">
   <header>
     <h2>{{ other_resources_heading }}</h2>
   </header>
   {% for name, values in other_resources %}
     {% if values.url %}
-      <a class="other-resource" href="{{ values.url }}" id="bento-search-other-resources">
+      <a class="other-resource" href="{{ values.url }}" id="bento-search-other-resource">
         <div class="other-resource-content">
-          <ul>
-            <li class="resource-name">{{ name }}</li>
-            {% if values.description %}
-              <li class="resource-description">{{ values.description }}</li>
-            {% endif %}
-            {% if values.type %}
-              <li class="resource-type">{{ values.type }}</li>
-            {% endif %}
-          </ul>
+          <h3>{{ name }}</h3>
+          {% if values.description %}
+            <div class="resource-description">{{ values.description }}</div>
+          {% endif %}
+          {% if values.type %}
+            <div class="resource-type">{{ values.type }}</div>
+          {% endif %}
         </div>
       </a>
     {% endif %}
