@@ -1,0 +1,119 @@
+title: 'Search All'
+search_targets:
+  All:
+    url: 'https://www.lib.umd.edu/search?query='
+    placeholder: 'Search for books, articles, journals, and more...'
+    alternate:
+      url: 'https://www.lib.umd.edu/search'
+      text: 'Search All'
+      title: 'Search All'
+button1_url: null
+button1_text: null
+button1_title: null
+button2_url: null
+button2_text: null
+button2_title: null
+button3_url: null
+button3_text: null
+button3_title: null
+button4_url: null
+button4_text: null
+button4_title: null
+top_right_link_url: null
+top_right_link_text: null
+top_right_link_title: null
+bottom_left_link_url: null
+bottom_left_link_text: null
+bottom_left_link_title: null
+bottom_right_link_url: null
+bottom_right_link_text: null
+bottom_right_link_title: null
+default_placeholder: 'SEARCH BOOKS, JOURNALS, ARTICLE, MEDIA'
+placeholder: 'SEARCH BOOKS, JOURNALS, ARTICLE, MEDIA'
+hero_search_alert: 'WorldCat UMD and Classic Catalog will be upgraded to a new search experience coming May 28th. <a href="https://www.lib.umd.edu/new-library-system-and-search-experience-coming-soon" id="hero-alert-link">Learn more.</a>'
+top_content: "<div class=\"information-icon\"></div>\r\n<a href=\"/getstarted\" id=\"hero-what-does-this-search-link\">What does this search?</a>"
+bottom_content: "<div style=\"display:flex;flex-direction:column; gap:8px\">\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Need help? <button id=\"hero-chat-widget-link\" onclick=\"expand()\">Chat With Us!</button> now.</span>\r\n</div>\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Any suggestions? Fill out the <a href=\"/\">feedback form</a>.</span>\r\n</div>\r\n\r\n</div>\r\n"
+discover_links:
+  'All UMDiscover Items':
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&lang=en'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - all-umdiscover
+        - discover-item
+      id:
+        - hero-all-umdiscover-items-link
+  Articles:
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,articles,1'
+    additional:
+      class:
+        - articles-umdiscover
+        - discover-item
+      id:
+        - hero-articles-link
+    title: 'Find books, journals, articles, media & more'
+  Books:
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,books,1'
+    title: 'Search for items held at UMD'
+    additional:
+      class:
+        - books-umdiscover
+        - discover-item
+      id:
+        - hero-books-link
+  Journals:
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/jsearch?vid=01USMAI_UMCP:UMCP&tab=jsearch_slot&offset=0'
+    title: 'Search Website'
+    additional:
+      class:
+        - journals-umdiscover
+        - discover-item
+      id:
+        - hero-journals-link
+search_more_links:
+  Databases:
+    url: 'https://lib.guides.umd.edu/az.php'
+    title: 'Database Search'
+    additional:
+      class:
+        - databases-searchmore
+        - searchmore-item
+      id:
+        - hero-databases-link
+  'Research Guides':
+    url: 'https://lib.guides.umd.edu'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - guides-searchmore
+        - searchmore-item
+      id:
+        - hero-research-guides-link
+  "Libraries' Website":
+    url: 'https://www.lib.umd.edu/search/website'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - website-searchmore
+        - searchmore-item
+      id:
+        - hero-libraries-website-link
+  'Ask Us':
+    url: 'https://umd.libanswers.com/search'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - askus-searchmore
+        - searchmore-item
+      id:
+        - hero-ask-us-link
+  DRUM:
+    url: 'https://drum.lib.umd.edu/home'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - drum-searchmore
+        - searchmore-item
+      id:
+        - hero-drum-link
+

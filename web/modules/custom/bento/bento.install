@@ -8,13 +8,7 @@
 /**
  * Install bento updates configuration.
  */
-function bento_update_8001() {
+function bento_update_8003() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'bento');
 }
 
-/**
- * Install bento updates configuration.
- */
-function bento_update_8002() {
-  \Drupal::service('config.installer')->installDefaultConfig('module', 'bento');
-}
