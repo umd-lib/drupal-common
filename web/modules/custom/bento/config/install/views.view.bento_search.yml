@@ -582,11 +582,11 @@ display:
       tags: {  }
   block_1:
     id: block_1
-    display_title: 'Books and More'
+    display_title: Books
     display_plugin: block
     position: 1
     display_options:
-      title: 'Books|Books from the UMDiscover|fa-book'
+      title: 'Books|Books from UMDiscover|fa-book'
       empty:
         area:
           id: area
@@ -598,13 +598,13 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="https://umaryland.on.worldcat.org/discovery" id="bento-search-footer-books-no-results">Try a different search from Books and More</a></div>'
+            value: '<div class="bento-attachment"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,books,1" id="bento-search-footer-books-no-results">Try a different books search from UMDiscover</a></div>'
             format: full_html
           tokenize: false
       query:
         type: views_query
         options:
-          json_file: 'http://bento-worldcat-searcher:5000/search?endpoint=books-and-more&per_page=3&page=0&q=%'
+          json_file: 'http://bento-catalog-searcher:5000/search?endpoint=books-and-more&per_page=3&page=0&q=%'
           row_apath: results
           headers: ''
           single_payload: 0
@@ -617,7 +617,7 @@ display:
         header: false
         footer: false
       css_class: bento_world_cat_discovery_api
-      display_description: 'Bento Search: Books and More'
+      display_description: 'Bento Search: Books'
       header: {  }
       footer: {  }
       display_extenders:
@@ -645,7 +645,7 @@ display:
     display_plugin: block
     position: 2
     display_options:
-      title: 'Articles|Articles from the UMDiscover|fa-book-open'
+      title: 'Articles|Articles from UMDiscover|fa-book-open'
       empty:
         area:
           id: area
@@ -657,13 +657,13 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="https://umaryland.on.worldcat.org/discovery" id="bento-search-footer-articles-no-results">Try a different search from Articles</a></div>'
+            value: '<div class="bento-attachment"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,articles,1" id="bento-search-footer-articles-no-results">Try a different articles search from UMDiscover</a></div>'
             format: full_html
           tokenize: false
       query:
         type: views_query
         options:
-          json_file: 'http://bento-worldcat-searcher:5000/search?endpoint=articles&per_page=3&page=0&q=%'
+          json_file: 'http://bento-catalog-searcher:5000/search?endpoint=articles&per_page=3&page=0&q=%'
           row_apath: results
           headers: ''
           single_payload: 0
@@ -1324,6 +1324,65 @@ display:
         footer: false
       css_class: bento_libraries_website
       display_description: 'Bento Search: Website'
+      header: {  }
+      footer: {  }
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+      block_category: 'Bento Quick Search'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_7:
+    id: block_7
+    display_title: Journals
+    display_plugin: block
+    position: 2
+    display_options:
+      title: 'Journals|Journals from UMDiscover|fa-book-open'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<div class="bento-attachment"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/jsearch?vid=01USMAI_UMCP:UMCP&tab=jsearch_slot&offset=0" id="bento-search-footer-journals-no-results">Try a different journals search from UMDiscover</a></div>'
+            format: full_html
+          tokenize: false
+      query:
+        type: views_query
+        options:
+          json_file: 'http://bento-catalog-searcher:5000/search?endpoint=journals&per_page=3&page=0&q=%'
+          row_apath: results
+          headers: ''
+          single_payload: 0
+          show_errors: 1
+      defaults:
+        empty: false
+        query: false
+        title: false
+        css_class: false
+        header: false
+        footer: false
+      css_class: bento_world_cat_discovery_api_article
+      display_description: 'Bento Search: Journals'
       header: {  }
       footer: {  }
       display_extenders:

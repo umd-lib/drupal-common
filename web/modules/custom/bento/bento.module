@@ -133,7 +133,7 @@ function bento_views_post_execute(ViewExecutable $view) {
       if ($real_total > 0) {
         $footer_content = '
           <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
-            <a id="bento-search-footer-' . Html::getId($title) . '" href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See all ' . number_format($real_total, 0, ".", ",") . ' results from the UMDiscover</a>
+            <a id="bento-search-footer-' . Html::getId($title) . '" href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See all ' . number_format($real_total, 0, ".", ",") . ' results from UMDiscover</a>
           </div>';
         $header_content = '
           <header>
