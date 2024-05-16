@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: IzzEwsAQqMDsdbneoEGercr7Tee6Fh9huCG5-5_fgcY
 title: 'Search All'
 search_targets:
   All:
@@ -34,7 +36,7 @@ hero_search_alert: 'WorldCat UMD and Classic Catalog will be upgraded to a new s
 top_content: "<div class=\"information-icon\"></div>\r\n<a href=\"/getstarted\" id=\"hero-what-does-this-search-link\">What does this search?</a>"
 bottom_content: "<div style=\"display:flex;flex-direction:column; gap:8px\">\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Need help? <button id=\"hero-chat-widget-link\" onclick=\"expand()\">Chat With Us!</button> now.</span>\r\n</div>\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Any suggestions? Fill out the <a href=\"/\">feedback form</a>.</span>\r\n</div>\r\n\r\n</div>\r\n"
 discover_links:
-  'All UMDiscover Items':
+  'All UMD Discover Items':
     url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&lang=en'
     title: 'Search books, articles, journals, and website'
     additional:

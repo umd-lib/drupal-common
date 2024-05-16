@@ -4,7 +4,7 @@ dependencies:
   module:
     - views_json_source
 _core:
-  default_config_hash: B30RPM71ZBrbsLZWA6zOoIywqVD3xYM5FVOzAlV9L2M
+  default_config_hash: EtNhOoxbAhc2gWbe3ZDYv0C2hRIkTGDBiLxhyj6qtso
 id: bento_search
 label: 'Bento Search'
 module: views
@@ -586,7 +586,7 @@ display:
     display_plugin: block
     position: 1
     display_options:
-      title: 'Books|Books from UMDiscover|fa-book'
+      title: 'Books|Books from UMD Discover|fa-book'
       empty:
         area:
           id: area
@@ -598,7 +598,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,books,1" id="bento-search-footer-books-no-results">Try a different books search from UMDiscover</a></div>'
+            value: '<div class="bento-attachment"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,books,1" id="bento-search-footer-books-no-results">Try a different books search from UMD Discover</a></div>'
             format: full_html
           tokenize: false
       query:
@@ -645,7 +645,7 @@ display:
     display_plugin: block
     position: 2
     display_options:
-      title: 'Articles|Articles from UMDiscover|fa-book-open'
+      title: 'Articles|Articles from UMD Discover|fa-book-open'
       empty:
         area:
           id: area
@@ -657,7 +657,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,articles,1" id="bento-search-footer-articles-no-results">Try a different articles search from UMDiscover</a></div>'
+            value: '<div class="bento-attachment"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,articles,1" id="bento-search-footer-articles-no-results">Try a different articles search from UMD Discover</a></div>'
             format: full_html
           tokenize: false
       query:
@@ -1291,7 +1291,7 @@ display:
     display_plugin: block
     position: 6
     display_options:
-      title: "Libraries' Websites|Information on the Libraries' main website|fa-display"
+      title: "Libraries' Websites|Information on the Libraries' main and virtual exhibitions websites|fa-display"
       empty:
         area:
           id: area
@@ -1351,7 +1351,7 @@ display:
     display_plugin: block
     position: 2
     display_options:
-      title: 'Journals|Journals from UMDiscover|fa-book-open'
+      title: 'Journals|Journals from UMD Discover|fa-book-open'
       empty:
         area:
           id: area
@@ -1363,7 +1363,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="bento-attachment"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/jsearch?vid=01USMAI_UMCP:UMCP&tab=jsearch_slot&offset=0" id="bento-search-footer-journals-no-results">Try a different journals search from UMDiscover</a></div>'
+            value: '<div class="bento-attachment"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/jsearch?vid=01USMAI_UMCP:UMCP&tab=jsearch_slot&offset=0" id="bento-search-footer-journals-no-results">Try a different journals search from UMD Discover</a></div>'
             format: full_html
           tokenize: false
       query:

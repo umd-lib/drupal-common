@@ -1,7 +1,9 @@
+_core:
+  default_config_hash: 2Cp-qCKh-8i2GqaIBV0oMkoIpL20ZmAQasCrmfRi7W8
 search_targets:
   'Search All':
     url: 'https://www.lib.umd.edu/search?query='
-  UMDiscover:
+  UMD Discover:
     url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&query=any,contains,'
   Databases:
     url: 'https://lib.guides.umd.edu/az.php?q='
@@ -14,7 +16,5 @@ search_targets:
   Journals:
     url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/jsearch?vid=01USMAI_UMCP:UMCP&tab=jsearch_slot&offset=0&query=any,contains,'
 default_placeholder: ''
-_core:
-  default_config_hash: cGHpxV4lP8hTqlb3UW3ZH8Husu3S-9u5x28aGaJWBWs
 help_url: /getstarted
 
