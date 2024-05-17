@@ -32,9 +32,9 @@ bottom_right_link_text: null
 bottom_right_link_title: null
 default_placeholder: 'SEARCH BOOKS, JOURNALS, ARTICLE, MEDIA'
 placeholder: 'SEARCH BOOKS, JOURNALS, ARTICLE, MEDIA'
-hero_search_alert: 'WorldCat UMD and Classic Catalog will be upgraded to a new search experience coming May 28th. <a href="https://www.lib.umd.edu/new-library-system-and-search-experience-coming-soon" id="hero-alert-link">Learn more.</a>'
+hero_search_alert: ''
 top_content: "<div class=\"information-icon\"></div>\r\n<a href=\"/getstarted\" id=\"hero-what-does-this-search-link\">What does this search?</a>"
-bottom_content: "<div style=\"display:flex;flex-direction:column; gap:8px\">\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Need help? <button id=\"hero-chat-widget-link\" onclick=\"expand()\">Chat With Us!</button> now.</span>\r\n</div>\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Any suggestions? Fill out the <a href=\"/\">feedback form</a>.</span>\r\n</div>\r\n\r\n</div>\r\n"
+bottom_content: "<div style=\"display:flex;flex-direction:column; gap:8px\">\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Need help? <button id=\"hero-chat-widget-link\" onclick=\"expand()\">Chat With Us!</button> now.</span>\r\n</div>\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Any suggestions? Fill out the <a href=\"https://umdsurvey.umd.edu/jfe/form/SV_b1PajQBzKyfBxum\">feedback form</a>.</span>\r\n</div>\r\n\r\n</div>\r\n"
 discover_links:
   'All UMD Discover Items':
     url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&lang=en'
