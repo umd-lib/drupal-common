@@ -122,6 +122,11 @@ function bento_views_post_execute(ViewExecutable $view) {
     $title = !empty($title_array[1]) ? $title_array[0] : $title_raw;
     $subtitle = !empty($title_array[1]) ? $title_array[1] : $title_raw . ' results from UMD Libraries';
     $fa_icons = !empty($title_array[2]) ? 'fas fa-solid ' . $title_array[2] : 'fas fa-regular fa-link';
+
+    $footer_title = $title;
+    if (!empty($subtitle) && str_contains($subtitle, 'UMD Discover')) {
+      $footer_title = 'UMD Discover';
+    }
     $header_content = '
       <header>
         <h2>' . $title . '</h2>
@@ -133,7 +138,7 @@ function bento_views_post_execute(ViewExecutable $view) {
       if ($real_total > 0) {
         $footer_content = '
           <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
-            <a id="bento-search-footer-' . Html::getId($title) . '" href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See all ' . number_format($real_total, 0, ".", ",") . ' results from UMD Discover</a>
+            <a id="bento-search-footer-' . Html::getId($title) . '" href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">See all ' . number_format($real_total, 0, ".", ",") . ' results from ' . $footer_title . '</a>
           </div>';
         $header_content = '
           <header>
