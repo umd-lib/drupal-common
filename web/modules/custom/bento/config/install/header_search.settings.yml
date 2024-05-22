@@ -1,9 +1,9 @@
 _core:
-  default_config_hash: 2Cp-qCKh-8i2GqaIBV0oMkoIpL20ZmAQasCrmfRi7W8
+  default_config_hash: oaDELMI-t6Zjyv830w7rJAf_BXIqvF_f8v2qkm4y4bE
 search_targets:
   'Search All':
     url: 'https://www.lib.umd.edu/search?query='
-  UMD Discover:
+  'UMD Discover':
     url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&query=any,contains,'
   Databases:
     url: 'https://lib.guides.umd.edu/az.php?q='

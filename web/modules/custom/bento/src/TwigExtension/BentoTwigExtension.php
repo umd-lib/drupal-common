@@ -56,6 +56,7 @@ class BentoTwigExtension extends AbstractExtension {
       "e_video" => "eVideo",
       "image" => "Image",
       "journal" => "Journal",
+      "journals" => "Journal",
       "lp" => "LP",
       "map" => "Map",
       "newspaper" => "Newspaper",

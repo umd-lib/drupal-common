@@ -1,5 +1,5 @@
 _core:
-  default_config_hash: IzzEwsAQqMDsdbneoEGercr7Tee6Fh9huCG5-5_fgcY
+  default_config_hash: 9DXDOFmomqlpAwZjlvpq9sD9C0LL8VrXOie6xiW8Flg
 title: 'Search All'
 search_targets:
   All:
@@ -46,7 +46,7 @@ discover_links:
       id:
         - hero-all-umdiscover-items-link
   Articles:
-    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,articles,1'
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,articles,1,lk&query=any,contains,'
     additional:
       class:
         - articles-umdiscover
@@ -55,7 +55,7 @@ discover_links:
         - hero-articles-link
     title: 'Find books, journals, articles, media & more'
   Books:
-    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,books,1'
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&tab=Everything&offset=0&mfacet=rtype,include,books,1,lk&query=any,contains,'
     title: 'Search for items held at UMD'
     additional:
       class:
