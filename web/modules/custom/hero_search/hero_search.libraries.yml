@@ -5,4 +5,4 @@ hero-search:
   version: 1.x
   css:
     theme:
-      css/hero-search.css: {}
+      css/hero-search.css: { preprocess: false }
