@@ -1,3 +1,8 @@
-breadcrumb-update:
+mirador-styles:
   js:
     js/breadcrumb-update.js: {}
+    /libraries/clipboard/dist/clipboard.min.js: {}
+    js/clipboard.init.js: {}
+  css:
+    theme:
+      css/mirador-details.css: {}

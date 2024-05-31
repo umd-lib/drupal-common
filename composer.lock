@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2afd1d67e70e0d0dc0c77896db7879d4",
+    "content-hash": "1f9883ea6a1ad4624a07efb21757ad52",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6044,21 +6044,6 @@
             "time": "2022-10-12T11:40:33+00:00"
         },
         {
-            "name": "imagesloaded/imagesloaded",
-            "version": "v4.1.4",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/desandro/imagesloaded/archive/v4.1.4.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0 || ^2.0"
-            },
-            "type": "drupal-library",
-            "extra": {
-                "installer-name": "imagesloaded"
-            }
-        },
-        {
             "name": "laminas/laminas-servicemanager",
             "version": "3.15.0",
             "source": {
@@ -6427,21 +6412,6 @@
                 }
             ],
             "time": "2023-06-21T14:59:35+00:00"
-        },
-        {
-            "name": "masonry/masonry",
-            "version": "v4.2.2",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/desandro/masonry/archive/v4.2.2.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0 || ^2.0"
-            },
-            "type": "drupal-library",
-            "extra": {
-                "installer-name": "masonry"
-            }
         },
         {
             "name": "masterminds/html5",
@@ -6829,6 +6799,74 @@
             "time": "2023-08-13T19:53:39+00:00"
         },
         {
+            "name": "npm-asset/clipboard",
+            "version": "2.0.11",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/clipboard/-/clipboard-2.0.11.tgz"
+            },
+            "require": {
+                "npm-asset/good-listener": ">=1.2.2,<2.0.0",
+                "npm-asset/select": ">=1.1.2,<2.0.0",
+                "npm-asset/tiny-emitter": ">=2.0.0,<3.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/delegate",
+            "version": "3.2.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/delegate/-/delegate-3.2.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/good-listener",
+            "version": "1.2.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/good-listener/-/good-listener-1.2.2.tgz"
+            },
+            "require": {
+                "npm-asset/delegate": ">=3.1.2,<4.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/select",
+            "version": "1.1.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/select/-/select-1.1.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/tiny-emitter",
+            "version": "2.1.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/tiny-emitter/-/tiny-emitter-2.1.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "onelogin/php-saml",
             "version": "4.1.0",
             "source": {
@@ -6883,6 +6921,63 @@
                 "source": "https://github.com/onelogin/php-saml/"
             },
             "time": "2022-07-15T20:44:36+00:00"
+        },
+        {
+            "name": "oomphinc/composer-installers-extender",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oomphinc/composer-installers-extender.git",
+                "reference": "cbf4b6f9a24153b785d09eee755b995ba87bd5f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oomphinc/composer-installers-extender/zipball/cbf4b6f9a24153b785d09eee755b995ba87bd5f9",
+                "reference": "cbf4b6f9a24153b785d09eee755b995ba87bd5f9",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1 || ^2.0",
+                "composer/installers": "^1.0 || ^2.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "composer/composer": "^2.0",
+                "phpunit/phpunit": "^7.2",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "OomphInc\\ComposerInstallersExtender\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "OomphInc\\ComposerInstallersExtender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Beemsterboer",
+                    "email": "stephen@oomphinc.com",
+                    "homepage": "https://github.com/balbuf"
+                },
+                {
+                    "name": "Nathan Dentzau",
+                    "email": "nate@oomphinc.com",
+                    "homepage": "http://oomph.is/ndentzau"
+                }
+            ],
+            "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
+            "homepage": "http://www.oomphinc.com/",
+            "support": {
+                "issues": "https://github.com/oomphinc/composer-installers-extender/issues",
+                "source": "https://github.com/oomphinc/composer-installers-extender/tree/2.0.1"
+            },
+            "time": "2021-12-15T12:32:42+00:00"
         },
         {
             "name": "pear/archive_tar",

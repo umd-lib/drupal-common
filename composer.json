@@ -12,6 +12,10 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ],
     "require": {
@@ -74,6 +78,8 @@
         "drupal/webform": "^6.2@beta",
         "drush/drush": "^12",
         "mglaman/composer-drupal-lenient": "^1.0",
+        "npm-asset/clipboard": "^2.0",
+        "oomphinc/composer-installers-extender": "^2.0",
         "predis/predis": "^1.1",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
@@ -92,10 +98,15 @@
             "wikimedia/composer-merge-plugin": true,
             "cweagans/composer-patches": true,
             "mglaman/composer-drupal-lenient": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "oomphinc/composer-installers-extender": true
         }
     },
     "extra": {
+        "installer-types": [
+          "npm-asset",
+          "bower-asset"
+        ],
         "enable-patching": true,
         "patches": {
           "drupal/core": {
@@ -108,11 +119,6 @@
             "Fontawesome Compat for D10": "https://www.drupal.org/files/issues/2023-06-05/3274028-fontawesome-ckeditor5-compatibility-16.patch"
           }
         },
-        "merge-plugin": {
-          "include": [
-            "web/modules/contrib/masonry/composer.libraries.json"
-          ]
-        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
@@ -123,7 +129,9 @@
                 "type:drupal-core"
             ],
             "web/libraries/{$name}": [
-                "type:drupal-library"
+                "type:drupal-library",
+                "type:npm-asset",
+                "type:bower-asset"
             ],
             "web/modules/contrib/{$name}": [
                 "type:drupal-module"

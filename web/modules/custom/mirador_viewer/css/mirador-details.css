@@ -1,0 +1,68 @@
+/* digital collection item page */
+h1.dc-item-title {
+  /* headline-medium */
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px; /* 150% */
+}
+
+/* metadata table */
+table.dc-item-metadata {
+  width: 100%;
+  border-spacing: 0;
+
+  color: var(--content-system-primary, #000);
+
+  margin-top: 32px;
+
+  caption {
+    caption-side: top;
+
+    padding-bottom: 16px;
+  }
+
+  h2 {
+    color: var(--content-system-primary, #000);
+
+    /* title-medium */
+    font-family: Source Sans Pro, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px; /* 150% */
+    text-transform: uppercase;
+  }
+
+  tr {
+    border-bottom: 1px solid var(--border-accent-decoration-subtle, #e9eaef);
+  }
+
+  td {
+    vertical-align: top;
+    padding: 16px 0px;
+  }
+
+  th {
+    /* title-small */
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 27px; /* 150% */
+
+    padding-right: 16px;
+  }
+}
+
+/* for buttons in the action area */
+.action-area {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 612px) {
+  .action-area {
+    grid-template-columns: auto;
+  }
+}
