@@ -38,6 +38,10 @@ class ReusableSearchbarForm extends FormBase {
       '#type' => 'value',
       '#value' => !empty($defaults['search_param']) ? $defaults['search_param'] : 'query',
     );
+    $form['search_facet_name'] = array(
+      '#type' => 'value',
+      '#value' => !empty($defaults['search_facet_name']) ? $defaults['search_facet_name'] : 'collection',
+    );
     $form['search_facet'] = array(
       '#type' => 'value',
       '#value' => !empty($defaults['search_facet']) ? $defaults['search_facet'] : null,
@@ -79,12 +83,17 @@ class ReusableSearchbarForm extends FormBase {
     }
     $search_str = $form_state->getValue('searchbar_search');
     $search_facet = $form_state->getValue('search_facet');
+    $search_facet_name = $form_state->getValue('search_facet_name');
     $params = [];
     if (!empty($search_str)) {
       $params[$search_param] = $search_str;
     }
     if (!empty($search_facet)) {
-      $params["f[0]"] = "collection:" . $search_facet;
+      if (!empty($search_facet_name)) {
+        $params["f[0]"] = $search_facet_name . ":" . $search_facet;
+      } else {
+        $params["f[0]"] = "collection:" . $search_facet;
+      }
     }
     if (!empty($search_custom_param)) {
       $search_custom_param_value = $form_state->getValue('search_custom_param_value');

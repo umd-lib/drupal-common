@@ -75,11 +75,13 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
     $search_custom_param = !empty($blockConfig['search_custom_param']) ? $blockConfig['search_custom_param'] : null;
     $search_custom_param_value = !empty($blockConfig['search_custom_param_value']) ? $blockConfig['search_custom_param_value'] : null;
     $search_facet = !empty($blockConfig['search_facet']) ? $blockConfig['search_facet'] : null;
+    $search_facet_name = !empty($blockConfig['search_facet_name']) ? $blockConfig['search_facet_name'] : 'collection';
     $form_defaults = array();
     $form_defaults['default_action'] = null;
     $form_defaults['search_placeholder'] = null;
     $form_defaults['search_param'] = $search_param;
     $form_defaults['search_facet'] = $search_facet;
+    $form_defaults['search_facet_name'] = $search_facet_name;
     if (!empty($search_custom_param) && !empty($search_custom_param_value)) {
       $form_defaults['search_custom_param'] = $search_custom_param;
       $form_defaults['search_custom_param_value'] = $search_custom_param_value;
@@ -124,11 +126,17 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
       '#default_value' =>  isset($config['search_param']) ? $config['search_param'] : 'query',
       '#description' => t('Set this to the query parameter name. This should be whatever the search results page expects. Leave this as the default (query) for any digital searches.'),
     ];
+    $form['search_facet_name'] = [
+      '#type' => 'textfield',
+      '#title' => t('Search Facet Name'),
+      '#default_value' =>  isset($config['search_facet_name']) ? $config['search_facet_name'] : null,
+      '#description' => t('Filter on which facet (if any). Find the facet name by performing a faceted query on the search page and copying the facet name from the URL. Defaults to "collection".'),
+    ];
     $form['search_facet'] = [
       '#type' => 'textfield',
       '#title' => t('Search Facet'),
       '#default_value' =>  isset($config['search_facet']) ? $config['search_facet'] : null,
-      '#description' => t('Filter on which facet (if any). Find this value by performing a faceted query on the search page and copying the "collection:" facet name from the URL.'),
+      '#description' => t('Filter on which facet (if any). Find this value by performing a faceted query on the search page and copying the facet value of the intended facet from the URL.'),
     ];
     $form['search_custom_param'] = [
       '#type' => 'textfield',
@@ -163,8 +171,9 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->setConfigurationValue('search_page', $form_state->getValue('search_page'));
     $this->setConfigurationValue('search_param', $form_state->getValue('search_param'));
-    $this->setConfigurationValue('search_facet', $form_state->getValue('search_facet'));
     $this->setConfigurationValue('search_custom_param', $form_state->getValue('search_custom_param'));
+    $this->setConfigurationValue('search_facet', $form_state->getValue('search_facet'));
+    $this->setConfigurationValue('search_facet_name', $form_state->getValue('search_facet_name'));
     $this->setConfigurationValue('search_custom_param_value', $form_state->getValue('search_custom_param_value'));
     $this->setConfigurationValue('search_placeholder', $form_state->getValue('search_placeholder'));
     $this->setConfigurationValue('search_title', $form_state->getValue('search_title'));
