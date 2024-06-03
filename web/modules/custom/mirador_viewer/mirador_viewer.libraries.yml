@@ -6,3 +6,6 @@ mirador-styles:
   css:
     theme:
       css/mirador-details.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
