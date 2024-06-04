@@ -28,6 +28,16 @@ function umd_terp_preprocess_html(&$variables) {
   else {
     $variables['attributes']['class'][] = 'internal';
   }
+
+  $route = \Drupal::routeMatch()->getRouteObject();
+  if (!empty($route)) {
+    $view_id = $route->getDefault('view_id');
+    if (!empty($view_id)) {
+      $v_title_class = Html::cleanCssIdentifier($view_id);
+      $variables['attributes']['class'][] = 'v--' . $v_title_class;
+    }
+  }
+
 }
 
 /**

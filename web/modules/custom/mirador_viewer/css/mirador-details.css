@@ -1,5 +1,5 @@
 /* digital collection item page */
-h1.dc-item-title {
+.v--fcrepo-detail-page h1 {
   /* headline-medium */
   font-size: 28px;
   font-style: normal;
