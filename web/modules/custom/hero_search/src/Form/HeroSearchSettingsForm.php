@@ -125,6 +125,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Top Content'),
       '#description' => $this->t('Update the top content of the hero block'),
+      '#description' => $this->t('This markup will be used for the top of the hero block. Use pure HTML rather than YAML for this field.'),
       '#default_value' => $config->get('top_content'),
       '#rows' => 7,
       '#cols' => 100,
@@ -135,6 +136,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Bottom Content'),
       '#description' => $this->t('Update the bottom content of the hero block'),
       '#default_value' => $config->get('bottom_content'),
+      '#description' => $this->t('This markup will be used for the bottom of the hero block. Use pure HTML rather than YAML for this field.'),
       '#rows' => 7,
       '#cols' => 100,
     ];
@@ -143,8 +145,18 @@ class HeroSearchSettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Alert'),
       '#default_value' => $config->get('hero_search_alert'),
+      '#description' => $this->t('This markup will be used for the Hero Alert. Use pure HTML rather than YAML for this field.'),
       '#rows' => 3,
       '#cols' => 100,
+    ];
+
+    $form['quick_actions'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Quick Actions'),
+      '#default_value' => $config->get('quick_actions'),
+      '#description' => $this->t('This markup will be added to the Quick Actions. Use pure HTML rather than YAML for this field.'),
+      '#cols' => 100,
+      '#rows' => 12,
     ];
 
 
@@ -208,6 +220,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     $config->set('top_content', $form_state->getValue('top_content'));
     $config->set('bottom_content', $form_state->getValue('bottom_content'));
     $config->set('hero_search_alert', $form_state->getValue('hero_search_alert'));
+    $config->set('quick_actions', $form_state->getValue('quick_actions'));
 
     $yaml_fields = ['search_targets', 'discover_links', 'search_more_links'];
 

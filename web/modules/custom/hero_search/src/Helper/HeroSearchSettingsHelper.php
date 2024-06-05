@@ -155,6 +155,17 @@ class HeroSearchSettingsHelper {
   }
 
   /**
+   * Returns the quick actions to display in the search block.
+   *
+   * @return string
+   *   Content to display in the search block.
+   */
+  public function getQuickActions() {
+    return $this->config->get('quick_actions');
+
+  }
+
+  /**
    * Returns the bottom content to display in the search block.
    *
    * @return string

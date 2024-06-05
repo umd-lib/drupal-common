@@ -25,11 +25,20 @@
   </div>
   <div class='hero-search-box'>
     {{ hero_search_form }}
+    {% if hero_quick_actions %}
+      <div class="hero-search-box-dropdown" id="hero-search-box-dropdown">
+        <div class="hero-search-dropdown-content">
+          {{ hero_quick_actions|raw }}
+        </div>
+      </div>
+    {% endif %}
   </div>
+  
   {% if hero_discover_links %}
     <div class='discover-links'>
-      <span class='discover-title'>Discover </span>
-      <ul>
+      <h3 class='discover-title'>Discover</h3>
+      <div aria-hidden="true" class="title-divider">-</div>
+      <ul role="list">
         {% for disc_name, disc_value in hero_discover_links %}
           <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
         {% endfor %}
@@ -38,8 +47,9 @@
   {% endif %}
   {% if hero_search_more_links %}
     <div class='search-more-links'>
-      <span class='search-more-title'>Search More </span>
-      <ul>
+      <h3 class='search-more-title'>Search More</h3>
+      <div aria-hidden="true" class="title-divider">-</div>
+      <ul role="list">
         {% for sm_name, sm_value in hero_search_more_links %}
           <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
         {% endfor %}
@@ -48,11 +58,10 @@
   {% endif %}
   {% if hero_search_alert %}
     <div class="hero-search-alert">
-      <div class="alert-icon"></div>
-      <div class="alert-text">
+      <p class="alert-text" aria-label="Search Box Alert">
         {{ hero_search_alert|raw }}
       </div>
-    </div>
+    </p>
   {% endif %}
   <div class='hero-search-bottom'>
     {% if hero_bottom_content %}

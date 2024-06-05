@@ -71,7 +71,7 @@ form.bento-search-form {
 
 /* remove bottom margin for the inout text */
 @media (max-width: 768px) {
-  input[type="text"] {
+  .bento-search-input input[type="text"] {
     margin-bottom: 0px;
   }
 }

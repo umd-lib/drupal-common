@@ -84,6 +84,7 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
     $top_content = $configHelper->getTopContent();
     $bottom_content = $configHelper->getBottomContent();
     $search_more_links = $configHelper->getSearchMoreLinks();
+    $quick_actions = $configHelper->getQuickActions();
     $title = $configHelper->getSearchTitle();
     return [
       '#theme' => 'hero_search_block',
@@ -94,6 +95,7 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#hero_search_more_links' => $search_more_links,
       '#hero_top_content' => $top_content,
       '#hero_bottom_content' => $bottom_content,
+      '#hero_quick_actions' => $quick_actions,
     ];
   }
 
