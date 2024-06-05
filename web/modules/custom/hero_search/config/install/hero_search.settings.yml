@@ -1,30 +1,122 @@
-title: Search
-placeholder: 'SEARCH BOOKS, JOURNALS, ARTICLE, MEDIA'
+_core:
+  default_config_hash: IzzEwsAQqMDsdbneoEGercr7Tee6Fh9huCG5-5_fgcY
+title: 'Search All'
 search_targets:
-  All: 'https://searchnew.lib.umd.edu/results?search&query='
-  'UMD Catalog': 'https://catalog.umd.edu/cgi-bin/direct?searchtype=F1_WRD&base=CP&search=&searchrequest='
-  WorldCat: 'https://umaryland.on.worldcat.org/search?databaseList=&umdlib=&queryString='
-button1_url: 'https://lib.guides.umd.edu/az.php'
-button1_text: DATABASES
-button1_title: DATABASES
-button2_url: 'https://lib.guides.umd.edu/srch.php'
-button2_text: 'RESEARCH GUIDES'
-button2_title: 'RESEARCH GUIDES'
-button3_url: 'https://umd.libanswers.com/search'
-button3_text: FAQs
-button3_title: FAQs
-button4_url: 'https://searchnew.lib.umd.edu/website'
-button4_text: WEBSITE
-button4_title: WEBSITE
-advanced_search_url: 'https://umaryland.on.worldcat.org/advancedsearch'
-advanced_search_text: 'Advanced Search'
-advanced_search_title: 'Advanced Search'
-top_right_link_url: ''
-top_right_link_text: ''
-top_right_link_title: ''
-bottom_left_link_url: 'https://searchnew.lib.umd.edu/'
-bottom_left_link_text: 'Learn more about search at the University Libraries'
-bottom_left_link_title: 'Learn more about search at the University Libraries'
-bottom_right_link_url: 'https://www.lib.umd.edu/suggestions'
-bottom_right_link_text: Feedback
-bottom_right_link_title: Feedback
+  All:
+    url: 'https://www.lib.umd.edu/search?query='
+    placeholder: 'Search for books, articles, journals, and more...'
+    alternate:
+      url: 'https://www.lib.umd.edu/search'
+      text: 'Search All'
+      title: 'Search All'
+button1_url: null
+button1_text: null
+button1_title: null
+button2_url: null
+button2_text: null
+button2_title: null
+button3_url: null
+button3_text: null
+button3_title: null
+button4_url: null
+button4_text: null
+button4_title: null
+top_right_link_url: null
+top_right_link_text: null
+top_right_link_title: null
+bottom_left_link_url: null
+bottom_left_link_text: null
+bottom_left_link_title: null
+bottom_right_link_url: null
+bottom_right_link_text: null
+bottom_right_link_title: null
+default_placeholder: 'SEARCH BOOKS, JOURNALS, ARTICLE, MEDIA'
+placeholder: 'SEARCH BOOKS, JOURNALS, ARTICLE, MEDIA'
+hero_search_alert: ''
+top_content: "<div class=\"information-icon\"></div>\r\n<a href=\"/getstarted\" id=\"hero-what-does-this-search-link\">What does this search?</a>"
+bottom_content: "<div style=\"display:flex;flex-direction:column; gap:8px\">\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Need help? <button id=\"hero-chat-widget-link\" onclick=\"expand()\">Chat With Us!</button> now.</span>\r\n</div>\r\n\r\n<div style=\"display:flex; flex-direction:row; gap:4px;align-items:center\">\r\n<div class=\"information-icon\"></div>\r\n<span>Any suggestions? Fill out the <a href=\"https://umdsurvey.umd.edu/jfe/form/SV_b1PajQBzKyfBxum\">feedback form</a>.</span>\r\n</div>\r\n\r\n</div>"
+discover_links:
+  'All UMD Discover Items':
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP:UMCP&lang=en'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - all-umdiscover
+        - discover-item
+      id:
+        - hero-all-umdiscover-items-link
+  Articles:
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?tab=CentralIndex&search_scope=CentralIndex&vid=01USMAI_UMCP:UMCP&offset=0'
+    additional:
+      class:
+        - articles-umdiscover
+        - discover-item
+      id:
+        - hero-articles-link
+    title: 'Find books, journals, articles, media & more'
+  Books:
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?tab=Books_only_slot&search_scope=BooksOnly&vid=01USMAI_UMCP:UMCP'
+    title: 'Search for items held at UMD'
+    additional:
+      class:
+        - books-umdiscover
+        - discover-item
+      id:
+        - hero-books-link
+  Journals:
+    url: 'https://usmai-umcp.primo.exlibrisgroup.com/discovery/jsearch?vid=01USMAI_UMCP:UMCP&tab=jsearch_slot&offset=0'
+    title: 'Search Website'
+    additional:
+      class:
+        - journals-umdiscover
+        - discover-item
+      id:
+        - hero-journals-link
+search_more_links:
+  Databases:
+    url: 'https://lib.guides.umd.edu/az.php'
+    title: 'Database Search'
+    additional:
+      class:
+        - databases-searchmore
+        - searchmore-item
+      id:
+        - hero-databases-link
+  'Research Guides':
+    url: 'https://lib.guides.umd.edu'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - guides-searchmore
+        - searchmore-item
+      id:
+        - hero-research-guides-link
+  "Libraries' Website":
+    url: 'https://www.lib.umd.edu/search/website'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - website-searchmore
+        - searchmore-item
+      id:
+        - hero-libraries-website-link
+  'Ask Us':
+    url: 'https://umd.libanswers.com/search'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - askus-searchmore
+        - searchmore-item
+      id:
+        - hero-ask-us-link
+  DRUM:
+    url: 'https://drum.lib.umd.edu/home'
+    title: 'Search books, articles, journals, and website'
+    additional:
+      class:
+        - drum-searchmore
+        - searchmore-item
+      id:
+        - hero-drum-link
+quick_actions: "<div class=\"quick-action\">\r\n  <h3 class=\"drop-down-subtitle\">Quick Actions</h3>\r\n  <ul class=\"quick-action-options\" role=\"list\">\r\n    <li>\r\n      <a href=\"https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?tab=CentralIndex&search_scope=CentralIndex&vid=01USMAI_UMCP%3AUMCP&offset=0\" class=\"quick-action-option\" id=\"search-dropdown-articles\">Search <span>Articles</span> in UMD Discover</a>\r\n    </li>\r\n    <li>\r\n      <a href=\"https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?tab=Books_only_slot&search_scope=BooksOnly&vid=01USMAI_UMCP%3AUMCP\" class=\"quick-action-option\" id=\"search-dropdown-books\">Search <span>Books</span> in UMD Discover</a>\r\n    </li>\r\n    <li>\r\n      <a href=\"https://usmai-umcp.primo.exlibrisgroup.com/discovery/jsearch?vid=01USMAI_UMCP%3AUMCP&tab=jsearch_slot&offset=0\" class=\"quick-action-option\" id=\"search-dropdown-journals\">Search <span>Journal Titles</span> in UMD Discover</a>\r\n    </li>\r\n  </ul>\r\n</div>\r\n<div class=\"help\">\r\n  <h3 class=\"drop-down-subtitle\">Help</h3>\r\n  <ul class=\"help-options\" role=\"list\">\r\n    <li>\r\n      <a href=\"/\" class=\"help-option\" id=\"search-dropdown-learn\">Learn how to access online resources at UMD Libraries</a>\r\n    </li>\r\n    <li>\r\n      <a href=\"/\" class=\"help-option\" id=\"search-dropdown-sugggest\">Unable to find the material you want? Suggest a purchase</a>\r\n    </li>\r\n    <li>\r\n      <button class=\"help-option\" id=\"search-dropdown-ask\" onclick=\"expand()\" aria-label=\"Start a chat to get real-time assistance\">\r\n          Use <span>Chat With Us!</span> to get real-time assistance\r\n      </button>\r\n    </li>\r\n  </ul>\r\n</div>\r\n<div class=\"feedback\">\r\n  <a id=\"search-dropdown-feedback\" href=\"https://umdsurvey.umd.edu/jfe/form/SV_b1PajQBzKyfBxum\">\r\n    <span>Any suggestions? Fill out the feedback form.</span>\r\n  </a>\r\n</div>"
+
