@@ -6,3 +6,5 @@ hero-search:
   css:
     theme:
       css/hero-search.css: { preprocess: false }
+  js:
+    js/form_util.js: {}

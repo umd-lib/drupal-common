@@ -104,7 +104,8 @@ class HeroSearchForm extends FormBase {
       '#maxlength' => 128,
       '#attributes' => [
         'id' => $id,
-        'aria-label' => t('Search resources in @resource', ['@resource' => $search_target_name]),
+        'aria-label' => t('Search libraries resources using Search All.'),
+        'autocomplete' => 'off',
       ],
       '#states' => [
         'enabled' => [

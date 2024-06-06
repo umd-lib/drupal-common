@@ -16,7 +16,7 @@
 {{ attach_library('hero_search/hero-search') }}
 <div class='hero-search-block'>
   <div class='hero-search-top'>
-    <span class="hero-search-title">{{ hero_search_title }}</span>
+    <h2 class="hero-search-title">{{ hero_search_title }}</h2>
     <span class='hero-search-title-sub'>
       {% if hero_top_content %}
         {{ hero_top_content|raw }}
@@ -40,7 +40,12 @@
       <div aria-hidden="true" class="title-divider">-</div>
       <ul role="list">
         {% for disc_name, disc_value in hero_discover_links %}
-          <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
+          {% if disc_name %}
+            <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
+            {% if loop.last == false %}
+              <li aria-hidden="true" class="list-divider">/</li>
+            {% endif %}
+          {% endif %}
         {% endfor %}
       </ul>
     </div>
@@ -51,7 +56,12 @@
       <div aria-hidden="true" class="title-divider">-</div>
       <ul role="list">
         {% for sm_name, sm_value in hero_search_more_links %}
-          <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
+          {% if sm_name %}
+            <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
+            {% if loop.last == false %}
+              <li aria-hidden="true" class="list-divider">/</li>
+            {% endif %}
+          {% endif %}
         {% endfor %}
       </ul>
     </div>
