@@ -14,7 +14,7 @@
 			{{ content.field_ut_alert_text }}
 		{% endif %}
 		{% if content.field_ut_alert_link.0 %}
-			{% include directory ~ '/templates/helpers/link.html.twig' with {'link': content.field_ut_alert_link.0, 'classes': 'alert-cta btn' } %}
+			{% include directory ~ '/templates/helpers/link.html.twig' with {'link': content.field_ut_alert_link.0, 'classes': 'alert-cta' } %}
 		{% endif %}
 	</div>
 </div>
