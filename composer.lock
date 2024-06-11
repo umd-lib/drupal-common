@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b7384ba5f61d94363ca4c4aa9bfe683",
+    "content-hash": "4f6c2dc0c7dd46249e2cbc0f734816c6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1559,6 +1559,58 @@
                 }
             ],
             "time": "2024-03-12T14:54:36+00:00"
+        },
+        {
+            "name": "drupal/admin_feedback",
+            "version": "2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/admin_feedback.git",
+                "reference": "8.x-2.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/admin_feedback-8.x-2.6.zip",
+                "reference": "8.x-2.6",
+                "shasum": "4a06224ec20fccd0b9d057eee98fc6091b0ba982"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.6",
+                    "datestamp": "1680163569",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "ainarend",
+                    "homepage": "https://www.drupal.org/user/3547591"
+                },
+                {
+                    "name": "anuar.alfetahe",
+                    "homepage": "https://www.drupal.org/user/3577723"
+                },
+                {
+                    "name": "bserem",
+                    "homepage": "https://www.drupal.org/user/388753"
+                }
+            ],
+            "description": "Admin Feedback makes it very easy to analyze, create statics and gather user information about the contents of the site.",
+            "homepage": "https://www.drupal.org/project/admin_feedback",
+            "support": {
+                "source": "https://git.drupalcode.org/project/admin_feedback"
+            }
         },
         {
             "name": "drupal/autologout",
