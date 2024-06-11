@@ -14,7 +14,7 @@ dependencies:
     - user
     - views_fieldsets
 _core:
-  default_config_hash: PqK0V7vPRu1D79sRosJSFpKk7gmQVJRDvS0iDtuz-qc
+  default_config_hash: PgRcDaXFtk3XEVe3B5aQ8QzH8rZKxQDwAkzuYslVtPE
 id: homepage_feature
 label: 'Homepage Feature'
 module: views
@@ -128,7 +128,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -139,10 +139,9 @@ display:
           fields:
             - fieldset_1
             - fieldset_2
-            - fieldset_5
           wrapper: div
           legend: ''
-          classes: row
+          classes: container
           collapsible: false
           collapsed: false
         fieldset_1:
@@ -199,7 +198,7 @@ display:
             - field_feature_thumbnail
           wrapper: div
           legend: ''
-          classes: 'col-1200-4,thumbnail-container'
+          classes: homepage-feature-img
           collapsible: false
           collapsed: false
         fieldset_4:
@@ -361,7 +360,64 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          fields:
+            - fieldset_6
+            - fieldset_5
+          wrapper: div
+          legend: ''
+          classes: homepage-feature-content
+          collapsible: false
+          collapsed: false
+        fieldset_6:
+          id: fieldset_6
+          table: views
+          field: fieldset
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: fieldset
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -374,8 +430,8 @@ display:
             - body
           wrapper: div
           legend: ''
-          classes: 'col-1200-5  content-container'
-          collapsible: false
+          classes: homepage-feature-text
+          collapsible: true
           collapsed: false
         title:
           id: title
@@ -416,7 +472,7 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: h6
+          element_type: h2
           element_class: ''
           element_label_type: ''
           element_label_class: ''
@@ -545,7 +601,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -557,7 +613,7 @@ display:
             - field_feature_button_url
           wrapper: div
           legend: ''
-          classes: 'col-1200-3  button-container'
+          classes: homepage-feature-button
           collapsible: false
           collapsed: false
         field_feature_button_url:
@@ -571,10 +627,10 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: '<a href="{{ field_feature_button_url__uri }}">{{ field_feature_button_url__title }}</a>'
+            alter_text: true
+            text: '<a href="{{ field_feature_button_url__uri }}" class="btn btn-secondary">{{ field_feature_button_url__title }}</a>'
             make_link: false
-            path: ''
+            path: '{{ field_feature_button_url__uri }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -582,7 +638,7 @@ display:
             trim_whitespace: false
             alt: ''
             rel: ''
-            link_class: ''
+            link_class: 'btn btn-secondary'
             prefix: ''
             suffix: ''
             target: ''
@@ -604,13 +660,13 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: uri
-          type: link
+          type: link_separate
           settings:
             trim_length: 80
             url_only: false
