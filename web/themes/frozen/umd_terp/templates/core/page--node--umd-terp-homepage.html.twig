@@ -19,7 +19,7 @@
         </div>
         <div class="bento-content">
           <div id="bento-blocks">
-	    <div class="bento-results bento-utility">
+            <div class="bento-results bento-utility">
               {% if page.bento_utility_2 %}
                 {{ page.bento_utility_1 }}
               {% endif %}
@@ -27,8 +27,8 @@
                 {{ page.bento_utility_2 }}
               {% endif %}
             </div>
-	    <div class="bento-results">
-	      <div id="bento-result-1" class="bento-result">
+            <div class="bento-results">
+              <div id="bento-result-1" class="bento-result">
                 {{ page.bento_1 }}
               </div>
               {% if page.bento_2 %}
@@ -74,6 +74,15 @@
               {% if page.bento_10 %}
                 <div id="bento-result-10" class="bento-result">
                   {{ page.bento_10 }}
+                </div>
+              {% endif %}
+            </div>
+            {# ADDED: bento utility footer #}
+            <div class="bento-results bento-footer-util">
+              {% if page.feedback_popup %}
+                <div id="feedback-popup" class="feedback-popup">
+                  <button onclick="closePopup()" class="close-button" aria-label="Close popup"></button>
+                {{ page.feedback_popup }}
                 </div>
               {% endif %}
             </div>

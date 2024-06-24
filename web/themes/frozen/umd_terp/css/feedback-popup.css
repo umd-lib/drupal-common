@@ -1,0 +1,87 @@
+.feedback-popup {
+  position: fixed;
+  bottom: 76px;
+  right: 36px;
+  z-index: 998;
+
+  .close-button {
+    position: absolute;
+    right: 16px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: unset;
+    border: none;
+    border-radius: unset;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='21' viewBox='0 0 20 21' fill='none'%3E%3Cpath d='M15 5.5L5 15.5' stroke='%236D7078' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5 5.5L15 15.5' stroke='%236D7078' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  #feedback-message {
+    border-radius: 8px;
+    border: 1px solid var(--border-sytem-focus, #ffd200);
+    background: var(--background-system-primary, #fff);
+
+    width: 320px;
+    padding: 8px 16px;
+    flex-direction: column;
+
+    #upper-feedback-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      flex-basis: 100%;
+      width: 100%;
+      color: var(--content-system-primary, #000);
+
+      /* label-medium */
+      font-family: Source Sans Pro, sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 21px; /* 150% */
+
+      margin-bottom: 8px;
+    }
+
+    .feedback-yes-button,
+    .feedback-no-button {
+      flex-basis: auto;
+
+      display: flex;
+
+      width: 143px;
+
+      input {
+        padding: unset;
+
+        width: 100%;
+        height: 36px;
+
+        border-radius: 4px;
+        border: 1px solid var(--border-accent-decoration-subtle, #e9eaef);
+
+        color: var(--content-system-primary, #000);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 21px; /* 175% */
+      }
+
+      input:hover {
+        box-shadow: none;
+        background: var(--background-accent-brand-gold, #fff9d5);
+      }
+    }
+
+    .feedback-yes-button input {
+      margin-right: 8px;
+    }
+
+    .feedback-no-button input {
+      margin-left: 8px;
+    }
+  }
+}

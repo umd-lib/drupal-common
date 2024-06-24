@@ -14,6 +14,7 @@ global:
       css/careers.css: { media: screen }
       css/umd-print.css: { media: print }
       css/multilang.css: { media: screen }
+      css/feedback-popup.css: { media: screen }
   js:
     static/build/js/index.js: {}
     js/paragraph-utils.js: {}
@@ -21,3 +22,4 @@ global:
     js/toggled-search-bar.js: { scope: header }
     js/chatwidget.js: { preprocess: false }
     js/language-block.js: {}
+    js/feedback-popup.js: {}
