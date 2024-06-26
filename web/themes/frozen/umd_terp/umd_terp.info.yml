@@ -39,7 +39,7 @@ regions:
   bento_8: "Bento Search 8"
   bento_9: "Bento Search 9"
   bento_10: "Bento Search 10"
-  feedback_popup: "Feedback Popup"
+  feedback_popup: "Bento Feedback Popup"
 dependencies:
   - twig_tweak
   - umd_terp_base
