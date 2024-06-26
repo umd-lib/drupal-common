@@ -1,7 +1,9 @@
+.embedded-heading {
+  display: none;
+}
+
 .home-hero.home-hero-bg {
-  .embedded-heading {
-    display: none;
-  }
+  position: unset;
 
   > .max-bound {
     position: unset;
@@ -22,14 +24,6 @@
 
   .home-hero-media:after {
     content: unset;
-  }
-
-  .embedded-heading {
-    display: none;
-  }
-
-  .home-hero.home-hero-bg {
-    position: unset;
   }
 
   .hero-block-container {
