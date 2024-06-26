@@ -330,7 +330,7 @@ iframe#iframe_fe53f3bc15d10c1fe704c59be49661b0 {
   height: 654px;
   width: 360px;
   background-color: #f8f9fc;
-  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 20px 40px 10px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease-in-out;
 
   position: fixed;
