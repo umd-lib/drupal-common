@@ -15,43 +15,65 @@ table.dc-item-metadata {
   color: var(--content-system-primary, #000);
 
   margin-top: 32px;
+}
 
-  caption {
-    caption-side: top;
+table.dc-item-metadata caption {
+  caption-side: top;
 
-    padding-bottom: 16px;
-  }
+  padding-bottom: 16px;
+}
 
-  h2 {
-    color: var(--content-system-primary, #000);
+table.dc-item-metadata h2 {
+  color: var(--content-system-primary, #000);
 
-    /* title-medium */
-    font-family: Source Sans Pro, sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 30px; /* 150% */
-    text-transform: uppercase;
-  }
+  /* title-medium */
+  font-family: Source Sans Pro, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px; /* 150% */
+  text-transform: uppercase;
+}
 
-  tr {
-    border-bottom: 1px solid var(--border-accent-decoration-subtle, #e9eaef);
-  }
+table.dc-item-metadata tr {
+  border-bottom: 1px solid var(--border-accent-decoration-subtle, #e9eaef);
+}
 
-  td {
-    vertical-align: top;
-    padding: 16px 0px;
-  }
+table.dc-item-metadata th {
+  /* title-small */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px; /* 150% */
 
-  th {
-    /* title-small */
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 27px; /* 150% */
+  padding-right: 16px;
+}
 
-    padding-right: 16px;
-  }
+table.dc-item-metadata td {
+  vertical-align: top;
+  padding: 16px 0px;
+}
+
+table.dc-item-metadata td .btn {
+  background-color: unset;
+  border: none;
+  font-weight: unset;
+  letter-spacing: unset;
+  text-transform: unset;
+  display: unset;
+  text-align: unset;
+  vertical-align: unset;
+  user-select: unset;
+  padding: unset;
+  font-size: unset;
+  line-height: unset;
+  transition: unset;
+}
+
+table.dc-item-metadata td .btn:hover {
+  color: #9f001c;
+  background-color: unset;
+  box-shadow: none;
 }
 
 /* for buttons in the action area */
@@ -59,6 +81,16 @@ table.dc-item-metadata {
   display: grid;
   gap: 16px;
   grid-template-columns: 1fr 1fr;
+}
+
+.action-area a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-area a:hover {
+  color: #fff !important;
 }
 
 @media (max-width: 612px) {
