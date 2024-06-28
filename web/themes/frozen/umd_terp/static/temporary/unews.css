@@ -111,6 +111,10 @@
   counter-reset: list;
 }
 
+.universal-news-feed-item .card .content .text ol > li {
+  counter-increment: list;
+}
+
 .universal-news-feed-item .card .content .text ol > li::before {
   content: counter(list,decimal) ".\A0\A0";
   color: #e21833;
