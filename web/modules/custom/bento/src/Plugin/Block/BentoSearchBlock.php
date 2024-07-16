@@ -70,9 +70,11 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
     $blockConfig = $this->getConfiguration();
     $search_action = $blockConfig['search_page'];
     $search_placeholder = $blockConfig['search_placeholder'];
+    $search_heading = $blockConfig['search_heading'];
     $form_defaults = array();
     $form_defaults['default_action'] = null;
     $form_defaults['search_placeholder'] = null;
+    $form_defaults['search_heading'] = null;
     if (!empty($search_action)) {
       $nid = EntityAutocomplete::extractEntityIdFromAutocompleteInput($search_action);
       if (!empty($nid) && $nid > 0) {
@@ -85,6 +87,9 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
     }
     if (!empty($search_placeholder)) {
       $form_defaults['search_placeholder'] = $search_placeholder;
+    }
+    if (!empty($search_heading)) {
+      $form_defaults['search_heading'] = $search_heading;
     }
     $form = $this->formBuilder->getForm('Drupal\bento\Form\BentoSearchForm', $form_defaults);
     return [
@@ -118,6 +123,12 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
       '#default_value' =>  isset($config['search_placeholder']) ? $config['search_placeholder'] : null,
       '#description' => t('E.g., Search books and more!'),
     ];
+    $form['search_heading'] = [
+      '#type' => 'textfield',
+      '#title' => t('Search Heading'),
+      '#default_value' =>  isset($config['search_heading']) ? $config['search_heading'] : null,
+      '#description' => t('E.g., Search All'),
+    ];
     return $form;
   }
 
@@ -127,5 +138,6 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->setConfigurationValue('search_page', $form_state->getValue('search_page'));
     $this->setConfigurationValue('search_placeholder', $form_state->getValue('search_placeholder'));
+    $this->setConfigurationValue('search_heading', $form_state->getValue('search_heading'));
   }
 }
