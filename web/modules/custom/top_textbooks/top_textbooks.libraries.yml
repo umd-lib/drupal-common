@@ -3,3 +3,5 @@ top-textbooks:
   css:
     theme:
       css/top-textbooks.css: {}
+  js:
+    js/top-textbooks.js: {}
