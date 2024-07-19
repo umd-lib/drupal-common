@@ -35,8 +35,15 @@ table.dc-item-metadata h2 {
   text-transform: uppercase;
 }
 
-table.dc-item-metadata tr {
+table.dc-item-metadata tr,
+table.dc-item-metadata dd,
+table.dc-item-metadata dt {
   border-bottom: 1px solid var(--border-accent-decoration-subtle, #e9eaef);
+}
+
+table.dc-item-metadata td {
+  vertical-align: top;
+  padding: 16px 0px 16px 8px;
 }
 
 table.dc-item-metadata th {
@@ -49,31 +56,35 @@ table.dc-item-metadata th {
   padding-right: 16px;
 }
 
-table.dc-item-metadata td {
-  vertical-align: top;
-  padding: 16px 0px;
+/* customized for digital collection(s) section */
+
+table.dc-item-metadata tr:last-child td {
+  padding: 0px;
 }
 
-table.dc-item-metadata td .btn {
-  background-color: unset;
-  border: none;
-  font-weight: unset;
-  letter-spacing: unset;
-  text-transform: unset;
-  display: unset;
-  text-align: unset;
-  vertical-align: unset;
-  user-select: unset;
-  padding: unset;
-  font-size: unset;
-  line-height: unset;
-  transition: unset;
+table.dc-item-metadata dl,
+table.dc-item-metadata dd,
+table.dc-item-metadata dt {
+  margin: 0px;
 }
 
-table.dc-item-metadata td .btn:hover {
-  color: #9f001c;
-  background-color: unset;
-  box-shadow: none;
+table.dc-item-metadata dd,
+table.dc-item-metadata dt {
+  padding: 16px 0px 16px 8px;
+}
+
+table.dc-item-metadata dt {
+  border-top: 1px solid var(--border-accent-decoration-subtle, #e9eaef);
+  background: var(--background-system-secondary, #f8f9fc);
+  font-weight: 400;
+}
+
+table.dc-item-metadata dl > :nth-child(1) {
+  border-top: none;
+}
+
+table.dc-item-metadata dl > :nth-child(3n) {
+  border-bottom: none;
 }
 
 /* for buttons in the action area */
@@ -81,16 +92,6 @@ table.dc-item-metadata td .btn:hover {
   display: grid;
   gap: 16px;
   grid-template-columns: 1fr 1fr;
-}
-
-.action-area a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.action-area a:hover {
-  color: #fff !important;
 }
 
 @media (max-width: 612px) {
