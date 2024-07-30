@@ -66,3 +66,4 @@ web/themes/README.txt
 web/INSTALL.txt
 web/sites/example.sites.php
 web/libraries
+web/sites/development.services.yml
