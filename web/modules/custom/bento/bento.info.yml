@@ -10,4 +10,4 @@ dependencies:
   - block_ajax
 type: module
 
-core_version_requirement: ^8.9 || ^9 || ^10
+core_version_requirement: ^11 || ^9 || ^10
