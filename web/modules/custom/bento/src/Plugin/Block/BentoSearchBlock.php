@@ -71,10 +71,12 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
     $search_action = $blockConfig['search_page'];
     $search_placeholder = $blockConfig['search_placeholder'];
     $search_heading = $blockConfig['search_heading'];
+    $search_subheading = $blockConfig['search_subheading'];
     $form_defaults = array();
     $form_defaults['default_action'] = null;
     $form_defaults['search_placeholder'] = null;
     $form_defaults['search_heading'] = null;
+    $form_defaults['search_subheading'] = null;
     if (!empty($search_action)) {
       $nid = EntityAutocomplete::extractEntityIdFromAutocompleteInput($search_action);
       if (!empty($nid) && $nid > 0) {
@@ -90,6 +92,9 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
     }
     if (!empty($search_heading)) {
       $form_defaults['search_heading'] = $search_heading;
+    }
+    if (!empty($search_subheading)) {
+      $form_defaults['search_subheading'] = $search_subheading;
     }
     $form = $this->formBuilder->getForm('Drupal\bento\Form\BentoSearchForm', $form_defaults);
     return [
@@ -129,6 +134,12 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
       '#default_value' =>  isset($config['search_heading']) ? $config['search_heading'] : null,
       '#description' => t('E.g., Search All'),
     ];
+    $form['search_subheading'] = [
+      '#type' => 'textarea',
+      '#title' => t('Search Sub-Heading'),
+      '#default_value' =>  isset($config['search_subheading']) ? $config['search_subheading'] : null,
+      '#description' => t('E.g., For all your searching needs!'),
+    ];
     return $form;
   }
 
@@ -139,5 +150,6 @@ class BentoSearchBlock extends BlockBase implements ContainerFactoryPluginInterf
     $this->setConfigurationValue('search_page', $form_state->getValue('search_page'));
     $this->setConfigurationValue('search_placeholder', $form_state->getValue('search_placeholder'));
     $this->setConfigurationValue('search_heading', $form_state->getValue('search_heading'));
+    $this->setConfigurationValue('search_subheading', $form_state->getValue('search_subheading'));
   }
 }
