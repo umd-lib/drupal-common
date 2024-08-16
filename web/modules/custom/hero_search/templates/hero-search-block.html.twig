@@ -36,7 +36,7 @@
   
   {% if hero_discover_links %}
     <div class='discover-links'>
-      <h3 class='discover-title'>Discover</h3>
+      <h3 class='discover-title'><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP%3AUMCP&lang=en"><strong>UMD Discover</strong></a></h3>
       <div aria-hidden="true" class="title-divider">-</div>
       <ul role="list">
         {% for disc_name, disc_value in hero_discover_links %}
@@ -52,7 +52,7 @@
   {% endif %}
   {% if hero_search_more_links %}
     <div class='search-more-links'>
-      <h3 class='search-more-title'>Search More</h3>
+      <h3 class='search-more-title'><a href="/search"><strong>Search All</strong></a></h3>
       <div aria-hidden="true" class="title-divider">-</div>
       <ul role="list">
         {% for sm_name, sm_value in hero_search_more_links %}

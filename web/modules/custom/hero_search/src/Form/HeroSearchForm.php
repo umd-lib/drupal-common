@@ -143,7 +143,12 @@ class HeroSearchForm extends FormBase {
       $this->logger->notice("The base search Url configuration for '$target' is missing!");
     }
     else {
-      $url = Url::fromUri($target_base_url . urlencode($query))->toString();
+      $encoded_query = urlencode($query);
+      $encoded_query = trim($encoded_query);
+      if (!empty($encoded_query) && str_contains($target_base_url, 'usmai-umcp.primo.exlibrisgroup')) {
+        $encoded_query = 'any,contains,' . $encoded_query;
+      }
+      $url = Url::fromUri($target_base_url . $encoded_query)->toString();
     }
     $response = new TrustedRedirectResponse($url);
     $form_state->setResponse($response);
