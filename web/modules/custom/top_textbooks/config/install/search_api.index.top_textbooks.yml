@@ -48,11 +48,11 @@ third_party_settings:
     multilingual:
       limit_to_content_language: false
       include_language_independent: true
-      specific_languages: {  }
       use_language_undefined_as_fallback_language: false
+      specific_languages: {  }
       use_universal_collation: false
 _core:
-  default_config_hash: KnBTxf27ylDn_5zBTD1h5K550h-N3-U6-enynkUdIi0
+  default_config_hash: ofVET362v-3I84JegeBe9opgBGytlnQNvxt8NOILIMQ
 id: top_textbooks
 name: 'Top Textbooks'
 description: ''
@@ -73,6 +73,11 @@ field_settings:
     datasource_id: solr_document
     property_path: bar_code
     type: text
+  branch_location:
+    label: 'Branch location'
+    datasource_id: solr_document
+    property_path: branch_location
+    type: string
   call_number:
     label: 'Call Number'
     datasource_id: solr_document
@@ -97,6 +102,11 @@ field_settings:
     label: ISBN
     datasource_id: solr_document
     property_path: isbn
+    type: string
+  mms_id:
+    label: 'Mms id'
+    datasource_id: solr_document
+    property_path: mms_id
     type: string
   program:
     label: Program

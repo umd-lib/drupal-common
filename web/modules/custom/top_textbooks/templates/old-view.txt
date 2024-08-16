@@ -1,0 +1,28 @@
+
+<div style="clearboth"></div>
+<div class="row">
+  <div class="col-800-2">{{ course }}
+  </div>
+  <div class="col-800-7"><span class="textbook-title">{{ title }}</span>, {{ edition }} {{ year }} 
+     <br />
+     By: {{ author }}
+     <br />
+     ISBN: {{ isbn }} 
+    <br />
+    Call Number: {{ call_number }}
+    <br />
+    {{ comment }}
+  </div>
+  <div class="col-800-3">
+    {% if mms_id %}
+    {% set flat_course = course|replace({' ': ''}) %}
+    <div id="{{ mms_id }}--{{ flat_course }}--{{ branch_location }}" class="primo-availability" data-mms="{{ mms_id }}" data-course="{{ flat_course }}" data-branch-location="{{ branch_location }}" data-callnumber="{{ call_number }}" data-barcodes="[ {{ bar_code|raw }} ]">
+      <div class="availability-info">
+        <span class="availability-primo-link"><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma{{ mms_id|trim }}&vid=01USMAI_UMCP%3AUMCP&tab=Everything&context=PC&lang=en&adaptor=Primo%20Central&offset=0" target="_blank">Check Availability</a></span>
+        <span class="availability-count"></span>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</row>
+</div>

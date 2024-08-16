@@ -5,6 +5,8 @@ dependencies:
     - search_api.index.top_textbooks
   module:
     - search_api
+_core:
+  default_config_hash: lGGj2X8Vqcqs33JR2u-sycHWLAi5QJ1iGkasC-u_kU4
 id: top_textbooks_block
 label: 'Top Textbooks Block'
 module: views
@@ -612,6 +614,59 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
+        mms_id:
+          id: mms_id
+          table: search_api_index_top_textbooks
+          field: mms_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
         nothing:
           id: nothing
           table: views
@@ -624,7 +679,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<span class=\"bento-key-info-content\">\r\n  <div class=\"bento-key-info-title\">\r\n    <div class=\"bento-key-info-fas\">\r\n      <span class=\"fas fa-solid fa-book-open\" role=\"presentation\"></span>\r\n    </div>\r\n    <a id=\"bento-search-top-textbooks-more\" class=\"bento-key-info-title-text\" href=\"/find/reserves/students/textbooks?search_api_textbook_fulltext={{ arguments.text }}&sort_by=search_api_relevance&sort_order=DESC\">Top Textbook Collection</a>\r\n  </div>\r\n  <div class=\"bento-top-textbook-result-content\">\r\n    <p class=\"bento-key-info-content-p\">We found a related item in the Libraries’ Top Textbook collection.\r\n      <br />You can borrow this book for\r\n      <span class=\"bento-key-info-content-p-bold\">4 hours</span>\r\n      at a time from the\r\n      <span class=\"bento-key-info-content-p-bold\">McKeldin Library Services Desk</span>.\r\n    </p>\r\n    <a id=\"bento-search-top-textbooks\" class=\"bento-top-textbook-bookcard bento-key-info-content-p\" href=\"/find/reserves/students/textbooks?search_api_textbook_fulltext={{ call_number }}&sort_by=search_api_relevance&sort_order=DESC\">\r\n      <div>\r\n        <p>\r\n          <span class=\"bento-key-info-content-p-bold\">{{ title }}</span>{% if edition %}, edition, {{ edition }}{% endif %}\r\n        </p>\r\n      </div>\r\n      <div class=\"book-author\">\r\n        <div class=\"book-author-icon\"></div>\r\n        <p>{{ author }}</p>\r\n      </div>\r\n      <div class=\"course-id\">\r\n        <div class=\"course-id-icon\"></div>\r\n        <p>{{ course }}</p>\r\n      </div>\r\n    </a>\r\n  </div>\r\n</span>"
+            text: "<span class=\"bento-key-info-content\">\r\n  <div class=\"bento-key-info-title\">\r\n    <div class=\"bento-key-info-fas\">\r\n      <span class=\"fas fa-solid fa-book-open\" role=\"presentation\"></span>\r\n    </div>\r\n    <a id=\"bento-search-top-textbooks-more\" class=\"bento-key-info-title-text\" href=\"/find/reserves/students/textbooks?search_api_textbook_fulltext={{ arguments.text }}&sort_by=search_api_relevance&sort_order=DESC\">Top Textbook Collection</a>\r\n  </div>\r\n  <div class=\"bento-top-textbook-result-content\">\r\n    <p class=\"bento-key-info-content-p\">We found a related item in the Libraries’ Top Textbook collection.\r\n      <br />You can borrow this book for\r\n      <span class=\"bento-key-info-content-p-bold\">4 hours</span>\r\n      at a time from the\r\n      <span class=\"bento-key-info-content-p-bold\">McKeldin Library Services Desk</span>.\r\n    </p>\r\n    <a id=\"bento-search-top-textbooks\" class=\"bento-top-textbook-bookcard bento-key-info-content-p\" href=\"https://usmai-umcp.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma{{ mms_id|trim }}&vid=01USMAI_UMCP%3AUMCP&tab=Everything&context=PC&lang=en&adaptor=Primo%20Central&offset=0\">\r\n      <div>\r\n        <p>\r\n          <span class=\"bento-key-info-content-p-bold\">{{ title }}</span>{% if edition %}, edition, {{ edition }}{% endif %}\r\n        </p>\r\n      </div>\r\n      <div class=\"book-author\">\r\n        <div class=\"book-author-icon\"></div>\r\n        <p>{{ author }}</p>\r\n      </div>\r\n      <div class=\"course-id\">\r\n        <div class=\"course-id-icon\"></div>\r\n        <p>{{ course }}</p>\r\n      </div>\r\n    </a>\r\n  </div>\r\n</span>"
             make_link: false
             path: ''
             absolute: false

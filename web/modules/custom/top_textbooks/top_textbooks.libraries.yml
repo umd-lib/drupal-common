@@ -3,3 +3,8 @@ top-textbooks:
   css:
     theme:
       css/top-textbooks.css: {}
+search-page:
+  version: 1.x
+  css:
+    theme:
+      css/search-page.css: {}

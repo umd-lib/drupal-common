@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+{% if title %}
+  {% set short_id = title|striptags|trim|slice(0, 2)|trim %}
+  {% if short_id|length >= 1 %}
+    <h3 id="view-group-id-{{ short_id }}">{{ title }}</h3>
+  {% else %}
+    <h3>{{ title }}</h3>
+  {% endif %}
+{% endif %}
+<table class="top-textbook">
+  <tr class="table-header">
+    <th>Course ID</th>
+    <th class="textbook-details">Textbook Details</th>
+      <th>Availability</th>
+  </tr>
+{% for row in rows %}
+  {%
+    set row_classes = [
+      default_row_class ? 'views-row',
+    ]
+  %}
+  {{- row.content -}}
+{% endfor %}
+</table>

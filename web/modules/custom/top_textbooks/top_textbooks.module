@@ -5,6 +5,8 @@
  * Module file for top_textbooks module.
  */
 
+use Drupal\views\ViewExecutable;
+
 /**
  * Implements hook_theme().
  */
@@ -19,4 +21,16 @@ function top_textbooks_theme() {
       ],
     ],
   ];
+}
+
+/**
+* Implements hook_views_pre_render().
+*/
+function top_textbooks_views_pre_render(ViewExecutable $view) {
+  if (empty($view) || empty($view->storage->id())) {
+    return;
+  }
+  if ($view->storage->id() == 'top_textbooks') {
+    $view->element['#attached']['library'][] = 'top_textbooks/search-page';
+  }
 }
