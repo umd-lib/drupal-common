@@ -20,7 +20,7 @@
     ],
     "require": {
         "composer/installers": "^1.9",
-        "drupal/bootstrap": "^3.21",
+        "drupal/bootstrap": "^3.32",
         "drupal/cas": "^2.2",
         "drupal/cas_attributes": "^2.0@beta",
         "drupal/core-composer-scaffold": "^10",
