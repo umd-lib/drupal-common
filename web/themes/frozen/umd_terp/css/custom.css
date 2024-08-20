@@ -411,18 +411,18 @@ a.basic-link {
 }
 
 /* in-page alert */
-.alerts.bg-yellow {
+.messages__wrapper .messages--warning,.alerts.bg-yellow {
   border-left: 2px solid var(--border-sytem-focus, #ffd200);
   background-color: var(--background-accent-brand-gold, #fff9d5) !important;
 }
 
-.alerts.bg-red {
+.messages__wrapper .messages--error, .alerts.bg-red {
   color: var(--content-system-primary, #000);
   border-left: 2px solid var(--border-sytem-sencondary, #e21833);
   background: var(--background-accent-brand-red, #fdd8dd) !important;
 }
 
-.alerts.bg-light-gray {
+.messages__wrapper .messages--status, .alerts.bg-light-gray {
   border-left: 2px solid var(--border-interactive-primary-default, #6d7078);
   background: var(--background-system-secondary, #f8f9fc) !important;
 }
@@ -441,15 +441,19 @@ a.basic-link {
   color: #9f001c;
 }
 
-.alerts {
+.messages__wrapper, .alerts {
   padding: 16px 32px;
 }
 
-.alerts .alert {
+.messages__wrapper .messages, .alerts .alert {
   margin-bottom: 0px;
 }
 
-.alerts .alert-heading {
+.messages__wrapper .messages {
+  padding: 5px;
+}
+
+.messages__wrapper .messages .messages__header h2, .alerts .alert-heading {
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -457,7 +461,7 @@ a.basic-link {
   margin-bottom: 8px;
 }
 
-.alerts .alert-content {
+.messages__wrapper .messages .messages__content, .alerts .alert-content {
   /* body-medium */
   font-size: 16px;
   font-style: normal;
@@ -465,7 +469,7 @@ a.basic-link {
   line-height: 24px; /* 150% */
 }
 
-.alerts .alert-content p {
+.messages__wrapper .messages .messages__content, .alerts .alert-content p {
   margin-bottom: 8px;
 }
 
