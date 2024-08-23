@@ -1,0 +1,6 @@
+name: UMD Commands 
+description: Drush commands for various UMD Libraries needs
+package: UMD Services
+
+type: module
+core_version_requirement: ">=8"

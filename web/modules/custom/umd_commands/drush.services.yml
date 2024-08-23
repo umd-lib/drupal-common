@@ -1,0 +1,13 @@
+services:
+  umd_commands.commands:
+    class: Drupal\umd_commands\Commands\GeneralCommands
+    arguments: []
+    tags:
+      - { name: drush.command }
+  umd_commands.sitemap:
+    class: Drupal\umd_commands\Commands\SitemapCommands
+    arguments:
+      - '@simple_sitemap.generator'
+      - '@http_client'
+    tags:
+      - { name: drush.command }
