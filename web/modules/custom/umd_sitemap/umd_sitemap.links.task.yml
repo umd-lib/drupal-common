@@ -1,0 +1,5 @@
+umd_sitemap.umd_sitemap_tab:
+  route_name: umd_sitemap.admin_settings_form
+  title: 'UMD Collections'
+  base_route: entity.simple_sitemap.collection
+  weight: 99

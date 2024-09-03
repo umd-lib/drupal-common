@@ -1,0 +1,5 @@
+umd_sitemaps.collections:
+  title: 'UMD Collections'
+  parent: simple_sitemap.sitemaps
+  route_name: umd_sitemaps.collections
+  weight: 99

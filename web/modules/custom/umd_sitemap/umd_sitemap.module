@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * @file
+ * Helpers and hook overrides for umd_sitemap.
+ */
+
+// Implements hook_cronapi()
+function umd_sitemap_cron() {
+  $config = \Drupal::configFactory()->getEditable('umd_sitemap.settings');
+  $sitemaps = $config->get('umd_sitemap_targets');
+  if (!empty($sitemaps) && count($sitemaps) > 0) {
+    umd_sitemap_collection_generator($sitemaps);
+  }
+}
+
+function umd_sitemap_collection_generator($sitemaps) {
+  foreach ($sitemaps as $sitemap) {
+    $job = [
+
+    ];
+  }
+}
+
+
+// Implements hook_simple_sitemap_arbitrary_links_alter()
+function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $sitemap){
+  $settings = \Drupal::service('simple_sitemap.settings');
+  $base_url = $settings->get('base_url') ?: $GLOBALS['base_url'];
+  if ($sitemap->id() === 'worldsfairs') {
+    $worlds_fairs_urls = file_get_contents(__DIR__ . '/worldsfairs.txt');
+    $lines = explode(PHP_EOL, $worlds_fairs_urls);
+
+    foreach ($lines as $line) {
+      if (!empty($line)) {
+        $arbitrary_links[] = ['url' => $line, 'priority' => '0.5'];
+      }
+    }
+  }
+
+  if ($sitemap->id() === 'scores') {
+    $scores_prefix = $base_url . '/scores/id/';
+
+    $scores_ids = file_get_contents(__DIR__ . '/scores.txt');
+    $lines = explode(PHP_EOL, $scores_ids);
+
+    // 00005392
+
+    foreach ($lines as $line) {
+      if (!empty($line)) {
+        $formatted_id = str_pad($line, 8, '0', STR_PAD_LEFT);
+        $scores_url = $scores_prefix . $formatted_id;
+        $arbitrary_links[] = ['url' => $scores_url, 'priority' => '0.5'];
+      }
+    }
+  }
+
+  if ($sitemap->id() === 'plantpatents') {
+    $plants_prefix = $base_url . '/plantpatents/id/';
+
+    $plants_ids = file_get_contents(__DIR__ . '/plantpatents.txt');
+    $lines = explode(PHP_EOL, $plants_ids);
+
+    foreach ($lines as $line) {
+      if (!empty($line)) {
+        $plants_url = $plants_prefix . $line;
+        $arbitrary_links[] = ['url' => $plants_url, 'priority' => '0.5'];
+      }
+    }
+  }
+
+  if ($sitemap->id() === 'solr_example') {
+    $scores_url = $base_url . '/scores/id/';
+    $index = \Drupal\search_api\Entity\Index::load('scores');
+    $query = $index->query();
+
+    // $query->addCondition('status', 1)->addCondition('author', 1, '<>');
+    $query->setFulltextFields(['id']);
+
+    $query->range(1, 1000);
+
+    $results = $query->execute();
+    \Drupal::logger('umd_sitemap')->notice($results->__toString());
+
+    foreach ($results as $result) {
+      $id = $result->getId();
+      \Drupal::logger('umd_sitemap')->notice($id);
+      if (!empty($id)) {
+        $id = str_replace('solr_document/', '', $id);
+        $score_url = $scores_url . $id;
+        $arbitrary_links[] = ['url' => $score_url, 'priority' => '0.5'];
+      }
+    }
+  }
+}

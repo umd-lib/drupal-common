@@ -1,0 +1,9 @@
+umd_sitemap.admin_settings_form:
+  path: '/admin/config/search/simplesitemap/collections'
+  defaults:
+    _form: '\Drupal\umd_sitemap\Form\UmdSitemapSettingsForm'
+    _title: 'UMD Sitemap Settings Form'
+  requirements:
+    _permission: 'administer sitemap settings'
+  options:
+    _admin_route: TRUE
