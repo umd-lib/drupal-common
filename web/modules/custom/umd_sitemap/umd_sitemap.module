@@ -5,9 +5,29 @@
  * Helpers and hook overrides for umd_sitemap.
  */
 
-function umd_sitemap_collection_generator($targets) {
+// Implements hook_cron()
+function umd_sitemap_cron() {
+  /**
+   * @note
+   *   Ultimate Cron should be used to make sure this does not run
+   *   More than nightly.
+   */
+  $config = \Drupal::configFactory()->getEditable('umd_sitemap.settings');
+  $targets = $config->get('umd_sitemap_targets');
+  if (!empty($targets) && count($targets) > 0) {
+    foreach ($targets as $target) {
+      if (empty($target['sitemap']) || empty($target['filter'])) {
+        continue;
+      }
+      $job = [
+        'filter' => $target['filter'],
+        'sitemap' => $target['sitemap'],
+        'timestamp' => \Drupal::time()->getCurrentTime(),
+      ];
+      \Drupal::queue('collections_sitemap_worker')->createItem($job);
+    }
+  }
 }
-
 
 // Implements hook_simple_sitemap_arbitrary_links_alter()
 function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $sitemap){
