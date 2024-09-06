@@ -5,21 +5,7 @@
  * Helpers and hook overrides for umd_sitemap.
  */
 
-// Implements hook_cronapi()
-function umd_sitemap_cron() {
-  $config = \Drupal::configFactory()->getEditable('umd_sitemap.settings');
-  $sitemaps = $config->get('umd_sitemap_targets');
-  if (!empty($sitemaps) && count($sitemaps) > 0) {
-    umd_sitemap_collection_generator($sitemaps);
-  }
-}
-
-function umd_sitemap_collection_generator($sitemaps) {
-  foreach ($sitemaps as $sitemap) {
-    $job = [
-
-    ];
-  }
+function umd_sitemap_collection_generator($targets) {
 }
 
 
@@ -69,6 +55,37 @@ function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $si
     }
   }
 
+  $config = \Drupal::configFactory()->getEditable('umd_sitemap.settings');
+  $targets = $config->get('umd_sitemap_targets');
+  if (!empty($targets) && count($targets) > 0) {
+    foreach ($targets as $target) {
+      if (empty($target['sitemap'])) {
+        continue;
+      }
+      $sm = $target['sitemap'];
+      if ($sitemap->id() === $sm) {
+        $verified_key = $sm . '-file-verified';
+        $stored_checksum = \Drupal::state()->get($verified_key, NULL);
+        $filename = 'public://' . $sm . '.txt';
+        $current_checksum = sha1_file($filename);
+
+        if ($stored_checksum == $current_checksum) {
+          // continue;
+        }
+
+        \Drupal::state()->set($verified_key, $current_checksum);
+        $cur_ids = file_get_contents($filename);
+        $lines = explode(PHP_EOL, $cur_ids);
+
+        foreach ($lines as $line) {
+          if (!empty($line)) {
+            $cur_url = $base_url . $line;
+            $arbitrary_links[] = ['url' => $cur_url, 'priority' => '0.5'];
+          }
+        }
+      }
+    }
+  }
   if ($sitemap->id() === 'solr_example') {
     $scores_url = $base_url . '/scores/id/';
     $index = \Drupal\search_api\Entity\Index::load('scores');

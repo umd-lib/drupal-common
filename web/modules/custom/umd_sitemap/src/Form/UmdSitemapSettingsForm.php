@@ -129,7 +129,6 @@ class UmdSitemapSettingsForm extends ConfigFormBase {
               'sitemap' => $yv['sitemap'],
               'timestamp' => \Drupal::time()->getCurrentTime(),
             ];
-dsm($job);
             \Drupal::queue('collections_sitemap_worker')->createItem($job);
           }
         }

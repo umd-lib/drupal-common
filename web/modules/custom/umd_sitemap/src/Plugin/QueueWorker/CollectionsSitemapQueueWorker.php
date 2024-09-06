@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Drupal\umd_sitemap\Plugin\QueueWorker;
 
 use Drupal\Core\Logger\LoggerChannelInterface;
@@ -47,43 +45,79 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
     $required_fields = ['sitemap', 'filter'];
     foreach ($required_fields as $required) {
       if (empty($data[$required])) {
+        \Drupal::logger('umd_sitemap')->notice('sitemap and filter fields are required');
         return;
       }
     }
+    $sitemap = trim($data['sitemap']);
+    $filter = trim($data['filter']);
     $index = \Drupal\search_api\Entity\Index::load('fcrepo');
     if (empty($index)) {
+      \Drupal::logger('umd_sitemap')->notice('Index not available');
       return;
     }
-    $query = $index->query();
-    $query->addCondition('is_discoverable', 1, '=');
-    $query->addCondition('presentation_set_label', $data['filter'], '=');
-    $query->range(1, 1000);
-    $results = $query->execute();
-
-    if (empty($results) || count($results) == 0) {
-      return;
-    }
-
+    
+    $start = 0;
+    $end = 500;
+    $cnt = 500;
+    $results_count = 501;
+    
     $urls = [];
-    $this->fc = new FedoraUtility();
 
-    foreach ($results as $result) {
-      $id = $result->getId();
-      \Drupal::logger('umd_sitemap')->notice($id);
-      if (!empty($id)) {
-        $id = str_replace('solr_document/', '', $id);
+    while ($end < $results_count) {
+      \Drupal::logger('umd_sitemap')->notice($start . ' ' . $end . ' ' . $results_count);
+      $query = $index->query();
+      $query->addCondition('is_discoverable', TRUE);
+      $query->addCondition('presentation_set_label', $filter);
+      $query->range($start, $end);
+      $query->sort('id');
+      $results = $query->execute();
 
-        $short_id = $this->fc->getFedoraItemHash($id);
-        if (!empty($short_id)) {
-          $urls[] = $short_id;
+      $results_count = $results->getResultCount();
+      if (empty($results) || $results_count == 0) {
+        \Drupal::logger('umd_sitemap')->notice('No results for ' . $filter);
+        return;
+      }
+
+      $this->fc = new FedoraUtility();
+
+      foreach ($results as $result) {
+        $id = $result->getId();
+        if (!empty($id)) {
+          $id = str_replace('solr_document/', '', $id);
+          $collection = $result->getField('collection')->getValues()[0];
+          \Drupal::logger('umd_sitemap')->notice($collection);
+
+          $collection_raw = explode("/rest/", $collection);
+
+          $collection_prefix = "pcdm";
+          if ($collection_raw[1]) {
+            $collection_check = explode("/", $collection_raw[1]);
+            if ($collection_check[0] == "dc") {
+              $collection_prefix = str_replace("//", "::", end($collection_raw));
+            }
+          }
+
+          $short_id = $this->fc->getFedoraItemHash($id);
+          if (!empty($short_id)) {
+            \Drupal::logger('umd_sitemap')->notice($short_id);
+            $processed_url = '/result/id/' . $short_id . '?relpath=' . $collection_prefix;
+            $urls[] = $processed_url;
+          }
         }
       }
+
+      $start = $end;
+      $end = $end + $cnt;
+      \Drupal::logger('umd_sitemap')->notice($start . ' ' . $end . ' ' . $results_count);
     }
 
-    $data = json_encode($urls);
-    $filename = 'public://collection-sitemaps/' . $data['sitemap'] . '.txt';
+    if (count($urls) > 0) {
+      $data = implode(PHP_EOL, $urls);
+    }
+    $filename = 'public://' . $sitemap . '.txt';
     $file_repo = \Drupal::service('file.repository');
     $file_repo->writeData($data, $filename, FileSystemInterface::EXISTS_REPLACE);
+    \Drupal::logger('umd_sitemap')->notice('processing umd sitemap queue completed for ' . $sitemap);
   }
-
 }
