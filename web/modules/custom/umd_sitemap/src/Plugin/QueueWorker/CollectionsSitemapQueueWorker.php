@@ -58,17 +58,20 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
     }
     
     $start = 0;
-    $end = 500;
-    $cnt = 500;
-    $results_count = 501;
+    $end = 200;
+    $cnt = 200;
+    $results_count = 201;
     
     $urls = [];
 
     while ($end < $results_count) {
       \Drupal::logger('umd_sitemap')->notice($start . ' ' . $end . ' ' . $results_count);
       $query = $index->query();
+      $query->setOption('search_api_retrieved_field_values', ['id', 'collection']);
       $query->addCondition('is_discoverable', TRUE);
-      $query->addCondition('presentation_set_label', $filter);
+      if ($sitemap != 'alldiscoverable' && $filter != 'alldiscoverable') {
+        $query->addCondition('presentation_set_label', $filter);
+      }
       $query->range($start, $end);
       $query->sort('id');
       $results = $query->execute();
