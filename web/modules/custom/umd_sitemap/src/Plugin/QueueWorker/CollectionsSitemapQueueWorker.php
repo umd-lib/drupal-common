@@ -58,9 +58,9 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
     }
     
     $start = 0;
-    $end = 600;
-    $cnt = 600;
-    $results_count = 601;
+    $end = 500;
+    $cnt = 500;
+    $results_count = 501;
     
     $urls = [];
 
@@ -74,6 +74,7 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
       }
       $query->range($start, $end);
       $query->sort('id');
+      $query->setProcessingLevel(\Drupal\search_api\Query\QueryInterface::PROCESSING_NONE);
       $results = $query->execute();
 
       $results_count = $results->getResultCount();
