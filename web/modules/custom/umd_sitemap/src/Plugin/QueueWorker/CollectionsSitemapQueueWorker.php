@@ -58,9 +58,9 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
     }
     
     $start = 0;
-    $end = 200;
-    $cnt = 200;
-    $results_count = 201;
+    $end = 600;
+    $cnt = 600;
+    $results_count = 601;
     
     $urls = [];
 
@@ -89,7 +89,6 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
         if (!empty($id)) {
           $id = str_replace('solr_document/', '', $id);
           $collection = $result->getField('collection')->getValues()[0];
-          \Drupal::logger('umd_sitemap')->notice($collection);
 
           $collection_raw = explode("/rest/", $collection);
 
@@ -103,7 +102,6 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
 
           $short_id = $this->fc->getFedoraItemHash($id);
           if (!empty($short_id)) {
-            \Drupal::logger('umd_sitemap')->notice($short_id);
             $processed_url = '/result/id/' . $short_id . '?relpath=' . $collection_prefix;
             $urls[] = $processed_url;
           }
@@ -112,7 +110,6 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
 
       $start = $end;
       $end = $end + $cnt;
-      \Drupal::logger('umd_sitemap')->notice($start . ' ' . $end . ' ' . $results_count);
     }
 
     if (count($urls) > 0) {

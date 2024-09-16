@@ -117,11 +117,9 @@ function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $si
     $query->range(1, 1000);
 
     $results = $query->execute();
-    \Drupal::logger('umd_sitemap')->notice($results->__toString());
 
     foreach ($results as $result) {
       $id = $result->getId();
-      \Drupal::logger('umd_sitemap')->notice($id);
       if (!empty($id)) {
         $id = str_replace('solr_document/', '', $id);
         $score_url = $scores_url . $id;
