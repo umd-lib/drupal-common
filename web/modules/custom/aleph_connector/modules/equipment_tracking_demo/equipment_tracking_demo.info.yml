@@ -13,4 +13,4 @@ default_content:
   - 6d1bdd7c-4c29-4b06-9dba-6daeb740c4f8
   - 2f210d66-639a-4540-8fce-fa65a8fcbe7b
 
-core_version_requirement: ^8.9 || ^9 || ^10
+core_version_requirement: ^11 || ^9 || ^10

@@ -48,9 +48,12 @@
 
   {{ exposed }}
   {{ attachment_before }}
+
   <div class="services-rows">
     {% if rows -%}
-      {{ rows }}
+      {% for row in rows %}
+        {{- row.content -}}
+      {% endfor %}
     {% elseif empty -%}
       {{ empty }}
     {% endif %}

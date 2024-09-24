@@ -1,4 +1,4 @@
-FROM drupal:10.2.2-php8.2-apache
+FROM drupal:10.3.1-php8.3-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
@@ -24,6 +24,10 @@ RUN apt-get install -y libldap2-dev \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-install ldap \
     && apt-get purge -y --auto-remove libldap2-dev
+
+# Install APCu
+RUN pecl install apcu \
+    && docker-php-ext-enable apcu
 
 # Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \

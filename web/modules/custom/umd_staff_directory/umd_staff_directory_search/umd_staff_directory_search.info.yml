@@ -9,4 +9,4 @@ dependencies:
   - umd_solr_defaults
 type: module
 
-core_version_requirement: ^8.9 || ^9 || ^10
+core_version_requirement: ^11 || ^9 || ^10

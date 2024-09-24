@@ -23,4 +23,4 @@ default_content:
   - 88169eb7-d835-42df-943e-0d4d3a44b039
   - 317787a1-fbaa-4ead-8851-6aceee37cf9e
 
-core_version_requirement: ^8.9 || ^9 || ^10
+core_version_requirement: ^11 || ^9 || ^10
