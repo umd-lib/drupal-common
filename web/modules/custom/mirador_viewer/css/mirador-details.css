@@ -99,3 +99,29 @@ table.dc-item-metadata dl > :nth-child(3n) {
     grid-template-columns: auto;
   }
 }
+
+@media (max-width: 768px) {
+  table.dc-item-metadata {
+    display: block;
+    overflow-x: auto;
+  }
+  table.dc-item-metadata th,
+  table.dc-item-metadata td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+    table.dc-item-metadata th{
+        padding: 16px 8px;
+    }
+}
+
+table.dc-item-metadata td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+table.dc-item-metadata {
+  max-width: 100%;
+  width: 100%;
+}
