@@ -50,6 +50,11 @@ function mirador_viewer_views_post_render($view) {
     $d_title = $results->_item->getField('title')->getValues();
   }
 
+  if ($view->id() == 'maryland_maps_detail' && count($view->result) > 0) {
+    $results = $view->result[0];
+    $d_title = $results->_item->getField('title')->getValues();
+  }
+
   if (!empty($d_title) && !empty($d_title[0])) {
     $new_title = $d_title[0];
     $view->setTitle($new_title);

@@ -28,6 +28,23 @@ class FedoraUtility {
     return $val;
   }
 
+  public function getIIIFRestrictedViewer() {
+    $val = $this->config->get('iiif_viewer_restricted');
+    if (empty($val)) {
+      return NULL;
+    }
+    return $val;
+  }
+
+  public function getRestrictedCollections() {
+    $val = $this->config->get('restricted_collections');
+    if (empty($val)) {
+      return [];
+    }
+    return $val;
+  }
+
+
   public function getIIIFError() {
     $val = $this->config->get('error_message');
     if (empty($val)) {

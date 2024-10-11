@@ -52,6 +52,23 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('iiif_viewer'),
       '#description' => $this->t('E.g., viewer/1.2.0/mirador.html'),
     ];
+    $form['iiif_viewer_restricted'] = [
+      '#type' => 'textfield',  
+      '#title' => $this->t('IIIF Viewer Path (restricted)'),  
+      '#default_value' => $config->get('iiif_viewer_restricted'),
+      '#description' => $this->t('E.g., viewer-pcb/1.2.0/mirador.html'),
+    ];
+
+    $restricted_string = NULL;
+    if (!empty($config->get('restricted_collections'))) {
+      $restricted_string = implode("\r\n", $config->get('restricted_collections'));
+    }
+    $form['restricted_collections'] = [  
+      '#type' => 'textarea',  
+      '#title' => $this->t('Restricted Collections'),  
+      '#default_value' => $restricted_string,
+      '#description' => $this->t('Presentation Sets. One per line.'),
+    ];
     $form['fcrepo_server'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Fcrepo Server'),
@@ -83,7 +100,17 @@ class SettingsForm extends ConfigFormBase {
    * {@inheritdoc}  
    */  
   public function submitForm(array &$form, FormStateInterface $form_state) {  
-    parent::submitForm($form, $form_state);  
+    parent::submitForm($form, $form_state);
+
+    if (!empty($form_state->getValue('restricted_collections'))) {
+      $restricted_array = explode("\r\n", $form_state->getValue('restricted_collections'));
+
+      if (!empty($restricted_array) && count($restricted_array) > 0) {
+        $this->config('mirador_viewer.adminsettings')  
+          ->set('restricted_collections', $restricted_array)  
+          ->save();
+      }  
+    }
 
     $this->config('mirador_viewer.adminsettings')  
       ->set('fcrepo_token', $form_state->getValue('fcrepo_token'))  
@@ -98,9 +125,12 @@ class SettingsForm extends ConfigFormBase {
       ->save();
 
     $this->config('mirador_viewer.adminsettings')  
-      ->set('fcrepo_server', $form_state->getValue('fcrepo_server'))  
+      ->set('iiif_viewer_restricted', $form_state->getValue('iiif_viewer_restricted'))  
       ->save();
 
+    $this->config('mirador_viewer.adminsettings')  
+      ->set('fcrepo_server', $form_state->getValue('fcrepo_server'))  
+      ->save();
 
     $this->config('mirador_viewer.adminsettings')  
       ->set('fcrepo_prefix', $form_state->getValue('fcrepo_prefix'))  

@@ -17,15 +17,37 @@ class DisplayMiradorController extends ControllerBase implements TrustedCallback
     $this->fc = new FedoraUtility();
   }
 
-  public function viewMiradorObject($object_id, $collection_id, $query_str = null, $derive = true) {
+  public function viewMiradorObject($object_id, $collection_id, $query_str = null, $set_labels = [], $derive = true) {
     $object_id = $derive ? $this->fc->getFedoraItemHash($object_id) : $object_id;
     if (empty($object_id)) {
       return NULL;
-    } 
+    }
+    $restricted = FALSE;
+    $restricted_viewer = $this->fc->getIIIFRestrictedViewer();
+    if ($restricted_viewer) {
+\Drupal::logger('mirador')->info($restricted_viewer);
+      $restricted_collections = $this->fc->getRestrictedCollections();
+\Drupal::logger('mirador')->info(json_encode($restricted_collections));
+\Drupal::logger('mirador')->info(json_encode($set_labels));
+      if (!empty($restricted_collections)) {
+        foreach ($set_labels as $key => $label) {
+\Drupal::logger('mirador')->info($label);
+          if (in_array($label, $restricted_collections)) {
+            $restricted = TRUE;
+          }
+        }
+      }
+    }
+
+    if ($restricted) {
+\Drupal::logger('mirador')->info('restricted is true');
+
+    }
+     
     return [
       '#theme' => 'mirador_viewer',
       '#iiif_server' => $this->fc->getIIIFServer(),
-      '#iiif_viewer' => $this->fc->getIIIFViewer(),
+      '#iiif_viewer' => $restricted ? $restricted_viewer : $this->fc->getIIIFViewer(),
       '#error_message' => $this->fc->getIIIFError(),
       '#object_id' => $object_id,
       '#collection_id' => $collection_id,

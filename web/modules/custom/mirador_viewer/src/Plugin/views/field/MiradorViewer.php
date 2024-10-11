@@ -60,6 +60,11 @@ class MiradorViewer extends FieldPluginBase {
     $fc = new FedoraUtility();
     $entity = $values->_item;
     $id = $entity->getId();
+    $set_label_field = $entity->getField('presentation_set_label');
+    $set_labels = [];
+    if (!empty($set_label_field)) {
+      $set_labels = $set_label_field->getValues();
+    }
     $param = \Drupal::routeMatch()->getParameters();
     $raw_param = \Drupal::routeMatch()->getParameter('arg_0');
     parse_str($raw_param, $url_array);
@@ -87,7 +92,8 @@ class MiradorViewer extends FieldPluginBase {
     }
     $pcdm_prefix = str_replace('/', ':', $pcdm_prefix);
     $c = new DisplayMiradorController();
-    $render = $c->viewMiradorObject($id, $pcdm_prefix, $query_str);
+\Drupal::logger('mirador')->info(json_encode($set_labels));
+    $render = $c->viewMiradorObject($id, $pcdm_prefix, $query_str, $set_labels);
     if (!empty($render)) {
       return $render;
     }
