@@ -69,9 +69,9 @@ class ReusableSearchbarBlock extends BlockBase implements ContainerFactoryPlugin
   public function build() {
     $blockConfig = $this->getConfiguration();
     $search_action = $blockConfig['search_page'];
-    $search_placeholder = $blockConfig['search_placeholder'];
-    $search_title = $blockConfig['search_title'];
-    $search_param = $blockConfig['search_param'];
+    $search_placeholder = !empty($blockConfig['search_placeholder']) ? $blockConfig['search_placeholder'] : null;
+    $search_title = !empty($blockConfig['search_title']) ? $blockConfig['search_title'] : null;
+    $search_param = !empty($blockConfig['search_param']) ? $blockConfig['search_param'] : null;
     $search_custom_param = !empty($blockConfig['search_custom_param']) ? $blockConfig['search_custom_param'] : null;
     $search_custom_param_value = !empty($blockConfig['search_custom_param_value']) ? $blockConfig['search_custom_param_value'] : null;
     $search_facet = !empty($blockConfig['search_facet']) ? $blockConfig['search_facet'] : null;
