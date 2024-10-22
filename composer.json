@@ -45,6 +45,7 @@
         "drupal/honeypot": "^2.1",
         "drupal/imageapi_optimize": "^4.0",
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
+        "drupal/js_cookie": "^1.0",
         "drupal/language_switcher_extended": "^1.1",
         "drupal/link_attributes": "^2.1",
         "drupal/linkit": "^6.0",
