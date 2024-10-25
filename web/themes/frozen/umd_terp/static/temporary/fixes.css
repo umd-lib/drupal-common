@@ -27,6 +27,9 @@
   .image-grid-field .umd-gallery-content img {
     width: 100%;
   }
+  .image-grid-field .umd-gallery-content .field-information-url {
+    font-weight: bold;
+  }
 
 /* Facets */
 
