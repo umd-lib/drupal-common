@@ -78,15 +78,19 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
     $query->addParam('files.fl', 'id,title,filename,mime_type');
     $query->addParam('files.fq', 'mime_type:application/pdf');
     $keys = $search_query->getKeys();
-    if (!preg_match('/^(["\']).*\1$/m', $keys)) {
-      $keys = $this->stripQueryChars($keys);
-      $search_query->keys($keys);
+    if (!empty($keys)) {
+      if (!preg_match('/^(["\']).*\1$/m', $keys)) {
+        $keys = $this->stripQueryChars($keys);
+        $search_query->keys($keys);
+      }
     }
   }
 
   public function stripQueryChars($keys) {
     $replace_me = [ '[', ']', '{', '}', '*', '+', '(', ')', ':', '%' ];
-    $keys = str_replace($replace_me, '', $keys);
+    if (!empty($keys)) {
+      $keys = str_replace($replace_me, '', $keys);
+    }
     return $keys;
   }
 
@@ -105,11 +109,13 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
     }
     $keys = $query->getKeys();
     $solarium_query = $event->getSolariumQuery();
+    // $builder = $solarium_query->getRequestBuilder();
     $raw_query = $solarium_query->getQuery();
+    $query_str = NULL;
     if (!empty($keys)) {
-      $query_str = "_query_:{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND}" . str_replace('"', '', $this->stripQueryChars($keys)) . " ";
+      // $query_str = "_query_:{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND}" . str_replace('"', '', $this->stripQueryChars($keys)) . " ";
     } else {
-      $query_str = "_query_:{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND} ";
+      // $query_str = "_query_:{!type=graph from=id to=extracted_text_source maxDepth=1 q.op=AND} ";
     }
 
     if (!empty($raw_query)) {
@@ -117,5 +123,8 @@ class SolrQueryAlterEventSubscriber implements EventSubscriberInterface {
     }
 
     $solarium_query->setQuery($query_str);
+    // $r = $builder->build($solarium_query);
+    // dsm($r);
+    // dsm($r->getUri());
   }
 }
