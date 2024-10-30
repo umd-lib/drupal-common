@@ -15,65 +15,155 @@
 #}
 {{ attach_library('hero_search/hero-search') }}
 <div class='hero-search-block'>
-  <div class='hero-search-top'>
-    <h2 class="hero-search-title">{{ hero_search_title }}</h2>
-    <span class='hero-search-title-sub'>
-      {% if hero_top_content %}
-        {{ hero_top_content|raw }}
-      {% endif %}
-    </span>
-  </div>
-  <div class='hero-search-box'>
-    {{ hero_search_form }}
-    {% if hero_quick_actions %}
-      <div class="hero-search-box-dropdown" id="hero-search-box-dropdown">
-        <div class="hero-search-dropdown-content">
-          {{ hero_quick_actions|raw }}
+  <div class='search-feature'>
+    <div class="search-feature-header">
+      <h2 class="search-feature-title">{{ hero_search_title }}</h2>
+      <div class='search-feature-description'>
+        {% if hero_top_content %}
+          {{ hero_top_content|raw }}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="search-feature-tab">
+      <div class="tab-button">
+      {# tab button, currently design for 2 tabs #}
+         <ul role="tablist" class="tab-list">
+         {# TODO: Refactor needed, 2 tab button #}
+          <li role="presentation">
+            <button role="tab" class="tab-button active" id="tab-button-1" aria-controls="tab-content-1" aria-selected="true" tabindex="0">
+              UMD Discover
+            </button>
+          </li>
+          <li role="presentation">
+            <button role="tab" class="tab-button" id="tab-button-2" aria-controls="tab-content-2" aria-selected="false" tabindex="-1">
+              Search All
+            </button>
+          </li>
+         </ul>
+      </div>
+      <div class="tab-content">
+      {# TODO: Refactor needed, 2 tab content #}
+      {# tab content #}
+        <div class="tab-input active" id="tab-content-1" role="tabpanel" aria-hidden="false">
+          <div class="input-form">
+            <form class="hero-search-form" data-drupal-selector="hero-search-form" action="/" method="post" id="hero-search-form" accept-charset="UTF-8">
+              <input data-drupal-selector="form-opce6m-dasusid4uqflfdvdu6qjmuzcroq2srww44xa" type="hidden" name="form_build_id" value="form-oPcE6M-DAsusiD4UqfLFDvdu6QJMUZCroQ2SRWw44XA">
+              <input data-drupal-selector="edit-hero-search-form" type="hidden" name="form_id" value="hero_search_form">
+              <div class="hero-search-form">
+                <div class="hero-search-input">
+                  <div class="js-form-item form-item js-form-type-textfield form-item-search-query js-form-item-search-query form-no-label">
+                    <input id="search-query-input-all" aria-label="Search libraries resources using Search All." autocomplete="off" data-drupal-selector="edit-0" type="text" name="search_query" value="" size="50" maxlength="128" placeholder="Search for books, articles, journals and more..." class="form-text" data-drupal-states="{&quot;enabled&quot;:{&quot;:input[name=\u0022search_target\u0022]&quot;:{&quot;value&quot;:&quot;All&quot;}},&quot;visible&quot;:{&quot;:input[name=\u0022search_target\u0022]&quot;:{&quot;value&quot;:&quot;All&quot;}}}" data-once="states">
+                  </div>
+                  <input data-drupal-selector="edit-submit" type="submit" id="edit-submit" name="op" value="Search" class="button js-form-submit form-submit btn btn-primary">
+                </div>
+                <div class="hero-search-options">
+                  <input data-drupal-selector="edit-search-target" type="hidden" name="search_target" value="All">
+                </div>
+                <div class="hero-search-advanced">
+                  <span class="hero-search-left-align darklinks"></span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-description">
+            <p>Detailed collection search results from UMD Libraries collections and from libraries worldwide.</p>
+          </div>
+          {# dropdown component #}
+          <div class="hero-search-box-dropdown" id="hero-search-box-dropdown">
+            <div class="hero-search-dropdown-content">
+              <div class="quick-action">
+                <h3 class="drop-down-subtitle">Quick Actions</h3>
+                <ul class="quick-action-options" role="list">
+                  <li>
+                    <a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?tab=CentralIndex&amp;search_scope=CentralIndex&amp;vid=01USMAI_UMCP%3AUMCP&amp;offset=0" class="quick-action-option" id="search-dropdown-articles">Search <span>Articles</span> in UMD Discover</a>
+                  </li>
+                  <li>
+                    <a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?tab=Books_only_slot&amp;search_scope=BooksOnly&amp;vid=01USMAI_UMCP%3AUMCP" class="quick-action-option" id="search-dropdown-books">Search <span>Books</span> in UMD Discover</a>
+                  </li>
+                  <li>
+                    <a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/jsearch?vid=01USMAI_UMCP%3AUMCP&amp;tab=jsearch_slot&amp;offset=0" class="quick-action-option" id="search-dropdown-journals">Search <span>Journal Titles</span> in UMD Discover</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="tab-input" id="tab-content-2" role="tabpanel" aria-hidden="true">
+          <div class="input-form">
+            <form class="hero-search-form" data-drupal-selector="hero-search-form" action="/" method="post" id="hero-search-form" accept-charset="UTF-8">
+              <input data-drupal-selector="form-opce6m-dasusid4uqflfdvdu6qjmuzcroq2srww44xa" type="hidden" name="form_build_id" value="form-oPcE6M-DAsusiD4UqfLFDvdu6QJMUZCroQ2SRWw44XA">
+              <input data-drupal-selector="edit-hero-search-form" type="hidden" name="form_id" value="hero_search_form">
+              <div class="hero-search-form">
+                <div class="hero-search-input">
+                  <div class="js-form-item form-item js-form-type-textfield form-item-search-query js-form-item-search-query form-no-label">
+                    <input id="search-query-input-all" aria-label="Search libraries resources using Search All." autocomplete="off" data-drupal-selector="edit-0" type="text" name="search_query" value="" size="50" maxlength="128" placeholder="Search libraries collections, websites, research guides and more..." class="form-text" data-drupal-states="{&quot;enabled&quot;:{&quot;:input[name=\u0022search_target\u0022]&quot;:{&quot;value&quot;:&quot;All&quot;}},&quot;visible&quot;:{&quot;:input[name=\u0022search_target\u0022]&quot;:{&quot;value&quot;:&quot;All&quot;}}}" data-once="states">
+                  </div>
+                  <input data-drupal-selector="edit-submit" type="submit" id="edit-submit" name="op" value="Search" class="button js-form-submit form-submit btn btn-primary">
+                </div>
+                <div class="hero-search-options">
+                  <input data-drupal-selector="edit-search-target" type="hidden" name="search_target" value="All">
+                </div>
+                <div class="hero-search-advanced">
+                  <span class="hero-search-left-align darklinks"></span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-description">
+            <p>Preview results from libraries collections, databases, Libraries’ websites, research guides, FAQs, and Database Finder and more.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  {# resource links #}
+  <div class='resource-links'>
+    {% if hero_discover_links %}
+      <div class='umd-discover-link'>
+        <h3 class='umd-discover-title'><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP%3AUMCP&lang=en"><strong>UMD Discover</strong></a></h3>
+        <div aria-hidden="true" class="title-divider">-</div>
+        <ul role="list">
+          {% for disc_name, disc_value in hero_discover_links %}
+            {% if disc_name %}
+              <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
+              {% if loop.last == false %}
+                <li aria-hidden="true" class="list-divider">/</li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    {% if hero_search_more_links %}
+      <div class='search-all-link'>
+        <h3 class='search-all-title'><a href="/search"><strong>Search All</strong></a></h3>
+        <div aria-hidden="true" class="title-divider">-</div>
+        <ul role="list">
+          {% for sm_name, sm_value in hero_search_more_links %}
+            {% if sm_name %}
+              <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
+              {% if loop.last == false %}
+                <li aria-hidden="true" class="list-divider">/</li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </ul>
       </div>
     {% endif %}
   </div>
   
-  {% if hero_discover_links %}
-    <div class='discover-links'>
-      <h3 class='discover-title'><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP%3AUMCP&lang=en"><strong>UMD Discover</strong></a></h3>
-      <div aria-hidden="true" class="title-divider">-</div>
-      <ul role="list">
-        {% for disc_name, disc_value in hero_discover_links %}
-          {% if disc_name %}
-            <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
-            {% if loop.last == false %}
-              <li aria-hidden="true" class="list-divider">/</li>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-  {% if hero_search_more_links %}
-    <div class='search-more-links'>
-      <h3 class='search-more-title'><a href="/search"><strong>Search All</strong></a></h3>
-      <div aria-hidden="true" class="title-divider">-</div>
-      <ul role="list">
-        {% for sm_name, sm_value in hero_search_more_links %}
-          {% if sm_name %}
-            <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
-            {% if loop.last == false %}
-              <li aria-hidden="true" class="list-divider">/</li>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
+  {# alert #}
   {% if hero_search_alert %}
-    <div class="hero-search-alert">
+    <div class="hero-search-block-alert">
       <p class="alert-text" aria-label="Search Box Alert">
         {{ hero_search_alert|raw }}
       </div>
     </p>
   {% endif %}
-  <div class='hero-search-bottom'>
+
+  {# footer #}
+  <div class='hero-search-block-footer'>
     {% if hero_bottom_content %}
       {{ hero_bottom_content|raw }}
     {% endif %}
