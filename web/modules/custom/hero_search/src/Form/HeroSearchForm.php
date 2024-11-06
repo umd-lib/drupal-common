@@ -62,16 +62,13 @@ class HeroSearchForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    $search_targets = $this->configHelper->getSearchTargets();
-    foreach ($search_targets as $search_target_config) {
-      $this->buildSearchQueryTextField($form, $search_target_config);
-    }
+  public function buildForm(array $form, FormStateInterface $form_state, $defaults = array()) {
+    $this->buildSearchQueryTextField($form, $defaults);
 
     $form['search_target'] = [
       '#type' => 'hidden',
       '#name' => 'search_target',
-      '#default_value' => array_key_first($this->configHelper->getSearchTargetOptions()),
+      '#default_value' => $defaults['search_target'],
     ];
 
     $form['actions']['#type'] = 'actions';
@@ -104,16 +101,8 @@ class HeroSearchForm extends FormBase {
       '#maxlength' => 128,
       '#attributes' => [
         'id' => $id,
-        'aria-label' => t('Search libraries resources using Search All.'),
+        'aria-label' => $search_target_config['placeholder'],
         'autocomplete' => 'off',
-      ],
-      '#states' => [
-        'enabled' => [
-          ':input[name="search_target"]' => ['value' => $search_target_name],
-        ],
-        'visible' => [
-          ':input[name="search_target"]' => ['value' => $search_target_name],
-        ],
       ],
     ];
   }

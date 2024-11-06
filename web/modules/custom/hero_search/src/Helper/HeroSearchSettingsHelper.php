@@ -73,8 +73,8 @@ class HeroSearchSettingsHelper {
    * @return array
    *   An associative array of configuration information for search targets.
    */
-  public function getSearchTargets() {
-    return $this->getConfigArray('search_targets', 'search_target');
+  public function getSearchTargets($field_name = 'search_targets') {
+    return $this->getConfigArray($field_name, 'search_target');
   }
 
   /**
