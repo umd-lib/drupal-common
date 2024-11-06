@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function initializeSearch() {
-  const searchInput = document.getElementById("search-query-input-all");
+  const searchInput = document.getElementById("search-query-input-discover");
   const dropdowns = {
     articles: {
       element: document.getElementById("search-dropdown-articles"),
