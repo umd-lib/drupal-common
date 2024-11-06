@@ -35,6 +35,13 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
   protected $renderer;
 
   /**
+   * The HeroSearchSettingsHelper instance.
+   *
+   * @var Drupal\hero_search\Helper\HeroSearchSettingsHelper
+   */
+  protected $configHelper;
+
+  /**
    * Constructor.
    *
    * @param array $configuration
@@ -57,6 +64,7 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->formBuilder = $formBuilder;
     $this->renderer = $renderer;
+    $this->configHelper = HeroSearchSettingsHelper::getInstance();
   }
 
   /**
@@ -76,20 +84,38 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
    * {@inheritdoc}
    */
   public function build() {
-    $configHelper = HeroSearchSettingsHelper::getInstance();
-    $form = $this->formBuilder->getForm('Drupal\hero_search\Form\HeroSearchForm');
-    $rendered_form = $this->renderer->render($form);
-    $hero_search_alert = $configHelper->getAlert();
-    $discover_links = $configHelper->getDiscoverLinks();
-    $top_content = $configHelper->getTopContent();
-    $bottom_content = $configHelper->getBottomContent();
-    $search_more_links = $configHelper->getSearchMoreLinks();
-    $quick_actions = $configHelper->getQuickActions();
-    $title = $configHelper->getSearchTitle();
+    $search_targets = $this->configHelper->getSearchTargets();
+
+
+    $forms = [];
+    $tabs = [];
+    foreach ($search_targets as $target) {
+      $forms[] = $this->formBuilder->getForm('Drupal\hero_search\Form\HeroSearchForm', $target);
+      $tabs[] = ['tab' => $target['tab'], 'description' => $target['description'], 'show_quicklinks' => $target['show_quicklinks']];
+    }
+    $form_defaults = array();
+    $form_defaults['search_config'] = 'search_targets';
+    $search_form = $this->formBuilder->getForm('Drupal\hero_search\Form\HeroSearchForm', $form_defaults);
+    $rendered_search_form = $this->renderer->render($search_form);
+
+    $form_defaults = array();
+    $form_defaults['search_config'] = 'discover_targets';
+    $discover_form = $this->formBuilder->getForm('Drupal\hero_search\Form\HeroSearchForm', $form_defaults);
+    $rendered_discover_form = $this->renderer->render($discover_form);
+
+    $hero_search_alert = $this->configHelper->getAlert();
+    $discover_links = $this->configHelper->getDiscoverLinks();
+    $top_content = $this->configHelper->getTopContent();
+    $bottom_content = $this->configHelper->getBottomContent();
+    $search_more_links = $this->configHelper->getSearchMoreLinks();
+    $quick_actions = $this->configHelper->getQuickActions();
+    $title = $this->configHelper->getSearchTitle();
     return [
       '#theme' => 'hero_search_block',
       '#hero_search_title' => $title,
-      '#hero_search_form' => $rendered_form,
+      '#hero_search_forms' => $forms,
+      '#hero_search_tabs' => $tabs,
+      '#hero_discover_form' => $rendered_discover_form,
       '#hero_search_alert' => $hero_search_alert,
       '#hero_discover_links' => $discover_links,
       '#hero_search_more_links' => $search_more_links,
