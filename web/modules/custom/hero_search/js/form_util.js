@@ -75,11 +75,30 @@ function initializeTabs() {
     const currentIdx = Array.from(tabs).indexOf(target);
     let nextTab;
 
+    // Updated key actions to support multiple tabs
     const keyActions = {
-      ArrowLeft: () => (currentIdx === 1 ? tabs[0] : target),
-      ArrowRight: () => (currentIdx === 0 ? tabs[1] : target),
-      Home: () => tabs[0],
-      End: () => tabs[1],
+      ArrowLeft: () => {
+        // Move to previous tab, wrap to end if at start
+        const newIndex = currentIdx === 0 ? tabs.length - 1 : currentIdx - 1;
+        return tabs[newIndex];
+      },
+      ArrowRight: () => {
+        // Move to next tab, wrap to start if at end
+        const newIndex = currentIdx === tabs.length - 1 ? 0 : currentIdx + 1;
+        return tabs[newIndex];
+      },
+      Home: () => tabs[0], // First tab
+      End: () => tabs[tabs.length - 1], // Last tab
+      ArrowDown: () => {
+        // Same as ArrowRight for horizontal tabs
+        const newIndex = currentIdx === tabs.length - 1 ? 0 : currentIdx + 1;
+        return tabs[newIndex];
+      },
+      ArrowUp: () => {
+        // Same as ArrowLeft for horizontal tabs
+        const newIndex = currentIdx === 0 ? tabs.length - 1 : currentIdx - 1;
+        return tabs[newIndex];
+      },
     };
 
     if (keyActions[e.key]) {
