@@ -5,7 +5,8 @@
  *
  * Variables:
  *   - hero_search_title
- *   - hero_search_form
+ *   - hero_search_forms
+ *   - hero_search_tabs
  *   - hero_search_alert
  *   - hero_discover_links
  *   - hero_search_more_links
@@ -15,65 +16,103 @@
 #}
 {{ attach_library('hero_search/hero-search') }}
 <div class='hero-search-block'>
-  <div class='hero-search-top'>
-    <h2 class="hero-search-title">{{ hero_search_title }}</h2>
-    <span class='hero-search-title-sub'>
-      {% if hero_top_content %}
-        {{ hero_top_content|raw }}
-      {% endif %}
-    </span>
+  <div class='search-feature'>
+    <div class="search-feature-header">
+      <h2 class="search-feature-title">{{ hero_search_title }}</h2>
+      <div class='search-feature-description'>
+        {% if hero_top_content %}
+          {{ hero_top_content|raw }}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="search-feature-tab">
+      <div class="tab-button">
+        <ul role="tablist" class="tab-list">
+          {% for tab in hero_search_tabs %}
+            <li role="presentation">
+              <button role="tab"
+                      class="tab-button {% if loop.first %}active{% endif %}"
+                      id="tab-button-{{ loop.index }}"
+                      aria-controls="tab-content-{{ loop.index }}"
+                      aria-selected="true"
+                      tabindex="{{ loop.index }}">
+                {{ tab['tab'] }}
+              </button>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="tab-content">
+        {% for form in hero_search_forms %}
+          <div class="tab-input {% if loop.first %}active{% endif %}" id="tab-content-{{ loop.index }}" role="tabpanel" aria-hidden="false">
+            <div class="input-form">
+              {{ form }}
+            </div>
+            <div class="tab-description">
+              <p>{{ hero_search_tabs[loop.index - 1]['description'] }}</p>
+            </div>
+            {# dropdown component #}
+            {% if hero_search_tabs[loop.index - 1]['show_quicklinks'] %}
+              <div class="hero-search-box-dropdown" id="hero-search-box-dropdown">
+                <div class="hero-search-dropdown-content">
+                  {{ hero_quick_actions|raw }}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-  <div class='hero-search-box'>
-    {{ hero_search_form }}
-    {% if hero_quick_actions %}
-      <div class="hero-search-box-dropdown" id="hero-search-box-dropdown">
-        <div class="hero-search-dropdown-content">
-          {{ hero_quick_actions|raw }}
-        </div>
+  
+  {# resource links #}
+  <div class='resource-links'>
+    {% if hero_discover_links %}
+      <div class='umd-discover-link'>
+        <h3 class='umd-discover-title'><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP%3AUMCP&lang=en"><strong>UMD Discover</strong></a></h3>
+        <div aria-hidden="true" class="title-divider">-</div>
+        <ul role="list">
+          {% for disc_name, disc_value in hero_discover_links %}
+            {% if disc_name %}
+              <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
+              {% if loop.last == false %}
+                <li aria-hidden="true" class="list-divider">/</li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    {% if hero_search_more_links %}
+      <div class='search-all-link'>
+        <h3 class='search-all-title'><a href="/search"><strong>Search All</strong></a></h3>
+        <div aria-hidden="true" class="title-divider">-</div>
+        <ul role="list">
+          {% for sm_name, sm_value in hero_search_more_links %}
+            {% if sm_name %}
+              <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
+              {% if loop.last == false %}
+                <li aria-hidden="true" class="list-divider">/</li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </ul>
       </div>
     {% endif %}
   </div>
   
-  {% if hero_discover_links %}
-    <div class='discover-links'>
-      <h3 class='discover-title'><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP%3AUMCP&lang=en"><strong>UMD Discover</strong></a></h3>
-      <div aria-hidden="true" class="title-divider">-</div>
-      <ul role="list">
-        {% for disc_name, disc_value in hero_discover_links %}
-          {% if disc_name %}
-            <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
-            {% if loop.last == false %}
-              <li aria-hidden="true" class="list-divider">/</li>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-  {% if hero_search_more_links %}
-    <div class='search-more-links'>
-      <h3 class='search-more-title'><a href="/search"><strong>Search All</strong></a></h3>
-      <div aria-hidden="true" class="title-divider">-</div>
-      <ul role="list">
-        {% for sm_name, sm_value in hero_search_more_links %}
-          {% if sm_name %}
-            <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
-            {% if loop.last == false %}
-              <li aria-hidden="true" class="list-divider">/</li>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
+  {# alert #}
   {% if hero_search_alert %}
-    <div class="hero-search-alert">
+    <div class="hero-search-block-alert">
       <p class="alert-text" aria-label="Search Box Alert">
         {{ hero_search_alert|raw }}
-      </div>
-    </p>
+      </p>
+    </div>
   {% endif %}
-  <div class='hero-search-bottom'>
+
+  {# footer #}
+  <div class='hero-search-block-footer'>
     {% if hero_bottom_content %}
       {{ hero_bottom_content|raw }}
     {% endif %}
