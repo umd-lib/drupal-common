@@ -1,10 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Initialize search functionality
-  initializeSearch();
+Drupal.behaviors.heroBlock = {
+  attach: function (context, settings) {
+    // Initialize search functionality
+    initializeSearch();
 
-  // Initialize tabs functionality
-  initializeTabs();
-});
+    // Initialize tabs functionality
+    initializeTabs();
+  }
+};
 
 function initializeSearch() {
   const searchInput = document.getElementById("search-query-input-discover");
