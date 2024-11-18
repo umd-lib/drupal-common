@@ -6,7 +6,7 @@ use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileExists;
 use Drupal\file\Entity\File;
 use Drupal\search_api\Entity\Index;
 use Drupal\mirador_viewer\Utility\FedoraUtility;
@@ -118,7 +118,7 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
     }
     $filename = 'public://' . $sitemap . '.txt';
     $file_repo = \Drupal::service('file.repository');
-    $file_repo->writeData($data, $filename, FileSystemInterface::EXISTS_REPLACE);
+    $file_repo->writeData($data, $filename, FileExists::Replace);
     \Drupal::logger('umd_sitemap')->notice('processing umd sitemap queue completed for ' . $sitemap);
   }
 }
