@@ -3,7 +3,6 @@ description: Apply Masonry plugin to gallery field.
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - masonry
 type: module
 

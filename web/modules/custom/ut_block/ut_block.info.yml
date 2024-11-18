@@ -3,7 +3,6 @@ description: Provides a paragraphs bundle for embedding custom blocks.
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - paragraphs
   - umd_terp_base
   - block_field

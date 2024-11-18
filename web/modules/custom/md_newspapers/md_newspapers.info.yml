@@ -3,6 +3,5 @@ description: 'Solr search and detail pages for Maryland Newspapers metadata coll
 package: 'UMD Services'
 dependencies:
   - search_api_solr
-  - easy_install
 type: module
 core_version_requirement: ">=8"

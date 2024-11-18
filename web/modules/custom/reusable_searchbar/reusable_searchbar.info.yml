@@ -3,7 +3,6 @@ description: Provides a dropable block to be used on collection landing pages.
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - ut_block
 type: module
 

@@ -3,7 +3,6 @@ description: A collection of facet overrides.
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - facets
 type: module
 

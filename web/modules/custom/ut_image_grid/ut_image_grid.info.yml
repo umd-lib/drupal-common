@@ -3,7 +3,6 @@ description: Provides a paragraphs for a grid of images.
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - paragraphs
   - umd_terp_base
   - colorbox
