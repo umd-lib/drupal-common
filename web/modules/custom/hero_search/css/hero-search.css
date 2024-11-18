@@ -123,9 +123,10 @@
   border-bottom: var(--number-005, 2px) solid var(--border-sytem-input, #bdbfc8);
   background: var(--background-system-tertiary, #e9eaef);
   color: var(--content-system-secondary, #55575e);
-
+  
+  height: 100%;
   display: flex;
-  padding: 8px 16px;
+  padding: 8px 24px;
   justify-content: center;
   align-items: center;
 
