@@ -3,7 +3,6 @@ description: A module for displaying Equipment Tracking information from Aleph.
 
 package: 'UMD Services'
 dependencies:
-  - aleph_connector
   - easy_install
   - cshs
   - views
