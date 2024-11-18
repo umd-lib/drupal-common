@@ -43,7 +43,7 @@
         "drupal/google_analytics": "^4.0",
         "drupal/google_tag": "^1.4",
         "drupal/honeypot": "^2.1",
-        "drupal/imageapi_optimize": "^4.0",
+        "drupal/imageapi_optimize": "^4.1@beta",
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
         "drupal/js_cookie": "^1.0",
         "drupal/language_switcher_extended": "^1.1",
@@ -120,6 +120,18 @@
           },
           "drupal/fontawesome": {
             "Fontawesome Compat for D10": "https://www.drupal.org/files/issues/2023-06-05/3274028-fontawesome-ckeditor5-compatibility-16.patch"
+          },
+          "drupal/external_data_source": {
+            "D11 compat for eds": "https://www.drupal.org/files/issues/2024-03-17/external_data_source.3.1.0.rector.patch"
+          },
+          "drupal/masquerade_log": {
+            "D11 compat for ml": "https://www.drupal.org/files/issues/2024-03-18/masquerade_log.8.x-1.2.rector.patch"
+          },
+          "drupal/varnish_purge": {
+            "D11 compat for vp": "https://www.drupal.org/files/issues/2024-08-28/varnish_purge-d11.patch"
+          },
+          "drupal/tablefield": {
+            "D11 compat for tf": "https://www.drupal.org/files/issues/2024-06-02/tablefield.2.x-dev.rector.patch"
           }
         },
         "drupal-scaffold": {
