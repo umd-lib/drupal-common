@@ -44,9 +44,9 @@ installed.
 5) Clone the drupal-projects-env repository locally and copy the env file into your web root (i.e., common-www) as .env:
 
 ```
-> git clone git@github.com:umd-lib/drupal-projects-env.git
+> git clone https://github.com/umd-lib/drupal-projects-env.git
 > cp drupal-projects-env/env common-www/.env
-> cp drupal-projects-env/web/sites/default/settings.php common-www/web/sites/default/settings.php
+> cp drupal-projects-env/web/site/default/settings.php common-www/web/sites/default/settings.php 
 ```
 
 6) Edit the "common-www/.env" file:
@@ -78,7 +78,7 @@ and copy to postgres-init:
 to common-www/web/sites/default/:
 
 ```
-> cp drupal-projects-env/web/sites/default/services.yml common-www/web/sites/default/
+> cp drupal-projects-env/web/site/default/services.yml common-www/web/sites/default/
 ```
 
 (See additional post-startup development steps in the
