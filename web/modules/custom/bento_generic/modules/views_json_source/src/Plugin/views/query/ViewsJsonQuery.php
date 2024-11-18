@@ -24,6 +24,8 @@ use Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher;
  */
 class ViewsJsonQuery extends QueryPluginBase {
 
+  public $fields;
+
   /**
    * To store the contextual Filter info.
    *

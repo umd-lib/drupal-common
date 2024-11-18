@@ -14,6 +14,8 @@ use Drupal\Component\Utility\Html;
  */
 class ViewsJsonField extends FieldPluginBase {
 
+  public $table_alias;
+
   /**
    * Render.
    */
