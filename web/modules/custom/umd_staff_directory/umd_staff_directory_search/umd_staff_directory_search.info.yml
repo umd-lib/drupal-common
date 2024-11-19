@@ -3,7 +3,6 @@ description: Solr based advanced search for Staff Directory.
 
 package: 'UMD Custom'
 dependencies:
-  - easy_install
   - views
   - umd_staff_directory:umd_terp_person_extensions
   - umd_solr_defaults

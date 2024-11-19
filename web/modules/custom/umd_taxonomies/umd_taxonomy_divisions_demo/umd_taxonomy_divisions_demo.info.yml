@@ -7,16 +7,7 @@ description: Demo data for umd_taxonomy_divisions
 
 package: 'UMD Taxonomies Demo Content'
 dependencies:
-  - default_content:default_content
   - umd_taxonomy_divisions
 type: module
-default_content:
-  taxonomy_term:
-  # An array of term UUIDs.
-  - 79cb5c64-ff22-4ff2-a43f-afe8513bdd55
-  - 542ee33d-98a4-4d39-ace4-0eb5387dea27
-  - 532d283c-efa4-464b-9ae0-79319b8c47ae
-  - e85d2490-9847-4de3-b458-c30b1c71ee75
-  - c6971cc6-ddb4-48b7-b436-440dead42a1f
 
 core_version_requirement: ^11 || ^9 || ^10

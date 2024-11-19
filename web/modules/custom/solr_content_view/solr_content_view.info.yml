@@ -3,7 +3,6 @@ description: Module replicating standard content admin view with Solr equivalent
 
 package: 'UMD Services'
 dependencies:
-  - easy_install:easy_install
   - umd_solr_defaults
 type: module
 

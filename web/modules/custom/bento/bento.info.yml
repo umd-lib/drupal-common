@@ -3,7 +3,6 @@ description: Enables Bento Search core module
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - views_json_source
   - umd_solr_defaults
   - views_fieldsets

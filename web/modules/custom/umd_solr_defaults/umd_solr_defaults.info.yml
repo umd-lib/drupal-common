@@ -4,7 +4,6 @@ description: A helper module for setting up Solr locally. Should be expanded as 
 package: 'UMD Services'
 dependencies:
   - search_api_solr
-  - easy_install
 type: module
 
 core_version_requirement: ^11 || ^9 || ^10

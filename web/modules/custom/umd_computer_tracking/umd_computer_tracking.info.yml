@@ -3,7 +3,6 @@ description: Configuration for computer tracking.
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - token_filter
   - views
   - views_json_source

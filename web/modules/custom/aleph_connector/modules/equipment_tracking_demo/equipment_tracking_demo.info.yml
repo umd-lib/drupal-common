@@ -4,13 +4,6 @@ description: Demo content for Equipment Tracking.
 package: 'UMD Demo Content'
 dependencies:
   - equipment_tracking
-  - default_content:default_content
 type: module
-default_content:
-  node:
-  - fbf5bfc3-c436-488c-845c-2072cb988279
-  - a649fbcf-2e87-4666-a11f-fdb3b0724c92
-  - 6d1bdd7c-4c29-4b06-9dba-6daeb740c4f8
-  - 2f210d66-639a-4540-8fce-fa65a8fcbe7b
 
 core_version_requirement: ^11 || ^9 || ^10

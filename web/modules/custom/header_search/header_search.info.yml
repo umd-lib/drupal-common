@@ -5,7 +5,6 @@ package: 'UMD Services'
 configure: header_search.admin_settings_form
 type: module
 dependencies:
-  - drupal:easy_install
   - libraries_configuration:libraries_configuration
   - libraries_search:libraries_search
 

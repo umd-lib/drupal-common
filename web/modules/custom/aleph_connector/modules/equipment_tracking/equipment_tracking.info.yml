@@ -3,8 +3,6 @@ description: A module for displaying Equipment Tracking information from Aleph.
 
 package: 'UMD Services'
 dependencies:
-  - aleph_connector
-  - easy_install
   - cshs
   - views
   - token_filter
@@ -12,8 +10,6 @@ dependencies:
   - facets
   - facets_block
   - umd_solr_defaults
-  - umd_taxonomy_equipment
-  - umd_taxonomy_locations
   - fontawesome
 type: module
 

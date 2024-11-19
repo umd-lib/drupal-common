@@ -4,7 +4,6 @@ description: Provides a static utility navigation bar
 package: 'UMD Services'
 type: module
 dependencies:
-  - drupal:easy_install
   - drupal:fixed_block_content
 
 core_version_requirement: ^11 || ^9 || ^10

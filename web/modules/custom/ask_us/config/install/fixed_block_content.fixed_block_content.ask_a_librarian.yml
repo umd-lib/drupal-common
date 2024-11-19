@@ -6,6 +6,5 @@ dependencies:
 id: ask_a_librarian
 title: 'Ask a librarian'
 block_content_bundle: ask_us
-default_content: null
 auto_export: 2
 protected: false

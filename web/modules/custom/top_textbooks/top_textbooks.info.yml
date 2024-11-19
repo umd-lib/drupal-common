@@ -7,7 +7,6 @@ version: 1.x
 
 dependencies:
   - aleph_connector (>=2.x)
-  - easy_install
   - facets
   - facets_block
   - search_api_solr

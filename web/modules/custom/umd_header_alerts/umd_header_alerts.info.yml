@@ -3,7 +3,6 @@ description: Enables header alert functionality including a content type and vie
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - fontawesome_iconpicker_widget
   - scheduler
   - library_services

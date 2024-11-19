@@ -2,4 +2,4 @@ name: UMD Drush Utils
 description: Various Drush utilities for cleanups and other quality of life.
 package: "UMD Util"
 type: module
-core_version_requirement: ^9.4 || ^10
+core_version_requirement: ^11 || ^10

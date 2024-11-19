@@ -3,8 +3,6 @@ description: Adds Libraries' Search menu item to the configuration page.
 
 package: 'UMD Services'
 configure: libraries_search.admin_settings_form
-dependencies:
-  - easy_install
 type: module
 
 core_version_requirement: ^11 || ^9 || ^10

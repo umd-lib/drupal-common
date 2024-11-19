@@ -3,7 +3,5 @@ description: Extend the footer with additional menu and custom block type.
 
 package: 'UMD Services'
 type: module
-dependencies:
-  - easy_install
 
 core_version_requirement: ^11 || ^9 || ^10

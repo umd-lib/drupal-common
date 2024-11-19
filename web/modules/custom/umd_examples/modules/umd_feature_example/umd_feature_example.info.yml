@@ -2,8 +2,6 @@ name: UMD Feature Example
 description: A helper module for setting up Solr locally. Should be expanded as new Solr databases come online.
 
 package: 'Development'
-dependencies:
-  - easy_install
 type: module
 
 core_version_requirement: ^8.9 || ^9

@@ -5,7 +5,6 @@ package: 'UMD Services'
 configure: system_status.admin_settings_form
 type: module
 dependencies:
-  - easy_install
   - libraries_configuration
   - utility_nav
 

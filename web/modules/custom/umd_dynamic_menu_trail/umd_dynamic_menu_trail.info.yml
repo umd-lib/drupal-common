@@ -2,8 +2,6 @@ name: UMD Dynamic Menu Trail
 description: Sets the ActiveTrail info for dynamic menu links
 
 package: 'UMD Services'
-dependencies:
-  - easy_install
 
 type: module
 

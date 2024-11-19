@@ -3,7 +3,6 @@ description: Provides a career content type and view.
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - umd_terp_base
   - umd_dynamic_menu_trail
 type: module

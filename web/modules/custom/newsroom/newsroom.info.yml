@@ -3,7 +3,6 @@ description: Enables "Newsroom"
 
 package: 'UMD Services'
 dependencies:
-  - easy_install
   - scheduler
   - token_filter
   - views_argument_token

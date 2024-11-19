@@ -3,7 +3,6 @@ description: CT, Views, and Solr for Library Spaces feature.
 
 package: 'UMD Custom'
 dependencies:
-  - easy_install
   - views
   - umd_solr_defaults
   - facets_block

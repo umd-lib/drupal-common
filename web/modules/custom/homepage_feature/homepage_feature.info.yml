@@ -3,7 +3,6 @@ description: CT and Views for Homepage Feature.
 
 package: 'UMD Custom'
 dependencies:
-  - easy_install
   - views
 type: module
 

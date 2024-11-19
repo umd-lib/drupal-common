@@ -7,35 +7,6 @@ description: Taxonomy configuration for Librararies Locations including default 
 
 package: 'UMD Taxonomies'
 dependencies:
-  - default_content:default_content
-  # Add another dependency to the custom module employing this content.
 type: module
-default_content:
-  taxonomy_term:
-  # An array of term UUIDs.
-  - 51366842-6734-4089-8ee5-0079e8b1baf3
-  - 8ce4d280-e55c-47dc-950b-e8746fc57a27
-  - 513e9fdb-6296-4493-8259-09faf97e5bf4
-  - 7db7b2a3-710b-422b-ab88-c5c1b34140fb
-  - 70ae0458-0f13-4b4b-825c-0ce5626efd28
-  - edef8a0e-c8ad-48d3-9ca2-2e755dcdc219
-  - 58026da9-4212-461c-a8e2-96774eceaaed
-  - 140700b8-a938-49ea-b0d3-9dd9657cc002
-  - 6dde08ec-7653-468c-a3ae-1ffaf32bcef4
-  - 09424823-1494-4ac3-8962-e7a70d32ba8f
-  - 45222830-4625-4577-8b07-25c91339f9d5
-  - 74f70c2e-d03f-4e99-991c-5598a265129d
-  - 3738b431-5197-46b9-9966-043c0d279364
-  - 98ca1ca0-3422-40f3-8e5a-835ef25148e9
-  - fab29c4d-1219-4e36-9842-50ced1d7c354
-  - 487bc2d2-0459-435c-bbc0-5f97f2e76d56
-  - 00870a5e-9fd0-43b2-9cf7-b403478ec5d8
-  - e464284b-2f1e-4168-97b4-4c336749aca4
-  - 1b264ac3-7ebe-4115-9b42-93b586fbbe96
-  - 72e11b0e-32a3-409b-bb85-e7e9913c900c
-  - 317cd7de-bb42-4802-855a-951da004233e
-  - 98959f1c-2d20-484d-b11c-8afc619280fa
-  - 5ece96f4-04f7-4403-9422-741409af634c
-  - f38c7b95-f831-4100-859f-eddf29e92f9b
 
 core_version_requirement: ^11 || ^9 || ^10

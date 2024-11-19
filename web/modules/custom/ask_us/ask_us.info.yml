@@ -4,7 +4,6 @@ description: Provides a custom ask us block for utility nav.
 package: 'UMD Services'
 type: module
 dependencies:
-  - drupal:easy_install
   - fontawesome
   - fontawesome_iconpicker_widget
 

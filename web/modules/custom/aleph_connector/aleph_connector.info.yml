@@ -4,7 +4,6 @@ description: A module for hooking into the Aleph API.
 package: 'UMD Services'
 configure: aleph_connector.admin_settings_form
 dependencies:
-  - easy_install
   - libraries_configuration
 type: module
 

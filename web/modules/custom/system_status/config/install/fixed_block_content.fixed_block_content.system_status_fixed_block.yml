@@ -6,6 +6,5 @@ dependencies:
 id: system_status_fixed_block
 title: 'System Status Fixed Block'
 block_content_bundle: system_status_block
-default_content: null
 auto_export: 1
 protected: false
