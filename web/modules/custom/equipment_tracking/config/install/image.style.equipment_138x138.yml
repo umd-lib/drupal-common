@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+name: equipment_138x138
+label: 'Equipment (138x138)'
+effects:
+  4b8e3898-a7fb-43bc-b776-a163a87e7ac0:
+    uuid: 4b8e3898-a7fb-43bc-b776-a163a87e7ac0
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 138
+      height: 138
+      anchor: center-center
+pipeline: local_binaries
+
