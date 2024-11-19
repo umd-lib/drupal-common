@@ -1,4 +1,4 @@
-FROM drupal:10.3.1-php8.3-apache
+FROM drupal:11-php8.3-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
