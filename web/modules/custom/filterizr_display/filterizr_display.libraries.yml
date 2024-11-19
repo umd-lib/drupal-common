@@ -1,7 +1,0 @@
-filterizr-display:
-  header: true
-  css:
-    theme:
-      css/filterizr-display.css: {}
-  js:
-    js/vanilla.filterizr.min.js: {}
