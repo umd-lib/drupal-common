@@ -72,7 +72,7 @@ services:
       - $SOLR_DATA_DIR:/opt/solr/server/solr
 
   solr-textbook:
-    image: docker.lib.umd.edu/solr-textbook:3.1.4
+    image: docker.lib.umd.edu/solr-textbook:3.2.10
     container_name: "${PROJECT_NAME}_solr_textbook"
 
   varnish:
