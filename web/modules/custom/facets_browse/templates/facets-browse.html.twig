@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * facets_browse template
+ *
+ * Variables:
+ *   facets_path : URL to search result with facet as last parameter
+ *   facets : Array of facets
+ *   title : Block title for UI
+ */
+#}
+{{ attach_library('facets_browse/facets_browse') }}
+{% if title %}
+  {{ title }}
+{% endif %}
+{{ facets_path }}
+{% for facet in facets %}
+  {{ facet }}
+{% endfor %}
