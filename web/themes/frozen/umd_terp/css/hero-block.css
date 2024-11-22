@@ -1,4 +1,4 @@
-body.home .embedded-heading {
+body.home .embedded-heading, body.path--search .embedded-heading {
   display: none;
 }
 
