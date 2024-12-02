@@ -13,6 +13,7 @@ use Drupal\Core\Entity\Element\EntityAutocomplete;
 use Drupal\Core\Form\FormBase;
 // use Drupal\search_api\ServerInterface;
 use Drupal\search_api\Entity\Index;
+use Drupal\Core\Link;
 
 /**
  * Provides a browse facets block with config
@@ -73,7 +74,8 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
     $facets_path = $blockConfig['facets_path'];
     $search_index = $blockConfig['search_index'];
     $facet_field = $blockConfig['facet_field'];
-    $block_title = $blockConfig['block_title'];
+    $block_title = !empty($blockConfig['block_title']) ? $blockConfig['block_title'] : null;
+    $show_counts = !empty($blockConfig['show_counts']) ? $blockConfig['show_counts'] : null;
 
     $index = Index::load($search_index);
     $backend = $index->getServerInstance()->getBackend();
@@ -87,19 +89,25 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
 
     $facets = [];
     if ($results->count() > 0) {
-      kpr($results);
       $facets_raw = $results->getFacetSet()->getFacet($facet_field);
-      kpr($facets_raw);
       foreach($facets_raw as $value => $count) {
-        $facets[] = $value . ' (' . $count . ')';
+        $facet_link = '<a href="' . $facets_path . $facet_field . ':' . $value . '" title="browse facets for ' . $value . '">' . $value . '</a>';
+        if (!empty($show_counts)) {
+          $facet_link .= ' (' . $count . ')';
+        }
+        $facets[] = ['#markup' => $facet_link];
       }
     }
+
+    sort($facets);
 
     return [
       '#theme' => 'facets_browse',
       '#facets_path' => $facets_path,
       '#facets' => $facets,
-      '#title' => $block_title,
+      '#block_title' => $block_title,
+      '#search_index' => $search_index,
+      '#facet_name' => $facet_field,
       '#cache' => [
         'max-age' => 9999,
       ],
@@ -122,12 +130,13 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
       '#title' => t('Index'),
       '#options' => $index_options,
       '#required' => TRUE,
+      '#default_value' =>  !empty($config['search_index']) ? $config['search_index'] : null,
     ];
     $form['facets_path'] = [
       '#type' => 'textfield',
       '#title' => t('Facets Path'),
       '#default_value' =>  !empty($config['facets_path']) ? $config['facets_path'] : null,
-      '#description' => t('Relative path to search results with an empty facet at the end to be filled dynamically with facet.'),
+      '#description' => t('Relative path to search results with an empty facet at the end to be filled dynamically with facet. E.g., /searchnew?f[0]=collection:Diamondback Photos&f[1]='),
       '#required' => TRUE,
     ];
     $form['facet_field'] = [
@@ -142,6 +151,11 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
       '#title' => t('Block Title'),
       '#default_value' =>  !empty($config['block_title']) ? $config['block_title'] : null,
     ];
+    $form['show_counts'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Show facet counts'),
+      '#default_value' =>  !empty($config['show_counts']) ? $config['show_counts'] : null,
+    ];
     return $form;
   }
 
@@ -153,5 +167,6 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
     $this->setConfigurationValue('block_title', $form_state->getValue('block_title'));
     $this->setConfigurationValue('facet_field', $form_state->getValue('facet_field'));
     $this->setConfigurationValue('search_index', $form_state->getValue('search_index'));
+    $this->setConfigurationValue('show_counts', $form_state->getValue('show_counts'));
   }
 }

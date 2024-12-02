@@ -14,7 +14,9 @@ function facets_browse_theme() {
       'variables' => [
         'facets_path' => '',
         'facets' => '',
-        'title' => '',
+        'block_title' => '',
+        'search_index' => '',
+        'facet_name' => '',
       ],
     ],
   ];
