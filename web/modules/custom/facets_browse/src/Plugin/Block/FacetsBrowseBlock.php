@@ -100,7 +100,13 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
       $facets_raw = $results->getFacetSet()->getFacet($solr_field);
       foreach($facets_raw as $value => $count) {
         // Value should be split by :: with the second value used if exists.
-        $facet_link = '<a href="' . $facets_path . $facet_field . ':' . $value . '" title="browse facets for ' . $value . '">' . $value . '</a>';
+        $display_value = $value;
+        if (str_contains($value, '::')) {
+          $v_arr = explode("::", $value);
+          $display_value = !empty($v_arr[1]) ? $v_arr[1] : $value;
+          $value = urlencode($value);	// To prevent Solr breaking.
+        }
+        $facet_link = '<a href="' . $facets_path . $facet_field . ':' . $value . '" title="browse facets for ' . $value . '">' . $display_value . '</a>';
         if (!empty($show_counts)) {
           $facet_link .= ' (' . $count . ')';
         }
