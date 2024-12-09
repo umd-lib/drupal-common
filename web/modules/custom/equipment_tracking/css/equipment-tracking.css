@@ -1,0 +1,117 @@
+/* Base table styles */
+table.equipment-table {
+  width: 100%;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* table header background */
+table.equipment-table thead {
+  background: var(--background-system-secondary, #f8f9fc);
+}
+
+/* table header title */
+table.equipment-table thead tr th {
+  padding: 8px 16px;
+  min-width: 200px;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px; /* 150% */
+}
+
+/* table body row divider */
+table.equipment-table tbody tr.equipment-item-row {
+  border-bottom: 1px solid var(--border-accent-decoration-subtle, #e9eaef);
+}
+
+/* table body item styling */
+table.equipment-table tbody tr.equipment-item-row td {
+  padding: 16px;
+}
+
+table.equipment-table tbody tr.equipment-item-row td strong {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px; /* 150% */
+}
+
+table.equipment-table
+  tbody
+  tr.equipment-item-row
+  td.equipment-item-description
+  dl {
+  display: grid;
+  grid-template-columns: auto 200px;
+  grid-template-rows: auto auto auto;
+}
+
+table.equipment-table
+  tbody
+  tr.equipment-item-row
+  td.equipment-item-description
+  dl
+  dd
+  img {
+  width: 200px;
+  padding-left: 8px;
+}
+
+table.equipment-table tbody tr.equipment-item-row td div.equipment-location {
+  margin-bottom: 8px;
+}
+
+/* mobile styling */
+@media (max-width: 799px) {
+  table.equipment-table thead tr th:nth-child(2) {
+    display: none;
+  }
+
+  table.equipment-table tbody tr.equipment-item-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  table.equipment-table
+    tbody
+    tr.equipment-item-row
+    td.equipment-item-description
+    dl {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0px;
+  }
+
+  table.equipment-table
+    tbody
+    tr.equipment-item-row
+    td
+    dl
+    dd.equipment-details-img-group {
+    grid-row: 1/-1;
+  }
+
+  table.equipment-table
+    tbody
+    tr.equipment-item-row
+    td.equipment-item-description
+    dl
+    dd
+    img {
+    width: 100%;
+    padding-left: 0px;
+  }
+
+  table.equipment-table
+    tbody
+    tr.equipment-item-row
+    td.equipment-item-description {
+    padding: 16px 16px 0px 16px;
+  }
+
+  table.equipment-table tbody tr.equipment-item-row td {
+    padding: 0px 16px 16px 16px;
+  }
+}

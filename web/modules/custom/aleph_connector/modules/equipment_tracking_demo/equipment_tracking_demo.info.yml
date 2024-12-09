@@ -1,9 +1,0 @@
-name: Equipment Tracking Demo
-description: Demo content for Equipment Tracking.
-
-package: 'UMD Demo Content'
-dependencies:
-  - equipment_tracking
-type: module
-
-core_version_requirement: ^11 || ^9 || ^10
