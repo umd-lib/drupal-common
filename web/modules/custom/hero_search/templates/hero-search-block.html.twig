@@ -8,7 +8,6 @@
  *   - hero_search_forms
  *   - hero_search_tabs
  *   - hero_search_alert
- *   - hero_discover_links
  *   - hero_search_more_links
  *   - hero_top_content
  *   - hero_bottom_content
@@ -68,32 +67,15 @@
   
   {# resource links #}
   <div class='resource-links'>
-    {% if hero_discover_links %}
-      <div class='umd-discover-link'>
-        <h3 class='umd-discover-title'><a href="https://usmai-umcp.primo.exlibrisgroup.com/discovery/search?vid=01USMAI_UMCP%3AUMCP&lang=en"><strong>UMD Discover</strong></a></h3>
-        <div aria-hidden="true" class="title-divider">-</div>
-        <ul role="list">
-          {% for disc_name, disc_value in hero_discover_links %}
-            {% if disc_name %}
-              <li>{{ link(disc_name, disc_value.url, disc_value.additional) }}</li>
-              {% if loop.last == false %}
-                <li aria-hidden="true" class="list-divider">/</li>
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
     {% if hero_search_more_links %}
       <div class='search-all-link'>
-        <h3 class='search-all-title'><a href="/search"><strong>Search All</strong></a></h3>
-        <div aria-hidden="true" class="title-divider">-</div>
+        <h3 class='search-all-title'>Resources</h3>
         <ul role="list">
           {% for sm_name, sm_value in hero_search_more_links %}
             {% if sm_name %}
               <li>{{ link(sm_name, sm_value.url, sm_value.additional) }}</li>
               {% if loop.last == false %}
-                <li aria-hidden="true" class="list-divider">/</li>
+                <li aria-hidden="true" class="list-divider">|</li>
               {% endif %}
             {% endif %}
           {% endfor %}
