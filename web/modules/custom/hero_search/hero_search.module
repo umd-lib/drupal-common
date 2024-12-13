@@ -18,7 +18,6 @@ function hero_search_theme() {
         'hero_discover_form' => '',
         'hero_search_alert' => '',
         'hero_search_more_links' => '',
-        'hero_discover_links' => '',
         'hero_top_content' => '',
         'hero_bottom_content' => '',
         'hero_quick_actions' => '',

@@ -123,7 +123,7 @@
   border-bottom: var(--number-005, 2px) solid var(--border-sytem-input, #bdbfc8);
   background: var(--background-system-tertiary, #e9eaef);
   color: var(--content-system-secondary, #55575e);
-  
+
   height: 100%;
   display: flex;
   padding: 8px 24px;
@@ -450,35 +450,23 @@
   width: 100%;
 }
 
-.umd-discover-link,
 .search-all-link {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  gap: 8px;
-  align-self: stretch;
-  flex-wrap: wrap;
+  padding: 0px 16px;
 }
 
-.umd-discover-link h3,
 .search-all-link h3 {
   color: var(--content-system-primary, #000);
 
   margin: 0px;
+  padding-bottom: 8px;
 
-  /* body-medium */
-  font-size: 16px;
+  /* title-small */
+  font-size: 18px;
   font-style: normal;
-  font-weight: 400;
-  line-height: 24px; /* 150% */
+  font-weight: 700;
+  line-height: 27px; /* 150% */
 }
 
-.umd-discover-link .title-divider,
-.search-all-link .title-divider {
-  color: var(--content-system-primary, #000);
-}
-
-.umd-discover-link ul,
 .search-all-link ul {
   color: var(--content-interactive-primary-default, #e21833);
 
@@ -498,7 +486,6 @@
   text-align: center;
 }
 
-.umd-discover-link li.list-divider,
 .search-all-link li.list-divider {
   color: var(--content-system-primary, #000);
 }
@@ -506,23 +493,20 @@
 /* resource links section for mobile */
 @media (max-width: 576px) {
   /* change to button style */
-  .umd-discover-link,
   .search-all-link {
     width: 100%;
 
     flex-direction: column;
     align-items: flex-start;
 
-    padding-bottom: 16px;
+    padding: 0px 0px 16px 0px;
     border-bottom: 1px solid var(--border-accent-decoration-subtle, #e9eaef);
   }
 
-  .umd-discover-link h3,
   .search-all-link h3 {
     width: 100%;
   }
 
-  .umd-discover-link ul,
   .search-all-link ul {
     width: 100%;
     display: grid;
@@ -532,7 +516,6 @@
     align-self: center;
   }
 
-  .umd-discover-link ul li a,
   .search-all-link ul li a {
     background: var(--background-system-primary, #fff);
 
@@ -547,17 +530,13 @@
     border: 1px solid var(--border-accent-decoration-default, #bdbfc8);
   }
 
-  .umd-discover-link ul li a:hover,
   .search-all-link ul li a:hover {
     color: var(--content-interactive-primary-hover, #fff);
     background: var(--background-interaction-primary-hover, #e21833);
     border: 1px solid var(--border-interactive-primary-hover, #e21833);
   }
 
-  .umd-discover-link .list-divider,
-  .umd-discover-link .title-divider,
-  .search-all-link .list-divider,
-  .search-all-link .title-divider {
+  .search-all-link .list-divider {
     display: none;
   }
 }
