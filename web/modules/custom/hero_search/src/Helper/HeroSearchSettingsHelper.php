@@ -78,20 +78,10 @@ class HeroSearchSettingsHelper {
   }
 
   /**
-   * An associative array of configuration information for Discover links.
+   * An associative array of configuration information for search more links.
    *
    * @return array
-   *   An associative array of configuration information for Discover links.
-   */
-  public function getDiscoverLinks() {
-    return $this->getConfigArray('discover_links', 'discover_link');
-  }
-
-  /**
-   * An associative array of configuration information for Discover links.
-   *
-   * @return array
-   *   An associative array of configuration information for Discover links.
+   *   An associative array of configuration information for search more links.
    */
   public function getSearchMoreLinks() {
     return $this->getConfigArray('search_more_links', 'search_more_link');

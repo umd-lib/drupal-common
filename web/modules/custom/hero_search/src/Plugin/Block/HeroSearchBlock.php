@@ -104,7 +104,6 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
     $rendered_discover_form = $this->renderer->render($discover_form);
 
     $hero_search_alert = $this->configHelper->getAlert();
-    $discover_links = $this->configHelper->getDiscoverLinks();
     $top_content = $this->configHelper->getTopContent();
     $bottom_content = $this->configHelper->getBottomContent();
     $search_more_links = $this->configHelper->getSearchMoreLinks();
@@ -117,7 +116,6 @@ class HeroSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#hero_search_tabs' => $tabs,
       '#hero_discover_form' => $rendered_discover_form,
       '#hero_search_alert' => $hero_search_alert,
-      '#hero_discover_links' => $discover_links,
       '#hero_search_more_links' => $search_more_links,
       '#hero_top_content' => $top_content,
       '#hero_bottom_content' => $bottom_content,

@@ -101,16 +101,6 @@ class HeroSearchSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
-    $form['discover_links'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Discover Links'),
-      '#description' => $this->t('YAML formatted Discover links. See the README.md file.'),
-      '#default_value' => Yaml::dump($config->get('discover_links')),
-      '#rows' => 7,
-      '#cols' => 100,
-      '#required' => TRUE,
-    ];
-
     $form['search_more_links'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Search More Links'),
@@ -167,7 +157,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $yaml_fields = ['search_targets', 'discover_links', 'search_more_links'];
+    $yaml_fields = ['search_targets', 'search_more_links'];
 
     foreach ($yaml_fields as $yfield) {
       $yfield_str = trim($form_state->getValue($yfield));
@@ -222,7 +212,7 @@ class HeroSearchSettingsForm extends ConfigFormBase {
     $config->set('hero_search_alert', $form_state->getValue('hero_search_alert'));
     $config->set('quick_actions', $form_state->getValue('quick_actions'));
 
-    $yaml_fields = ['search_targets', 'discover_links', 'search_more_links'];
+    $yaml_fields = ['search_targets', 'search_more_links'];
 
     foreach ($yaml_fields as $yfield) {
       $yfield_str = $form_state->getValue($yfield);
