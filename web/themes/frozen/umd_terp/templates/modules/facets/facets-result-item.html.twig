@@ -25,7 +25,11 @@
     {% set value = valueArray[1] %}
   {% endif %}
 {% endif %}
-<span class="facet-item__value">&nbsp;{{ value }}</span>
+{% if value == '*' %}
+  <span class="facet-item__value">&nbsp;Any</span>
+{% else %}
+  <span class="facet-item__value">&nbsp;{{ value }}</span>
+{% endif %}
 {% if show_count %}
   <span class="facet-item__count">({{ count }})</span>
 {% endif %}

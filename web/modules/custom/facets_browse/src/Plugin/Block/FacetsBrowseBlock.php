@@ -91,7 +91,7 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
     $query = $connector->getSelectQuery();
 
     $facetSet = $query->getFacetSet();
-    $facetSet->createFacetField($solr_field)->setField($solr_field);
+    $facetSet->createFacetField($solr_field)->setField($solr_field)->setLimit(300);
 
     $results = $connector->execute($query);
 
