@@ -117,7 +117,7 @@ function bento_views_post_execute(ViewExecutable $view) {
       $result_id = str_replace('_', '-',  $display->display['display_options']['css_class']) . '-total';
     }
 
-    $umdiscover_targets = ['Books', 'Articles', 'Journals'];
+    $umdiscover_targets = ['Books', 'Articles', 'Journals', 'UMD & USMAI Holdings'];
 
     $title_raw = $view->getTitle();
     $title_array = explode('|', $title_raw);
@@ -138,7 +138,7 @@ function bento_views_post_execute(ViewExecutable $view) {
       $real_total = $view->raw_data['total'];
       $query_string = $view->raw_data['module_link'];
       if ($real_total > 0) {
-        if (in_array($title, $umdiscover_targets)) {
+        if (str_contains($subtitle, 'UMD Discover')) {
           $footer_content = '
             <div class="bento-attachment" id="' . $result_id . '" data-total="' . $real_total . '">
               <a id="bento-search-footer-' . Html::getId($title) . '" href="' . str_replace('"', '%22', $query_string) . '" title="See all ' . number_format($real_total, 0, ".", ",") . ' ' . $title . ' results">Expand your results in UMD Discover to show results from libraries worldwide</a>

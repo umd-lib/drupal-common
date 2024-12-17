@@ -49,7 +49,7 @@
               {{ form }}
             </div>
             <div class="tab-description">
-              <p>{{ hero_search_tabs[loop.index - 1]['description'] }}</p>
+              <p>{{ hero_search_tabs[loop.index - 1]['description']|raw }}</p>
             </div>
             {# dropdown component #}
             {% if hero_search_tabs[loop.index - 1]['show_quicklinks'] %}
