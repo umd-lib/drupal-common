@@ -79,6 +79,7 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
     $search_index = $blockConfig['search_index'];
     $facet_field = $blockConfig['facet_field'];
     $solr_field = $blockConfig['solr_field'];
+    $collection = !empty($blockConfig['collection']) ? $blockConfig['collection'] : null;
     $block_title = !empty($blockConfig['block_title']) ? $blockConfig['block_title'] : null;
     $show_counts = !empty($blockConfig['show_counts']) ? $blockConfig['show_counts'] : null;
     $collapsed = !empty($blockConfig['collapsed']) ? $blockConfig['collapsed'] : null;
@@ -92,6 +93,12 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
 
     $facetSet = $query->getFacetSet();
     $facetSet->createFacetField($solr_field)->setField($solr_field)->setLimit(300);
+
+    if (!empty($collection)) {
+      $fq = [];
+      $fq['presentation_set_label'] = $collection;
+      $query->createFilterQuery($fq);
+    }
 
     $results = $connector->execute($query);
 
@@ -196,6 +203,12 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
       '#description' => t('Facet field to display. This is the field used in the URL.'),
       '#required' => TRUE,
     ];
+    $form['collection'] = [
+      '#type' => 'textfield',
+      '#title' => t('Collection'),
+      '#default_value' => !empty($config['collection']) ? $config['collection'] : null,
+      '#description' => t('Presentation Set value to use for facet narrowing. Leave empty if not applicable.'),
+    ];
     $form['block_title'] = [
       '#type' => 'textfield',
       '#title' => t('Block Title'),
@@ -258,5 +271,6 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
     $this->setConfigurationValue('show_counts', $form_state->getValue('show_counts'));
     $this->setConfigurationValue('collapsed', $form_state->getValue('collapsed'));
     $this->setConfigurationValue('random_key', $form_state->getValue('random_key'));
+    $this->setConfigurationValue('collection', $form_state->getValue('collection'));
   }
 }
