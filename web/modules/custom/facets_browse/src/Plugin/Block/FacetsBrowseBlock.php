@@ -86,19 +86,19 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
 
     $index = Index::load($search_index);
     $fields = $index->getFields();
-// kpr($fields);
     $backend = $index->getServerInstance()->getBackend();
     $connector = $backend->getSolrConnector();
     $query = $connector->getSelectQuery();
 
     $facetSet = $query->getFacetSet();
-    $facetSet->createFacetField($solr_field)->setField($solr_field)->setLimit(300);
-
     if (!empty($collection)) {
-      $fq = [];
-      $fq['presentation_set_label'] = $collection;
-      $query->createFilterQuery($fq);
+      $query->createFilterQuery('presentation_set_label')->setQuery('presentation_set_label:"'. $collection . '"')->addTag("collection");
+      $query->createFilterQuery('is_discoverable')->setQuery('is_discoverable:true')->addTag("discoverable");
+      $facetSet->createFacetField($solr_field)->setField($solr_field)->setLimit(300);
+    } else {
+      $facetSet->createFacetField($solr_field)->setField($solr_field)->setLimit(300);
     }
+    $facetSet->setMinCount(1);
 
     $results = $connector->execute($query);
 
