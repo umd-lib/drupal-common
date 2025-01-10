@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "652f559ce53e7c458fc35b33315f6f03",
+    "content-hash": "74d3b87c95b8f75e64a650bce6c9da39",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2830,29 +2830,29 @@
         },
         {
             "name": "drupal/facets",
-            "version": "3.0.0-beta4",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/facets.git",
-                "reference": "3.0.0-beta4"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/facets-3.0.0-beta4.zip",
-                "reference": "3.0.0-beta4",
-                "shasum": "949eef98b4b5d450a8a81bda2030583567dfb52d"
+                "url": "https://ftp.drupal.org/files/projects/facets-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "9fa44774d43aa065989cdf26b3992fa4029ae63e"
             },
             "require": {
                 "drupal/core": "^10.1 || ^11"
             },
             "conflict": {
                 "drupal/core": "<10.1.0",
-                "drupal/search_api": "<1.30"
+                "drupal/search_api": "<1.14"
             },
             "require-dev": {
-                "drupal/better_exposed_filters": "*",
-                "drupal/jquery_ui_slider": "^2.1",
-                "drupal/jquery_ui_touch_punch": "^1.1",
+                "drupal/better_exposed_filters": "~7.0",
+                "drupal/jquery_ui_slider": "~2.1",
+                "drupal/jquery_ui_touch_punch": "~1.1",
                 "drupal/search_api": "1.x-dev"
             },
             "suggest": {
@@ -2863,11 +2863,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.0-beta4",
-                    "datestamp": "1731954099",
+                    "version": "3.0.0",
+                    "datestamp": "1735915197",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -2907,17 +2907,17 @@
         },
         {
             "name": "drupal/facets_block",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/facets_block.git",
-                "reference": "2.0.2"
+                "reference": "2.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/facets_block-2.0.2.zip",
-                "reference": "2.0.2",
-                "shasum": "6227e92238693dc96d4c7cf77c84959b9ce15271"
+                "url": "https://ftp.drupal.org/files/projects/facets_block-2.0.3.zip",
+                "reference": "2.0.3",
+                "shasum": "be08693a1be9ff593cd509ee8abcc911edf9a0c4"
             },
             "require": {
                 "drupal/core": "^10 || ^11",
@@ -2926,8 +2926,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.2",
-                    "datestamp": "1728631312",
+                    "version": "2.0.3",
+                    "datestamp": "1735239763",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -12079,7 +12079,6 @@
     "stability-flags": {
         "drupal/block_field": 5,
         "drupal/content_translation_redirect": 15,
-        "drupal/facets": 10,
         "drupal/imageapi_optimize": 10,
         "drupal/imageapi_optimize_binaries": 15,
         "drupal/masquerade": 5,
