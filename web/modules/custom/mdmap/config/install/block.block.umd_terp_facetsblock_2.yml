@@ -1,0 +1,49 @@
+uuid: 8d593e1b-69d8-4da3-8fa1-5997c2bdb1b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - facets_block
+    - system
+  theme:
+    - umd_terp
+id: umd_terp_facetsblock_2
+theme: umd_terp
+region: sidebar
+weight: -5
+provider: null
+plugin: facets_block
+settings:
+  id: facets_block
+  label: 'Facets Block-mdmap'
+  label_display: visible
+  provider: facets_block
+  show_title: false
+  exclude_empty_facets: true
+  hide_empty_block: false
+  facets_to_include:
+    - 'facet_block:regions'
+    - 'facet_block:states'
+    - 'facet_block:counties'
+    - 'facet_block:cities'
+    - 'facet_block:railroad'
+    - 'facet_block:waterway'
+    - 'facet_block:region'
+  add_js_classes: true
+  block_ajax:
+    is_ajax: 0
+    max_age: '0'
+    show_spinner: 0
+    placeholder: ''
+    ajax_defaults:
+      method: POST
+      timeout: '10000'
+      others:
+        async: async
+        cache: 0
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/mdmap/search\r\n/mdmap/search/*"
+

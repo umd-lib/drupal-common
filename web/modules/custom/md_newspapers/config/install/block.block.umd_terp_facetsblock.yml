@@ -1,0 +1,48 @@
+uuid: 182dd730-3b8e-4999-96f1-e1d16b3057eb
+langcode: en
+status: true
+dependencies:
+  module:
+    - facets_block
+    - system
+  theme:
+    - umd_terp
+id: umd_terp_facetsblock
+theme: umd_terp
+region: sidebar
+weight: -5
+provider: null
+plugin: facets_block
+settings:
+  id: facets_block
+  label: 'Facets Block-mdnewspapers'
+  label_display: visible
+  provider: facets_block
+  show_title: false
+  exclude_empty_facets: true
+  hide_empty_block: false
+  facets_to_include:
+    - 'facet_block:city'
+    - 'facet_block:county'
+    - 'facet_block:full_text_search_available'
+    - 'facet_block:provider_of_digitized_newspapers'
+    - 'facet_block:requires_subscription'
+    - 'facet_block:md_newspapers_year'
+  add_js_classes: false
+  block_ajax:
+    is_ajax: 0
+    max_age: '0'
+    show_spinner: 0
+    placeholder: ''
+    ajax_defaults:
+      method: POST
+      timeout: '10000'
+      others:
+        async: async
+        cache: 0
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/newspapergateway/search\r\n/newspapergateway/search*"
+

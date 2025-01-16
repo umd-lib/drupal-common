@@ -1,0 +1,8 @@
+name: IPAM78s
+description: 'Solr search and detail pages for IPAM78s collection.'
+package: 'UMD Services'
+dependencies:
+  - search_api_solr
+  - facets
+type: module
+core_version_requirement: ">=8"
