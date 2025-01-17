@@ -33,13 +33,35 @@ function umd_sitemap_cron() {
 function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $sitemap){
   $settings = \Drupal::service('simple_sitemap.settings');
   $base_url = $settings->get('base_url') ?: $GLOBALS['base_url'];
+  $dt = new \DateTime('first day of this year');
+  $lastmod = $dt->format('Y-m-d\TH:i:sP');
   if ($sitemap->id() === 'worldsfairs') {
     $worlds_fairs_urls = file_get_contents(__DIR__ . '/worldsfairs.txt');
     $lines = explode(PHP_EOL, $worlds_fairs_urls);
 
     foreach ($lines as $line) {
       if (!empty($line)) {
-        $arbitrary_links[] = ['url' => $line, 'priority' => '0.5'];
+        $arbitrary_links[] = ['url' => $line,
+                              'priority' => '0.5',
+                              'changefreq' => 'yearly',
+                              'lastmod' => $lastmod];
+      }
+    }
+  }
+
+  if ($sitemap->id() === 'md_newspapers') {
+    $md_newsp_prefix = $base_url . '/newspapergateway/id/';
+
+    $np_ids = file_get_contents(__DIR__ . '/md_newspapers.txt');
+    $lines = explode(PHP_EOL, $np_ids);
+
+    foreach ($lines as $line) {
+      if (!empty($line)) {
+        $md_np_url = $md_newsp_prefix . $line;
+        $arbitrary_links[] = ['url' => $md_np_url,
+                              'priority' => '0.5',
+                              'changefreq' => 'yearly',
+                              'lastmod' => $lastmod];
       }
     }
   }
@@ -56,7 +78,10 @@ function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $si
       if (!empty($line)) {
         $formatted_id = str_pad($line, 8, '0', STR_PAD_LEFT);
         $scores_url = $scores_prefix . $formatted_id;
-        $arbitrary_links[] = ['url' => $scores_url, 'priority' => '0.5'];
+        $arbitrary_links[] = ['url' => $scores_url,
+                              'priority' => '0.5',
+                              'changefreq' => 'yearly',
+                              'lastmod' => $lastmod];
       }
     }
   }
@@ -70,7 +95,10 @@ function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $si
     foreach ($lines as $line) {
       if (!empty($line)) {
         $plants_url = $plants_prefix . $line;
-        $arbitrary_links[] = ['url' => $plants_url, 'priority' => '0.5'];
+        $arbitrary_links[] = ['url' => $plants_url,
+                              'priority' => '0.5',
+                              'changefreq' => 'yearly',
+                              'lastmod' => $lastmod];
       }
     }
   }
@@ -100,7 +128,10 @@ function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $si
         foreach ($lines as $line) {
           if (!empty($line)) {
             $cur_url = $base_url . $line;
-            $arbitrary_links[] = ['url' => $cur_url, 'priority' => '0.5'];
+            $arbitrary_links[] = ['url' => $cur_url,
+                                  'priority' => '0.5',
+                                  'changefreq' => 'yearly',
+                                  'lastmod' => $lastmod];
           }
         }
       }
@@ -123,7 +154,7 @@ function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $si
       if (!empty($id)) {
         $id = str_replace('solr_document/', '', $id);
         $score_url = $scores_url . $id;
-        $arbitrary_links[] = ['url' => $score_url, 'priority' => '0.5'];
+        $arbitrary_links[] = ['url' => $score_url, 'priority' => '0.5', 'lastmod' => $lastmod];
       }
     }
   }
