@@ -113,6 +113,7 @@ class FacetsBrowseBlock extends BlockBase implements ContainerFactoryPluginInter
           $display_value = !empty($v_arr[1]) ? $v_arr[1] : $value;
           $value = urlencode($value);	// To prevent Solr breaking.
         }
+        $value = str_replace('"', '%22', $value);
         $facet_link = '<a href="' . $facets_path . $facet_field . ':' . $value . '" title="browse facets for ' . $value . '">' . $display_value . '</a>';
         if (!empty($show_counts)) {
           $facet_link .= ' (' . $count . ')';
