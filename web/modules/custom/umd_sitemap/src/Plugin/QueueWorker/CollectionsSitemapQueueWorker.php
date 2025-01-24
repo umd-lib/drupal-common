@@ -60,11 +60,11 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
     $start = 0;
     $end = 500;
     $cnt = 500;
-    $results_count = 501;
+    $results_count = 0;
     
     $urls = [];
 
-    while ($end < $results_count) {
+    while ($end <= $results_count + $cnt) {
       \Drupal::logger('umd_sitemap')->notice($start . ' ' . $end . ' ' . $results_count);
       $query = $index->query();
       $query->setOption('search_api_retrieved_field_values', ['id', 'collection']);
@@ -80,6 +80,9 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
       $results_count = $results->getResultCount();
       if (empty($results) || $results_count == 0) {
         \Drupal::logger('umd_sitemap')->notice('No results for ' . $filter);
+        if (count($urls) > 0) {
+          break;
+        }
         return;
       }
 
@@ -110,7 +113,7 @@ class CollectionsSitemapQueueWorker extends QueueWorkerBase implements Container
       }
 
       $start = $end;
-      $end = $end + $cnt;
+      $end = $start + $cnt;
     }
 
     if (count($urls) > 0) {
