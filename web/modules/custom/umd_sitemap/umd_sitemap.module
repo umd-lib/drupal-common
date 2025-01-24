@@ -66,6 +66,23 @@ function umd_sitemap_simple_sitemap_arbitrary_links_alter(&$arbitrary_links, $si
     }
   }
 
+  if ($sitemap->id() === 'mdmap') {
+    $mdmap_prefix = $base_url . '/mdmap/';
+
+    $map_ids = file_get_contents(__DIR__ . '/mdmap.txt');
+    $lines = explode(PHP_EOL, $map_ids);
+
+    foreach ($lines as $line) {
+      if (!empty($line)) {
+        $mdmap_url = $mdmap_prefix . $line;
+        $arbitrary_links[] = ['url' => $mdmap_url,
+                              'priority' => '0.5',
+                              'changefreq' => 'yearly',
+                              'lastmod' => $lastmod];
+      }
+    }
+  }
+
   if ($sitemap->id() === 'scores') {
     $scores_prefix = $base_url . '/scores/id/';
 
