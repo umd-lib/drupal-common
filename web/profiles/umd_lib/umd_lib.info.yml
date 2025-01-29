@@ -46,6 +46,7 @@ install:
   - ut_sidebar_menu
   - ut_tabs
   - ut_text
+  - umd_twig_filters
 
   # Contributed
   - autologout
