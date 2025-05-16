@@ -56,7 +56,7 @@ RUN cd /app/web/app && \
         # composer install --no-dev --ignore-platform-reqs && \
         chown -R www-data:www-data /app/web/app
 
-RUN echo 'php_value upload_max_filesize 15M' >> '/app/web/app/web/.htaccess'
+RUN echo 'php_value upload_max_filesize 50M' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value max_input_vars 3000' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value max_execution_time 60' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value memory_limit 512M' >> '/app/web/app/web/.htaccess'

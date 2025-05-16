@@ -65,6 +65,7 @@
         "drupal/redis": "^1.4",
         "drupal/samlauth": "^3.8",
         "drupal/schema_metatag": "^3.0",
+        "drupal/search_api_decoupled": "^1.0@alpha",
         "drupal/search_api_solr": "^4.0",
         "drupal/simple_sitemap": "^4.1",
         "drupal/simplei": "^3.0",
@@ -112,6 +113,11 @@
           "npm-asset",
           "bower-asset"
         ],
+        "merge-plugin": {
+          "include": [
+            "[web-root]/modules/contrib/search_api_decoupled/composer.libraries.json"
+          ]
+        },
         "enable-patching": true,
         "patches": {
           "drupal/core": {
