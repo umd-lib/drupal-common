@@ -1,8 +1,0 @@
-name: 'Easy Install'
-description: '(Forked) Provides UI to delete configuration while uninstalling or reinstalling the modules.'
-package: 'System'
-type: module
-core: 8.x
-core_version_requirement: ^9 || ^10 || ^11
-
-configure: easy_install.purge_configurations
