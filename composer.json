@@ -17,40 +17,39 @@
     "require": {
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.7",
-        "drupal/admin_feedback": "^2.6",
+        "drupal/admin_feedback": "^2.7",
         "drupal/autologout": "^2.0",
         "drupal/block_field": "^1.0@RC",
-        "drupal/block_type_templates": "^1.0",
         "drupal/body_node_id_class": "^2.0",
         "drupal/bootstrap": "^3.21",
         "drupal/cache_control_override": "^2.0",
         "drupal/ckeditor5_icons": "^1.1",
         "drupal/content_moderation_notifications": "^3.3",
         "drupal/content_translation_redirect": "^2.0",
-        "drupal/core-composer-scaffold": "^10",
-        "drupal/core-project-message": "^10",
-        "drupal/core-recommended": "^10",
+        "drupal/core-composer-scaffold": "^11",
+        "drupal/core-project-message": "^11",
+        "drupal/core-recommended": "^11",
         "drupal/cshs": "^4.0",
         "drupal/ctools": "^4.1",
         "drupal/devel": "^5.2",
-        "drupal/dropdown_language": "4.0.3",
+        "drupal/dropdown_language": "^4.1",
         "drupal/entity_reference_revisions": "^1.12",
         "drupal/entityqueue": "^1.8",
-        "drupal/external_data_source": "^3.0",
+        "drupal/external_data_source": "^3.2",
         "drupal/externalauth": "^2.0",
         "drupal/facets": "^2.0",
         "drupal/facets_block": "^2.0",
         "drupal/field_group": "^3.6",
         "drupal/fixed_block_content": "^1.4",
         "drupal/fontawesome": "^3.0",
-        "drupal/hal": "^2.0",
+        "drupal/hal": "^2.0.4",
         "drupal/imageapi_optimize": "^4.1@beta",
         "drupal/imageapi_optimize_binaries": "^1.1@beta",
         "drupal/language_switcher_extended": "^1.2",
         "drupal/link_attributes": "^2.1",
         "drupal/linkit": "^7.0",
         "drupal/masquerade": "^2.0",
-        "drupal/masquerade_log": "^1.0",
+        "drupal/masquerade_log": "^2.0",
         "drupal/matomo": "^2.0@alpha",
         "drupal/override_node_options": "^2.9",
         "drupal/paragraphs": "^1.18",
@@ -67,21 +66,20 @@
         "drupal/simple_sitemap": "^4.2",
         "drupal/simplei": "^3.0",
         "drupal/stable": "^2.1",
-        "drupal/tablefield": "^2.2",
+        "drupal/tablefield": "^3.0",
         "drupal/taxonomy_path_breadcrumb": "^1.1",
-        "drupal/themable_forms": "^1.0",
         "drupal/token": "^1.15",
         "drupal/token_filter": "^2.2",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^3.4",
         "drupal/typed_data": "^2.1",
         "drupal/upgrade_status": "^4.3",
-        "drupal/varnish_purge": "^2.0",
+        "drupal/varnish_purge": "^2.3",
         "drupal/views_argument_token": "^2.0",
         "drupal/views_fieldsets": "^4.0",
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.3@beta",
-        "drush/drush": "^12.5",
+        "drush/drush": "^13",
         "mglaman/composer-drupal-lenient": "1.0.3",
         "oomphinc/composer-installers-extender": "^2.0",
         "predis/predis": "^1.1"
@@ -89,7 +87,7 @@
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "alpha",
     "prefer-stable": true,
     "config": {
         "sort-packages": true,
@@ -107,35 +105,8 @@
     "extra": {
         "enable-patching": true,
         "patches": {
-          "drupal/easy_install": {
-            "Easy Install Compat for D10": "https://www.drupal.org/files/issues/2023-04-12/easy_install_d10-3297022-9.patch"
-          },
           "drupal/core": {
             "CKEditor width container issue": "https://www.drupal.org/files/issues/2023-09-06/ckeditor5-ckeditor5_toolbar_items_overflowing-3332416-25.patch"
-          },
-          "drupal/external_data_source": {
-            "D11 compat for eds": "https://www.drupal.org/files/issues/2024-03-17/external_data_source.3.1.0.rector.patch"
-          },
-          "drupal/masquerade_log": {
-            "D11 compat for ml": "https://www.drupal.org/files/issues/2024-03-18/masquerade_log.8.x-1.2.rector.patch"
-          },
-          "drupal/varnish_purge": {
-            "D11 compat for vp": "https://www.drupal.org/files/issues/2024-08-28/varnish_purge-d11.patch"
-          },
-          "drupal/tablefield": {
-            "D11 compat for tf": "https://www.drupal.org/files/issues/2024-06-02/tablefield.2.x-dev.rector.patch"
-          },
-          "drupal/views_argument_token": {
-            "D11 compat for vat": "https://www.drupal.org/files/issues/2024-03-25/views_argument_token.2.0.2.rector.patch"
-          },
-          "drupal/themable_forms": {
-            "D11 compat for tf": "https://www.drupal.org/files/issues/2024-03-25/themable_forms.8.x-1.0.rector.patch"
-          },
-          "drupal/block_type_templates": {
-            "D11 compat for btt": "https://www.drupal.org/files/issues/2024-07-15/block_type_templates.1.x-dev.rector.patch"
-          },
-          "drupal/admin_feedback": {
-            "D11 compat for af": "https://www.drupal.org/files/issues/2024-03-16/admin_feedback.8.x-2.6.rector.patch"
           }
         },
         "drupal-scaffold": {
@@ -191,7 +162,7 @@
             ]
         },
         "drupal-lenient": {
-            "allowed-list": ["drupal/easy_install", "drupal/block_type_templates", "drupal/dropdown_language", "drupal/hal", "drupal/cache_control_override"]
+            "allowed-list": []
         }
     },
     "require-dev": {
