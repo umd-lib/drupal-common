@@ -2,7 +2,7 @@ name: 'Views JSON Source (UMD Fork)'
 description: 'Adds a views backend to query JSON data.'
 package: Views
 core: 8.x
-core_version_requirement: 11 || ^9 || ^10
+core_version_requirement: ^10 || ^11
 configure: views_json_source.settings
 dependencies:
   - drupal:views

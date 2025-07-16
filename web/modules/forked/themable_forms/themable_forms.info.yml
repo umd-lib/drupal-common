@@ -1,0 +1,4 @@
+name: Themable Forms
+description: Provides better theming experience for theming forms.
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+type: module
