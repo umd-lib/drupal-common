@@ -68,3 +68,4 @@ web/INSTALL.txt
 web/robots.txt
 web/sites/example.sites.php
 web/sites/development.services.yml
+.gitattributes
