@@ -24,7 +24,6 @@
         "drupal/body_node_id_class": "^2.0",
         "drupal/bootstrap": "^3.21",
         "drupal/cache_control_override": "^2.0",
-        "drupal/ckeditor": "^1.0",
         "drupal/ckeditor5_icons": "^1.1",
         "drupal/content_moderation_notifications": "^3.3",
         "drupal/content_translation_redirect": "^2.0",
