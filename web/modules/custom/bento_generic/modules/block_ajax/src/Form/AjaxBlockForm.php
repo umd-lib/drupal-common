@@ -26,49 +26,12 @@ class AjaxBlockForm extends BlockForm {
   protected $ajaxBlocksService;
 
   /**
-   * Constructs a AjaxBlockForm object.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity manager.
-   * @param \Drupal\Core\Executable\ExecutableManagerInterface $manager
-   *   The ConditionManager for building the visibility UI.
-   * @param \Drupal\Core\Plugin\Context\ContextRepositoryInterface $context_repository
-   *   The lazy context repository service.
-   * @param \Drupal\Core\Language\LanguageManagerInterface $language
-   *   The language manager.
-   * @param \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler
-   *   The theme handler.
-   * @param \Drupal\Core\Plugin\PluginFormFactoryInterface $plugin_form_manager
-   *   The plugin form manager.
-   * @param \Drupal\block_ajax\AjaxBlocks $ajax_blocks_service
-   *   The ajax blocks service.
-   */
-  public function __construct(
-    EntityTypeManagerInterface $entity_type_manager,
-    ExecutableManagerInterface $manager,
-    ContextRepositoryInterface $context_repository,
-    LanguageManagerInterface $language,
-    ThemeHandlerInterface $theme_handler,
-    PluginFormFactoryInterface $plugin_form_manager,
-    AjaxBlocks $ajax_blocks_service
-  ) {
-    parent::__construct($entity_type_manager, $manager, $context_repository, $language, $theme_handler, $plugin_form_manager);
-    $this->ajaxBlocksService = $ajax_blocks_service;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('entity_type.manager'),
-      $container->get('plugin.manager.condition'),
-      $container->get('context.repository'),
-      $container->get('language_manager'),
-      $container->get('theme_handler'),
-      $container->get('plugin_form.factory'),
-      $container->get('block_ajax.ajax_blocks')
-    );
+    $instance = parent::create($container);
+    $instance->ajaxBlocksService = $container->get('block_ajax.ajax_blocks');
+    return $instance;
   }
 
   /**
