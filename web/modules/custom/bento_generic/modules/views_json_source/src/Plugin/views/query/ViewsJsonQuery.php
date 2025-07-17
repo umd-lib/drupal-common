@@ -11,7 +11,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\views_json_source\Event\PreCacheEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Base query handler for views_json_source.
@@ -57,7 +57,7 @@ class ViewsJsonQuery extends QueryPluginBase {
   /**
    * The event dispatcher.
    *
-   * @var \Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
    */
   protected $eventDispatcher;
 
@@ -71,7 +71,7 @@ class ViewsJsonQuery extends QueryPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config, CacheBackendInterface $cache, TimeInterface $time, ContainerAwareEventDispatcher $event_dispatcher) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config, CacheBackendInterface $cache, TimeInterface $time, EventDispatcherInterface $event_dispatcher) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->config = $config;
