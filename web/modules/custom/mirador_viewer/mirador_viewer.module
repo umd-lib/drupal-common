@@ -26,6 +26,9 @@ function mirador_viewer_theme() {
         'images' => '',
       ],
     ],
+    'sidebar_spacer' => [
+      'variables' => [],
+    ],
   ];
 }
 
