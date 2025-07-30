@@ -107,6 +107,9 @@
         "patches": {
           "drupal/core": {
             "CKEditor width container issue": "https://www.drupal.org/files/issues/2023-09-06/ckeditor5-ckeditor5_toolbar_items_overflowing-3332416-25.patch"
+          },
+          "drupal/fontawesome": {
+            "Fontawesome class fix": "https://www.drupal.org/files/issues/2025-03-24/fontawesome--fix-style-class-saved-incorrectly.patch"
           }
         },
         "drupal-scaffold": {
