@@ -68,3 +68,4 @@ web/sites/example.sites.php
 web/libraries
 web/sites/development.services.yml
 .gitattributes
+recipes/

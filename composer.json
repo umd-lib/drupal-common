@@ -114,11 +114,6 @@
           ]
         },
         "enable-patching": true,
-        "patches": {
-          "drupal/core": {
-            "Allow exposed form to preserve URL query parameters": "https://www.drupal.org/files/issues/2023-04-18/2681953-42.patch"
-          }
-        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
