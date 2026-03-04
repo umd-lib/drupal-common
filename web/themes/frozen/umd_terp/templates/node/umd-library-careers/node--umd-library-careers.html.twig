@@ -7,31 +7,51 @@
 
 <div {{attributes}} id="umd-careers-node">
 	{{ title_suffix }}
-	{% if content.body|field_value %}
-		{{ content.body|field_value }}
-	{% endif %}
+	<div class="boilerplate">
+		<p>A member of the Big Ten Academic Alliance and the Association of Research Libraries, the UMD Libraries are nationally recognized for excellence in advancing the role of academic libraries. We are dedicated to fostering a welcoming and collaborative workplace where employees can grow, contribute their strengths, and be part of a community that advances discovery and learning.</p>
+	</div>
+        <div class="career-details">
+        	<h2>Position Summary:</h2>
+		{% if content.field_careers_division|field_value %}
+			<p><strong>Division:</strong> {{ content.field_careers_division|render }}</p>
+		{% endif %}
+		{% if content.field_careers_position_type|field_value %}
+			<p><strong>Position Type:</strong> {{ content.field_careers_position_type|field_value }}</p>
+		{% endif %}
+		{% if content.field_careers_salary|field_value %}
+			<p><strong>Salary Range:</strong> {{ content.field_careers_salary|field_value }}</p>
+		{% endif %}
+		{% if content.field_careers_position_descrip|field_value %}
+			<p>{{ content.field_careers_position_descrip|field_value }}</p>
+		{% endif %}
+		{% if content.body|field_value %}
+			{{ content.body|field_value }}
+		{% endif %}
+        </div>
 
-	<div class="career-details">	
-	{% if content.field_careers_position_descrip|field_value %}
-		<p>{{ content.field_careers_position_descrip|field_value }}</p>
-	{% endif %}
-	{% if content.field_careers_division|field_value %}
-		<p><strong>Division:</strong> {{ content.field_careers_division|render }}</p>
-	{% endif %}
-	{% if content.field_careers_position_type|field_value %}
-		<p><strong>Position Type:</strong> {{ content.field_careers_position_type|field_value }}</p>
-	{% endif %}
-	{% if content.field_careers_salary|field_value %}
-		<p><strong>Salary Range:</strong> {{ content.field_careers_salary|field_value }}</p>
-	{% endif %}
+	<div class="qualifications">
+		{% if content.field_qualifications|field_value %}
+			<h2>Qualifications:</h2>
+			<p>{{ content.field_qualifications|field_value }}</p>
+		{% endif %}
+        </div>
+
+        <div class="additional-requirements">
+		{% if content.field_additional_requirements|field_value %}
+			<h2>Additional Requirements:</h2>
+                        <p>{{ content.field_additional_requirements|field_value }}</p>
+		{% endif %}
+        </div>	
 	{% if content.field_careers_closing_date|field_value %}
-		<p><strong>Closing Date:</strong> {{ content.field_careers_closing_date|field_value }}</p>
+		<p><strong>Best Consideration/Closing Date:</strong> {{ content.field_careers_closing_date|field_value }}</p>
 	{% endif %}
 	<br />
-	{% if content.field_careers_application_link|field_value %}
-		<div class="btn-set"><a class="btn btn-primary" href="{{ content.field_careers_application_link|field_value }}">Apply for this position</a></div>
-	{% endif %}
-	</div>
+        <div class="apply-links">
+		<p>For internal applicants, please apply through the internal job post in Workday.  For external applicants, please use the link below.</p>
 
+		{% if content.field_careers_application_link|field_value %}
+			<div class="btn-set"><a class="btn btn-primary" href="{{ content.field_careers_application_link|field_value }}">Apply for this position</a></div>
+		{% endif %}
+	</div>
 </div>
-{{ content|without('body', 'field_careers_application_link', 'field_careers_closing_date', 'field_careers_salary', 'field_careers_position_type', 'field_careers_position_descrip', 'field_careers_division') }}
+{{ content|without('body', 'field_careers_application_link', 'field_careers_closing_date', 'field_careers_salary', 'field_careers_position_type', 'field_careers_position_descrip', 'field_careers_division', 'field_additional_requirements', 'field_qualifications') }}
