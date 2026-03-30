@@ -125,3 +125,7 @@ table.dc-item-metadata {
   max-width: 100%;
   width: 100%;
 }
+
+.whpool-details .report-content {
+  font-family: Monospace;
+}
