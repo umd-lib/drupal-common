@@ -43,6 +43,8 @@ RUN rm -rf /var/www/html/*
 
 COPY docker/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
+COPY docker/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf
+
 COPY docker/settings.php /app/settings.php
 
 # Copy the codebase to /app/web/app
