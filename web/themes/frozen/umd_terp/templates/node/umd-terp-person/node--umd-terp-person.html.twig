@@ -17,11 +17,13 @@
 					<div class="row">
 						<div class="col-600-4 col-1000-3">
 							{% set photo = assets_path ~ '/img/Profiles_Photo_Placeholder.svg' %}
+							{% set photo_alt = '' %}
 							{% if content.field_umdt_ct_person_photo|field_value %}
 								{% set photo = file_url(content.field_umdt_ct_person_photo|field_target_entity.uri.value | image_style('optimized')) %}
+								{% set photo_alt = 'Portrait of ' ~ node.title.value %}
 							{% endif %}
 							<div class="profile-photo">
-								<img src="{{ photo }}" alt="{{ node.title.value }}">
+								<img src="{{ photo }}" alt="{{ photo_alt }}">
 							</div>
 						</div>
 						<div class="col-600-8 col-1000-9">

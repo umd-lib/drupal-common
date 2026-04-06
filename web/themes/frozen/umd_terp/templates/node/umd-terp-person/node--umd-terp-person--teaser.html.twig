@@ -8,10 +8,12 @@
 <div class="profile-card card">
   <div class="card-img card-img-top">
     {% set photo = assets_path ~ '/img/Profiles_Photo_Placeholder.svg' %}
+    {% set photo_alt = '' %}
     {% if content.field_umdt_ct_person_photo|field_value %}
       {% set photo = file_url(content.field_umdt_ct_person_photo|field_target_entity.uri.value | image_style('optimized')) %}
+      {% set photo_alt = 'Portrait of ' ~ node.title.value %}
     {% endif %}
-    <img src="{{ photo }}" alt="Portrait of {{ node.title.value }}">
+    <img src="{{ photo }}" alt="{{ photo_alt }}">
   </div>
   <div class="card-body">
     <h2 class="card-title">{{ node.title.value }}</h2>
