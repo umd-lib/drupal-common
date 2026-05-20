@@ -38,12 +38,15 @@
         "drupal/extlink": "^2.0",
         "drupal/facets": "^3.0",
         "drupal/facets_block": "^2.0",
+        "drupal/facets_date_range": "^1.0@beta",
         "drupal/field_group": "^3.2",
         "drupal/fontawesome": "^3.0",
         "drupal/google_analytics": "^4.0",
         "drupal/honeypot": "^2.1",
         "drupal/imageapi_optimize": "^4.1@beta",
         "drupal/imageapi_optimize_binaries": "^1.0@alpha",
+        "drupal/jquery_ui_slider": "^2.1",
+        "drupal/jquery_ui_touch_punch": "^1.1",
         "drupal/js_cookie": "^1.0",
         "drupal/language_switcher_extended": "^1.1",
         "drupal/link_attributes": "^2.1",
@@ -104,6 +107,9 @@
         }
     },
     "extra": {
+        "enable-patching": true,
+        "patches": {
+        },
         "installer-types": [
           "npm-asset",
           "bower-asset"
