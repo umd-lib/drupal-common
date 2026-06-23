@@ -25,6 +25,12 @@
     {% set value = valueArray[1] %}
   {% endif %}
 {% endif %}
+{% if '|' in value %}
+  {% set valueArray = value|split('|') %}
+  {% if valueArray[1] %}
+    {% set value = valueArray[1] %}
+  {% endif %}
+{% endif %}
 {% if value == '*' %}
   <span class="facet-item__value">&nbsp;Any</span>
 {% else %}
