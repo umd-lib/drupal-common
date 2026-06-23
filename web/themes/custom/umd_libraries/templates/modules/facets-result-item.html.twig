@@ -19,8 +19,8 @@
 {% if is_active %}
   <span class="facet-item__status js-facet-deactivate">(-)</span>
 {% endif %}
-{% if '::' in value %}
-  {% set valueArray = value|split('::') %}
+{% if '|' in value %}
+  {% set valueArray = value|split('|') %}
   {% if valueArray[1] %}
     {% set value = valueArray[1] %}
   {% endif %}
