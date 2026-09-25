@@ -27,9 +27,9 @@
         "drupal/bootstrap": "^3.21",
         "drupal/colorbox": "^2.0",
         "drupal/content_translation_redirect": "^2.0@alpha",
-        "drupal/core-composer-scaffold": "^11",
-        "drupal/core-project-message": "^11",
-        "drupal/core-recommended": "^11",
+        "drupal/core-composer-scaffold": "~11.3.0",
+        "drupal/core-project-message": "~11.3.0",
+        "drupal/core-recommended": "~11.3.0",
         "drupal/ctools": "^4.1",
         "drupal/devel": "^5.2",
         "drupal/entity_reference_revisions": "^1.11",
@@ -96,14 +96,15 @@
         "sort-packages": true,
         "allow-plugins": {
             "composer/installers": true,
+            "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "wikimedia/composer-merge-plugin": true,
-            "cweagans/composer-patches": true,
             "mglaman/composer-drupal-lenient": true,
+            "oomphinc/composer-installers-extender": true,
             "phpstan/extension-installer": true,
-            "oomphinc/composer-installers-extender": true
+            "symfony/runtime": true,
+            "wikimedia/composer-merge-plugin": true
         }
     },
     "extra": {
