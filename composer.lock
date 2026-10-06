@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "724278a656a94f3ac85c88bf70b013ba",
+    "content-hash": "1122fafa86ec35ff730639f8489687eb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3138,26 +3138,26 @@
         },
         {
             "name": "drupal/node_view_permissions",
-            "version": "1.7.0",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/node_view_permissions.git",
-                "reference": "8.x-1.7"
+                "reference": "2.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/node_view_permissions-8.x-1.7.zip",
-                "reference": "8.x-1.7",
-                "shasum": "0141bd8fba7c8ac23994b337912bc5256bedd73d"
+                "url": "https://ftp.drupal.org/files/projects/node_view_permissions-2.0.3.zip",
+                "reference": "2.0.3",
+                "shasum": "10c1e7a485311a0f77871657e8fbdec4be793308"
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10"
+                "drupal/core": "^10.3 || ^11 || ^12"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.7",
-                    "datestamp": "1778692416",
+                    "version": "2.0.3",
+                    "datestamp": "1786012575",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3573,56 +3573,6 @@
                 "source": "https://git.drupal.org/project/search_api_solr.git",
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
                 "chat": "https://drupalchat.me/channel/search"
-            }
-        },
-        {
-            "name": "drupal/smart_read_more_link",
-            "version": "2.0.7",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/smart_read_more_link.git",
-                "reference": "2.0.7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/smart_read_more_link-2.0.7.zip",
-                "reference": "2.0.7",
-                "shasum": "e05efef5089f0c9b88917120164b43131419237c"
-            },
-            "require": {
-                "drupal/core": "^9 || ^10"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "2.0.7",
-                    "datestamp": "1698674670",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Ilcho Vuchkov (vuil)",
-                    "homepage": "https://www.drupal.org/u/vuil",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "vuil",
-                    "homepage": "https://www.drupal.org/user/3568458"
-                }
-            ],
-            "description": "Dynamic read more link for text fields.",
-            "homepage": "https://drupal.org/project/smart_read_more_link",
-            "support": {
-                "source": "https://drupal.org/project/smart_read_more_link",
-                "issues": "https://www.drupal.org/project/issues/smart_read_more_link?categories=All"
             }
         },
         {
