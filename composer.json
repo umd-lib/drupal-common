@@ -39,7 +39,7 @@
         "drupal/queue_ui": "^3.1",
         "drupal/redirect": "^1.6",
         "drupal/schema_metatag": "^1.4",
-        "drupal/search_api_solr": "^4.0",
+        "drupal/search_api_solr": "^4.3",
         "drupal/select_or_other": "^4.1",
         "drupal/smart_read_more_link": "^2.0",
         "drupal/symfony_mailer": "^1.3",
