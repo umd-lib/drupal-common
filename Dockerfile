@@ -1,4 +1,4 @@
-FROM drupal:10-php8.3-apache
+FROM drupal:11.4.11-php8.4-apache
 
 # Install necessary packages
 RUN seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} && \
@@ -56,12 +56,11 @@ RUN cd /app/web/app && \
         # composer install --no-dev --ignore-platform-reqs && \
         chown -R www-data:www-data /app/web/app
 
-RUN echo 'php_value post_max_size 32M' >> '/app/web/app/web/.htaccess'
-RUN echo 'php_value upload_max_filesize 30M' >> '/app/web/app/web/.htaccess'
+RUN echo 'php_value post_max_size 55M' >> '/app/web/app/web/.htaccess'
+RUN echo 'php_value upload_max_filesize 50M' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value max_input_vars 3000' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value max_execution_time 60' >> '/app/web/app/web/.htaccess'
-# RUN echo 'php_value memory_limit 512M' >> '/app/web/app/web/.htaccess'
-RUN echo 'php_value memory_limit -1' >> '/app/web/app/web/.htaccess'
+RUN echo 'php_value memory_limit 512M' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value suhosin.get.max_vars 3000' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value suhosin.post.max_vars 3000' >> '/app/web/app/web/.htaccess'
 RUN echo 'php_value suhosin.request.max_vars 3000' >> '/app/web/app/web/.htaccess'
